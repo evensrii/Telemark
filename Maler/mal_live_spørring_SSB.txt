@@ -1,0 +1,17 @@
+/* Sett først tableId, f.eks. 04779 */
+/* Lim så inn spørring fra SSB Statistikkbank. Forarbeid: */
+        /* Gjør ønskede endringer i spørring ("top", "filter", "item" osv.) */
+        /* Erstatt alle anførselstegn (") med doble anførselstegn ("") */
+        /* Endre utformat til csv2 */
+
+let
+            tableId = "",
+            PostContents = "
+            /* Start spørring.*/
+            LIM INN HER (ERSTATT DENNE TEKSTEN)
+            /* Slutt spørring. */
+",
+
+Kilde = Web.Contents("http://data.ssb.no/api/v0/no/table/" & tableId, [Content=Text.ToBinary(PostContents)])
+in
+Kilde
