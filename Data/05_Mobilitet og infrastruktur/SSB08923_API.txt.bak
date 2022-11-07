@@ -1,0 +1,94 @@
+{
+  "query": [
+    {
+      "code": "Havner",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "NOFRK",
+          "NOMSS",
+          "NOOSL",
+          "NODRM",
+          "NOTON",
+          "NOTRF",
+          "NOLAR",
+          "NOPOR",
+          "NOKRS",
+          "NOFAN",
+          "NOKVD",
+          "NOEGE",
+          "NOSVG",
+          "NOSAU",
+          "NOHAU",
+          "NOBGO",
+          "NOFRO",
+          "NOSVE",
+          "NOMAY",
+          "NOAES",
+          "NOMOL",
+          "NOKSU",
+          "NOTRD",
+          "NOVER",
+          "NOBNN",
+          "NOMJF",
+          "NOMQN",
+          "NOBOO",
+          "NONVK",
+          "NOHRD",
+          "NOTOS",
+          "NOHFT",
+          "SJSVE",
+          "NOKKN",
+          "PRIVA"
+        ]
+      }
+    },
+    {
+      "code": "Vareslag",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "20",
+          "21",
+          "22a",
+          "23a",
+          "24",
+          "30"
+        ]
+      }
+    },
+    {
+      "code": "Retning",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "1",
+          "2"
+        ]
+      }
+    },
+    {
+      "code": "InnUt",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "1",
+          "2",
+          "3"
+        ]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "Godsmengde"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "csv2"
+  }
+}
