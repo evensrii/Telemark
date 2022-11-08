@@ -1,0 +1,19 @@
+{
+  ""query"": [
+    {
+      ""code"": ""Transport2"",
+      ""selection"": {
+        ""filter"": ""item"",
+        ""values"": [
+          ""00"",
+          ""01"",
+          ""04"",
+          ""05""
+        ]
+      }
+    }
+  ],
+  ""response"": {
+    ""format"": ""csv2""
+  }
+}

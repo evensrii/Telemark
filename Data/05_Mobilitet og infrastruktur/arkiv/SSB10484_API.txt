@@ -1,0 +1,17 @@
+{
+  ""query"": [
+    {
+      ""code"": ""Togstrekning"",
+      ""selection"": {
+        ""filter"": ""item"",
+        ""values"": [
+          ""260"",
+          ""321""
+        ]
+      }
+    },
+  ],
+  ""response"": {
+    ""format"": ""csv2""
+  }
+}
