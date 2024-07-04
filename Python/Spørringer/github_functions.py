@@ -26,11 +26,13 @@ def upload_to_github(
 
     ## Github token ligger i en egen fil (token.env) i samme mappe som modulen, men skal ikke lastes opp til Github (.gitignore)
 
+    ## Sørge for at scriptet peker til token.env i SAMME mappe som selve scriptet:
+
     # Get the directory of this script
     module_dir = os.path.dirname(__file__)
 
     # Load environment variables from .env file in module directory
-    dotenv_path = os.path.join(module_dir, ".env")
+    dotenv_path = os.path.join(module_dir, "token.env")
     load_dotenv(dotenv_path)
 
     github_token = os.getenv("GITHUB_TOKEN")
