@@ -1,6 +1,22 @@
 import requests
 import pandas as pd
-import github_functions as github_functions
+import sys
+import os
+
+# import github_functions as github_functions
+
+# Get the directory of the current script
+current_directory = os.path.dirname(os.path.abspath(__file__))
+
+# Get the parent directory
+parent_directory = os.path.abspath(os.path.join(current_directory, os.pardir))
+
+# Add the parent directory to sys.path
+sys.path.append(parent_directory)
+
+# Assuming you have a module named `github_functions.py` in the parent directory
+import github_functions
+
 
 def get_hydro_power_plants_in_operation():
     url = "https://api.nve.no/web/Powerplant/GetHydroPowerPlantsInOperation"
@@ -46,4 +62,6 @@ destination_folder = "test_folder"
 github_repo = "evensrii/python_testing"
 git_branch = "main"
 
-github_functions.upload_to_github(source_file, destination_folder, github_repo, git_branch)
+github_functions.upload_to_github(
+    source_file, destination_folder, github_repo, git_branch
+)

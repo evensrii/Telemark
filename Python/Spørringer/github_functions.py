@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 # Hvis eksisterer, oppdater filen. Hvis ikke, opprett filen.
 
+
 def upload_to_github(
     source_file: str,
     destination_folder: str,
@@ -26,9 +27,11 @@ def upload_to_github(
     ## Github token ligger i en egen fil (token.env) som ikke skal lastes opp til Github (.gitignore)
 
     load_dotenv("token.env")
-    github_token = os.getenv('GITHUB_TOKEN')
+    github_token = os.getenv("GITHUB_TOKEN")
     if github_token is None:
-        raise ValueError("GitHub token not found. Please set it in the environment variables or .env file.")
+        raise ValueError(
+            "GitHub token not found. Please set it in the environment variables or .env file."
+        )
 
     # Create a Github instance using token
     g = Github(github_token)
