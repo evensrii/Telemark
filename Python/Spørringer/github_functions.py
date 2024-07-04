@@ -24,9 +24,15 @@ def upload_to_github(
         git_branch: The name of the branch in the GitHub repository
     """
 
-    ## Github token ligger i en egen fil (token.env) som ikke skal lastes opp til Github (.gitignore)
+    ## Github token ligger i en egen fil (token.env) i samme mappe som modulen, men skal ikke lastes opp til Github (.gitignore)
 
-    load_dotenv("token.env")
+    # Get the directory of this script
+    module_dir = os.path.dirname(__file__)
+
+    # Load environment variables from .env file in module directory
+    dotenv_path = os.path.join(module_dir, ".env")
+    load_dotenv(dotenv_path)
+
     github_token = os.getenv("GITHUB_TOKEN")
     if github_token is None:
         raise ValueError(
@@ -36,7 +42,7 @@ def upload_to_github(
     # Create a Github instance using token
     g = Github(github_token)
     # Get the repository object
-    repo = g.get_repo("evensrii/python_testing")
+    repo = g.get_repo("evensrii/Telemark")
     # Get the branch object
     branch = repo.get_branch("main")
     # Create the path of the file in the GitHub repository

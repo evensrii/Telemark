@@ -45,7 +45,7 @@ def get_hydro_power_plants_in_operation():
         "Produksjon oppstart",
         "Årlig produksjon (1991-2020)",
     ]
-    # df_selected.to_excel("vannkraft_telemark.xlsx", index=False)
+    df_selected.to_excel("../Temp/vannkraft_telemark.xlsx", index=False)
     print(df_selected)
 
 
@@ -57,9 +57,9 @@ if __name__ == "__main__":
 
 # Hvis eksisterer, oppdater filen. Hvis ikke, opprett filen.
 
-source_file = "vannkraft_telemark.xlsx"
-destination_folder = "test_folder"
-github_repo = "evensrii/python_testing"
+source_file = "../Temp/vannkraft_telemark.xlsx"
+destination_folder = "Data/04_Klima og ressursforvaltning"
+github_repo = "evensrii/Telemark"
 git_branch = "main"
 
 github_functions.upload_to_github(
