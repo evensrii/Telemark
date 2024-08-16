@@ -52,7 +52,7 @@ def upload_file_to_github(source_file, destination_folder, github_repo, git_bran
     timestamp = datetime.now().strftime("%d-%m-%Y kl. %H.%M.%S")
 
     # Commit message with time stamp
-    message = f"Updated file at {timestamp}"
+    message = f"Oppdatert {timestamp}"
 
     data = {
         "message": message,
