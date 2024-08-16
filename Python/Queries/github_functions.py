@@ -3,6 +3,7 @@
 import requests
 import os
 from dotenv import load_dotenv
+import datetime as dt
 
 # Load GitHub token from .env file
 dotenv_path = os.path.join(os.path.dirname(__file__), "token.env")
@@ -37,6 +38,9 @@ def upload_file_to_github(source_file, destination_folder, github_repo, git_bran
         "Accept": "application/vnd.github.v3+json",
     }
 
+    # Current time for commit message
+    ct = dt.datetime.now()
+
     # Check if the file already exists
     response = requests.get(api_url, headers=headers)
     if response.status_code == 200:
@@ -46,7 +50,8 @@ def upload_file_to_github(source_file, destination_folder, github_repo, git_bran
         sha = None
 
     data = {
-        "message": "Add file via script",
+        # "message": "Add file via script",
+        "message": "Updated file at " f"{ct}",
         "content": content_base64,
         "branch": git_branch,
     }

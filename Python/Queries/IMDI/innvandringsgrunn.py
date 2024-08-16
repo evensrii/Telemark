@@ -63,23 +63,6 @@ git_branch = "main"
 
 upload_file_to_github(csv_file, destination_folder, github_repo, git_branch)
 
-""" # Legge til parent directory i sys.path for å importere github_functions.py
-current_directory = os.path.dirname(os.path.abspath(__file__))
-parent_directory = os.path.abspath(os.path.join(current_directory, os.pardir))
-sys.path.append(parent_directory)
-import Queries.github_functions_backup as github_functions_backup
-
-# Hvis eksisterer, oppdater filen. Hvis ikke, opprett filen.
-
-source_file = f"../Temp/{csv_file_name}"  # Relativt til dette scriptet.
-destination_folder = "Data/09_Innvandrere og inkludering/Innvandrerbefolkningen"  # Mapper som ikke eksisterer vil opprettes automatisk.
-github_repo = "evensrii/Telemark"
-git_branch = "main"
-
-github_functions_backup.upload_to_github(
-    source_file, destination_folder, github_repo, git_branch
-) """
-
 ##################### Remove temporary files #####################
 
 # Delete files in folder using glob
