@@ -67,3 +67,10 @@ def upload_file_to_github(source_file, destination_folder, github_repo, git_bran
         print(f"File uploaded successfully: {response.json()}")
     else:
         print(f"Failed to upload file: {response.json()}")
+
+
+""" SHA (dvs. hvis endringer): Git assigns each commit a unique ID, called a SHA or hash, that identifies:
+
+The specific changes
+When the changes were made
+Who created the changes """
