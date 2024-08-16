@@ -38,9 +38,6 @@ def upload_file_to_github(source_file, destination_folder, github_repo, git_bran
         "Accept": "application/vnd.github.v3+json",
     }
 
-    # Current time for commit message
-    ct = dt.datetime.now()
-
     # Check if the file already exists
     response = requests.get(api_url, headers=headers)
     if response.status_code == 200:
@@ -49,8 +46,16 @@ def upload_file_to_github(source_file, destination_folder, github_repo, git_bran
     else:
         sha = None
 
+    ## Timestamp
+
+    # Current time for commit message
+    timestamp = dt.datetime.now()
+
+    # Commit message with time stamp
+    message = f"Updated file at {timestamp}"
+
     data = {
-        "message": "Updated file at " f"{ct}",
+        "message": message,
         "content": content_base64,
         "branch": git_branch,
     }
