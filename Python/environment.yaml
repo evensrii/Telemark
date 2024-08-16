@@ -1,0 +1,24 @@
+#conda env create -f environment.yaml       
+name: analyse
+prefix: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\analyse
+channels:
+  - defaults
+  - anaconda
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pip
+  - numpy
+  - pandas
+  - requests
+  - openpyxl
+  - matplotlib
+  - ipykernel
+  - beautifulsoup4
+  - pypdf2
+  - python-dotenv
+  - pygithub
+  - pip:
+    - pyjstat
+    - pyautogui
+    - keyboard
