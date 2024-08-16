@@ -3,7 +3,7 @@
 import requests
 import os
 from dotenv import load_dotenv
-import datetime as dt
+from datetime import datetime
 
 # Load GitHub token from .env file
 dotenv_path = os.path.join(os.path.dirname(__file__), "token.env")
@@ -48,8 +48,8 @@ def upload_file_to_github(source_file, destination_folder, github_repo, git_bran
 
     ## Timestamp
 
-    # Current time for commit message
-    timestamp = dt.datetime.now()
+    # Create a variable "timestamp" with the current date and time in the format "dd-mm-yyyy kl. HH.MM.SS"
+    timestamp = datetime.now().strftime("%d-%m-%Y kl. %H.%M.%S")
 
     # Commit message with time stamp
     message = f"Updated file at {timestamp}"
