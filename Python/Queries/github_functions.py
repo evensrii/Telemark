@@ -50,7 +50,6 @@ def upload_file_to_github(source_file, destination_folder, github_repo, git_bran
         sha = None
 
     data = {
-        # "message": "Add file via script",
         "message": "Updated file at " f"{ct}",
         "content": content_base64,
         "branch": git_branch,
