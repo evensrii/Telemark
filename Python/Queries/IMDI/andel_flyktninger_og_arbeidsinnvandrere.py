@@ -119,8 +119,8 @@ df_pivot_flyktninger.columns = ["Kommune", f"Andel flyktninger {most_recent_year
 #### Save dfs as csv files
 
 # Ønsket filnavn <----------- MÅ ENDRES MANUELT!
-csv_file_name1 = f"andel_arbeidsinnvandrere_{most_recent_year.year}.csv"
-csv_file_name2 = f"andel_flyktninger_{most_recent_year.year}.csv"
+csv_file_name1 = f"andel_arbeidsinnvandrere.csv"
+csv_file_name2 = f"andel_flyktninger.csv"
 
 df_pivot_arbeidsinnvandrere.to_csv(
     (f"../Temp/{csv_file_name1}"), index=False
