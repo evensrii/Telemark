@@ -7,6 +7,7 @@ import datetime as dt
 import sys
 import os
 import glob
+import dtale
 
 # Legge til parent directory i sys.path for å importere github_functions.py
 current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -35,9 +36,58 @@ else:
 df.info()
 df.head()
 
-# Filter ved hjelp av query basert på keys in kommuner_telemark
+print(df["Kommunenummer"].unique())
+
+# Rename column "Anmodning, vedtak og faktisk bosetting" til "Kategori"
+df = df.rename(columns={"Anmodning, vedtak og faktisk bosetting": "Kategori"})
+
+# dtale.show(open_browser=True)
+
+# Konverter "Kommunenummer" til string med 4 siffer
+df["Kommunenummer"] = df["Kommunenummer"].astype(str).str.pad(width=4, fillchar="0")
+df.info()
+
+# Konverter "Antall" til integer, og erstatt manglende verdier med NaN
+df["Antall"] = pd.to_numeric(df["Antall"], errors="coerce")
+
+# Dictionary for innfylling av manglende kommunenavn, samt filtrering av datasettet
 
 kommuner_telemark = {
+    "0805": "Porsgrunn",
+    "0806": "Skien",
+    "0807": "Notodden",
+    "0811": "Siljan",
+    "0814": "Bamble",
+    "0815": "Kragerø",
+    "0817": "Drangedal",
+    "0819": "Nome",
+    "0821": "Bø (Telemark)  (t.o.m. 2019)",
+    "0822": "Sauherad (t.o.m. 2019)",
+    "0826": "Tinn",
+    "0827": "Hjartdal",
+    "0828": "Seljord",
+    "0829": "Kviteseid",
+    "0830": "Nissedal",
+    "0831": "Fyresdal",
+    "0833": "Tokke",
+    "0834": "Vinje",
+    "3806": "Porsgrunn",
+    "3807": "Skien",
+    "3808": "Notodden",
+    "3812": "Siljan",
+    "3813": "Bamble",
+    "3814": "Kragerø",
+    "3815": "Drangedal",
+    "3816": "Nome",
+    "3817": "Midt-Telemark",
+    "3818": "Tinn",
+    "3819": "Hjartdal",
+    "3820": "Seljord",
+    "3821": "Kviteseid",
+    "3822": "Nissedal",
+    "3823": "Fyresdal",
+    "3824": "Tokke",
+    "3825": "Vinje",
     "4001": "Porsgrunn",
     "4003": "Skien",
     "4005": "Notodden",
@@ -57,23 +107,63 @@ kommuner_telemark = {
     "4036": "Vinje",
 }
 
-# Filtrer kun kommuner i Telemark
-df = df.query("Kommune in @kommuner_telemark.values()")
+## Innfylling av manglende kommunenavn
+
+# Map the dictionary to the DataFrame using the 'Kommunenummer' column
+# This creates a new Series that can be used to fill missing values in 'Kommune'
+df["Kommune"] = df["Kommune"].fillna(df["Kommunenummer"].map(kommuner_telemark))
+
+# dtale.show(df, open_browser=True)
+# 2024-tallene bruker fortsatt gammel kommunenummerering (VTFK)
+
+## Filtrering av rader hvor "Kommunenummer" er i kommuner_telemark.keys()
+
+df = df[df["Kommunenummer"].isin(kommuner_telemark.keys())]
+# dtale.show(df, open_browser=True)
 
 # Filter only the enhet "Personer"
 df = df.query("Enhet == 'Personer'")
 
 # Drop the columns "Kommunenummer" and "Enhet"
-df = df.drop(columns=["Kommunenummer", "Enhet"])
+df = df.drop(columns=["Enhet"])
 
 # Format "År" as datetime
 df["År"] = pd.to_datetime(df["År"], format="%Y")
 
+# Keep only "År" >= 2012
+# df = df.query("År >= '2012-01-01'")
+
+# Fjerne kolonne "Kommunenummer"
+df = df.drop(columns=["Kommunenummer"])
+
+# Merge kommuner "Bø (Telemark) (t.o.m. 2019)" og "Sauherad (t.o.m. 2019)" til "Midt-Telemark"
+df["Kommune"] = df["Kommune"].replace(
+    {
+        "Bø (Telemark)  (t.o.m. 2019)": "Midt-Telemark",
+        "Sauherad (t.o.m. 2019)": "Midt-Telemark",
+    }
+)
+
+# dtale.show(df, open_browser=True)
+
+# Group by the specified columns and aggregate the 'Antall' column
+df_aggregert = df.groupby(["Kommune", "År", "Kategori"], as_index=False)["Antall"].sum()
+# dtale.show(df_aggregert, open_browser=True)
+
+print(df_aggregert[df_aggregert["Kommune"] == "Midt-Telemark"])
+
+# Kontroll: Summere antall flyktninger per år og kategori
+df_aggregert.groupby(["År", "Kategori"], as_index=False)["Antall"].sum()
+
+# HAR MANUELT SUMMERT OPP ENKELTKOMMUNENE I TELEMARK HOS IMDI MED TALL FRA 2023 - DETTE STEMMER! :)
+
 #### Save df as a csv file
 
 # Ønsket filnavn <----------- MÅ ENDRES MANUELT!
-csv_file_name = f"anmodninger_og_faktisk_bosetting_tall.csv"
-df.to_csv((f"../Temp/{csv_file_name}"), index=False)  # Relativt til dette scriptet.
+csv_file_name = f"anmodninger_og_faktisk_bosetting.csv"
+df_aggregert.to_csv(
+    (f"../Temp/{csv_file_name}"), index=False
+)  # Relativt til dette scriptet.
 
 ##################### Opplasting til Github #####################
 
