@@ -100,15 +100,15 @@ df_industri["År"] = pd.to_datetime(df_industri["År"], format="%Y-%m-%d")
 # Merge df and df_industri by "År"
 df = pd.merge(df, df_industri, on="År", how="outer")
 
-df.columns = ["År", "Utslipp (norskeutslipp.no)", "Utslipp (Mdir)"]
+df.columns = ["År", "Landbaserte utslipp (norskeutslipp.no)", "Totale utslipp (Mdir)"]
 
 # Create a new column 'Mdir enkeltår' and move the values for the specified years
-df["Mdir enkeltår"] = df["Utslipp (Mdir)"].where(
+df["Mdir enkeltår"] = df["Totale utslipp (Mdir)"].where(
     df["År"].dt.year.isin([2009, 2011, 2013])
 )
 
 # Set the values for those years in the original column to NaN (optional)
-df.loc[df["År"].dt.year.isin([2009, 2011, 2013]), "Utslipp (Mdir)"] = None
+df.loc[df["År"].dt.year.isin([2009, 2011, 2013]), "Totale utslipp (Mdir)"] = None
 
 # Round all float64 values to 2 decimals
 df = df.round(2)
