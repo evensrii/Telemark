@@ -94,7 +94,11 @@ df_pivot["Andel kvinner"] = df_pivot["Andel kvinner"].round(1)
 df_pivot["Andel menn"] = df_pivot["Andel menn"].round(1)
 
 # Set column names as "Alder", "Kvinner" and "Menn"
-df_pivot.columns = ["Alder", f"Kvinner {siste_år}", f"Menn {siste_år}"]
+df_pivot.columns = [f"Alder ({siste_år})", "Kvinner", "Menn"]
+
+# Round values in "Kvinner" and "Menn" to 0 decimals
+df_pivot["Kvinner"] = df_pivot["Kvinner"].astype(int)
+df_pivot["Menn"] = df_pivot["Menn"].astype(int)
 
 
 ############# Save dfs as a csv files

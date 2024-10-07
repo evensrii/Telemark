@@ -84,10 +84,15 @@ df = df.round(2)
 
 df_norske_detaljert = df.copy()
 
+
 #### Everviz-figur
 
 # Kolonne 1 (Norskeutslipp.no)
 df = df.groupby("År")["Årlig utslipp til luft"].sum().reset_index()
+
+# Format "År" as year only
+df["År"] = df["År"].dt.year
+
 
 # Kolonne 2 (Mdir - industriutslipp) <--- Denne genereres fra det andre scriptet, "klimagassutslipp.py"
 url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/04_Klima%20og%20ressursforvaltning/Klimagassutslipp/klimagassutslipp_telemark.csv"
@@ -95,20 +100,24 @@ df_industri = pd.read_csv(url)
 df_industri = df_industri[df_industri["Sektor"] == "Industri, olje og gass"]
 df_industri = df_industri.groupby("År")["Utslipp"].sum().reset_index()
 # convert "År" to datetime
-df_industri["År"] = pd.to_datetime(df_industri["År"], format="%Y-%m-%d")
+df_industri["År"] = pd.to_datetime(df_industri["År"], format="%Y-%m-%d").dt.year
 
 # Merge df and df_industri by "År"
 df = pd.merge(df, df_industri, on="År", how="outer")
 
-df.columns = ["År", "Landbaserte utslipp (norskeutslipp.no)", "Totale utslipp (Mdir)"]
+df.columns = [
+    "År",
+    "Utslipp fra landbasert industri (norskeutslipp.no)",
+    "Totale utslipp fra industrien (Mdir)",
+]
 
 # Create a new column 'Mdir enkeltår' and move the values for the specified years
-df["Mdir enkeltår"] = df["Totale utslipp (Mdir)"].where(
-    df["År"].dt.year.isin([2009, 2011, 2013])
+df["Mdir enkeltår"] = df["Totale utslipp fra industrien (Mdir)"].where(
+    df["År"].isin([2009, 2011, 2013])
 )
 
 # Set the values for those years in the original column to NaN (optional)
-df.loc[df["År"].dt.year.isin([2009, 2011, 2013]), "Totale utslipp (Mdir)"] = None
+df.loc[df["År"].isin([2009, 2011, 2013]), "Totale utslipp fra industrien (Mdir)"] = None
 
 # Round all float64 values to 2 decimals
 df = df.round(2)
