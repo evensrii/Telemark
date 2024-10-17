@@ -98,7 +98,6 @@ df_total = pd.DataFrame(
     }
 )
 
-
 ############# Save dfs as a csv files
 
 # Ønsket filnavn <----------- MÅ ENDRES MANUELT!
