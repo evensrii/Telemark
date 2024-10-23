@@ -4,9 +4,10 @@ from datetime import datetime, timedelta
 import os
 import base64
 from dotenv import load_dotenv
+import io
 
 # Load GitHub token from the .env file
-load_dotenv("../../../token.env")
+load_dotenv("../../../token.env", override=True)
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
 if not GITHUB_TOKEN:
@@ -18,23 +19,35 @@ if not GITHUB_TOKEN:
 REPO = "evensrii/Telemark"
 BRANCH = "main"
 GITHUB_API_URL = "https://api.github.com"
-DATA_PATH = "Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub"
+DATA_PATH = "Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/"
 
 
-# Function to download a file from GitHub
 def download_github_file(file_path):
     url = f"{GITHUB_API_URL}/repos/{REPO}/contents/{file_path}?ref={BRANCH}"
     headers = {
         "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github.v3.raw",
+        "Accept": "application/vnd.github.v3.raw",  # Get the raw content directly
     }
+
+    # Print the URL and headers for debugging
+    print(f"Downloading file from URL: {url}")
+
     response = requests.get(url, headers=headers)
 
+    # Print the response status for debugging
+    print(f"Response Status Code: {response.status_code}")
+
     if response.status_code == 200:
-        file_content = base64.b64decode(response.json()["content"]).decode("utf-8")
-        return file_content
+        # Return the raw file content (already decoded)
+        return response.text  # Raw CSV content
+    elif response.status_code == 404:
+        print(f"File not found: {file_path}")
+        return None
     else:
-        print(f"Failed to download file: {file_path}")
+        print(
+            f"Failed to download file: {file_path}, Status Code: {response.status_code}"
+        )
+        print(f"Response: {response.text}")  # Log the response for debugging
         return None
 
 
@@ -152,10 +165,13 @@ def get_latest_date_from_github():
     latest_date_found = None
     for year in range(2021, datetime.now().year + 1):
         file_path = f"{DATA_PATH}{year}.csv"
+
+        # Download the CSV content from GitHub
         file_content = download_github_file(file_path)
 
-        if file_content:
-            df_year = pd.read_csv(pd.compat.StringIO(file_content))
+        if file_content:  # If we successfully get the file content
+            # Use io.StringIO to read the CSV content
+            df_year = pd.read_csv(io.StringIO(file_content))
             df_year["Tid"] = pd.to_datetime(df_year["Tid"], errors="coerce")
             df_year = clean_existing_data(df_year)
 
@@ -163,6 +179,9 @@ def get_latest_date_from_github():
                 latest_date_in_year = df_year["Tid"].max().date()
                 if latest_date_found is None or latest_date_in_year > latest_date_found:
                     latest_date_found = latest_date_in_year
+        else:
+            print(f"No content or file not found for {file_path}")
+
     return latest_date_found
 
 
@@ -175,13 +194,16 @@ def save_data_by_year_to_github(df):
 
     for year, year_data in df.groupby("Year"):
         file_path = f"{DATA_PATH}{year}.csv"
+
+        # Download existing data from GitHub
         file_content = download_github_file(file_path)
 
-        if file_content:
-            existing_data = pd.read_csv(pd.compat.StringIO(file_content))
+        if file_content:  # If file exists, load the content and append to it
+            # Use io.StringIO to read the existing CSV content
+            existing_data = pd.read_csv(io.StringIO(file_content))
             year_data = pd.concat([existing_data, year_data], ignore_index=True)
 
-        # Save updated content back to GitHub
+        # Save the updated CSV content back to GitHub
         csv_content = year_data.to_csv(index=False)
         upload_github_file(file_path, csv_content, message=f"Updating data for {year}")
 
