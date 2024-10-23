@@ -1,0 +1,21 @@
+(dato as text ) =>
+
+
+let
+//dato = "2024-01-01",  
+
+    Kilde = Json.Document(Web.Contents("https://api.elhub.no/energy-data/v0/municipalities?dataset=CONSUMPTION_PER_GROUP_MUNICIPALITY_HOUR&startDate="&dato)),
+    #"Konvertert til tabell" = Table.FromRecords({Kilde}),
+    #"Utvidet meta" = Table.ExpandRecordColumn(#"Konvertert til tabell", "meta", {"created", "lastUpdated"}, {"meta.created", "meta.lastUpdated"}),
+    #"Utvidet links" = Table.ExpandRecordColumn(#"Utvidet meta", "links", {"self"}, {"links.self"}),
+    #"Utvidet data" = Table.ExpandListColumn(#"Utvidet links", "data"),
+    #"Utvidet data1" = Table.ExpandRecordColumn(#"Utvidet data", "data", {"type", "id", "attributes"}, {"data.type", "data.id", "data.attributes"}),
+    #"Utvidet data.attributes" = Table.ExpandRecordColumn(#"Utvidet data1", "data.attributes", {"municipalityNumber", "name", "nameNo", "consumptionPerGroupMunicipalityHour"}, {"data.attributes.municipalityNumber", "data.attributes.name", "data.attributes.nameNo", "data.attributes.consumptionPerGroupMunicipalityHour"}),
+    #"Utvidet data.attributes.consumptionPerGroupMunicipalityHour" = Table.ExpandListColumn(#"Utvidet data.attributes", "data.attributes.consumptionPerGroupMunicipalityHour"),
+    #"Utvidet data.attributes.consumptionPerGroupMunicipalityHour1" = Table.ExpandRecordColumn(#"Utvidet data.attributes.consumptionPerGroupMunicipalityHour", "data.attributes.consumptionPerGroupMunicipalityHour", {"startTime", "endTime", "consumptionGroup", "quantityKwh", "lastUpdatedTime", "meteringPointCount"}, {"data.attributes.consumptionPerGroupMunicipalityHour.startTime", "data.attributes.consumptionPerGroupMunicipalityHour.endTime", "data.attributes.consumptionPerGroupMunicipalityHour.consumptionGroup", "data.attributes.consumptionPerGroupMunicipalityHour.quantityKwh", "data.attributes.consumptionPerGroupMunicipalityHour.lastUpdatedTime", "data.attributes.consumptionPerGroupMunicipalityHour.meteringPointCount"}),
+    #"Endret type" = Table.TransformColumnTypes(#"Utvidet data.attributes.consumptionPerGroupMunicipalityHour1",{{"meta.created", type datetimezone}, {"meta.lastUpdated", type datetimezone}, {"links.self", type text}, {"data.type", type text}, {"data.id", Int64.Type}, {"data.attributes.municipalityNumber", Int64.Type}, {"data.attributes.name", type text}, {"data.attributes.nameNo", type text}, {"data.attributes.consumptionPerGroupMunicipalityHour.startTime", type datetimezone}, {"data.attributes.consumptionPerGroupMunicipalityHour.endTime", type datetimezone}, {"data.attributes.consumptionPerGroupMunicipalityHour.consumptionGroup", type text}, {"data.attributes.consumptionPerGroupMunicipalityHour.quantityKwh", type number}, {"data.attributes.consumptionPerGroupMunicipalityHour.lastUpdatedTime", type datetimezone}, {"data.attributes.consumptionPerGroupMunicipalityHour.meteringPointCount", Int64.Type}}),
+    #"Filtrerte rader" = Table.SelectRows(#"Endret type", each [data.attributes.municipalityNumber] > 4000 and [data.attributes.municipalityNumber] < 4200),
+    #"Fjernede kolonner" = Table.RemoveColumns(#"Filtrerte rader",{"meta.created", "links.self", "meta.lastUpdated", "data.type", "data.attributes.municipalityNumber", "data.attributes.nameNo", "data.attributes.consumptionPerGroupMunicipalityHour.endTime", "data.attributes.consumptionPerGroupMunicipalityHour.lastUpdatedTime"}),
+    #"Kolonner med nye navn" = Table.RenameColumns(#"Fjernede kolonner",{{"data.id", "Knr"}, {"data.attributes.name", "Kommunenavn"}, {"data.attributes.consumptionPerGroupMunicipalityHour.startTime", "Tid"}, {"data.attributes.consumptionPerGroupMunicipalityHour.consumptionGroup", "Type"}, {"data.attributes.consumptionPerGroupMunicipalityHour.quantityKwh", "KWh"}, {"data.attributes.consumptionPerGroupMunicipalityHour.meteringPointCount", "Antall målere"}})
+in
+    #"Kolonner med nye navn"
