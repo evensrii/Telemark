@@ -18,7 +18,7 @@ if not GITHUB_TOKEN:
 REPO = "evensrii/Telemark"
 BRANCH = "main"
 GITHUB_API_URL = "https://api.github.com"
-DATA_PATH = "Data/04_Klima og ressursforvaltning/Kraft og energi/"
+DATA_PATH = "Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub"
 
 
 # Function to download a file from GitHub
