@@ -178,44 +178,56 @@ def save_data_by_year_to_github(df):
         upload_github_file(file_path, csv_content, message=f"Updating data for {year}")
 
 
-# Function to query and append new data based on the latest date in GitHub files
-def query_and_append_new_data():
+# Function to query and append new data based on the first week of each year
+def query_and_append_first_week_data():
     latest_date_found = get_latest_date_from_github()
 
     if latest_date_found is None:
-        latest_date_found = datetime(
-            2021, 1, 1
-        ).date()  # Start from the first available date if no data is found
+        latest_date_found = datetime(2021, 1, 1).date()
         print(f"No data found, starting from {latest_date_found}")
     else:
         print(f"Latest date found in GitHub files: {latest_date_found}")
 
     end_date = (datetime.now() - timedelta(days=2)).date()
-    current_date = latest_date_found + timedelta(days=1)
 
-    new_data = []
+    # Loop through each year, starting from 2021 to current year
+    for year in range(2021, datetime.now().year + 1):
+        start_date = datetime(year, 1, 1).date()
 
-    while current_date <= end_date:
-        date_str = current_date.strftime("%Y-%m-%d")
-        print(f"Querying data for {date_str}")
-        daily_data = query_elhub(date_str)
+        # Adjust start date if data already exists
+        if latest_date_found and latest_date_found >= start_date:
+            start_date = latest_date_found + timedelta(days=1)
 
-        if not daily_data.empty:
-            new_data.append(daily_data)
+        end_date_for_year = start_date + timedelta(days=6)  # First week only
 
-        current_date += timedelta(days=1)
+        if start_date > end_date:
+            print(f"Data for the first week of {year} is already up-to-date.")
+            continue
 
-    if new_data:
-        new_data = pd.concat(new_data, ignore_index=True)
-        new_data = process_data(new_data)
-        save_data_by_year_to_github(new_data)
-        print("New data appended and GitHub files updated.")
-    else:
-        print("No new data to update.")
+        current_date = start_date
+        new_data = []
+
+        while current_date <= end_date_for_year and current_date <= end_date:
+            date_str = current_date.strftime("%Y-%m-%d")
+            print(f"Querying data for {date_str}")
+            daily_data = query_elhub(date_str)
+
+            if not daily_data.empty:
+                new_data.append(daily_data)
+
+            current_date += timedelta(days=1)
+
+        if new_data:
+            new_data = pd.concat(new_data, ignore_index=True)
+            new_data = process_data(new_data)
+            save_data_by_year_to_github(new_data)
+            print(f"First week data for {year} appended and GitHub files updated.")
+        else:
+            print(f"No data found for the first week of {year}.")
 
 
 def main():
-    query_and_append_new_data()
+    query_and_append_first_week_data()
 
 
 if __name__ == "__main__":
