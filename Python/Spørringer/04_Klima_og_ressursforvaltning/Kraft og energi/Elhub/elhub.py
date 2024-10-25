@@ -6,6 +6,9 @@ import base64
 from dotenv import load_dotenv
 import io
 
+### NB: For å ta høyde for eventuelle korreksjoner i dataene for de tre siste årene, kan det være lurt å
+### f. eks. én gang i året slette alle dataene (csvene) og kjøre scriptet på nytt.
+
 # Load GitHub token from the .env file
 load_dotenv("../../../token.env", override=True)
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -22,24 +25,17 @@ GITHUB_API_URL = "https://api.github.com"
 DATA_PATH = "Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/"
 
 
+# Function to download a file from GitHub
 def download_github_file(file_path):
     url = f"{GITHUB_API_URL}/repos/{REPO}/contents/{file_path}?ref={BRANCH}"
     headers = {
         "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github.v3.raw",  # Get the raw content directly
+        "Accept": "application/vnd.github.v3.raw",
     }
-
-    # Print the URL and headers for debugging
-    print(f"Downloading file from URL: {url}")
-
     response = requests.get(url, headers=headers)
 
-    # Print the response status for debugging
-    print(f"Response Status Code: {response.status_code}")
-
     if response.status_code == 200:
-        # Return the raw file content (already decoded)
-        return response.text  # Raw CSV content
+        return response.text
     elif response.status_code == 404:
         print(f"File not found: {file_path}")
         return None
@@ -47,7 +43,6 @@ def download_github_file(file_path):
         print(
             f"Failed to download file: {file_path}, Status Code: {response.status_code}"
         )
-        print(f"Response: {response.text}")  # Log the response for debugging
         return None
 
 
@@ -59,11 +54,9 @@ def upload_github_file(file_path, content, message="Updating data"):
         "Accept": "application/vnd.github.v3+json",
     }
 
-    # First, check if the file exists (to get the SHA for updates)
     response = requests.get(url, headers=headers)
     sha = response.json().get("sha") if response.status_code == 200 else None
 
-    # Prepare the payload
     payload = {
         "message": message,
         "content": base64.b64encode(content.encode("utf-8")).decode("utf-8"),
@@ -72,7 +65,6 @@ def upload_github_file(file_path, content, message="Updating data"):
     if sha:
         payload["sha"] = sha
 
-    # Make the request
     response = requests.put(url, json=payload, headers=headers)
 
     if response.status_code in [201, 200]:
@@ -87,22 +79,15 @@ def query_elhub(date):
     response = requests.get(url)
     data = response.json()
 
-    # Step 1: Normalize the 'data' field
     df_data = pd.json_normalize(data["data"])
-
-    # Step 2: Expand the 'attributes.consumptionPerGroupMunicipalityHour' field while keeping index intact
     df_data_expanded = df_data.explode("attributes.consumptionPerGroupMunicipalityHour")
-
-    # Step 3: Normalize the 'consumptionPerGroupMunicipalityHour' field to flatten it
     df_consumption = pd.json_normalize(
         df_data_expanded["attributes.consumptionPerGroupMunicipalityHour"]
     )
 
-    # Reset the index to ensure both dataframes are aligned properly
     df_data_expanded = df_data_expanded.reset_index(drop=True)
     df_consumption = df_consumption.reset_index(drop=True)
 
-    # Step 4: Combine the 'municipalityNumber' and 'name' with the expanded consumption data
     df_combined = pd.concat(
         [
             df_data_expanded[["attributes.municipalityNumber", "attributes.name"]],
@@ -111,7 +96,6 @@ def query_elhub(date):
         axis=1,
     )
 
-    # Filter for municipalities in Telemark (Knr 4000 to 4200)
     df_telemark = df_combined[
         (df_combined["attributes.municipalityNumber"].astype(int) > 4000)
         & (df_combined["attributes.municipalityNumber"].astype(int) < 4200)
@@ -127,10 +111,8 @@ def clean_existing_data(df):
 
 # Function to rename columns and process the data
 def process_data(df):
-    # Remove unnecessary columns "endTime" and "lastUpdatedTime"
     df = df.drop(columns=["endTime", "lastUpdatedTime"], errors="ignore")
 
-    # Rename columns for clarity
     df = df.rename(
         columns={
             "attributes.municipalityNumber": "Knr",
@@ -142,13 +124,9 @@ def process_data(df):
         }
     )
 
-    # Ensure proper conversion of the "Tid" column to datetime format
     df["Tid"] = pd.to_datetime(df["Tid"], errors="coerce")
-
-    # Drop rows where "Tid" could not be converted to a valid datetime
     df = df.dropna(subset=["Tid"])
 
-    # Rename values in the "Gruppe" column
     df["Gruppe"] = df["Gruppe"].replace(
         {
             "business": "Næring (unntatt industri)",
@@ -165,12 +143,9 @@ def get_latest_date_from_github():
     latest_date_found = None
     for year in range(2021, datetime.now().year + 1):
         file_path = f"{DATA_PATH}{year}.csv"
-
-        # Download the CSV content from GitHub
         file_content = download_github_file(file_path)
 
-        if file_content:  # If we successfully get the file content
-            # Use io.StringIO to read the CSV content
+        if file_content:
             df_year = pd.read_csv(io.StringIO(file_content))
             df_year["Tid"] = pd.to_datetime(df_year["Tid"], errors="coerce")
             df_year = clean_existing_data(df_year)
@@ -179,31 +154,34 @@ def get_latest_date_from_github():
                 latest_date_in_year = df_year["Tid"].max().date()
                 if latest_date_found is None or latest_date_in_year > latest_date_found:
                     latest_date_found = latest_date_in_year
-        else:
-            print(f"No content or file not found for {file_path}")
 
     return latest_date_found
 
 
 # Function to save the data into yearly files on GitHub
 def save_data_by_year_to_github(df):
+    # Convert 'Tid' column to datetime and drop invalid dates
     df["Tid"] = pd.to_datetime(df["Tid"], errors="coerce")
     df = df.dropna(subset=["Tid"])
 
+    # Extract the year from the 'Tid' column for grouping
     df["Year"] = df["Tid"].dt.year
 
     for year, year_data in df.groupby("Year"):
         file_path = f"{DATA_PATH}{year}.csv"
-
-        # Download existing data from GitHub
         file_content = download_github_file(file_path)
 
-        if file_content:  # If file exists, load the content and append to it
-            # Use io.StringIO to read the existing CSV content
+        if file_content:
             existing_data = pd.read_csv(io.StringIO(file_content))
+            existing_data = existing_data.drop(
+                columns=["Year"], errors="ignore"
+            )  # Ensure existing data does not have 'Year'
+
+            # Merge existing and new data
             year_data = pd.concat([existing_data, year_data], ignore_index=True)
 
-        # Save the updated CSV content back to GitHub
+        # Drop the "Year" column before saving
+        year_data = year_data.drop(columns=["Year"], errors="ignore")
         csv_content = year_data.to_csv(index=False)
         upload_github_file(file_path, csv_content, message=f"Updating data for {year}")
 
@@ -230,6 +208,7 @@ def query_and_append_new_data():
 
         if not daily_data.empty:
             new_data.append(daily_data)
+
         current_date += timedelta(days=1)
 
     if new_data:
