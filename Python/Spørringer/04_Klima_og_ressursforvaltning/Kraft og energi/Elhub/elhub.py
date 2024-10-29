@@ -6,9 +6,6 @@ import base64
 from dotenv import load_dotenv
 import io
 
-### NB: For å ta høyde for eventuelle korreksjoner i dataene for de tre siste årene, kan det være lurt å
-### f. eks. én gang i året slette alle dataene (csvene) og kjøre scriptet på nytt.
-
 # Load GitHub token from the .env file
 load_dotenv("../../../token.env", override=True)
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -141,7 +138,10 @@ def process_data(df):
 # Function to determine the latest date across all yearly CSV files on GitHub
 def get_latest_date_from_github():
     latest_date_found = None
-    for year in range(2021, datetime.now().year + 1):
+    current_year = datetime.now().year
+    earliest_start_date = datetime(current_year - 3, 1, 1).date()  # Three years ago
+
+    for year in range(earliest_start_date.year, current_year + 1):
         file_path = f"{DATA_PATH}{year}.csv"
         file_content = download_github_file(file_path)
 
@@ -155,12 +155,11 @@ def get_latest_date_from_github():
                 if latest_date_found is None or latest_date_in_year > latest_date_found:
                     latest_date_found = latest_date_in_year
 
-    return latest_date_found
+    return latest_date_found if latest_date_found else earliest_start_date
 
 
 # Function to save the data into yearly files on GitHub
 def save_data_by_year_to_github(df):
-    # Convert 'Tid' column to datetime and drop invalid dates
     df["Tid"] = pd.to_datetime(df["Tid"], errors="coerce")
     df = df.dropna(subset=["Tid"])
 
@@ -173,14 +172,11 @@ def save_data_by_year_to_github(df):
 
         if file_content:
             existing_data = pd.read_csv(io.StringIO(file_content))
-            existing_data = existing_data.drop(
-                columns=["Year"], errors="ignore"
-            )  # Ensure existing data does not have 'Year'
+            existing_data = existing_data.drop(columns=["Year"], errors="ignore")
 
             # Merge existing and new data
             year_data = pd.concat([existing_data, year_data], ignore_index=True)
 
-        # Drop the "Year" column before saving
         year_data = year_data.drop(columns=["Year"], errors="ignore")
         csv_content = year_data.to_csv(index=False)
         upload_github_file(file_path, csv_content, message=f"Updating data for {year}")
@@ -189,33 +185,37 @@ def save_data_by_year_to_github(df):
 # Function to query and append new data based on the latest date in GitHub files
 def query_and_append_new_data():
     latest_date_found = get_latest_date_from_github()
-
-    if latest_date_found is None:
-        latest_date_found = datetime(2021, 1, 1).date()
-        print(f"No data found, starting from {latest_date_found}")
-    else:
-        print(f"Latest date found in GitHub files: {latest_date_found}")
+    print(f"Latest date found in GitHub files or starting default: {latest_date_found}")
 
     end_date = (datetime.now() - timedelta(days=2)).date()
-    current_date = latest_date_found + timedelta(days=1)
 
+    # Initialize an empty list to store new data
     new_data = []
 
-    while current_date <= end_date:
-        date_str = current_date.strftime("%Y-%m-%d")
-        print(f"Querying data for {date_str}")
-        daily_data = query_elhub(date_str)
+    # Loop through each year, starting from the latest year found
+    start_year = latest_date_found.year
+    for year in range(start_year, datetime.now().year + 1):
+        # If it's the first year and starting from the middle, use the `latest_date_found`
+        if year == start_year and latest_date_found > datetime(year, 1, 1).date():
+            current_date = latest_date_found + timedelta(days=1)
+        else:
+            current_date = datetime(year, 1, 1).date()
 
-        if not daily_data.empty:
-            new_data.append(daily_data)
+        # Collect all data for the year
+        while current_date <= end_date and current_date.year == year:
+            date_str = current_date.strftime("%Y-%m-%d")
+            print(f"Querying data for {date_str}")
+            daily_data = query_elhub(date_str)
 
-        current_date += timedelta(days=1)
+            if not daily_data.empty:
+                new_data.append(daily_data)
+            current_date += timedelta(days=1)
 
     if new_data:
         new_data = pd.concat(new_data, ignore_index=True)
         new_data = process_data(new_data)
         save_data_by_year_to_github(new_data)
-        print("New data appended and GitHub files updated.")
+        print("Full year data for each year appended and GitHub files updated.")
     else:
         print("No new data to update.")
 
