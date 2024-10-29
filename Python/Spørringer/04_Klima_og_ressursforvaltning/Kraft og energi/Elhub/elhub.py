@@ -123,8 +123,8 @@ def process_data(df):
         }
     )
 
-    # Convert 'Tid' to datetime, remove timezone information, and drop invalid timestamps
-    df["Tid"] = pd.to_datetime(df["Tid"], errors="coerce").dt.tz_localize(None)
+    # Ensure proper conversion of 'Tid' to datetime format and drop invalid dates
+    df["Tid"] = pd.to_datetime(df["Tid"], errors="coerce")
     df = df.dropna(subset=["Tid"])
 
     # Standardize the 'Gruppe' values
@@ -136,7 +136,7 @@ def process_data(df):
         }
     )
 
-    # Sort by 'Tid' to ensure correct ordering after processing
+    # Sort by 'Tid' to ensure correct chronological ordering
     df = df.sort_values(by="Tid").reset_index(drop=True)
 
     return df
