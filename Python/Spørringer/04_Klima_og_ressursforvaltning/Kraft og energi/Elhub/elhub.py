@@ -108,8 +108,10 @@ def clean_existing_data(df):
 
 # Function to rename columns and process the data
 def process_data(df):
+    # Remove unnecessary columns
     df = df.drop(columns=["endTime", "lastUpdatedTime"], errors="ignore")
 
+    # Rename columns for clarity
     df = df.rename(
         columns={
             "attributes.municipalityNumber": "Knr",
@@ -121,10 +123,11 @@ def process_data(df):
         }
     )
 
-    # Convert 'Tid' to UTC to handle timezone consistently
-    df["Tid"] = pd.to_datetime(df["Tid"], utc=True, errors="coerce")
+    # Convert 'Tid' to datetime, remove timezone information, and drop invalid timestamps
+    df["Tid"] = pd.to_datetime(df["Tid"], errors="coerce").dt.tz_localize(None)
     df = df.dropna(subset=["Tid"])
 
+    # Standardize the 'Gruppe' values
     df["Gruppe"] = df["Gruppe"].replace(
         {
             "business": "Næring (unntatt industri)",
@@ -132,6 +135,9 @@ def process_data(df):
             "private": "Husholdninger",
         }
     )
+
+    # Sort by 'Tid' to ensure correct ordering after processing
+    df = df.sort_values(by="Tid").reset_index(drop=True)
 
     return df
 
