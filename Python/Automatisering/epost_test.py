@@ -3,7 +3,6 @@ import requests
 # Finner URL vha. "Inspiser side" og fane "Network"
 url = "https://mail-test.api.telemarkfylke.no/api/mail"
 headers = {
-    "": "",
     "Content-Type": "application/json",  # Ensure JSON content type
 }
 
