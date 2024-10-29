@@ -121,7 +121,8 @@ def process_data(df):
         }
     )
 
-    df["Tid"] = pd.to_datetime(df["Tid"], errors="coerce")
+    # Convert 'Tid' to UTC to handle timezone consistently
+    df["Tid"] = pd.to_datetime(df["Tid"], utc=True, errors="coerce")
     df = df.dropna(subset=["Tid"])
 
     df["Gruppe"] = df["Gruppe"].replace(
@@ -147,7 +148,7 @@ def get_latest_date_from_github():
 
         if file_content:
             df_year = pd.read_csv(io.StringIO(file_content))
-            df_year["Tid"] = pd.to_datetime(df_year["Tid"], errors="coerce")
+            df_year["Tid"] = pd.to_datetime(df_year["Tid"], utc=True, errors="coerce")
             df_year = clean_existing_data(df_year)
 
             if not df_year.empty:
@@ -160,7 +161,7 @@ def get_latest_date_from_github():
 
 # Function to save the data into yearly files on GitHub
 def save_data_by_year_to_github(df):
-    df["Tid"] = pd.to_datetime(df["Tid"], errors="coerce")
+    df["Tid"] = pd.to_datetime(df["Tid"], utc=True, errors="coerce")
     df = df.dropna(subset=["Tid"])
 
     # Extract the year from the 'Tid' column for grouping
