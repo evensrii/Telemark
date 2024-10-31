@@ -136,8 +136,8 @@ def process_data(df):
         }
     )
 
-    # Sort by 'Kommunenavn', 'Gruppe', and 'Tid' to ensure correct ordering
-    df = df.sort_values(by=["Kommunenavn", "Gruppe", "Tid"]).reset_index(drop=True)
+    # Sort by 'Tid' (oldest dates first), then by 'Kommunenavn' and 'Gruppe'
+    df = df.sort_values(by=["Tid", "Kommunenavn", "Gruppe"]).reset_index(drop=True)
 
     return df
 
