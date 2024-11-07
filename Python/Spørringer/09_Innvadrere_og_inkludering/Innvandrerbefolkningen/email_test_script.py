@@ -12,10 +12,11 @@ two_levels_up_directory = os.path.abspath(
 )
 sys.path.append(two_levels_up_directory)
 
-from email_functions import (
-    notify_errors,
-)  # <--- Importerer funksjonene for å sende e-post
+from email_functions import notify_errors
 from github_functions import upload_file_to_github
+
+# Capture the name of the current script
+script_name = os.path.basename(__file__)
 
 # Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
 error_messages = []
@@ -25,7 +26,7 @@ error_messages = []
 # NB: Prøve å sette opp også med 2024-kommunenummer. Hvis ikke må scriptet oppdateres senere.
 
 # Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/table/11607/"
+POST_URL = "https://data.ssbssb.no/api/v0/no/table/11607/"
 
 ################# Spørring VTFK (-2023) #################
 
@@ -86,7 +87,7 @@ except requests.exceptions.RequestException as e:
     error_message = f"Error in VTFK request: {str(e)}"
     print(error_message)
     error_messages.append(error_message)
-    notify_errors(error_messages)  # Send notification
+    notify_errors(error_messages, script_name=script_name)  # Send notification
     raise RuntimeError("Data request failed, stopping further execution.")
     # exit(1)  # <-- Bedre når jeg ikke kjører i en Jupyter notebook.
 
@@ -145,7 +146,7 @@ except requests.exceptions.RequestException as e:
     error_message = f"Error in TFK request: {str(e)}"
     print(error_message)
     error_messages.append(error_message)
-    notify_errors(error_messages)  # Send notification
+    notify_errors(error_messages, script_name=script_name)  # Send notification
     raise RuntimeError("Data request failed, stopping further execution.")
 
 ####### Slå sammen datasettene #######
