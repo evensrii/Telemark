@@ -38,7 +38,7 @@ def notify_errors(error_messages, script_name="Unknown Script"):
         headers = {
             "Content-Type": "application/json",
             "User-Agent": "insomnia/10.1.1",
-            "x-functions-key": X_FUNCTIONS_KEY,
+            "x-functions-key": "your_x_functions_key",  # Replace with your actual key
         }
 
         email_response = requests.post(url, headers=headers, json=payload)

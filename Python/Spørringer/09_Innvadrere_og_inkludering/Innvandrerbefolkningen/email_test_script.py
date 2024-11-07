@@ -12,6 +12,7 @@ two_levels_up_directory = os.path.abspath(
 )
 sys.path.append(two_levels_up_directory)
 
+from utility_functions import fetch_data
 from email_functions import notify_errors
 from github_functions import upload_file_to_github
 
@@ -70,27 +71,6 @@ payload_vtfk = {
     "response": {"format": "json-stat2"},
 }
 
-## Kjøre spørringer i try-except for å fange opp feil. Quitter dermed ikke før feilsjekk til slutt.
-
-try:
-    # Attempt the request
-    resultat_vtfk = requests.post(POST_URL, json=payload_vtfk)
-    resultat_vtfk.raise_for_status()  # Raises exception for non-200 responses
-
-    # If successful, proceed with data processing
-    dataset = pyjstat.Dataset.read(resultat_vtfk.text)
-    df_vtfk = dataset.write("dataframe")
-    print("VTFK data loaded successfully")
-
-except requests.exceptions.RequestException as e:
-    # On failure, log the error, send notification, and terminate the script
-    error_message = f"Error in VTFK request: {str(e)}"
-    print(error_message)
-    error_messages.append(error_message)
-    notify_errors(error_messages, script_name=script_name)  # Send notification
-    raise RuntimeError("Data request failed, stopping further execution.")
-    # exit(1)  # <-- Bedre når jeg ikke kjører i en Jupyter notebook.
-
 ################# Spørring TFK (2024-) ################# (spørring ok for 2023, men gir bare "None"-verdier)
 
 payload_tfk = {
@@ -132,22 +112,21 @@ payload_tfk = {
     "response": {"format": "json-stat2"},
 }
 
-## Kjøre spørringer i try-except for å fange opp feil. Quitter dermed ikke før feilsjekk til slutt.
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
 try:
-    resultat_tfk = requests.post(POST_URL, json=payload_tfk)
-    resultat_tfk.raise_for_status()  # Raises HTTPError for bad responses (non-200 status codes)
+    # Fetch data using the fetch_data function, with separate calls for each request
+    df_vtfk = fetch_data(POST_URL, payload_vtfk, error_messages, query_name="VTFK")
+    df_tfk = fetch_data(POST_URL, payload_tfk, error_messages, query_name="TFK")
 
-    dataset = pyjstat.Dataset.read(resultat_tfk.text)
-    df_tfk = dataset.write("dataframe")
-    print("TFK data loaded successfully")
+except Exception as e:
+    # If any query fails, send the error notification and stop execution
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
 
-except requests.exceptions.RequestException as e:
-    error_message = f"Error in TFK request: {str(e)}"
-    print(error_message)
-    error_messages.append(error_message)
-    notify_errors(error_messages, script_name=script_name)  # Send notification
-    raise RuntimeError("Data request failed, stopping further execution.")
+# Proceed with data analysis only if all queries succeeded
 
 ####### Slå sammen datasettene #######
 
