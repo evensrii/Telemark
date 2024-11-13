@@ -19,6 +19,7 @@ dependencies:
   - python-dotenv
   - pygithub
   - xlrd
+  - aiohttp
   - pip:
     - pyjstat
     - pyautogui

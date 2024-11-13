@@ -1,18 +1,35 @@
 # email_functions.py
 
 import requests
+import sys
 import os
 from dotenv import load_dotenv
 
 ### TO funksjoner: En for hvis nye data, og en for hvis ikke error eller ikke 200.
 
-# Load GitHub token from .env file
-dotenv_path = os.path.join(os.path.dirname(__file__), "token.env")
-load_dotenv(dotenv_path)
-X_FUNCTIONS_KEY = os.getenv("X_FUNCTIONS_KEY")
+# # Load GitHub token from .env file
+# dotenv_path = os.path.join(os.path.dirname(__file__), "token.env")
+# load_dotenv(dotenv_path)
+# X_FUNCTIONS_KEY = os.getenv("X_FUNCTIONS_KEY")
 
-if X_FUNCTIONS_KEY is None:
-    raise ValueError("X-Functions-Key is not found in 'token.env'")
+# if X_FUNCTIONS_KEY is None:
+#     raise ValueError("X-Functions-Key is not found in 'token.env'")
+
+# Load token.env from the first directory in sys.path where it is found
+for path in sys.path:
+    dotenv_path = os.path.join(path, "token.env")
+    if os.path.exists(dotenv_path):
+        load_dotenv(dotenv_path)
+        break
+else:
+    raise FileNotFoundError("token.env not found in PYTHONPATH")
+
+# Get the X-FUNCTIONS-KEY from the environment
+X_FUNCTIONS_KEY = os.getenv("X_FUNCTIONS_KEY")
+if not X_FUNCTIONS_KEY:
+    raise ValueError("X-FUNCTIONS-KEY not found in the loaded .env file.")
+
+print("X_FUNCTIONS_KEY loaded successfully.")
 
 
 def notify_errors(error_messages, script_name="Unknown Script"):

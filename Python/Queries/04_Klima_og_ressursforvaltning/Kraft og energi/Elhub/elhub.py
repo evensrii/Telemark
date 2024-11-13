@@ -93,6 +93,11 @@ def query_elhub(date):
         axis=1,
     )
 
+    # Keep only rows where 'attributes.municipalityNumber' is numeric (first line may contain an asterisk)
+    df_combined = df_combined[
+        df_combined["attributes.municipalityNumber"].str.isnumeric()
+    ]
+
     df_telemark = df_combined[
         (df_combined["attributes.municipalityNumber"].astype(int) > 4000)
         & (df_combined["attributes.municipalityNumber"].astype(int) < 4200)
@@ -126,6 +131,8 @@ def process_data(df):
     # Ensure proper conversion of 'Tid' to datetime format and drop invalid dates
     df["Tid"] = pd.to_datetime(df["Tid"], errors="coerce")
     df = df.dropna(subset=["Tid"])
+
+    ## NB: Fjerner tidssoneinfo (i.e. +01:00:00) i dette scriptet. Sørger for å rette opp dette i PowerQuery, slik at 31.12.2020 23:00:00 blir 01.01.2021 00:00:00 osv.
 
     # Standardize the 'Gruppe' values
     df["Gruppe"] = df["Gruppe"].replace(
@@ -186,7 +193,9 @@ def save_data_by_year_to_github(df):
 
         year_data = year_data.drop(columns=["Year"], errors="ignore")
         csv_content = year_data.to_csv(index=False)
-        upload_github_file(file_path, csv_content, message=f"Updating data for {year}")
+        upload_github_file(
+            file_path, csv_content, message=f"Updating Elhub data for {year}"
+        )
 
 
 # Function to query and append new data based on the latest date in GitHub files

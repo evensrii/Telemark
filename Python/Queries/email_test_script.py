@@ -5,12 +5,12 @@ import glob
 import pandas as pd
 from pyjstat import pyjstat
 
-# Legge til directory hvor man finner github_functions.py i sys.path for å kunne importere denne
-current_directory = os.path.dirname(os.path.abspath(__file__))
-two_levels_up_directory = os.path.abspath(
-    os.path.join(current_directory, os.pardir, os.pardir)
-)
-sys.path.append(two_levels_up_directory)
+# # Legge til directory hvor man finner github_functions.py i sys.path for å kunne importere denne
+# current_directory = os.path.dirname(os.path.abspath(__file__))
+# two_levels_up_directory = os.path.abspath(
+#     os.path.join(current_directory, os.pardir, os.pardir)
+# )
+# sys.path.append(two_levels_up_directory)
 
 from utility_functions import fetch_data
 from email_functions import notify_errors
@@ -27,7 +27,7 @@ error_messages = []
 # NB: Prøve å sette opp også med 2024-kommunenummer. Hvis ikke må scriptet oppdateres senere.
 
 # Endepunkt for SSB API
-POST_URL = "https://data.ssbssb.no/api/v0/no/table/11607/"
+POST_URL = "https://data.ssb.no/api/v0/no/table/11607/"
 
 ################# Spørring VTFK (-2023) #################
 

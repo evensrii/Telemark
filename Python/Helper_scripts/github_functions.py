@@ -2,16 +2,33 @@
 
 import requests
 import os
+import sys
 from dotenv import load_dotenv
 from datetime import datetime
 
-# Load GitHub token from .env file
-dotenv_path = os.path.join(os.path.dirname(__file__), "token.env")
-load_dotenv(dotenv_path)
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+# # Load GitHub token from .env file
+# dotenv_path = os.path.join(os.path.dirname(__file__), "token.env")
+# load_dotenv(dotenv_path)
+# GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
-if GITHUB_TOKEN is None:
-    raise ValueError("GitHub token is not found in 'token.env'")
+# if GITHUB_TOKEN is None:
+#     raise ValueError("GitHub token is not found in 'token.env'")
+
+# Load token.env from the first directory in sys.path where it is found
+for path in sys.path:
+    dotenv_path = os.path.join(path, "token.env")
+    if os.path.exists(dotenv_path):
+        load_dotenv(dotenv_path)
+        break
+else:
+    raise FileNotFoundError("token.env not found in PYTHONPATH")
+
+# Get the GITHUB_TOKEN from the environment
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+if not GITHUB_TOKEN:
+    raise ValueError("GITHUB_TOKEN not found in the loaded .env file.")
+
+print("GITHUB_TOKEN loaded successfully.")
 
 
 def upload_file_to_github(source_file, destination_folder, github_repo, git_branch):

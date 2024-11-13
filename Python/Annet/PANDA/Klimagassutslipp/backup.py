@@ -3,7 +3,7 @@ import pandas as pd
 from io import BytesIO
 
 # URL til Excelfilen
-url = "https://www.miljodirektoratet.no/globalassets/tjenester/klimagassutslipp-kommuner/utslippsstatistikk_alle_kommuner.xlsx"
+url = "https://www.miljodirektoratet.no/globalassets/netttjenester/klimagassutslipp-kommuner/utslippsstatistikk_alle_kommuner.xlsx"
 
 # Laste ned Excelfilen
 response = requests.get(url)
