@@ -6,6 +6,8 @@ import base64
 from dotenv import load_dotenv
 import io
 
+# Dette er en test
+
 # Load GitHub token from the .env file
 load_dotenv("../../../token.env", override=True)
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
