@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import os
 import base64
+import io
 
 # Load GitHub token from the .env file
 load_dotenv("../../../token.env", override=True)
@@ -19,7 +20,7 @@ if not GITHUB_TOKEN:
 REPO = "evensrii/Telemark"
 BRANCH = "main"
 GITHUB_API_URL = "https://api.github.com"
-DATA_FILE_PATH = "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/transparencyplatform/data.csv"
+DATA_FILE_PATH = "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/transparencyplatform/strompriser.csv"
 
 # ENTSO-E API Key
 API_KEY = "5cf92fdd-a882-4158-a5a9-9b0b8e202786"
@@ -82,7 +83,7 @@ def get_latest_date_from_github(file_path):
         return datetime(2021, 12, 1, 0, 0)
 
     # Read CSV and find the latest date
-    df = pd.read_csv(pd.compat.StringIO(file_content), parse_dates=["time"])
+    df = pd.read_csv(io.StringIO(file_content), parse_dates=["time"])
     return df["time"].max() + timedelta(
         hours=1
     )  # Add one hour to start after the latest entry
@@ -144,13 +145,24 @@ def main():
         # Download existing data from GitHub
         existing_data_content = download_github_file(DATA_FILE_PATH)
         if existing_data_content:
-            existing_data = pd.read_csv(pd.compat.StringIO(existing_data_content))
+            # Read the existing data using io.StringIO
+            existing_data = pd.read_csv(io.StringIO(existing_data_content))
+
+            # Ensure the 'time' column is in datetime format
+            existing_data["time"] = pd.to_datetime(existing_data["time"])
+            new_data["time"] = pd.to_datetime(new_data["time"])
+
+            # Combine, remove duplicates, and sort by 'time'
             combined_data = (
                 pd.concat([existing_data, new_data])
                 .drop_duplicates()
                 .sort_values("time")
             )
         else:
+            # If no existing data, new_data becomes the combined dataset
+            new_data["time"] = pd.to_datetime(
+                new_data["time"]
+            )  # Ensure 'time' is datetime
             combined_data = new_data
 
         # Upload updated data back to GitHub
