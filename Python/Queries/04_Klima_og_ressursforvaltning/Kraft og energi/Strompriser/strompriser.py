@@ -2,82 +2,166 @@ import requests
 import xml.etree.ElementTree as ET
 import pandas as pd
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+import os
+import base64
 
-# Define the base URL and common parameters
-base_url = "https://web-api.tp.entsoe.eu/api"
-security_token = (
-    "5cf92fdd-a882-4158-a5a9-9b0b8e202786"  # Replace with your actual token
-)
+# Load GitHub token from the .env file
+load_dotenv("../../../token.env", override=True)
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
-# Define the start and end dates
-start_date = datetime(2021, 12, 1)
-end_date = datetime(2024, 10, 31)
+if not GITHUB_TOKEN:
+    raise ValueError(
+        "GitHub token not found. Please ensure that the token is set in '../../../token.env'"
+    )
 
-# Initialize an empty DataFrame to store all data
-all_data = pd.DataFrame()
+# GitHub Repository information
+REPO = "evensrii/Telemark"
+BRANCH = "main"
+GITHUB_API_URL = "https://api.github.com"
+DATA_FILE_PATH = "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/transparencyplatform/data.csv"
 
-# Loop through each month from start_date to end_date
-current_date = start_date
-while current_date <= end_date:
-    # Calculate the periodStart and periodEnd for the current month
-    period_start = current_date.strftime("%Y%m%d%H%M")
-    next_month = current_date.replace(day=28) + timedelta(days=4)  # Jump to next month
-    period_end_date = next_month.replace(day=1) - timedelta(seconds=1)
-    period_end = period_end_date.strftime("%Y%m%d%H%M")
+# ENTSO-E API Key
+API_KEY = "5cf92fdd-a882-4158-a5a9-9b0b8e202786"
+BASE_URL = "https://web-api.tp.entsoe.eu/api"
 
-    # Update parameters for the request
+
+def download_github_file(file_path):
+    """Download an existing file from GitHub."""
+    url = f"{GITHUB_API_URL}/repos/{REPO}/contents/{file_path}?ref={BRANCH}"
+    headers = {
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github.v3.raw",
+    }
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        return response.text
+    elif response.status_code == 404:
+        print(f"File not found: {file_path}")
+        return None
+    else:
+        print(
+            f"Failed to download file: {file_path}, Status Code: {response.status_code}"
+        )
+        return None
+
+
+def upload_github_file(file_path, content, message="Updating data"):
+    """Upload a new or updated file to GitHub."""
+    url = f"{GITHUB_API_URL}/repos/{REPO}/contents/{file_path}"
+    headers = {
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github.v3+json",
+    }
+
+    response = requests.get(url, headers=headers)
+    sha = response.json().get("sha") if response.status_code == 200 else None
+
+    payload = {
+        "message": message,
+        "content": base64.b64encode(content.encode("utf-8")).decode("utf-8"),
+        "branch": BRANCH,
+    }
+    if sha:
+        payload["sha"] = sha
+
+    response = requests.put(url, json=payload, headers=headers)
+
+    if response.status_code in [201, 200]:
+        print(f"File uploaded successfully: {file_path}")
+    else:
+        print(f"Failed to upload file: {response.json()}")
+
+
+def get_latest_date_from_github(file_path):
+    """Determine the latest date in the existing GitHub file."""
+    file_content = download_github_file(file_path)
+    if file_content is None:
+        # No existing file; default to December 1, 2021
+        return datetime(2021, 12, 1, 0, 0)
+
+    # Read CSV and find the latest date
+    df = pd.read_csv(pd.compat.StringIO(file_content), parse_dates=["time"])
+    return df["time"].max() + timedelta(
+        hours=1
+    )  # Add one hour to start after the latest entry
+
+
+def fetch_energy_prices(period_start, period_end):
+    """Fetch energy prices from the ENTSO-E API."""
     params = {
-        "securityToken": security_token,
-        "documentType": "A44",  # Price document
+        "securityToken": API_KEY,
+        "documentType": "A44",
         "periodStart": period_start,
         "periodEnd": period_end,
         "out_Domain": "10YNO-2--------T",  # NO2
         "in_Domain": "10YNO-2--------T",
     }
 
-    # Make the GET request
-    response = requests.get(base_url, params=params)
-
-    # Check if the request was successful
+    response = requests.get(BASE_URL, params=params)
     if response.status_code == 200:
-        # Parse the XML response
         ns = {"ns": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:3"}
         root = ET.fromstring(response.text)
 
-        # Extract data into lists
+        # Parse data
         time_price_data = []
         for timeseries in root.findall("ns:TimeSeries", ns):
             for period in timeseries.findall("ns:Period", ns):
-                # Get the start time and resolution
                 start_time = datetime.fromisoformat(
                     period.find("ns:timeInterval/ns:start", ns).text[:-1]
                 )
-
-                # Parse points (hourly prices)
                 for point in period.findall("ns:Point", ns):
                     position = int(point.find("ns:position", ns).text)
                     price = float(point.find("ns:price.amount", ns).text)
-
-                    # Calculate the timestamp for this point
                     timestamp = start_time + timedelta(hours=position - 1)
                     time_price_data.append({"time": timestamp, "price": price})
 
-        # Convert to DataFrame and append to all_data
-        if time_price_data:  # Check if there is data
-            month_df = pd.DataFrame(time_price_data)
-            all_data = pd.concat([all_data, month_df], ignore_index=True)
-        else:
-            print(f"No data for period {period_start} to {period_end}.")
+        return pd.DataFrame(time_price_data)
     else:
-        print(
-            f"Failed to fetch data for period {period_start} to {period_end}: {response.status_code}, {response.text}"
+        print(f"Failed to fetch data: {response.status_code}, {response.text}")
+        return pd.DataFrame()
+
+
+def main():
+    # Determine the latest date in GitHub file
+    latest_date = get_latest_date_from_github(DATA_FILE_PATH)
+    print(f"Latest date found: {latest_date}")
+
+    # Calculate the period end (today's midnight)
+    period_end = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    formatted_period_end = period_end.strftime("%Y%m%d%H%M")
+
+    # Format the period start
+    formatted_period_start = latest_date.strftime("%Y%m%d%H%M")
+
+    print(f"Querying data from {formatted_period_start} to {formatted_period_end}...")
+
+    # Fetch data from the API
+    new_data = fetch_energy_prices(formatted_period_start, formatted_period_end)
+
+    if not new_data.empty:
+        # Download existing data from GitHub
+        existing_data_content = download_github_file(DATA_FILE_PATH)
+        if existing_data_content:
+            existing_data = pd.read_csv(pd.compat.StringIO(existing_data_content))
+            combined_data = (
+                pd.concat([existing_data, new_data])
+                .drop_duplicates()
+                .sort_values("time")
+            )
+        else:
+            combined_data = new_data
+
+        # Upload updated data back to GitHub
+        upload_github_file(
+            DATA_FILE_PATH,
+            combined_data.to_csv(index=False),
+            message="Updated energy price data",
         )
+    else:
+        print("No new data fetched.")
 
-    # Move to the next month
-    current_date = next_month.replace(day=1)
 
-# Save or display the final DataFrame
-print(all_data)
-
-# Save the data to a CSV file
-all_data.to_csv("strompriser.csv", index=False)
+if __name__ == "__main__":
+    main()
