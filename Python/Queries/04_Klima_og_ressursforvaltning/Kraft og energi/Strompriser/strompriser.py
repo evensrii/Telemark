@@ -7,9 +7,6 @@ import os
 import base64
 import io
 
-
-### OBS: DAGENE GÅR FRA 22:00 TIL 22:00 UANSETT HVILKE TIMER MAN VELGER!
-
 # Load GitHub token from the .env file
 load_dotenv("../../../token.env", override=True)
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -23,7 +20,7 @@ if not GITHUB_TOKEN:
 REPO = "evensrii/Telemark"
 BRANCH = "main"
 GITHUB_API_URL = "https://api.github.com"
-DATA_FILE_PATH = "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/transparencyplatform/strompriser.csv"
+DATA_FILE_PATH = "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv"
 
 # ENTSO-E API Key
 API_KEY = "5cf92fdd-a882-4158-a5a9-9b0b8e202786"
@@ -82,14 +79,10 @@ def get_latest_date_from_github(file_path):
     """Determine the latest date in the existing GitHub file."""
     file_content = download_github_file(file_path)
     if file_content is None:
-        # No existing file; default to December 1, 2021
         return datetime(2021, 12, 1, 0, 0)
 
-    # Read CSV and find the latest date
     df = pd.read_csv(io.StringIO(file_content), parse_dates=["time"])
-    return df["time"].max() + timedelta(
-        hours=1
-    )  # Add one hour to start after the latest entry
+    return df["time"].max() + timedelta(hours=1)
 
 
 def fetch_energy_prices(period_start, period_end):
@@ -108,7 +101,6 @@ def fetch_energy_prices(period_start, period_end):
         ns = {"ns": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:3"}
         root = ET.fromstring(response.text)
 
-        # Parse data
         time_price_data = []
         for timeseries in root.findall("ns:TimeSeries", ns):
             for period in timeseries.findall("ns:Period", ns):
@@ -127,52 +119,86 @@ def fetch_energy_prices(period_start, period_end):
         return pd.DataFrame()
 
 
+def fetch_exchange_rates():
+    """Fetch EUR to NOK exchange rates."""
+    base_url = "https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP"
+    params = {
+        "startPeriod": "2019-01-01",
+        "endPeriod": datetime.now().strftime("%Y-%m-%d"),
+        "format": "csv",
+        "bom": "include",
+        "locale": "no",
+    }
+    response = requests.get(base_url, params=params)
+
+    if response.status_code == 200:
+        exchange_data = pd.read_csv(
+            io.StringIO(response.text), encoding="utf-8", sep=";"
+        )
+        exchange_data = exchange_data[["TIME_PERIOD", "OBS_VALUE"]]
+        exchange_data.columns = ["time", "kurs"]
+        exchange_data["time"] = pd.to_datetime(exchange_data["time"])
+        exchange_data["kurs"] = (
+            exchange_data["kurs"].str.replace(",", ".").astype(float)
+        )
+        return exchange_data
+    else:
+        print(f"Failed to fetch exchange rates: {response.status_code}")
+        return pd.DataFrame()
+
+
 def main():
-    # Determine the latest date in GitHub file
     latest_date = get_latest_date_from_github(DATA_FILE_PATH)
     print(f"Latest date found: {latest_date}")
 
-    # Calculate the period end (today's midnight)
     period_end = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
     formatted_period_end = period_end.strftime("%Y%m%d%H%M")
-
-    # Format the period start
     formatted_period_start = latest_date.strftime("%Y%m%d%H%M")
 
     print(f"Querying data from {formatted_period_start} to {formatted_period_end}...")
 
-    # Fetch data from the API
     new_data = fetch_energy_prices(formatted_period_start, formatted_period_end)
 
     if not new_data.empty:
-        # Download existing data from GitHub
+        new_data["date"] = new_data["time"].dt.date
+        daily_avg_prices = new_data.groupby("date")["price"].mean().reset_index()
+        daily_avg_prices.columns = ["time", "EUR/MWh"]
+
+        exchange_data = fetch_exchange_rates()
+        # Ensure both 'time' columns are datetime
+        daily_avg_prices["time"] = pd.to_datetime(daily_avg_prices["time"])
+        exchange_data["time"] = pd.to_datetime(exchange_data["time"])
+
+        # Perform the merge
+        merged_data = pd.merge(daily_avg_prices, exchange_data, on="time", how="left")
+
+        # Fill NaN values for 'kurs' by propagating the previous value
+        merged_data["kurs"] = merged_data["kurs"].fillna(method="ffill")
+
+        # Calculate the price in NOK
+        merged_data["NOK/MWh"] = merged_data["EUR/MWh"] * merged_data["kurs"]
+
+        # Create a column named "NOK/KWh" by dividing "NOK/MWh" by 1000
+        merged_data["NOK/KWh"] = merged_data["NOK/MWh"] / 1000
+
         existing_data_content = download_github_file(DATA_FILE_PATH)
         if existing_data_content:
-            # Read the existing data using io.StringIO
             existing_data = pd.read_csv(io.StringIO(existing_data_content))
-
-            # Ensure the 'time' column is in datetime format
             existing_data["time"] = pd.to_datetime(existing_data["time"])
-            new_data["time"] = pd.to_datetime(new_data["time"])
+            merged_data["time"] = pd.to_datetime(merged_data["time"])
 
-            # Combine, remove duplicates, and sort by 'time'
             combined_data = (
-                pd.concat([existing_data, new_data])
+                pd.concat([existing_data, merged_data])
                 .drop_duplicates()
                 .sort_values("time")
             )
         else:
-            # If no existing data, new_data becomes the combined dataset
-            new_data["time"] = pd.to_datetime(
-                new_data["time"]
-            )  # Ensure 'time' is datetime
-            combined_data = new_data
+            combined_data = merged_data
 
-        # Upload updated data back to GitHub
         upload_github_file(
             DATA_FILE_PATH,
             combined_data.to_csv(index=False),
-            message="Updated energy price data",
+            message="Updated energy price and exchange rate data",
         )
     else:
         print("No new data fetched.")
