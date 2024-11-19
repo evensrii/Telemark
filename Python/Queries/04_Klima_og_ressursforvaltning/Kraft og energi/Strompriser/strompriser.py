@@ -7,6 +7,9 @@ import os
 import base64
 import io
 
+
+### OBS: DAGENE GÅR FRA 22:00 TIL 22:00 UANSETT HVILKE TIMER MAN VELGER!
+
 # Load GitHub token from the .env file
 load_dotenv("../../../token.env", override=True)
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
