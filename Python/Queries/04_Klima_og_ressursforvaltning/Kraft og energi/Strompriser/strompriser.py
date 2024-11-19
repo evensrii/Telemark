@@ -148,57 +148,52 @@ def fetch_exchange_rates():
 
 
 def main():
+    # Determine the latest date in GitHub file
     latest_date = get_latest_date_from_github(DATA_FILE_PATH)
     print(f"Latest date found: {latest_date}")
 
+    # Calculate the query start date as "latest date + 1"
+    query_start_date = latest_date + timedelta(
+        days=1
+    )  # Adjust to `timedelta(hours=1)` if needed
+    formatted_period_start = query_start_date.strftime("%Y%m%d%H%M")
+
+    # Calculate the period end (today's midnight)
     period_end = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
     formatted_period_end = period_end.strftime("%Y%m%d%H%M")
-    formatted_period_start = latest_date.strftime("%Y%m%d%H%M")
 
     print(f"Querying data from {formatted_period_start} to {formatted_period_end}...")
 
+    # Fetch new data from the API
     new_data = fetch_energy_prices(formatted_period_start, formatted_period_end)
 
     if not new_data.empty:
-        new_data["date"] = new_data["time"].dt.date
-        daily_avg_prices = new_data.groupby("date")["price"].mean().reset_index()
-        daily_avg_prices.columns = ["time", "EUR/MWh"]
-
-        exchange_data = fetch_exchange_rates()
-        # Ensure both 'time' columns are datetime
-        daily_avg_prices["time"] = pd.to_datetime(daily_avg_prices["time"])
-        exchange_data["time"] = pd.to_datetime(exchange_data["time"])
-
-        # Perform the merge
-        merged_data = pd.merge(daily_avg_prices, exchange_data, on="time", how="left")
-
-        # Fill NaN values for 'kurs' by propagating the previous value
-        merged_data["kurs"] = merged_data["kurs"].fillna(method="ffill")
-
-        # Calculate the price in NOK
-        merged_data["NOK/MWh"] = merged_data["EUR/MWh"] * merged_data["kurs"]
-
-        # Create a column named "NOK/KWh" by dividing "NOK/MWh" by 1000
-        merged_data["NOK/KWh"] = merged_data["NOK/MWh"] / 1000
-
+        # Download existing data from GitHub
         existing_data_content = download_github_file(DATA_FILE_PATH)
         if existing_data_content:
+            # Read the existing data using io.StringIO
             existing_data = pd.read_csv(io.StringIO(existing_data_content))
             existing_data["time"] = pd.to_datetime(existing_data["time"])
-            merged_data["time"] = pd.to_datetime(merged_data["time"])
 
+            # Ensure new data 'time' column is in datetime format
+            new_data["time"] = pd.to_datetime(new_data["time"])
+
+            # Concatenate existing and new data
             combined_data = (
-                pd.concat([existing_data, merged_data])
-                .drop_duplicates()
+                pd.concat([existing_data, new_data])
+                .drop_duplicates(subset="time")
                 .sort_values("time")
             )
         else:
-            combined_data = merged_data
+            # If no existing data, new_data becomes the combined dataset
+            new_data["time"] = pd.to_datetime(new_data["time"])
+            combined_data = new_data
 
+        # Upload updated data back to GitHub
         upload_github_file(
             DATA_FILE_PATH,
             combined_data.to_csv(index=False),
-            message="Updated energy price and exchange rate data",
+            message="Updated energy price data",
         )
     else:
         print("No new data fetched.")
