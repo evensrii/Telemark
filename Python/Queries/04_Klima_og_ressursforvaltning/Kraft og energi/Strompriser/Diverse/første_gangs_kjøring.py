@@ -4,6 +4,8 @@ import pandas as pd
 from datetime import datetime, timedelta
 import io
 
+#### Ved første gangs kjøring lastes alle data fra ENTSO-E API ned i månedsvise loops. En engangsopersjon som kan kjøres manuelt.
+
 # Define the base URL and common parameters
 base_url = "https://web-api.tp.entsoe.eu/api"
 security_token = (
@@ -11,7 +13,7 @@ security_token = (
 )
 
 # Define the start and end dates
-start_date = datetime(2020, 1, 1, 0, 0)  # Start at midnight
+start_date = datetime(2021, 1, 1, 0, 0)  # Start at midnight
 end_date = datetime(2024, 10, 31, 23, 59)  # End at the last minute of October 31, 2024
 
 # Initialize an empty DataFrame to store all data
