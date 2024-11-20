@@ -154,8 +154,21 @@ def fetch_exchange_rates(latest_date):
 
 def main():
     # Determine the latest date in GitHub file
-    latest_date = get_latest_date_from_github(DATA_FILE_PATH)
-    print(f"Latest date found: {latest_date}")
+    existing_data_content = download_github_file(DATA_FILE_PATH)
+
+    if existing_data_content:
+        # Load the existing data from GitHub
+        existing_data = pd.read_csv(io.StringIO(existing_data_content))
+        existing_data["time"] = pd.to_datetime(existing_data["time"])
+        latest_date = existing_data["time"].max()
+        print(f"Latest date found in GitHub file: {latest_date}")
+    else:
+        # If no existing data, initialize empty DataFrame and start from a default date
+        existing_data = pd.DataFrame(
+            columns=["time", "EUR/MWh", "rate", "NOK/MWh", "NOK/KWh"]
+        )
+        latest_date = datetime(2021, 12, 1)  # Default start date
+        print(f"No existing data found. Starting from {latest_date}.")
 
     ### Exchange Rates
     # Fetch exchange rates from the latest date onward
@@ -213,11 +226,19 @@ def main():
     merged_data = merged_data[["time", "EUR/MWh", "kurs", "NOK/MWh", "NOK/KWh"]]
     merged_data.columns = ["time", "EUR/MWh", "rate", "NOK/MWh", "NOK/KWh"]
 
+    ### Combine with Existing Data
+    # Append the new data to the existing data
+    combined_data = (
+        pd.concat([existing_data, merged_data])
+        .drop_duplicates(subset="time")
+        .sort_values("time")
+    )
+
     ### Upload Combined Data to GitHub
     upload_github_file(
         DATA_FILE_PATH,
-        merged_data.to_csv(index=False),
-        message="Updated energy price data with exchange rates",
+        combined_data.to_csv(index=False),
+        message="Appended new energy price and exchange rate data",
     )
     print("Updated data successfully uploaded to GitHub.")
 
