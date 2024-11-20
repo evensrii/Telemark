@@ -165,7 +165,7 @@ def main():
     else:
         # If no existing data, initialize empty DataFrame and start from a default date
         existing_data = pd.DataFrame(
-            columns=["time", "EUR/MWh", "rate", "NOK/MWh", "NOK/KWh"]
+            columns=["time", "EUR/MWh", "kurs", "NOK/MWh", "NOK/KWh"]
         )
         latest_date = datetime(2021, 12, 1)  # Default start date
         print(f"No existing data found. Starting from {latest_date}.")
@@ -224,7 +224,7 @@ def main():
     ### Finalize Columns
     # Select relevant columns and ensure proper naming
     merged_data = merged_data[["time", "EUR/MWh", "kurs", "NOK/MWh", "NOK/KWh"]]
-    merged_data.columns = ["time", "EUR/MWh", "rate", "NOK/MWh", "NOK/KWh"]
+    merged_data.columns = ["time", "EUR/MWh", "kurs", "NOK/MWh", "NOK/KWh"]
 
     ### Combine with Existing Data
     # Append the new data to the existing data
