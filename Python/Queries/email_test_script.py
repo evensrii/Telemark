@@ -9,7 +9,8 @@ from pyjstat import pyjstat
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.utility_functions import delete_files_in_temp_folder
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_file_to_github
+from Helper_scripts.github_functions import upload_github_file
+from Helper_scripts.github_functions import download_github_file
 
 temp_folder = os.environ.get("TEMP_FOLDER")
 
@@ -118,20 +119,11 @@ try:
     df_tfk = fetch_data(POST_URL, payload_tfk, error_messages, query_name="TFK")
 
 except Exception as e:
-    # Collect any critical errors into error_messages
-    error_messages.append(f"Critical error: {str(e)}")
     # If any query fails, send the error notification and stop execution
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )
-
-"""     except Exception as e:
-    # If any query fails, send the error notification and stop execution
-    notify_errors(error_messages, script_name=script_name)
-    raise RuntimeError(
-        "A critical error occurred during data fetching, stopping execution."
-    ) """
 
 # Proceed with data analysis only if all queries succeeded
 
@@ -175,25 +167,47 @@ df_filtered["label"] = df_filtered["region"]
 df_filtered.columns = ["Kommune", "Andel", "Label"]
 
 
-#### Save df as a csv file
+##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-# Ønsket filnavn <----------- MÅ ENDRES MANUELT!
-csv_file_name = f"andel_sysselsatte_innvandrere.csv"
-df_filtered.to_csv(
-    os.path.join(temp_folder, csv_file_name), index=False
-)  # Relativt til dette scriptet.
+# Lagre som .csv i Temp folder
+csv_file_name = "andel_sysselsatte_innvandrere.csv"
+df_filtered.to_csv(os.path.join(temp_folder, csv_file_name), index=False)
 
-##################### Opplasting til Github #####################
+# GitHub configuration (Repo etc. is defined in the function)
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")  # Ensure this is set in your environment
 
-# Hvis eksisterer, oppdater filen. Hvis ikke, opprett filen.
+destination_folder = "Data/09_Innvandrere og inkludering/Arbeid og inntekt"
 
-csv_file = os.path.join(temp_folder, csv_file_name)
-destination_folder = "Data/09_Innvandrere og inkludering/Arbeid og inntekt"  # Mapper som ikke eksisterer vil opprettes automatisk.
-github_repo = "evensrii/Telemark"
-git_branch = "main"
+github_file_path = f"{destination_folder}/{csv_file_name}"
+local_file_path = os.path.join(temp_folder, csv_file_name)
 
-upload_file_to_github(csv_file, destination_folder, github_repo, git_branch)
+# Download the existing file from GitHub
+existing_data = download_github_file(github_file_path)
 
-##################### Remove temporary files #####################
+# Check if new data compared to Github
+if existing_data is not None:
+    # Compare the existing data with the new data
+    existing_df = existing_data.astype(str).sort_values(by=list(existing_data.columns))
+    new_df = (
+        pd.read_csv(local_file_path)
+        .astype(str)
+        .sort_values(by=list(existing_data.columns))
+    )
 
-# delete_files_in_temp_folder()
+    if existing_df.equals(new_df):
+        print("No new data to upload. Skipping GitHub update.")
+    else:
+        print("New data detected. Uploading to GitHub.")
+        upload_github_file(
+            local_file_path, github_file_path, message=f"(Updating {csv_file_name})"
+        )
+else:
+    # If the file does not exist on GitHub, upload the new file
+    print("File not found on GitHub. Uploading new file.")
+    upload_github_file(
+        local_file_path, github_file_path, message=f"(Adding {csv_file_name})"
+    )
+
+##################### Remove temporary local files #####################
+
+delete_files_in_temp_folder()

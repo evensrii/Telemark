@@ -1,7 +1,9 @@
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
+from Helper_scripts.utility_functions import delete_files_in_temp_folder
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_file_to_github
+from Helper_scripts.github_functions import upload_github_file
+from Helper_scripts.github_functions import download_github_file
 
 temp_folder = os.environ.get("TEMP_FOLDER")
 
@@ -29,16 +31,13 @@ except Exception as e:
 
 ----------------------------------
 
-
-
-
-
-
-
-
 df_filtered.to_csv(
     os.path.join(temp_folder, csv_file_name), index=False
-)  # Relativt til dette scriptet.
+)
 
 # Erstatte csv_file =.... med
 csv_file = os.path.join(temp_folder, csv_file_name)
+
+----------------------------------
+
+delete_files_in_temp_folder()

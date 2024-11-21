@@ -5,10 +5,10 @@ import sys
 import os
 from dotenv import load_dotenv
 
-### TO funksjoner: En for hvis nye data, og en for hvis ikke error eller ikke 200.
+##### TO funksjoner: En for hvis nye data, og en for hvis ikke error eller ikke 200.
 
 
-## EPOST VED FEILMELDINGER
+### EPOST VED FEILMELDINGER
 
 # Retrieve PYTHONPATH environment variable
 pythonpath = os.environ.get("PYTHONPATH")
@@ -32,7 +32,6 @@ if not X_FUNCTIONS_KEY:
     raise ValueError("X-FUNCTIONS-KEY not found in the loaded .env file.")
 
 print("X_FUNCTIONS_KEY loaded successfully.")
-print(f"X_FUNCTIONS_KEY: {X_FUNCTIONS_KEY}")
 
 
 def notify_errors(error_messages, script_name="Unknown Script"):
@@ -71,3 +70,6 @@ def notify_errors(error_messages, script_name="Unknown Script"):
             )
     else:
         print("All requests were successful. No email sent.")
+
+
+### EPOST VED NYE DATA
