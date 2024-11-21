@@ -5,6 +5,7 @@ import os
 import sys
 from dotenv import load_dotenv
 from datetime import datetime
+import base64
 
 
 ## Function to fetch the GITHUB_TOKEN (environment variable) from the token.env file
@@ -93,15 +94,12 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
 
         # Compare local content with GitHub content
         if local_content.strip() == github_content.strip():
-            print("No changes detected. File will not be updated.")
             return
-        else:
-            print("Changes detected. Updating file.")
     elif response.status_code == 404:
         # File does not exist
-        print("File does not exist on GitHub. It will be created.")
         sha = None
     else:
+        # Log an error if the status check fails
         print(f"Failed to check file on GitHub: {response.json()}")
         return
 
@@ -109,7 +107,7 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
     payload = {
         "message": message,
         "content": base64.b64encode(local_content.encode("utf-8")).decode("utf-8"),
-        "branch": BRANCH,
+        "branch": "main",
     }
     if sha:
         payload["sha"] = sha
