@@ -1,10 +1,9 @@
-#conda env create -f environment.yaml       
+# conda env create -f environment.yaml
 name: analyse
-prefix: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\analyse
 channels:
-  - defaults
-  - anaconda
   - conda-forge
+  - anaconda
+  - defaults
 dependencies:
   - python=3.8
   - pip
@@ -21,8 +20,12 @@ dependencies:
   - xlrd
   - aiohttp
   - pip:
-    - pyjstat
-    - pyautogui
-    - keyboard
-    - selenium
-    - dtale
+      - pyjstat
+      - pyautogui
+      - keyboard
+      - selenium
+      - dtale
+variables:
+  PYTHONPATH: "C:\\Users\\eve1509\\OneDrive - Telemark fylkeskommune\\Github\\Telemark\\Python"
+  TEMP_FOLDER: "C:\\Users\\eve1509\\OneDrive - Telemark fylkeskommune\\Github\\Telemark\\Python\\Temp"
+  LOG_FOLDER: "C:\\Users\\eve1509\\OneDrive - Telemark fylkeskommune\\Github\\Telemark\\Python\\Log"

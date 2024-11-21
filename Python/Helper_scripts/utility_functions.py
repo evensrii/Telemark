@@ -2,6 +2,8 @@
 
 import requests
 from pyjstat import pyjstat
+import os
+import glob
 
 ## Funksjon for å kjøre en spørring
 
@@ -31,3 +33,31 @@ def fetch_data(url, payload, error_messages, query_name="Query"):
         print(error_message)
         error_messages.append(error_message)
         raise  # Re-raise the exception to stop further processing
+
+
+## Funksjon for å slette filer i Temp-mappen
+
+
+def delete_files_in_temp_folder():
+    # Retrieve the Temp folder path from the environment variable
+    temp_folder = os.environ.get("TEMP_FOLDER")
+
+    if not temp_folder:
+        print("TEMP_FOLDER environment variable is not set.")
+        return
+
+    # Ensure the Temp folder exists
+    if not os.path.exists(temp_folder):
+        print(f"The folder does not exist: {temp_folder}")
+        return
+
+    # Construct the path pattern to match all files in the folder
+    files = glob.glob(os.path.join(temp_folder, "*"))
+
+    # Iterate over the list of files and delete each one
+    for file_path in files:
+        try:
+            os.remove(file_path)
+            print(f"Deleted file: {file_path}")
+        except Exception as e:
+            print(f"Error deleting file {file_path}: {e}")
