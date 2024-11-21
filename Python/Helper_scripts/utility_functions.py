@@ -32,7 +32,7 @@ def fetch_data(url, payload, error_messages, query_name="Query"):
         error_message = f"Error in {query_name}: {str(e)}"
         print(error_message)
         error_messages.append(error_message)
-        raise  # Re-raise the exception to stop further processing
+        raise  # Re-raise the exception to propagate the error
 
 
 ## Funksjon for å slette filer i Temp-mappen
