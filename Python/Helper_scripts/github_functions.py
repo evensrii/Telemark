@@ -6,6 +6,7 @@ import sys
 from dotenv import load_dotenv
 from datetime import datetime
 import base64
+import pandas as pd
 
 
 ## Function to fetch the GITHUB_TOKEN (environment variable) from the token.env file
