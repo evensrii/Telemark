@@ -8,6 +8,8 @@ from datetime import datetime
 import base64
 import pandas as pd
 
+from Helper_scripts.email_functions import notify_updated_data
+
 
 ## Function to fetch the GITHUB_TOKEN (environment variable) from the token.env file
 def get_github_token():
@@ -165,9 +167,11 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             upload_github_file(
                 local_file_path, github_file_path, message=f"Updated {file_name}"
             )
+            # Notify about the updated data
+            notify_updated_data(file_name, script_name="compare_to_github.py")
     else:
         # If the file does not exist on GitHub, upload the new file
-        print("File not found on GitHub. Uploading new file.")
+        print("Uploading new file.")
         upload_github_file(
             local_file_path, github_file_path, message=f"Added {file_name}"
         )

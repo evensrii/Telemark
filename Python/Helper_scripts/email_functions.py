@@ -57,7 +57,7 @@ def notify_errors(error_messages, script_name="Unknown Script"):
         headers = {
             "Content-Type": "application/json",
             "User-Agent": "insomnia/10.1.1",
-            "x-functions-key": X_FUNCTIONS_KEY,  # Replace with your actual key
+            "x-functions-key": X_FUNCTIONS_KEY,
         }
 
         email_response = requests.post(url, headers=headers, json=payload)
@@ -73,3 +73,40 @@ def notify_errors(error_messages, script_name="Unknown Script"):
 
 
 ### EPOST VED NYE DATA
+
+
+def notify_updated_data(file_name, script_name="Unknown Script"):
+    """
+    Sends an email notification when new data is detected in the GitHub comparison.
+
+    Parameters:
+        file_name (str): The name of the updated file.
+        script_name (str): The name of the script where the update occurred.
+    """
+    payload = {
+        "to": ["even.sannes.riiser@telemarkfylke.no"],
+        # "cc": ["optional.cc.email@telemarkfylke.no"],
+        "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
+        "subject": f"New data detected in {script_name}",
+        "text": f"New data has been detected and updated for the file: {file_name}",
+        "html": f"<b>New data has been detected and updated for the file:</b><br>{file_name}",
+    }
+
+    url = "https://mail.api.telemarkfylke.no/api/mail"
+    headers = {
+        "Content-Type": "application/json",
+        "User-Agent": "insomnia/10.1.1",
+        "x-functions-key": X_FUNCTIONS_KEY,
+    }
+
+    try:
+        email_response = requests.post(url, headers=headers, json=payload)
+
+        if email_response.status_code == 200:
+            print("Update notification email sent successfully.")
+        else:
+            print(
+                f"Failed to send update notification email. Status code: {email_response.status_code}"
+            )
+    except Exception as e:
+        print(f"An error occurred while sending the email: {e}")
