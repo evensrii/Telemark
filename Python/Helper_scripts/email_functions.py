@@ -76,7 +76,7 @@ def notify_errors(error_messages, script_name="Unknown Script"):
 ### EPOST VED NYE DATA
 
 
-def notify_updated_data(file_name, script_name="Unknown Script"):
+def notify_updated_data(file_name, script_name=None):
     """
     Sends an email notification when new data is detected in the GitHub comparison.
 
@@ -85,7 +85,6 @@ def notify_updated_data(file_name, script_name="Unknown Script"):
         script_name (str, optional): The name of the script where the update occurred.
                                      If None, it will be inferred from the calling script.
     """
-
     # Infer the script name if not provided
     if script_name is None:
         frame = inspect.stack()[1]
@@ -95,7 +94,7 @@ def notify_updated_data(file_name, script_name="Unknown Script"):
         "to": ["even.sannes.riiser@telemarkfylke.no"],
         # "cc": ["optional.cc.email@telemarkfylke.no"],
         "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
-        "subject": f"New data detected in {script_name}",
+        "subject": f"New data detected based on {script_name}",
         "text": f"New data has been detected and updated for the file: {file_name}",
         "html": f"<b>New data has been detected and updated for the file:</b><br>{file_name}",
     }
@@ -104,7 +103,7 @@ def notify_updated_data(file_name, script_name="Unknown Script"):
     headers = {
         "Content-Type": "application/json",
         "User-Agent": "insomnia/10.1.1",
-        "x-functions-key": X_FUNCTIONS_KEY,
+        "x-functions-key": X_FUNCTIONS_KEY,  # Replace with your actual key
     }
 
     try:
