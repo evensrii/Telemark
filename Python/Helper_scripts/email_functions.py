@@ -76,21 +76,29 @@ def notify_errors(error_messages, script_name="Unknown Script"):
 ### EPOST VED NYE DATA
 
 
-def notify_updated_data(file_name, script_name=None):
+def notify_updated_data(file_name):
     """
     Sends an email notification when new data is detected in the GitHub comparison.
 
     Parameters:
         file_name (str): The name of the updated file.
-        script_name (str, optional): The name of the script where the update occurred.
-                                     If None, it will be inferred from the calling script.
     """
-    # Infer the script name if not provided
-    if script_name is None:
-        frame = inspect.stack()[
-            2
-        ]  # Siden denne funksjonen blir kalt fra "compare_to_github" i github_functions.py, som igjen kalles i scriptet hvis navn vi er på jakt etter!
-        script_name = os.path.basename(frame.filename)  # Get the filename only
+    # Get the name of the script that called compare_to_github()
+    frame = inspect.stack()[
+        2
+    ]  # Siden denne funksjonen blir kalt fra "compare_to_github" i github_functions.py, som igjen kalles i scriptet hvis navn vi er på jakt etter!
+    script_name = (
+        os.path.basename(frame.filename)
+        if frame.filename
+        else "Interactive Environment"
+    )
+
+    # OBS: Hvis kjøres fra Jupyter får jeg kun beskjed om "Jupyter Notebook or IPython"
+    # Hvis kjøres fra script (eks. terminal eller task scheduler) får jeg beskjed om scriptnavn.
+
+    # Adjust the script name for IPython or Jupyter cases
+    if "ipython-input" in script_name or script_name.endswith(".py") is False:
+        script_name = "Jupyter Notebook or IPython"
 
     payload = {
         "to": ["even.sannes.riiser@telemarkfylke.no"],
@@ -105,7 +113,7 @@ def notify_updated_data(file_name, script_name=None):
     headers = {
         "Content-Type": "application/json",
         "User-Agent": "insomnia/10.1.1",
-        "x-functions-key": X_FUNCTIONS_KEY,  # Replace with your actual key
+        "x-functions-key": X_FUNCTIONS_KEY,
     }
 
     try:
