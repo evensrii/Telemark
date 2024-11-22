@@ -164,11 +164,16 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             print("No new data to upload. Skipping GitHub update.")
         else:
             print("New data detected. Uploading to GitHub.")
+
+            # Compute differences
+            diff = pd.concat([existing_df, new_df]).drop_duplicates(keep=False)
+            diff_lines = diff.head(5).to_dict(orient="records")  # Show first 5 changes
+
             upload_github_file(
                 local_file_path, github_file_path, message=f"Updated {file_name}"
             )
-            # Notify about the updated data
-            notify_updated_data(file_name)
+            # Notify about the updated data and differences
+            notify_updated_data(file_name, diff_lines)
     else:
         # If the file does not exist on GitHub, upload the new file
         print("Uploading new file.")

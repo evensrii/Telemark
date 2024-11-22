@@ -6,10 +6,7 @@ import os
 import inspect
 from dotenv import load_dotenv
 
-##### TO funksjoner: En for hvis nye data, og en for hvis ikke error eller ikke 200.
-
-
-### EPOST VED FEILMELDINGER
+### EPOST CONFIGURATION
 
 # Retrieve PYTHONPATH environment variable
 pythonpath = os.environ.get("PYTHONPATH")
@@ -33,6 +30,9 @@ if not X_FUNCTIONS_KEY:
     raise ValueError("X-FUNCTIONS-KEY not found in the loaded .env file.")
 
 print("X_FUNCTIONS_KEY loaded successfully.")
+
+
+### 1) EPOST VED MISLYKKEDE SPØRRINGER
 
 
 def notify_errors(error_messages, script_name="Unknown Script"):
@@ -73,40 +73,47 @@ def notify_errors(error_messages, script_name="Unknown Script"):
         print("All requests were successful. No email sent.")
 
 
-### EPOST VED NYE DATA
+### 2) EPOST VED NYE DATA
 
 
-def notify_updated_data(file_name):
+def notify_updated_data(file_name, diff_lines):
     """
     Sends an email notification when new data is detected in the GitHub comparison.
 
     Parameters:
         file_name (str): The name of the updated file.
+        diff_lines (list): A list of dictionaries containing the differences.
     """
     # Get the name of the script that called compare_to_github()
-    frame = inspect.stack()[
-        2
-    ]  # Siden denne funksjonen blir kalt fra "compare_to_github" i github_functions.py, som igjen kalles i scriptet hvis navn vi er på jakt etter!
+    frame = inspect.stack()[2]  # Two levels up in the call stack
     script_name = (
         os.path.basename(frame.filename)
         if frame.filename
         else "Interactive Environment"
     )
 
-    # OBS: Hvis kjøres fra Jupyter får jeg kun beskjed om "Jupyter Notebook or IPython"
-    # Hvis kjøres fra script (eks. terminal eller task scheduler) får jeg beskjed om scriptnavn.
-
     # Adjust the script name for IPython or Jupyter cases
     if "ipython-input" in script_name or script_name.endswith(".py") is False:
         script_name = "Jupyter Notebook or IPython"
 
+    # Format the differences for the email
+    formatted_diff = "<br>".join(
+        [f"Old: {line}" for line in diff_lines[: len(diff_lines) // 2]]
+        + [f"New: {line}" for line in diff_lines[len(diff_lines) // 2 :]]
+    )
+
     payload = {
         "to": ["even.sannes.riiser@telemarkfylke.no"],
-        # "cc": ["optional.cc.email@telemarkfylke.no"],
         "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
         "subject": f"New data detected based on {script_name}",
-        "text": f"New data has been detected and updated for the file: {file_name}",
-        "html": f"<b>New data has been detected and updated for the file:</b><br>{file_name}",
+        "text": (
+            f"New data has been detected and updated for the file: {file_name}\n\n"
+            f"Changes:\n{formatted_diff}"
+        ),
+        "html": (
+            f"<b>New data has been detected and updated for the file:</b><br>{file_name}<br><br>"
+            f"<b>Changes:</b><br>{formatted_diff}"
+        ),
     }
 
     url = "https://mail.api.telemarkfylke.no/api/mail"
