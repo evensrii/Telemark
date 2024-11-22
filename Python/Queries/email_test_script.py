@@ -169,14 +169,17 @@ df_filtered.columns = ["Kommune", "Andel", "Label"]
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
+file_name = "andel_sysselsatte_innvandrere.csv"
+github_folder = "Data/09_Innvandrere og inkludering/Arbeid og inntekt"
+
 # Lagre som .csv i Temp folder
-csv_file_name = "andel_sysselsatte_innvandrere.csv"
+csv_file_name = file_name
 df_filtered.to_csv(os.path.join(temp_folder, csv_file_name), index=False)
 
 # GitHub configuration (Repo etc. is defined in the function)
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")  # Ensure this is set in your environment
 
-destination_folder = "Data/09_Innvandrere og inkludering/Arbeid og inntekt"
+destination_folder = github_folder
 
 github_file_path = f"{destination_folder}/{csv_file_name}"
 local_file_path = os.path.join(temp_folder, csv_file_name)
