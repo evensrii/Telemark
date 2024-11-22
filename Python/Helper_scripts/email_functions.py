@@ -87,8 +87,10 @@ def notify_updated_data(file_name, script_name=None):
     """
     # Infer the script name if not provided
     if script_name is None:
-        frame = inspect.stack()[1]
-        script_name = frame.filename.split(os.sep)[-1]
+        frame = inspect.stack()[
+            2
+        ]  # Siden denne funksjonen blir kalt fra "compare_to_github" i github_functions.py, som igjen kalles i scriptet hvis navn vi er på jakt etter!
+        script_name = os.path.basename(frame.filename)  # Get the filename only
 
     payload = {
         "to": ["even.sannes.riiser@telemarkfylke.no"],
