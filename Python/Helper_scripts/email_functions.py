@@ -3,6 +3,7 @@
 import requests
 import sys
 import os
+import inspect
 from dotenv import load_dotenv
 
 ##### TO funksjoner: En for hvis nye data, og en for hvis ikke error eller ikke 200.
@@ -81,8 +82,15 @@ def notify_updated_data(file_name, script_name="Unknown Script"):
 
     Parameters:
         file_name (str): The name of the updated file.
-        script_name (str): The name of the script where the update occurred.
+        script_name (str, optional): The name of the script where the update occurred.
+                                     If None, it will be inferred from the calling script.
     """
+
+    # Infer the script name if not provided
+    if script_name is None:
+        frame = inspect.stack()[1]
+        script_name = frame.filename.split(os.sep)[-1]
+
     payload = {
         "to": ["even.sannes.riiser@telemarkfylke.no"],
         # "cc": ["optional.cc.email@telemarkfylke.no"],

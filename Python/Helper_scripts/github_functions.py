@@ -168,7 +168,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                 local_file_path, github_file_path, message=f"Updated {file_name}"
             )
             # Notify about the updated data
-            notify_updated_data(file_name, script_name="compare_to_github.py")
+            notify_updated_data(file_name)
     else:
         # If the file does not exist on GitHub, upload the new file
         print("Uploading new file.")
