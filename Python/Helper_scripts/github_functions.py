@@ -163,11 +163,11 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         else:
             print("New data detected. Uploading to GitHub.")
             upload_github_file(
-                local_file_path, github_file_path, message=f"(Updated {file_name})"
+                local_file_path, github_file_path, message=f"Updated {file_name}"
             )
     else:
         # If the file does not exist on GitHub, upload the new file
         print("File not found on GitHub. Uploading new file.")
         upload_github_file(
-            local_file_path, github_file_path, message=f"(Added {file_name})"
+            local_file_path, github_file_path, message=f"Added {file_name}"
         )
