@@ -120,3 +120,54 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
         print(f"File uploaded successfully: {github_file_path}")
     else:
         print(f"Failed to upload file: {response.json()}")
+
+
+## Function to compare file to GitHub
+def compare_to_github(input_df, file_name, github_folder, temp_folder):
+    """
+    Compares a DataFrame to an existing file on GitHub, and uploads the file if changes are detected.
+
+    Parameters:
+        input_df (pd.DataFrame): The DataFrame to compare and upload.
+        file_name (str): The name of the file to be saved and compared.
+        github_folder (str): The folder path in the GitHub repository.
+        temp_folder (str): The local temporary folder for storing files.
+
+    Returns:
+        None
+    """
+    # Save the DataFrame to a CSV in the Temp folder
+    local_file_path = os.path.join(temp_folder, file_name)
+    input_df.to_csv(local_file_path, index=False)
+
+    # GitHub configuration
+    github_file_path = f"{github_folder}/{file_name}"
+
+    # Download the existing file from GitHub
+    existing_data = download_github_file(github_file_path)
+
+    # Check if new data exists compared to GitHub
+    if existing_data is not None:
+        # Compare the existing data with the new data
+        existing_df = existing_data.astype(str).sort_values(
+            by=list(existing_data.columns)
+        )
+        new_df = (
+            pd.read_csv(local_file_path)
+            .astype(str)
+            .sort_values(by=list(existing_data.columns))
+        )
+
+        if existing_df.equals(new_df):
+            print("No new data to upload. Skipping GitHub update.")
+        else:
+            print("New data detected. Uploading to GitHub.")
+            upload_github_file(
+                local_file_path, github_file_path, message=f"(Updated {file_name})"
+            )
+    else:
+        # If the file does not exist on GitHub, upload the new file
+        print("File not found on GitHub. Uploading new file.")
+        upload_github_file(
+            local_file_path, github_file_path, message=f"(Added {file_name})"
+        )

@@ -1,11 +1,17 @@
+import requests
+import sys
+import os
+import glob
+import pandas as pd
+from pyjstat import pyjstat
+
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.utility_functions import delete_files_in_temp_folder
 from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import upload_github_file
 from Helper_scripts.github_functions import download_github_file
-
-temp_folder = os.environ.get("TEMP_FOLDER")
+from Helper_scripts.github_functions import compare_to_github
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
