@@ -104,15 +104,16 @@ def notify_updated_data(file_name, diff_lines):
 
     payload = {
         "to": ["even.sannes.riiser@telemarkfylke.no"],
+        "cc": ["kjersti.aase@telemarkfylke.no"],
         "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
-        "subject": f"New data detected based on {script_name}",
+        "subject": f"Nye data oppdaget basert på scriptet {script_name}",
         "text": (
-            f"New data has been detected and updated for the file: {file_name}\n\n"
-            f"Changes:\n{formatted_diff}"
+            f"Nye data oppdaget og oppdatert for fila: {file_name}\n\n"
+            f"Endringer:\n{formatted_diff}"
         ),
         "html": (
-            f"<b>New data has been detected and updated for the file:</b><br>{file_name}<br><br>"
-            f"<b>Changes:</b><br>{formatted_diff}"
+            f"<b>Nye data oppdaget og oppdatert for fila:</b><br>{file_name}<br><br>"
+            f"<b>Endringer:</b><br>{formatted_diff}"
         ),
     }
 
