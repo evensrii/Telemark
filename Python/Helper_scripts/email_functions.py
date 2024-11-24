@@ -97,14 +97,15 @@ def notify_updated_data(file_name, diff_lines):
         script_name = "Jupyter Notebook or IPython"
 
     # Format the differences for the email
+    preview_limit = 5  # Show a maximum of 5 differences each for Old and New
     formatted_diff = "<br>".join(
-        [f"Old: {line}" for line in diff_lines[: len(diff_lines) // 2]]
-        + [f"New: {line}" for line in diff_lines[len(diff_lines) // 2 :]]
+        [f"Old: {line}" for line in diff_lines[:preview_limit]]
+        + [f"New: {line}" for line in diff_lines[-preview_limit:]]
     )
 
     payload = {
         "to": ["even.sannes.riiser@telemarkfylke.no"],
-        "cc": ["kjersti.aase@telemarkfylke.no"],
+        # "cc": ["kjersti.aase@telemarkfylke.no"],
         "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
         "subject": f"Nye data oppdaget basert på scriptet {script_name}",
         "text": (
