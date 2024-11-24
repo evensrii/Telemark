@@ -15,6 +15,7 @@ from Helper_scripts.github_functions import upload_github_file
 from Helper_scripts.github_functions import download_github_file
 from Helper_scripts.github_functions import compare_to_github
 
+
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
 
@@ -26,6 +27,7 @@ error_messages = []
 ## Har kun andeler, og kun for Vestfold og Telemark samlet. Kan dermed ikke regne ut for Telemark samlet basert på absolutte tall.
 ## Utarbeider scriptet slik at det i framtiden kan hente ut tall for kun Telemark.
 
+
 ###### Andel innvandrere i lavinntekt ######
 
 # Finner URL vha. "Inspiser side" og fane "Network" (F12)
@@ -34,13 +36,18 @@ url = "https://app-simapi-prod.azurewebsites.net/download_csv/f/vedvarende_lavin
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
 try:
-    # Fetch data using the fetch_data function, with separate calls for each request
-    df_vtfk = fetch_data(
-        POST_URL, payload_vtfk, error_messages, query_name="innvandrere_lavinntekt"
+    df = fetch_data(
+        url=url,
+        error_messages=error_messages,
+        query_name="Lavinntekt",
+        payload=None,
+        response_type="csv",
+        delimiter=";",
+        encoding="ISO-8859-1",
     )
 
 except Exception as e:
-    # If any query fails, send the error notification and stop execution
+    print(f"Error occurred: {e}")
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
