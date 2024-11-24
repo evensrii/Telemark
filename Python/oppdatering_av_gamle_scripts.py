@@ -2,6 +2,8 @@ import requests
 import sys
 import os
 import glob
+from io import BytesIO
+from io import StringIO
 import pandas as pd
 from pyjstat import pyjstat
 
@@ -18,7 +20,6 @@ script_name = os.path.basename(__file__)
 
 # Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
 error_messages = []
-
 ----------------------------------
 
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.

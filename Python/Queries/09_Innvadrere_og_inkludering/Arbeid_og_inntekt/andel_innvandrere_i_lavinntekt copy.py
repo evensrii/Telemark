@@ -1,25 +1,13 @@
 import requests
+from io import BytesIO
+from io import StringIO
+import numpy as np
+import pandas as pd
+import datetime as dt
 import sys
 import os
 import glob
-from io import BytesIO
-from io import StringIO
-import pandas as pd
-from pyjstat import pyjstat
-
-# Import the utility functions from the Helper_scripts folder
-from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.utility_functions import delete_files_in_temp_folder
-from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file
-from Helper_scripts.github_functions import download_github_file
-from Helper_scripts.github_functions import compare_to_github
-
-# Capture the name of the current script
-script_name = os.path.basename(__file__)
-
-# Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
-error_messages = []
+import dtale
 
 # Telemark, siste år.
 
@@ -30,22 +18,6 @@ error_messages = []
 
 # Finner URL vha. "Inspiser side" og fane "Network" (F12)
 url = "https://app-simapi-prod.azurewebsites.net/download_csv/f/vedvarende_lavinntekt"
-
-## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
-
-try:
-    # Fetch data using the fetch_data function, with separate calls for each request
-    df_vtfk = fetch_data(
-        POST_URL, payload_vtfk, error_messages, query_name="innvandrere_lavinntekt"
-    )
-
-except Exception as e:
-    # If any query fails, send the error notification and stop execution
-    notify_errors(error_messages, script_name=script_name)
-    raise RuntimeError(
-        "A critical error occurred during data fetching, stopping execution."
-    )
-
 
 # Make a GET request to the URL to download the file
 response = requests.get(url)
@@ -110,16 +82,52 @@ df = df.drop(columns=["Bakgrunn", "Fylkesnummer", "Fylke", "År", "Enhet"])
 df = df.reset_index(drop=True)
 
 
-##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
+#### Save df as a csv file
 
-file_name = "andel_innvandrere_i_lavinntekt.csv"
-github_folder = "Data/09_Innvandrere og inkludering/Arbeid og inntekt"
-temp_folder = os.environ.get("TEMP_FOLDER")
+# Ønsket filnavn <----------- MÅ ENDRES MANUELT!
+csv_file_name = f"andel_innvandre_i_lavinntekt.csv"
+df.to_csv((f"../../Temp/{csv_file_name}"), index=False)  # Relativt til dette scriptet.
 
-compare_to_github(
-    df, file_name, github_folder, temp_folder
-)  # <--- Endre navn på dataframe her!
+##################### Opplasting til Github #####################
 
-##################### Remove temporary local files #####################
+# Legge til directory hvor man finner github_functions.py i sys.path for å kunne importere denne
+current_directory = os.path.dirname(os.path.abspath(__file__))
+two_levels_up_directory = os.path.abspath(
+    os.path.join(current_directory, os.pardir, os.pardir)
+)
+sys.path.append(two_levels_up_directory)
 
-delete_files_in_temp_folder()
+from github_functions import upload_file_to_github
+
+# Hvis eksisterer, oppdater filen. Hvis ikke, opprett filen.
+
+csv_file = f"../../Temp/{csv_file_name}"
+destination_folder = "Data/09_Innvandrere og inkludering/Arbeid og inntekt"  # Mapper som ikke eksisterer vil opprettes automatisk.
+github_repo = "evensrii/Telemark"
+git_branch = "main"
+
+upload_file_to_github(csv_file, destination_folder, github_repo, git_branch)
+
+##################### Remove temporary files #####################
+
+# Delete files in folder using glob
+
+
+def delete_files_in_folder(folder_path):
+    # Construct the path pattern to match all files in the folder
+    files = glob.glob(os.path.join(folder_path, "*"))
+
+    # Iterate over the list of files and delete each one
+    for file_path in files:
+        try:
+            os.remove(file_path)
+            print(f"Deleted file: {file_path}")
+        except Exception as e:
+            print(f"Error deleting file {file_path}: {e}")
+
+
+# Specify the folder path
+folder_path = "../../Temp"
+
+# Call the function to delete files
+delete_files_in_folder(folder_path)

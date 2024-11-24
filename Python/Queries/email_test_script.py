@@ -113,6 +113,29 @@ payload_tfk = {
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
 try:
+    df_vtfk = fetch_data(
+        url="https://data.ssb.no/api/v0/no/table/11607/",
+        payload=payload_vtfk,
+        error_messages=error_messages,
+        query_name="VTFK Query",
+        response_type="json",
+    )
+    df_tfk = fetch_data(
+        url="https://data.ssb.no/api/v0/no/table/11607/",
+        payload=payload_tfk,
+        error_messages=error_messages,
+        query_name="TFK Query",
+        response_type="json",
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+
+
+""" try:
     # Fetch data using the fetch_data function, with separate calls for each request
     df_vtfk = fetch_data(POST_URL, payload_vtfk, error_messages, query_name="VTFK")
     df_tfk = fetch_data(POST_URL, payload_tfk, error_messages, query_name="TFK")
@@ -122,7 +145,7 @@ except Exception as e:
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
-    )
+    ) """
 
 # Proceed with data analysis only if all queries succeeded
 
