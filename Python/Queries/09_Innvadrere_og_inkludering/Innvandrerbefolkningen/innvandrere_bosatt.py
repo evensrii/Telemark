@@ -83,10 +83,10 @@ except Exception as e:
 df.head()
 df.info()
 
-# Print the first value in the column "år"
-print(f"Her hentes tallene for{df['år'].unique()}")
-
 ################# Bearbeiding datasett #################
+
+# Select year from the column "år"
+most_recent_year = df["år"].max()
 
 # Keep only the columns "region" and "value"
 df = df[["region", "value"]]
@@ -98,8 +98,14 @@ df.columns = ["Kommune", "Andel"]
 df["Andel"] = df["Andel"].astype(int)
 
 # Create a third column identical to "Kommune", but name the column "Labels"
-df["Labels"] = df["Kommune"]
+df["Label"] = df["Kommune"]
 
+# Add latest year from dataset
+df.columns = [
+    "Kommune",
+    f"Andel bosatt {most_recent_year}",
+    "Label",
+]
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
