@@ -2,8 +2,24 @@ import requests
 import sys
 import os
 import glob
+from io import BytesIO
+from io import StringIO
 import pandas as pd
 from pyjstat import pyjstat
+
+# Import the utility functions from the Helper_scripts folder
+from Helper_scripts.utility_functions import fetch_data
+from Helper_scripts.utility_functions import delete_files_in_temp_folder
+from Helper_scripts.email_functions import notify_errors
+from Helper_scripts.github_functions import upload_github_file
+from Helper_scripts.github_functions import download_github_file
+from Helper_scripts.github_functions import compare_to_github
+
+# Capture the name of the current script
+script_name = os.path.basename(__file__)
+
+# Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
+error_messages = []
 
 # Alle kommuner, siste år (dvs. "top")
 
@@ -12,10 +28,10 @@ from pyjstat import pyjstat
 # Endepunkt for SSB API
 POST_URL = "https://data.ssb.no/api/v0/no/table/11607/"
 
-################# Spørring VTFK (-2023) #################
+################# VTFK (-2023) #################
 
 # Spørring for å hente ut data fra SSB
-payload = {
+payload_vtfk = {
     "query": [
         {
             "code": "Region",
@@ -54,25 +70,9 @@ payload = {
     "response": {"format": "json-stat2"},
 }
 
+################# TFK (2024-) ################# (spørring ok for 2023, men gir bare "None"-verdier)
 
-resultat_vtfk = requests.post(POST_URL, json=payload)
-
-if resultat_vtfk.status_code == 200:
-    print("Spørring ok")
-else:
-    print(f"Spørring feilet. Statuskode: {resultat_vtfk.status_code}")
-
-dataset = pyjstat.Dataset.read(resultat_vtfk.text)
-df_vtfk = dataset.write("dataframe")
-df_vtfk.head()
-df_vtfk.info()
-
-# Print the first value in the column "år"
-print(f"Her hentes tallene for{df_vtfk['år'].unique()}")
-
-################# Spørring TFK (2024-) ################# (spørring ok for 2023, men gir bare "None"-verdier)
-
-payload = {
+payload_tfk = {
     "query": [
         {
             "code": "Region",
@@ -111,22 +111,37 @@ payload = {
     "response": {"format": "json-stat2"},
 }
 
-resultat_tfk = requests.post(POST_URL, json=payload)
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
-if resultat_tfk.status_code == 200:
-    print("Spørring ok")
-else:
-    print(f"Spørring feilet. Statuskode: {resultat_tfk.status_code}")
+try:
+    df_vtfk = fetch_data(
+        url=POST_URL,
+        payload=payload_vtfk,
+        error_messages=error_messages,
+        query_name="VTFK Query",
+        response_type="json",
+    )
+    df_tfk = fetch_data(
+        url=POST_URL,
+        payload=payload_tfk,
+        error_messages=error_messages,
+        query_name="TFK Query",
+        response_type="json",
+    )
 
-dataset = pyjstat.Dataset.read(resultat_tfk.text)
-df_tfk = dataset.write("dataframe")
-df_tfk.head()
-df_tfk.info()
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
 
-# Print the first value in the column "år"
-print(f"Her hentes tallene for{df_tfk['år'].unique()}")
+# Proceed with data analysis only if all queries succeeded
 
 ####### Slå sammen datasettene #######
+
+print(f"Her hentes tallene for Vestfold og Telemark i {df_vtfk['år'].unique()}")
+print(f"Her hentes tallene for Telemark i {df_tfk['år'].unique()}")
 
 # Merge the two dataframes
 df = pd.concat([df_vtfk, df_tfk])
@@ -163,55 +178,16 @@ df_filtered["label"] = df_filtered["region"]
 # Rename the column names to "Kommune", "Andel" and "Label"
 df_filtered.columns = ["Kommune", "Andel", "Label"]
 
+##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-#### Save df as a csv file
+file_name = "andel_sysselsatte_innvandrere.csv"
+github_folder = "Data/09_Innvandrere og inkludering/Arbeid og inntekt"
+temp_folder = os.environ.get("TEMP_FOLDER")
 
-# Ønsket filnavn <----------- MÅ ENDRES MANUELT!
-csv_file_name = f"andel_sysselsatte_innvandrere.csv"
-df_filtered.to_csv(
-    (f"../../Temp/{csv_file_name}"), index=False
-)  # Relativt til dette scriptet.
+compare_to_github(
+    df_filtered, file_name, github_folder, temp_folder
+)  # <--- Endre navn på dataframe her!
 
-##################### Opplasting til Github #####################
+##################### Remove temporary local files #####################
 
-# Legge til directory hvor man finner github_functions.py i sys.path for å kunne importere denne
-current_directory = os.path.dirname(os.path.abspath(__file__))
-two_levels_up_directory = os.path.abspath(
-    os.path.join(current_directory, os.pardir, os.pardir)
-)
-sys.path.append(two_levels_up_directory)
-
-from github_functions import upload_file_to_github
-
-# Hvis eksisterer, oppdater filen. Hvis ikke, opprett filen.
-
-csv_file = f"../../Temp/{csv_file_name}"
-destination_folder = "Data/09_Innvandrere og inkludering/Arbeid og inntekt"  # Mapper som ikke eksisterer vil opprettes automatisk.
-github_repo = "evensrii/Telemark"
-git_branch = "main"
-
-upload_file_to_github(csv_file, destination_folder, github_repo, git_branch)
-
-##################### Remove temporary files #####################
-
-# Delete files in folder using glob
-
-
-def delete_files_in_folder(folder_path):
-    # Construct the path pattern to match all files in the folder
-    files = glob.glob(os.path.join(folder_path, "*"))
-
-    # Iterate over the list of files and delete each one
-    for file_path in files:
-        try:
-            os.remove(file_path)
-            print(f"Deleted file: {file_path}")
-        except Exception as e:
-            print(f"Error deleting file {file_path}: {e}")
-
-
-# Specify the folder path
-folder_path = "../../Temp"
-
-# Call the function to delete files
-delete_files_in_folder(folder_path)
+delete_files_in_temp_folder()
