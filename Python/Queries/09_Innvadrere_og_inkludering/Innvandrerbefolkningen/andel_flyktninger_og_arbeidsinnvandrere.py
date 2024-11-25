@@ -149,12 +149,21 @@ df_pivot.columns.name = None
 df_pivot_arbeidsinnvandrere = df_pivot[["Kommune", "Arbeidsinnvandrere"]]
 df_pivot_flyktninger = df_pivot[["Kommune", "Flyktninger og deres familieinnvandrede"]]
 
+# Add a label column "Label" with the values from column "Kommune"
+df_pivot_arbeidsinnvandrere["Label"] = df_pivot_arbeidsinnvandrere["Kommune"]
+df_pivot_flyktninger["Label"] = df_pivot_flyktninger["Kommune"]
+
 # Rename the columns to "Andel flyktninger {most_recent_year.year}" and "Andel arbeidsinnvandrere {most_recent_year.year}"
 df_pivot_arbeidsinnvandrere.columns = [
     "Kommune",
     f"Andel arbeidsinnvandrere {most_recent_year.year}",
+    "Label",
 ]
-df_pivot_flyktninger.columns = ["Kommune", f"Andel flyktninger {most_recent_year.year}"]
+df_pivot_flyktninger.columns = [
+    "Kommune",
+    f"Andel flyktninger {most_recent_year.year}",
+    "Label",
+]
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
