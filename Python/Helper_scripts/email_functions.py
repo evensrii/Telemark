@@ -104,7 +104,7 @@ def notify_updated_data(file_name, diff_lines):
 
     payload = {
         "to": ["even.sannes.riiser@telemarkfylke.no"],
-        "cc": ["kjersti.aase@telemarkfylke.no"],
+        # "cc": ["kjersti.aase@telemarkfylke.no"],
         "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
         "subject": f"Nye data oppdaget basert på scriptet {script_name}",
         "text": (
