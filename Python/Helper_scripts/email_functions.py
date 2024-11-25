@@ -76,13 +76,14 @@ def notify_errors(error_messages, script_name="Unknown Script"):
 ### 2) EPOST VED NYE DATA
 
 
-def notify_updated_data(file_name, diff_lines):
+def notify_updated_data(file_name, diff_lines=None, reason=""):
     """
     Sends an email notification when new data is detected in the GitHub comparison.
 
     Parameters:
         file_name (str): The name of the updated file.
-        diff_lines (list): A list of dictionaries containing the differences.
+        diff_lines (list): A list of dictionaries containing the differences (optional).
+        reason (str): The reason for the update (optional).
     """
     # Get the name of the script that called compare_to_github()
     frame = inspect.stack()[2]  # Two levels up in the call stack
@@ -97,24 +98,26 @@ def notify_updated_data(file_name, diff_lines):
         script_name = "Jupyter Notebook or IPython"
 
     # Format the differences for the email
-    preview_limit = 5  # Show a maximum of 5 differences each for Old and New
-    formatted_diff = "<br>".join(
-        [f"Old: {line}" for line in diff_lines[:preview_limit]]
-        + [f"New: {line}" for line in diff_lines[-preview_limit:]]
-    )
+    formatted_diff = ""
+    if diff_lines:
+        formatted_diff = "<br>".join(
+            [f"Old: {line}" for line in diff_lines[: len(diff_lines) // 2]]
+            + [f"New: {line}" for line in diff_lines[len(diff_lines) // 2 :]]
+        )
 
     payload = {
         "to": ["even.sannes.riiser@telemarkfylke.no"],
-        # "cc": ["kjersti.aase@telemarkfylke.no"],
         "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
-        "subject": f"Nye data oppdaget basert på scriptet {script_name}",
+        "subject": f"New data detected based on {script_name}",
         "text": (
-            f"Nye data oppdaget og oppdatert for fila: {file_name}\n\n"
-            f"Endringer:\n{formatted_diff}"
+            f"New data has been detected and updated for the file: {file_name}\n\n"
+            f"Reason: {reason}\n\n"
+            f"Changes:\n{formatted_diff if formatted_diff else 'N/A'}"
         ),
         "html": (
-            f"<b>Nye data oppdaget og oppdatert for fila:</b><br>{file_name}<br><br>"
-            f"<b>Endringer:</b><br>{formatted_diff}"
+            f"<b>New data has been detected and updated for the file:</b><br>{file_name}<br><br>"
+            f"<b>Reason:</b> {reason}<br><br>"
+            f"<b>Changes:</b><br>{formatted_diff if formatted_diff else 'N/A'}"
         ),
     }
 

@@ -128,6 +128,7 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
 def compare_to_github(input_df, file_name, github_folder, temp_folder):
     """
     Compares a DataFrame to an existing file on GitHub, and uploads the file if changes are detected.
+    If column names differ between the new and old data, the new file replaces the old one.
 
     Parameters:
         input_df (pd.DataFrame): The DataFrame to compare and upload.
@@ -150,16 +151,35 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
 
     # Check if new data exists compared to GitHub
     if existing_data is not None:
-        # Compare the existing data with the new data
-        existing_df = existing_data.astype(str).sort_values(
-            by=list(existing_data.columns)
-        )
-        new_df = (
-            pd.read_csv(local_file_path)
-            .astype(str)
-            .sort_values(by=list(existing_data.columns))
+        # Standardize column names for comparison
+        existing_df = existing_data.rename(columns=lambda x: x.strip().lower())
+        new_df = pd.read_csv(local_file_path).rename(
+            columns=lambda x: x.strip().lower()
         )
 
+        # Compare columns to detect mismatches
+        if set(existing_df.columns) != set(new_df.columns):
+            print(
+                "Column names differ, probably caused by new year. Replacing file on GitHub with new data."
+            )
+            upload_github_file(
+                local_file_path,
+                github_file_path,
+                message=f"Replaced {file_name} due to column name changes",
+            )
+            notify_updated_data(
+                file_name, diff_lines=None, reason="Column names differ."
+            )
+            return
+
+        # Find common columns for comparison
+        common_columns = [col for col in existing_df.columns if col in new_df.columns]
+        existing_df = (
+            existing_df[common_columns].astype(str).sort_values(by=common_columns)
+        )
+        new_df = new_df[common_columns].astype(str).sort_values(by=common_columns)
+
+        # Compare the filtered DataFrames
         if existing_df.equals(new_df):
             print("No new data to upload. Skipping GitHub update.")
         else:
@@ -173,7 +193,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                 local_file_path, github_file_path, message=f"Updated {file_name}"
             )
             # Notify about the updated data and differences
-            notify_updated_data(file_name, diff_lines)
+            notify_updated_data(file_name, diff_lines, reason="New data detected.")
     else:
         # If the file does not exist on GitHub, upload the new file
         print("Uploading new file.")

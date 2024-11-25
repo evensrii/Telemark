@@ -1,12 +1,25 @@
 import requests
-from io import BytesIO
-from io import StringIO
-import numpy as np
-import pandas as pd
-import datetime as dt
 import sys
 import os
 import glob
+from io import BytesIO
+from io import StringIO
+import pandas as pd
+from pyjstat import pyjstat
+
+# Import the utility functions from the Helper_scripts folder
+from Helper_scripts.utility_functions import fetch_data
+from Helper_scripts.utility_functions import delete_files_in_temp_folder
+from Helper_scripts.email_functions import notify_errors
+from Helper_scripts.github_functions import upload_github_file
+from Helper_scripts.github_functions import download_github_file
+from Helper_scripts.github_functions import compare_to_github
+
+# Capture the name of the current script
+script_name = os.path.basename(__file__)
+
+# Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
+error_messages = []
 
 ## Imdi gir ingen direkte url til .xlsx-fil, må trykke JS-knapp som trigger "OnClick"-event.
 # Jeg bruker requests for å simulere nedlasting av filen.
@@ -14,23 +27,25 @@ import glob
 # Finner URL vha. "Inspiser side" og fane "Network"
 url = "https://app-simapi-prod.azurewebsites.net/download_csv/k/befolkning_innvandringsgrunn"
 
-# Make a GET request to the URL to download the file
-response = requests.get(url)
 
-# Hente ut innhold (data)
-url_content = response.content
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
-if response.status_code == 200:
-
-    df = pd.read_csv(
-        BytesIO(url_content),
-        delimiter=";",
-        encoding="ISO-8859-1",
-        dtype={"Kommunenummer": str},
+try:
+    df = fetch_data(
+        url=url,
+        payload=None,  # The JSON payload for POST requests. If None, a GET request is used.
+        error_messages=error_messages,
+        query_name="Flyktninger og arbeidsinnvandrere",
+        response_type="csv",  # The expected response type, either 'json' or 'csv'.
+        delimiter=";",  # The delimiter for CSV data (default: ';').
+        encoding="ISO-8859-1",  # The encoding for CSV data (default: 'ISO-8859-1').
     )
-
-else:
-    print(f"Failed to download the file. Status code: {response.status_code}")
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
 
 ## Datasjekk
 df.head()
@@ -141,68 +156,22 @@ df_pivot_arbeidsinnvandrere.columns = [
 ]
 df_pivot_flyktninger.columns = ["Kommune", f"Andel flyktninger {most_recent_year.year}"]
 
+##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-#### Save dfs as csv files
+file_name1 = "andel_arbeidsinnvandrere.csv"
+file_name2 = "andel_flyktninger.csv"
+github_folder = "Data/09_Innvandrere og inkludering/Innvandrerbefolkningen"
+temp_folder = os.environ.get("TEMP_FOLDER")
 
-# Ønsket filnavn <----------- MÅ ENDRES MANUELT!
-csv_file_name1 = f"andel_arbeidsinnvandrere.csv"
-csv_file_name2 = f"andel_flyktninger.csv"
+compare_to_github(
+    df_pivot_arbeidsinnvandrere, file_name1, github_folder, temp_folder
+)  # <--- Endre navn på dataframe her!
 
-df_pivot_arbeidsinnvandrere.to_csv(
-    (f"../../Temp/{csv_file_name1}"), index=False
-)  # Relativt til dette scriptet.
-
-df_pivot_flyktninger.to_csv(
-    (f"../../Temp/{csv_file_name2}"), index=False
-)  # Relativt til dette scriptet.
-
-##################### Opplasting til Github #####################
-
-# Legge til directory hvor man finner github_functions.py i sys.path for å kunne importere denne
-current_directory = os.path.dirname(os.path.abspath(__file__))
-two_levels_up_directory = os.path.abspath(
-    os.path.join(current_directory, os.pardir, os.pardir)
-)
-sys.path.append(two_levels_up_directory)
-
-from github_functions import upload_file_to_github
-
-# Hvis eksisterer, oppdater filen. Hvis ikke, opprett filen.
-
-csv_file1 = f"../../Temp/{csv_file_name1}"
-destination_folder = "Data/09_Innvandrere og inkludering/Innvandrerbefolkningen"  # Mapper som ikke eksisterer vil opprettes automatisk.
-github_repo = "evensrii/Telemark"
-git_branch = "main"
-
-upload_file_to_github(csv_file1, destination_folder, github_repo, git_branch)
-
-csv_file2 = f"../../Temp/{csv_file_name2}"
-destination_folder = "Data/09_Innvandrere og inkludering/Innvandrerbefolkningen"  # Mapper som ikke eksisterer vil opprettes automatisk.
-github_repo = "evensrii/Telemark"
-git_branch = "main"
-
-upload_file_to_github(csv_file2, destination_folder, github_repo, git_branch)
-
-##################### Remove temporary files #####################
-
-# Delete files in folder using glob
+compare_to_github(
+    df_pivot_flyktninger, file_name2, github_folder, temp_folder
+)  # <--- Endre navn på dataframe her!
 
 
-def delete_files_in_folder(folder_path):
-    # Construct the path pattern to match all files in the folder
-    files = glob.glob(os.path.join(folder_path, "*"))
+##################### Remove temporary local files #####################
 
-    # Iterate over the list of files and delete each one
-    for file_path in files:
-        try:
-            os.remove(file_path)
-            print(f"Deleted file: {file_path}")
-        except Exception as e:
-            print(f"Error deleting file {file_path}: {e}")
-
-
-# Specify the folder path
-folder_path = "../../Temp"
-
-# Call the function to delete files
-delete_files_in_folder(folder_path)
+delete_files_in_temp_folder()
