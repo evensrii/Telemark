@@ -2,6 +2,8 @@ import requests
 import sys
 import os
 import glob
+from io import BytesIO
+from io import StringIO
 import pandas as pd
 from pyjstat import pyjstat
 
@@ -18,18 +20,24 @@ script_name = os.path.basename(__file__)
 
 # Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
 error_messages = []
-
 ----------------------------------
 
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
-try:
-    # Fetch data using the fetch_data function, with separate calls for each request
-    df_vtfk = fetch_data(POST_URL, payload_vtfk, error_messages, query_name="VTFK")
-    df_tfk = fetch_data(POST_URL, payload_tfk, error_messages, query_name="TFK")
+url = "..."
 
+try:
+    df = fetch_data(
+        url=url,
+        payload=custom_payload, #The JSON payload for POST requests. If None, a GET request is used.
+        error_messages=error_messages,
+        query_name="Query name",
+        response_type="csv", # The expected response type, either 'json' or 'csv'.
+        delimiter=";", # The delimiter for CSV data (default: ';').
+        encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+    )
 except Exception as e:
-    # If any query fails, send the error notification and stop execution
+    print(f"Error occurred: {e}")
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."

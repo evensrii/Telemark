@@ -1,4 +1,5 @@
-# conda env create -f environment.yaml
+# Opprette environment: conda env create --file environment.yaml
+# Oppdatere environment: conda update --file environment.yaml (og så deaktivere og aktivere environment)
 name: analyse
 channels:
   - conda-forge
@@ -26,6 +27,6 @@ dependencies:
       - selenium
       - dtale
 variables:
-  PYTHONPATH: "C:\\Users\\eve1509\\OneDrive - Telemark fylkeskommune\\Github\\Telemark\\Python"
-  TEMP_FOLDER: "C:\\Users\\eve1509\\OneDrive - Telemark fylkeskommune\\Github\\Telemark\\Python\\Temp"
-  LOG_FOLDER: "C:\\Users\\eve1509\\OneDrive - Telemark fylkeskommune\\Github\\Telemark\\Python\\Log"
+  PYTHONPATH: "E:\\Dokumenter\\Python-leking\\Github\\Telemark\\Python"
+  TEMP_FOLDER: "E:\\Dokumenter\\Python-leking\\Github\\Telemark\\Python\\Temp"
+  LOG_FOLDER: "E:\\Dokumenter\\Python-leking\\Github\\Telemark\\Python\\Log"

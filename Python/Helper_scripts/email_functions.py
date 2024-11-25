@@ -13,7 +13,7 @@ pythonpath = os.environ.get("PYTHONPATH")
 
 if pythonpath:
     # Construct the full path to the Queries/token.env
-    env_file_path = os.path.join(pythonpath, "Queries", "token.env")
+    env_file_path = os.path.join(pythonpath, "token.env")
 
     if os.path.exists(env_file_path):
         # Load the .env file
@@ -46,7 +46,7 @@ def notify_errors(error_messages, script_name="Unknown Script"):
     if error_messages:
         error_details = "\n".join(error_messages)
         payload = {
-            "to": ["even.sannes.riiser@telemarkfylke.no"],
+            "to": ["even.sannes.riiser@telemarkfylke.no", "even.s.riiser@gmail.com"],
             # "cc": [kjersti.aase@telemarkfylke.no],
             "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
             "subject": f"Spørring feilet i script {script_name}",
@@ -97,9 +97,10 @@ def notify_updated_data(file_name, diff_lines):
         script_name = "Jupyter Notebook or IPython"
 
     # Format the differences for the email
+    preview_limit = 5  # Show a maximum of 5 differences each for Old and New
     formatted_diff = "<br>".join(
-        [f"Old: {line}" for line in diff_lines[: len(diff_lines) // 2]]
-        + [f"New: {line}" for line in diff_lines[len(diff_lines) // 2 :]]
+        [f"Old: {line}" for line in diff_lines[:preview_limit]]
+        + [f"New: {line}" for line in diff_lines[-preview_limit:]]
     )
 
     payload = {

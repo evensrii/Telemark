@@ -113,12 +113,22 @@ payload_tfk = {
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
 try:
-    # Fetch data using the fetch_data function, with separate calls for each request
-    df_vtfk = fetch_data(POST_URL, payload_vtfk, error_messages, query_name="VTFK")
-    df_tfk = fetch_data(POST_URL, payload_tfk, error_messages, query_name="TFK")
-
+    df_vtfk = fetch_data(
+        url=POST_URL,
+        payload=payload_vtfk,
+        error_messages=error_messages,
+        query_name="VTFK Query",
+        response_type="json",
+    )
+    df_tfk = fetch_data(
+        url=POST_URL,
+        payload=payload_tfk,
+        error_messages=error_messages,
+        query_name="TFK Query",
+        response_type="json",
+    )
 except Exception as e:
-    # If any query fails, send the error notification and stop execution
+    print(f"Error occurred: {e}")
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."

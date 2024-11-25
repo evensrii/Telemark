@@ -28,7 +28,7 @@ def get_github_token():
         raise ValueError("PYTHONPATH environment variable is not set.")
 
     # Construct the full path to the Queries/token.env
-    env_file_path = os.path.join(pythonpath, "Queries", "token.env")
+    env_file_path = os.path.join(pythonpath, "token.env")
     if not os.path.exists(env_file_path):
         raise ValueError(f"token.env file not found in: {env_file_path}")
 
