@@ -53,20 +53,6 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-
-# Make a GET request to the URL to download the file
-response = requests.get(url)
-
-# Hente ut innhold (data)
-url = response.content
-
-if response.status_code == 200:
-
-    df = pd.read_csv(BytesIO(url), delimiter=";", encoding="ISO-8859-1")
-
-else:
-    print(f"Failed to download the file. Status code: {response.status_code}")
-
 df.info()
 df.head()
 
