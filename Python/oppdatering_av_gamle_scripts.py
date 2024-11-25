@@ -29,7 +29,7 @@ url = "..."
 try:
     df = fetch_data(
         url=url,
-        payload=custom_payload, #The JSON payload for POST requests. If None, a GET request is used.
+        payload=None, #The JSON payload for POST requests. If None, a GET request is used.
         error_messages=error_messages,
         query_name="Query name",
         response_type="csv", # The expected response type, either 'json' or 'csv'.
