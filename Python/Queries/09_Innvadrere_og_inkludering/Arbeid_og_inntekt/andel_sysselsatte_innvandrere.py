@@ -178,7 +178,7 @@ df_filtered = df_filtered.drop(
 df_filtered["label"] = df_filtered["region"]
 
 # Rename the column names to "Kommune", "Andel" and "Label"
-df_filtered.columns = ["Kommune", f"Andel {most_recent_year_year})", "Label"]
+df_filtered.columns = ["Kommune", f"Andel {most_recent_year_year}", "Label"]
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
