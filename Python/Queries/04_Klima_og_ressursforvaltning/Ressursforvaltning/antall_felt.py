@@ -2,19 +2,35 @@ import requests
 import sys
 import os
 import glob
+from io import BytesIO
+from io import StringIO
 import pandas as pd
-import numpy as np
 from pyjstat import pyjstat
+import numpy as np
+
+# Import the utility functions from the Helper_scripts folder
+from Helper_scripts.utility_functions import fetch_data
+from Helper_scripts.utility_functions import delete_files_in_temp_folder
+from Helper_scripts.email_functions import notify_errors
+from Helper_scripts.github_functions import upload_github_file
+from Helper_scripts.github_functions import download_github_file
+from Helper_scripts.github_functions import compare_to_github
+
+# Capture the name of the current script
+script_name = os.path.basename(__file__)
+
+# Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
+error_messages = []
 
 ################# Felte elg #################
 
 ### Fylker 2024, sammenslåtte tidsserier
 
 # Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/table/03432/"
+POST_URL_elg = "https://data.ssb.no/api/v0/no/table/03432/"
 
 # Spørring for å hente ut data fra SSB
-payload = {
+payload_elg = {
     "query": [
         {
             "code": "Region",
@@ -25,15 +41,25 @@ payload = {
     "response": {"format": "json-stat2"},
 }
 
-resultat = requests.post(POST_URL, json=payload)
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
-if resultat.status_code == 200:
-    print("Spørring ok")
-else:
-    print(f"Spørring feilet. Statuskode: {resultat.status_code}")
+try:
+    df_elg = fetch_data(
+        url=POST_URL_elg,
+        payload=payload_elg,  # The JSON payload for POST requests. If None, a GET request is used.
+        error_messages=error_messages,
+        query_name="Elg",
+        response_type="json",  # The expected response type, either 'json' or 'csv'.
+        # delimiter=";", # The delimiter for CSV data (default: ';').
+        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
 
-dataset = pyjstat.Dataset.read(resultat.text)
-df_elg = dataset.write("dataframe")
 df_elg.head()
 df_elg.info()
 
@@ -43,10 +69,10 @@ df_elg.info()
 ### Fylker 2024, sammenslåtte tidsserier
 
 # Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/table/03434/"
+POST_URL_hjort = "https://data.ssb.no/api/v0/no/table/03434/"
 
 # Spørring for å hente ut data fra SSB
-payload = {
+payload_hjort = {
     "query": [
         {
             "code": "Region",
@@ -57,15 +83,25 @@ payload = {
     "response": {"format": "json-stat2"},
 }
 
-resultat = requests.post(POST_URL, json=payload)
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
-if resultat.status_code == 200:
-    print("Spørring ok")
-else:
-    print(f"Spørring feilet. Statuskode: {resultat.status_code}")
+try:
+    df_hjort = fetch_data(
+        url=POST_URL_hjort,
+        payload=payload_hjort,  # The JSON payload for POST requests. If None, a GET request is used.
+        error_messages=error_messages,
+        query_name="Hjort",
+        response_type="json",  # The expected response type, either 'json' or 'csv'.
+        # delimiter=";", # The delimiter for CSV data (default: ';').
+        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
 
-dataset = pyjstat.Dataset.read(resultat.text)
-df_hjort = dataset.write("dataframe")
 df_hjort.head()
 df_hjort.info()
 
@@ -84,6 +120,7 @@ df_hjort["Antall felte hjort"] = df_hjort["Antall felte hjort"].interpolate(
     method="linear"
 )
 df_hjort["Antall felte hjort"] = df_hjort["Antall felte hjort"].round()
+df_hjort["Antall felte hjort"] = df_hjort["Antall felte hjort"].astype(int)
 
 # Merge dataframes
 df = pd.merge(df_elg, df_hjort, on="Jaktår")
@@ -91,52 +128,17 @@ df = pd.merge(df_elg, df_hjort, on="Jaktår")
 # Remove everything after "-" in "Jaktår" (including "-")
 df["Jaktår"] = df["Jaktår"].str.split("-").str[0]
 
-############# Save dfs as a csv files
 
-csv = "antall_felte_elg_og_hjort.csv"
-df.to_csv((f"../../Temp/{csv}"), index=False)
+##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
+file_name = "antall_felte_elg_og_hjort.csv"
+github_folder = "Data/04_Klima og ressursforvaltning/Ressursforvaltning"
+temp_folder = os.environ.get("TEMP_FOLDER")
 
-##################### Opplasting til Github #####################
+compare_to_github(
+    df, file_name, github_folder, temp_folder
+)  # <--- Endre navn på dataframe her!
 
-# Legge til directory hvor man finner github_functions.py i sys.path for å kunne importere denne
-current_directory = os.path.dirname(os.path.abspath(__file__))
-two_levels_up_directory = os.path.abspath(
-    os.path.join(current_directory, os.pardir, os.pardir)
-)
-sys.path.append(two_levels_up_directory)
+##################### Remove temporary local files #####################
 
-from github_functions import upload_file_to_github
-
-# Hvis eksisterer, oppdater filen. Hvis ikke, opprett filen.
-
-csv_file = f"../../Temp/{csv}"
-destination_folder = "Data/04_Klima og ressursforvaltning/Ressursforvaltning"  # Mapper som ikke eksisterer vil opprettes automatisk.
-github_repo = "evensrii/Telemark"
-git_branch = "main"
-
-upload_file_to_github(csv_file, destination_folder, github_repo, git_branch)
-
-##################### Remove temporary files #####################
-
-# Delete files in folder using glob
-
-
-def delete_files_in_folder(folder_path):
-    # Construct the path pattern to match all files in the folder
-    files = glob.glob(os.path.join(folder_path, "*"))
-
-    # Iterate over the list of files and delete each one
-    for file_path in files:
-        try:
-            os.remove(file_path)
-            print(f"Deleted file: {file_path}")
-        except Exception as e:
-            print(f"Error deleting file {file_path}: {e}")
-
-
-# Specify the folder path
-folder_path = "../../Temp"
-
-# Call the function to delete files
-delete_files_in_folder(folder_path)
+delete_files_in_temp_folder()
