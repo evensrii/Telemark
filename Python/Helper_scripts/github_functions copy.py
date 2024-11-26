@@ -174,37 +174,20 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
 
         # Find common columns for comparison
         common_columns = [col for col in existing_df.columns if col in new_df.columns]
-        existing_df = existing_df[common_columns]
-        new_df = new_df[common_columns]
-
-        # Align rows for comparison using an outer join
-        combined_df = pd.merge(
-            existing_df,
-            new_df,
-            how="outer",
-            on=common_columns[:-1],
-            suffixes=("_old", "_new"),
+        existing_df = (
+            existing_df[common_columns].astype(str).sort_values(by=common_columns)
         )
+        new_df = new_df[common_columns].astype(str).sort_values(by=common_columns)
 
-        # Identify changes by comparing old and new values
-        changes = combined_df[
-            (
-                combined_df[f"{common_columns[-1]}_old"]
-                != combined_df[f"{common_columns[-1]}_new"]
-            )
-            & (
-                ~combined_df[f"{common_columns[-1]}_old"].isna()
-                | ~combined_df[f"{common_columns[-1]}_new"].isna()
-            )
-        ]
-
-        if changes.empty:
+        # Compare the filtered DataFrames
+        if existing_df.equals(new_df):
             print("No new data to upload. Skipping GitHub update.")
         else:
             print("New data detected. Uploading to GitHub.")
 
-            # Show first 5 changes for the notification email
-            diff_lines = changes.head(5).to_dict(orient="records")
+            # Compute differences
+            diff = pd.concat([existing_df, new_df]).drop_duplicates(keep=False)
+            diff_lines = diff.head(5).to_dict(orient="records")  # Show first 5 changes
 
             upload_github_file(
                 local_file_path, github_file_path, message=f"Updated {file_name}"
