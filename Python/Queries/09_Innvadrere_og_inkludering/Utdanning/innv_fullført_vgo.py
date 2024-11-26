@@ -2,6 +2,9 @@ import requests
 import sys
 import os
 import glob
+import sys
+import os
+import glob
 from io import BytesIO
 from io import StringIO
 import pandas as pd
@@ -21,12 +24,28 @@ script_name = os.path.basename(__file__)
 # Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
 error_messages = []
 
+# Import the utility functions from the Helper_scripts folder
+from Helper_scripts.utility_functions import fetch_data
+from Helper_scripts.utility_functions import delete_files_in_temp_folder
+from Helper_scripts.email_functions import notify_errors
+from Helper_scripts.github_functions import upload_github_file
+from Helper_scripts.github_functions import download_github_file
+from Helper_scripts.github_functions import compare_to_github
+
+# Capture the name of the current script
+script_name = os.path.basename(__file__)
+
+# Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
+error_messages = []
+
 ################# Fullført - Innvandrere #################
 
 # Endepunkt for SSB API
 POST_URL_innv = "https://data.ssb.no/api/v0/no/table/13628/"
+POST_URL_innv = "https://data.ssb.no/api/v0/no/table/13628/"
 
 # Spørring for å hente ut data fra SSB
+payload_innv = {
 payload_innv = {
     "query": [
         {"code": "Region", "selection": {"filter": "item", "values": ["08"]}},
@@ -86,6 +105,7 @@ df_innvandrere["gruppe"] = "Innvandrere"
 ################# Fullført - Hele befolkningen #################
 
 # Endepunkt for SSB API
+POST_URL_hele_bef = "https://data.ssb.no/api/v0/no/table/12971/"
 POST_URL_hele_bef = "https://data.ssb.no/api/v0/no/table/12971/"
 
 # Spørring for å hente ut data fra SSB
@@ -175,6 +195,7 @@ df_telemark_pivot.columns = [col for col in df_telemark_pivot.columns]
 
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
+##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "fullført_vgo_innv_befolk.csv"
 github_folder = "Data/09_Innvandrere og inkludering/Utdanningsnivå Telemark"
@@ -185,5 +206,7 @@ compare_to_github(
 )  # <--- Endre navn på dataframe her!
 
 ##################### Remove temporary local files #####################
+##################### Remove temporary local files #####################
 
+delete_files_in_temp_folder()
 delete_files_in_temp_folder()
