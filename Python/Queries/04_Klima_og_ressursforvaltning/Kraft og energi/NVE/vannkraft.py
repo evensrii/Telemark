@@ -1,20 +1,27 @@
 import requests
-import pandas as pd
 import sys
 import os
 import glob
+from io import BytesIO
+from io import StringIO
+import pandas as pd
+from pyjstat import pyjstat
 
-# Get the directory of the current script
-current_directory = os.path.dirname(os.path.abspath(__file__))
+# Import the utility functions from the Helper_scripts folder
+from Helper_scripts.utility_functions import fetch_data
+from Helper_scripts.utility_functions import delete_files_in_temp_folder
+from Helper_scripts.email_functions import notify_errors
+from Helper_scripts.github_functions import upload_github_file
+from Helper_scripts.github_functions import download_github_file
+from Helper_scripts.github_functions import compare_to_github
 
-# Get the parent directory
-parent_directory = os.path.abspath(os.path.join(current_directory, os.pardir))
+# Capture the name of the current script
+script_name = os.path.basename(__file__)
 
-# Add the parent directory to sys.path
-sys.path.append(parent_directory)
+# Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
+error_messages = []
 
-# Assuming you have a module named `github_functions.py` in the parent directory
-import github_functions
+temp_folder = os.environ.get("TEMP_FOLDER")
 
 
 def get_hydro_power_plants_in_operation():
@@ -44,49 +51,30 @@ def get_hydro_power_plants_in_operation():
         "Produksjon oppstart",
         "Årlig produksjon (1991-2020)",
     ]
-    df_selected.to_excel(
-        "../Temp/vannkraft_telemark.xlsx", index=False
-    )  # Relativt til dette scriptet
     print(df_selected)
 
-
-if __name__ == "__main__":
-    get_hydro_power_plants_in_operation()
+    return df_selected
 
 
-##################### Opplasting til Github #####################
+df = get_hydro_power_plants_in_operation()
 
-# Hvis eksisterer, oppdater filen. Hvis ikke, opprett filen.
+df.info()
+df.head()
 
-source_file = "../Temp/vannkraft_telemark.xlsx"  # Relativt til dette scriptet.
-destination_folder = "Data/04_Klima og ressursforvaltning/Kraft og energi"  # Mapper som ikke eksisterer vil opprettes automatisk.
-github_repo = "evensrii/Telemark"
-git_branch = "main"
+df.to_excel(
+    f"{temp_folder}/vannkraft_telemark.xlsx", index=False
+)  # Relativt til dette scriptet
 
-github_functions.upload_to_github(
-    source_file, destination_folder, github_repo, git_branch
-)
+##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-##################### Remove temporary files #####################
+file_name = "vannkraft_telemark.xlsx"
+github_folder = "Data/04_Klima og ressursforvaltning/Kraft og energi"
+temp_folder = os.environ.get("TEMP_FOLDER")
 
-# Delete files in folder using glob
+compare_to_github(
+    df, file_name, github_folder, temp_folder
+)  # <--- Endre navn på dataframe her!
 
+##################### Remove temporary local files #####################
 
-def delete_files_in_folder(folder_path):
-    # Construct the path pattern to match all files in the folder
-    files = glob.glob(os.path.join(folder_path, "*"))
-
-    # Iterate over the list of files and delete each one
-    for file_path in files:
-        try:
-            os.remove(file_path)
-            print(f"Deleted file: {file_path}")
-        except Exception as e:
-            print(f"Error deleting file {file_path}: {e}")
-
-
-# Specify the folder path
-folder_path = "../Temp"
-
-# Call the function to delete files
-delete_files_in_folder(folder_path)
+delete_files_in_temp_folder()

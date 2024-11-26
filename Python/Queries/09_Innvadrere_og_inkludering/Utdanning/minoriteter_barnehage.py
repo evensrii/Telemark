@@ -1,33 +1,51 @@
 import requests
-from io import BytesIO
-from io import StringIO
-import numpy as np
-import pandas as pd
-import datetime as dt
 import sys
 import os
 import glob
-import dtale
+from io import BytesIO
+from io import StringIO
+import pandas as pd
+from pyjstat import pyjstat
+import numpy as np
+
+# Import the utility functions from the Helper_scripts folder
+from Helper_scripts.utility_functions import fetch_data
+from Helper_scripts.utility_functions import delete_files_in_temp_folder
+from Helper_scripts.email_functions import notify_errors
+from Helper_scripts.github_functions import upload_github_file
+from Helper_scripts.github_functions import download_github_file
+from Helper_scripts.github_functions import compare_to_github
+
+# Capture the name of the current script
+script_name = os.path.basename(__file__)
+
+# Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
+error_messages = []
 
 ###### Fylker tom. 2019 + 2024
 
 # Finner URL vha. "Inspiser side" og fane "Network" (F12)
 url_fylker = "https://app-simapi-prod.azurewebsites.net/download_csv/f/barnehagedeltakelse_spraak"
 
-# Make a GET request to the URL to download the file
-response = requests.get(url_fylker)
 
-# Hente ut innhold (data)
-url_fylker_content = response.content
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
-if response.status_code == 200:
-
-    df_fylker = pd.read_csv(
-        BytesIO(url_fylker_content), delimiter=";", encoding="ISO-8859-1"
+try:
+    df_fylker = fetch_data(
+        url=url_fylker,
+        payload=None,  # The JSON payload for POST requests. If None, a GET request is used.
+        error_messages=error_messages,
+        query_name="Fylker",
+        response_type="csv",  # The expected response type, either 'json' or 'csv'.
+        delimiter=";",  # The delimiter for CSV data (default: ';').
+        encoding="ISO-8859-1",  # The encoding for CSV data (default: 'ISO-8859-1').
     )
-
-else:
-    print(f"Failed to download the file. Status code: {response.status_code}")
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
 
 df_fylker.info()
 df_fylker.head()
@@ -71,6 +89,9 @@ df_fylker = df_fylker.sort_values(by=["Språk", "År"], ascending=True)
 # Reset index
 df_fylker = df_fylker.reset_index(drop=True)
 
+# If values in "Prosent" is >100, set to 100
+df_fylker["Andel"] = np.where(df_fylker["Andel"] > 100, 100, df_fylker["Andel"])
+
 # dtale.show(open_browser=True)
 
 
@@ -82,20 +103,23 @@ df_fylker = df_fylker.reset_index(drop=True)
 
 url_kommuner = "https://app-simapi-prod.azurewebsites.net/download_csv/k/barnehagedeltakelse_spraak"
 
-# Make a GET request to the URL to download the file
-response = requests.get(url_kommuner)
 
-# Hente ut innhold (data)
-url_kommuner_content = response.content
-
-if response.status_code == 200:
-
-    df_kommuner = pd.read_csv(
-        BytesIO(url_kommuner_content), delimiter=";", encoding="ISO-8859-1"
+try:
+    df_kommuner = fetch_data(
+        url=url_kommuner,
+        payload=None,  # The JSON payload for POST requests. If None, a GET request is used.
+        error_messages=error_messages,
+        query_name="Kommuner",
+        response_type="csv",  # The expected response type, either 'json' or 'csv'.
+        delimiter=";",  # The delimiter for CSV data (default: ';').
+        encoding="ISO-8859-1",  # The encoding for CSV data (default: 'ISO-8859-1').
     )
-
-else:
-    print(f"Failed to download the file. Status code: {response.status_code}")
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
 
 df_kommuner.info()
 df_kommuner.head()
@@ -210,54 +234,17 @@ df_telemark_pivot = df_telemark_pivot[
     ["År", "Minoritetsspråklige", "Ikke-minoritetsspråklige"]
 ]
 
-#### Save df as a csv file
 
-# Ønsket filnavn <----------- MÅ ENDRES MANUELT!
-csv_file_name = f"minoritetsspråklige_barnehage.csv"
-df_telemark_pivot.to_csv(
-    (f"../../Temp/{csv_file_name}"), index=False
-)  # Relativt til dette scriptet.
+##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-##################### Opplasting til Github #####################
+file_name = "minoritetsspråklige_barnehage.csv"
+github_folder = "Data/09_Innvandrere og inkludering/Utdanningsnivå Telemark"
+temp_folder = os.environ.get("TEMP_FOLDER")
 
-# Legge til directory hvor man finner github_functions.py i sys.path for å kunne importere denne
-current_directory = os.path.dirname(os.path.abspath(__file__))
-two_levels_up_directory = os.path.abspath(
-    os.path.join(current_directory, os.pardir, os.pardir)
-)
-sys.path.append(two_levels_up_directory)
+compare_to_github(
+    df_telemark_pivot, file_name, github_folder, temp_folder
+)  # <--- Endre navn på dataframe her!
 
-from github_functions import upload_file_to_github
+##################### Remove temporary local files #####################
 
-# Hvis eksisterer, oppdater filen. Hvis ikke, opprett filen.
-
-csv_file = f"../../Temp/{csv_file_name}"
-destination_folder = "Data/09_Innvandrere og inkludering/Utdanningsnivå Telemark"  # Mapper som ikke eksisterer vil opprettes automatisk.
-github_repo = "evensrii/Telemark"
-git_branch = "main"
-
-upload_file_to_github(csv_file, destination_folder, github_repo, git_branch)
-
-##################### Remove temporary files #####################
-
-# Delete files in folder using glob
-
-
-def delete_files_in_folder(folder_path):
-    # Construct the path pattern to match all files in the folder
-    files = glob.glob(os.path.join(folder_path, "*"))
-
-    # Iterate over the list of files and delete each one
-    for file_path in files:
-        try:
-            os.remove(file_path)
-            print(f"Deleted file: {file_path}")
-        except Exception as e:
-            print(f"Error deleting file {file_path}: {e}")
-
-
-# Specify the folder path
-folder_path = "../../Temp"
-
-# Call the function to delete files
-delete_files_in_folder(folder_path)
+delete_files_in_temp_folder()
