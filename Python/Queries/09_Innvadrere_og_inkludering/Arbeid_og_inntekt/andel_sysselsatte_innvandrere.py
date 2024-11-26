@@ -164,6 +164,8 @@ df_filtered = df_filtered.reset_index(drop=True)
 # Remove any symbols after the space in the "region" column (including the space)
 df_filtered["region"] = df_filtered["region"].str.split(" ").str[0]
 
+# For tittel på kolonnen
+most_recent_year_year = most_recent_year.year
 
 ##### Videre bearbeiding av datasettet #####
 
@@ -176,7 +178,7 @@ df_filtered = df_filtered.drop(
 df_filtered["label"] = df_filtered["region"]
 
 # Rename the column names to "Kommune", "Andel" and "Label"
-df_filtered.columns = ["Kommune", "Andel", "Label"]
+df_filtered.columns = ["Kommune", f"Andel {most_recent_year_year})", "Label"]
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
