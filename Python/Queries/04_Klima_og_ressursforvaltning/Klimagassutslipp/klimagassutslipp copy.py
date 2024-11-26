@@ -1,24 +1,12 @@
 import requests
+from io import BytesIO
+from io import StringIO
+import numpy as np
+import pandas as pd
+import datetime as dt
 import sys
 import os
 import glob
-from io import BytesIO
-from io import StringIO
-import pandas as pd
-from pyjstat import pyjstat
-
-# Import the utility functions from the Helper_scripts folder
-from Helper_scripts.utility_functions import delete_files_in_temp_folder
-from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file
-from Helper_scripts.github_functions import download_github_file
-from Helper_scripts.github_functions import compare_to_github
-
-# Capture the name of the current script
-script_name = os.path.basename(__file__)
-
-# Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
-error_messages = []
 
 ## Dette scriptet gir data for donut-figur (csv x2) og stolpediagram (csv x1)
 
@@ -26,67 +14,40 @@ error_messages = []
 
 url = "https://www.miljodirektoratet.no/globalassets/netttjenester/klimagassutslipp-kommuner/utslippsstatistikk_alle_kommuner.xlsx"
 
-try:
-    # Make a GET request to the URL to simulate downloading the file
-    response = requests.get(url)
+# Make a GET request to the URL to simulate downloading the file
+response = requests.get(url)
 
-    # Check if the request was successful (status code 200)
-    if response.status_code == 200:
-        # Use BytesIO to create a file-like object from the content (BytesIO lar deg jobbe med binære filer.)
-        excel_file = BytesIO(response.content)
+# Check if the request was successful (status code 200)
+if response.status_code == 200:
 
-        # Use pandas ExcelFile to work with multiple sheets
-        xls = pd.ExcelFile(excel_file)
+    # Use BytesIO to create a file-like object from the content (BytesIO lar deg jobbe med binære filer.)
+    excel_file = BytesIO(response.content)
 
-        # Get the sheet names
-        sheet_names = xls.sheet_names
+    # Use pandas ExcelFile to work with multiple sheets
+    xls = pd.ExcelFile(excel_file)
 
-        # Create a dictionary to store DataFrames for each sheet
-        sheet_data = {}
+    # Get the sheet names
+    sheet_names = xls.sheet_names
 
-        # Iterate through each sheet and read the data into a DataFrame
-        for sheet_name in sheet_names:
-            try:
-                sheet_data[sheet_name] = xls.parse(sheet_name)
-            except Exception as e:
-                error_message = f"Failed to parse sheet '{sheet_name}': {str(e)}"
-                print(error_message)
-                error_messages.append(error_message)
+    # Create a dictionary to store DataFrames for each sheet
+    sheet_data = {}
 
-        # Check if the specific sheet exists in the Excel file
-        if "Oversikt - detaljert" in sheet_data:
-            # Hente ut aktuelt ark
-            df = sheet_data["Oversikt - detaljert"]
+    # Iterate through each sheet and read the data into a DataFrame
+    for sheet_name in sheet_names:
+        sheet_data[sheet_name] = xls.parse(sheet_name)
 
-            # Basic overview of dataset
-            df.head()
-            df.info()
-        else:
-            error_message = "Sheet 'Oversikt - detaljert' not found in the Excel file."
-            print(error_message)
-            error_messages.append(error_message)
-    else:
-        error_message = (
-            f"Failed to download the file. Status code: {response.status_code}"
-        )
-        print(error_message)
-        error_messages.append(error_message)
-
-except requests.exceptions.RequestException as e:
-    error_message = f"Error occurred while downloading the file: {str(e)}"
-    print(error_message)
-    error_messages.append(error_message)
-
-except Exception as e:
-    error_message = f"An unexpected error occurred: {str(e)}"
-    print(error_message)
-    error_messages.append(error_message)
-
-# Notify yourself of errors, if any
-if error_messages:
-    notify_errors(error_messages, script_name="Extract_Miljodirektoratet_Data")
+    # Now 'sheet_data' is a dictionary where keys are sheet names and values are DataFrames
+    # You can access individual DataFrames like sheet_data['Sheet1']
+    print(sheet_data)
 else:
-    print("All tasks completed successfully.")
+    print(f"Failed to download the file. Status code: {response.status_code}")
+
+# Hente ut aktuelt ark
+df = sheet_data["Oversikt - detaljert"]
+
+# Basic overview of dataset
+df.head()
+df.info()
 
 ########################### HOVED-DATASETT (2009 - d.d.)
 
@@ -208,26 +169,63 @@ df_pst_endring[pst_endring_column_name] = df_pst_endring[pst_endring_column_name
     1
 )
 
-##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
+############# Save dfs as a csv files
 
-file_name1 = "klimagassutslipp_telemark.csv"
-file_name2 = "klimagassutslipp_donut.csv"
-file_name3 = "klimagassutslipp_endring.csv"
-github_folder = "Data/04_Klima og ressursforvaltning/Klimagassutslipp"
-temp_folder = os.environ.get("TEMP_FOLDER")
+csv1 = f"klimagassutslipp_telemark.csv"
+df_telemark.to_csv((f"../../Temp/{csv1}"), index=False)
 
-compare_to_github(
-    df_telemark, file_name1, github_folder, temp_folder
-)  # <--- Endre navn på dataframe her!
+csv2 = f"klimagassutslipp_donut.csv"
+df_donut.to_csv((f"../../Temp/{csv2}"), index=False)
 
-compare_to_github(
-    df_donut, file_name2, github_folder, temp_folder
-)  # <--- Endre navn på dataframe her!
+csv3 = f"klimagassutslipp_endring.csv"
+df_pst_endring.to_csv((f"../../Temp/{csv3}"), index=False)
 
-compare_to_github(
-    df_pst_endring, file_name3, github_folder, temp_folder
-)  # <--- Endre navn på dataframe her!
 
-##################### Remove temporary local files #####################
+##################### Opplasting til Github #####################
 
-delete_files_in_temp_folder()
+# Legge til directory hvor man finner github_functions.py i sys.path for å kunne importere denne
+current_directory = os.path.dirname(os.path.abspath(__file__))
+two_levels_up_directory = os.path.abspath(
+    os.path.join(current_directory, os.pardir, os.pardir)
+)
+sys.path.append(two_levels_up_directory)
+
+from github_functions import upload_file_to_github
+
+# Hvis eksisterer, oppdater filen. Hvis ikke, opprett filen.
+
+csv_file1 = f"../../Temp/{csv1}"
+csv_file2 = f"../../Temp/{csv2}"
+csv_file3 = f"../../Temp/{csv3}"
+destination_folder = "Data/04_Klima og ressursforvaltning/Klimagassutslipp"  # Mapper som ikke eksisterer vil opprettes automatisk.
+github_repo = "evensrii/Telemark"
+git_branch = "main"
+
+upload_file_to_github(csv_file1, destination_folder, github_repo, git_branch)
+upload_file_to_github(csv_file2, destination_folder, github_repo, git_branch)
+upload_file_to_github(csv_file3, destination_folder, github_repo, git_branch)
+
+
+##################### Remove temporary files #####################
+
+# Delete files in folder using glob
+
+
+def delete_files_in_folder(folder_path):
+    # Construct the path pattern to match all files in the folder
+    files = glob.glob(os.path.join(folder_path, "*"))
+
+    # Iterate over the list of files and delete each one
+    for file_path in files:
+        try:
+            os.remove(file_path)
+            print(f"Deleted file: {file_path}")
+        except Exception as e:
+            print(f"Error deleting file {file_path}: {e}")
+
+
+# Specify the folder path
+folder_path = "../../Temp"
+
+# Call the function to delete files
+delete_files_in_folder(folder_path)
