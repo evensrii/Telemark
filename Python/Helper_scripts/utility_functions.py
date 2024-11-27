@@ -103,6 +103,7 @@ def delete_files_in_temp_folder():
     for file_path in files:
         try:
             os.remove(file_path)
-            print(f"Deleted file: {file_path}")
+            file_name = os.path.basename(file_path)  # Extract only the file name
+            print(f"Deleted file from temp folder: {file_name}")
         except Exception as e:
-            print(f"Error deleting file {file_path}: {e}")
+            print(f"Error deleting file {file_name}: {e}")
