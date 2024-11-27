@@ -79,7 +79,7 @@ try:
     ########################## SETTING UP SELENIUM AND OPENING THE WEBSITE
 
     options = Options()
-    # options.add_argument("--headless=new")  # Run in headless mode
+    options.add_argument("--headless=new")  # Run in headless mode
 
     # Initialize the WebDriver
     driver = webdriver.Chrome(options=options)
@@ -266,6 +266,21 @@ finally:
 
 # Notify yourself of errors, if any
 if error_messages:
-    notify_errors(error_messages, script_name="WaterBodyDataCollection")
+    notify_errors(error_messages, script_name="Vannkvalitet")
 else:
     print("All tasks completed successfully.")
+
+
+##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
+
+file_name = "økologisk_tilstand_vann.csv"
+github_folder = "Data/04_Klima og ressursforvaltning/Ressursforvaltning"
+temp_folder = os.environ.get("TEMP_FOLDER")
+
+compare_to_github(
+    df_pivoted, file_name, github_folder, temp_folder
+)  # <--- Endre navn på dataframe her!
+
+##################### Remove temporary local files #####################
+
+delete_files_in_temp_folder()
