@@ -8,4 +8,4 @@ REM Activates the conda environment (if not already activated)
 CALL conda activate analyse
 
 REM Run the python script
-python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\NVE\vannkraft.py"
+python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_innvandrere.py"
