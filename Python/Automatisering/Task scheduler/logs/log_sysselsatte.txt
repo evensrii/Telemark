@@ -1,0 +1,24 @@
+Loaded .env file from: C:\Users\_eve1509\Documents\Github\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: C:\Users\_eve1509\Documents\Github\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+VTFK Query JSON data loaded successfully.
+TFK Query JSON data loaded successfully.
+Her hentes tallene for Vestfold og Telemark i ['2023']
+Her hentes tallene for Telemark i ['2023']
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\Documents\Github\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_innvandrere.py", line 189, in <module>
+    compare_to_github(
+  File "C:\Users\_eve1509\Documents\Github\Telemark\Python\Helper_scripts\github_functions.py", line 144, in compare_to_github
+    input_df.to_csv(local_file_path, index=False)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\generic.py", line 3772, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\format.py", line 1186, in to_csv
+    csv_formatter.save()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\csvs.py", line 240, in save
+    with get_handle(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 737, in get_handle
+    check_parent_directory(str(handle))
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 600, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'C:\Users\_eve1509\Documents\Github\Telemark\Python\Temp'
