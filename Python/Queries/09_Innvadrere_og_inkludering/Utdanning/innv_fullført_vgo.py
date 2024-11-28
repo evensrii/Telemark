@@ -22,20 +22,6 @@ script_name = os.path.basename(__file__)
 # Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
 error_messages = []
 
-# Import the utility functions from the Helper_scripts folder
-from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.utility_functions import delete_files_in_temp_folder
-from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file
-from Helper_scripts.github_functions import download_github_file
-from Helper_scripts.github_functions import compare_to_github
-
-# Capture the name of the current script
-script_name = os.path.basename(__file__)
-
-# Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
-error_messages = []
-
 ################# Fullført - Innvandrere #################
 
 # Endepunkt for SSB API
