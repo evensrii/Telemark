@@ -30,6 +30,7 @@ def get_hydro_power_plants_in_operation():
     # Make the request, return data
     response = requests.get(url)
     data = response.json()
+    print(data)
 
     # convert to pandas dataframe, write to Excel
     df = pd.DataFrame(data)
@@ -68,7 +69,9 @@ df.to_excel(
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "vannkraft_telemark.xlsx"
-github_folder = "Data/04_Klima og ressursforvaltning/Kraft og energi"
+github_folder = (
+    "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftproduksjon/NVE"
+)
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 compare_to_github(
