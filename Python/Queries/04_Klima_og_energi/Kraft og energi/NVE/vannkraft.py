@@ -30,9 +30,8 @@ def get_hydro_power_plants_in_operation():
     # Make the request, return data
     response = requests.get(url)
     data = response.json()
-    print(data)
 
-    # convert to pandas dataframe, write to Excel
+    # Convert to pandas DataFrame
     df = pd.DataFrame(data)
     selected_columns = [
         "Navn",
@@ -52,7 +51,6 @@ def get_hydro_power_plants_in_operation():
         "Produksjon oppstart",
         "Årlig produksjon (1991-2020)",
     ]
-    print(df_selected)
 
     return df_selected
 
