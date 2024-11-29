@@ -60,13 +60,13 @@ df = get_hydro_power_plants_in_operation()
 df.info()
 df.head()
 
-df.to_excel(
-    f"{temp_folder}/vannkraft_telemark.xlsx", index=False
+df.to_csv(
+    f"{temp_folder}/vannkraft_telemark.csv", index=False
 )  # Relativt til dette scriptet
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "vannkraft_telemark.xlsx"
+file_name = "vannkraft_telemark.csv"
 github_folder = (
     "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftproduksjon/NVE"
 )
