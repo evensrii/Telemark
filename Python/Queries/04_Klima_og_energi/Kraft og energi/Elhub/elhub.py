@@ -6,14 +6,28 @@ import base64
 from dotenv import load_dotenv
 import io
 
-# Load GitHub token from the .env file
-load_dotenv("../../../token.env", override=True)
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+## Get the GITHUB_TOKEN from the token.env file
 
+# Retrieve PYTHONPATH environment variable
+pythonpath = os.environ.get("PYTHONPATH")
+if not pythonpath:
+    raise ValueError("PYTHONPATH environment variable is not set.")
+
+# Construct the full path to the token.env
+env_file_path = os.path.join(pythonpath, "token.env")
+if not os.path.exists(env_file_path):
+    raise ValueError(f"token.env file not found in: {env_file_path}")
+
+# Load the .env file
+load_dotenv(env_file_path)
+print(f"Loaded .env file from: {env_file_path}")
+
+# Get the GITHUB_TOKEN from the environment
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 if not GITHUB_TOKEN:
-    raise ValueError(
-        "GitHub token not found. Please ensure that the token is set in '../../../token.env'"
-    )
+    raise ValueError("GITHUB_TOKEN not found in the loaded .env file.")
+
+print("GITHUB_TOKEN loaded successfully.")
 
 # GitHub Repository information
 REPO = "evensrii/Telemark"
