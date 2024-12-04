@@ -80,7 +80,7 @@ def fetch_data(
         raise  # Re-raise the exception to propagate the error
 
 
-## Funksjon for å slette filer i Temp-mappen
+## Funksjon for å slette filer i Temp-mappen, unntatt "readme.txt" (Er Temp-mappen tom "forsvinner" den fra Github, noe som kan skape krøll.)
 
 
 def delete_files_in_temp_folder():
@@ -99,11 +99,15 @@ def delete_files_in_temp_folder():
     # Construct the path pattern to match all files in the folder
     files = glob.glob(os.path.join(temp_folder, "*"))
 
-    # Iterate over the list of files and delete each one
+    # Iterate over the list of files and delete each one except "readme.txt"
     for file_path in files:
+        file_name = os.path.basename(file_path)  # Extract only the file name
+        if file_name.lower() == "readme.txt":
+            # print(f"Skipping file: {file_name}")
+            continue  # Skip this file
+
         try:
             os.remove(file_path)
-            file_name = os.path.basename(file_path)  # Extract only the file name
             print(f"Deleted file from temp folder: {file_name}")
         except Exception as e:
             print(f"Error deleting file {file_name}: {e}")
