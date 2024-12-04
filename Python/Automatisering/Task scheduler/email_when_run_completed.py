@@ -27,6 +27,15 @@ if not X_FUNCTIONS_KEY:
 
 print("X_FUNCTIONS_KEY loaded successfully.")
 
+
+### RECIPIENTS
+
+# Recipients and their corresponding names
+recipients = [
+    {"email": "even.sannes.riiser@telemarkfylke.no", "name": "Even"},
+    {"email": "even.s.riiser@gmail.com", "name": "Evenmann"},
+]
+
 ### READ MASTER LOG FILE ###
 
 # Locate the log file relative to the script
@@ -43,34 +52,39 @@ if not os.path.exists(log_file_path):
 # Read the log file content
 with open(log_file_path, "r") as log_file:
     log_content = log_file.read()
-    
+
 ### SEND EMAIL ###
 
-# Define the email payload
-payload = {
-    "to": ["even.sannes.riiser@telemarkfylke.no"],
-    # "cc": ["kjersti.aase@telemarkfylke.no"],  # Uncomment if needed
-    "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
-    "subject": "Statusoppdatering: Batch Run Completed",
-    "text": log_content,  # Plain text version of the log
-    "html": f"<pre>{log_content}</pre>",  # HTML version, formatted for better readability
-}
+# Email sending logic
+for recipient in recipients:
+    # Personalize the subject
+    subject = f"God morgen, {recipient['name']}! Her er nattens kjøringer."
 
-# API endpoint for sending emails
-url = "https://mail.api.telemarkfylke.no/api/mail"
-headers = {
-    "Content-Type": "application/json",
-    "User-Agent": "insomnia/10.1.1",
-    "x-functions-key": X_FUNCTIONS_KEY,
-}
+    # Define the email payload
+    payload = {
+        "to": [recipient["email"]],
+        "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
+        "subject": subject,
+        "text": log_content,
+        "html": f"<pre>{log_content}</pre>",
+    }
 
-# Send the email
-response = requests.post(url, headers=headers, json=payload)
+    # API endpoint and headers
+    url = "https://mail.api.telemarkfylke.no/api/mail"
+    headers = {
+        "Content-Type": "application/json",
+        "User-Agent": "insomnia/10.1.1",
+        "x-functions-key": X_FUNCTIONS_KEY,
+    }
 
-# Handle response
-if response.status_code == 200:
-    print("Run completion email sent successfully.")
-else:
-    print(
-        f"Failed to send run completion email. Status code: {response.status_code}, Response: {response.text}"
-    )
+    # Send the email
+    response = requests.post(url, headers=headers, json=payload)
+
+    # Check the response
+    if response.status_code == 200:
+        print(f"Email sent successfully to {recipient['name']} ({recipient['email']}).")
+    else:
+        print(
+            f"Failed to send email to {recipient['name']} ({recipient['email']}). "
+            f"Status code: {response.status_code}, Response: {response.text}"
+        )
