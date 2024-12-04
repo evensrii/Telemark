@@ -44,12 +44,15 @@ GOTO :EOF
 SET SCRIPT=%~1
 SET NAME=%~2
 
+:: Extract only the file name with extension from %SCRIPT%
+SET SCRIPT_FILENAME=%~nx1
+
 :: Define individual log file for the script
 SET SCRIPT_LOG="D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\%NAME%_log.txt"
 
 :: Start logging for the script
-echo [%DATE% %TIME%] Running %NAME% script >> %LOGFILE%
-echo [%DATE% %TIME%] Running %NAME% script >> %SCRIPT_LOG%
+echo [%DATE% %TIME%] Running %NAME% >> %LOGFILE%
+echo [%DATE% %TIME%] Running %SCRIPT_FILENAME% >> %SCRIPT_LOG%
 
 :: Execute the Python script
 python %SCRIPT% >> %SCRIPT_LOG% 2>&1
@@ -59,6 +62,6 @@ IF %ERRORLEVEL% NEQ 0 (
 )
 
 :: Finish script logging
-echo [%DATE% %TIME%] Completed %NAME% script >> %LOGFILE%
+echo [%DATE% %TIME%] Completed %NAME% >> %LOGFILE%
 echo [%DATE% %TIME%] Completed script >> %SCRIPT_LOG%
 EXIT /B 0
