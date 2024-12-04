@@ -65,7 +65,7 @@ except Exception as e:
     )
 
 # df_innvandrere.info()
-# df_innvandrere.head()
+f_innvandrere.head()
 
 # Remove columns
 df_innvandrere = df_innvandrere.drop(
@@ -126,7 +126,7 @@ except Exception as e:
     )
 
 # df_befolkningen.info()
-# df_befolkningen.head()
+df_befolkningen.head()
 # dtale.show(df_befolkningen, open_browser=True)
 
 # Remove columns
@@ -174,6 +174,7 @@ df_telemark_pivot = df_telemark.pivot_table(
 # Flatten the MultiIndex columns
 df_telemark_pivot.columns = [col for col in df_telemark_pivot.columns]
 
+df_telemark_pivot.head()
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 

@@ -54,7 +54,7 @@ except Exception as e:
     )
 
 # df.info()
-# df.head()
+df.head()
 
 # Set data types
 df["Fylkesnummer"] = df["Fylkesnummer"].astype(str).str.zfill(2)

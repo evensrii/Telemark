@@ -253,7 +253,7 @@ try:
     df_pivoted.fillna(0, inplace=True)
 
     # Print the final processed DataFrame
-    # print(df_pivoted) <------------------- Uncomment to print the final DataFrame (for troubleshooting!)
+    print(df_pivoted)
 
 except Exception as e:
     error_message = f"An unexpected error occurred: {str(e)}"

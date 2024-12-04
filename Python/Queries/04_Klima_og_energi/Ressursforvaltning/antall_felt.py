@@ -60,7 +60,7 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-# df_elg.head()
+df_elg.head()
 # df_elg.info()
 
 
@@ -102,7 +102,7 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-# df_hjort.head()
+df_hjort.head()
 # df_hjort.info()
 
 

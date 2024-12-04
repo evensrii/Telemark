@@ -48,7 +48,7 @@ except Exception as e:
 
 
 # df_fylker.info()
-# df_fylker.head()
+df_fylker.head()
 
 # Set data types
 df_fylker["Fylkesnummer"] = df_fylker["Fylkesnummer"].astype(str).str.zfill(2)
@@ -100,6 +100,7 @@ df_fylker_pivot = df_fylker_pivot[
     ]
 ]
 
+df_fylker_pivot.head()
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 

@@ -46,7 +46,7 @@ except Exception as e:
     )
 
 # df.info()
-# df.head()
+df.head()
 
 # Format "År" as datetime
 df["År"] = pd.to_datetime(df["År"], format="%Y")

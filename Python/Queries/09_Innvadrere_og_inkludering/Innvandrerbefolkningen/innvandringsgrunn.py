@@ -50,6 +50,8 @@ except Exception as e:
 # print(df["Kommunenummer"].unique())
 # df.dtypes
 
+df.head()
+
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "innvandringsgrunn_telemark.csv"

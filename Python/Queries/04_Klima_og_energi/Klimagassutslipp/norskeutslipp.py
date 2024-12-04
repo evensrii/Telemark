@@ -81,7 +81,7 @@ else:
 
 df = df_downloaded.copy()
 
-# df.info()
+df.info()
 
 # Drop rows with all na values
 df = df.dropna(how="all")

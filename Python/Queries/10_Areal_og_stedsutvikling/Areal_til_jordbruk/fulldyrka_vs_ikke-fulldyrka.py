@@ -116,6 +116,8 @@ df_total = pd.DataFrame(
     }
 )
 
+df_total.head()
+
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "fulldyrka_vs_ikke-fulldyrka.csv"

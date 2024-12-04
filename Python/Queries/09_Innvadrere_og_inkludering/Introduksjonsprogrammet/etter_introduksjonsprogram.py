@@ -45,7 +45,7 @@ except Exception as e:
     )
 
 # df.info()
-# df.head()
+df.head()
 
 # Format "År" as datetime
 df["År"] = pd.to_datetime(df["År"], format="%Y")
@@ -157,6 +157,8 @@ df_fylker = df_fylker[["Fylke", "Andel"]].sort_values(by="Andel", ascending=Fals
 
 ## Rename columns to "Fylke" and "Andel {most_recent_year}"
 df_fylker = df_fylker.rename(columns={"Andel": f"Andel {most_recent_year}"})
+
+df_fylker.head()
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 

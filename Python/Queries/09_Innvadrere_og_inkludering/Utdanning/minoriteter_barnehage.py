@@ -48,7 +48,7 @@ except Exception as e:
     )
 
 # df_fylker.info()
-# df_fylker.head()
+df_fylker.head()
 
 # Convert fylkesnummer til string with leading zeros and convert to string
 df_fylker["Fylkesnummer"] = df_fylker["Fylkesnummer"].astype(str).str.zfill(2)
@@ -122,7 +122,7 @@ except Exception as e:
     )
 
 # df_kommuner.info()
-# df_kommuner.head()
+df_kommuner.head()
 
 # dtale.show(df_kommuner, open_browser=True)
 
@@ -234,6 +234,7 @@ df_telemark_pivot = df_telemark_pivot[
     ["År", "Minoritetsspråklige", "Ikke-minoritetsspråklige"]
 ]
 
+df_telemark_pivot.head()
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 

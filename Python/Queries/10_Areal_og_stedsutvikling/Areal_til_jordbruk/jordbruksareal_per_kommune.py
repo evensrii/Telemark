@@ -106,6 +106,8 @@ df[f"Jordbruksareal ({siste_aar})"] = df[f"Jordbruksareal ({siste_aar})"].astype
 # Sort by "Jordbruksareal (2019)" descending
 df = df.sort_values(by=f"Jordbruksareal ({siste_aar})", ascending=False)
 
+df.head()
+
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "jordbruksareal_per_kommune.csv"

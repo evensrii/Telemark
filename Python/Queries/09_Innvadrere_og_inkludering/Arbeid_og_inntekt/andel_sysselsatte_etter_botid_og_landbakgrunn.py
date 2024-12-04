@@ -71,7 +71,7 @@ else:
     print(f"Failed to download the file. Status code: {response.status_code}")
 
 ## Datasjekk
-# df.head()
+df.head()
 # df.info()
 
 # Print the unique values in the column "Kommunenummer"

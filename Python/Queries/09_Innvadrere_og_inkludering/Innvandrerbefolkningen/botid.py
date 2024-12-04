@@ -48,7 +48,7 @@ except Exception as e:
 
 
 # df.info()
-# df.head()
+df.head()
 
 # print(df["Kommunenummer"].unique())
 

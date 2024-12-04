@@ -49,7 +49,7 @@ except Exception as e:
     )
 
 # df_fylker.info()
-# df_fylker.head()
+df_fylker.head()
 
 print(df_fylker["Fylkesnummer"].unique())
 
@@ -96,7 +96,7 @@ except Exception as e:
 
 
 # df_kommuner.info()
-# df_kommuner.head()
+df_kommuner.head()
 
 # Filter columns where "År" is either 2020, 2021, 2022 or 2023
 df_kommuner = df_kommuner[df_kommuner["År"].isin([2020, 2021, 2022, 2023])]
@@ -173,6 +173,8 @@ df_telemark = df_telemark.sort_values(by=["År"], ascending=True)
 
 # Rename columns to "År" and "Deltakere"
 df_telemark = df_telemark.rename(columns={"År": "År", "Antall": "Deltakere"})
+
+df_telemark.head()
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 

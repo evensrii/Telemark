@@ -149,6 +149,8 @@ df = pd.concat([df_vtfk, df_tfk])
 # Convert "år" to datetime
 df["år"] = pd.to_datetime(df["år"])
 
+df.head()
+
 
 ##### Forsikre meg om at jeg får riktig resultat også når TFK-tall kommer (2024-)
 
@@ -179,6 +181,8 @@ df_filtered["label"] = df_filtered["region"]
 
 # Rename the column names to "Kommune", "Andel" and "Label"
 df_filtered.columns = ["Kommune", f"Andel {most_recent_year_year}", "Label"]
+
+df_filtered.head()
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
