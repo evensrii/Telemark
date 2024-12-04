@@ -26,7 +26,7 @@ error_messages = []
 # NB: Prøve å sette opp også med 2024-kommunenummer. Hvis ikke må scriptet oppdateres senere.
 
 # Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/table/11607/"
+POST_URL = "https://data.ssb.no/api/v0/no/table/1160/"
 
 ################# VTFK (-2023) #################
 

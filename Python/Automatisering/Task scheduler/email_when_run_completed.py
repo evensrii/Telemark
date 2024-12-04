@@ -1,10 +1,8 @@
 import requests
-import sys
 import os
-import inspect
 from dotenv import load_dotenv
 
-### EMAIL CONFIGURATION
+### EMAIL CONFIGURATION ###
 
 # Retrieve PYTHONPATH environment variable
 pythonpath = os.environ.get("PYTHONPATH")
@@ -29,31 +27,50 @@ if not X_FUNCTIONS_KEY:
 
 print("X_FUNCTIONS_KEY loaded successfully.")
 
-#### SEND EMAIL
+### READ MASTER LOG FILE ###
 
+# Locate the log file relative to the script
+script_dir = os.path.dirname(os.path.abspath(__file__))  # Folder containing this script
+os.chdir(script_dir)  # Ensure CWD is the script's directory
+
+log_file_path = os.path.join(script_dir, "./logs/00_master_run_log.txt")
+print(f"Resolved log file path: {log_file_path}")
+
+# Check if the file exists
+if not os.path.exists(log_file_path):
+    raise FileNotFoundError(f"Log file not found: {log_file_path}")
+
+# Read the log file content
+with open(log_file_path, "r") as log_file:
+    log_content = log_file.read()
+    
+### SEND EMAIL ###
+
+# Define the email payload
 payload = {
-            "to": ["even.sannes.riiser@telemarkfylke.no"],
-            # "cc": [kjersti.aase@telemarkfylke.no],
-            "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
-            "subject": f"....",
-            "text": f"T...",
-            "html": f"<b>....</b>"
-        }
+    "to": ["even.sannes.riiser@telemarkfylke.no"],
+    # "cc": ["kjersti.aase@telemarkfylke.no"],  # Uncomment if needed
+    "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
+    "subject": "Statusoppdatering: Batch Run Completed",
+    "text": log_content,  # Plain text version of the log
+    "html": f"<pre>{log_content}</pre>",  # HTML version, formatted for better readability
+}
 
-        url = "https://mail.api.telemarkfylke.no/api/mail"
-        headers = {
-            "Content-Type": "application/json",
-            "User-Agent": "insomnia/10.1.1",
-            "x-functions-key": X_FUNCTIONS_KEY,
-        }
+# API endpoint for sending emails
+url = "https://mail.api.telemarkfylke.no/api/mail"
+headers = {
+    "Content-Type": "application/json",
+    "User-Agent": "insomnia/10.1.1",
+    "x-functions-key": X_FUNCTIONS_KEY,
+}
 
-        email_response = requests.post(url, headers=headers, json=payload)
+# Send the email
+response = requests.post(url, headers=headers, json=payload)
 
-        if email_response.status_code == 200:
-            print("Error notification email sent successfully.")
-        else:
-            print(
-                f"Failed to send error notification email. Status code: {email_response.status_code}"
-            )
-    else:
-        print("All requests were successful. No email sent.")
+# Handle response
+if response.status_code == 200:
+    print("Run completion email sent successfully.")
+else:
+    print(
+        f"Failed to send run completion email. Status code: {response.status_code}, Response: {response.text}"
+    )

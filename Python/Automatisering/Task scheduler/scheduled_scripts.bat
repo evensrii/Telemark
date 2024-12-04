@@ -1,8 +1,13 @@
 @echo off
 
-:: Delete all log files except "readme.txt"
+:: Define the email log file
+SET EMAIL_LOG="D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\00_email_log.txt"
+
+:: Delete all log files except "readme.txt" and "00_email_log.txt"
 FOR %%F IN ("D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\*") DO (
-    IF NOT "%%~nF"=="readme" DEL "%%F"
+    IF NOT "%%~nF"=="readme" (
+        IF NOT "%%~nF"=="00_email_log" DEL "%%F"
+    )
 )
 
 :: Define a master log file for debugging
@@ -23,7 +28,6 @@ IF %ERRORLEVEL% NEQ 0 (
     EXIT /B 1
 )
 
-
 :: Run scripts with log separation
 
 :: Innvandrere og inkludering
@@ -33,7 +37,8 @@ CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_ink
 :: Areal og stedsutvikling
 CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\10_Areal_og_stedsutvikling\Areal_til_jordbruk\jordbruksareal_per_kommune.py" "Areal - Jordbruksareal per kommune"
 
-
+:: Run the email script and log its output
+python -u "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\email_when_run_completed.py" > %EMAIL_LOG% 2>&1
 
 :: Log completion
 echo [%DATE% %TIME%] All scripts completed. >> %LOGFILE%
