@@ -59,8 +59,8 @@ try:
             df = sheet_data["Oversikt - detaljert"]
 
             # Basic overview of dataset
-            df.head()
-            df.info()
+            # df.head()
+            # df.info()
         else:
             error_message = "Sheet 'Oversikt - detaljert' not found in the Excel file."
             print(error_message)

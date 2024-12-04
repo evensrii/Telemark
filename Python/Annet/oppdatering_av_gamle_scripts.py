@@ -33,8 +33,8 @@ try:
         error_messages=error_messages,
         query_name="Query name",
         response_type="csv", # The expected response type, either 'json' or 'csv'.
-        delimiter=";", # The delimiter for CSV data (default: ';').
-        encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+        delimiter=";", # The delimiter for CSV data (default: ';'). Comment if json.
+        encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1'). Comment if json.
     )
 except Exception as e:
     print(f"Error occurred: {e}")

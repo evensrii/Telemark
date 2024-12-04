@@ -59,7 +59,7 @@ try:
             raise ValueError(f"Error reading Excel file: {e}")
 
         # Display the DataFrame
-        print(df_downloaded)
+        # print(df_downloaded)
     else:
         raise ValueError(
             f"Failed to download the file. Status code: {response.status_code}"
@@ -81,7 +81,7 @@ else:
 
 df = df_downloaded.copy()
 
-df.info()
+# df.info()
 
 # Drop rows with all na values
 df = df.dropna(how="all")
