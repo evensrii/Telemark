@@ -1,8 +1,8 @@
 @echo off
 
-:: Delete the master log file if it exists
-IF EXIST "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\00_master_run_log.txt" (
-    DEL "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\00_master_run_log.txt"
+:: Delete all log files except "readme.txt"
+FOR %%F IN ("D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\*") DO (
+    IF NOT "%%~nF"=="readme" DEL "%%F"
 )
 
 :: Define a master log file for debugging
