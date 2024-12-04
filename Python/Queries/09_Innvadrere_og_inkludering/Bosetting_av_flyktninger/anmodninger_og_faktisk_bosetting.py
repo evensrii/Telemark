@@ -46,10 +46,10 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df.info()
-df.head()
+# df.info()
+# df.head()
 
-print(df["Kommunenummer"].unique())
+# print(df["Kommunenummer"].unique())
 
 # Rename column "Anmodning, vedtak og faktisk bosetting" til "Kategori"
 df = df.rename(columns={"Anmodning, vedtak og faktisk bosetting": "Kategori"})

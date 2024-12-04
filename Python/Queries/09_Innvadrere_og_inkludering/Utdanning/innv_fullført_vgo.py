@@ -64,8 +64,8 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df_innvandrere.info()
-df_innvandrere.head()
+# df_innvandrere.info()
+# df_innvandrere.head()
 
 # Remove columns
 df_innvandrere = df_innvandrere.drop(
@@ -125,8 +125,8 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df_befolkningen.info()
-df_befolkningen.head()
+# df_befolkningen.info()
+# df_befolkningen.head()
 # dtale.show(df_befolkningen, open_browser=True)
 
 # Remove columns

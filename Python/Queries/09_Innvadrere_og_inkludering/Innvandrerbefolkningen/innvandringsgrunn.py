@@ -47,8 +47,8 @@ except Exception as e:
     )
 
 # Print the unique values in the column "Kommunenummer"
-print(df["Kommunenummer"].unique())
-df.dtypes
+# print(df["Kommunenummer"].unique())
+# df.dtypes
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 

@@ -44,8 +44,8 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df.info()
-df.head()
+# df.info()
+# df.head()
 
 # Format "År" as datetime
 df["År"] = pd.to_datetime(df["År"], format="%Y")
@@ -65,7 +65,7 @@ df["Fylkesnummer"] = (
     df["Fylkesnummer"].astype(str).str.pad(width=2, side="left", fillchar="0")
 )
 
-print(df["Fylkesnummer"].unique())
+# print(df["Fylkesnummer"].unique())
 
 # Apply the filters
 df_filtered = df[
@@ -82,7 +82,7 @@ df_filtered = df[
 ]
 
 # Display the filtered DataFrame
-print(df_filtered)
+# print(df_filtered)
 
 fylker = {
     "03": "Oslo",
@@ -117,7 +117,7 @@ fylker = {
 ## Filtrering av rader hvor "Fylkesnummer" er i fylker.keys()
 df_fylker = df_filtered[df_filtered["Fylkesnummer"].isin(fylker.keys())]
 
-print(df_fylker["Fylke"].unique())
+# print(df_fylker["Fylke"].unique())
 
 rename_fylker = {
     "Vestfold (t.o.m. 2019, f.o.m. 2024)": "Vestfold",

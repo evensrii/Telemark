@@ -71,11 +71,11 @@ else:
     print(f"Failed to download the file. Status code: {response.status_code}")
 
 ## Datasjekk
-df.head()
-df.info()
+# df.head()
+# df.info()
 
 # Print the unique values in the column "Kommunenummer"
-print(df["Kommunenummer"].unique())
+# print(df["Kommunenummer"].unique())
 
 # Konvertere kolonne "År" til datetime
 df["År"] = pd.to_datetime(df["År"], format="%Y")
@@ -167,7 +167,7 @@ df_pivot.columns.name = None  # Remove the multi-index name for columns
 
 df_pivot["Personer"] = df_pivot["Personer"].astype(int)
 df_pivot["Prosent"] = df_pivot["Prosent"].str.replace(",", ".").astype(float)
-df_pivot.info()
+# df_pivot.info()
 
 # Calculate a new column "Totalt", which is "Personer"/"Prosent"*100
 df_pivot["Totalt"] = (df_pivot["Personer"] / df_pivot["Prosent"]) * 100

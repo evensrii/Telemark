@@ -53,8 +53,8 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df.info()
-df.head()
+# df.info()
+# df.head()
 
 # Set data types
 df["Fylkesnummer"] = df["Fylkesnummer"].astype(str).str.zfill(2)

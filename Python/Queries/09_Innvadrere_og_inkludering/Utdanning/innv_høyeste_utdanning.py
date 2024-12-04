@@ -47,8 +47,8 @@ except Exception as e:
     )
 
 
-df_fylker.info()
-df_fylker.head()
+# df_fylker.info()
+# df_fylker.head()
 
 # Set data types
 df_fylker["Fylkesnummer"] = df_fylker["Fylkesnummer"].astype(str).str.zfill(2)

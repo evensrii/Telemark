@@ -80,8 +80,8 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df.head()
-df.info()
+# df.head()
+# df.info()
 
 ################# Bearbeiding datasett #################
 

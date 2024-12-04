@@ -47,12 +47,12 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df_fylker.info()
-df_fylker.head()
+# df_fylker.info()
+# df_fylker.head()
 
 # Convert fylkesnummer til string with leading zeros and convert to string
 df_fylker["Fylkesnummer"] = df_fylker["Fylkesnummer"].astype(str).str.zfill(2)
-print(df_fylker["Fylkesnummer"].unique())
+# print(df_fylker["Fylkesnummer"].unique())
 
 # Filter rows
 df_fylker = df_fylker[
@@ -121,8 +121,8 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df_kommuner.info()
-df_kommuner.head()
+# df_kommuner.info()
+# df_kommuner.head()
 
 # dtale.show(df_kommuner, open_browser=True)
 

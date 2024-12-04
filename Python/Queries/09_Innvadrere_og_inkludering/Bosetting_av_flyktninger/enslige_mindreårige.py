@@ -51,8 +51,8 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df_fylker.info()
-df_fylker.head()
+# df_fylker.info()
+# df_fylker.head()
 
 print(df_fylker["Fylkesnummer"].unique())
 
@@ -112,8 +112,8 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df_kommuner.info()
-df_kommuner.head()
+# df_kommuner.info()
+# df_kommuner.head()
 
 # Filter columns where "År" is either 2020, 2021, 2022 or 2023
 df_kommuner = df_kommuner[df_kommuner["År"].isin([2020, 2021, 2022, 2023])]

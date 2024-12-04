@@ -45,8 +45,8 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df.info()
-df.head()
+# df.info()
+# df.head()
 
 # Format "År" as datetime
 df["År"] = pd.to_datetime(df["År"], format="%Y")

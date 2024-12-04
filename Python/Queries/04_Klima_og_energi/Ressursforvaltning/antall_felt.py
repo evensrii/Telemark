@@ -60,8 +60,8 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df_elg.head()
-df_elg.info()
+# df_elg.head()
+# df_elg.info()
 
 
 ################# Felte hjort #################
@@ -102,8 +102,8 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-df_hjort.head()
-df_hjort.info()
+# df_hjort.head()
+# df_hjort.info()
 
 
 df_elg = df_elg.drop(columns=["region", "alder", "statistikkvariabel"])

@@ -57,8 +57,8 @@ def get_hydro_power_plants_in_operation():
 
 df = get_hydro_power_plants_in_operation()
 
-df.info()
-df.head()
+# df.info()
+# df.head()
 
 df.to_csv(
     f"{temp_folder}/vannkraft_telemark.csv", index=False

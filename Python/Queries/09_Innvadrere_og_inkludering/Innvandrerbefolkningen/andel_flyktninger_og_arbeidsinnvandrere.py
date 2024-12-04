@@ -48,11 +48,11 @@ except Exception as e:
     )
 
 ## Datasjekk
-df.head()
-df.info()
+# df.head()
+# df.info()
 
 # Print the unique values in the column "Kommunenummer"
-print(df["Kommunenummer"].unique())
+# print(df["Kommunenummer"].unique())
 
 # Convert the object columns into category
 columns_to_convert = ["Kommune", "Kjønn", "Innvandringsgrunn", "Enhet"]
