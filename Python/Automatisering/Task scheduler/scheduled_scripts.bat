@@ -62,7 +62,8 @@ echo [%DATE% %TIME%] Running %SCRIPT_FILENAME% >> %SCRIPT_LOG%
 :: Execute the Python script
 python %SCRIPT% >> %SCRIPT_LOG% 2>&1
 IF %ERRORLEVEL% NEQ 0 (
-    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Failed with error code %ERRORLEVEL% >> %LOGFILE%
+    ::echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Failed with error code %ERRORLEVEL% >> %LOGFILE%
+    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Failed >> %LOGFILE%
     echo [%DATE% %TIME%] Script failed with error code %ERRORLEVEL% >> %SCRIPT_LOG%
 )
 
