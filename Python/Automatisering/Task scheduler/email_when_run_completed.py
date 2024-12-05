@@ -88,13 +88,14 @@ def format_log_as_html_table(log_content):
                     status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>{status}</span>"
 
                 # Apply alternating background colors manually
+                # Apply alternating background colors manually
                 background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
                 rows += (
                     f"<tr style='background-color: {background_color};'>"
                     f"<td>{date}</td>"
                     f"<td>{time}</td>"
-                    f"<td style='text-align: center; vertical-align: middle; padding-left: 20px;'>{task}</td>"  # Center-align with padding for Oppgave column
-                    f"<td style='text-align: center; vertical-align: middle; padding-left: 20px;'>{script}</td>"  # Center-align with padding for Script column
+                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle; display: block; margin: 0 auto;'>{task}</td>"  # Proper alignment for Oppgave
+                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle; display: block; margin: 0 auto;'>{script}</td>"  # Proper alignment for Script
                     f"<td>{status_badge}</td>"
                     f"</tr>"
                 )
