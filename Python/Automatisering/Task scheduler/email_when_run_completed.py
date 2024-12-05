@@ -33,7 +33,7 @@ print("X_FUNCTIONS_KEY loaded successfully.")
 # Recipients and their corresponding names
 recipients = [
     {"email": "even.sannes.riiser@telemarkfylke.no", "name": "Even"},
-    {"email": "even.s.riiser@gmail.com", "name": "Evenmann"},
+    {"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
 ]
 
 ### READ MASTER LOG FILE ###
@@ -88,14 +88,13 @@ def format_log_as_html_table(log_content):
                     status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>{status}</span>"
 
                 # Apply alternating background colors manually
-                # Apply alternating background colors manually
                 background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
                 rows += (
                     f"<tr style='background-color: {background_color};'>"
                     f"<td>{date}</td>"
                     f"<td>{time}</td>"
-                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle; display: block; margin: 0 auto;'>{task}</td>"  # Proper alignment for Oppgave
-                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle; display: block; margin: 0 auto;'>{script}</td>"  # Proper alignment for Script
+                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>"  # Proper alignment for Oppgave
+                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>"  # Proper alignment for Script
                     f"<td>{status_badge}</td>"
                     f"</tr>"
                 )
@@ -116,12 +115,12 @@ def format_log_as_html_table(log_content):
             width: 100%;
             border-collapse: collapse;
             margin: 8px 0;
-            font-size: 14px; /* Increased font size */
+            font-size: 14px;
         }}
 
         th, td {{
             border: 1px solid #ddd;
-            padding: 2px; /* Keep compact padding */
+            padding: 2px;
             text-align: center; /* Default for all cells */
             vertical-align: middle; /* Align content vertically */
         }}
@@ -130,7 +129,8 @@ def format_log_as_html_table(log_content):
             background-color: #000;
             color: white;
             text-transform: uppercase;
-            font-size: 14px; /* Increased font size */
+            font-size: 14px;
+            height: 40px; /* Increase header row height */
         }}
 
         tr:hover {{
@@ -154,14 +154,6 @@ def format_log_as_html_table(log_content):
     """
     return html_table
 
-
-
-
-
-
-
-
-
 # Generate the HTML table
 html_table = format_log_as_html_table(log_content)
 
@@ -176,7 +168,7 @@ for recipient in recipients:
     # Define the email payload
     payload = {
         "to": [recipient["email"]],
-        "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
+        "from": "Analyse TFK <analyse@telemarkfylke.no>",
         "subject": subject,
         "text": log_content,
         "html": html_table,

@@ -1,4 +1,4 @@
-[05.12.2024 14:29:04,42] Running botid.py 
+[05.12.2024 15:32:10,59] Running botid.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -21,5 +21,4 @@ Traceback (most recent call last):
   File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Innvandrerbefolkningen\botid.py", line 45, in <module>
     raise RuntimeError(
 RuntimeError: A critical error occurred during data fetching, stopping execution.
-[05.12.2024 14:29:07,08] Script failed with error code 1 
-[05.12.2024 14:29:07,11] Completed script 
+[05.12.2024 15:32:13,22] Script failed with error code 1 
