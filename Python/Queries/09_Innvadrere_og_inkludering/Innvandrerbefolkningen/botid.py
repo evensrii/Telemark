@@ -25,7 +25,7 @@ error_messages = []
 # Jeg bruker requests for å simulere nedlasting av filen.
 
 # Finner URL vha. "Inspiser side" og fane "Network" (F12)
-url = "https://app-simapi-prod.azurewebsites.net/download_csv/k/befolkning_botid"
+url = "https://app-simapi-prod.azurewebsites.net/download_csv/k/befolkning_boti"
 
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
