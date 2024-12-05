@@ -21,6 +21,12 @@ CALL C:\Users\_eve1509\AppData\Local\anaconda3\Scripts\activate.bat >> %LOGFILE%
 :: echo [%DATE% %TIME%] Activating Conda environment >> %LOGFILE%
 CALL conda activate analyse >> %LOGFILE% 2>&1
 
+:: Verify Python environment
+::python --version >> %LOGFILE% 2>&1
+::IF %ERRORLEVEL% NEQ 0 (
+::    echo [%DATE% %TIME%] Python initialization failed. Aborting. >> %LOGFILE%
+::    EXIT /B 1
+::)
 
 :: Run scripts with log separation
 
