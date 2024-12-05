@@ -62,11 +62,11 @@ echo [%DATE% %TIME%] Running %SCRIPT_FILENAME% >> %SCRIPT_LOG%
 :: Execute the Python script
 python %SCRIPT% >> %SCRIPT_LOG% 2>&1
 IF %ERRORLEVEL% NEQ 0 (
-    echo [%DATE% %TIME%] %NAME% : failed with error code %ERRORLEVEL% >> %LOGFILE%
+    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Failed with error code %ERRORLEVEL% >> %LOGFILE%
     echo [%DATE% %TIME%] Script failed with error code %ERRORLEVEL% >> %SCRIPT_LOG%
 )
 
 :: Finish script logging
-echo [%DATE% %TIME%] %NAME% : Completed >> %LOGFILE%
+echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME%: Completed >> %LOGFILE%
 echo [%DATE% %TIME%] Completed script >> %SCRIPT_LOG%
 EXIT /B 0
