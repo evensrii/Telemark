@@ -1,1 +1,25 @@
 [05.12.2024 10:06:14,10] Running botid.py 
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Request error in Botid: 500 Server Error: Internal Server Error for url: https://app-simapi-prod.azurewebsites.net/download_csv/k/befolkning_boti
+Error occurred: 500 Server Error: Internal Server Error for url: https://app-simapi-prod.azurewebsites.net/download_csv/k/befolkning_boti
+Error notification email sent successfully.
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Innvandrerbefolkningen\botid.py", line 33, in <module>
+    df = fetch_data(
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 46, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://app-simapi-prod.azurewebsites.net/download_csv/k/befolkning_boti
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Innvandrerbefolkningen\botid.py", line 45, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+[05.12.2024 10:06:16,95] Script failed with error code 1 
+[05.12.2024 10:06:16,97] Completed script 
