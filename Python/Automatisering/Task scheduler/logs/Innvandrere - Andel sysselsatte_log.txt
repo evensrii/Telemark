@@ -1,4 +1,4 @@
-[04.12.2024 15:10:05,59] Running andel_sysselsatte_innvandrere.py 
+[05.12.2024 15:32:05,35] Running andel_sysselsatte_innvandrere.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -7,8 +7,6 @@ VTFK Query JSON data loaded successfully.
 TFK Query JSON data loaded successfully.
 Her hentes tallene for Vestfold og Telemark i ['2023']
 Her hentes tallene for Telemark i ['2023']
-New data detected. Uploading to GitHub.
-File uploaded successfully: Data/09_Innvandrere og inkludering/Arbeid og inntekt/andel_sysselsatte_innvandrere.csv
-Update notification email sent successfully.
+No new data to upload. Skipping GitHub update.
 Deleted file from temp folder: andel_sysselsatte_innvandrere.csv
-[04.12.2024 15:10:15,32] Completed script 
+[05.12.2024 15:32:10,56] Completed script 

@@ -33,7 +33,7 @@ print("X_FUNCTIONS_KEY loaded successfully.")
 # Recipients and their corresponding names
 recipients = [
     {"email": "even.sannes.riiser@telemarkfylke.no", "name": "Even"},
-    {"email": "even.s.riiser@gmail.com", "name": "Evenmann"},
+    {"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
 ]
 
 ### READ MASTER LOG FILE ###
@@ -53,6 +53,111 @@ if not os.path.exists(log_file_path):
 with open(log_file_path, "r") as log_file:
     log_content = log_file.read()
 
+
+### FORMAT LOG CONTENT INTO HTML TABLE ###
+
+def format_log_as_html_table(log_content):
+    # Split log content into lines
+    log_lines = log_content.split("\n")
+
+    # Create HTML table rows
+    rows = ""
+    for idx, line in enumerate(log_lines):
+        if line.strip():  # Ignore empty lines
+            try:
+                # Split into timestamp, rest
+                timestamp, rest = line.split("]", 1)
+                timestamp = timestamp.strip("[")[:-3]  # Remove leading "[" and last 3 characters ",XX"
+                
+                # Further split the timestamp into date and time
+                date, time = timestamp.split(" ")
+
+                # Split rest into task and details
+                task, details = rest.split(":", 1)
+                task = task.strip()
+
+                # Split details into script and status
+                script, status = details.split(":", 1)
+                script = script.strip()
+                status = status.strip()
+
+                # Determine status badge style
+                if status.lower() == "completed":
+                    status_badge = f"<span style='background-color: #32CD32; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>{status}</span>"
+                else:
+                    status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>{status}</span>"
+
+                # Apply alternating background colors manually
+                background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
+                rows += (
+                    f"<tr style='background-color: {background_color};'>"
+                    f"<td>{date}</td>"
+                    f"<td>{time}</td>"
+                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>"  # Proper alignment for Oppgave
+                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>"  # Proper alignment for Script
+                    f"<td>{status_badge}</td>"
+                    f"</tr>"
+                )
+            except ValueError:
+                # Handle lines that don't conform to the expected format
+                rows += f"<tr><td colspan='5'>{line.strip()}</td></tr>"
+
+    # Wrap rows in a styled HTML table
+    html_table = f"""
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+
+        body {{
+            font-family: 'Source Sans Pro', sans-serif;
+        }}
+
+        table {{
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0;
+            font-size: 14px;
+        }}
+
+        th, td {{
+            border: 1px solid #ddd;
+            padding: 2px;
+            text-align: center; /* Default for all cells */
+            vertical-align: middle; /* Align content vertically */
+        }}
+
+        th {{
+            background-color: #000;
+            color: white;
+            text-transform: uppercase;
+            font-size: 14px;
+            height: 40px; /* Increase header row height */
+        }}
+
+        tr:hover {{
+            background-color: #ddd; /* Highlight on hover */
+        }}
+    </style>
+    <table>
+        <thead>
+            <tr>
+                <th>Dato</th>
+                <th>Tid</th>
+                <th>Oppgave</th>
+                <th>Script</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {rows}
+        </tbody>
+    </table>
+    """
+    return html_table
+
+# Generate the HTML table
+html_table = format_log_as_html_table(log_content)
+
+
 ### SEND EMAIL ###
 
 # Email sending logic
@@ -63,10 +168,10 @@ for recipient in recipients:
     # Define the email payload
     payload = {
         "to": [recipient["email"]],
-        "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
+        "from": "Analyse TFK <analyse@telemarkfylke.no>",
         "subject": subject,
         "text": log_content,
-        "html": f"<pre>{log_content}</pre>",
+        "html": html_table,
     }
 
     # API endpoint and headers

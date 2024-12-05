@@ -47,8 +47,8 @@ def notify_errors(error_messages, script_name="Unknown Script"):
         error_details = "\n".join(error_messages)
         payload = {
             "to": ["even.sannes.riiser@telemarkfylke.no"],
-            # "cc": [kjersti.aase@telemarkfylke.no],
-            "from": "Analyse: Statusoppdatering <analyse@telemarkfylke.no>",
+            "cc": ["kjersti.aase@telemarkfylke.no"],
+            "from": "Analyse TFK <analyse@telemarkfylke.no>",
             "subject": f"Spørring feilet i script {script_name}",
             "text": f"The following errors were found in {script_name}:\n{error_details}",
             "html": f"<b>The following errors were found in {script_name}:</b><br>{'<br>'.join(error_messages)}",
