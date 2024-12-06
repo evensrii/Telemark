@@ -1,17 +1,20 @@
 @echo off
 
-:: Define the email log file
-SET EMAIL_LOG="D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\00_email_log.txt"
+:: Use UTF-8 Encoding
+chcp 65001 > nul
 
-:: Delete all log files except "readme.txt" and "00_email_log.txt"
+:: Define the email log file
+SET EMAIL_LOG="D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\00_email.log"
+
+:: Delete all log files except "readme.txt" and "00_email.log"
 FOR %%F IN ("D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\*") DO (
     IF NOT "%%~nF"=="readme" (
-        IF NOT "%%~nF"=="00_email_log" DEL "%%F"
+        IF NOT "%%~nF"=="00_email" DEL "%%F"
     )
 )
 
 :: Define a master log file for debugging
-SET LOGFILE="D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\00_master_run_log.txt"
+SET LOGFILE="D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\00_master_run.log"
 
 :: Ensure conda is initialized
 :: echo [%DATE% %TIME%] Initializing Conda >> %LOGFILE%
@@ -31,25 +34,25 @@ CALL conda activate analyse >> %LOGFILE% 2>&1
 :: Run scripts with log separation
 
 :: Innvandrere og inkludering
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Arbeid_og_inntekt\innvandrere_bosatt.py" "Innvandrere - Bosatt"
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Arbeid_og_inntekt\innvandringsgrunn.py" "Innvandrere - Innvandringsgrunn"
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Arbeid_og_inntekt\andel_flyktninger_og_arbeidsinnvandrere.py" "Innvandrere - Flyktninger og arbeidsinnvandrere"
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Innvandrerbefolkningen\botid.py" "Innvandrere - Botid"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py" "Innvandrere - Bosatt"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandringsgrunn.py" "Innvandrere - Innvandringsgrunn"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py" "Innvandrere - Flyktninger og arbeidsinnvandrere"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\botid.py" "Innvandrere - Botid"
 
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Bosetting_av_flyktninger\anmodninger_og_faktisk_bosetting.py" "Innvandrere - Anmodninger og faktisk bosetting"
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Bosetting_av_flyktninger\enslige_mindreårige.py" "Innvandrere - Enslige mindreårige"
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Bosetting_av_flyktninger\botid.py" "Innvandrere - Sekundærflytting"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\anmodninger_og_faktisk_bosetting.py" "Innvandrere - Anmodninger og faktisk bosetting"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\enslige_mindreårige.py" "Innvandrere - Enslige mindreårige"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekundærflytting.py" "Innvandrere - Sekundærflytting"
 
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Introduksjonsprogrammet\deltakere_introduksjonsprogram.py" "Innvandrere - Deltakere introdukjonsprogrammet"
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Introduksjonsprogrammet\etter_introduksjonsprogram.py" "Innvandrere - Etter introduksjonsprogrammet"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Introduksjonsprogrammet\deltakere_introduksjonsprogram.py" "Innvandrere - Deltakere introdukjonsprogrammet"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Introduksjonsprogrammet\etter_introduksjonsprogram.py" "Innvandrere - Etter introduksjonsprogrammet"
 
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Utdanning\minoriteter_barnehage.py" "Innvandrere - Minoriteter i barnehage"
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Utdanning\innv_fullført_vgo.py" "Innvandrere - Fullført VGO"
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Utdanning\innv_høyeste_utdanning.py" "Innvandrere - Høyeste utdanning"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Utdanning\minoriteter_barnehage.py" "Innvandrere - Minoriteter i barnehage"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Utdanning\innv_fullført_vgo.py" "Innvandrere - Fullført VGO"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Utdanning\innv_høyeste_utdanning.py" "Innvandrere - Høyeste utdanning"
 
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_innvandrere.py" "Innvandrere - Sysselsatte"
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_etter_botid_og_landbakgrunn.py" "Innvandrere - Sysselsatte etter botid og bakgrunn"
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvadrere_og_inkludering\Arbeid_og_inntekt\andel_innvandrere_i_lavinntekt.py" "Innvandrere - Lavinntekt"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_innvandrere.py" "Innvandrere - Sysselsatte"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_etter_botid_og_landbakgrunn.py" "Innvandrere - Sysselsatte etter botid og bakgrunn"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_innvandrere_i_lavinntekt.py" "Innvandrere - Lavinntekt"
 
 :: Klima og energi
 CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\04_Klima_og_energi\Klimagassutslipp\klimagassutslipp.py" "Klima og energi - Sektorvise utslipp"
@@ -79,7 +82,7 @@ SET NAME=%~2
 SET SCRIPT_FILENAME=%~nx1
 
 :: Define individual log file for the script
-SET SCRIPT_LOG="D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\%NAME%_log.txt"
+SET SCRIPT_LOG="D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\%NAME:_=oe%.log"
 
 :: Start logging for the script
 :: echo [%DATE% %TIME%] Running %NAME% >> %LOGFILE%

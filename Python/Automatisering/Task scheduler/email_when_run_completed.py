@@ -28,12 +28,12 @@ if not X_FUNCTIONS_KEY:
 print("X_FUNCTIONS_KEY loaded successfully.")
 
 
-### RECIPIENTS
+### RECIPIENTS ###
 
 # Recipients and their corresponding names
 recipients = [
     {"email": "even.sannes.riiser@telemarkfylke.no", "name": "Even"},
-    #{"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
+    # {"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
 ]
 
 ### READ MASTER LOG FILE ###
@@ -42,15 +42,15 @@ recipients = [
 script_dir = os.path.dirname(os.path.abspath(__file__))  # Folder containing this script
 os.chdir(script_dir)  # Ensure CWD is the script's directory
 
-log_file_path = os.path.join(script_dir, "./logs/00_master_run_log.txt")
+log_file_path = os.path.join(script_dir, "./logs/00_master_run.log")
 print(f"Resolved log file path: {log_file_path}")
 
 # Check if the file exists
 if not os.path.exists(log_file_path):
     raise FileNotFoundError(f"Log file not found: {log_file_path}")
 
-# Read the log file content
-with open(log_file_path, "r") as log_file:
+# Read the log file content with UTF-8 encoding
+with open(log_file_path, "r", encoding="utf-8") as log_file:
     log_content = log_file.read()
 
 
@@ -178,7 +178,7 @@ for recipient in recipients:
     # API endpoint and headers
     url = "https://mail.api.telemarkfylke.no/api/mail"
     headers = {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json; charset=utf-8",  # Explicitly set charset
         "User-Agent": "insomnia/10.1.1",
         "x-functions-key": X_FUNCTIONS_KEY,
     }

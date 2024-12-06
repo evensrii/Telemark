@@ -1,0 +1,39 @@
+[06.12.2024 14:43:43,98] Running Ã¸kologisk_tilstand.py 
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+No cookie banner appeared, continuing...
+Ingen driftsmeldinger dukket opp, continuing...
+No welcome window appeared, continuing...
+An unexpected error occurred: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//span[normalize-space()='Fylke']"}
+  (Session info: chrome=131.0.6778.109); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF71CBC6CF5+28821]
+	(No symbol) [0x00007FF71CB33880]
+	(No symbol) [0x00007FF71C9D578A]
+	(No symbol) [0x00007FF71CA291BE]
+	(No symbol) [0x00007FF71CA294AC]
+	(No symbol) [0x00007FF71CA72647]
+	(No symbol) [0x00007FF71CA4F33F]
+	(No symbol) [0x00007FF71CA6F412]
+	(No symbol) [0x00007FF71CA4F0A3]
+	(No symbol) [0x00007FF71CA1A778]
+	(No symbol) [0x00007FF71CA1B8E1]
+	GetHandleVerifier [0x00007FF71CEFFCED+3408013]
+	GetHandleVerifier [0x00007FF71CF1745F+3504127]
+	GetHandleVerifier [0x00007FF71CF0B63D+3455453]
+	GetHandleVerifier [0x00007FF71CC8BDFB+835995]
+	(No symbol) [0x00007FF71CB3EB9F]
+	(No symbol) [0x00007FF71CB3A854]
+	(No symbol) [0x00007FF71CB3A9ED]
+	(No symbol) [0x00007FF71CB2A1D9]
+	BaseThreadInitThunk [0x00007FFF15817AC4+20]
+	RtlUserThreadStart [0x00007FFF15E5A8C1+33]
+
+Error notification email sent successfully.
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\04_Klima_og_energi\Ressursforvaltning\økologisk_tilstand.py", line 281, in <module>
+    df_pivoted, file_name, github_folder, temp_folder
+NameError: name 'df_pivoted' is not defined
+[06.12.2024 14:44:12,25] Script failed with error code 1 

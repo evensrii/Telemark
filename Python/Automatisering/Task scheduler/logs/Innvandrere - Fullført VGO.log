@@ -1,0 +1,11 @@
+[06.12.2024 14:40:42,58] Running innv_fullfÃ¸rt_vgo.py 
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Innvandrere JSON data loaded successfully.
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Utdanning\innv_fullført_vgo.py", line 68, in <module>
+    f_innvandrere.head()
+NameError: name 'f_innvandrere' is not defined
+[06.12.2024 14:40:45,90] Script failed with error code 1 
