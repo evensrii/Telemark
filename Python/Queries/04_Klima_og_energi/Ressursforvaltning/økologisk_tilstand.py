@@ -79,7 +79,7 @@ try:
     ########################## SETTING UP SELENIUM AND OPENING THE WEBSITE
 
     options = Options()
-    options.add_argument("--headless=new")  # Run in headless mode
+    #options.add_argument("--headless=new")  # Run in headless mode
 
     # Initialize the WebDriver
     driver = webdriver.Chrome(options=options)

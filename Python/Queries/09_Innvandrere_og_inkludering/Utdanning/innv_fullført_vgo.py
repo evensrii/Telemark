@@ -65,7 +65,7 @@ except Exception as e:
     )
 
 # df_innvandrere.info()
-f_innvandrere.head()
+df_innvandrere.head()
 
 # Remove columns
 df_innvandrere = df_innvandrere.drop(
