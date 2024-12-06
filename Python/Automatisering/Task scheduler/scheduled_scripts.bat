@@ -41,7 +41,7 @@ CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\10_Areal_og_stedsutv
 python -u "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\email_when_run_completed.py" > %EMAIL_LOG% 2>&1
 
 :: Log completion
-echo [%DATE% %TIME%] Daily run complete. >> %LOGFILE%
+echo [%DATE% %TIME%] Daily run completed. >> %LOGFILE%
 GOTO :EOF
 
 :RunScript
@@ -66,7 +66,7 @@ IF %ERRORLEVEL% NEQ 0 (
     echo [%DATE% %TIME%] Script failed with error code %ERRORLEVEL% >> %SCRIPT_LOG%
 ) ELSE (
     echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME%: Completed >> %LOGFILE%
-    echo [%DATE% %TIME%] Completed script >> %SCRIPT_LOG%
+    echo [%DATE% %TIME%] Script completed >> %SCRIPT_LOG%
 )
 
 EXIT /B 0

@@ -33,7 +33,7 @@ print("X_FUNCTIONS_KEY loaded successfully.")
 # Recipients and their corresponding names
 recipients = [
     {"email": "even.sannes.riiser@telemarkfylke.no", "name": "Even"},
-    {"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
+    #{"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
 ]
 
 ### READ MASTER LOG FILE ###
@@ -70,7 +70,7 @@ def format_log_as_html_table(log_content):
                 timestamp = timestamp.strip("[")[:-3]  # Remove leading "[" and last 3 characters ",XX"
                 
                 # Further split the timestamp into date and time
-                date, time = timestamp.split(" ")
+                date, time = timestamp.split(maxsplit=1)
 
                 # Split rest into task and details
                 task, details = rest.split(":", 1)
@@ -93,14 +93,14 @@ def format_log_as_html_table(log_content):
                     f"<tr style='background-color: {background_color};'>"
                     f"<td>{date}</td>"
                     f"<td>{time}</td>"
-                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>"  # Proper alignment for Oppgave
-                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>"  # Proper alignment for Script
+                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>"
+                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>"
                     f"<td>{status_badge}</td>"
                     f"</tr>"
                 )
             except ValueError:
-                # Handle lines that don't conform to the expected format
-                rows += f"<tr><td colspan='5'>{line.strip()}</td></tr>"
+                # Skip lines that don't conform to the expected format
+                continue
 
     # Wrap rows in a styled HTML table
     html_table = f"""
@@ -121,8 +121,8 @@ def format_log_as_html_table(log_content):
         th, td {{
             border: 1px solid #ddd;
             padding: 2px;
-            text-align: center; /* Default for all cells */
-            vertical-align: middle; /* Align content vertically */
+            text-align: center;
+            vertical-align: middle;
         }}
 
         th {{
@@ -130,11 +130,11 @@ def format_log_as_html_table(log_content):
             color: white;
             text-transform: uppercase;
             font-size: 14px;
-            height: 40px; /* Increase header row height */
+            height: 40px;
         }}
 
         tr:hover {{
-            background-color: #ddd; /* Highlight on hover */
+            background-color: #ddd;
         }}
     </style>
     <table>
@@ -153,6 +153,7 @@ def format_log_as_html_table(log_content):
     </table>
     """
     return html_table
+
 
 # Generate the HTML table
 html_table = format_log_as_html_table(log_content)
