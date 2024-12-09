@@ -126,7 +126,7 @@ df_pivot["Menn"] = df_pivot["Menn"].astype(int)
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "andel_jegere.csv"
-github_folder = "Data/04_Klima og ressursforvaltning/Ressursforvaltning"
+github_folder = "Data/07_Idrett_friluftsliv_og_frivillighet/Friluftsliv"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 compare_to_github(
