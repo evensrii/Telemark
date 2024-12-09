@@ -51,7 +51,7 @@ CALL conda activate analyse >> %LOGFILE% 2>&1
 :: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Utdanning\innv_høyeste_utdanning.py" "Innvandrere - Høyeste utdanning"
 
 CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_innvandrere.py" "Innvandrere - Sysselsatte"
-:: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_etter_botid_og_landbakgrunn.py" "Innvandrere - Sysselsatte etter botid og bakgrunn"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_etter_botid_og_landbakgrunn.py" "Innvandrere - Sysselsatte etter botid og bakgrunn"
 :: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_innvandrere_i_lavinntekt.py" "Innvandrere - Lavinntekt"
 
 :: Klima og energi
@@ -91,20 +91,18 @@ echo [%DATE% %TIME%] Running %SCRIPT_FILENAME% >> %SCRIPT_LOG%
 :: Execute the Python script
 python %SCRIPT% >> %SCRIPT_LOG% 2>&1
 
-:: Append "New Data" status to the log
+:: Check for "new_data_status.log" and append it to the main log
+SET NEW_DATA=No
 IF EXIST "new_data_status.log" (
-    FOR /F "tokens=*" %%A IN (new_data_status.log) DO (
-        echo [%DATE% %TIME%] %NAME% : %%A >> %LOGFILE%
-    )
+    FOR /F "tokens=2 delims=:" %%A IN (new_data_status.log) DO SET NEW_DATA=%%A
     DEL "new_data_status.log"
 )
 
+:: Append the combined log entry
 IF %ERRORLEVEL% NEQ 0 (
-    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Failed >> %LOGFILE%
-    echo [%DATE% %TIME%] Script failed with error code %ERRORLEVEL% >> %SCRIPT_LOG%
+    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Failed : New Data:%NEW_DATA% >> %LOGFILE%
 ) ELSE (
-    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME%: Completed >> %LOGFILE%
-    echo [%DATE% %TIME%] Script completed >> %SCRIPT_LOG%
+    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Completed : New Data:%NEW_DATA% >> %LOGFILE%
 )
 
 EXIT /B 0
