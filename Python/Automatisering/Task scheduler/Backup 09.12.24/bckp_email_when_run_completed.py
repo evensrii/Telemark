@@ -56,7 +56,6 @@ with open(log_file_path, "r", encoding="utf-8") as log_file:
 
 ### FORMAT LOG CONTENT INTO HTML TABLE ###
 
-
 def format_log_as_html_table(log_content):
     # Split log content into lines
     log_lines = log_content.split("\n")
@@ -68,10 +67,8 @@ def format_log_as_html_table(log_content):
             try:
                 # Split into timestamp, rest
                 timestamp, rest = line.split("]", 1)
-                timestamp = timestamp.strip("[")[
-                    :-3
-                ]  # Remove leading "[" and last 3 characters ",XX"
-
+                timestamp = timestamp.strip("[")[:-3]  # Remove leading "[" and last 3 characters ",XX"
+                
                 # Further split the timestamp into date and time
                 date, time = timestamp.split(maxsplit=1)
 
@@ -83,11 +80,6 @@ def format_log_as_html_table(log_content):
                 script, status = details.split(":", 1)
                 script = script.strip()
                 status = status.strip()
-
-                # Check for "New Data" in the log entry
-                new_data = "No"
-                if "New Data: True" in line:
-                    new_data = "Yes"
 
                 # Determine status badge style
                 if status.lower() == "completed":
@@ -104,7 +96,6 @@ def format_log_as_html_table(log_content):
                     f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>"
                     f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>"
                     f"<td>{status_badge}</td>"
-                    f"<td style='text-align: center; vertical-align: middle;'>{new_data}</td>"
                     f"</tr>"
                 )
             except ValueError:

@@ -190,9 +190,9 @@ file_name = "andel_sysselsatte_innvandrere.csv"
 github_folder = "Data/09_Innvandrere og inkludering/Arbeid og inntekt"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-is_new_data = compare_to_github(df_filtered, file_name, github_folder, temp_folder)
-with open("new_data_status.log", "w") as log_file:
-    log_file.write(f"New Data: {is_new_data}\n")
+compare_to_github(
+    df_filtered, file_name, github_folder, temp_folder
+)  # <--- Endre navn på dataframe her!
 
 ##################### Remove temporary local files #####################
 

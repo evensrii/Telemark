@@ -182,7 +182,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         # Compare the filtered DataFrames
         if existing_df.equals(new_df):
             print("No new data to upload. Skipping GitHub update.")
-            return False
         else:
             print("New data detected. Uploading to GitHub.")
 
@@ -195,12 +194,9 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             )
             # Notify about the updated data and differences
             notify_updated_data(file_name, diff_lines, reason="New data detected.")
-
-            return True  # Eksisterende datasett er oppdatert
     else:
         # If the file does not exist on GitHub, upload the new file
         print("Uploading new file.")
         upload_github_file(
             local_file_path, github_file_path, message=f"Added {file_name}"
         )
-        return True  # Nytt datasett er lastet opp
