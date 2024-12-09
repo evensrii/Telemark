@@ -126,19 +126,6 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
 
 ## Function to compare file to GitHub
 def compare_to_github(input_df, file_name, github_folder, temp_folder):
-    """
-    Compares a DataFrame to an existing file on GitHub, and uploads the file if changes are detected.
-    If column names differ between the new and old data, the new file replaces the old one.
-
-    Parameters:
-        input_df (pd.DataFrame): The DataFrame to compare and upload.
-        file_name (str): The name of the file to be saved and compared.
-        github_folder (str): The folder path in the GitHub repository.
-        temp_folder (str): The local temporary folder for storing files.
-
-    Returns:
-        None
-    """
     # Save the DataFrame to a CSV in the Temp folder
     local_file_path = os.path.join(temp_folder, file_name)
     input_df.to_csv(local_file_path, index=False)
@@ -149,7 +136,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     # Download the existing file from GitHub
     existing_data = download_github_file(github_file_path)
 
-    # Check if new data exists compared to GitHub
     if existing_data is not None:
         # Standardize column names for comparison
         existing_df = existing_data.rename(columns=lambda x: x.strip().lower())
@@ -159,48 +145,34 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
 
         # Compare columns to detect mismatches
         if set(existing_df.columns) != set(new_df.columns):
+            log_message = f"[{datetime.now()}] {file_name} : New Data: True"
             print(
-                "Column names differ, probably caused by new year. Replacing file on GitHub with new data."
+                "Column names differ, replacing file on GitHub with new data."
             )
-            upload_github_file(
-                local_file_path,
-                github_file_path,
-                message=f"Replaced {file_name} due to column name changes",
-            )
-            notify_updated_data(
-                file_name, diff_lines=None, reason="Column names differ."
-            )
-            return
-
-        # Find common columns for comparison
-        common_columns = [col for col in existing_df.columns if col in new_df.columns]
-        existing_df = (
-            existing_df[common_columns].astype(str).sort_values(by=common_columns)
-        )
-        new_df = new_df[common_columns].astype(str).sort_values(by=common_columns)
-
-        # Compare the filtered DataFrames
-        if existing_df.equals(new_df):
-            print("No new data to upload. Skipping GitHub update.")
-            return False
+            upload_github_file(local_file_path, github_file_path)
         else:
-            print("New data detected. Uploading to GitHub.")
-
-            # Compute differences
-            diff = pd.concat([existing_df, new_df]).drop_duplicates(keep=False)
-            diff_lines = diff.head(5).to_dict(orient="records")  # Show first 5 changes
-
-            upload_github_file(
-                local_file_path, github_file_path, message=f"Updated {file_name}"
+            # Find common columns for comparison
+            common_columns = [col for col in existing_df.columns if col in new_df.columns]
+            existing_df = (
+                existing_df[common_columns]
+                .astype(str)
+                .sort_values(by=common_columns)
             )
-            # Notify about the updated data and differences
-            notify_updated_data(file_name, diff_lines, reason="New data detected.")
+            new_df = new_df[common_columns].astype(str).sort_values(by=common_columns)
 
-            return True  # Eksisterende datasett er oppdatert
+            if existing_df.equals(new_df):
+                log_message = f"[{datetime.now()}] {file_name} : New Data: False"
+                print("No new data to upload.")
+            else:
+                log_message = f"[{datetime.now()}] {file_name} : New Data: True"
+                print("New data detected. Uploading to GitHub.")
+                upload_github_file(local_file_path, github_file_path)
     else:
-        # If the file does not exist on GitHub, upload the new file
-        print("Uploading new file.")
-        upload_github_file(
-            local_file_path, github_file_path, message=f"Added {file_name}"
-        )
-        return True  # Nytt datasett er lastet opp
+        # No file on GitHub; treat as new data
+        log_message = f"[{datetime.now()}] {file_name} : New Data: True"
+        print("No existing file on GitHub. Uploading as new data.")
+        upload_github_file(local_file_path, github_file_path)
+
+    # Write the log message to the master log
+    with open("00_master_run.log", "a", encoding="utf-8") as log_file:
+        log_file.write(log_message + "\n")
