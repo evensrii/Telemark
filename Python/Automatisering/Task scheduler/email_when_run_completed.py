@@ -33,7 +33,7 @@ print("X_FUNCTIONS_KEY loaded successfully.")
 # Recipients and their corresponding names
 recipients = [
     {"email": "even.sannes.riiser@telemarkfylke.no", "name": "Even"},
-    {"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
+    #{"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
 ]
 
 ### READ MASTER LOG FILE ###
