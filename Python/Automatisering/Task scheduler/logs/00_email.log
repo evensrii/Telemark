@@ -1,4 +1,7 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Resolved log file path: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
-Email sent successfully to Even (even.sannes.riiser@telemarkfylke.no).
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\email_when_run_completed.py", line 181, in <module>
+    "html": html_table,
+NameError: name 'html_table' is not defined

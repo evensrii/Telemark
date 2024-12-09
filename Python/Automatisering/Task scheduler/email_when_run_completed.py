@@ -165,6 +165,10 @@ def format_log_as_html_table(log_content):
     return html_table
 
 
+# Generate the HTML table
+html_table = format_log_as_html_table(log_content)
+
+
 ### SEND EMAIL ###
 
 # Email sending logic
