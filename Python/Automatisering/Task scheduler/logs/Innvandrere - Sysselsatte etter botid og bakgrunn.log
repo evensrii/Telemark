@@ -1,9 +1,11 @@
-[09.12.2024 14:30:46,14] Running andel_sysselsatte_etter_botid_og_landbakgrunn.py 
+[09.12.2024 14:35:29,75] Running andel_sysselsatte_etter_botid_og_landbakgrunn.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Sysselsatte botid land CSV data loaded successfully.
 Selected data from year 2022-01-01 00:00:00
-No new data to upload. Skipping GitHub update.
+File not found on GitHub: Data/09_Innvandrere og inkludering/Arbeid og inntekt/sysselsatte_etter_botid_og_landbakgrunn.csv
+Uploading new file.
+File uploaded successfully: Data/09_Innvandrere og inkludering/Arbeid og inntekt/sysselsatte_etter_botid_og_landbakgrunn.csv
 Deleted file from temp folder: sysselsatte_etter_botid_og_landbakgrunn.csv
