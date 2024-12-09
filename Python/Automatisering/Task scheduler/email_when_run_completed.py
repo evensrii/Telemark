@@ -77,17 +77,18 @@ def format_log_as_html_table(log_content):
                 task, details = rest.split(":", 1)
                 task = task.strip()
 
-                # Split details into script and status
-                script, status = details.rsplit(":", 1)
+                # Split details into script, status, and new data
+                script, status, new_data = details.split(":", 2)
                 script = script.strip()
                 status = status.strip()
+                new_data = new_data.split("New Data:")[-1].strip()  # Extract "True" or "False"
 
-                # Check for "New Data" in the log entry
-                new_data = "Nei"  # Default to "Nei" for no new data
-                if "New Data: True" in line or "No existing file on GitHub" in line:
-                    new_data = f"<span style='background-color: #f0ff1e; color: black; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>Ja</span>"
-                elif "New Data: False" in line:
-                    new_data = ""  # Keep cell empty for no new data
+                # Format "Nye data" for the table
+                nye_data_formatted = (
+                    f"<span style='background-color: #1E90FF; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>Ja</span>"
+                    if new_data.lower() == "true"
+                    else ""
+                )
 
                 # Determine status badge style
                 if status.lower() == "completed":
@@ -104,7 +105,7 @@ def format_log_as_html_table(log_content):
                     f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>"
                     f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>"
                     f"<td>{status_badge}</td>"
-                    f"<td style='text-align: center; vertical-align: middle;'>{new_data}</td>"
+                    f"<td style='text-align: center; vertical-align: middle;'>{nye_data_formatted}</td>"
                     f"</tr>"
                 )
             except ValueError:

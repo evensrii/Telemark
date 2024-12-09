@@ -1,4 +1,4 @@
-[09.12.2024 14:11:08,87] Running anmodninger_og_faktisk_bosetting.py 
+[09.12.2024 14:30:11,23] Running anmodninger_og_faktisk_bosetting.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -31,5 +31,5 @@ memory usage: 3.5+ MB
 643  Midt-Telemark 2024-01-01     Vedtak om bosetting    75.0
 
 [92 rows x 4 columns]
-No new data to upload.
+No new data to upload. Skipping GitHub update.
 Deleted file from temp folder: anmodninger_og_faktisk_bosetting.csv
