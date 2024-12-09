@@ -155,7 +155,7 @@ def format_log_as_html_table(log_content):
                 <th>Oppgave</th>
                 <th>Script</th>
                 <th>Status</th>
-                <th>Nye data</th>
+                <th>Nye data?</th>
             </tr>
         </thead>
         <tbody>
