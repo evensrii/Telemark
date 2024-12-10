@@ -91,5 +91,3 @@ df.head()
 
 ######## Til slutt: Skrive endelig dataframe (df) til .csv-fil
 df.to_csv("ssb_data.csv", index=False)
-
-print(df)
