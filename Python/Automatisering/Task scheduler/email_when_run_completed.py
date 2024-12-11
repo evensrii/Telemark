@@ -110,8 +110,8 @@ def format_log_as_html_table(log_content):
                 <tr style='background-color: {background_color};'>
                     <td>{date}</td>
                     <td>{time}</td>
-                    <td style='text-align: left; padding-left: 10px;'>{task}</td>
-                    <td style='text-align: left; padding-left: 10px;'>{script}</td>
+                    <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>
+                    <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>
                     <td>{status_badge}</td>
                     <td>{new_data}</td>
                 </tr>
