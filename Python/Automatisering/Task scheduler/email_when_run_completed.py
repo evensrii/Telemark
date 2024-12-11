@@ -72,8 +72,11 @@ def format_log_as_html_table(log_content):
     # Create HTML table rows
     rows = ""
     for idx, line in enumerate(log_lines):
-        if line.strip():  # Ignore empty lines
+        if line.strip() and "Daily run completed" not in line:  # Ignore empty lines and summary lines
             try:
+                # Debugging: Print the line being processed
+                print(f"Processing line: {line}")
+
                 # Split into timestamp and the rest of the line
                 timestamp, rest = line.split("]", 1)
                 timestamp = timestamp.strip("[")[:-3]  # Remove leading "[" and last 3 characters ",XX"
@@ -81,15 +84,17 @@ def format_log_as_html_table(log_content):
                 # Split the timestamp into date and time
                 date, time = timestamp.split(maxsplit=1)
 
-                # Split the rest into task and details
-                task, details = rest.split(":", 1)
-                task = task.strip()
+                # Split the rest into task, script, status, and new data
+                task_part, details_part = rest.split(":", 1)
+                task = task_part.strip()
 
-                # Split details into script, status, and new data status
-                script, status, new_data_status = details.split(",", 2)
-                script = script.strip()
-                status = status.strip()
-                new_data = "Ja" if new_data_status.strip() == "True" else "Nei"
+                # Extract script, status, and new_data_status from details
+                script_part, status_and_new_data = details_part.rsplit(":", 1)
+                script = script_part.strip()
+                status, new_data_status = map(str.strip, status_and_new_data.split(",", 1))
+
+                # Map new_data_status to Ja/Nei
+                new_data = "Ja" if new_data_status == "True" else "Nei"
 
                 # Determine status badge style
                 if status.lower() == "completed":
@@ -111,8 +116,9 @@ def format_log_as_html_table(log_content):
                     <td>{new_data}</td>
                 </tr>
                 """
-            except ValueError:
-                # Skip lines that don't conform to the expected format
+            except Exception as e:
+                # Debugging: Print the error and the line that caused it
+                print(f"Error processing line: {line}. Error: {e}")
                 continue
 
     # Wrap rows in a styled HTML table
