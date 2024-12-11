@@ -33,7 +33,7 @@ print("X_FUNCTIONS_KEY loaded successfully.")
 # Recipients and their corresponding names
 recipients = [
     {"email": "even.sannes.riiser@telemarkfylke.no", "name": "Even"},
-    #{"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
+    {"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
 ]
 
 ### READ MASTER LOG FILE ###
@@ -56,7 +56,6 @@ with open(log_file_path, "r", encoding="utf-8") as log_file:
 
 ### FORMAT LOG CONTENT INTO HTML TABLE ###
 
-
 def format_log_as_html_table(log_content):
     # Split log content into lines
     log_lines = log_content.split("\n")
@@ -64,12 +63,12 @@ def format_log_as_html_table(log_content):
     # Create HTML table rows
     rows = ""
     for idx, line in enumerate(log_lines):
-        if line.strip() and "Daily run completed" not in line:  # Ignore empty lines and the final log line
+        if line.strip():  # Ignore empty lines
             try:
-                # Split into timestamp and rest of the line
+                # Split into timestamp, rest
                 timestamp, rest = line.split("]", 1)
                 timestamp = timestamp.strip("[")[:-3]  # Remove leading "[" and last 3 characters ",XX"
-
+                
                 # Further split the timestamp into date and time
                 date, time = timestamp.split(maxsplit=1)
 
@@ -77,23 +76,16 @@ def format_log_as_html_table(log_content):
                 task, details = rest.split(":", 1)
                 task = task.strip()
 
-                # Extract script, status, and new data
-                details_parts = details.split(":")
-                script = details_parts[0].strip()  # Script name
-                status = details_parts[1].strip()  # Status (e.g., "Completed" or "Failed")
-                new_data_flag = details_parts[2].strip() if len(details_parts) > 2 else "New Data: No"  # Default to "No"
-
-                # Check for "New Data" in the log entry
-                if "New Data: True" in new_data_flag:
-                    new_data = f"<span style='background-color: #1E90FF; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>Ja</span>"
-                else:
-                    new_data = ""  # Leave the cell empty if no new data
+                # Split details into script and status
+                script, status = details.split(":", 1)
+                script = script.strip()
+                status = status.strip()
 
                 # Determine status badge style
                 if status.lower() == "completed":
-                    status_badge = f"<span style='background-color: #32CD32; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>Completed</span>"
+                    status_badge = f"<span style='background-color: #32CD32; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>{status}</span>"
                 else:
-                    status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>Failed</span>"
+                    status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>{status}</span>"
 
                 # Apply alternating background colors manually
                 background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
@@ -104,7 +96,6 @@ def format_log_as_html_table(log_content):
                     f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>"
                     f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>"
                     f"<td>{status_badge}</td>"
-                    f"<td style='text-align: center; vertical-align: middle;'>{new_data}</td>"
                     f"</tr>"
                 )
             except ValueError:
@@ -154,7 +145,6 @@ def format_log_as_html_table(log_content):
                 <th>Oppgave</th>
                 <th>Script</th>
                 <th>Status</th>
-                <th>Nye data?</th>
             </tr>
         </thead>
         <tbody>
@@ -163,7 +153,6 @@ def format_log_as_html_table(log_content):
     </table>
     """
     return html_table
-
 
 
 # Generate the HTML table
