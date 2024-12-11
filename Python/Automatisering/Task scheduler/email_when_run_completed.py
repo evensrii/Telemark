@@ -155,3 +155,43 @@ def format_log_as_html_table(log_content):
     </table>
     """
     return html_table
+
+# Generate the HTML table
+html_table = format_log_as_html_table(log_content)
+
+
+### SEND EMAIL ###
+
+# Email sending logic
+for recipient in recipients:
+    # Personalize the subject
+    subject = f"God morgen, {recipient['name']}! Her er nattens kjøringer."
+
+    # Define the email payload
+    payload = {
+        "to": [recipient["email"]],
+        "from": "Analyse TFK <analyse@telemarkfylke.no>",
+        "subject": subject,
+        "text": log_content,
+        "html": html_table,
+    }
+
+    # API endpoint and headers
+    url = "https://mail.api.telemarkfylke.no/api/mail"
+    headers = {
+        "Content-Type": "application/json; charset=utf-8",  # Explicitly set charset
+        "User-Agent": "insomnia/10.1.1",
+        "x-functions-key": X_FUNCTIONS_KEY,
+    }
+
+    # Send the email
+    response = requests.post(url, headers=headers, json=payload)
+
+    # Check the response
+    if response.status_code == 200:
+        print(f"Email sent successfully to {recipient['name']} ({recipient['email']}).")
+    else:
+        print(
+            f"Failed to send email to {recipient['name']} ({recipient['email']}). "
+            f"Status code: {response.status_code}, Response: {response.text}"
+        )
