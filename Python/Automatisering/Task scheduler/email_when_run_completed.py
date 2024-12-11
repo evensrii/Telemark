@@ -93,8 +93,8 @@ def format_log_as_html_table(log_content):
                 script = script_part.strip()
                 status, new_data_status = map(str.strip, status_and_new_data.split(",", 1))
 
-                # Map new_data_status to Ja/Nei
-                new_data = "Ja" if new_data_status == "True" else "Nei"
+                # Map new_data_status ("Yes" or "No") to "Ja" or "Nei"
+                new_data = "Ja" if new_data_status == "Yes" else "Nei"
 
                 # Determine status badge style
                 if status.lower() == "completed":
@@ -110,8 +110,8 @@ def format_log_as_html_table(log_content):
                 <tr style='background-color: {background_color};'>
                     <td>{date}</td>
                     <td>{time}</td>
-                    <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>
-                    <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>
+                    <td style='text-align: left; padding-left: 10px;'>{task}</td>
+                    <td style='text-align: left; padding-left: 10px;'>{script}</td>
                     <td>{status_badge}</td>
                     <td>{new_data}</td>
                 </tr>

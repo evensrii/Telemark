@@ -98,7 +98,7 @@ IF EXIST "new_data_status.log" (
     )
     DEL "new_data_status.log"
 ) ELSE (
-    SET NEW_DATA_STATUS=False
+    SET NEW_DATA_STATUS=No
 )
 
 :: Append status to the master log
