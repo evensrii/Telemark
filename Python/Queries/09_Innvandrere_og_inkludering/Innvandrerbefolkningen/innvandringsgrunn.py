@@ -62,12 +62,16 @@ temp_folder = os.environ.get("TEMP_FOLDER")
     df, file_name, github_folder, temp_folder
 )  # <--- Endre navn på dataframe her!
  """
+
 # Call the function and get the "New Data" status
 is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
 
 # Write the "New Data" status to a log file
 with open("new_data_status.log", "w", encoding="utf-8") as log_file:
-    log_file.write(f"{file_name},New Data,{is_new_data}\n")
+    if is_new_data:
+        log_file.write(f"{file_name},New Data,True\n")
+    else:
+        log_file.write(f"{file_name},New Data,False\n")
 
 ##################### Remove temporary local files #####################
 

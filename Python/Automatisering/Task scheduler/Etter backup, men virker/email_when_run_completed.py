@@ -58,7 +58,8 @@ with open(log_file_path, "r", encoding="utf-8") as log_file:
 
 def format_log_as_html_table(log_content):
     """
-    Formats the log content into an HTML table with separate "Dato" and "Tid" columns.
+    Formats the log content into an HTML table with separate "Dato" and "Tid" columns,
+    and aligns the "Script" column text to the left.
 
     Args:
         log_content (str): The content of the master log file.
@@ -85,11 +86,17 @@ def format_log_as_html_table(log_content):
                 task, details = rest.split(":", 1)
                 task = task.strip()
 
-                # Split details into script, status, and new data status
-                script, status, new_data_status = details.split(",", 2)
+                # Split details into script and status
+                script, status = details.split(":", 1)
                 script = script.strip()
                 status = status.strip()
-                new_data = "Ja" if new_data_status.strip() == "True" else "Nei"
+
+                # Check for "New Data" status
+                if "," in status:
+                    status, new_data_status = status.rsplit(",", 1)
+                    new_data = "Ja" if new_data_status.strip() == "New Data" else ""
+                else:
+                    new_data = ""
 
                 # Determine status badge style
                 if status.lower() == "completed":
@@ -105,8 +112,8 @@ def format_log_as_html_table(log_content):
                 <tr style='background-color: {background_color};'>
                     <td>{date}</td>
                     <td>{time}</td>
-                    <td style='text-align: left; padding-left: 10px;'>{task}</td>
-                    <td style='text-align: left; padding-left: 10px;'>{script}</td>
+                    <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>
+                    <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>
                     <td>{status_badge}</td>
                     <td>{new_data}</td>
                 </tr>
@@ -168,6 +175,7 @@ def format_log_as_html_table(log_content):
     </table>
     """
     return html_table
+
 
 
 # Generate the HTML table
