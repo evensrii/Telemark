@@ -137,7 +137,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         temp_folder (str): The local temporary folder for storing files.
 
     Returns:
-        None
+        bool: True if new data is uploaded or detected, False otherwise.
     """
     # Save the DataFrame to a CSV in the Temp folder
     local_file_path = os.path.join(temp_folder, file_name)
@@ -153,9 +153,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     if existing_data is not None:
         # Standardize column names for comparison
         existing_df = existing_data.rename(columns=lambda x: x.strip().lower())
-        new_df = pd.read_csv(local_file_path).rename(
-            columns=lambda x: x.strip().lower()
-        )
+        new_df = pd.read_csv(local_file_path).rename(columns=lambda x: x.strip().lower())
 
         # Compare columns to detect mismatches
         if set(existing_df.columns) != set(new_df.columns):
@@ -170,7 +168,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             notify_updated_data(
                 file_name, diff_lines=None, reason="Column names differ."
             )
-            return
+            return True  # New data due to column name differences
 
         # Find common columns for comparison
         common_columns = [col for col in existing_df.columns if col in new_df.columns]
@@ -182,6 +180,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         # Compare the filtered DataFrames
         if existing_df.equals(new_df):
             print("No new data to upload. Skipping GitHub update.")
+            return False  # No new data
         else:
             print("New data detected. Uploading to GitHub.")
 
@@ -194,9 +193,11 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             )
             # Notify about the updated data and differences
             notify_updated_data(file_name, diff_lines, reason="New data detected.")
+            return True  # New data detected and uploaded
     else:
         # If the file does not exist on GitHub, upload the new file
         print("Uploading new file.")
         upload_github_file(
             local_file_path, github_file_path, message=f"Added {file_name}"
         )
+        return True  # New file uploaded

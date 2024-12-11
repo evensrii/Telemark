@@ -65,86 +65,39 @@ def format_log_as_html_table(log_content):
     for idx, line in enumerate(log_lines):
         if line.strip():  # Ignore empty lines
             try:
-                # Split into timestamp, rest
-                timestamp, rest = line.split("]", 1)
-                timestamp = timestamp.strip("[")[:-3]  # Remove leading "[" and last 3 characters ",XX"
-                
-                # Further split the timestamp into date and time
-                date, time = timestamp.split(maxsplit=1)
+                # Split line into components
+                timestamp_task_status, new_data_status = line.rsplit(",", 1)
+                timestamp, task_status = timestamp_task_status.split("]", 1)
+                timestamp = timestamp.strip("[")
+                task, script_status = task_status.split(":", 1)
+                script, status = script_status.split(":", 1)
 
-                # Split rest into task and details
-                task, details = rest.split(":", 1)
-                task = task.strip()
+                # Format the "New Data" status
+                new_data = "Ja" if new_data_status.strip() == "Ja" else ""
 
-                # Split details into script and status
-                script, status = details.split(":", 1)
-                script = script.strip()
-                status = status.strip()
-
-                # Determine status badge style
-                if status.lower() == "completed":
-                    status_badge = f"<span style='background-color: #32CD32; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>{status}</span>"
-                else:
-                    status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block; font-size: 14px;'>{status}</span>"
-
-                # Apply alternating background colors manually
-                background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
-                rows += (
-                    f"<tr style='background-color: {background_color};'>"
-                    f"<td>{date}</td>"
-                    f"<td>{time}</td>"
-                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>"
-                    f"<td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>"
-                    f"<td>{status_badge}</td>"
-                    f"</tr>"
-                )
+                # Add table row
+                rows += f"""
+                <tr>
+                    <td>{timestamp}</td>
+                    <td>{task.strip()}</td>
+                    <td>{script.strip()}</td>
+                    <td>{status.strip()}</td>
+                    <td>{new_data}</td>
+                </tr>
+                """
             except ValueError:
-                # Skip lines that don't conform to the expected format
                 continue
 
     # Wrap rows in a styled HTML table
     html_table = f"""
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
-
-        body {{
-            font-family: 'Source Sans Pro', sans-serif;
-        }}
-
-        table {{
-            width: 100%;
-            border-collapse: collapse;
-            margin: 8px 0;
-            font-size: 14px;
-        }}
-
-        th, td {{
-            border: 1px solid #ddd;
-            padding: 2px;
-            text-align: center;
-            vertical-align: middle;
-        }}
-
-        th {{
-            background-color: #000;
-            color: white;
-            text-transform: uppercase;
-            font-size: 14px;
-            height: 40px;
-        }}
-
-        tr:hover {{
-            background-color: #ddd;
-        }}
-    </style>
     <table>
         <thead>
             <tr>
                 <th>Dato</th>
-                <th>Tid</th>
                 <th>Oppgave</th>
                 <th>Script</th>
                 <th>Status</th>
+                <th>New Data</th>
             </tr>
         </thead>
         <tbody>
