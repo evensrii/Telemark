@@ -93,12 +93,12 @@ python %SCRIPT% >> %SCRIPT_LOG% 2>&1
 
 :: Check if new_data_status.log exists and append "New Data" status to the master log
 IF EXIST "new_data_status.log" (
-    FOR /F "tokens=2 delims=," %%A IN ('type "new_data_status.log"') DO (
+    FOR /F "tokens=3 delims=," %%A IN ('type "new_data_status.log"') DO (
         SET NEW_DATA_STATUS=%%A
     )
     DEL "new_data_status.log"
 ) ELSE (
-    SET NEW_DATA_STATUS=
+    SET NEW_DATA_STATUS=False
 )
 
 :: Append status to the master log

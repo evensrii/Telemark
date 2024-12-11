@@ -58,8 +58,7 @@ with open(log_file_path, "r", encoding="utf-8") as log_file:
 
 def format_log_as_html_table(log_content):
     """
-    Formats the log content into an HTML table with separate "Dato" and "Tid" columns,
-    and aligns the "Script" column text to the left.
+    Formats the log content into an HTML table with separate "Dato" and "Tid" columns.
 
     Args:
         log_content (str): The content of the master log file.
@@ -73,8 +72,11 @@ def format_log_as_html_table(log_content):
     # Create HTML table rows
     rows = ""
     for idx, line in enumerate(log_lines):
-        if line.strip():  # Ignore empty lines
+        if line.strip() and "Daily run completed" not in line:  # Ignore empty lines and summary lines
             try:
+                # Debugging: Print the line being processed
+                print(f"Processing line: {line}")
+
                 # Split into timestamp and the rest of the line
                 timestamp, rest = line.split("]", 1)
                 timestamp = timestamp.strip("[")[:-3]  # Remove leading "[" and last 3 characters ",XX"
@@ -82,21 +84,17 @@ def format_log_as_html_table(log_content):
                 # Split the timestamp into date and time
                 date, time = timestamp.split(maxsplit=1)
 
-                # Split the rest into task and details
-                task, details = rest.split(":", 1)
-                task = task.strip()
+                # Split the rest into task, script, status, and new data
+                task_part, details_part = rest.split(":", 1)
+                task = task_part.strip()
 
-                # Split details into script and status
-                script, status = details.split(":", 1)
-                script = script.strip()
-                status = status.strip()
+                # Extract script, status, and new_data_status from details
+                script_part, status_and_new_data = details_part.rsplit(":", 1)
+                script = script_part.strip()
+                status, new_data_status = map(str.strip, status_and_new_data.split(",", 1))
 
-                # Check for "New Data" status
-                if "," in status:
-                    status, new_data_status = status.rsplit(",", 1)
-                    new_data = "Ja" if new_data_status.strip() == "New Data" else ""
-                else:
-                    new_data = ""
+                # Map new_data_status to Ja/Nei
+                new_data = "Ja" if new_data_status == "True" else "Nei"
 
                 # Determine status badge style
                 if status.lower() == "completed":
@@ -118,8 +116,9 @@ def format_log_as_html_table(log_content):
                     <td>{new_data}</td>
                 </tr>
                 """
-            except ValueError:
-                # Skip lines that don't conform to the expected format
+            except Exception as e:
+                # Debugging: Print the error and the line that caused it
+                print(f"Error processing line: {line}. Error: {e}")
                 continue
 
     # Wrap rows in a styled HTML table
@@ -175,7 +174,6 @@ def format_log_as_html_table(log_content):
     </table>
     """
     return html_table
-
 
 
 # Generate the HTML table
