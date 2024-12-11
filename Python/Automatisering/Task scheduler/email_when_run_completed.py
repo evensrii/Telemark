@@ -33,7 +33,7 @@ print("X_FUNCTIONS_KEY loaded successfully.")
 # Recipients and their corresponding names
 recipients = [
     {"email": "even.sannes.riiser@telemarkfylke.no", "name": "Even"},
-    {"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
+    #{"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
 ]
 
 ### READ MASTER LOG FILE ###
@@ -57,6 +57,15 @@ with open(log_file_path, "r", encoding="utf-8") as log_file:
 ### FORMAT LOG CONTENT INTO HTML TABLE ###
 
 def format_log_as_html_table(log_content):
+    """
+    Formats the log content into an HTML table with proper styling.
+
+    Args:
+        log_content (str): The content of the master log file.
+
+    Returns:
+        str: HTML string for the table.
+    """
     # Split log content into lines
     log_lines = log_content.split("\n")
 
@@ -65,7 +74,7 @@ def format_log_as_html_table(log_content):
     for idx, line in enumerate(log_lines):
         if line.strip():  # Ignore empty lines
             try:
-                # Split line into components
+                # Parse the line into components
                 timestamp_task_status, new_data_status = line.rsplit(",", 1)
                 timestamp, task_status = timestamp_task_status.split("]", 1)
                 timestamp = timestamp.strip("[")
@@ -73,23 +82,63 @@ def format_log_as_html_table(log_content):
                 script, status = script_status.split(":", 1)
 
                 # Format the "New Data" status
-                new_data = "Ja" if new_data_status.strip() == "Ja" else ""
+                new_data = "Ja" if new_data_status.strip() == "New Data" else ""
+
+                # Determine status badge style
+                if status.strip().lower() == "completed":
+                    status_badge = f"<span style='background-color: #32CD32; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Completed</span>"
+                else:
+                    status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Failed</span>"
+
+                # Apply alternating row colors
+                background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
 
                 # Add table row
                 rows += f"""
-                <tr>
+                <tr style='background-color: {background_color};'>
                     <td>{timestamp}</td>
-                    <td>{task.strip()}</td>
+                    <td style='text-align: left; padding-left: 10px;'>{task.strip()}</td>
                     <td>{script.strip()}</td>
-                    <td>{status.strip()}</td>
+                    <td>{status_badge}</td>
                     <td>{new_data}</td>
                 </tr>
                 """
             except ValueError:
+                # Skip lines that don't conform to the expected format
                 continue
 
     # Wrap rows in a styled HTML table
     html_table = f"""
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+
+        body {{
+            font-family: 'Source Sans Pro', sans-serif;
+        }}
+
+        table {{
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0;
+            font-size: 14px;
+        }}
+
+        th, td {{
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }}
+
+        th {{
+            background-color: #000;
+            color: white;
+            text-transform: uppercase;
+        }}
+
+        tr:hover {{
+            background-color: #ddd;
+        }}
+    </style>
     <table>
         <thead>
             <tr>
@@ -106,44 +155,3 @@ def format_log_as_html_table(log_content):
     </table>
     """
     return html_table
-
-
-# Generate the HTML table
-html_table = format_log_as_html_table(log_content)
-
-
-### SEND EMAIL ###
-
-# Email sending logic
-for recipient in recipients:
-    # Personalize the subject
-    subject = f"God morgen, {recipient['name']}! Her er nattens kjøringer."
-
-    # Define the email payload
-    payload = {
-        "to": [recipient["email"]],
-        "from": "Analyse TFK <analyse@telemarkfylke.no>",
-        "subject": subject,
-        "text": log_content,
-        "html": html_table,
-    }
-
-    # API endpoint and headers
-    url = "https://mail.api.telemarkfylke.no/api/mail"
-    headers = {
-        "Content-Type": "application/json; charset=utf-8",  # Explicitly set charset
-        "User-Agent": "insomnia/10.1.1",
-        "x-functions-key": X_FUNCTIONS_KEY,
-    }
-
-    # Send the email
-    response = requests.post(url, headers=headers, json=payload)
-
-    # Check the response
-    if response.status_code == 200:
-        print(f"Email sent successfully to {recipient['name']} ({recipient['email']}).")
-    else:
-        print(
-            f"Failed to send email to {recipient['name']} ({recipient['email']}). "
-            f"Status code: {response.status_code}, Response: {response.text}"
-        )
