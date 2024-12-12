@@ -31,7 +31,7 @@ error_messages = []
 ###### Andel innvandrere i lavinntekt ######
 
 # Finner URL vha. "Inspiser side" og fane "Network" (F12)
-url = "https://app-simapi-prod.azurewebsites.net/download_csv/f/vedvarende_avinntekt"
+url = "https://app-simapi-prod.azurewebsites.net/download_csv/f/vedvarende_lavinntekt"
 
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
