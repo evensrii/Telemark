@@ -1,9 +1,10 @@
-[12.12.2024 11:00:41,60] Running innvandringsgrunn.py 
+[12.12.2024 11:01:01,68] Running enslige_mindreÃ¥rige.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Innvandringsgrunn CSV data loaded successfully.
+Fylker CSV data loaded successfully.
+Kommuner CSV data loaded successfully.
 No new data to upload. Skipping GitHub update.
-Deleted file from temp folder: innvandringsgrunn_telemark.csv
-[12.12.2024 11:00:51,55] Script completed 
+Deleted file from temp folder: bosetting_enslige_mindreårige.csv
+[12.12.2024 11:01:04,57] Script completed 

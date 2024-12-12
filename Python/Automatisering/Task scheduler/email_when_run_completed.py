@@ -102,6 +102,12 @@ def format_log_as_html_table(log_content):
                 else:
                     status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Failed</span>"
 
+                # Determine "New Data" badge style
+                if new_data == "Ja":
+                    new_data_badge = f"<span style='background-color: #32CD32; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Ja</span>"
+                else:
+                    new_data_badge = f"<span style='background-color: transparent; color: black; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Nei</span>"
+
                 # Apply alternating row colors
                 background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
 
@@ -110,10 +116,10 @@ def format_log_as_html_table(log_content):
                 <tr style='background-color: {background_color};'>
                     <td>{date}</td>
                     <td>{time}</td>
-                    <td style='text-align: left; padding-left: 10px;'>{task}</td>
-                    <td style='text-align: left; padding-left: 10px;'>{script}</td>
+                    <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>
+                    <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>
                     <td>{status_badge}</td>
-                    <td>{new_data}</td>
+                    <td>{new_data_badge}</td>
                 </tr>
                 """
             except Exception as e:
@@ -165,7 +171,7 @@ def format_log_as_html_table(log_content):
                 <th>Oppgave</th>
                 <th>Script</th>
                 <th>Status</th>
-                <th>New Data</th>
+                <th>Nye data?</th>
             </tr>
         </thead>
         <tbody>
