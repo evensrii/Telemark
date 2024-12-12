@@ -175,13 +175,31 @@ file_name2 = "andel_flyktninger.csv"
 github_folder = "Data/09_Innvandrere og inkludering/Innvandrerbefolkningen"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-compare_to_github(
-    df_pivot_arbeidsinnvandrere, file_name1, github_folder, temp_folder
-)  # <--- Endre navn på dataframe her!
+# Track if any file has new data
+is_any_new_data = False
 
-compare_to_github(
+# Call the function and get the "New Data" status for file 1
+is_new_data1 = compare_to_github(
+    df_pivot_arbeidsinnvandrere, file_name1, github_folder, temp_folder
+)
+if is_new_data1:
+    is_any_new_data = True
+
+# Call the function and get the "New Data" status for file 2
+is_new_data2 = compare_to_github(
     df_pivot_flyktninger, file_name2, github_folder, temp_folder
-)  # <--- Endre navn på dataframe her!
+)
+if is_new_data2:
+    is_any_new_data = True
+
+# Write the "New Data" status for the script to a log file
+with open("new_data_status.log", "w", encoding="utf-8") as log_file:
+    if is_any_new_data:
+        log_file.write(
+            f"Innvandrere - Arbeidsinnvandrere og Flyktninger,New Data,Yes\n"
+        )
+    else:
+        log_file.write(f"Innvandrere - Arbeidsinnvandrere og Flyktninger,New Data,No\n")
 
 
 ##################### Remove temporary local files #####################

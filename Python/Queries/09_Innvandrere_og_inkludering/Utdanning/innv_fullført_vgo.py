@@ -182,9 +182,17 @@ file_name = "fullført_vgo_innv_befolk.csv"
 github_folder = "Data/09_Innvandrere og inkludering/Utdanningsnivå Telemark"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-compare_to_github(
+# Call the function and get the "New Data" status
+is_new_data = compare_to_github(
     df_telemark_pivot, file_name, github_folder, temp_folder
-)  # <--- Endre navn på dataframe her!
+)
+
+# Write the "New Data" status to a log file
+with open("new_data_status.log", "w", encoding="utf-8") as log_file:
+    if is_new_data:
+        log_file.write(f"{file_name},New Data,Yes\n")
+    else:
+        log_file.write(f"{file_name},New Data,No\n")
 
 ##################### Remove temporary local files #####################
 

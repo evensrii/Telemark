@@ -135,9 +135,15 @@ file_name = "antall_felte_elg_og_hjort.csv"
 github_folder = "Data/04_Klima og ressursforvaltning/Ressursforvaltning"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-compare_to_github(
-    df, file_name, github_folder, temp_folder
-)  # <--- Endre navn på dataframe her!
+# Call the function and get the "New Data" status
+is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
+
+# Write the "New Data" status to a log file
+with open("new_data_status.log", "w", encoding="utf-8") as log_file:
+    if is_new_data:
+        log_file.write(f"{file_name},New Data,Yes\n")
+    else:
+        log_file.write(f"{file_name},New Data,No\n")
 
 ##################### Remove temporary local files #####################
 

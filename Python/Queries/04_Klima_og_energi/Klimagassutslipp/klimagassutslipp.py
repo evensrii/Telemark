@@ -216,17 +216,30 @@ file_name3 = "klimagassutslipp_endring.csv"
 github_folder = "Data/04_Klima og ressursforvaltning/Klimagassutslipp"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-compare_to_github(
-    df_telemark, file_name1, github_folder, temp_folder
-)  # <--- Endre navn på dataframe her!
+# Track if any file has new data
+is_any_new_data = False
 
-compare_to_github(
-    df_donut, file_name2, github_folder, temp_folder
-)  # <--- Endre navn på dataframe her!
+# Check for new data in the first file
+is_new_data1 = compare_to_github(df_telemark, file_name1, github_folder, temp_folder)
+if is_new_data1:
+    is_any_new_data = True
 
-compare_to_github(
-    df_pst_endring, file_name3, github_folder, temp_folder
-)  # <--- Endre navn på dataframe her!
+# Check for new data in the second file
+is_new_data2 = compare_to_github(df_donut, file_name2, github_folder, temp_folder)
+if is_new_data2:
+    is_any_new_data = True
+
+# Check for new data in the third file
+is_new_data3 = compare_to_github(df_pst_endring, file_name3, github_folder, temp_folder)
+if is_new_data3:
+    is_any_new_data = True
+
+# Write the "New Data" status for the script to a log file
+with open("new_data_status.log", "w", encoding="utf-8") as log_file:
+    if is_any_new_data:
+        log_file.write(f"Klimagassutslipp,New Data,Yes\n")
+    else:
+        log_file.write(f"Klimagassutslipp,New Data,No\n")
 
 ##################### Remove temporary local files #####################
 
