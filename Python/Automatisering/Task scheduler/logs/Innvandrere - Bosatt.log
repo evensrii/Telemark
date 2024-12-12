@@ -1,11 +1,9 @@
-[11.12.2024 22:49:55,07] Running innvandrere_bosatt.py 
+[12.12.2024  2:00:09,72] Running innvandrere_bosatt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Bosatt JSON data loaded successfully.
-New data detected. Uploading to GitHub.
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_innvandrere_bosatt.csv
-Update notification email sent successfully.
+No new data to upload. Skipping GitHub update.
 Deleted file from temp folder: andel_innvandrere_bosatt.csv
-[11.12.2024 22:50:00,90] Script completed 
+[12.12.2024  2:00:17,02] Script completed 
