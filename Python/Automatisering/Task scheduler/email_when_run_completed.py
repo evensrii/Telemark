@@ -56,6 +56,8 @@ with open(log_file_path, "r", encoding="utf-8") as log_file:
 
 ### FORMAT LOG CONTENT INTO HTML TABLE ###
 
+### FORMAT LOG CONTENT INTO HTML TABLE ###
+
 def format_log_as_html_table(log_content):
     """
     Formats the log content into an HTML table with separate "Dato" and "Tid" columns.
@@ -69,8 +71,11 @@ def format_log_as_html_table(log_content):
     # Split log content into lines
     log_lines = log_content.split("\n")
 
-    # Create HTML table rows
-    rows = ""
+    # Prepare separate lists for rows with "Ja" and "Nei"
+    rows_ja = []
+    rows_nei = []
+
+    # Process each log line
     for idx, line in enumerate(log_lines):
         if line.strip() and "Daily run completed" not in line:  # Ignore empty lines and summary lines
             try:
@@ -107,15 +112,15 @@ def format_log_as_html_table(log_content):
 
                 # Determine "New Data" badge style
                 if new_data == "Ja":
-                    new_data_badge = f"<span style='background-color: #f0e80a; color: black; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Ja</span>"
+                    new_data_badge = f"<span style='background-color: #f0e80a; color: black; font-weight: bold; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Ja</span>"
                 else:
                     new_data_badge = f"<span style='background-color: transparent; color: black; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Nei</span>"
 
                 # Apply alternating row colors
                 background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
 
-                # Add table row
-                rows += f"""
+                # Create the row
+                row = f"""
                 <tr style='background-color: {background_color};'>
                     <td>{date}</td>
                     <td>{time}</td>
@@ -125,10 +130,20 @@ def format_log_as_html_table(log_content):
                     <td>{new_data_badge}</td>
                 </tr>
                 """
+
+                # Sort rows into "Ja" or "Nei" groups
+                if new_data == "Ja":
+                    rows_ja.append(row)
+                else:
+                    rows_nei.append(row)
+
             except Exception as e:
                 # Debugging: Print the error and the line that caused it
                 print(f"Error processing line: {line}. Error: {e}")
                 continue
+
+    # Combine "Ja" rows first, followed by "Nei" rows
+    rows = "".join(rows_ja + rows_nei)
 
     # Wrap rows in a styled HTML table
     html_table = f"""

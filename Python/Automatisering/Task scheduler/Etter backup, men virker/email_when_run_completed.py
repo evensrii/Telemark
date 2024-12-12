@@ -92,15 +92,24 @@ def format_log_as_html_table(log_content):
                 script_part, status_and_new_data = details_part.rsplit(":", 1)
                 script = script_part.strip()
                 status, new_data_status = map(str.strip, status_and_new_data.split(",", 1))
+                
+                # Map status ("Completed" or "Failed") to "Fullført" or "Feilet"
+                status = "Fullført" if status.lower() == "completed" else "Feilet"
 
                 # Map new_data_status ("Yes" or "No") to "Ja" or "Nei"
                 new_data = "Ja" if new_data_status == "Yes" else "Nei"
 
-                # Determine status badge style
-                if status.lower() == "completed":
-                    status_badge = f"<span style='background-color: #32CD32; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Completed</span>"
+                # Determine "Status" badge style
+                if status == "Fullført":
+                    status_badge = f"<span style='background-color: #32CD32; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Fullført</span>"
                 else:
-                    status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Failed</span>"
+                    status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Feilet</span>"
+
+                # Determine "New Data" badge style
+                if new_data == "Ja":
+                    new_data_badge = f"<span style='background-color: #f0e80a; color: black; font-weight: bold; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Ja</span>"
+                else:
+                    new_data_badge = f"<span style='background-color: transparent; color: black; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Nei</span>"
 
                 # Apply alternating row colors
                 background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
@@ -110,10 +119,10 @@ def format_log_as_html_table(log_content):
                 <tr style='background-color: {background_color};'>
                     <td>{date}</td>
                     <td>{time}</td>
-                    <td style='text-align: left; padding-left: 10px;'>{task}</td>
-                    <td style='text-align: left; padding-left: 10px;'>{script}</td>
+                    <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>
+                    <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>
                     <td>{status_badge}</td>
-                    <td>{new_data}</td>
+                    <td>{new_data_badge}</td>
                 </tr>
                 """
             except Exception as e:
@@ -165,7 +174,7 @@ def format_log_as_html_table(log_content):
                 <th>Oppgave</th>
                 <th>Script</th>
                 <th>Status</th>
-                <th>New Data</th>
+                <th>Nye data?</th>
             </tr>
         </thead>
         <tbody>

@@ -1,4 +1,4 @@
-[12.12.2024 11:13:16,85] Running sekundÃ¦rflytting.py 
+[12.12.2024 12:12:38,69] Running sekundÃ¦rflytting.py 
 D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekundærflytting.py:121: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
@@ -11,6 +11,8 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Sekundærflytting CSV data loaded successfully.
 Most recent year in table is 2023-01-01 00:00:00
-No new data to upload. Skipping GitHub update.
+New data detected. Uploading to GitHub.
+File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/sekundærflytting.csv
+Update notification email sent successfully.
 Deleted file from temp folder: sekundærflytting.csv
-[12.12.2024 11:13:19,63] Script completed 
+[12.12.2024 12:12:43,49] Script completed 
