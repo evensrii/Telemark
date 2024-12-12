@@ -92,15 +92,18 @@ def format_log_as_html_table(log_content):
                 script_part, status_and_new_data = details_part.rsplit(":", 1)
                 script = script_part.strip()
                 status, new_data_status = map(str.strip, status_and_new_data.split(",", 1))
+                
+                # Map status ("Completed" or "Failed") to "Fullført" or "Feilet"
+                status = "Fullført" if status.lower() == "completed" else "Feilet"
 
                 # Map new_data_status ("Yes" or "No") to "Ja" or "Nei"
                 new_data = "Ja" if new_data_status == "Yes" else "Nei"
 
-                # Determine status badge style
-                if status.lower() == "completed":
-                    status_badge = f"<span style='background-color: #32CD32; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Completed</span>"
+                # Determine "Status" badge style
+                if status == "Fullført":
+                    status_badge = f"<span style='background-color: #32CD32; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Fullført</span>"
                 else:
-                    status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Failed</span>"
+                    status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Feilet</span>"
 
                 # Determine "New Data" badge style
                 if new_data == "Ja":
