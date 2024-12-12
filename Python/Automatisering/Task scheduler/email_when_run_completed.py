@@ -107,7 +107,7 @@ def format_log_as_html_table(log_content):
 
                 # Determine "New Data" badge style
                 if new_data == "Ja":
-                    new_data_badge = f"<span style='background-color: #32CD32; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Ja</span>"
+                    new_data_badge = f"<span style='background-color: #f0e80a; color: black; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Ja</span>"
                 else:
                     new_data_badge = f"<span style='background-color: transparent; color: black; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Nei</span>"
 
