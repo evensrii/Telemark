@@ -1,4 +1,4 @@
-[12.12.2024 12:15:47,20] Running økologisk_tilstand.py 
+[12.12.2024 13:23:27,32] Running økologisk_tilstand.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -36,4 +36,4 @@ Traceback (most recent call last):
   File "D:\Scripts\analyse\Telemark\Python\Queries\04_Klima_og_energi\Ressursforvaltning\�kologisk_tilstand.py", line 281, in <module>
     is_new_data = compare_to_github(df_pivoted, file_name, github_folder, temp_folder)
 NameError: name 'df_pivoted' is not defined
-[12.12.2024 12:16:15,07] Script failed with error code 1 
+[12.12.2024 13:23:55,34] Script failed with error code 1 

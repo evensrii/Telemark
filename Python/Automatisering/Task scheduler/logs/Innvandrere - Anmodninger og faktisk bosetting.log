@@ -1,24 +1,36 @@
-[12.12.2024 12:12:32,70] Running anmodninger_og_faktisk_bosetting.py 
+[12.12.2024 13:20:13,69] Running anmodninger_og_faktisk_bosetting.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Anmodninger og faktisk bosetting: 500 Server Error: Internal Server Error for url: https://app-simapi-prod.azurewebsites.net/download_csv/k/osatt_anmodede
-Error occurred: 500 Server Error: Internal Server Error for url: https://app-simapi-prod.azurewebsites.net/download_csv/k/osatt_anmodede
-Error notification email sent successfully.
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\anmodninger_og_faktisk_bosetting.py", line 33, in <module>
-    df = fetch_data(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 46, in fetch_data
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://app-simapi-prod.azurewebsites.net/download_csv/k/osatt_anmodede
+Anmodninger og faktisk bosetting CSV data loaded successfully.
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 76329 entries, 0 to 76328
+Data columns (total 6 columns):
+ #   Column         Non-Null Count  Dtype 
+---  ------         --------------  ----- 
+ 0   Enhet          76329 non-null  object
+ 1   År             76329 non-null  int64 
+ 2   Kommunenummer  76329 non-null  object
+ 3   Kommune        34688 non-null  object
+ 4   Kategori       76329 non-null  object
+ 5   Antall         76327 non-null  object
+dtypes: int64(1), object(5)
+memory usage: 3.5+ MB
+           Kommune         År                Kategori  Antall
+558  Midt-Telemark 1995-01-01  Anmodning om bosetting    35.0
+559  Midt-Telemark 1995-01-01       Faktisk bosetting     0.0
+560  Midt-Telemark 1995-01-01     Vedtak om bosetting    13.0
+561  Midt-Telemark 1996-01-01  Anmodning om bosetting     0.0
+562  Midt-Telemark 1996-01-01       Faktisk bosetting     0.0
+..             ...        ...                     ...     ...
+646  Midt-Telemark 2023-01-01     Vedtak om bosetting   110.0
+647  Midt-Telemark 2024-01-01  Anmodning om bosetting    75.0
+648  Midt-Telemark 2024-01-01       Faktisk bosetting    76.0
+649  Midt-Telemark 2024-01-01     Vedtak om bosetting    75.0
+650  Midt-Telemark 2025-01-01  Anmodning om bosetting    45.0
 
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\anmodninger_og_faktisk_bosetting.py", line 45, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
-[12.12.2024 12:12:35,81] Script failed with error code 1 
+[93 rows x 4 columns]
+No new data to upload. Skipping GitHub update.
+Deleted file from temp folder: anmodninger_og_faktisk_bosetting.csv
+[12.12.2024 13:20:16,77] Script completed 
