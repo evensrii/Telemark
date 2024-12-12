@@ -106,13 +106,13 @@ def format_log_as_html_table(log_content):
 
                 # Determine "Status" badge style
                 if status == "Fullført":
-                    status_badge = f"<span style='background-color: #139c13; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Fullført</span>"
+                    status_badge = f"<span style='background-color: #0bb30b; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Fullført</span>"
                 else:
                     status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Feilet</span>"
 
                 # Determine "New Data" badge style
                 if new_data == "Ja":
-                    new_data_badge = f"<span style='background-color: #f0e80a; color: black; font-weight: bold; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Ja</span>"
+                    new_data_badge = f"<span style='background-color: #faf334; color: black; font-weight: bold; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Ja</span>"
                 else:
                     new_data_badge = f"<span style='background-color: transparent; color: black; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Nei</span>"
 
