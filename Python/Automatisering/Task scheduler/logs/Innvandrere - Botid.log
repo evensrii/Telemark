@@ -1,19 +1,9 @@
-[13.12.2024 15:39:44,58] Running botid.py 
+[13.12.2024 15:42:57,10] Running botid.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Botid CSV data loaded successfully.
-New data detected. Uploading to GitHub.
-
-=== Data Comparison ===
-File: botid.csv
-Changes detected in the following rows:
-
-Total rows with changes: 0
-====================
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/botid.csv
-Email notifications disabled. Updates for botid.csv were not sent.
+No new data to upload. Skipping GitHub update.
 Deleted file from temp folder: botid.csv
-[13.12.2024 15:39:48,42] Script completed 
+[13.12.2024 15:42:59,74] Script completed 
