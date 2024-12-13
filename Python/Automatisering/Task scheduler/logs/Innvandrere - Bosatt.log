@@ -1,9 +1,24 @@
-[13.12.2024 12:35:31,01] Running innvandrere_bosatt.py 
+[13.12.2024 14:44:05,01] Running innvandrere_bosatt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Bosatt JSON data loaded successfully.
-No new data to upload. Skipping GitHub update.
-Deleted file from temp folder: andel_innvandrere_bosatt.csv
-[13.12.2024 12:35:38,80] Script completed 
+Request error in Bosatt: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/tabl/09817/
+Error occurred: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/tabl/09817/
+Email notifications disabled. Errors in innvandrere_bosatt.py were not sent.
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py", line 69, in <module>
+    df = fetch_data(
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 46, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/tabl/09817/
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py", line 79, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+[13.12.2024 14:44:10,83] Script failed with error code 1 
