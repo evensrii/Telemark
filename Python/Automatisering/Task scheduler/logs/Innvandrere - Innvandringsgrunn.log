@@ -1,9 +1,19 @@
-[13.12.2024 14:44:10,86] Running innvandringsgrunn.py 
+[13.12.2024 15:39:25,18] Running innvandringsgrunn.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Innvandringsgrunn CSV data loaded successfully.
-No new data to upload. Skipping GitHub update.
+New data detected. Uploading to GitHub.
+
+=== Data Comparison ===
+File: innvandringsgrunn_telemark.csv
+Changes detected in the following rows:
+
+Total rows with changes: 0
+====================
+
+File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/innvandringsgrunn_telemark.csv
+Email notifications disabled. Updates for innvandringsgrunn_telemark.csv were not sent.
 Deleted file from temp folder: innvandringsgrunn_telemark.csv
-[13.12.2024 14:44:20,04] Script completed 
+[13.12.2024 15:39:40,87] Script completed 
