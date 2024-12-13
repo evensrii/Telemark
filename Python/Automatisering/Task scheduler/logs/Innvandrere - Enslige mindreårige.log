@@ -1,12 +1,10 @@
-[12.12.2024 15:01:31,27] Running enslige_mindreÃ¥rige.py 
+[13.12.2024  2:00:34,02] Running enslige_mindreÃ¥rige.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 Kommuner CSV data loaded successfully.
-New data detected. Uploading to GitHub.
-File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/bosetting_enslige_mindreårige.csv
-Update notification email sent successfully.
+No new data to upload. Skipping GitHub update.
 Deleted file from temp folder: bosetting_enslige_mindreårige.csv
-[12.12.2024 15:01:35,95] Script completed 
+[13.12.2024  2:00:36,61] Script completed 

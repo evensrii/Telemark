@@ -1,4 +1,4 @@
-[12.12.2024 15:04:51,21] Running Ã¸kologisk_tilstand_server_versjon.py 
+[13.12.2024  2:03:29,18] Running Ã¸kologisk_tilstand_server_versjon.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -8,8 +8,6 @@ GITHUB_TOKEN loaded successfully.
 1    Innsjø       20.5  66.7     12.2     0.3           0.3
 2  Kystvann        4.1  40.8     51.0     0.0           4.1
 All tasks completed successfully.
-New data detected. Uploading to GitHub.
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/økologisk_tilstand_vann.csv
-Update notification email sent successfully.
+No new data to upload. Skipping GitHub update.
 Deleted file from temp folder: økologisk_tilstand_vann.csv
-[12.12.2024 15:05:10,09] Script completed 
+[13.12.2024  2:03:46,98] Script completed 
