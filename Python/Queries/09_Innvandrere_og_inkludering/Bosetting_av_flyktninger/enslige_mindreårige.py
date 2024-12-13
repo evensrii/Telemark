@@ -28,7 +28,7 @@ error_messages = []
 
 # Finner URL vha. "Inspiser side" og fane "Network" (F12)
 url_fylker = (
-    "https://app-simapi-prod.azurewebsites.net/download_csv/f/nslige_mindrearige"
+    "https://app-simapi-prod.azurewebsites.net/download_csv/f/enslige_mindrearige"
 )
 
 

@@ -1,4 +1,4 @@
-[13.12.2024  2:03:21,68] Running norskeutslipp.py 
+[13.12.2024 12:39:18,23] Running norskeutslipp.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -23,8 +23,12 @@ Data columns (total 12 columns):
  11  Unnamed: 11               6282 non-null   object
 dtypes: object(12)
 memory usage: 590.2+ KB
-No new data to upload. Skipping GitHub update.
-No new data to upload. Skipping GitHub update.
+New data detected. Uploading to GitHub.
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv
+Update notification email sent successfully.
+File not found on GitHub: Data/04_Klima og ressursforvaltning/Klimagassutslipp/norskeutslipp_everviz.csv
+Uploading new file.
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/norskeutslipp_everviz.csv
 Deleted file from temp folder: norskeutslipp_detaljert_telemark.csv
 Deleted file from temp folder: norskeutslipp_everviz.csv
-[13.12.2024  2:03:29,18] Script completed 
+[13.12.2024 12:39:33,62] Script completed 
