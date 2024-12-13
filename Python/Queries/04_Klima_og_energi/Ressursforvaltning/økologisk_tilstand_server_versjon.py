@@ -79,7 +79,7 @@ try:
     ########################## SETTING UP SELENIUM AND OPENING THE WEBSITE
 
     options = Options()
-    # options.add_argument("--headless=new")  # Run in headless mode
+    options.add_argument("--headless=new")  # Run in headless mode
 
     # Initialize the WebDriver
     driver = webdriver.Chrome(options=options)
@@ -96,7 +96,7 @@ try:
     # Attempt to click the "Aksepter alle" button for cookie consent
     try:
         accept_all_button = wait.until(
-            EC.element_to_be_clickable((By.XPATH, "//button[text()='Aksepter alle']"))
+            EC.element_to_be_clickable((By.XPATH, "//button[text()='Accept all']"))
         )
         accept_all_button.click()
     except:
@@ -123,6 +123,27 @@ try:
         close_welcome_button.click()
     except:
         print("No welcome window appeared, continuing...")
+
+    ########################## PRESS LANGUAGE BUTTON
+
+
+    language_button = wait.until(
+        EC.element_to_be_clickable(
+            (By.XPATH, "//button[contains(@class, '_menuButton_13182_1')]")
+        )
+    )
+    language_button.click()
+
+
+    ########################## CHANGE LANGUAGE TO NORWEGIAN
+  
+    norwegian_button = wait.until(
+        EC.element_to_be_clickable(
+            (By.XPATH, "//li[contains(text(), 'Norwegian (bokmål)')]")
+        )
+    )
+    norwegian_button.click()
+
 
     ########################## SELECT TELEMARK COUNTY
 

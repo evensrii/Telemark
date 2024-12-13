@@ -56,8 +56,6 @@ with open(log_file_path, "r", encoding="utf-8") as log_file:
 
 ### FORMAT LOG CONTENT INTO HTML TABLE ###
 
-### FORMAT LOG CONTENT INTO HTML TABLE ###
-
 def format_log_as_html_table(log_content):
     """
     Formats the log content into an HTML table with separate "Dato" and "Tid" columns.
@@ -71,9 +69,10 @@ def format_log_as_html_table(log_content):
     # Split log content into lines
     log_lines = log_content.split("\n")
 
-    # Prepare separate lists for rows with "Ja" and "Nei"
+    # Prepare separate lists for rows with "Ja", "Feilet", and others
     rows_ja = []
-    rows_nei = []
+    rows_feilet = []
+    rows_other = []
 
     # Process each log line
     for idx, line in enumerate(log_lines):
@@ -106,13 +105,13 @@ def format_log_as_html_table(log_content):
 
                 # Determine "Status" badge style
                 if status == "Fullført":
-                    status_badge = f"<span style='background-color: #139c13; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Fullført</span>"
+                    status_badge = f"<span style='background-color: #0bb30b; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Fullført</span>"
                 else:
                     status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Feilet</span>"
 
                 # Determine "New Data" badge style
                 if new_data == "Ja":
-                    new_data_badge = f"<span style='background-color: #f0e80a; color: black; font-weight: bold; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Ja</span>"
+                    new_data_badge = f"<span style='background-color: #faf334; color: black; font-weight: bold; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Ja</span>"
                 else:
                     new_data_badge = f"<span style='background-color: transparent; color: black; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Nei</span>"
 
@@ -131,19 +130,21 @@ def format_log_as_html_table(log_content):
                 </tr>
                 """
 
-                # Sort rows into "Ja" or "Nei" groups
+                # Sort rows into "Ja", "Feilet", or others
                 if new_data == "Ja":
                     rows_ja.append(row)
+                elif status == "Feilet":
+                    rows_feilet.append(row)
                 else:
-                    rows_nei.append(row)
+                    rows_other.append(row)
 
             except Exception as e:
                 # Debugging: Print the error and the line that caused it
                 print(f"Error processing line: {line}. Error: {e}")
                 continue
 
-    # Combine "Ja" rows first, followed by "Nei" rows
-    rows = "".join(rows_ja + rows_nei)
+    # Combine rows: "Ja" first, then "Feilet," then others
+    rows = "".join(rows_ja + rows_feilet + rows_other)
 
     # Wrap rows in a styled HTML table
     html_table = f"""

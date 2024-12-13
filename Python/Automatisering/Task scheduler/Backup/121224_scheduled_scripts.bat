@@ -57,7 +57,7 @@ CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_in
 :: Klima og energi
 CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\04_Klima_og_energi\Klimagassutslipp\klimagassutslipp.py" "Klima og energi - Sektorvise utslipp"
 CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\04_Klima_og_energi\Klimagassutslipp\norskeutslipp.py" "Klima og energi - Utslipp fra landbasert industri"
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\04_Klima_og_energi\Ressursforvaltning\økologisk_tilstand.py" "Klima og energi - Økologisk tilstand vann"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\04_Klima_og_energi\Ressursforvaltning\økologisk_tilstand_server_versjon.py" "Klima og energi - Økologisk tilstand vann"
 CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\04_Klima_og_energi\Ressursforvaltning\antall_felt.py" "Klima og energi - Felte hjortedyr"
 
 :: Areal og stedsutvikling

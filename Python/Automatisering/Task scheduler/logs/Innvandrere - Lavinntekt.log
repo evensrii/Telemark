@@ -1,9 +1,24 @@
-[12.12.2024 13:20:49,37] Running andel_innvandrere_i_lavinntekt.py 
+[12.12.2024 15:02:06,56] Running andel_innvandrere_i_lavinntekt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Lavinntekt CSV data loaded successfully.
-No new data to upload. Skipping GitHub update.
-Deleted file from temp folder: andel_innvandrere_i_lavinntekt.csv
-[12.12.2024 13:20:51,93] Script completed 
+Request error in Lavinntekt: 500 Server Error: Internal Server Error for url: https://app-simapi-prod.azurewebsites.net/download_csv/f/vedvarende_avinntekt
+Error occurred: 500 Server Error: Internal Server Error for url: https://app-simapi-prod.azurewebsites.net/download_csv/f/vedvarende_avinntekt
+Error notification email sent successfully.
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_innvandrere_i_lavinntekt.py", line 39, in <module>
+    df = fetch_data(
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 46, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://app-simapi-prod.azurewebsites.net/download_csv/f/vedvarende_avinntekt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_innvandrere_i_lavinntekt.py", line 52, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+[12.12.2024 15:02:09,40] Script failed with error code 1 
