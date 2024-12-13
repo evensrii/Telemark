@@ -184,15 +184,81 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         else:
             print("New data detected. Uploading to GitHub.")
 
-            # Compute differences
-            diff = pd.concat([existing_df, new_df]).drop_duplicates(keep=False)
-            diff_lines = diff.head(5).to_dict(orient="records")  # Show first 5 changes
+            # Identify the key columns (all columns except numeric ones that might change)
+            numeric_cols = new_df.select_dtypes(include=['float64', 'int64']).columns
+            key_cols = [col for col in new_df.columns if col not in numeric_cols]
+
+            # Merge old and new data to compare values
+            comparison = existing_df.merge(
+                new_df, 
+                on=key_cols, 
+                how='outer',
+                suffixes=('_old', '_new')
+            )
+
+            # Find rows where values have changed
+            changed_rows = comparison[
+                comparison.apply(lambda row: any(
+                    row[f"{col}_old"] != row[f"{col}_new"]
+                    for col in numeric_cols
+                    if f"{col}_old" in row.index and f"{col}_new" in row.index
+                    and pd.notna(row[f"{col}_old"]) and pd.notna(row[f"{col}_new"])
+                ), axis=1)
+            ]
+
+            # Print comparison details to log
+            print("\n=== Data Comparison ===")
+            print(f"File: {file_name}")
+            print("Changes detected in the following rows:\n")
+            
+            for idx, row in changed_rows.head(5).iterrows():
+                # Print identifying information
+                print("Row identifiers:")
+                for col in key_cols:
+                    print(f"  {col}: {row[col]}")
+                
+                # Print value changes
+                print("Value changes:")
+                for col in numeric_cols:
+                    old_col = f"{col}_old"
+                    new_col = f"{col}_new"
+                    if old_col in row.index and new_col in row.index:
+                        if pd.notna(row[old_col]) and pd.notna(row[new_col]):
+                            print(f"  {col}: {row[old_col]} → {row[new_col]}")
+                print()  # Empty line between rows
+
+            # Show summary
+            total_changes = len(changed_rows)
+            print(f"Total rows with changes: {total_changes}")
+            if total_changes > 5:
+                print("(Showing first 5 changes only)")
+            print("=" * 20 + "\n")
+
+            # Format changes for email notification
+            diff_lines = []
+            for _, row in changed_rows.head(5).iterrows():
+                change_dict = {col: row[col] for col in key_cols}
+                for col in numeric_cols:
+                    old_col = f"{col}_old"
+                    new_col = f"{col}_new"
+                    if old_col in row.index and new_col in row.index:
+                        if pd.notna(row[old_col]) and pd.notna(row[new_col]):
+                            change_dict[f"{col} (Old)"] = row[old_col]
+                            change_dict[f"{col} (New)"] = row[new_col]
+                diff_lines.append(change_dict)
 
             upload_github_file(
-                local_file_path, github_file_path, message=f"Updated {file_name}"
+                local_file_path, 
+                github_file_path, 
+                message=f"Updated {file_name} with {total_changes} value changes"
             )
+            
             # Notify about the updated data and differences
-            notify_updated_data(file_name, diff_lines, reason="New data detected.")
+            notify_updated_data(
+                file_name, 
+                diff_lines, 
+                reason=f"Updated values in {total_changes} rows"
+            )
             return True  # New data detected and uploaded
     else:
         # If the file does not exist on GitHub, upload the new file
