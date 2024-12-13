@@ -35,15 +35,20 @@ print("X_FUNCTIONS_KEY loaded successfully.")
 ### 1) EPOST VED MISLYKKEDE SPØRRINGER
 
 
-def notify_errors(error_messages, script_name="Unknown Script"):
+def notify_errors(error_messages, script_name="Unknown Script", send_email=False):
+    """
+    Sends an email notification if there are any errors in the error_messages list.
 
-    # Sends an email notification if there are any errors in the error_messages list.
-
-    # Parameters:
-    # - error_messages (list): A list of error messages.
-    # - script_name (str): The name of the script where the errors occurred.
-
+    Parameters:
+        error_messages (list): A list of error messages.
+        script_name (str): The name of the script where the errors occurred.
+        send_email (bool): Whether to send the email notification (default: False)
+    """
     if error_messages:
+        if not send_email:
+            print(f"Email notifications disabled. Errors in {script_name} were not sent.")
+            return
+
         error_details = "\n".join(error_messages)
         payload = {
             "to": ["even.sannes.riiser@telemarkfylke.no"],
@@ -76,7 +81,7 @@ def notify_errors(error_messages, script_name="Unknown Script"):
 ### 2) EPOST VED NYE DATA
 
 
-def notify_updated_data(file_name, diff_lines=None, reason=""):
+def notify_updated_data(file_name, diff_lines=None, reason="", send_email=False):
     """
     Sends an email notification when new data is detected in the GitHub comparison.
 
@@ -84,7 +89,12 @@ def notify_updated_data(file_name, diff_lines=None, reason=""):
         file_name (str): The name of the updated file.
         diff_lines (list): A list of dictionaries containing the differences (optional).
         reason (str): The reason for the update (optional).
+        send_email (bool): Whether to send the email notification (default: False)
     """
+    if not send_email:
+        print(f"Email notifications disabled. Updates for {file_name} were not sent.")
+        return
+
     # Get the name of the script that called compare_to_github()
     frame = inspect.stack()[2]  # Two levels up in the call stack
     script_name = (

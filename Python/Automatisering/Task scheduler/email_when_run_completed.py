@@ -105,9 +105,9 @@ def format_log_as_html_table(log_content):
 
                 # Determine "Status" badge style
                 if status == "Fullført":
-                    status_badge = f"<span style='background-color: #0bb30b; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Fullført</span>"
+                    status_badge = f"<span style='background-color: #0bb30b; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'><i class='fa-solid fa-circle-check'></i></span>"
                 else:
-                    status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Feilet</span>"
+                    status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'><i class='fa-solid fa-circle-xmark'></i></span>"
 
                 # Determine "New Data" badge style
                 if new_data == "Ja":
@@ -156,6 +156,7 @@ def format_log_as_html_table(log_content):
 
     # Wrap rows in a styled HTML table
     html_table = f"""
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 
@@ -188,6 +189,14 @@ def format_log_as_html_table(log_content):
 
         tr:hover {{
             background-color: #ddd;
+        }}
+
+        .fa-circle-check {{
+            font-size: 16px;
+        }}
+
+        .fa-circle-xmark {{
+            font-size: 16px;
         }}
     </style>
     <table>
