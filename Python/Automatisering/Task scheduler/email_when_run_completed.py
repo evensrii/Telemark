@@ -115,12 +115,9 @@ def format_log_as_html_table(log_content):
                 else:
                     new_data_badge = f"<span style='background-color: transparent; color: black; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Nei</span>"
 
-                # Apply alternating row colors
-                background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
-
                 # Create the row
                 row = f"""
-                <tr style='background-color: {background_color};'>
+                <tr>
                     <td>{date}</td>
                     <td>{time}</td>
                     <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>
@@ -129,7 +126,7 @@ def format_log_as_html_table(log_content):
                     <td>{new_data_badge}</td>
                 </tr>
                 """
-
+                
                 # Sort rows into "Ja", "Feilet", or others
                 if new_data == "Ja":
                     rows_ja.append(row)
@@ -144,7 +141,18 @@ def format_log_as_html_table(log_content):
                 continue
 
     # Combine rows: "Ja" first, then "Feilet," then others
-    rows = "".join(rows_ja + rows_feilet + rows_other)
+    all_rows = rows_ja + rows_feilet + rows_other
+    
+    # Apply alternating colors after sorting
+    colored_rows = []
+    for idx, row in enumerate(all_rows):
+        background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
+        # Insert the background-color style into the tr tag
+        colored_row = row.replace("<tr>", f"<tr style='background-color: {background_color};'>")
+        colored_rows.append(colored_row)
+
+    # Join all rows
+    rows = "".join(colored_rows)
 
     # Wrap rows in a styled HTML table
     html_table = f"""
