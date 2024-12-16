@@ -1,0 +1,74 @@
+[16.12.2024 15:40:23,49] Running andel_flyktninger_og_arbeidsinnvandrere.py 
+D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:153: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_pivot_arbeidsinnvandrere["Label"] = df_pivot_arbeidsinnvandrere["Kommune"]
+D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:154: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_pivot_flyktninger["Label"] = df_pivot_flyktninger["Kommune"]
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
+Selected data from year 2024-01-01 00:00:00
+
+New data detected. Checking last 200 rows for specific changes...
+
+Debug information:
+Numeric columns detected: Index(['andel arbeidsinnvandrere 2024'], dtype='object')
+Key columns detected: ['kommune', 'label']
+
+=== Data Comparison ===
+File: andel_arbeidsinnvandrere.csv
+These are 5 of the 7 differences found in the last 200 rows:
+
+Row identifiers:
+  kommune: Porsgrunn
+  label: Porsgrunn
+Value changes:
+  andel arbeidsinnvandrere 2024: 7 -> 14
+
+Row identifiers:
+  kommune: Seljord
+  label: Seljord
+Value changes:
+  andel arbeidsinnvandrere 2024: 6 -> 17
+
+Row identifiers:
+  kommune: Siljan
+  label: Siljan
+Value changes:
+  andel arbeidsinnvandrere 2024: 5 -> 17
+
+Row identifiers:
+  kommune: Skien
+  label: Skien
+Value changes:
+  andel arbeidsinnvandrere 2024: 4 -> 14
+
+Row identifiers:
+  kommune: Tinn
+  label: Tinn
+Value changes:
+  andel arbeidsinnvandrere 2024: 3 -> 16
+
+====================
+
+File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_arbeidsinnvandrere.csv
+
+=== Header Changes Detected ===
+Old headers: ['Kommune', 'Andel flyktninger 2022', 'Label']
+New headers: ['Kommune', 'Andel flyktninger 2024', 'Label']
+====================
+
+File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_flyktninger.csv
+Deleted file from temp folder: andel_arbeidsinnvandrere.csv
+Deleted file from temp folder: andel_flyktninger.csv
+Deleted file from temp folder: innvandringsgrunn_telemark.csv
+[16.12.2024 15:40:29,01] Script completed 
