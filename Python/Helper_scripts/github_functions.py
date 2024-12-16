@@ -155,6 +155,30 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         existing_df = existing_data.rename(columns=lambda x: x.strip().lower())
         new_df = pd.read_csv(local_file_path).rename(columns=lambda x: x.strip().lower())
 
+        # Convert numeric-like columns to float, handling any string formats
+        numeric_like_cols = []
+        for col in new_df.columns:
+            try:
+                # Try converting to numeric, coercing errors to NaN
+                new_df[col] = pd.to_numeric(new_df[col], errors='coerce')
+                existing_df[col] = pd.to_numeric(existing_df[col], errors='coerce')
+                if not new_df[col].isna().all() and not existing_df[col].isna().all():
+                    numeric_like_cols.append(col)
+            except:
+                continue
+
+        # Identify the key columns (all columns except numeric ones that might change)
+        numeric_cols = numeric_like_cols
+        key_cols = [col for col in new_df.columns if col not in numeric_cols]
+
+        print("\nDebug information:")
+        print(f"Numeric columns detected: {numeric_cols}")
+        print(f"Key columns detected: {key_cols}")
+        print("\nSample of new data types:")
+        print(new_df.dtypes)
+        print("\nSample of existing data types:")
+        print(existing_df.dtypes)
+
         # Compare columns to detect mismatches
         if set(existing_df.columns) != set(new_df.columns):
             print(
@@ -184,10 +208,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         else:
             print("New data detected. Uploading to GitHub.")
 
-            # Identify the key columns (all columns except numeric ones that might change)
-            numeric_cols = new_df.select_dtypes(include=['float64', 'int64']).columns
-            key_cols = [col for col in new_df.columns if col not in numeric_cols]
-
             # Merge old and new data to compare values
             comparison = existing_df.merge(
                 new_df, 
@@ -196,10 +216,13 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                 suffixes=('_old', '_new')
             )
 
+            print("\nColumns in merged comparison:")
+            print(comparison.columns.tolist())
+
             # Find rows where values have changed
             changed_rows = comparison[
                 comparison.apply(lambda row: any(
-                    row[f"{col}_old"] != row[f"{col}_new"]
+                    str(row[f"{col}_old"]) != str(row[f"{col}_new"])  # Convert to string for comparison
                     for col in numeric_cols
                     if f"{col}_old" in row.index and f"{col}_new" in row.index
                     and pd.notna(row[f"{col}_old"]) and pd.notna(row[f"{col}_new"])
