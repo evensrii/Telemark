@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from datetime import datetime
 import base64
 import pandas as pd
+import numpy as np
 
 from Helper_scripts.email_functions import notify_updated_data
 
@@ -149,69 +150,108 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     # Download the existing file from GitHub
     existing_data = download_github_file(github_file_path)
 
-    # Check if new data exists compared to GitHub
-    if existing_data is not None:
-        # Standardize column names for comparison
-        existing_df = existing_data.rename(columns=lambda x: x.strip().lower())
-        new_df = pd.read_csv(local_file_path).rename(columns=lambda x: x.strip().lower())
+    # Check for header changes first using a small sample
+    new_sample = pd.read_csv(local_file_path, nrows=1)
+    original_existing = existing_data.columns.tolist()
+    original_new = new_sample.columns.tolist()
+    
+    if set(original_existing) != set(original_new):
+        print("\n=== Header Changes Detected ===")
+        print("Old headers:", original_existing)
+        print("New headers:", original_new)
+        print("=" * 20 + "\n")
+        upload_github_file(
+            local_file_path,
+            github_file_path,
+            message=f"Updated {file_name} with new column headers"
+        )
+        return True
 
-        # Identify numeric columns (only actual numeric columns, no conversion attempts)
-        numeric_cols = new_df.select_dtypes(include=['float64', 'int64']).columns
-        key_cols = [col for col in new_df.columns if col not in numeric_cols]
-
-        print("\nDebug information:")
-        print(f"Numeric columns detected: {numeric_cols}")
-        print(f"Key columns detected: {key_cols}")
-        print(f"Total rows in new data: {len(new_df)}")
-        print(f"Total rows in existing data: {len(existing_df)}")
-
-        # For large datasets, process in chunks
-        chunk_size = 1000
-        changed_rows = []
-        total_changes = 0
-
-        # Sort both dataframes by key columns for efficient comparison
-        existing_df = existing_df.sort_values(by=key_cols)
-        new_df = new_df.sort_values(by=key_cols)
-
-        # Process in chunks
-        for start_idx in range(0, len(new_df), chunk_size):
-            end_idx = min(start_idx + chunk_size, len(new_df))
-            chunk_new = new_df.iloc[start_idx:end_idx]
+    # Initialize chunked reading
+    chunk_size = 1000
+    has_changes = False
+    total_rows_new = sum(1 for _ in open(local_file_path)) - 1  # -1 for header
+    total_rows_existing = len(existing_data)
+    
+    if total_rows_new != total_rows_existing:
+        print(f"Dataset sizes differ. New: {total_rows_new}, Existing: {total_rows_existing}")
+        has_changes = True
+    else:
+        # Read and compare files in chunks
+        chunks_new = pd.read_csv(local_file_path, chunksize=chunk_size)
+        chunks_existing = np.array_split(existing_data, len(existing_data) // chunk_size + 1)
+        
+        for chunk_idx, (chunk_new, chunk_existing) in enumerate(zip(chunks_new, chunks_existing)):
+            # Standardize column names
+            chunk_new = chunk_new.rename(columns=lambda x: x.strip().lower())
+            chunk_existing = chunk_existing.rename(columns=lambda x: x.strip().lower())
             
-            # Find matching rows in existing data
-            chunk_comparison = chunk_new.merge(
-                existing_df,
-                on=key_cols,
-                how='left',
-                suffixes=('_new', '_old')
-            )
+            if not chunk_new.equals(chunk_existing):
+                has_changes = True
+                break
+            
+            print(f"Compared chunk {chunk_idx + 1} ({(chunk_idx + 1) * chunk_size} rows)", end='\r')
 
-            # Find changes in this chunk
-            chunk_changes = chunk_comparison[
-                chunk_comparison.apply(lambda row: any(
-                    str(row[f"{col}_old"]) != str(row[f"{col}_new"])
-                    for col in numeric_cols
-                    if f"{col}_old" in row.index and f"{col}_new" in row.index
-                    and pd.notna(row[f"{col}_old"]) and pd.notna(row[f"{col}_new"])
-                ), axis=1)
-            ]
+    if has_changes:
+        print("\nNew data detected. Checking last 200 rows for specific changes...")
+    else:
+        print("\nNo differences found in the dataset.")
+        return False
 
-            # Store only the changed rows
-            if not chunk_changes.empty:
-                changed_rows.extend(chunk_changes.to_dict('records'))
-                total_changes += len(chunk_changes)
+    # For the last 200 rows comparison, read only the necessary parts
+    skiprows = max(0, total_rows_new - 200)
+    last_200_new = pd.read_csv(local_file_path, skiprows=skiprows)
+    last_200_existing = existing_data.tail(200)
 
-            # Print progress
-            print(f"Processed rows {start_idx} to {end_idx}, found {len(chunk_changes)} changes")
+    # Standardize column names for the last 200 rows
+    last_200_new = last_200_new.rename(columns=lambda x: x.strip().lower())
+    last_200_existing = last_200_existing.rename(columns=lambda x: x.strip().lower())
 
-        # Print comparison details to log
+    # Identify numeric columns from the last 200 rows sample
+    numeric_cols = last_200_new.select_dtypes(include=['float64', 'int64']).columns
+    key_cols = [col for col in last_200_new.columns if col not in numeric_cols]
+
+    print("\nDebug information:")
+    print(f"Numeric columns detected: {numeric_cols}")
+    print(f"Key columns detected: {key_cols}")
+
+    # Merge the last 200 rows
+    comparison = last_200_new.merge(
+        last_200_existing,
+        on=key_cols,
+        how='outer',
+        suffixes=('_new', '_old')
+    )
+
+    # Find rows where values have changed
+    changed_rows = comparison[
+        comparison.apply(lambda row: any(
+            str(row[f"{col}_old"]) != str(row[f"{col}_new"])
+            for col in numeric_cols
+            if f"{col}_old" in row.index and f"{col}_new" in row.index
+            and pd.notna(row[f"{col}_old"]) and pd.notna(row[f"{col}_new"])
+        ), axis=1)
+    ]
+
+    # Print comparison details
+    total_changes = len(changed_rows)
+    
+    if total_changes == 0:
+        if has_changes:
+            print("\nNo differences found in the last 200 rows, but the dataset has changed elsewhere.")
+        else:
+            print("\nNo differences found in the dataset.")
+            return False
+
+    if total_changes > 0:
         print("\n=== Data Comparison ===")
         print(f"File: {file_name}")
-        print("Changes detected in the following rows:\n")
+        if total_changes > 5:
+            print(f"These are 5 of the {total_changes} differences found in the last 200 rows:\n")
+        else:
+            print(f"Found {total_changes} differences in the last 200 rows:\n")
         
-        # Show the first 5 changes
-        for row in changed_rows[:5]:
+        for idx, row in changed_rows.head(5).iterrows():
             # Print identifying information
             print("Row identifiers:")
             for col in key_cols:
@@ -223,37 +263,22 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             for col in numeric_cols:
                 old_col = f"{col}_old"
                 new_col = f"{col}_new"
-                if old_col in row and new_col in row:
+                if old_col in row.index and new_col in row.index:
                     if pd.notna(row[old_col]) and pd.notna(row[new_col]):
                         print(f"  {col}: {row[old_col]} -> {row[new_col]}")
             print()  # Empty line between rows
 
-        # Show summary
-        print(f"Total rows with changes: {total_changes}")
-        if total_changes > 5:
-            print("(Showing first 5 changes only)")
         print("=" * 20 + "\n")
 
-        # Format changes for email notification
-        diff_lines = changed_rows[:5]
+    # Format changes for email notification
+    diff_lines = changed_rows.head(5) if not changed_rows.empty else []
 
+    if has_changes:
         upload_github_file(
             local_file_path, 
             github_file_path, 
-            message=f"Updated {file_name} with {total_changes} value changes"
+            message=f"Updated {file_name}" + (f" with {total_changes} value changes in last 200 rows" if total_changes > 0 else "")
         )
-        
-        # Notify about the updated data and differences
-        notify_updated_data(
-            file_name, 
-            diff_lines, 
-            reason=f"Updated values in {total_changes} rows"
-        )
-        return True  # New data detected and uploaded
-    else:
-        # If the file does not exist on GitHub, upload the new file
-        print("Uploading new file.")
-        upload_github_file(
-            local_file_path, github_file_path, message=f"Added {file_name}"
-        )
-        return True  # New file uploaded
+        return True
+    
+    return False

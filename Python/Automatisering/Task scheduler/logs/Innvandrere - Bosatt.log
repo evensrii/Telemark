@@ -1,4 +1,4 @@
-[16.12.2024 14:11:30,35] Running innvandrere_bosatt.py 
+[16.12.2024 14:58:33,94] Running innvandrere_bosatt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -8,30 +8,50 @@ Bosatt JSON data loaded successfully.
 Debug information:
 Numeric columns detected: Index(['andel bosatt 2024'], dtype='object')
 Key columns detected: ['kommune', 'label']
-
-Sample of new data types:
-kommune              object
-andel bosatt 2024     int64
-label                object
-dtype: object
-
-Sample of existing data types:
-kommune              object
-andel bosatt 2024     int64
-label                object
-dtype: object
-
-Columns in merged comparison:
-['kommune', 'andel bosatt 2024_old', 'label', 'andel bosatt 2024_new']
+Total rows in new data: 17
+Total rows in existing data: 17
+Processed rows 0 to 17, found 7 changes
 
 === Data Comparison ===
 File: andel_innvandrere_bosatt.csv
 Changes detected in the following rows:
 
-Total rows with changes: 0
+Row identifiers:
+  kommune: Bamble
+  label: Bamble
+Value changes:
+  andel bosatt 2024: 0 -> 9
+
+Row identifiers:
+  kommune: Fyresdal
+  label: Fyresdal
+Value changes:
+  andel bosatt 2024: 0 -> 12
+
+Row identifiers:
+  kommune: Kragerø
+  label: Kragerø
+Value changes:
+  andel bosatt 2024: 0 -> 12
+
+Row identifiers:
+  kommune: Kviteseid
+  label: Kviteseid
+Value changes:
+  andel bosatt 2024: 0 -> 11
+
+Row identifiers:
+  kommune: Nissedal
+  label: Nissedal
+Value changes:
+  andel bosatt 2024: 0 -> 12
+
+Total rows with changes: 7
+(Showing first 5 changes only)
 ====================
 
+File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_innvandrere_bosatt.csv
 Email notifications disabled. Updates for andel_innvandrere_bosatt.csv were not sent.
 Deleted file from temp folder: andel_innvandrere_bosatt.csv
 Deleted file from temp folder: innvandringsgrunn_telemark.csv
-[16.12.2024 14:11:36,78] Script completed 
+[16.12.2024 14:58:44,48] Script completed 
