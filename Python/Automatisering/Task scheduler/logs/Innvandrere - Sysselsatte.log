@@ -1,4 +1,4 @@
-[16.12.2024 13:48:31,16] Running andel_sysselsatte_innvandrere.py 
+[16.12.2024 14:01:11,36] Running andel_sysselsatte_innvandrere.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -7,16 +7,26 @@ VTFK Query JSON data loaded successfully.
 TFK Query JSON data loaded successfully.
 Her hentes tallene for Vestfold og Telemark i ['2023']
 Her hentes tallene for Telemark i ['2023']
-New data detected. Uploading to GitHub.
 
-=== Data Comparison ===
-File: andel_sysselsatte_innvandrere.csv
-Changes detected in the following rows:
+Debug information:
+Numeric columns detected: ['andel 2023']
+Key columns detected: ['kommune', 'label']
 
-Total rows with changes: 0
-====================
+Sample of new data types:
+kommune       float64
+andel 2023    float64
+label         float64
+dtype: object
 
-File uploaded successfully: Data/09_Innvandrere og inkludering/Arbeid og inntekt/andel_sysselsatte_innvandrere.csv
-Email notifications disabled. Updates for andel_sysselsatte_innvandrere.csv were not sent.
+Sample of existing data types:
+kommune       float64
+andel 2023    float64
+label         float64
+dtype: object
+No new data to upload. Skipping GitHub update.
+Deleted file from temp folder: andel_arbeidsinnvandrere.csv
+Deleted file from temp folder: andel_innvandrere_bosatt.csv
 Deleted file from temp folder: andel_sysselsatte_innvandrere.csv
-[16.12.2024 13:48:38,00] Script completed 
+Deleted file from temp folder: botid.csv
+Deleted file from temp folder: innvandringsgrunn_telemark.csv
+[16.12.2024 14:01:17,41] Script completed 

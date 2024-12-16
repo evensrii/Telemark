@@ -2,13 +2,11 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Resolved log file path: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
 Successfully pushed Innvandrere - Bosatt.log to GitHub
-Successfully pushed Innvandrere - Botid.log to GitHub
-Successfully pushed Innvandrere - Flyktninger og arbeidsinnvandrere.log to GitHub
-Successfully pushed Innvandrere - Innvandringsgrunn.log to GitHub
-Successfully pushed Innvandrere - Sysselsatte.log to GitHub
-Processing line: [16.12.2024 13:48:06,79] Innvandrere - Bosatt : innvandrere_bosatt.py : Completed,Yes 
-Processing line: [16.12.2024 13:48:21,82] Innvandrere - Innvandringsgrunn : innvandringsgrunn.py : Completed,Yes 
-Processing line: [16.12.2024 13:48:27,47] Innvandrere - Flyktninger og arbeidsinnvandrere : andel_flyktninger_og_arbeidsinnvandrere.py : Completed,Yes 
-Processing line: [16.12.2024 13:48:31,15] Innvandrere - Botid : botid.py : Completed,Yes 
-Processing line: [16.12.2024 13:48:38,00] Innvandrere - Sysselsatte : andel_sysselsatte_innvandrere.py : Completed,Yes 
-Email sent successfully to Even (even.sannes.riiser@telemarkfylke.no).
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\email_when_run_completed.py", line 144, in <module>
+    log_urls = push_logs_to_github()
+  File "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\email_when_run_completed.py", line 71, in push_logs_to_github
+    content = file.read()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\codecs.py", line 322, in decode
+    (result, consumed) = self._buffer_decode(data, self.errors, final)
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe5 in position 421: invalid continuation byte
