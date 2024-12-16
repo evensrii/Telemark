@@ -1,24 +1,19 @@
-[16.12.2024  2:00:08,79] Running innvandrere_bosatt.py 
+[16.12.2024 13:47:58,29] Running innvandrere_bosatt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Bosatt: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/tabl/09817/
-Error occurred: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/tabl/09817/
-Email notifications disabled. Errors in innvandrere_bosatt.py were not sent.
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py", line 69, in <module>
-    df = fetch_data(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 46, in fetch_data
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/tabl/09817/
+Bosatt JSON data loaded successfully.
+New data detected. Uploading to GitHub.
 
-During handling of the above exception, another exception occurred:
+=== Data Comparison ===
+File: andel_innvandrere_bosatt.csv
+Changes detected in the following rows:
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py", line 79, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
-[16.12.2024  2:00:13,53] Script failed with error code 1 
+Total rows with changes: 0
+====================
+
+File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_innvandrere_bosatt.csv
+Email notifications disabled. Updates for andel_innvandrere_bosatt.csv were not sent.
+Deleted file from temp folder: andel_innvandrere_bosatt.csv
+[16.12.2024 13:48:06,79] Script completed 
