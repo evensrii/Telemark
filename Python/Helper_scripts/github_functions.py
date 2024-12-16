@@ -162,42 +162,60 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         print("\nDebug information:")
         print(f"Numeric columns detected: {numeric_cols}")
         print(f"Key columns detected: {key_cols}")
-        print("\nSample of new data types:")
-        print(new_df.dtypes)
-        print("\nSample of existing data types:")
-        print(existing_df.dtypes)
+        print(f"Total rows in new data: {len(new_df)}")
+        print(f"Total rows in existing data: {len(existing_df)}")
 
-        # Merge old and new data to compare values
-        comparison = existing_df.merge(
-            new_df, 
-            on=key_cols, 
-            how='outer',
-            suffixes=('_old', '_new')
-        )
+        # For large datasets, process in chunks
+        chunk_size = 1000
+        changed_rows = []
+        total_changes = 0
 
-        print("\nColumns in merged comparison:")
-        print(comparison.columns.tolist())
+        # Sort both dataframes by key columns for efficient comparison
+        existing_df = existing_df.sort_values(by=key_cols)
+        new_df = new_df.sort_values(by=key_cols)
 
-        # Find rows where values have changed
-        changed_rows = comparison[
-            comparison.apply(lambda row: any(
-                str(row[f"{col}_old"]) != str(row[f"{col}_new"])
-                for col in numeric_cols
-                if f"{col}_old" in row.index and f"{col}_new" in row.index
-                and pd.notna(row[f"{col}_old"]) and pd.notna(row[f"{col}_new"])
-            ), axis=1)
-        ]
+        # Process in chunks
+        for start_idx in range(0, len(new_df), chunk_size):
+            end_idx = min(start_idx + chunk_size, len(new_df))
+            chunk_new = new_df.iloc[start_idx:end_idx]
+            
+            # Find matching rows in existing data
+            chunk_comparison = chunk_new.merge(
+                existing_df,
+                on=key_cols,
+                how='left',
+                suffixes=('_new', '_old')
+            )
+
+            # Find changes in this chunk
+            chunk_changes = chunk_comparison[
+                chunk_comparison.apply(lambda row: any(
+                    str(row[f"{col}_old"]) != str(row[f"{col}_new"])
+                    for col in numeric_cols
+                    if f"{col}_old" in row.index and f"{col}_new" in row.index
+                    and pd.notna(row[f"{col}_old"]) and pd.notna(row[f"{col}_new"])
+                ), axis=1)
+            ]
+
+            # Store only the changed rows
+            if not chunk_changes.empty:
+                changed_rows.extend(chunk_changes.to_dict('records'))
+                total_changes += len(chunk_changes)
+
+            # Print progress
+            print(f"Processed rows {start_idx} to {end_idx}, found {len(chunk_changes)} changes")
 
         # Print comparison details to log
         print("\n=== Data Comparison ===")
         print(f"File: {file_name}")
         print("Changes detected in the following rows:\n")
         
-        for idx, row in changed_rows.head(5).iterrows():
+        # Show the first 5 changes
+        for row in changed_rows[:5]:
             # Print identifying information
             print("Row identifiers:")
             for col in key_cols:
-                if pd.notna(row[col]) and row[col] != 'nan':
+                if pd.notna(row[col]) and str(row[col]) != 'nan':
                     print(f"  {col}: {row[col]}")
             
             # Print value changes
@@ -205,30 +223,19 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             for col in numeric_cols:
                 old_col = f"{col}_old"
                 new_col = f"{col}_new"
-                if old_col in row.index and new_col in row.index:
+                if old_col in row and new_col in row:
                     if pd.notna(row[old_col]) and pd.notna(row[new_col]):
                         print(f"  {col}: {row[old_col]} -> {row[new_col]}")
             print()  # Empty line between rows
 
         # Show summary
-        total_changes = len(changed_rows)
         print(f"Total rows with changes: {total_changes}")
         if total_changes > 5:
             print("(Showing first 5 changes only)")
         print("=" * 20 + "\n")
 
         # Format changes for email notification
-        diff_lines = []
-        for _, row in changed_rows.head(5).iterrows():
-            change_dict = {col: row[col] for col in key_cols}
-            for col in numeric_cols:
-                old_col = f"{col}_old"
-                new_col = f"{col}_new"
-                if old_col in row.index and new_col in row.index:
-                    if pd.notna(row[old_col]) and pd.notna(row[new_col]):
-                        change_dict[f"{col} (Old)"] = row[old_col]
-                        change_dict[f"{col} (New)"] = row[new_col]
-            diff_lines.append(change_dict)
+        diff_lines = changed_rows[:5]
 
         upload_github_file(
             local_file_path, 

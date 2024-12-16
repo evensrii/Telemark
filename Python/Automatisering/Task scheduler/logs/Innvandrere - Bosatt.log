@@ -1,4 +1,4 @@
-[16.12.2024 14:00:46,65] Running innvandrere_bosatt.py 
+[16.12.2024 14:11:30,35] Running innvandrere_bosatt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -6,21 +6,20 @@ GITHUB_TOKEN loaded successfully.
 Bosatt JSON data loaded successfully.
 
 Debug information:
-Numeric columns detected: ['andel bosatt 2024']
+Numeric columns detected: Index(['andel bosatt 2024'], dtype='object')
 Key columns detected: ['kommune', 'label']
 
 Sample of new data types:
-kommune              float64
-andel bosatt 2024      int64
-label                float64
+kommune              object
+andel bosatt 2024     int64
+label                object
 dtype: object
 
 Sample of existing data types:
-kommune              float64
-andel bosatt 2024      int64
-label                float64
+kommune              object
+andel bosatt 2024     int64
+label                object
 dtype: object
-New data detected. Uploading to GitHub.
 
 Columns in merged comparison:
 ['kommune', 'andel bosatt 2024_old', 'label', 'andel bosatt 2024_new']
@@ -29,16 +28,10 @@ Columns in merged comparison:
 File: andel_innvandrere_bosatt.csv
 Changes detected in the following rows:
 
-Row identifiers:
-  kommune: nan
-  label: nan
-Value changes:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py", line 121, in <module>
-    is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 250, in compare_to_github
-    print(f"  {col}: {row[old_col]} \u2192 {row[new_col]}")
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 23: character maps to <undefined>
-[16.12.2024 14:00:50,63] Script failed with error code 1 
+Total rows with changes: 0
+====================
+
+Email notifications disabled. Updates for andel_innvandrere_bosatt.csv were not sent.
+Deleted file from temp folder: andel_innvandrere_bosatt.csv
+Deleted file from temp folder: innvandringsgrunn_telemark.csv
+[16.12.2024 14:11:36,78] Script completed 
