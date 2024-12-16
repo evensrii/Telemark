@@ -24,7 +24,7 @@ error_messages = []
 ################# Spørring #################
 
 # Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/tabl/09817/"
+POST_URL = "https://data.ssb.no/api/v0/no/table/09817/"
 
 # Spørring for å hente ut data fra SSB
 payload = {
