@@ -210,7 +210,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             last_200_existing = existing_df.tail(200)
             last_200_new = new_df.tail(200)
 
-            # Identify numeric columns (only actual numeric columns, no conversion attempts)
+            # Identify numeric columns
             numeric_cols = new_df.select_dtypes(include=['float64', 'int64']).columns
             key_cols = [col for col in new_df.columns if col not in numeric_cols]
 
@@ -218,11 +218,25 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             print(f"Numeric columns detected: {numeric_cols}")
             print(f"Key columns detected: {key_cols}\n")
 
+            # Convert datetime columns to string in both dataframes
+            for col in key_cols:
+                if 'år' in str(col).lower() or 'date' in str(col).lower():
+                    try:
+                        last_200_existing[col] = pd.to_datetime(last_200_existing[col]).dt.strftime('%Y-%m-%d')
+                        last_200_new[col] = pd.to_datetime(last_200_new[col]).dt.strftime('%Y-%m-%d')
+                    except:
+                        pass
+                # Convert any numeric columns to string to avoid type mismatches
+                if 'nummer' in str(col).lower() or 'id' in str(col).lower():
+                    last_200_existing[col] = last_200_existing[col].astype(str)
+                    last_200_new[col] = last_200_new[col].astype(str)
+
             # Merge the last 200 rows
             comparison = last_200_new.merge(
                 last_200_existing,
                 on=key_cols,
                 how='outer',
+                indicator=True,
                 suffixes=('_new', '_old')
             )
 

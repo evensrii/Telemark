@@ -1,4 +1,40 @@
-[17.12.2024 17:44:25,62] Running botid.py 
+[17.12.2024 18:02:53,55] Running botid.py 
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:231: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  last_200_existing[col] = last_200_existing[col].astype(str)
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:232: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  last_200_new[col] = last_200_new[col].astype(str)
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:231: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  last_200_existing[col] = last_200_existing[col].astype(str)
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:232: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  last_200_new[col] = last_200_new[col].astype(str)
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:225: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  last_200_existing[col] = pd.to_datetime(last_200_existing[col]).dt.strftime('%Y-%m-%d')
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:226: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  last_200_new[col] = pd.to_datetime(last_200_new[col]).dt.strftime('%Y-%m-%d')
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -10,20 +46,18 @@ New data detected. Checking last 200 rows for specific changes...
 
 Debug information:
 Numeric columns detected: Index(['antall'], dtype='object')
-Key columns detected: ['kommunenummer', 'kommune', 'botid i norge', 'ï¿½r', 'verdensregion']
+Key columns detected: ['kommunenummer', 'kommune', 'botid i norge', 'år', 'verdensregion']
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\botid.py", line 127, in <module>
-    is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 222, in compare_to_github
-    comparison = last_200_new.merge(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\frame.py", line 9843, in merge
-    return merge(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 148, in merge
-    op = _MergeOperation(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 741, in __init__
-    self._maybe_coerce_merge_keys()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 1401, in _maybe_coerce_merge_keys
-    raise ValueError(msg)
-ValueError: You are trying to merge on object and int64 columns. If you wish to proceed you should use pd.concat
-[17.12.2024 17:44:28,95] Script failed with error code 1 
+
+No differences found in the last 200 rows, but the dataset has changed elsewhere.
+
+Email notifications disabled. Updates for botid.csv were not sent.
+
+File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/botid.csv
+
+Email notifications disabled. Updates for botid.csv were not sent.
+
+Deleted file from temp folder: botid.csv
+
+Deleted file from temp folder: botid.csv
+[17.12.2024 18:02:56,76] Script completed 
