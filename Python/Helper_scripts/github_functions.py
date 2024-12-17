@@ -250,6 +250,19 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         # Check if the actual data content is different
         existing_df.columns = existing_df.columns.str.lower()
         new_df.columns = new_df.columns.str.lower()
+
+        # Ensure consistent data types for numeric columns
+        numeric_cols = []
+        for col in existing_df.columns:
+            try:
+                # Try to convert both columns to numeric
+                existing_df[col] = pd.to_numeric(existing_df[col], errors='raise')
+                new_df[col] = pd.to_numeric(new_df[col], errors='raise')
+                numeric_cols.append(col)
+            except (ValueError, TypeError):
+                # If conversion fails, ensure both are string type
+                existing_df[col] = existing_df[col].astype(str)
+                new_df[col] = new_df[col].astype(str)
         
         # First check if the entire datasets are different
         has_changes = not existing_df.equals(new_df)
@@ -261,12 +274,9 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             last_200_existing = existing_df.tail(200)
             last_200_new = new_df.tail(200)
 
-            # Identify numeric columns
-            numeric_cols = new_df.select_dtypes(include=['float64', 'int64']).columns
-            key_cols = [col for col in new_df.columns if col not in numeric_cols]
-
             print("\nDebug information:")
             print(f"Numeric columns detected: {numeric_cols}")
+            key_cols = [col for col in new_df.columns if col not in numeric_cols]
             print(f"Key columns detected: {key_cols}\n")
 
             # Convert datetime columns to string in both dataframes
