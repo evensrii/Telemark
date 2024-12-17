@@ -66,60 +66,65 @@ def push_logs_to_github():
         if filename.endswith('.log') and filename != "00_email.log" and filename != "00_master_run.log":
             file_path = os.path.join(log_dir, filename)
             
-            # Read file content
-            with open(file_path, 'r', encoding='utf-8') as file:
-                content = file.read()
-            
-            # Prepare the file content for GitHub
-            encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
-            
-            # GitHub API endpoint for the specific file
-            github_path = f"{logs_path}/{filename}"
-            url = f"{base_url}/{github_path}"
-            
-            # Headers for GitHub API
-            headers = {
-                "Authorization": f"token {GITHUB_TOKEN}",
-                "Accept": "application/vnd.github.v3+json"
-            }
-            
             try:
-                # Check if file exists on GitHub
-                response = requests.get(url, headers=headers)
+                # Read file content with explicit UTF-8 encoding and error handling
+                with open(file_path, 'r', encoding='utf-8', errors='replace') as file:
+                    content = file.read()
                 
-                if response.status_code == 200:
-                    # File exists, get its SHA
-                    file_sha = response.json()["sha"]
+                # Prepare the file content for GitHub
+                encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
+                
+                # GitHub API endpoint for the specific file
+                github_path = f"{logs_path}/{filename}"
+                url = f"{base_url}/{github_path}"
+                
+                # Headers for GitHub API
+                headers = {
+                    "Authorization": f"token {GITHUB_TOKEN}",
+                    "Accept": "application/vnd.github.v3+json"
+                }
+                
+                try:
+                    # Check if file exists on GitHub
+                    response = requests.get(url, headers=headers)
                     
-                    # Update file
-                    data = {
-                        "message": f"Update {filename} - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-                        "content": encoded_content,
-                        "sha": file_sha,
-                        "branch": branch
-                    }
-                else:
-                    # Create new file
-                    data = {
-                        "message": f"Add {filename} - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-                        "content": encoded_content,
-                        "branch": branch
-                    }
-                
-                # Push to GitHub
-                response = requests.put(url, headers=headers, json=data)
-                
-                if response.status_code in [200, 201]:
-                    # Store the raw GitHub URL for the file
-                    raw_url = f"https://github.com/{owner}/{repo}/blob/{branch}/{logs_path}/{filename}"
-                    script_name = filename.replace('.log', '')
-                    log_urls[script_name] = raw_url
-                    print(f"Successfully pushed {filename} to GitHub")
-                else:
-                    print(f"Failed to push {filename}. Status code: {response.status_code}")
+                    if response.status_code == 200:
+                        # File exists, get its SHA
+                        file_sha = response.json()["sha"]
+                        
+                        # Update file
+                        data = {
+                            "message": f"Update {filename} - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+                            "content": encoded_content,
+                            "sha": file_sha,
+                            "branch": branch
+                        }
+                    else:
+                        # Create new file
+                        data = {
+                            "message": f"Add {filename} - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+                            "content": encoded_content,
+                            "branch": branch
+                        }
+                    
+                    # Push to GitHub
+                    response = requests.put(url, headers=headers, json=data)
+                    
+                    if response.status_code in [200, 201]:
+                        # Store the raw GitHub URL for the file
+                        raw_url = f"https://github.com/{owner}/{repo}/blob/{branch}/{logs_path}/{filename}"
+                        script_name = filename.replace('.log', '')
+                        log_urls[script_name] = raw_url
+                        print(f"Successfully pushed {filename} to GitHub")
+                    else:
+                        print(f"Failed to push {filename}. Status code: {response.status_code}")
+                        
+                except Exception as e:
+                    print(f"Error pushing {filename}: {str(e)}")
                     
             except Exception as e:
-                print(f"Error pushing {filename}: {str(e)}")
+                print(f"Error processing {filename}: {str(e)}")
+                continue
     
     return log_urls
 
@@ -136,8 +141,8 @@ print(f"Resolved log file path: {log_file_path}")
 if not os.path.exists(log_file_path):
     raise FileNotFoundError(f"Log file not found: {log_file_path}")
 
-# Read the log file content with UTF-8 encoding
-with open(log_file_path, "r", encoding="utf-8") as log_file:
+# Read the log file content with UTF-8 encoding and error handling
+with open(log_file_path, "r", encoding="utf-8", errors='replace') as log_file:
     log_content = log_file.read()
 
 # Push logs to GitHub and get URLs

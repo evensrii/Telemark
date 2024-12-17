@@ -243,7 +243,11 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                     print("Row identifiers:")
                     for col in key_cols:
                         if pd.notna(row[col]) and str(row[col]) != 'nan':
-                            print(f"  {col}: {row[col]}")
+                            try:
+                                value = str(row[col]).encode('utf-8').decode('utf-8')
+                                print(f"  {col}: {value}")
+                            except UnicodeEncodeError:
+                                print(f"  {col}: {row[col].encode('ascii', 'replace').decode()}")
                     
                     # Print value changes
                     print("Value changes:")
@@ -252,7 +256,12 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                         new_col = f"{col}_new"
                         if old_col in row.index and new_col in row.index:
                             if pd.notna(row[old_col]) and pd.notna(row[new_col]):
-                                print(f"  {col}: {row[old_col]} -> {row[new_col]}")
+                                try:
+                                    old_val = str(row[old_col]).encode('utf-8').decode('utf-8')
+                                    new_val = str(row[new_col]).encode('utf-8').decode('utf-8')
+                                    print(f"  {col}: {old_val} -> {new_val}")
+                                except UnicodeEncodeError:
+                                    print(f"  {col}: {row[old_col]} -> {row[new_col]}")
                     print()  # Empty line between rows
 
                 print("=" * 20 + "\n")
