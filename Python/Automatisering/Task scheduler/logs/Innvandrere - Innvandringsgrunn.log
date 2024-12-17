@@ -7,8 +7,8 @@ Innvandringsgrunn CSV data loaded successfully.
 New data detected. Checking last 200 rows for specific changes...
 
 Debug information:
-Numeric columns detected: Index(['kommunenummer', 'år', 'antall'], dtype='object')
-Key columns detected: ['kommune', 'kjønn', 'innvandringsgrunn', 'enhet']
+Numeric columns detected: Index(['kommunenummer', 'ï¿½r', 'antall'], dtype='object')
+Key columns detected: ['kommune', 'kjï¿½nn', 'innvandringsgrunn', 'enhet']
 
 === Data Comparison ===
 File: innvandringsgrunn_telemark.csv
@@ -16,12 +16,12 @@ Found 1 differences in the last 200 rows:
 
 Row identifiers:
   kommune: Aremark
-  kjønn: Kvinner
+  kjï¿½nn: Kvinner
   innvandringsgrunn: Utdanning (inkl. au pair) eller andre grunner
   enhet: Prosent
 Value changes:
   kommunenummer: 3124 -> 3124
-  år: 2024 -> 2024
+  ï¿½r: 2024 -> 2024
   antall: 8.3 -> 3.3
 
 ====================
