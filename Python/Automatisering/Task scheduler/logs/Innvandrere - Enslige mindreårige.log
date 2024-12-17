@@ -1,4 +1,4 @@
-[17.12.2024 18:17:05,22] Running enslige_mindreårige.py 
+[17.12.2024 18:32:11,11] Running enslige_mindreårige.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -6,23 +6,7 @@ GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 Kommuner CSV data loaded successfully.
 
-New data detected. Checking last 200 rows for specific changes...
-
-
-Debug information:
-Numeric columns detected: Index(['anmodning om bosetting', 'faktisk bosetting'], dtype='object', name='Kategori')
-Key columns detected: ['�r']
-
-
-No differences found in the last 200 rows, but the dataset has changed elsewhere.
-
-Email notifications disabled. Updates for bosetting_enslige_mindre�rige.csv were not sent.
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/bosetting_enslige_mindre�rige.csv
-
-Email notifications disabled. Updates for bosetting_enslige_mindre�rige.csv were not sent.
+No differences found in the dataset.
 
 Deleted file from temp folder: bosetting_enslige_mindre�rige.csv
-
-Deleted file from temp folder: bosetting_enslige_mindre�rige.csv
-[17.12.2024 18:17:08,01] Script completed 
+[17.12.2024 18:32:13,78] Script completed 
