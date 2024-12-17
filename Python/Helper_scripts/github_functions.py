@@ -120,9 +120,9 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
     response = requests.put(url, json=payload, headers=headers)
 
     if response.status_code in [201, 200]:
-        print(f"File uploaded successfully: {github_file_path}")
+        print(f"\nFile uploaded successfully: {github_file_path}\n")
     else:
-        print(f"Failed to upload file: {response.json()}")
+        print(f"\nFailed to upload file: {response.json()}\n")
 
 
 ## Function to compare file to GitHub
@@ -171,34 +171,40 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                 diff_lines=None, 
                 reason=f"Column headers changed from {original_existing} to {original_new}"
             )
+            print(f"\nFile uploaded successfully: {github_file_path}")
+            print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
+            print(f"\nDeleted file from temp folder: {file_name}\n")
             return True
 
-        # Standardize column names for comparison
-        existing_df = existing_data.rename(columns=lambda x: x.strip().lower())
-        new_df = pd.read_csv(local_file_path).rename(columns=lambda x: x.strip().lower())
-
         # Check for row count differences
-        if len(existing_df) != len(new_df):
+        if len(existing_data) != len(input_df):
             print(f"\nDataset size has changed:")
-            print(f"Old row count: {len(existing_df)}")
-            print(f"New row count: {len(new_df)}")
+            print(f"Old row count: {len(existing_data)}")
+            print(f"New row count: {len(input_df)}\n")
             upload_github_file(
                 local_file_path,
                 github_file_path,
-                message=f"Updated {file_name} - row count changed from {len(existing_df)} to {len(new_df)}"
+                message=f"Updated {file_name} - row count changed from {len(existing_data)} to {len(input_df)}"
             )
             notify_updated_data(
                 file_name,
                 diff_lines=None,
-                reason=f"Dataset size changed from {len(existing_df)} to {len(new_df)} rows"
+                reason=f"Dataset size changed from {len(existing_data)} to {len(input_df)} rows"
             )
+            print(f"\nFile uploaded successfully: {github_file_path}")
+            print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
+            print(f"\nDeleted file from temp folder: {file_name}\n")
             return True
+
+        # Standardize column names for comparison
+        existing_df = existing_data.rename(columns=lambda x: x.strip().lower())
+        new_df = input_df.rename(columns=lambda x: x.strip().lower())
 
         # First check if the entire datasets are different
         has_changes = not existing_df.equals(new_df)
         
         if has_changes:
-            print("New data detected. Checking last 200 rows for specific changes...")
+            print("\nNew data detected. Checking last 200 rows for specific changes...\n")
             
             # Get the last 200 rows from both dataframes
             last_200_existing = existing_df.tail(200)
@@ -210,7 +216,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
 
             print("\nDebug information:")
             print(f"Numeric columns detected: {numeric_cols}")
-            print(f"Key columns detected: {key_cols}")
+            print(f"Key columns detected: {key_cols}\n")
 
             # Merge the last 200 rows
             comparison = last_200_new.merge(
@@ -234,7 +240,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             total_changes = len(changed_rows)
             
             if total_changes == 0:
-                print("\nNo differences found in the last 200 rows, but the dataset has changed elsewhere.")
+                print("\nNo differences found in the last 200 rows, but the dataset has changed elsewhere.\n")
                 upload_github_file(
                     local_file_path, 
                     github_file_path, 
@@ -245,6 +251,9 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                     diff_lines=None, 
                     reason="Dataset changed but no specific changes found in last 200 rows"
                 )
+                print(f"\nFile uploaded successfully: {github_file_path}")
+                print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
+                print(f"\nDeleted file from temp folder: {file_name}\n")
                 return True
 
             if total_changes > 0:
@@ -255,8 +264,8 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                 else:
                     print(f"Found {total_changes} differences in the last 200 rows:\n")
                 
+                # Print changes with more spacing
                 for idx, row in changed_rows.head(5).iterrows():
-                    # Print identifying information
                     print("Row identifiers:")
                     for col in key_cols:
                         if pd.notna(row[col]) and str(row[col]) != 'nan':
@@ -266,8 +275,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                             except UnicodeEncodeError:
                                 print(f"  {col}: {row[col].encode('ascii', 'replace').decode()}")
                     
-                    # Print value changes
-                    print("Value changes:")
+                    print("\nValue changes:")
                     for col in numeric_cols:
                         old_col = f"{col}_old"
                         new_col = f"{col}_new"
@@ -279,23 +287,10 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                                     print(f"  {col}: {old_val} -> {new_val}")
                                 except UnicodeEncodeError:
                                     print(f"  {col}: {row[old_col]} -> {row[new_col]}")
-                    print()  # Empty line between rows
+                    print("\n")  # Extra spacing between rows
 
                 print("=" * 20 + "\n")
-
-                # Format changes for email notification
-                diff_lines = []
-                for _, row in changed_rows.head(5).iterrows():
-                    change_dict = {col: row[col] for col in key_cols if pd.notna(row[col])}
-                    for col in numeric_cols:
-                        old_col = f"{col}_old"
-                        new_col = f"{col}_new"
-                        if old_col in row.index and new_col in row.index:
-                            if pd.notna(row[old_col]) and pd.notna(row[new_col]):
-                                change_dict[f"{col} (Old)"] = row[old_col]
-                                change_dict[f"{col} (New)"] = row[new_col]
-                    diff_lines.append(change_dict)
-
+                
                 upload_github_file(
                     local_file_path, 
                     github_file_path, 
@@ -303,16 +298,19 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                 )
                 notify_updated_data(
                     file_name, 
-                    diff_lines, 
+                    diff_lines=None, 
                     reason=f"Found {total_changes} changes in last 200 rows"
                 )
+                print(f"\nFile uploaded successfully: {github_file_path}")
+                print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
+                print(f"\nDeleted file from temp folder: {file_name}\n")
                 return True
         else:
-            print("\nNo differences found in the dataset.")
+            print("\nNo differences found in the dataset.\n")
             return False
     else:
         # If the file does not exist on GitHub, upload the new file
-        print("Uploading new file.")
+        print("Uploading new file.\n")
         upload_github_file(
             local_file_path, github_file_path, message=f"Added {file_name}"
         )
@@ -321,4 +319,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             diff_lines=None, 
             reason="New file added to repository"
         )
+        print(f"\nFile uploaded successfully: {github_file_path}")
+        print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
+        print(f"\nDeleted file from temp folder: {file_name}\n")
         return True  # New file uploaded
