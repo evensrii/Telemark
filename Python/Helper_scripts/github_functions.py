@@ -177,6 +177,23 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         existing_df = existing_data.rename(columns=lambda x: x.strip().lower())
         new_df = pd.read_csv(local_file_path).rename(columns=lambda x: x.strip().lower())
 
+        # Check for row count differences
+        if len(existing_df) != len(new_df):
+            print(f"\nDataset size has changed:")
+            print(f"Old row count: {len(existing_df)}")
+            print(f"New row count: {len(new_df)}")
+            upload_github_file(
+                local_file_path,
+                github_file_path,
+                message=f"Updated {file_name} - row count changed from {len(existing_df)} to {len(new_df)}"
+            )
+            notify_updated_data(
+                file_name,
+                diff_lines=None,
+                reason=f"Dataset size changed from {len(existing_df)} to {len(new_df)} rows"
+            )
+            return True
+
         # First check if the entire datasets are different
         has_changes = not existing_df.equals(new_df)
         

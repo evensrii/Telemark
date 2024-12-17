@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import base64
 from datetime import datetime
+import glob
 
 ### EMAIL CONFIGURATION ###
 
@@ -115,7 +116,6 @@ def push_logs_to_github():
                         raw_url = f"https://github.com/{owner}/{repo}/blob/{branch}/{logs_path}/{filename}"
                         script_name = filename.replace('.log', '')
                         log_urls[script_name] = raw_url
-                        print(f"Successfully pushed {filename} to GitHub")
                     else:
                         print(f"Failed to push {filename}. Status code: {response.status_code}")
                         
@@ -172,8 +172,9 @@ def format_log_as_html_table(log_content):
     for idx, line in enumerate(log_lines):
         if line.strip() and "Daily run completed" not in line:  # Ignore empty lines and summary lines
             try:
-                # Debugging: Print the line being processed
-                print(f"Processing line: {line}")
+                # Remove "Processing line: " if present
+                if "Processing line: " in line:
+                    line = line.replace("Processing line: ", "")
 
                 # Split into timestamp and the rest of the line
                 timestamp, rest = line.split("]", 1)
