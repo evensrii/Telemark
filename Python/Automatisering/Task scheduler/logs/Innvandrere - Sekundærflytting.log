@@ -1,4 +1,4 @@
-[17.12.2024 18:17:08,01] Running sekundærflytting.py 
+[17.12.2024 18:32:13,78] Running sekundærflytting.py 
 D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekund�rflytting.py:121: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
@@ -16,8 +16,8 @@ New data detected. Checking last 200 rows for specific changes...
 
 
 Debug information:
-Numeric columns detected: Index(['antall'], dtype='object')
-Key columns detected: ['�r', 'sekund�rflytting', 'botid i norge', 'kommunenummer', 'kommune']
+Numeric columns detected: ['kommunenummer', 'antall']
+Key columns detected: ['�r', 'sekund�rflytting', 'botid i norge', 'kommune']
 
 
 No differences found in the last 200 rows, but the dataset has changed elsewhere.
@@ -31,4 +31,4 @@ Email notifications disabled. Updates for sekund�rflytting.csv were not sent.
 Deleted file from temp folder: sekund�rflytting.csv
 
 Deleted file from temp folder: sekund�rflytting.csv
-[17.12.2024 18:17:10,99] Script completed 
+[17.12.2024 18:32:16,99] Script completed 
