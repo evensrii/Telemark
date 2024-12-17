@@ -1,10 +1,31 @@
-[17.12.2024 13:15:15,61] Running botid.py 
+[17.12.2024 17:26:35,27] Running botid.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Botid CSV data loaded successfully.
+New data detected. Checking last 200 rows for specific changes...
 
-No differences found in the dataset.
+Debug information:
+Numeric columns detected: Index(['kommunenummer', 'antall'], dtype='object')
+Key columns detected: ['kommune', 'botid i norge', '�r', 'verdensregion']
+
+=== Data Comparison ===
+File: botid.csv
+Found 1 differences in the last 200 rows:
+
+Row identifiers:
+  kommune: Fyresdal
+  botid i norge: Alle
+  �r: 2024-01-01
+  verdensregion: Alle
+Value changes:
+  kommunenummer: 3823 -> 3823
+  antall: 128.0 -> 161.0
+
+====================
+
+File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/botid.csv
+Email notifications disabled. Updates for botid.csv were not sent.
 Deleted file from temp folder: botid.csv
-[17.12.2024 13:15:18,25] Script completed 
+[17.12.2024 17:26:39,31] Script completed 
