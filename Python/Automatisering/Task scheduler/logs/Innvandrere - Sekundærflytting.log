@@ -1,24 +1,36 @@
-[17.12.2024 17:41:10,89] Running sekundærflytting.py 
+[17.12.2024 17:44:31,64] Running sekundærflytting.py 
+D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekund�rflytting.py:121: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_kommuner["Kommune"] = df_kommuner["Kommune"].fillna(
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Sekund�rflytting: 500 Server Error: Internal Server Error for url: https://app-simapi-prod.azurewebsites.net/download_csv/k/flyktning_botid_flyttin
-Error occurred: 500 Server Error: Internal Server Error for url: https://app-simapi-prod.azurewebsites.net/download_csv/k/flyktning_botid_flyttin
-Email notifications disabled. Errors in sekund�rflytting.py were not sent.
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekund�rflytting.py", line 32, in <module>
-    df = fetch_data(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 46, in fetch_data
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://app-simapi-prod.azurewebsites.net/download_csv/k/flyktning_botid_flyttin
+Sekund�rflytting CSV data loaded successfully.
+Most recent year in table is 2023-01-01 00:00:00
 
-During handling of the above exception, another exception occurred:
+New data detected. Checking last 200 rows for specific changes...
+
+
+Debug information:
+Numeric columns detected: Index(['antall'], dtype='object')
+Key columns detected: ['�r', 'sekund�rflytting', 'botid i norge', 'kommunenummer', 'kommune']
 
 Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekund�rflytting.py", line 44, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
-[17.12.2024 17:41:13,05] Script failed with error code 1 
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekund�rflytting.py", line 134, in <module>
+    is_new_data = compare_to_github(df_kommuner, file_name, github_folder, temp_folder)
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 222, in compare_to_github
+    comparison = last_200_new.merge(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\frame.py", line 9843, in merge
+    return merge(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 148, in merge
+    op = _MergeOperation(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 741, in __init__
+    self._maybe_coerce_merge_keys()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 1405, in _maybe_coerce_merge_keys
+    raise ValueError(msg)
+ValueError: You are trying to merge on datetime64[ns] and object columns. If you wish to proceed you should use pd.concat
+[17.12.2024 17:44:34,45] Script failed with error code 1 
