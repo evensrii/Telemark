@@ -1,0 +1,30 @@
+[17.12.2024  2:00:26,54] Running botid.py 
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Botid CSV data loaded successfully.
+Dataset sizes differ. New: 204, Existing: 209
+
+New data detected. Checking last 200 rows for specific changes...
+
+Debug information:
+Numeric columns detected: Index(['3819', '58.0'], dtype='object')
+Key columns detected: ['hjartdal', 'alle', '2024-01-01', 'eu/efta-land, nord-amerika, australia og new zealand']
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\botid.py", line 127, in <module>
+    is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 219, in compare_to_github
+    comparison = last_200_new.merge(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\frame.py", line 9843, in merge
+    return merge(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 148, in merge
+    op = _MergeOperation(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 737, in __init__
+    ) = self._get_merge_keys()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 1203, in _get_merge_keys
+    right_keys.append(right._get_label_or_level_values(rk))
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\generic.py", line 1778, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'hjartdal'
+[17.12.2024  2:00:29,29] Script failed with error code 1 
