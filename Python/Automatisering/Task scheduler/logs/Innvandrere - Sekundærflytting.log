@@ -1,5 +1,5 @@
 [17.12.2024 18:02:59,77] Running sekundÃ¦rflytting.py 
-D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekundærflytting.py:121: SettingWithCopyWarning: 
+D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekundï¿½rflytting.py:121: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -9,7 +9,7 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Sekundærflytting CSV data loaded successfully.
+Sekundï¿½rflytting CSV data loaded successfully.
 Most recent year in table is 2023-01-01 00:00:00
 
 New data detected. Checking last 200 rows for specific changes...
@@ -17,18 +17,18 @@ New data detected. Checking last 200 rows for specific changes...
 
 Debug information:
 Numeric columns detected: Index(['antall'], dtype='object')
-Key columns detected: ['år', 'sekundærflytting', 'botid i norge', 'kommunenummer', 'kommune']
+Key columns detected: ['ï¿½r', 'sekundï¿½rflytting', 'botid i norge', 'kommunenummer', 'kommune']
 
 
 No differences found in the last 200 rows, but the dataset has changed elsewhere.
 
-Email notifications disabled. Updates for sekundærflytting.csv were not sent.
+Email notifications disabled. Updates for sekundï¿½rflytting.csv were not sent.
 
-File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/sekundærflytting.csv
+File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/sekundï¿½rflytting.csv
 
-Email notifications disabled. Updates for sekundærflytting.csv were not sent.
+Email notifications disabled. Updates for sekundï¿½rflytting.csv were not sent.
 
-Deleted file from temp folder: sekundærflytting.csv
+Deleted file from temp folder: sekundï¿½rflytting.csv
 
-Deleted file from temp folder: sekundærflytting.csv
+Deleted file from temp folder: sekundï¿½rflytting.csv
 [17.12.2024 18:03:02,89] Script completed 
