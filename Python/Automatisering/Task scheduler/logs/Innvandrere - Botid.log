@@ -1,35 +1,23 @@
-[17.12.2024 18:17:02,10] Running botid.py 
-D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:282: SettingWithCopyWarning: 
+[17.12.2024 18:32:07,30] Running botid.py 
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:292: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   last_200_existing[col] = last_200_existing[col].astype(str)
-D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:283: SettingWithCopyWarning: 
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:293: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   last_200_new[col] = last_200_new[col].astype(str)
-D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:282: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  last_200_existing[col] = last_200_existing[col].astype(str)
-D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:283: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  last_200_new[col] = last_200_new[col].astype(str)
-D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:276: SettingWithCopyWarning: 
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:286: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   last_200_existing[col] = pd.to_datetime(last_200_existing[col]).dt.strftime('%Y-%m-%d')
-D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:277: SettingWithCopyWarning: 
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:287: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -45,8 +33,8 @@ New data detected. Checking last 200 rows for specific changes...
 
 
 Debug information:
-Numeric columns detected: Index(['antall'], dtype='object')
-Key columns detected: ['kommunenummer', 'kommune', 'botid i norge', '�r', 'verdensregion']
+Numeric columns detected: ['kommunenummer', 'antall']
+Key columns detected: ['kommune', 'botid i norge', '�r', 'verdensregion']
 
 
 No differences found in the last 200 rows, but the dataset has changed elsewhere.
@@ -60,4 +48,4 @@ Email notifications disabled. Updates for botid.csv were not sent.
 Deleted file from temp folder: botid.csv
 
 Deleted file from temp folder: botid.csv
-[17.12.2024 18:17:05,20] Script completed 
+[17.12.2024 18:32:11,09] Script completed 
