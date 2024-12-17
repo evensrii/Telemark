@@ -8,7 +8,7 @@ New data detected. Checking last 200 rows for specific changes...
 
 Debug information:
 Numeric columns detected: Index(['kommunenummer', 'antall'], dtype='object')
-Key columns detected: ['kommune', 'botid i norge', 'år', 'verdensregion']
+Key columns detected: ['kommune', 'botid i norge', 'ï¿½r', 'verdensregion']
 
 === Data Comparison ===
 File: botid.csv
@@ -17,7 +17,7 @@ Found 1 differences in the last 200 rows:
 Row identifiers:
   kommune: Fyresdal
   botid i norge: Alle
-  år: 2024-01-01
+  ï¿½r: 2024-01-01
   verdensregion: Alle
 Value changes:
   kommunenummer: 3823 -> 3823
