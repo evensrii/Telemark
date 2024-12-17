@@ -1,4 +1,4 @@
-[17.12.2024 17:41:07,21] Running enslige_mindreårige.py 
+[17.12.2024 17:44:28,97] Running enslige_mindreårige.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -6,21 +6,25 @@ GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 Kommuner CSV data loaded successfully.
 
-Dataset size has changed:
-Old row count: 4
-New row count: 11
+New data detected. Checking last 200 rows for specific changes...
 
 
-File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/bosetting_enslige_mindre�rige.csv
+Debug information:
+Numeric columns detected: Index(['anmodning om bosetting', 'faktisk bosetting'], dtype='object', name='Kategori')
+Key columns detected: ['�r']
 
-Email notifications disabled. Updates for bosetting_enslige_mindre�rige.csv were not sent.
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/bosetting_enslige_mindre�rige.csv
-
-Email notifications disabled. Updates for bosetting_enslige_mindre�rige.csv were not sent.
-
-Deleted file from temp folder: bosetting_enslige_mindre�rige.csv
-
-Deleted file from temp folder: bosetting_enslige_mindre�rige.csv
-Deleted file from temp folder: botid.csv
-[17.12.2024 17:41:10,88] Script completed 
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\enslige_mindre�rige.py", line 220, in <module>
+    is_new_data = compare_to_github(df_telemark, file_name, github_folder, temp_folder)
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 222, in compare_to_github
+    comparison = last_200_new.merge(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\frame.py", line 9843, in merge
+    return merge(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 148, in merge
+    op = _MergeOperation(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 741, in __init__
+    self._maybe_coerce_merge_keys()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 1405, in _maybe_coerce_merge_keys
+    raise ValueError(msg)
+ValueError: You are trying to merge on datetime64[ns] and object columns. If you wish to proceed you should use pd.concat
+[17.12.2024 17:44:31,62] Script failed with error code 1 
