@@ -1,4 +1,4 @@
-[17.12.2024 17:41:04,20] Running botid.py 
+[17.12.2024 17:44:25,62] Running botid.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -26,4 +26,4 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 1401, in _maybe_coerce_merge_keys
     raise ValueError(msg)
 ValueError: You are trying to merge on object and int64 columns. If you wish to proceed you should use pd.concat
-[17.12.2024 17:41:07,19] Script failed with error code 1 
+[17.12.2024 17:44:28,95] Script failed with error code 1 
