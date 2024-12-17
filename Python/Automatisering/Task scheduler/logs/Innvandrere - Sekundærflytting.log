@@ -1,4 +1,4 @@
-[17.12.2024 17:48:46,03] Running sekundærflytting.py 
+[17.12.2024 17:59:40,33] Running sekundærflytting.py 
 D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekund�rflytting.py:121: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
@@ -19,18 +19,16 @@ Debug information:
 Numeric columns detected: Index(['antall'], dtype='object')
 Key columns detected: ['�r', 'sekund�rflytting', 'botid i norge', 'kommunenummer', 'kommune']
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekund�rflytting.py", line 134, in <module>
-    is_new_data = compare_to_github(df_kommuner, file_name, github_folder, temp_folder)
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 222, in compare_to_github
-    comparison = last_200_new.merge(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\frame.py", line 9843, in merge
-    return merge(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 148, in merge
-    op = _MergeOperation(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 741, in __init__
-    self._maybe_coerce_merge_keys()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\reshape\merge.py", line 1405, in _maybe_coerce_merge_keys
-    raise ValueError(msg)
-ValueError: You are trying to merge on datetime64[ns] and object columns. If you wish to proceed you should use pd.concat
-[17.12.2024 17:48:48,70] Script failed with error code 1 
+
+No differences found in the last 200 rows, but the dataset has changed elsewhere.
+
+Email notifications disabled. Updates for sekund�rflytting.csv were not sent.
+
+File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/sekund�rflytting.csv
+
+Email notifications disabled. Updates for sekund�rflytting.csv were not sent.
+
+Deleted file from temp folder: sekund�rflytting.csv
+
+Deleted file from temp folder: sekund�rflytting.csv
+[17.12.2024 17:59:43,43] Script completed 
