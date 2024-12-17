@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 from datetime import datetime
 import base64
 import pandas as pd
-import numpy as np
 
 from Helper_scripts.email_functions import notify_updated_data
 
@@ -120,281 +119,148 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
     response = requests.put(url, json=payload, headers=headers)
 
     if response.status_code in [201, 200]:
-        print(f"\nFile uploaded successfully: {github_file_path}\n")
+        print(f"File uploaded successfully: {github_file_path}")
     else:
-        print(f"\nFailed to upload file: {response.json()}\n")
+        print(f"Failed to upload file: {response.json()}")
 
 
 ## Function to compare file to GitHub
 def compare_to_github(input_df, file_name, github_folder, temp_folder):
     """
-    Compares a DataFrame to an existing file on GitHub, and uploads the file if changes are detected.
-    If column names differ between the new and old data, the new file replaces the old one.
-
-    Parameters:
-        input_df (pd.DataFrame): The DataFrame to compare and upload.
-        file_name (str): The name of the file to be saved and compared.
-        github_folder (str): The folder path in the GitHub repository.
-        temp_folder (str): The local temporary folder for storing files.
-
+    Compares a DataFrame to an existing file on GitHub, and uploads if changes are detected.
+    
+    Args:
+        input_df (pd.DataFrame): The DataFrame to compare and upload
+        file_name (str): Name of the file to save and compare
+        github_folder (str): Folder path in GitHub repository
+        temp_folder (str): Local temporary folder for storing files
+    
     Returns:
-        bool: True if new data is uploaded or detected, False otherwise.
+        bool: True if new data uploaded or detected, False otherwise
     """
-    # Save the DataFrame to a CSV in the Temp folder
-    local_file_path = os.path.join(temp_folder, file_name)
-    input_df.to_csv(local_file_path, index=False)
+    import pandas as pd
+    from datetime import datetime
+    import numpy as np
 
-    # GitHub configuration
-    github_file_path = f"{github_folder}/{file_name}"
+    def log_message(msg):
+        """Add timestamp to log messages"""
+        timestamp = datetime.now().strftime('[%d.%m.%Y %H:%M:%S,%f]')[:-4]
+        print(f"{timestamp} {msg}")
 
-    # Download the existing file from GitHub
-    existing_data = download_github_file(github_file_path)
+    # Ensure all string columns use UTF-8 encoding
+    for col in input_df.columns:
+        if input_df[col].dtype == 'object':
+            input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
 
-    # Check if new data exists compared to GitHub
-    if existing_data is not None:
-        # STEP 1: Check for header changes first
-        original_existing = existing_data.columns.tolist()
-        original_new = pd.read_csv(local_file_path).columns.tolist()
+    # Save the new data to temp folder
+    temp_file_path = os.path.join(temp_folder, file_name)
+    input_df.to_csv(temp_file_path, index=False, encoding='utf-8')
+
+    # Construct GitHub file path
+    github_file_path = f"Data/{github_folder}/{file_name}"
+
+    try:
+        # Try to download existing file from GitHub
+        existing_data = download_github_file(github_file_path)
+        existing_data = pd.read_csv(existing_data, encoding='utf-8')
         
-        # 1a. Check for structural changes in headers (ignoring case)
-        existing_set = {col.strip().lower() for col in original_existing}
-        new_set = {col.strip().lower() for col in original_new}
-        
-        if existing_set != new_set:
-            print("\n=== Header Changes Detected ===")
-            print("Old headers:", original_existing)
-            print("New headers:", original_new)
-            print("=" * 20 + "\n")
-            upload_github_file(
-                local_file_path,
-                github_file_path,
-                message=f"Updated {file_name} with new column headers"
-            )
-            notify_updated_data(
-                file_name, 
-                diff_lines=None, 
-                reason=f"Column headers changed from {original_existing} to {original_new}"
-            )
-            print(f"\nFile uploaded successfully: {github_file_path}")
-            print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
-            print(f"\nDeleted file from temp folder: {file_name}\n")
-            return True  # Exit after header structure change
-        
-        # 1b. Check for year changes in headers
-        existing_map = {col.strip().lower(): col for col in original_existing}
-        new_map = {col.strip().lower(): col for col in original_new}
-        
-        year_changes = False
-        for lower_col in existing_map:
-            if ('andel' in lower_col or 'år' in lower_col) and existing_map[lower_col] != new_map.get(lower_col, ''):
-                year_changes = True
-                break
-        
-        if year_changes:
-            print("\n=== Header Year Changes Detected ===")
-            print("Old headers:", original_existing)
-            print("New headers:", original_new)
-            print("=" * 20 + "\n")
-            upload_github_file(
-                local_file_path,
-                github_file_path,
-                message=f"Updated {file_name} with new year in headers"
-            )
-            notify_updated_data(
-                file_name, 
-                diff_lines=None, 
-                reason=f"Column headers updated with new year"
-            )
-            print(f"\nFile uploaded successfully: {github_file_path}")
-            print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
-            print(f"\nDeleted file from temp folder: {file_name}\n")
-            return True  # Exit after year change in headers
+        # Ensure UTF-8 encoding for existing data
+        for col in existing_data.columns:
+            if existing_data[col].dtype == 'object':
+                existing_data[col] = existing_data[col].astype(str).str.encode('utf-8').str.decode('utf-8')
 
-        # STEP 2: Check for row count changes
-        if len(existing_data) != len(input_df):
-            print(f"\nDataset size has changed:")
-            print(f"Old row count: {len(existing_data)}")
-            print(f"New row count: {len(input_df)}\n")
-            upload_github_file(
-                local_file_path,
-                github_file_path,
-                message=f"Updated {file_name} - row count changed from {len(existing_data)} to {len(input_df)}"
-            )
-            notify_updated_data(
-                file_name,
-                diff_lines=None,
-                reason=f"Dataset size changed from {len(existing_data)} to {len(input_df)} rows"
-            )
-            print(f"\nFile uploaded successfully: {github_file_path}")
-            print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
-            print(f"\nDeleted file from temp folder: {file_name}\n")
-            return True  # Exit after row count change
-
-        # STEP 3: Only if headers and row counts are same, check for value changes
-        # Create copies to avoid modifying original dataframes
-        existing_df = existing_data.copy()
-        new_df = input_df.copy()
-        
-        # Store original column names for later use
-        existing_cols = existing_df.columns.tolist()
-        new_cols = new_df.columns.tolist()
-        
-        # Create standardized column name mapping
-        existing_col_map = {col: col.strip().lower() for col in existing_cols}
-        new_col_map = {col: col.strip().lower() for col in new_cols}
-        
-        # Rename columns to standardized format
-        existing_df = existing_df.rename(columns=existing_col_map)
-        new_df = new_df.rename(columns=new_col_map)
-        
-        # Check if the actual data content is different
-        existing_df.columns = existing_df.columns.str.lower()
-        new_df.columns = new_df.columns.str.lower()
-
-        # Ensure consistent data types for numeric columns
-        numeric_cols = []
-        for col in existing_df.columns:
-            try:
-                # Try to convert both columns to numeric
-                existing_df[col] = pd.to_numeric(existing_df[col], errors='raise')
-                new_df[col] = pd.to_numeric(new_df[col], errors='raise')
-                numeric_cols.append(col)
-            except (ValueError, TypeError):
-                # If conversion fails, ensure both are string type
-                existing_df[col] = existing_df[col].astype(str)
-                new_df[col] = new_df[col].astype(str)
-        
-        # First check if the entire datasets are different
-        has_changes = not existing_df.equals(new_df)
-        
-        if has_changes:
-            print("\nNew data detected. Checking last 200 rows for specific changes...\n")
-            
-            # Get the last 200 rows from both dataframes
-            last_200_existing = existing_df.tail(200)
-            last_200_new = new_df.tail(200)
-
-            print("\nDebug information:")
-            print(f"Numeric columns detected: {numeric_cols}")
-            key_cols = [col for col in new_df.columns if col not in numeric_cols]
-            print(f"Key columns detected: {key_cols}\n")
-
-            # Convert datetime columns to string in both dataframes
-            for col in key_cols:
-                if 'år' in str(col).lower() or 'date' in str(col).lower():
-                    try:
-                        last_200_existing[col] = pd.to_datetime(last_200_existing[col]).dt.strftime('%Y-%m-%d')
-                        last_200_new[col] = pd.to_datetime(last_200_new[col]).dt.strftime('%Y-%m-%d')
-                    except:
-                        pass
-                # Convert any numeric columns to string to avoid type mismatches
-                if 'nummer' in str(col).lower() or 'id' in str(col).lower():
-                    last_200_existing[col] = last_200_existing[col].astype(str)
-                    last_200_new[col] = last_200_new[col].astype(str)
-
-            # Merge the last 200 rows
-            comparison = last_200_new.merge(
-                last_200_existing,
-                on=key_cols,
-                how='outer',
-                indicator=True,
-                suffixes=('_new', '_old')
-            )
-
-            # Find rows where values have changed
-            changed_rows = comparison[
-                comparison.apply(lambda row: any(
-                    str(row[f"{col}_old"]) != str(row[f"{col}_new"])
-                    for col in numeric_cols
-                    if f"{col}_old" in row.index and f"{col}_new" in row.index
-                    and pd.notna(row[f"{col}_old"]) and pd.notna(row[f"{col}_new"])
-                ), axis=1)
-            ]
-
-            # Print comparison details
-            total_changes = len(changed_rows)
-            
-            if total_changes == 0:
-                print("\nNo differences found in the last 200 rows, but the dataset has changed elsewhere.\n")
-                upload_github_file(
-                    local_file_path, 
-                    github_file_path, 
-                    message=f"Updated {file_name}"
-                )
-                notify_updated_data(
-                    file_name, 
-                    diff_lines=None, 
-                    reason="Dataset changed but no specific changes found in last 200 rows"
-                )
-                print(f"\nFile uploaded successfully: {github_file_path}")
-                print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
-                print(f"\nDeleted file from temp folder: {file_name}\n")
-                return True
-
-            if total_changes > 0:
-                print("\n=== Data Comparison ===")
-                print(f"File: {file_name}")
-                if total_changes > 5:
-                    print(f"These are 5 of the {total_changes} differences found in the last 200 rows:\n")
-                else:
-                    print(f"Found {total_changes} differences in the last 200 rows:\n")
-                
-                # Print changes with more spacing
-                for idx, row in changed_rows.head(5).iterrows():
-                    print("Row identifiers:")
-                    for col in key_cols:
-                        if pd.notna(row[col]) and str(row[col]) != 'nan':
-                            try:
-                                value = str(row[col]).encode('utf-8').decode('utf-8')
-                                print(f"  {col}: {value}")
-                            except UnicodeEncodeError:
-                                print(f"  {col}: {row[col].encode('ascii', 'replace').decode()}")
-                    
-                    print("\nValue changes:")
-                    for col in numeric_cols:
-                        old_col = f"{col}_old"
-                        new_col = f"{col}_new"
-                        if old_col in row.index and new_col in row.index:
-                            if pd.notna(row[old_col]) and pd.notna(row[new_col]):
-                                try:
-                                    old_val = str(row[old_col]).encode('utf-8').decode('utf-8')
-                                    new_val = str(row[new_col]).encode('utf-8').decode('utf-8')
-                                    print(f"  {col}: {old_val} -> {new_val}")
-                                except UnicodeEncodeError:
-                                    print(f"  {col}: {row[old_col]} -> {row[new_col]}")
-                    print("\n")  # Extra spacing between rows
-
-                print("=" * 20 + "\n")
-                
-                upload_github_file(
-                    local_file_path, 
-                    github_file_path, 
-                    message=f"Updated {file_name} with {total_changes} value changes in last 200 rows"
-                )
-                notify_updated_data(
-                    file_name, 
-                    diff_lines=None, 
-                    reason=f"Found {total_changes} changes in last 200 rows"
-                )
-                print(f"\nFile uploaded successfully: {github_file_path}")
-                print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
-                print(f"\nDeleted file from temp folder: {file_name}\n")
-                return True
-        else:
-            print("\nNo differences found in the dataset.\n")
+        # Quick full comparison to determine if data is new/updated/same
+        if existing_data.equals(input_df):
+            log_message("No differences found in the dataset.")
             return False
-    else:
-        # If the file does not exist on GitHub, upload the new file
-        print("Uploading new file.\n")
-        upload_github_file(
-            local_file_path, github_file_path, message=f"Added {file_name}"
-        )
-        notify_updated_data(
-            file_name, 
-            diff_lines=None, 
-            reason="New file added to repository"
-        )
-        print(f"\nFile uploaded successfully: {github_file_path}")
-        print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
-        print(f"\nDeleted file from temp folder: {file_name}\n")
-        return True  # New file uploaded
+
+        # If data is different, proceed with detailed comparison of last 200 rows
+        log_message("Changes detected in the dataset. Analyzing differences...")
+
+        # STEP 1: Check header changes
+        existing_headers = [h.lower() for h in existing_data.columns]
+        new_headers = [h.lower() for h in input_df.columns]
+
+        # Check structural changes (ignoring case)
+        if set(existing_headers) != set(new_headers):
+            log_message("Header structure has changed.")
+            upload_github_file(temp_file_path, github_file_path, 
+                             message=f"Updated {file_name} - header structure changed")
+            return True
+
+        # Check for year changes in headers
+        for old_h, new_h in zip(existing_data.columns, input_df.columns):
+            old_years = [int(s) for s in old_h.split() if s.isdigit()]
+            new_years = [int(s) for s in new_h.split() if s.isdigit()]
+            if old_years != new_years:
+                log_message(f"Year in header changed: {old_h} -> {new_h}")
+                upload_github_file(temp_file_path, github_file_path,
+                                 message=f"Updated {file_name} - year in headers changed")
+                return True
+
+        # STEP 2: Check row count
+        if len(existing_data) != len(input_df):
+            log_message(f"Row count changed from {len(existing_data)} to {len(input_df)}")
+            upload_github_file(temp_file_path, github_file_path,
+                             message=f"Updated {file_name} - row count changed from {len(existing_data)} to {len(input_df)}")
+            return True
+
+        # STEP 3: Check value changes in last 200 rows
+        last_200_existing = existing_data.tail(200).reset_index(drop=True)
+        last_200_new = input_df.tail(200).reset_index(drop=True)
+
+        # Identify numeric and key columns
+        numeric_cols = []
+        for col in last_200_new.columns:
+            if col.lower() not in ['kommunenummer', 'kommunenr']:  # Treat these as strings
+                try:
+                    pd.to_numeric(last_200_new[col])
+                    numeric_cols.append(col)
+                except (ValueError, TypeError):
+                    pass
+
+        differences_found = False
+        diff_count = 0
+        
+        for idx in range(len(last_200_existing)):
+            for col in last_200_existing.columns:
+                old_val = str(last_200_existing.loc[idx, col])
+                new_val = str(last_200_new.loc[idx, col])
+                
+                if old_val != new_val:
+                    if diff_count < 5:  # Only show first 5 differences
+                        log_message(f"Value changed in row {idx + len(existing_data) - 200}:")
+                        log_message(f"  Column: {col}")
+                        log_message(f"  Old value: {old_val}")
+                        log_message(f"  New value: {new_val}")
+                    differences_found = True
+                    diff_count += 1
+                    if diff_count == 5:
+                        log_message("(Additional differences found...)")
+                        break
+            if diff_count == 5:
+                break
+
+        if differences_found:
+            log_message("Uploading updated dataset to GitHub...")
+            upload_github_file(temp_file_path, github_file_path,
+                             message=f"Updated {file_name} - value changes detected")
+            return True
+        else:
+            log_message("No differences found in the last 200 rows, but the dataset has changed elsewhere.")
+            upload_github_file(temp_file_path, github_file_path,
+                             message=f"Updated {file_name} - changes detected")
+            return True
+
+    except FileNotFoundError:
+        # File doesn't exist on GitHub yet
+        log_message("New dataset. Uploading to GitHub...")
+        upload_github_file(temp_file_path, github_file_path,
+                         message=f"Added new dataset: {file_name}")
+        return True
+
+    finally:
+        # Clean up temp file
+        if os.path.exists(temp_file_path):
+            os.remove(temp_file_path)
+            log_message(f"Deleted file from temp folder: {file_name}\n")
