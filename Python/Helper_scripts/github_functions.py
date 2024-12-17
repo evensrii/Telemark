@@ -152,11 +152,15 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
 
     # Check if new data exists compared to GitHub
     if existing_data is not None:
-        # Check for header changes (before standardizing case)
+        # STEP 1: Check for header changes first
         original_existing = existing_data.columns.tolist()
         original_new = pd.read_csv(local_file_path).columns.tolist()
         
-        if set(original_existing) != set(original_new):
+        # 1a. Check for structural changes in headers (ignoring case)
+        existing_set = {col.strip().lower() for col in original_existing}
+        new_set = {col.strip().lower() for col in original_new}
+        
+        if existing_set != new_set:
             print("\n=== Header Changes Detected ===")
             print("Old headers:", original_existing)
             print("New headers:", original_new)
@@ -174,9 +178,39 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             print(f"\nFile uploaded successfully: {github_file_path}")
             print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
             print(f"\nDeleted file from temp folder: {file_name}\n")
-            return True
+            return True  # Exit after header structure change
+        
+        # 1b. Check for year changes in headers
+        existing_map = {col.strip().lower(): col for col in original_existing}
+        new_map = {col.strip().lower(): col for col in original_new}
+        
+        year_changes = False
+        for lower_col in existing_map:
+            if ('andel' in lower_col or 'år' in lower_col) and existing_map[lower_col] != new_map.get(lower_col, ''):
+                year_changes = True
+                break
+        
+        if year_changes:
+            print("\n=== Header Year Changes Detected ===")
+            print("Old headers:", original_existing)
+            print("New headers:", original_new)
+            print("=" * 20 + "\n")
+            upload_github_file(
+                local_file_path,
+                github_file_path,
+                message=f"Updated {file_name} with new year in headers"
+            )
+            notify_updated_data(
+                file_name, 
+                diff_lines=None, 
+                reason=f"Column headers updated with new year"
+            )
+            print(f"\nFile uploaded successfully: {github_file_path}")
+            print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
+            print(f"\nDeleted file from temp folder: {file_name}\n")
+            return True  # Exit after year change in headers
 
-        # Check for row count differences
+        # STEP 2: Check for row count changes
         if len(existing_data) != len(input_df):
             print(f"\nDataset size has changed:")
             print(f"Old row count: {len(existing_data)}")
@@ -194,12 +228,29 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             print(f"\nFile uploaded successfully: {github_file_path}")
             print(f"\nEmail notifications disabled. Updates for {file_name} were not sent.")
             print(f"\nDeleted file from temp folder: {file_name}\n")
-            return True
+            return True  # Exit after row count change
 
-        # Standardize column names for comparison
-        existing_df = existing_data.rename(columns=lambda x: x.strip().lower())
-        new_df = input_df.rename(columns=lambda x: x.strip().lower())
-
+        # STEP 3: Only if headers and row counts are same, check for value changes
+        # Create copies to avoid modifying original dataframes
+        existing_df = existing_data.copy()
+        new_df = input_df.copy()
+        
+        # Store original column names for later use
+        existing_cols = existing_df.columns.tolist()
+        new_cols = new_df.columns.tolist()
+        
+        # Create standardized column name mapping
+        existing_col_map = {col: col.strip().lower() for col in existing_cols}
+        new_col_map = {col: col.strip().lower() for col in new_cols}
+        
+        # Rename columns to standardized format
+        existing_df = existing_df.rename(columns=existing_col_map)
+        new_df = new_df.rename(columns=new_col_map)
+        
+        # Check if the actual data content is different
+        existing_df.columns = existing_df.columns.str.lower()
+        new_df.columns = new_df.columns.str.lower()
+        
         # First check if the entire datasets are different
         has_changes = not existing_df.equals(new_df)
         
