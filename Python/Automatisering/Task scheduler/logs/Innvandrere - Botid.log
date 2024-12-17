@@ -1,4 +1,4 @@
-[17.12.2024 17:59:33,25] Running botid.py 
+[17.12.2024 18:02:53,55] Running botid.py 
 D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:231: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
@@ -49,25 +49,7 @@ Numeric columns detected: Index(['antall'], dtype='object')
 Key columns detected: ['kommunenummer', 'kommune', 'botid i norge', '�r', 'verdensregion']
 
 
-=== Data Comparison ===
-File: botid.csv
-Found 1 differences in the last 200 rows:
-
-Row identifiers:
-  kommunenummer: 3823
-  kommune: Fyresdal
-  botid i norge: Alle
-  �r: 2024-01-01
-  verdensregion: Alle
-
-Value changes:
-  antall: 150.0 -> 161.0
-
-
-====================
-
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/botid.csv
+No differences found in the last 200 rows, but the dataset has changed elsewhere.
 
 Email notifications disabled. Updates for botid.csv were not sent.
 
@@ -78,4 +60,4 @@ Email notifications disabled. Updates for botid.csv were not sent.
 Deleted file from temp folder: botid.csv
 
 Deleted file from temp folder: botid.csv
-[17.12.2024 17:59:37,33] Script completed 
+[17.12.2024 18:02:56,76] Script completed 
