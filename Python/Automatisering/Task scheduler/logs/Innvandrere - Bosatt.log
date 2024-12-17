@@ -1,4 +1,4 @@
-[17.12.2024 18:16:46,28] Running innvandrere_bosatt.py 
+[17.12.2024 18:31:48,41] Running innvandrere_bosatt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -9,8 +9,8 @@ New data detected. Checking last 200 rows for specific changes...
 
 
 Debug information:
-Numeric columns detected: Index([], dtype='object')
-Key columns detected: ['kommune', 'andel bosatt 2024', 'label']
+Numeric columns detected: ['andel bosatt 2024']
+Key columns detected: ['kommune', 'label']
 
 
 No differences found in the last 200 rows, but the dataset has changed elsewhere.
@@ -24,4 +24,4 @@ Email notifications disabled. Updates for andel_innvandrere_bosatt.csv were not 
 Deleted file from temp folder: andel_innvandrere_bosatt.csv
 
 Deleted file from temp folder: andel_innvandrere_bosatt.csv
-[17.12.2024 18:16:50,45] Script completed 
+[17.12.2024 18:31:55,81] Script completed 
