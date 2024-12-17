@@ -40,7 +40,7 @@ CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_in
 CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\botid.py" "Innvandrere - Botid"
 
 :: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\anmodninger_og_faktisk_bosetting.py" "Innvandrere - Anmodninger og faktisk bosetting"
-:: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\enslige_mindreårige.py" "Innvandrere - Enslige mindreårige"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\enslige_mindreårige.py" "Innvandrere - Enslige mindreårige"
 :: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekundærflytting.py" "Innvandrere - Sekundærflytting"
 
 :: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Introduksjonsprogrammet\deltakere_introduksjonsprogram.py" "Innvandrere - Deltakere introdukjonsprogrammet"

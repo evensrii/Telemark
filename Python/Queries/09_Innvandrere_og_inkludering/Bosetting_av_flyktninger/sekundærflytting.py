@@ -23,7 +23,7 @@ error_messages = []
 
 # Finner URL vha. "Inspiser side" og fane "Network" (F12)
 url = (
-    "https://app-simapi-prod.azurewebsites.net/download_csv/k/flyktning_botid_flytting"
+    "https://app-simapi-prod.azurewebsites.net/download_csv/k/flyktning_botid_flyttin"
 )
 
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
