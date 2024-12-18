@@ -1,14 +1,19 @@
-[18.12.2024 13:15:38,19] Running innvandrere_bosatt.py 
+[18.12.2024 13:21:01,83] Running innvandrere_bosatt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Bosatt JSON data loaded successfully.
-[2024-12-18 13:15:43] Row count changed in andel_innvandrere_bosatt.csv:
-  Old count: 8
-  New count: 17
-  Difference: +9 rows
+[2024-12-18 13:21:08] New data detected. Uploading to GitHub.
+
+[2024-12-18 13:21:08] === Data Comparison ===
+File: andel_innvandrere_bosatt.csv
+Changes detected in the following rows:
+
+Total rows with changes: 0
+====================
+
 File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_innvandrere_bosatt.csv
 Email notifications disabled. Updates for andel_innvandrere_bosatt.csv were not sent.
 Deleted file from temp folder: andel_innvandrere_bosatt.csv
-[18.12.2024 13:15:45,02] Script completed 
+[18.12.2024 13:21:10,38] Script completed 

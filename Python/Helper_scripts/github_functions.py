@@ -262,111 +262,118 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     # STEP 3: Check value changes
     # Only runs if both headers and row counts are identical
     # Standardize column names for comparison
-    existing_df = existing_data.rename(columns=lambda x: x.strip().lower())
-    new_df = pd.read_csv(local_file_path).rename(columns=lambda x: x.strip().lower())
+    existing_df = existing_data.copy()
+    new_df = input_df.copy()
 
-    # Compare columns to detect mismatches
-    if set(existing_df.columns) != set(new_df.columns):
-        print(
-            "Column names differ, probably caused by new year. Replacing file on GitHub with new data."
-        )
-        upload_github_file(
-            local_file_path,
-            github_file_path,
-            message=f"Replaced {file_name} due to column name changes",
-        )
-        notify_updated_data(
-            file_name, diff_lines=None, reason="Column names differ."
-        )
-        return True  # New data due to column name differences
+    def identify_key_columns(df):
+        """
+        Dynamically identify key columns based on their characteristics:
+        1. Known identifier columns (Kommune, År, etc.)
+        2. Columns with all unique values (likely identifiers)
+        3. Columns with categorical/low-cardinality data
+        4. Date/time columns
+        """
+        key_columns = []
+        
+        # 1. Known identifier columns (case-insensitive)
+        known_identifiers = ['kommune', 'kommunenummer', 'kommunenr', 'label', 'år', 'year', 'dato', 'date']
+        for col in df.columns:
+            if col.lower() in known_identifiers:
+                key_columns.append(col)
+                continue
+                
+            # Check if column name contains any of the identifiers
+            if any(identifier in col.lower() for identifier in known_identifiers):
+                key_columns.append(col)
+                continue
+            
+            # Try to identify date columns by checking content
+            try:
+                if df[col].dtype == 'object':  # Only check string columns
+                    # Check if values match date patterns
+                    sample = df[col].dropna().iloc[0]
+                    if isinstance(sample, str):
+                        if any(pattern in sample for pattern in ['-01-01', '/01/01']):
+                            key_columns.append(col)
+                            continue
+            except:
+                pass
 
-    # Find common columns for comparison
-    common_columns = [col for col in existing_df.columns if col in new_df.columns]
-    existing_df = (
-        existing_df[common_columns].astype(str).sort_values(by=common_columns)
-    )
-    new_df = new_df[common_columns].astype(str).sort_values(by=common_columns)
+            # Check for categorical/low-cardinality columns
+            unique_ratio = df[col].nunique() / len(df)
+            if unique_ratio < 0.5:  # If less than 50% of values are unique
+                key_columns.append(col)
+        
+        return list(set(key_columns))  # Remove any duplicates
 
-    # Compare the filtered DataFrames
-    if existing_df.equals(new_df):
-        print(f"[{timestamp}] No new data to upload. Skipping GitHub update.")
-        return False  # No new data
-    else:
+    # Identify key columns dynamically
+    key_columns = identify_key_columns(new_df)
+    value_columns = [col for col in new_df.columns if col not in key_columns]
+
+    print(f"[{timestamp}] Identified key columns: {', '.join(key_columns)}")
+    print(f"[{timestamp}] Value columns to compare: {', '.join(value_columns)}\n")
+
+    # Find rows where values have changed
+    changes = []
+    for idx, new_row in new_df.iterrows():
+        old_row = existing_df.loc[idx]
+        for col in value_columns:
+            old_val = str(old_row[col]).strip() if pd.notna(old_row[col]) else ''
+            new_val = str(new_row[col]).strip() if pd.notna(new_row[col]) else ''
+            
+            if old_val != new_val:
+                # Create identifier string from all key columns
+                identifiers = []
+                for key_col in key_columns:
+                    val = new_row[key_col]
+                    if pd.notna(val):
+                        identifiers.append(f"{key_col}: {val}")
+                
+                changes.append({
+                    'identifiers': ' | '.join(identifiers),
+                    'column': col,
+                    'old_value': old_val,
+                    'new_value': new_val
+                })
+
+    if changes:
         print(f"[{timestamp}] New data detected. Uploading to GitHub.")
-
-        # Identify the key columns (all columns except numeric ones that might change)
-        numeric_cols = new_df.select_dtypes(include=['float64', 'int64']).columns
-        key_cols = [col for col in new_df.columns if col not in numeric_cols]
-
-        # Merge old and new data to compare values
-        comparison = existing_df.merge(
-            new_df, 
-            on=key_cols, 
-            how='outer',
-            suffixes=('_old', '_new')
-        )
-
-        # Find rows where values have changed
-        changed_rows = comparison[
-            comparison.apply(lambda row: any(
-                row[f"{col}_old"] != row[f"{col}_new"]
-                for col in numeric_cols
-                if f"{col}_old" in row.index and f"{col}_new" in row.index
-                and pd.notna(row[f"{col}_old"]) and pd.notna(row[f"{col}_new"])
-            ), axis=1)
-        ]
-
-        # Print comparison details to log
         print(f"\n[{timestamp}] === Data Comparison ===")
         print(f"File: {file_name}")
         print("Changes detected in the following rows:\n")
-        
-        for idx, row in changed_rows.head(5).iterrows():
-            # Print identifying information
-            print("Row identifiers:")
-            for col in key_cols:
-                print(f"  {col}: {row[col]}")
-            
-            # Print value changes
-            print("Value changes:")
-            for col in numeric_cols:
-                old_col = f"{col}_old"
-                new_col = f"{col}_new"
-                if old_col in row.index and new_col in row.index:
-                    if pd.notna(row[old_col]) and pd.notna(row[new_col]):
-                        print(f"  {col}: {row[old_col]} → {row[new_col]}")
-            print()  # Empty line between rows
 
-        # Show summary
-        total_changes = len(changed_rows)
+        # Show up to 5 examples of changes
+        for change in changes[:5]:
+            print(f"Row: {change['identifiers']}")
+            print(f"  {change['column']}: {change['old_value']} → {change['new_value']}")
+            print()
+
+        total_changes = len(changes)
         print(f"Total rows with changes: {total_changes}")
         if total_changes > 5:
             print("(Showing first 5 changes only)")
         print("=" * 20 + "\n")
 
-        # Format changes for email notification
-        diff_lines = []
-        for _, row in changed_rows.head(5).iterrows():
-            change_dict = {col: row[col] for col in key_cols}
-            for col in numeric_cols:
-                old_col = f"{col}_old"
-                new_col = f"{col}_new"
-                if old_col in row.index and new_col in row.index:
-                    if pd.notna(row[old_col]) and pd.notna(row[new_col]):
-                        change_dict[f"{col} (Old)"] = row[old_col]
-                        change_dict[f"{col} (New)"] = row[new_col]
-            diff_lines.append(change_dict)
-
         upload_github_file(
-            local_file_path, 
-            github_file_path, 
+            local_file_path,
+            github_file_path,
             message=f"Updated {file_name} with {total_changes} value changes"
         )
-        
-        # Notify about the updated data and differences
+
+        # Format changes for email notification
+        diff_lines = []
+        for change in changes[:5]:
+            diff_dict = {'Identifiers': change['identifiers']}
+            diff_dict[f"{change['column']} (Old)"] = change['old_value']
+            diff_dict[f"{change['column']} (New)"] = change['new_value']
+            diff_lines.append(diff_dict)
+
         notify_updated_data(
-            file_name, 
-            diff_lines, 
+            file_name,
+            diff_lines,
             reason=f"Updated values in {total_changes} rows"
         )
-        return True  # New data detected and uploaded
+        return True
+
+    print(f"[{timestamp}] No new data to upload. Skipping GitHub update.")
+    return False
