@@ -1,0 +1,59 @@
+[18.12.2024  2:00:28,76] Running sekundærflytting.py 
+D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekund�rflytting.py:121: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_kommuner["Kommune"] = df_kommuner["Kommune"].fillna(
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:153: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:153: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:153: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:153: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Sekund�rflytting CSV data loaded successfully.
+Most recent year in table is 2023-01-01 00:00:00
+File not found on GitHub: Data/Data/09_Innvandrere og inkludering/Bosetting av flyktninger/sekund�rflytting.csv
+[18.12.2024 02:00:31,248 Deleted file from temp folder: sekund�rflytting.csv
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekund�rflytting.py", line 134, in <module>
+    is_new_data = compare_to_github(df_kommuner, file_name, github_folder, temp_folder)
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 165, in compare_to_github
+    existing_data = pd.read_csv(existing_data, encoding='utf-8')
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\parsers\readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\parsers\readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\parsers\readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\parsers\readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 716, in get_handle
+    ioargs = _get_filepath_or_buffer(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 456, in _get_filepath_or_buffer
+    raise ValueError(msg)
+ValueError: Invalid file path or buffer object type: <class 'NoneType'>
+[18.12.2024  2:00:31,37] Script failed with error code 1 
