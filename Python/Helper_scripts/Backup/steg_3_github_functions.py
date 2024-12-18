@@ -261,42 +261,76 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
 
     # STEP 3: Check value changes
     # Only runs if both headers and row counts are identical
+    # Standardize column names for comparison
     existing_df = existing_data.copy()
     new_df = input_df.copy()
 
-    # For large datasets, only compare the last 200 rows for detailed differences
-    dataset_size = len(new_df)
-    if dataset_size > 200:
-        print(f"[{timestamp}] Large dataset detected ({dataset_size} rows). Limiting detailed comparison to last 200 rows.")
-        comparison_start = max(0, dataset_size - 200)
-        existing_df_subset = existing_df.iloc[comparison_start:].copy()
-        new_df_subset = new_df.iloc[comparison_start:].copy()
-    else:
-        existing_df_subset = existing_df.copy()
-        new_df_subset = new_df.copy()
+    def identify_key_columns(df):
+        """
+        Dynamically identify key columns based on their characteristics:
+        1. Known identifier columns (Kommune, År, etc.)
+        2. Date/time columns
+        3. Label columns
+        """
+        key_columns = []
+        
+        # Known measurement terms that indicate a value column (not a key)
+        measurement_terms = ['andel', 'antall', 'prosent', 'rate', 'sum', 'total', 'verdi', 'mengde']
+        
+        # 1. Known identifier columns (case-insensitive)
+        known_identifiers = {
+            'exact': ['kommune', 'kommunenummer', 'kommunenr', 'label', 'år', 'year', 'dato', 'date'],
+            'contains': ['_id', '_nr', '_key']
+        }
+        
+        for col in df.columns:
+            col_lower = col.lower()
+            
+            # Skip if column contains measurement terms
+            if any(term in col_lower for term in measurement_terms):
+                continue
+                
+            # Exact matches (with word boundaries)
+            if any(col_lower == identifier for identifier in known_identifiers['exact']):
+                key_columns.append(col)
+                continue
+            
+            # Contains patterns (for specific substrings)
+            if any(pattern in col_lower for pattern in known_identifiers['contains']):
+                key_columns.append(col)
+                continue
+            
+            # Try to identify date columns by checking content
+            try:
+                if df[col].dtype == 'object':  # Only check string columns
+                    # Check if values match date patterns
+                    sample = df[col].dropna().iloc[0]
+                    if isinstance(sample, str):
+                        if any(pattern in sample for pattern in ['-01-01', '/01/01']):
+                            key_columns.append(col)
+                            continue
+            except:
+                pass
+
+        return list(set(key_columns))  # Remove any duplicates
 
     # Identify key columns dynamically
-    key_columns = identify_key_columns(new_df_subset)
+    key_columns = identify_key_columns(new_df)
     
     # Force 'Kommune' and 'Label' to be key columns if they exist
     forced_keys = ['Kommune', 'Label']
-    key_columns = list(set(key_columns + [col for col in forced_keys if col in new_df_subset.columns]))
+    key_columns = list(set(key_columns + [col for col in forced_keys if col in new_df.columns]))
     
     # All other columns are value columns
-    value_columns = [col for col in new_df_subset.columns if col not in key_columns]
+    value_columns = [col for col in new_df.columns if col not in key_columns]
 
     print(f"[{timestamp}] Identified key columns: {', '.join(key_columns)}")
     print(f"[{timestamp}] Value columns to compare: {', '.join(value_columns)}\n")
 
-    # Quick check for any changes in full dataset
-    if existing_df.equals(new_df):
-        print(f"[{timestamp}] No new data to upload. Skipping GitHub update.")
-        return False
-
-    # Find rows where values have changed in the subset
+    # Find rows where values have changed
     changes = []
-    for idx, new_row in new_df_subset.iterrows():
-        old_row = existing_df_subset.loc[idx]
+    for idx, new_row in new_df.iterrows():
+        old_row = existing_df.loc[idx]
         for col in value_columns:
             old_val = str(old_row[col]).strip() if pd.notna(old_row[col]) else ''
             new_val = str(new_row[col]).strip() if pd.notna(new_row[col]) else ''
@@ -316,13 +350,10 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                     'new_value': new_val
                 })
 
-    # Handle the output based on whether we found changes in the subset
     if changes:
         print(f"[{timestamp}] New data detected. Uploading to GitHub.")
         print(f"\n[{timestamp}] === Data Comparison ===")
         print(f"File: {file_name}")
-        if dataset_size > 200:
-            print("Note: Only showing changes from the last 200 rows\n")
         print("Changes detected in the following rows:\n")
 
         # Show up to 5 examples of changes
@@ -332,7 +363,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             print()
 
         total_changes = len(changes)
-        print(f"Total changes found in examined rows: {total_changes}")
+        print(f"Total rows with changes: {total_changes}")
         if total_changes > 5:
             print("(Showing first 5 changes only)")
         print("=" * 20 + "\n")
@@ -340,7 +371,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         upload_github_file(
             local_file_path,
             github_file_path,
-            message=f"Updated {file_name} with changes"
+            message=f"Updated {file_name} with {total_changes} value changes"
         )
 
         # Format changes for email notification
@@ -354,76 +385,9 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         notify_updated_data(
             file_name,
             diff_lines,
-            reason=f"Changes detected in dataset" + (" (last 200 rows examined)" if dataset_size > 200 else "")
-        )
-        return True
-    elif not existing_df.equals(new_df):
-        # Changes exist but not in the last 200 rows
-        print(f"[{timestamp}] Changes detected in dataset but not in the last 200 rows.")
-        print(f"[{timestamp}] Uploading updated file to GitHub.")
-        
-        upload_github_file(
-            local_file_path,
-            github_file_path,
-            message=f"Updated {file_name} with changes (not in last 200 rows)"
-        )
-        
-        notify_updated_data(
-            file_name,
-            None,
-            reason="Changes detected in dataset (not in last 200 rows)"
+            reason=f"Updated values in {total_changes} rows"
         )
         return True
 
     print(f"[{timestamp}] No new data to upload. Skipping GitHub update.")
     return False
-
-
-def identify_key_columns(df):
-    """
-    Dynamically identify key columns based on their characteristics:
-    1. Known identifier columns (Kommune, År, etc.)
-    2. Date/time columns
-    3. Label columns
-    """
-    key_columns = []
-    
-    # Known measurement terms that indicate a value column (not a key)
-    measurement_terms = ['andel', 'antall', 'prosent', 'rate', 'sum', 'total', 'verdi', 'mengde']
-    
-    # 1. Known identifier columns (case-insensitive)
-    known_identifiers = {
-        'exact': ['kommune', 'kommunenummer', 'kommunenr', 'label', 'år', 'year', 'dato', 'date'],
-        'contains': ['_id', '_nr', '_key']
-    }
-    
-    for col in df.columns:
-        col_lower = col.lower()
-        
-        # Skip if column contains measurement terms
-        if any(term in col_lower for term in measurement_terms):
-            continue
-            
-        # Exact matches (with word boundaries)
-        if any(col_lower == identifier for identifier in known_identifiers['exact']):
-            key_columns.append(col)
-            continue
-        
-        # Contains patterns (for specific substrings)
-        if any(pattern in col_lower for pattern in known_identifiers['contains']):
-            key_columns.append(col)
-            continue
-        
-        # Try to identify date columns by checking content
-        try:
-            if df[col].dtype == 'object':  # Only check string columns
-                # Check if values match date patterns
-                sample = df[col].dropna().iloc[0]
-                if isinstance(sample, str):
-                    if any(pattern in sample for pattern in ['-01-01', '/01/01']):
-                        key_columns.append(col)
-                        continue
-        except:
-            pass
-
-    return list(set(key_columns))  # Remove any duplicates
