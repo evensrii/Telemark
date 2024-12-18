@@ -1,4 +1,4 @@
-[18.12.2024 14:51:55,69] Running andel_flyktninger_og_arbeidsinnvandrere.py 
+[18.12.2024 15:04:55,93] Running andel_flyktninger_og_arbeidsinnvandrere.py 
 D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:153: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
@@ -17,16 +17,34 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
 Selected data from year 2024-01-01 00:00:00
-[2024-12-18 14:51:58] Identified key columns: Kommune, Label
-[2024-12-18 14:51:58] Value columns to compare: Andel arbeidsinnvandrere 2024
+[2024-12-18 15:04:58] Identified key columns: Label, Kommune
+[2024-12-18 15:04:58] Value columns to compare: Andel arbeidsinnvandrere 2024
 
-[2024-12-18 14:51:58] No changes detected in the dataset.
+[2024-12-18 15:04:58] New data detected. Uploading to GitHub.
+
+[2024-12-18 15:04:58] === Data Comparison ===
+File: andel_arbeidsinnvandrere.csv
+
+Changes detected in the following rows:
+
+Total changes found in examined rows: 0
+====================
+
 Email notifications disabled. Updates for andel_arbeidsinnvandrere.csv were not sent.
-[2024-12-18 14:51:59] Identified key columns: Kommune, Label
-[2024-12-18 14:51:59] Value columns to compare: Andel flyktninger 2024
+[2024-12-18 15:04:59] Identified key columns: Label, Kommune
+[2024-12-18 15:04:59] Value columns to compare: Andel flyktninger 2024
 
-[2024-12-18 14:51:59] No changes detected in the dataset.
+[2024-12-18 15:04:59] New data detected. Uploading to GitHub.
+
+[2024-12-18 15:04:59] === Data Comparison ===
+File: andel_flyktninger.csv
+
+Changes detected in the following rows:
+
+Total changes found in examined rows: 0
+====================
+
 Email notifications disabled. Updates for andel_flyktninger.csv were not sent.
 Deleted file from temp folder: andel_arbeidsinnvandrere.csv
 Deleted file from temp folder: andel_flyktninger.csv
-[18.12.2024 14:52:00,08] Script completed 
+[18.12.2024 15:05:00,29] Script completed 
