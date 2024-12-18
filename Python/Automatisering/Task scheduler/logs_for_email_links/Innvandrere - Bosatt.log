@@ -1,13 +1,25 @@
-[18.12.2024 14:07:50,02] Running innvandrere_bosatt.py 
+[18.12.2024 14:31:44,53] Running innvandrere_bosatt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Bosatt JSON data loaded successfully.
-[2024-12-18 14:07:56] Identified key columns: Kommune, Label, Andel bosatt 2024
-[2024-12-18 14:07:56] Value columns to compare: 
+[2024-12-18 14:31:47] Identified key columns: Kommune, Label
+[2024-12-18 14:31:47] Value columns to compare: Andel bosatt 2024
 
-[2024-12-18 14:07:56] No new data to upload. Skipping GitHub update.
-Deleted file from temp folder: andel_innvandrere_bosatt.csv
-Deleted file from temp folder: botid.csv
-[18.12.2024 14:07:57,38] Script completed 
+[2024-12-18 14:31:47] New data detected. Uploading to GitHub.
+
+[2024-12-18 14:31:47] === Data Comparison ===
+File: andel_innvandrere_bosatt.csv
+Changes detected in the following rows:
+
+Row: Kommune: Nissedal | Label: Nissedal
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py", line 121, in <module>
+    is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 362, in compare_to_github
+    print(f"  {change['column']}: {change['old_value']} \u2192 {change['new_value']}")
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 23: character maps to <undefined>
+[18.12.2024 14:31:48,18] Script failed with error code 1 
