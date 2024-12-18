@@ -1,12 +1,33 @@
-[18.12.2024  8:51:06,67] Running enslige_mindreårige.py 
+[18.12.2024  9:11:54,49] Running enslige_mindreårige.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 Kommuner CSV data loaded successfully.
-File not found on GitHub: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/bosetting_enslige_mindre�rige.csv
-[18.12.2024 08:51:09,074 New dataset. Uploading to GitHub...
-[18.12.2024 08:51:09,391 Deleted file from temp folder: bosetting_enslige_mindre�rige.csv
+[18.12.2024 09:12:00,255 Changes detected in the dataset. Analyzing differences...
+[18.12.2024 09:12:00,255 Value changed in row -189:
+[18.12.2024 09:12:00,255   Column: �r
+[18.12.2024 09:12:00,255   Old value: 2014-01-01
+[18.12.2024 09:12:00,255   New value: 2014-01-01 00:00:00
+[18.12.2024 09:12:00,255 Value changed in row -188:
+[18.12.2024 09:12:00,255   Column: �r
+[18.12.2024 09:12:00,255   Old value: 2015-01-01
+[18.12.2024 09:12:00,255   New value: 2015-01-01 00:00:00
+[18.12.2024 09:12:00,255 Value changed in row -187:
+[18.12.2024 09:12:00,255   Column: �r
+[18.12.2024 09:12:00,255   Old value: 2016-01-01
+[18.12.2024 09:12:00,255   New value: 2016-01-01 00:00:00
+[18.12.2024 09:12:00,255 Value changed in row -186:
+[18.12.2024 09:12:00,255   Column: �r
+[18.12.2024 09:12:00,255   Old value: 2017-01-01
+[18.12.2024 09:12:00,255   New value: 2017-01-01 00:00:00
+[18.12.2024 09:12:00,255 Value changed in row -185:
+[18.12.2024 09:12:00,255   Column: �r
+[18.12.2024 09:12:00,255   Old value: 2018-01-01
+[18.12.2024 09:12:00,255   New value: 2018-01-01 00:00:00
+[18.12.2024 09:12:00,255 (Additional differences found...)
+[18.12.2024 09:12:00,255 Uploading updated dataset to GitHub...
+[18.12.2024 09:12:00,640 Deleted file from temp folder: bosetting_enslige_mindre�rige.csv
 
-[18.12.2024  8:51:09,54] Script completed 
+[18.12.2024  9:12:00,80] Script completed 
