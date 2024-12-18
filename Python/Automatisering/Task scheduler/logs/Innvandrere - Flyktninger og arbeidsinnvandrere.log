@@ -1,0 +1,52 @@
+[18.12.2024  8:48:05,42] Running andel_flyktninger_og_arbeidsinnvandrere.py 
+D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:153: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_pivot_arbeidsinnvandrere["Label"] = df_pivot_arbeidsinnvandrere["Kommune"]
+D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:154: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_pivot_flyktninger["Label"] = df_pivot_flyktninger["Kommune"]
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:155: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:155: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:155: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:155: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
+Selected data from year 2024-01-01 00:00:00
+File not found on GitHub: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_arbeidsinnvandrere.csv
+[18.12.2024 08:48:08,711 New dataset. Uploading to GitHub...
+[18.12.2024 08:48:09,025 Deleted file from temp folder: andel_arbeidsinnvandrere.csv
+
+File not found on GitHub: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_flyktninger.csv
+[18.12.2024 08:48:09,202 New dataset. Uploading to GitHub...
+[18.12.2024 08:48:09,581 Deleted file from temp folder: andel_flyktninger.csv
+
+[18.12.2024  8:48:09,72] Script completed 
