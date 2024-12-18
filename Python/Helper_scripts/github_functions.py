@@ -236,7 +236,31 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         )
         return True
 
-    # Continue with existing comparison logic for row counts and values
+    # STEP 2: Check row count changes
+    # Only runs if no header changes were found
+    existing_row_count = len(existing_data)
+    new_row_count = len(input_df)
+
+    if existing_row_count != new_row_count:
+        print(f"[{timestamp}] Row count changed in {file_name}:")
+        print(f"  Old count: {existing_row_count}")
+        print(f"  New count: {new_row_count}")
+        print(f"  Difference: {new_row_count - existing_row_count:+d} rows")
+            
+        upload_github_file(
+            local_file_path,
+            github_file_path,
+            message=f"Updated {file_name} - Row count changed from {existing_row_count} to {new_row_count}"
+        )
+        notify_updated_data(
+            file_name,
+            diff_lines=None,
+            reason=f"Row count changed: {existing_row_count} → {new_row_count} ({new_row_count - existing_row_count:+d} rows)"
+        )
+        return True
+
+    # STEP 3: Check value changes
+    # Only runs if both headers and row counts are identical
     # Standardize column names for comparison
     existing_df = existing_data.rename(columns=lambda x: x.strip().lower())
     new_df = pd.read_csv(local_file_path).rename(columns=lambda x: x.strip().lower())
