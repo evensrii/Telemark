@@ -214,29 +214,34 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             log_message("No differences found in the dataset.")
             return False
 
-        # STEP 3: Check value changes in last 200 rows
+        # STEP 3: Check value changes in last 200 rows (or all rows if fewer than 200)
         log_message("Changes detected in the dataset. Analyzing differences...")
-        last_200_existing = comparison_existing.tail(200).reset_index(drop=True)
-        last_200_new = comparison_input.tail(200).reset_index(drop=True)
+        
+        # Get the minimum length between the two dataframes
+        min_rows = min(len(comparison_existing), len(comparison_input))
+        rows_to_check = min(200, min_rows)
+        
+        last_rows_existing = comparison_existing.tail(rows_to_check).reset_index(drop=True)
+        last_rows_new = comparison_input.tail(rows_to_check).reset_index(drop=True)
 
         differences_found = False
         diff_count = 0
         
-        for idx in range(len(last_200_existing)):
-            for col in last_200_existing.columns:
+        for idx in range(len(last_rows_existing)):
+            for col in last_rows_existing.columns:
                 # Skip Kommunenummer columns
                 if col.lower() in ['kommunenummer', 'kommunenr']:
                     continue
                     
-                old_val = str(last_200_existing.loc[idx, col])
-                new_val = str(last_200_new.loc[idx, col])
+                old_val = str(last_rows_existing.loc[idx, col])
+                new_val = str(last_rows_new.loc[idx, col])
                 
                 if old_val != new_val:
                     if diff_count < 5:  # Only show first 5 differences
                         # Get original values for logging
-                        orig_old_val = str(existing_data.iloc[idx + len(existing_data) - 200][col])
-                        orig_new_val = str(input_df.iloc[idx + len(input_df) - 200][col])
-                        log_message(f"Value changed in row {idx + len(existing_data) - 200}:")
+                        orig_old_val = str(existing_data.iloc[idx + len(existing_data) - rows_to_check][col])
+                        orig_new_val = str(input_df.iloc[idx + len(input_df) - rows_to_check][col])
+                        log_message(f"Value changed in row {idx + len(existing_data) - rows_to_check}:")
                         log_message(f"  Column: {col}")
                         log_message(f"  Old value: {orig_old_val}")
                         log_message(f"  New value: {orig_new_val}")
