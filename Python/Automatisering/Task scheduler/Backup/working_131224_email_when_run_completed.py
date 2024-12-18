@@ -1,6 +1,8 @@
 import requests
 import os
 from dotenv import load_dotenv
+import base64
+from datetime import datetime
 
 ### EMAIL CONFIGURATION ###
 
@@ -36,6 +38,91 @@ recipients = [
     #{"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
 ]
 
+def push_logs_to_github():
+    """
+    Push all log files to GitHub repository.
+    Returns a dictionary mapping script names to their GitHub log URLs.
+    """
+    # Get GitHub token
+    GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+    if not GITHUB_TOKEN:
+        print("GITHUB_TOKEN not found in environment variables")
+        return {}
+
+    # GitHub API configuration
+    owner = "evensrii"
+    repo = "Telemark"
+    branch = "main"
+    base_url = f"https://api.github.com/repos/{owner}/{repo}/contents"
+    logs_path = "Python/Automatisering/Task scheduler/logs"
+    
+    # Dictionary to store script names and their log URLs
+    log_urls = {}
+    
+    # Get list of log files
+    script_dir = os.path.dirname(os.path.abspath(__file__))  # Folder containing this script
+    log_dir = os.path.join(script_dir, "logs")
+    for filename in os.listdir(log_dir):
+        if filename.endswith('.log') and filename != "00_email.log" and filename != "00_master_run.log":
+            file_path = os.path.join(log_dir, filename)
+            
+            # Read file content
+            with open(file_path, 'r', encoding='utf-8') as file:
+                content = file.read()
+            
+            # Prepare the file content for GitHub
+            encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
+            
+            # GitHub API endpoint for the specific file
+            github_path = f"{logs_path}/{filename}"
+            url = f"{base_url}/{github_path}"
+            
+            # Headers for GitHub API
+            headers = {
+                "Authorization": f"token {GITHUB_TOKEN}",
+                "Accept": "application/vnd.github.v3+json"
+            }
+            
+            try:
+                # Check if file exists on GitHub
+                response = requests.get(url, headers=headers)
+                
+                if response.status_code == 200:
+                    # File exists, get its SHA
+                    file_sha = response.json()["sha"]
+                    
+                    # Update file
+                    data = {
+                        "message": f"Update {filename} - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+                        "content": encoded_content,
+                        "sha": file_sha,
+                        "branch": branch
+                    }
+                else:
+                    # Create new file
+                    data = {
+                        "message": f"Add {filename} - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+                        "content": encoded_content,
+                        "branch": branch
+                    }
+                
+                # Push to GitHub
+                response = requests.put(url, headers=headers, json=data)
+                
+                if response.status_code in [200, 201]:
+                    # Store the raw GitHub URL for the file
+                    raw_url = f"https://github.com/{owner}/{repo}/blob/{branch}/{logs_path}/{filename}"
+                    script_name = filename.replace('.log', '')
+                    log_urls[script_name] = raw_url
+                    print(f"Successfully pushed {filename} to GitHub")
+                else:
+                    print(f"Failed to push {filename}. Status code: {response.status_code}")
+                    
+            except Exception as e:
+                print(f"Error pushing {filename}: {str(e)}")
+    
+    return log_urls
+
 ### READ MASTER LOG FILE ###
 
 # Locate the log file relative to the script
@@ -53,8 +140,8 @@ if not os.path.exists(log_file_path):
 with open(log_file_path, "r", encoding="utf-8") as log_file:
     log_content = log_file.read()
 
-
-### FORMAT LOG CONTENT INTO HTML TABLE ###
+# Push logs to GitHub and get URLs
+log_urls = push_logs_to_github()
 
 ### FORMAT LOG CONTENT INTO HTML TABLE ###
 
@@ -71,9 +158,10 @@ def format_log_as_html_table(log_content):
     # Split log content into lines
     log_lines = log_content.split("\n")
 
-    # Prepare separate lists for rows with "Ja" and "Nei"
+    # Prepare separate lists for rows with "Ja", "Feilet", and others
     rows_ja = []
-    rows_nei = []
+    rows_feilet = []
+    rows_other = []
 
     # Process each log line
     for idx, line in enumerate(log_lines):
@@ -106,9 +194,9 @@ def format_log_as_html_table(log_content):
 
                 # Determine "Status" badge style
                 if status == "Fullført":
-                    status_badge = f"<span style='background-color: #0bb30b; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Fullført</span>"
+                    status_badge = f"<span style='color: #0bb30b; font-size: 22px; font-weight: 900;'>✓</span>"
                 else:
-                    status_badge = f"<span style='background-color: #FF4500; color: white; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Feilet</span>"
+                    status_badge = f"<span style='color: #FF4500; font-size: 22px; font-weight: 900;'>✗</span>"
 
                 # Determine "New Data" badge style
                 if new_data == "Ja":
@@ -116,34 +204,37 @@ def format_log_as_html_table(log_content):
                 else:
                     new_data_badge = f"<span style='background-color: transparent; color: black; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Nei</span>"
 
-                # Apply alternating row colors
-                background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
-
                 # Create the row
+                background_color = "#f2f2f2" if idx % 2 == 0 else "#ffffff"
                 row = f"""
                 <tr style='background-color: {background_color};'>
                     <td>{date}</td>
                     <td>{time}</td>
-                    <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{task}</td>
+                    <td style='text-align: left; padding-left: 20px; vertical-align: middle;'><a href='{log_urls.get(task, "#")}' style='color: #00008B; text-decoration: none;'>{task}</a></td>
                     <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{script}</td>
                     <td>{status_badge}</td>
                     <td>{new_data_badge}</td>
                 </tr>
                 """
-
-                # Sort rows into "Ja" or "Nei" groups
+                
+                # Sort rows into "Ja", "Feilet", or others
                 if new_data == "Ja":
                     rows_ja.append(row)
+                elif status == "Feilet":
+                    rows_feilet.append(row)
                 else:
-                    rows_nei.append(row)
+                    rows_other.append(row)
 
             except Exception as e:
                 # Debugging: Print the error and the line that caused it
                 print(f"Error processing line: {line}. Error: {e}")
                 continue
 
-    # Combine "Ja" rows first, followed by "Nei" rows
-    rows = "".join(rows_ja + rows_nei)
+    # Combine rows: "Ja" first, then "Feilet," then others
+    all_rows = rows_ja + rows_feilet + rows_other
+    
+    # Join all rows
+    rows = "".join(all_rows)
 
     # Wrap rows in a styled HTML table
     html_table = f"""

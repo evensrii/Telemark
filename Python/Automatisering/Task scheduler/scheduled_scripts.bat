@@ -34,13 +34,13 @@ CALL conda activate analyse >> %LOGFILE% 2>&1
 :: Run scripts with log separation
 
 :: Innvandrere og inkludering
-:: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py" "Innvandrere - Bosatt"
-:: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandringsgrunn.py" "Innvandrere - Innvandringsgrunn"
-:: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py" "Innvandrere - Flyktninger og arbeidsinnvandrere"
-:: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\botid.py" "Innvandrere - Botid"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py" "Innvandrere - Bosatt"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandringsgrunn.py" "Innvandrere - Innvandringsgrunn"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py" "Innvandrere - Flyktninger og arbeidsinnvandrere"
+CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\botid.py" "Innvandrere - Botid"
 
 :: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\anmodninger_og_faktisk_bosetting.py" "Innvandrere - Anmodninger og faktisk bosetting"
-CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\enslige_mindreårige.py" "Innvandrere - Enslige mindreårige"
+:: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\enslige_mindreårige.py" "Innvandrere - Enslige mindreårige"
 :: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekundærflytting.py" "Innvandrere - Sekundærflytting"
 
 :: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Introduksjonsprogrammet\deltakere_introduksjonsprogram.py" "Innvandrere - Deltakere introdukjonsprogrammet"
@@ -103,10 +103,10 @@ IF EXIST "new_data_status.log" (
 
 :: Append status to the master log
 IF %ERRORLEVEL% NEQ 0 (
-    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Failed,%NEW_DATA_STATUS% >> %LOGFILE%
+    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Failed, %NEW_DATA_STATUS% >> %LOGFILE%
     echo [%DATE% %TIME%] Script failed with error code %ERRORLEVEL% >> %SCRIPT_LOG%
 ) ELSE (
-    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Completed,%NEW_DATA_STATUS% >> %LOGFILE%
+    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Completed, %NEW_DATA_STATUS% >> %LOGFILE%
     echo [%DATE% %TIME%] Script completed >> %SCRIPT_LOG%
 )
 

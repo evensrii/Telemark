@@ -1,5 +1,12 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Resolved log file path: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
-Error processing Innvandrere - Enslige mindreårige.log: 'utf-8' codec can't decode byte 0xe5 in position 806: invalid continuation byte
+Successfully pushed Innvandrere - Bosatt.log to GitHub
+Successfully pushed Innvandrere - Botid.log to GitHub
+Successfully pushed Innvandrere - Flyktninger og arbeidsinnvandrere.log to GitHub
+Successfully pushed Innvandrere - Innvandringsgrunn.log to GitHub
+Processing line: [18.12.2024 12:38:43,37] Innvandrere - Bosatt : innvandrere_bosatt.py : Completed, No 
+Processing line: [18.12.2024 12:38:52,32] Innvandrere - Innvandringsgrunn : innvandringsgrunn.py : Completed, No 
+Processing line: [18.12.2024 12:38:56,43] Innvandrere - Flyktninger og arbeidsinnvandrere : andel_flyktninger_og_arbeidsinnvandrere.py : Completed, No 
+Processing line: [18.12.2024 12:38:59,19] Innvandrere - Botid : botid.py : Completed, No 
 Email sent successfully to Even (even.sannes.riiser@telemarkfylke.no).
