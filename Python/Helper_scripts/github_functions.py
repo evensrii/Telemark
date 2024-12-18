@@ -269,21 +269,29 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         """
         Dynamically identify key columns based on their characteristics:
         1. Known identifier columns (Kommune, År, etc.)
-        2. Columns with all unique values (likely identifiers)
-        3. Columns with categorical/low-cardinality data
-        4. Date/time columns
+        2. Date/time columns
+        3. Label columns
+        4. Categorical columns with very low cardinality relative to row count
         """
         key_columns = []
         
         # 1. Known identifier columns (case-insensitive)
-        known_identifiers = ['kommune', 'kommunenummer', 'kommunenr', 'label', 'år', 'year', 'dato', 'date']
+        # Make the matching more precise with word boundaries
+        known_identifiers = {
+            'exact': ['kommune', 'kommunenummer', 'kommunenr', 'label', 'år', 'year', 'dato', 'date'],
+            'contains': ['_id', '_nr', '_key']  # Only match these patterns
+        }
+        
         for col in df.columns:
-            if col.lower() in known_identifiers:
+            col_lower = col.lower()
+            
+            # Exact matches (with word boundaries)
+            if any(col_lower == identifier for identifier in known_identifiers['exact']):
                 key_columns.append(col)
                 continue
-                
-            # Check if column name contains any of the identifiers
-            if any(identifier in col.lower() for identifier in known_identifiers):
+            
+            # Contains patterns (for specific substrings)
+            if any(pattern in col_lower for pattern in known_identifiers['contains']):
                 key_columns.append(col)
                 continue
             
@@ -300,14 +308,22 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                 pass
 
             # Check for categorical/low-cardinality columns
-            unique_ratio = df[col].nunique() / len(df)
-            if unique_ratio < 0.5:  # If less than 50% of values are unique
-                key_columns.append(col)
+            # Only consider a column as key if it has very few unique values compared to row count
+            if len(df) > 1:  # Avoid division by zero
+                unique_ratio = df[col].nunique() / len(df)
+                if unique_ratio <= 0.1:  # If less than 10% of values are unique
+                    key_columns.append(col)
         
         return list(set(key_columns))  # Remove any duplicates
 
     # Identify key columns dynamically
     key_columns = identify_key_columns(new_df)
+    
+    # Force 'Kommune' and 'Label' to be key columns if they exist
+    forced_keys = ['Kommune', 'Label']
+    key_columns = list(set(key_columns + [col for col in forced_keys if col in new_df.columns]))
+    
+    # All other columns are value columns
     value_columns = [col for col in new_df.columns if col not in key_columns]
 
     print(f"[{timestamp}] Identified key columns: {', '.join(key_columns)}")
