@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from datetime import datetime
 import base64
 import pandas as pd
+from io import StringIO
 
 from Helper_scripts.email_functions import notify_updated_data
 
@@ -63,7 +64,6 @@ def download_github_file(file_path):
     if response.status_code == 200:
         # Return the content as a Pandas DataFrame
         from io import StringIO
-
         return pd.read_csv(StringIO(response.text))
     elif response.status_code == 404:
         print(f"File not found on GitHub: {file_path}")
@@ -119,7 +119,7 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
     response = requests.put(url, json=payload, headers=headers)
 
     if response.status_code in [201, 200]:
-        print(f"File uploaded successfully: {github_file_path}")
+        print(f"\nFile uploaded successfully: {github_file_path}")
     else:
         print(f"Failed to upload file: {response.json()}")
 
@@ -138,9 +138,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     Returns:
         bool: True if new data uploaded or detected, False otherwise
     """
-    import pandas as pd
-    from datetime import datetime
-    import numpy as np
+
 
     def log_message(msg):
         """Add timestamp to log messages"""
@@ -156,13 +154,19 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     temp_file_path = os.path.join(temp_folder, file_name)
     input_df.to_csv(temp_file_path, index=False, encoding='utf-8')
 
-    # Construct GitHub file path
-    github_file_path = f"Data/{github_folder}/{file_name}"
-
     try:
         # Try to download existing file from GitHub
-        existing_data = download_github_file(github_file_path)
-        existing_data = pd.read_csv(existing_data, encoding='utf-8')
+        existing_data = download_github_file(f"{github_folder}/{file_name}")
+        
+        if existing_data is None:
+            # File doesn't exist on GitHub yet
+            log_message("New dataset. Uploading to GitHub...")
+            upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
+                             message=f"Added new dataset: {file_name}")
+            return True
+            
+        # File exists, read it into DataFrame
+        existing_data = existing_data
         
         # Ensure UTF-8 encoding for existing data
         for col in existing_data.columns:
@@ -184,7 +188,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         # Check structural changes (ignoring case)
         if set(existing_headers) != set(new_headers):
             log_message("Header structure has changed.")
-            upload_github_file(temp_file_path, github_file_path, 
+            upload_github_file(temp_file_path, f"{github_folder}/{file_name}", 
                              message=f"Updated {file_name} - header structure changed")
             return True
 
@@ -194,14 +198,14 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             new_years = [int(s) for s in new_h.split() if s.isdigit()]
             if old_years != new_years:
                 log_message(f"Year in header changed: {old_h} -> {new_h}")
-                upload_github_file(temp_file_path, github_file_path,
+                upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
                                  message=f"Updated {file_name} - year in headers changed")
                 return True
 
         # STEP 2: Check row count
         if len(existing_data) != len(input_df):
             log_message(f"Row count changed from {len(existing_data)} to {len(input_df)}")
-            upload_github_file(temp_file_path, github_file_path,
+            upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
                              message=f"Updated {file_name} - row count changed from {len(existing_data)} to {len(input_df)}")
             return True
 
@@ -212,7 +216,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         # Identify numeric and key columns
         numeric_cols = []
         for col in last_200_new.columns:
-            if col.lower() not in ['kommunenummer', 'kommunenr']:  # Treat these as strings
+            if col.lower() not in ['kommunenummer', 'kommunenr','Kommunenummer', 'Kommunenr']:  # Treat these as strings
                 try:
                     pd.to_numeric(last_200_new[col])
                     numeric_cols.append(col)
@@ -243,21 +247,14 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
 
         if differences_found:
             log_message("Uploading updated dataset to GitHub...")
-            upload_github_file(temp_file_path, github_file_path,
+            upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
                              message=f"Updated {file_name} - value changes detected")
             return True
         else:
             log_message("No differences found in the last 200 rows, but the dataset has changed elsewhere.")
-            upload_github_file(temp_file_path, github_file_path,
+            upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
                              message=f"Updated {file_name} - changes detected")
             return True
-
-    except FileNotFoundError:
-        # File doesn't exist on GitHub yet
-        log_message("New dataset. Uploading to GitHub...")
-        upload_github_file(temp_file_path, github_file_path,
-                         message=f"Added new dataset: {file_name}")
-        return True
 
     finally:
         # Clean up temp file
