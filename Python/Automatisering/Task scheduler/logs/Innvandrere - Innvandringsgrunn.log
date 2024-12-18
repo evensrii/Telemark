@@ -1,25 +1,25 @@
-[18.12.2024 14:42:50,56] Running innvandringsgrunn.py 
+[18.12.2024 14:51:45,20] Running innvandringsgrunn.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Innvandringsgrunn CSV data loaded successfully.
-[2024-12-18 14:42:53] Large dataset detected (279324 rows). Limiting detailed comparison to last 200 rows.
-[2024-12-18 14:42:53] Identified key columns: År, Kommune, Kommunenummer
-[2024-12-18 14:42:53] Value columns to compare: Kjønn, Innvandringsgrunn, Enhet, Antall
+[2024-12-18 14:51:47] Large dataset detected (279324 rows). Limiting detailed comparison to last 200 rows.
+[2024-12-18 14:51:47] Identified key columns: Kommune, År, Kommunenummer
+[2024-12-18 14:51:47] Value columns to compare: Kjønn, Innvandringsgrunn, Enhet, Antall
 
-[2024-12-18 14:42:53] New data detected. Uploading to GitHub.
+[2024-12-18 14:51:47] New data detected. Uploading to GitHub.
 
-[2024-12-18 14:42:53] === Data Comparison ===
+[2024-12-18 14:51:47] === Data Comparison ===
 File: innvandringsgrunn_telemark.csv
 Note: Only showing changes from the last 200 rows
 
 Changes detected in the following rows:
 
-Row: År: 2024 | Kommune: Vestnes | Kommunenummer: 1535
+Row: Kommune: Vestnes | År: 2024 | Kommunenummer: 1535
   Antall: 100.1 -> 26.1
 
-Row: År: 2024 | Kommune: Grue | Kommunenummer: 3417
+Row: Kommune: Grue | År: 2024 | Kommunenummer: 3417
   Antall: 100.0 -> 28.0
 
 Total changes found in examined rows: 2
@@ -29,4 +29,4 @@ File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkn
 Email notifications disabled. Updates for innvandringsgrunn_telemark.csv were not sent.
 Deleted file from temp folder: andel_innvandrere_bosatt.csv
 Deleted file from temp folder: innvandringsgrunn_telemark.csv
-[18.12.2024 14:43:01,38] Script completed 
+[18.12.2024 14:51:55,68] Script completed 
