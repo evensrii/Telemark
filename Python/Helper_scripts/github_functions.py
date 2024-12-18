@@ -257,7 +257,8 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             return True
 
     finally:
+        print("Hei")
         # Clean up temp file
-        if os.path.exists(temp_file_path):
+"""         if os.path.exists(temp_file_path):
             os.remove(temp_file_path)
-            log_message(f"Deleted file from temp folder: {file_name}\n")
+            log_message(f"Deleted file from temp folder: {file_name}\n") """

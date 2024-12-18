@@ -228,4 +228,4 @@ with open("new_data_status.log", "w", encoding="utf-8") as log_file:
 
 ##################### Remove temporary local files #####################
 
-delete_files_in_temp_folder()
+#delete_files_in_temp_folder()
