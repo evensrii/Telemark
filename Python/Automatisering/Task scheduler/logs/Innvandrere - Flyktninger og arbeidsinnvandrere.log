@@ -1,4 +1,4 @@
-[18.12.2024  8:39:55,35] Running andel_flyktninger_og_arbeidsinnvandrere.py 
+[18.12.2024  8:48:05,42] Running andel_flyktninger_og_arbeidsinnvandrere.py 
 D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:153: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
@@ -11,13 +11,25 @@ Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   df_pivot_flyktninger["Label"] = df_pivot_flyktninger["Kommune"]
-D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:152: SettingWithCopyWarning: 
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:155: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
-D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:152: SettingWithCopyWarning: 
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:155: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:155: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:155: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -29,12 +41,12 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
 Selected data from year 2024-01-01 00:00:00
-[18.12.2024 08:39:58,638 Deleted file from temp folder: andel_arbeidsinnvandrere.csv
+File not found on GitHub: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_arbeidsinnvandrere.csv
+[18.12.2024 08:48:08,711 New dataset. Uploading to GitHub...
+[18.12.2024 08:48:09,025 Deleted file from temp folder: andel_arbeidsinnvandrere.csv
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py", line 182, in <module>
-    is_new_data1 = compare_to_github(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 173, in compare_to_github
-    existing_data = pd.read_csv(StringIO(existing_file_content), encoding='utf-8')
-TypeError: initial_value must be str or None, not DataFrame
-[18.12.2024  8:39:58,75] Script failed with error code 1 
+File not found on GitHub: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_flyktninger.csv
+[18.12.2024 08:48:09,202 New dataset. Uploading to GitHub...
+[18.12.2024 08:48:09,581 Deleted file from temp folder: andel_flyktninger.csv
+
+[18.12.2024  8:48:09,72] Script completed 
