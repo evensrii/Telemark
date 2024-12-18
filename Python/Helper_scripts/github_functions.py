@@ -97,14 +97,14 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
 
         # Compare local content with GitHub content
         if local_content.strip() == github_content.strip():
-            return
+            return True
     elif response.status_code == 404:
         # File does not exist
         sha = None
     else:
         # Log an error if the status check fails
         print(f"Failed to check file on GitHub: {response.json()}")
-        return
+        return False
 
     # Prepare the payload
     payload = {
@@ -120,8 +120,10 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
 
     if response.status_code in [201, 200]:
         print(f"\nFile uploaded successfully: {github_file_path}")
+        return True
     else:
         print(f"Failed to upload file: {response.json()}")
+        return False
 
 
 ## Function to compare file to GitHub
@@ -138,17 +140,10 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     Returns:
         bool: True if new data uploaded or detected, False otherwise
     """
-
-
     def log_message(msg):
         """Add timestamp to log messages"""
         timestamp = datetime.now().strftime('[%d.%m.%Y %H:%M:%S,%f]')[:-4]
         print(f"{timestamp} {msg}")
-
-    # Ensure all string columns use UTF-8 encoding
-    for col in input_df.columns:
-        if input_df[col].dtype == 'object':
-            input_df[col] = input_df[col].astype(str).str.encode('utf-8').str.decode('utf-8')
 
     # Save the new data to temp folder
     temp_file_path = os.path.join(temp_folder, file_name)
@@ -164,14 +159,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
                              message=f"Added new dataset: {file_name}")
             return True
-            
-        # File exists, read it into DataFrame
-        existing_data = existing_data
-        
-        # Ensure UTF-8 encoding for existing data
-        for col in existing_data.columns:
-            if existing_data[col].dtype == 'object':
-                existing_data[col] = existing_data[col].astype(str).str.encode('utf-8').str.decode('utf-8')
 
         # Quick full comparison to determine if data is new/updated/same
         if existing_data.equals(input_df):
@@ -188,8 +175,12 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         # Check structural changes (ignoring case)
         if set(existing_headers) != set(new_headers):
             log_message("Header structure has changed.")
-            upload_github_file(temp_file_path, f"{github_folder}/{file_name}", 
+            log_message(f"Old headers: {existing_data.columns.tolist()}")
+            log_message(f"New headers: {input_df.columns.tolist()}")
+            upload_success = upload_github_file(temp_file_path, f"{github_folder}/{file_name}", 
                              message=f"Updated {file_name} - header structure changed")
+            if not upload_success:
+                log_message("Failed to upload file to GitHub")
             return True
 
         # Check for year changes in headers
@@ -198,15 +189,19 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             new_years = [int(s) for s in new_h.split() if s.isdigit()]
             if old_years != new_years:
                 log_message(f"Year in header changed: {old_h} -> {new_h}")
-                upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
+                upload_success = upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
                                  message=f"Updated {file_name} - year in headers changed")
+                if not upload_success:
+                    log_message("Failed to upload file to GitHub")
                 return True
 
         # STEP 2: Check row count
         if len(existing_data) != len(input_df):
             log_message(f"Row count changed from {len(existing_data)} to {len(input_df)}")
-            upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
+            upload_success = upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
                              message=f"Updated {file_name} - row count changed from {len(existing_data)} to {len(input_df)}")
+            if not upload_success:
+                log_message("Failed to upload file to GitHub")
             return True
 
         # STEP 3: Check value changes in last 200 rows
@@ -216,7 +211,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         # Identify numeric and key columns
         numeric_cols = []
         for col in last_200_new.columns:
-            if col.lower() not in ['kommunenummer', 'kommunenr','Kommunenummer', 'Kommunenr']:  # Treat these as strings
+            if col.lower() not in ['kommunenummer', 'kommunenr', 'Kommunenummer', 'Kommunenr']:  # Treat these as strings
                 try:
                     pd.to_numeric(last_200_new[col])
                     numeric_cols.append(col)
@@ -247,18 +242,19 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
 
         if differences_found:
             log_message("Uploading updated dataset to GitHub...")
-            upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
+            upload_success = upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
                              message=f"Updated {file_name} - value changes detected")
+            if not upload_success:
+                log_message("Failed to upload file to GitHub")
             return True
         else:
             log_message("No differences found in the last 200 rows, but the dataset has changed elsewhere.")
-            upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
+            upload_success = upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
                              message=f"Updated {file_name} - changes detected")
+            if not upload_success:
+                log_message("Failed to upload file to GitHub")
             return True
 
-    finally:
-        print("Hei")
-        # Clean up temp file
-"""         if os.path.exists(temp_file_path):
-            os.remove(temp_file_path)
-            log_message(f"Deleted file from temp folder: {file_name}\n") """
+    except Exception as e:
+        log_message(f"Error during comparison: {str(e)}")
+        return False
