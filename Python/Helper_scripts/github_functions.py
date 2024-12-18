@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 from datetime import datetime
 import base64
 import pandas as pd
-from io import StringIO
 
 from Helper_scripts.email_functions import notify_updated_data
 
@@ -64,6 +63,7 @@ def download_github_file(file_path):
     if response.status_code == 200:
         # Return the content as a Pandas DataFrame
         from io import StringIO
+
         return pd.read_csv(StringIO(response.text))
     elif response.status_code == 404:
         print(f"File not found on GitHub: {file_path}")
@@ -97,14 +97,14 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
 
         # Compare local content with GitHub content
         if local_content.strip() == github_content.strip():
-            return True
+            return
     elif response.status_code == 404:
         # File does not exist
         sha = None
     else:
         # Log an error if the status check fails
         print(f"Failed to check file on GitHub: {response.json()}")
-        return False
+        return
 
     # Prepare the payload
     payload = {
@@ -119,20 +119,19 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
     response = requests.put(url, json=payload, headers=headers)
 
     if response.status_code in [201, 200]:
-        print(f"\nFile uploaded successfully: {github_file_path}")
-        return True
+        print(f"File uploaded successfully: {github_file_path}")
     else:
         print(f"Failed to upload file: {response.json()}")
-        return False
 
 
 ## Function to compare file to GitHub
 def compare_to_github(input_df, file_name, github_folder, temp_folder):
     """
-    Compares a DataFrame to an existing file on GitHub, and uploads if changes are detected.
+    Compares a DataFrame to an existing file on GitHub and uploads if changes are detected.
+    Only previews differences in the last 200 rows for performance reasons.
     
     Args:
-        input_df (pd.DataFrame): The DataFrame to compare and upload
+        input_df (pd.DataFrame): DataFrame to compare and upload
         file_name (str): Name of the file to save and compare
         github_folder (str): Folder path in GitHub repository
         temp_folder (str): Local temporary folder for storing files
@@ -145,7 +144,23 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         timestamp = datetime.now().strftime('[%d.%m.%Y %H:%M:%S,%f]')[:-4]
         print(f"{timestamp} {msg}")
 
-    # Save the new data to temp folder
+    def standardize_dates_for_comparison(df):
+        """Standardize dates for comparison only, preserving original format"""
+        df = df.copy()
+        for col in df.columns:
+            if df[col].dtype == 'datetime64[ns]' or isinstance(df[col].dtype, pd.DatetimeTZDtype):
+                df[col] = pd.to_datetime(df[col]).dt.strftime('%Y-%m-%d')
+            elif 'år' in str(col).lower() or 'year' in str(col).lower():
+                try:
+                    # First check if it's already in year-only format
+                    if df[col].astype(str).str.match(r'^\d{4}$').all():
+                        continue
+                    df[col] = pd.to_datetime(df[col]).dt.strftime('%Y-%m-%d')
+                except:
+                    pass
+        return df
+
+    # Save the original data to temp folder (preserving original format)
     temp_file_path = os.path.join(temp_folder, file_name)
     input_df.to_csv(temp_file_path, index=False, encoding='utf-8')
 
@@ -160,78 +175,71 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                              message=f"Added new dataset: {file_name}")
             return True
 
-        # Quick full comparison to determine if data is new/updated/same
-        if existing_data.equals(input_df):
-            log_message("No differences found in the dataset.")
-            return False
-
-        # If data is different, proceed with detailed comparison of last 200 rows
-        log_message("Changes detected in the dataset. Analyzing differences...")
+        # Create copies for comparison with standardized dates
+        comparison_input = standardize_dates_for_comparison(input_df)
+        comparison_existing = standardize_dates_for_comparison(existing_data)
 
         # STEP 1: Check header changes
-        existing_headers = [h.lower() for h in existing_data.columns]
-        new_headers = [h.lower() for h in input_df.columns]
+        existing_headers = [str(h).strip().lower() for h in existing_data.columns]
+        new_headers = [str(h).strip().lower() for h in input_df.columns]
 
         # Check structural changes (ignoring case)
         if set(existing_headers) != set(new_headers):
             log_message("Header structure has changed.")
             log_message(f"Old headers: {existing_data.columns.tolist()}")
             log_message(f"New headers: {input_df.columns.tolist()}")
-            upload_success = upload_github_file(temp_file_path, f"{github_folder}/{file_name}", 
+            upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
                              message=f"Updated {file_name} - header structure changed")
-            if not upload_success:
-                log_message("Failed to upload file to GitHub")
             return True
 
         # Check for year changes in headers
         for old_h, new_h in zip(existing_data.columns, input_df.columns):
-            old_years = [int(s) for s in old_h.split() if s.isdigit()]
-            new_years = [int(s) for s in new_h.split() if s.isdigit()]
+            old_years = [int(s) for s in str(old_h).split() if s.isdigit()]
+            new_years = [int(s) for s in str(new_h).split() if s.isdigit()]
             if old_years != new_years:
                 log_message(f"Year in header changed: {old_h} -> {new_h}")
-                upload_success = upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
+                upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
                                  message=f"Updated {file_name} - year in headers changed")
-                if not upload_success:
-                    log_message("Failed to upload file to GitHub")
                 return True
 
         # STEP 2: Check row count
-        if len(existing_data) != len(input_df):
-            log_message(f"Row count changed from {len(existing_data)} to {len(input_df)}")
-            upload_success = upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
-                             message=f"Updated {file_name} - row count changed from {len(existing_data)} to {len(input_df)}")
-            if not upload_success:
-                log_message("Failed to upload file to GitHub")
+        if len(comparison_existing) != len(comparison_input):
+            log_message(f"Row count changed from {len(comparison_existing)} to {len(comparison_input)}")
+            upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
+                             message=f"Updated {file_name} - row count changed")
             return True
 
-        # STEP 3: Check value changes in last 200 rows
-        last_200_existing = existing_data.tail(200).reset_index(drop=True)
-        last_200_new = input_df.tail(200).reset_index(drop=True)
+        # Quick full comparison to check if any changes exist
+        if comparison_existing.equals(comparison_input):
+            log_message("No differences found in the dataset.")
+            return False
 
-        # Identify numeric and key columns
-        numeric_cols = []
-        for col in last_200_new.columns:
-            if col.lower() not in ['kommunenummer', 'kommunenr', 'Kommunenummer', 'Kommunenr']:  # Treat these as strings
-                try:
-                    pd.to_numeric(last_200_new[col])
-                    numeric_cols.append(col)
-                except (ValueError, TypeError):
-                    pass
+        # STEP 3: Check value changes in last 200 rows
+        log_message("Changes detected in the dataset. Analyzing differences...")
+        last_200_existing = comparison_existing.tail(200).reset_index(drop=True)
+        last_200_new = comparison_input.tail(200).reset_index(drop=True)
 
         differences_found = False
         diff_count = 0
         
         for idx in range(len(last_200_existing)):
             for col in last_200_existing.columns:
+                # Skip Kommunenummer columns
+                if col.lower() in ['kommunenummer', 'kommunenr']:
+                    continue
+                    
                 old_val = str(last_200_existing.loc[idx, col])
                 new_val = str(last_200_new.loc[idx, col])
                 
                 if old_val != new_val:
                     if diff_count < 5:  # Only show first 5 differences
+                        # Get original values for logging
+                        orig_old_val = str(existing_data.iloc[idx + len(existing_data) - 200][col])
+                        orig_new_val = str(input_df.iloc[idx + len(input_df) - 200][col])
                         log_message(f"Value changed in row {idx + len(existing_data) - 200}:")
                         log_message(f"  Column: {col}")
-                        log_message(f"  Old value: {old_val}")
-                        log_message(f"  New value: {new_val}")
+                        log_message(f"  Old value: {orig_old_val}")
+                        log_message(f"  New value: {orig_new_val}")
                     differences_found = True
                     diff_count += 1
                     if diff_count == 5:
@@ -242,18 +250,12 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
 
         if differences_found:
             log_message("Uploading updated dataset to GitHub...")
-            upload_success = upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
-                             message=f"Updated {file_name} - value changes detected")
-            if not upload_success:
-                log_message("Failed to upload file to GitHub")
-            return True
         else:
-            log_message("No differences found in the last 200 rows, but the dataset has changed elsewhere.")
-            upload_success = upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
-                             message=f"Updated {file_name} - changes detected")
-            if not upload_success:
-                log_message("Failed to upload file to GitHub")
-            return True
+            log_message("Changes detected in dataset, but not in the last 200 rows...")
+            
+        upload_github_file(temp_file_path, f"{github_folder}/{file_name}",
+                         message=f"Updated {file_name} - value changes detected")
+        return True
 
     except Exception as e:
         log_message(f"Error during comparison: {str(e)}")
