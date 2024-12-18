@@ -259,21 +259,23 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         )
         return True
 
-    # STEP 3: Check value changes
-    # Only runs if both headers and row counts are identical
-    existing_df = existing_data.copy()
-    new_df = input_df.copy()
+    # Quick check for any changes in full dataset
+    if existing_data.equals(input_df):
+        print(f"[{timestamp}] No new data to upload. Skipping GitHub update.")
+        return False
 
-    # For large datasets, only compare the last 200 rows for detailed differences
-    dataset_size = len(new_df)
-    if dataset_size > 200:
+    # For large datasets, only show detailed differences for the last 200 rows
+    dataset_size = len(input_df)
+    is_large_dataset = dataset_size > 200
+
+    if is_large_dataset:
         print(f"[{timestamp}] Large dataset detected ({dataset_size} rows). Limiting detailed comparison to last 200 rows.")
         comparison_start = max(0, dataset_size - 200)
-        existing_df_subset = existing_df.iloc[comparison_start:].copy()
-        new_df_subset = new_df.iloc[comparison_start:].copy()
+        existing_df_subset = existing_data.iloc[comparison_start:].copy()
+        new_df_subset = input_df.iloc[comparison_start:].copy()
     else:
-        existing_df_subset = existing_df.copy()
-        new_df_subset = new_df.copy()
+        existing_df_subset = existing_data.copy()
+        new_df_subset = input_df.copy()
 
     # Identify key columns dynamically
     key_columns = identify_key_columns(new_df_subset)
@@ -287,11 +289,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
 
     print(f"[{timestamp}] Identified key columns: {', '.join(key_columns)}")
     print(f"[{timestamp}] Value columns to compare: {', '.join(value_columns)}\n")
-
-    # Quick check for any changes in full dataset
-    if existing_df.equals(new_df):
-        print(f"[{timestamp}] No new data to upload. Skipping GitHub update.")
-        return False
 
     # Find rows where values have changed in the subset
     changes = []
@@ -316,27 +313,34 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                     'new_value': new_val
                 })
 
-    # Handle the output based on whether we found changes in the subset
     if changes:
-        print(f"[{timestamp}] New data detected. Uploading to GitHub.")
-        print(f"\n[{timestamp}] === Data Comparison ===")
-        print(f"File: {file_name}")
-        if dataset_size > 200:
+        print(f"[{timestamp}] New data detected. Uploading to GitHub.\n")
+        if is_large_dataset:
+            print(f"[{timestamp}] === Data Comparison ===")
+            print(f"File: {file_name}")
             print("Note: Only showing changes from the last 200 rows\n")
-        print("Changes detected in the following rows:\n")
+        else:
+            print(f"[{timestamp}] === Data Comparison ===")
+            print(f"File: {file_name}\n")
 
-        # Show up to 5 examples of changes
+        print("Changes detected in the following rows:\n")
+        # Show only first 5 examples
         for change in changes[:5]:
             print(f"Row: {change['identifiers']}")
-            print(f"  {change['column']}: {change['old_value']} -> {change['new_value']}")
-            print()
-
+            print(f"  {change['column']}: {change['old_value']} -> {change['new_value']}\n")
+        
         total_changes = len(changes)
         print(f"Total changes found in examined rows: {total_changes}")
         if total_changes > 5:
             print("(Showing first 5 changes only)")
-        print("=" * 20 + "\n")
-
+        print("====================\n")
+    else:
+        if is_large_dataset:
+            print(f"[{timestamp}] Changes detected in dataset but not in the last 200 rows.")
+        else:
+            print(f"[{timestamp}] No changes detected in the dataset.")
+    
+    if changes or (not existing_data.equals(input_df)):
         upload_github_file(
             local_file_path,
             github_file_path,
@@ -357,26 +361,9 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             reason=f"Changes detected in dataset" + (" (last 200 rows examined)" if dataset_size > 200 else "")
         )
         return True
-    elif not existing_df.equals(new_df):
-        # Changes exist but not in the last 200 rows
-        print(f"[{timestamp}] Changes detected in dataset but not in the last 200 rows.")
-        print(f"[{timestamp}] Uploading updated file to GitHub.")
-        
-        upload_github_file(
-            local_file_path,
-            github_file_path,
-            message=f"Updated {file_name} with changes (not in last 200 rows)"
-        )
-        
-        notify_updated_data(
-            file_name,
-            None,
-            reason="Changes detected in dataset (not in last 200 rows)"
-        )
-        return True
-
-    print(f"[{timestamp}] No new data to upload. Skipping GitHub update.")
-    return False
+    else:
+        print(f"[{timestamp}] No new data to upload. Skipping GitHub update.")
+        return False
 
 
 def identify_key_columns(df):
