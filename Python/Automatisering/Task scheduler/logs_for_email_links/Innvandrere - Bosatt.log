@@ -1,31 +1,12 @@
-[18.12.2024 15:10:42,11] Running innvandrere_bosatt.py 
+[18.12.2024 15:11:43,18] Running innvandrere_bosatt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Bosatt JSON data loaded successfully.
-[2024-12-18 15:10:45] Identified key columns: Label, Kommune
-[2024-12-18 15:10:45] Value columns to compare: Andel bosatt 2024
+[2024-12-18 15:11:45] Identified key columns: Label, Kommune
+[2024-12-18 15:11:45] Value columns to compare: Andel bosatt 2024
 
-[2024-12-18 15:10:45] New data detected. Uploading to GitHub.
-
-[2024-12-18 15:10:45] === Data Comparison ===
-File: andel_innvandrere_bosatt.csv
-
-Changes detected in the following rows:
-
-Row: Label: Kviteseid | Kommune: Kviteseid
-  Andel bosatt 2024: 1 -> 11
-
-Row: Label: Nissedal | Kommune: Nissedal
-  Andel bosatt 2024: 1 -> 12
-
-Row: Label: Fyresdal | Kommune: Fyresdal
-  Andel bosatt 2024: 1 -> 12
-
-Total changes found in examined rows: 3
-====================
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_innvandrere_bosatt.csv
+[2024-12-18 15:11:45] No changes detected in the dataset.
 Email notifications disabled. Updates for andel_innvandrere_bosatt.csv were not sent.
-[18.12.2024 15:10:47,04] Script completed 
+[18.12.2024 15:11:46,07] Script completed 
