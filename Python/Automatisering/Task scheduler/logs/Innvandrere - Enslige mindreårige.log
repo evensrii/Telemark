@@ -1,16 +1,12 @@
-[18.12.2024  8:40:01,68] Running enslige_mindreårige.py 
+[18.12.2024  8:48:12,74] Running enslige_mindreårige.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 Kommuner CSV data loaded successfully.
-[18.12.2024 08:40:04,126 Deleted file from temp folder: bosetting_enslige_mindre�rige.csv
+File not found on GitHub: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/bosetting_enslige_mindre�rige.csv
+[18.12.2024 08:48:15,164 New dataset. Uploading to GitHub...
+[18.12.2024 08:48:15,496 Deleted file from temp folder: bosetting_enslige_mindre�rige.csv
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\enslige_mindre�rige.py", line 220, in <module>
-    is_new_data = compare_to_github(df_telemark, file_name, github_folder, temp_folder)
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 173, in compare_to_github
-    existing_data = pd.read_csv(StringIO(existing_file_content), encoding='utf-8')
-TypeError: initial_value must be str or None, not DataFrame
-[18.12.2024  8:40:04,25] Script failed with error code 1 
+[18.12.2024  8:48:15,65] Script completed 
