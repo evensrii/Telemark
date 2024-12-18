@@ -1,4 +1,4 @@
-[18.12.2024 13:21:20,10] Running andel_flyktninger_og_arbeidsinnvandrere.py 
+[18.12.2024 14:03:20,22] Running andel_flyktninger_og_arbeidsinnvandrere.py 
 D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:153: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
@@ -17,8 +17,14 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
 Selected data from year 2024-01-01 00:00:00
-[2024-12-18 13:21:23] No new data to upload. Skipping GitHub update.
-[2024-12-18 13:21:23] No new data to upload. Skipping GitHub update.
+[2024-12-18 14:03:23] Identified key columns: Kommune, Label
+[2024-12-18 14:03:23] Value columns to compare: Andel arbeidsinnvandrere 2024
+
+[2024-12-18 14:03:23] No new data to upload. Skipping GitHub update.
+[2024-12-18 14:03:24] Identified key columns: Kommune, Label
+[2024-12-18 14:03:24] Value columns to compare: Andel flyktninger 2024
+
+[2024-12-18 14:03:24] No new data to upload. Skipping GitHub update.
 Deleted file from temp folder: andel_arbeidsinnvandrere.csv
 Deleted file from temp folder: andel_flyktninger.csv
-[18.12.2024 13:21:24,24] Script completed 
+[18.12.2024 14:03:24,49] Script completed 

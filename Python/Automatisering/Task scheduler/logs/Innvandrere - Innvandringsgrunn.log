@@ -1,9 +1,12 @@
-[18.12.2024 13:21:10,39] Running innvandringsgrunn.py 
+[18.12.2024 14:02:22,67] Running innvandringsgrunn.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Innvandringsgrunn CSV data loaded successfully.
-[2024-12-18 13:21:13] No new data to upload. Skipping GitHub update.
+[2024-12-18 14:02:25] Identified key columns: Kjønn, Enhet, Kommunenummer, År, Antall, Kommune, Innvandringsgrunn
+[2024-12-18 14:02:25] Value columns to compare: 
+
+[2024-12-18 14:02:25] No new data to upload. Skipping GitHub update.
 Deleted file from temp folder: innvandringsgrunn_telemark.csv
-[18.12.2024 13:21:20,09] Script completed 
+[18.12.2024 14:03:20,21] Script completed 
