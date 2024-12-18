@@ -85,6 +85,7 @@ SET SCRIPT_FILENAME=%~nx1
 SET SCRIPT_LOG="D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\%NAME:_=oe%.log"
 
 :: Start logging for the script
+:: echo [%DATE% %TIME%] Running %NAME% >> %LOGFILE%
 echo [%DATE% %TIME%] Running %SCRIPT_FILENAME% >> %SCRIPT_LOG%
 
 :: Execute the Python script
@@ -102,10 +103,10 @@ IF EXIST "new_data_status.log" (
 
 :: Append status to the master log
 IF %ERRORLEVEL% NEQ 0 (
-    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Failed >> %LOGFILE%
+    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Failed,%NEW_DATA_STATUS% >> %LOGFILE%
     echo [%DATE% %TIME%] Script failed with error code %ERRORLEVEL% >> %SCRIPT_LOG%
 ) ELSE (
-    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Completed >> %LOGFILE%
+    echo [%DATE% %TIME%] %NAME% : %SCRIPT_FILENAME% : Completed,%NEW_DATA_STATUS% >> %LOGFILE%
     echo [%DATE% %TIME%] Script completed >> %SCRIPT_LOG%
 )
 
