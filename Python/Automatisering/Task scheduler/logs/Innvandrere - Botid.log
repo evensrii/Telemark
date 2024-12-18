@@ -1,11 +1,11 @@
-[18.12.2024 14:03:24,50] Running botid.py 
+[18.12.2024 14:08:57,55] Running botid.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Botid CSV data loaded successfully.
-[2024-12-18 14:03:27] Identified key columns: Kommune, Kommunenummer, År, Botid i Norge, Verdensregion
-[2024-12-18 14:03:27] Value columns to compare: Antall
+[2024-12-18 14:08:59] Identified key columns: Kommune, Botid i Norge, Kommunenummer, År, Verdensregion
+[2024-12-18 14:08:59] Value columns to compare: Antall
 
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\indexes\range.py", line 345, in get_loc
@@ -30,4 +30,4 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\indexes\range.py", line 347, in get_loc
     raise KeyError(key) from err
 KeyError: 15717
-[18.12.2024 14:03:27,61] Script failed with error code 1 
+[18.12.2024 14:09:00,34] Script failed with error code 1 
