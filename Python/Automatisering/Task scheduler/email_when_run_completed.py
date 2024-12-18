@@ -1,9 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
-import base64
 from datetime import datetime
-import glob
 
 ### EMAIL CONFIGURATION ###
 
@@ -39,95 +37,6 @@ recipients = [
     #{"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
 ]
 
-def push_logs_to_github():
-    """
-    Push all log files to GitHub repository.
-    Returns a dictionary mapping script names to their GitHub log URLs.
-    """
-    # Get GitHub token
-    GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-    if not GITHUB_TOKEN:
-        print("GITHUB_TOKEN not found in environment variables")
-        return {}
-
-    # GitHub API configuration
-    owner = "evensrii"
-    repo = "Telemark"
-    branch = "main"
-    base_url = f"https://api.github.com/repos/{owner}/{repo}/contents"
-    logs_path = "Python/Automatisering/Task scheduler/logs"
-    
-    # Dictionary to store script names and their log URLs
-    log_urls = {}
-    
-    # Get list of log files
-    script_dir = os.path.dirname(os.path.abspath(__file__))  # Folder containing this script
-    log_dir = os.path.join(script_dir, "logs")
-    for filename in os.listdir(log_dir):
-        if filename.endswith('.log') and filename != "00_email.log" and filename != "00_master_run.log":
-            file_path = os.path.join(log_dir, filename)
-            
-            try:
-                # Read file content with explicit UTF-8 encoding and error handling
-                with open(file_path, 'r', encoding='utf-8', errors='replace') as file:
-                    content = file.read()
-                
-                # Prepare the file content for GitHub
-                encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
-                
-                # GitHub API endpoint for the specific file
-                github_path = f"{logs_path}/{filename}"
-                url = f"{base_url}/{github_path}"
-                
-                # Headers for GitHub API
-                headers = {
-                    "Authorization": f"token {GITHUB_TOKEN}",
-                    "Accept": "application/vnd.github.v3+json"
-                }
-                
-                try:
-                    # Check if file exists on GitHub
-                    response = requests.get(url, headers=headers)
-                    
-                    if response.status_code == 200:
-                        # File exists, get its SHA
-                        file_sha = response.json()["sha"]
-                        
-                        # Update file
-                        data = {
-                            "message": f"Update {filename} - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-                            "content": encoded_content,
-                            "sha": file_sha,
-                            "branch": branch
-                        }
-                    else:
-                        # Create new file
-                        data = {
-                            "message": f"Add {filename} - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-                            "content": encoded_content,
-                            "branch": branch
-                        }
-                    
-                    # Push to GitHub
-                    response = requests.put(url, headers=headers, json=data)
-                    
-                    if response.status_code in [200, 201]:
-                        # Store the raw GitHub URL for the file
-                        raw_url = f"https://github.com/{owner}/{repo}/blob/{branch}/{logs_path}/{filename}"
-                        script_name = filename.replace('.log', '')
-                        log_urls[script_name] = raw_url
-                    else:
-                        print(f"Failed to push {filename}. Status code: {response.status_code}")
-                        
-                except Exception as e:
-                    print(f"Error pushing {filename}: {str(e)}")
-                    
-            except Exception as e:
-                print(f"Error processing {filename}: {str(e)}")
-                continue
-    
-    return log_urls
-
 ### READ MASTER LOG FILE ###
 
 # Locate the log file relative to the script
@@ -144,9 +53,6 @@ if not os.path.exists(log_file_path):
 # Read the log file content with UTF-8 encoding and error handling
 with open(log_file_path, "r", encoding="utf-8", errors='replace') as log_file:
     log_content = log_file.read()
-
-# Push logs to GitHub and get URLs
-log_urls = push_logs_to_github()
 
 ### FORMAT LOG CONTENT INTO HTML TABLE ###
 
@@ -222,7 +128,7 @@ def format_log_as_html_table(log_content):
                     <td>{new_data_badge}</td>
                 </tr>
                 """
-                
+
                 # Sort rows into "Ja", "Feilet", or others
                 if new_data == "Ja":
                     rows_ja.append(row)
@@ -238,7 +144,7 @@ def format_log_as_html_table(log_content):
 
     # Combine rows: "Ja" first, then "Feilet," then others
     all_rows = rows_ja + rows_feilet + rows_other
-    
+
     # Join all rows
     rows = "".join(all_rows)
 
