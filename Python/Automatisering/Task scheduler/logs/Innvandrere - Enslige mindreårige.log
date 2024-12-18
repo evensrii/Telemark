@@ -1,15 +1,15 @@
-[18.12.2024 12:00:06,07] Running enslige_mindreårige.py 
+[18.12.2024 12:18:11,77] Running enslige_mindreårige.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 Kommuner CSV data loaded successfully.
-[18.12.2024 12:00:08,572 Changes detected in the dataset. Analyzing differences...
-[18.12.2024 12:00:08,589 Value changed in row 10:
-[18.12.2024 12:00:08,589   Column: Anmodning om bosetting
-[18.12.2024 12:00:08,589   Old value: 1.0
-[18.12.2024 12:00:08,589   New value: 36.0
-[18.12.2024 12:00:08,589 Uploading updated dataset to GitHub...
+[18.12.2024 12:18:17,314 Changes detected in the dataset. Analyzing differences...
+[18.12.2024 12:18:17,314 Value changed in row 10:
+[18.12.2024 12:18:17,314   Column: Anmodning om bosetting
+[18.12.2024 12:18:17,314   Old value: 2.0
+[18.12.2024 12:18:17,314   New value: 36.0
+[18.12.2024 12:18:17,314 Uploading updated dataset to GitHub...
 File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/bosetting_enslige_mindre�rige.csv
-[18.12.2024 12:00:10,44] Script completed 
+[18.12.2024 12:18:18,28] Script completed 
