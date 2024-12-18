@@ -1,28 +1,15 @@
-[18.12.2024  2:00:08,88] Running innvandrere_bosatt.py 
+[18.12.2024  8:36:28,60] Running innvandrere_bosatt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Bosatt JSON data loaded successfully.
-File not found on GitHub: Data/Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_innvandrere_bosatt.csv
-[18.12.2024 02:00:15,264 Deleted file from temp folder: andel_innvandrere_bosatt.csv
+[18.12.2024 08:36:35,384 Deleted file from temp folder: andel_innvandrere_bosatt.csv
 
 Traceback (most recent call last):
   File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py", line 121, in <module>
     is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 165, in compare_to_github
-    existing_data = pd.read_csv(existing_data, encoding='utf-8')
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\parsers\readers.py", line 912, in read_csv
-    return _read(filepath_or_buffer, kwds)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\parsers\readers.py", line 577, in _read
-    parser = TextFileReader(filepath_or_buffer, **kwds)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\parsers\readers.py", line 1407, in __init__
-    self._engine = self._make_engine(f, self.engine)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\parsers\readers.py", line 1661, in _make_engine
-    self.handles = get_handle(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 716, in get_handle
-    ioargs = _get_filepath_or_buffer(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 456, in _get_filepath_or_buffer
-    raise ValueError(msg)
-ValueError: Invalid file path or buffer object type: <class 'NoneType'>
-[18.12.2024  2:00:15,42] Script failed with error code 1 
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 174, in compare_to_github
+    existing_data = pd.read_csv(pd.StringIO(existing_file_content), encoding='utf-8')
+AttributeError: module 'pandas' has no attribute 'StringIO'
+[18.12.2024  8:36:35,50] Script failed with error code 1 
