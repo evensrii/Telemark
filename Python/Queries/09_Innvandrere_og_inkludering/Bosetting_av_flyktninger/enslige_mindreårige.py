@@ -221,4 +221,4 @@ compare_to_github(df_telemark, file_name, github_folder, temp_folder)
 
 ##################### Remove temporary local files #####################
 
-#delete_files_in_temp_folder()
+delete_files_in_temp_folder([file_name])

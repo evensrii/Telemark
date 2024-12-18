@@ -10,7 +10,6 @@ import pandas as pd
 
 from Helper_scripts.email_functions import notify_updated_data
 
-
 ## Function to fetch the GITHUB_TOKEN (environment variable) from the token.env file
 def get_github_token():
     """
@@ -124,8 +123,20 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
         print(f"Failed to upload file: {response.json()}")
 
 
+## Track the current file being processed
+_current_file = None
+
+def set_current_file(file_name):
+    """Set the current file being processed"""
+    global _current_file
+    _current_file = file_name
+
+def get_current_file():
+    """Get the current file being processed"""
+    return _current_file
+
 ## Function to compare file to GitHub
-def compare_to_github(input_df, file_name, github_folder, temp_folder):
+def compare_to_github(input_df, file_name, github_folder, temp_folder=None):
     """
     Compares a DataFrame to an existing file on GitHub, and uploads the file if changes are detected.
     Implements a hierarchical comparison:
@@ -142,6 +153,9 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     Returns:
         bool: True if new data is uploaded or detected, False otherwise.
     """
+    # Set the current file being processed
+    set_current_file(file_name)
+    
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     # Save the DataFrame to a CSV in the Temp folder

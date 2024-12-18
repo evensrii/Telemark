@@ -6,6 +6,7 @@ import os
 import glob
 from io import BytesIO
 import pandas as pd
+from Helper_scripts.github_functions import get_current_file
 
 ## Funksjon for å kjøre en spørring
 
@@ -84,6 +85,7 @@ def fetch_data(
 
 
 def delete_files_in_temp_folder():
+    """Delete only the current file being processed from the temp folder"""
     # Retrieve the Temp folder path from the environment variable
     temp_folder = os.environ.get("TEMP_FOLDER")
 
@@ -96,18 +98,18 @@ def delete_files_in_temp_folder():
         print(f"The folder does not exist: {temp_folder}")
         return
 
-    # Construct the path pattern to match all files in the folder
-    files = glob.glob(os.path.join(temp_folder, "*"))
+    # Get the current file being processed
+    current_file = get_current_file()
+    if not current_file:
+        return
 
-    # Iterate over the list of files and delete each one except "readme.txt"
-    for file_path in files:
-        file_name = os.path.basename(file_path)  # Extract only the file name
-        if file_name.lower() == "readme.txt":
-            # print(f"Skipping file: {file_name}")
-            continue  # Skip this file
+    # Construct the full path to the file
+    file_path = os.path.join(temp_folder, current_file)
 
+    # Only attempt to delete if file exists
+    if os.path.exists(file_path):
         try:
             os.remove(file_path)
-            print(f"Deleted file from temp folder: {file_name}")
+            print(f"Deleted file from temp folder: {current_file}")
         except Exception as e:
-            print(f"Error deleting file {file_name}: {e}")
+            print(f"Error deleting file {current_file}: {e}")
