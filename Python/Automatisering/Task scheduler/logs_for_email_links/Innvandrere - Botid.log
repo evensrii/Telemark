@@ -1,11 +1,9 @@
-[18.12.2024 13:04:40,79] Running botid.py 
+[18.12.2024 13:06:54,36] Running botid.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\botid.py", line 14, in <module>
-    from Helper_scripts.github_functions import upload_github_file
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 349
-    else:
-    ^
-SyntaxError: invalid syntax
-[18.12.2024 13:04:42,87] Script failed with error code 1 
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Botid CSV data loaded successfully.
+[2024-12-18 13:06:56] No new data to upload. Skipping GitHub update.
+Deleted file from temp folder: botid.csv
+[18.12.2024 13:06:57,23] Script completed 
