@@ -1,4 +1,4 @@
-[19.12.2024 15:35:14,34] Running norskeutslipp.py 
+[19.12.2024 15:39:26,34] Running norskeutslipp.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -23,31 +23,31 @@ Data columns (total 12 columns):
  11  Unnamed: 11               6282 non-null   object
 dtypes: object(12)
 memory usage: 590.2+ KB
-[2024-12-19 15:35:20] Large dataset detected (297 rows). Limiting detailed comparison to last 200 rows.
-[2024-12-19 15:35:20] Identified key columns: Kommune, År
-[2024-12-19 15:35:20] Value columns to compare: Anleggsnavn, Fylke, NACE Kode, Årlig utslipp til luft, Grunnlagsverdi for luft, Årlig utslipp til vann, Grunnlagsverdi for vann, Enhet, AnleggId, Org.nr.
+[2024-12-19 15:39:32] Large dataset detected (297 rows). Limiting detailed comparison to last 200 rows.
+[2024-12-19 15:39:32] Identified key columns: År, Kommune
+[2024-12-19 15:39:32] Value columns to compare: Anleggsnavn, Fylke, NACE Kode, Årlig utslipp til luft, Grunnlagsverdi for luft, Årlig utslipp til vann, Grunnlagsverdi for vann, Enhet, AnleggId, Org.nr.
 
-[2024-12-19 15:35:20] New data detected. Uploading to GitHub.
+[2024-12-19 15:39:32] New data detected. Uploading to GitHub.
 
-[2024-12-19 15:35:20] === Data Comparison ===
+[2024-12-19 15:39:32] === Data Comparison ===
 File: norskeutslipp_detaljert_telemark.csv
 Note: Only showing changes from the last 200 rows
 
 Changes detected in the following rows:
 
-Row: Kommune: Bamble | År: 2001-01-01 00:00:00
+Row: År: 2001-01-01 00:00:00 | Kommune: Bamble
   NACE Kode: 20.16 -> 20.160
 
-Row: Kommune: Bamble | År: 2002-01-01 00:00:00
+Row: År: 2002-01-01 00:00:00 | Kommune: Bamble
   NACE Kode: 20.16 -> 20.160
 
-Row: Kommune: Bamble | År: 2003-01-01 00:00:00
+Row: År: 2003-01-01 00:00:00 | Kommune: Bamble
   NACE Kode: 20.16 -> 20.160
 
-Row: Kommune: Bamble | År: 2004-01-01 00:00:00
+Row: År: 2004-01-01 00:00:00 | Kommune: Bamble
   NACE Kode: 20.16 -> 20.160
 
-Row: Kommune: Bamble | År: 2005-01-01 00:00:00
+Row: År: 2005-01-01 00:00:00 | Kommune: Bamble
   NACE Kode: 20.16 -> 20.160
 
 Total changes found in examined rows: 156
@@ -55,9 +55,9 @@ Total changes found in examined rows: 156
 ====================
 
 Email notifications disabled. Updates for norskeutslipp_detaljert_telemark.csv were not sent.
-[2024-12-19 15:35:21] Identified key columns: År
-[2024-12-19 15:35:21] Value columns to compare: Utslipp fra landbasert industri (norskeutslipp.no), Totale utslipp fra industrien (Mdir), Mdir enkeltår
+[2024-12-19 15:39:35] Identified key columns: År
+[2024-12-19 15:39:35] Value columns to compare: Utslipp fra landbasert industri (norskeutslipp.no), Totale utslipp fra industrien (Mdir), Mdir enkeltår
 
-[2024-12-19 15:35:21] No changes detected in the dataset.
+[2024-12-19 15:39:35] No changes detected in the dataset.
 Deleted file from temp folder: norskeutslipp_everviz.csv
-[19.12.2024 15:35:22,04] Script completed 
+[19.12.2024 15:39:35,93] Script completed 
