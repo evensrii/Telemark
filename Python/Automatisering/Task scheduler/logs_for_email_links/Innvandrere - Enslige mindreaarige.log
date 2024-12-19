@@ -1,13 +1,15 @@
-[19.12.2024 14:52:27,64] Running enslige_mindreaarige.py 
+[19.12.2024 15:05:24,14] Running enslige_mindreaarige.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 Kommuner CSV data loaded successfully.
-[2024-12-19 14:52:29] Identified key columns: År
-[2024-12-19 14:52:29] Value columns to compare: Anmodning om bosetting, Faktisk bosetting
-
-[2024-12-19 14:52:29] No changes detected in the dataset.
+[2024-12-19 15:05:26] Row count changed in bosetting_enslige_mindreårige.csv:
+  Old count: 6
+  New count: 11
+  Difference: +5 rows
+File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/bosetting_enslige_mindreårige.csv
+Email notifications disabled. Updates for bosetting_enslige_mindreårige.csv were not sent.
 Deleted file from temp folder: bosetting_enslige_mindreårige.csv
-[19.12.2024 14:52:30,25] Script completed 
+[19.12.2024 15:05:27,78] Script completed 
