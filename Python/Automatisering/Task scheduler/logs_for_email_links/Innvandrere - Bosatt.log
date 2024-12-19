@@ -1,12 +1,12 @@
-[19.12.2024 13:09:11,44] Running innvandrere_bosatt.py 
+[19.12.2024 13:13:12,12] Running innvandrere_bosatt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Bosatt JSON data loaded successfully.
-[2024-12-19 13:09:15] Identified key columns: Kommune, Label
-[2024-12-19 13:09:15] Value columns to compare: Andel bosatt 2024
+[2024-12-19 13:13:18] Identified key columns: Label, Kommune
+[2024-12-19 13:13:18] Value columns to compare: Andel bosatt 2024
 
-[2024-12-19 13:09:15] No changes detected in the dataset.
+[2024-12-19 13:13:18] No changes detected in the dataset.
 Deleted file from temp folder: andel_innvandrere_bosatt.csv
-[19.12.2024 13:09:15,51] Script completed 
+[19.12.2024 13:13:19,12] Script completed 
