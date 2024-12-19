@@ -1,21 +1,16 @@
-[19.12.2024 14:12:30,73] Running enslige_mindreaarige.py 
+[19.12.2024 14:29:36,37] Running enslige_mindreaarige.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 Kommuner CSV data loaded successfully.
+[2024-12-19 14:29:38] Identified key columns: År
+[2024-12-19 14:29:38] Value columns to compare: Anmodning om bosetting, Faktisk bosetting
+
+[2024-12-19 14:29:38] No changes detected in the dataset.
 Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\enslige_mindreaarige.py", line 220, in <module>
-    compare_to_github(df_telemark, file_name, github_folder, temp_folder)
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 164, in compare_to_github
-    input_df.to_csv(local_file_path, index=False, encoding='utf-8')
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\generic.py", line 3772, in to_csv
-    return DataFrameRenderer(formatter).to_csv(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\format.py", line 1186, in to_csv
-    csv_formatter.save()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\csvs.py", line 240, in save
-    with get_handle(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 859, in get_handle
-    handle = open(
-PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\bosetting_enslige_mindreårige.csv'
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\enslige_mindreaarige.py", line 224, in <module>
+    delete_files_in_temp_folder([file_name])
+TypeError: delete_files_in_temp_folder() takes 0 positional arguments but 1 was given
+[19.12.2024 14:29:38,95] Script failed with error code 1 
