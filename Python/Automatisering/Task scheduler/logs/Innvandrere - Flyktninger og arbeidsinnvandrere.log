@@ -1,4 +1,4 @@
-[19.12.2024 15:05:12,42] Running andel_flyktninger_og_arbeidsinnvandrere.py 
+[19.12.2024 15:32:02,65] Running andel_flyktninger_og_arbeidsinnvandrere.py 
 D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:153: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
@@ -17,33 +17,13 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
 Selected data from year 2024-01-01 00:00:00
-[2024-12-19 15:05:15] Identified key columns: Label, Kommune
-[2024-12-19 15:05:15] Value columns to compare: Andel arbeidsinnvandrere 2024
+[2024-12-19 15:32:05] Identified key columns: Kommune, Label
+[2024-12-19 15:32:05] Value columns to compare: Andel arbeidsinnvandrere 2024
 
-[2024-12-19 15:05:15] No changes detected in the dataset.
-[2024-12-19 15:05:15] Identified key columns: Label, Kommune
-[2024-12-19 15:05:15] Value columns to compare: Andel flyktninger 2024
+[2024-12-19 15:32:05] No changes detected in the dataset.
+[2024-12-19 15:32:06] Identified key columns: Kommune, Label
+[2024-12-19 15:32:06] Value columns to compare: Andel flyktninger 2024
 
-[2024-12-19 15:05:15] New data detected. Uploading to GitHub.
-
-[2024-12-19 15:05:15] === Data Comparison ===
-File: andel_flyktninger.csv
-
-Changes detected in the following rows:
-
-Row: Label: Kragerø | Kommune: Kragerø
-  Andel flyktninger 2024: 1 -> 44
-
-Row: Label: Tokke | Kommune: Tokke
-  Andel flyktninger 2024: 1 -> 41
-
-Row: Label: Vinje | Kommune: Vinje
-  Andel flyktninger 2024: 1 -> 49
-
-Total changes found in examined rows: 3
-====================
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_flyktninger.csv
-Email notifications disabled. Updates for andel_flyktninger.csv were not sent.
+[2024-12-19 15:32:06] No changes detected in the dataset.
 Deleted file from temp folder: andel_flyktninger.csv
-[19.12.2024 15:05:17,17] Script completed 
+[19.12.2024 15:32:06,53] Script completed 

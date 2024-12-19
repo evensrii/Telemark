@@ -47,7 +47,7 @@ except Exception as e:
     )
 
 # df.info()
-df.head()
+#df.head()
 
 # print(df["Kommunenummer"].unique())
 
@@ -58,7 +58,7 @@ df = df.rename(columns={"Anmodning, vedtak og faktisk bosetting": "Kategori"})
 
 # Konverter "Kommunenummer" til string med 4 siffer
 df["Kommunenummer"] = df["Kommunenummer"].astype(str).str.pad(width=4, fillchar="0")
-df.info()
+#df.info()
 
 # Konverter "Antall" til integer, og erstatt manglende verdier med NaN
 df["Antall"] = pd.to_numeric(df["Antall"], errors="coerce")

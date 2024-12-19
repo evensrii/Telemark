@@ -78,7 +78,7 @@ IF %ERRORLEVEL% NEQ 0 (
 
 :: Log completion
 echo [%DATE% %TIME%] Daily run completed. >> %LOGFILE%
-GOTO :EOF
+EXIT /B 0
 
 :RunScript
 SET SCRIPT=%~1
