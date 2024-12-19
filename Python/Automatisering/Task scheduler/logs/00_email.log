@@ -1,12 +1,9 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Resolved log file path: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
+Successfully read log file: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
 Successfully pushed Innvandrere - Bosatt.log to GitHub
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\email_when_run_completed.py", line 144, in <module>
-    log_urls = push_logs_to_github()
-  File "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\email_when_run_completed.py", line 71, in push_logs_to_github
-    content = file.read()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\codecs.py", line 322, in decode
-    (result, consumed) = self._buffer_decode(data, self.errors, final)
-UnicodeDecodeError: 'utf-8' codec can't decode byte 0xc5 in position 494: invalid continuation byte
+Successfully pushed Innvandrere - Innvandringsgrunn.log to GitHub
+Processing line: [19.12.2024 11:19:57,89] Innvandrere - Bosatt : innvandrere_bosatt.py : Completed, Yes 
+Processing line: [19.12.2024 11:20:08,36] Innvandrere - Innvandringsgrunn : innvandringsgrunn.py : Completed, Yes 
+Email sent successfully to Even (even.sannes.riiser@telemarkfylke.no).
