@@ -1,13 +1,13 @@
-[19.12.2024 14:29:33,39] Running botid.py 
+[19.12.2024 14:31:05,98] Running botid.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Botid CSV data loaded successfully.
-[2024-12-19 14:29:35] Large dataset detected (204 rows). Limiting detailed comparison to last 200 rows.
-[2024-12-19 14:29:35] Identified key columns: Kommunenummer, Kommune, År
-[2024-12-19 14:29:35] Value columns to compare: Botid i Norge, Verdensregion, Antall
+[2024-12-19 14:31:08] Large dataset detected (204 rows). Limiting detailed comparison to last 200 rows.
+[2024-12-19 14:31:08] Identified key columns: Kommunenummer, Kommune, År
+[2024-12-19 14:31:08] Value columns to compare: Botid i Norge, Verdensregion, Antall
 
-[2024-12-19 14:29:35] No changes detected in the last 200 rows.
+[2024-12-19 14:31:08] No changes detected in the last 200 rows.
 Deleted file from temp folder: botid.csv
-[19.12.2024 14:29:36,35] Script completed 
+[19.12.2024 14:31:08,69] Script completed 
