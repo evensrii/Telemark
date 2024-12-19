@@ -1,4 +1,4 @@
-[19.12.2024 16:01:00,71] Running norskeutslipp.py 
+[19.12.2024 16:07:49,17] Running norskeutslipp.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -23,21 +23,41 @@ Data columns (total 12 columns):
  11  Unnamed: 11               6282 non-null   object
 dtypes: object(12)
 memory usage: 590.2+ KB
-Attempt 1: Error writing file norskeutslipp_detaljert_telemark.csv. Retrying in 1 seconds...
-Attempt 2: Error writing file norskeutslipp_detaljert_telemark.csv. Retrying in 1 seconds...
-Error writing file norskeutslipp_detaljert_telemark.csv after 3 attempts: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\norskeutslipp_detaljert_telemark.csv'
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\04_Klima_og_energi\Klimagassutslipp\norskeutslipp.py", line 167, in <module>
-    is_new_data1 = compare_to_github(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 172, in compare_to_github
-    input_df.to_csv(local_file_path, index=False, encoding='utf-8')
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\generic.py", line 3772, in to_csv
-    return DataFrameRenderer(formatter).to_csv(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\format.py", line 1186, in to_csv
-    csv_formatter.save()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\csvs.py", line 240, in save
-    with get_handle(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 859, in get_handle
-    handle = open(
-PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\norskeutslipp_detaljert_telemark.csv'
-[19.12.2024 16:01:29,43] Script failed with error code 1 
+[2024-12-19 16:07:55] Large dataset detected (297 rows). Limiting detailed comparison to last 200 rows.
+[2024-12-19 16:07:55] Identified key columns: Kommune, År
+[2024-12-19 16:07:55] Value columns to compare: Anleggsnavn, Fylke, NACE Kode, Årlig utslipp til luft, Grunnlagsverdi for luft, Årlig utslipp til vann, Grunnlagsverdi for vann, Enhet, AnleggId, Org.nr.
+
+[2024-12-19 16:07:55] New data detected. Uploading to GitHub.
+
+[2024-12-19 16:07:55] === Data Comparison ===
+File: norskeutslipp_detaljert_telemark.csv
+Note: Only showing changes from the last 200 rows
+
+Changes detected in the following rows:
+
+Row: Kommune: Bamble | År: 2001-01-01 00:00:00
+  NACE Kode: 20.16 -> 20.160
+
+Row: Kommune: Bamble | År: 2002-01-01 00:00:00
+  NACE Kode: 20.16 -> 20.160
+
+Row: Kommune: Bamble | År: 2003-01-01 00:00:00
+  NACE Kode: 20.16 -> 20.160
+
+Row: Kommune: Bamble | År: 2004-01-01 00:00:00
+  NACE Kode: 20.16 -> 20.160
+
+Row: Kommune: Bamble | År: 2005-01-01 00:00:00
+  NACE Kode: 20.16 -> 20.160
+
+Total changes found in examined rows: 156
+(Showing first 5 changes only)
+====================
+
+Email notifications disabled. Updates for norskeutslipp_detaljert_telemark.csv were not sent.
+[2024-12-19 16:07:56] Identified key columns: År
+[2024-12-19 16:07:56] Value columns to compare: Utslipp fra landbasert industri (norskeutslipp.no), Totale utslipp fra industrien (Mdir), Mdir enkeltår
+
+[2024-12-19 16:07:56] No changes detected in the dataset.
+Deleted file from temp folder: norskeutslipp_everviz.csv
+[19.12.2024 16:07:57,07] Script completed 
