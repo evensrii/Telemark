@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import base64
 from datetime import datetime
+import sys
 
 ### EMAIL CONFIGURATION ###
 
@@ -67,7 +68,7 @@ def push_logs_to_github():
             file_path = os.path.join(log_dir, filename)
             
             # Read file content
-            with open(file_path, 'r', encoding='utf-8') as file:
+            with open(file_path, 'r', encoding='ISO-8859-1') as file:
                 content = file.read()
             
             # Prepare the file content for GitHub
@@ -136,9 +137,14 @@ print(f"Resolved log file path: {log_file_path}")
 if not os.path.exists(log_file_path):
     raise FileNotFoundError(f"Log file not found: {log_file_path}")
 
-# Read the log file content with UTF-8 encoding
-with open(log_file_path, "r", encoding="utf-8") as log_file:
-    log_content = log_file.read()
+# Read the log file
+try:
+    with open(log_file_path, 'r', encoding='ISO-8859-1') as file:
+        log_content = file.read()
+    print(f"Successfully read log file: {log_file_path}")
+except Exception as e:
+    print(f"Error reading log file: {e}")
+    sys.exit(1)
 
 # Push logs to GitHub and get URLs
 log_urls = push_logs_to_github()
