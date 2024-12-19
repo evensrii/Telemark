@@ -1,13 +1,12 @@
-[19.12.2024 13:57:28,70] Running innvandrere_bosatt.py 
+[19.12.2024 14:52:10,47] Running innvandrere_bosatt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Bosatt JSON data loaded successfully.
-[2024-12-19 13:57:46] Header structure changed in andel_innvandrere_bosatt.csv:
-Removed headers: andel bosatt 2021
-Added headers: andel bosatt 
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_innvandrere_bosatt.csv
-Email notifications disabled. Updates for andel_innvandrere_bosatt.csv were not sent.
+[2024-12-19 14:52:13] Identified key columns: Kommune, Label
+[2024-12-19 14:52:13] Value columns to compare: Andel bosatt 2024
+
+[2024-12-19 14:52:13] No changes detected in the dataset.
 Deleted file from temp folder: andel_innvandrere_bosatt.csv
-[19.12.2024 13:57:48,10] Script completed 
+[19.12.2024 14:52:14,19] Script completed 
