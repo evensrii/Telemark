@@ -1,19 +1,34 @@
-[18.12.2024 13:21:24,26] Running botid.py 
+[19.12.2024 13:03:07,12] Running botid.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Botid CSV data loaded successfully.
-[2024-12-18 13:21:26] New data detected. Uploading to GitHub.
+[2024-12-19 13:03:09] Large dataset detected (204 rows). Limiting detailed comparison to last 200 rows.
+[2024-12-19 13:03:09] Identified key columns: Kommunenummer, År, Kommune
+[2024-12-19 13:03:09] Value columns to compare: Botid i Norge, Verdensregion, Antall
 
-[2024-12-18 13:21:26] === Data Comparison ===
-File: botid.csv
-Changes detected in the following rows:
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\indexes\range.py", line 345, in get_loc
+    return self._range.index(new_key)
+ValueError: 15818 is not in range
 
-Total rows with changes: 0
-====================
+The above exception was the direct cause of the following exception:
 
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/botid.csv
-Email notifications disabled. Updates for botid.csv were not sent.
-Deleted file from temp folder: botid.csv
-[18.12.2024 13:21:28,39] Script completed 
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\botid.py", line 127, in <module>
+    is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 311, in compare_to_github
+    old_row = existing_df_subset.loc[idx]
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\indexing.py", line 1103, in __getitem__
+    return self._getitem_axis(maybe_callable, axis=axis)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\indexing.py", line 1343, in _getitem_axis
+    return self._get_label(key, axis=axis)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\indexing.py", line 1293, in _get_label
+    return self.obj.xs(label, axis=axis)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\generic.py", line 4095, in xs
+    loc = index.get_loc(key)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\indexes\range.py", line 347, in get_loc
+    raise KeyError(key) from err
+KeyError: 15818
+[19.12.2024 13:03:10,17] Script failed with error code 1 
