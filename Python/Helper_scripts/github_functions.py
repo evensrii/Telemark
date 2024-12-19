@@ -349,13 +349,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         if total_changes > 5:
             print("(Showing first 5 changes only)")
         print("====================\n")
-    else:
-        if is_large_dataset:
-            print(f"[{timestamp}] Changes detected in dataset but not in the last 200 rows.")
-        else:
-            print(f"[{timestamp}] No changes detected in the dataset.")
-    
-    if changes or (not existing_data.equals(input_df)):
+
         upload_github_file(
             local_file_path,
             github_file_path,
@@ -377,7 +371,10 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         )
         return True
     else:
-        print(f"[{timestamp}] No new data to upload. Skipping GitHub update.")
+        if is_large_dataset:
+            print(f"[{timestamp}] No changes detected in the last 200 rows.")
+        else:
+            print(f"[{timestamp}] No changes detected in the dataset.")
         return False
 
 
