@@ -1,4 +1,4 @@
-[19.12.2024 16:01:57,26] Running antall_felt.py 
+[19.12.2024 16:08:14,57] Running antall_felt.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -14,9 +14,9 @@ Data columns (total 2 columns):
  1   Antall felte hjort  38 non-null     int64 
 dtypes: int64(1), object(1)
 memory usage: 736.0+ bytes
-[2024-12-19 16:02:15] Identified key columns: 
-[2024-12-19 16:02:15] Value columns to compare: Jaktår, Antall felte elg, Antall felte hjort
+[2024-12-19 16:08:18] Identified key columns: 
+[2024-12-19 16:08:18] Value columns to compare: Jaktår, Antall felte elg, Antall felte hjort
 
-[2024-12-19 16:02:15] No changes detected in the dataset.
+[2024-12-19 16:08:18] No changes detected in the dataset.
 Deleted file from temp folder: antall_felte_elg_og_hjort.csv
-[19.12.2024 16:02:16,64] Script completed 
+[19.12.2024 16:08:19,29] Script completed 
