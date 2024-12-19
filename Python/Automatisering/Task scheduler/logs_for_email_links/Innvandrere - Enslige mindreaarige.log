@@ -1,16 +1,13 @@
-[19.12.2024 14:29:36,37] Running enslige_mindreaarige.py 
+[19.12.2024 14:31:08,69] Running enslige_mindreaarige.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 Kommuner CSV data loaded successfully.
-[2024-12-19 14:29:38] Identified key columns: År
-[2024-12-19 14:29:38] Value columns to compare: Anmodning om bosetting, Faktisk bosetting
+[2024-12-19 14:31:10] Identified key columns: År
+[2024-12-19 14:31:10] Value columns to compare: Anmodning om bosetting, Faktisk bosetting
 
-[2024-12-19 14:29:38] No changes detected in the dataset.
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\enslige_mindreaarige.py", line 224, in <module>
-    delete_files_in_temp_folder([file_name])
-TypeError: delete_files_in_temp_folder() takes 0 positional arguments but 1 was given
-[19.12.2024 14:29:38,95] Script failed with error code 1 
+[2024-12-19 14:31:10] No changes detected in the dataset.
+Deleted file from temp folder: bosetting_enslige_mindreårige.csv
+[19.12.2024 14:31:11,31] Script completed 
