@@ -1,33 +1,12 @@
-[19.12.2024 14:05:45,75] Running botid.py 
+[19.12.2024 14:07:52,19] Running botid.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Botid CSV data loaded successfully.
-[2024-12-19 14:05:48] Large dataset detected (204 rows). Limiting detailed comparison to last 200 rows.
-[2024-12-19 14:05:48] Identified key columns: År, Kommunenummer, Kommune
-[2024-12-19 14:05:48] Value columns to compare: Botid i Norge, Verdensregion, Antall
+[2024-12-19 14:07:54] Large dataset detected (204 rows). Limiting detailed comparison to last 200 rows.
+[2024-12-19 14:07:54] Identified key columns: År, Kommunenummer, Kommune
+[2024-12-19 14:07:54] Value columns to compare: Botid i Norge, Verdensregion, Antall
 
-[2024-12-19 14:05:48] New data detected. Uploading to GitHub.
-
-[2024-12-19 14:05:48] === Data Comparison ===
-File: botid.csv
-Note: Only showing changes from the last 200 rows
-
-Changes detected in the following rows:
-
-Row: År: 2024-01-01 00:00:00 | Kommunenummer: 3818 | Kommune: Tinn
-  Antall: 1.0 -> 223.0
-
-Row: År: 2024-01-01 00:00:00 | Kommunenummer: 3823 | Kommune: Fyresdal
-  Antall: 1.0 -> 161.0
-
-Row: År: 2024-01-01 00:00:00 | Kommunenummer: 3823 | Kommune: Fyresdal
-  Antall: 1.0 -> 28.0
-
-Total changes found in examined rows: 3
-====================
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/botid.csv
-Email notifications disabled. Updates for botid.csv were not sent.
+[2024-12-19 14:07:54] No changes detected in the last 200 rows.
 Deleted file from temp folder: botid.csv
