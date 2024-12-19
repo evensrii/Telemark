@@ -1,0 +1,24 @@
+Active code page: 65001
+[19.12.2024  9:37:31,57] Email log path: "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\00_email.log" 
+[19.12.2024  9:37:31,57] Debug log path: "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\debug.log" 
+D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\debug.log
+The process cannot access the file because it is being used by another process.
+[19.12.2024  9:37:31,62] Master log path: "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\00_master_run.log" 
+Python 3.8.20
+[19.12.2024  9:37:50,54] Running script: innvandrere_bosatt.py 
+[19.12.2024  9:38:07,45] Innvandrere - Bosatt : innvandrere_bosatt.py : Failed. 
+[19.12.2024  9:38:07,46] Running script: innvandringsgrunn.py 
+[19.12.2024  9:38:21,04] Innvandrere - Innvandringsgrunn : innvandringsgrunn.py : Failed. 
+[19.12.2024  9:38:33,38] Email script failed. 
+Active code page: 65001
+[19.12.2024  9:50:13,34] Email log path: "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\00_email.log" 
+[19.12.2024  9:50:13,35] Debug log path: "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\debug.log" 
+D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\debug.log
+The process cannot access the file because it is being used by another process.
+[19.12.2024  9:50:13,45] Master log path: "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\logs\00_master_run.log" 
+Python 3.8.20
+[19.12.2024  9:50:41,12] Running script: innvandrere_bosatt.py 
+[19.12.2024  9:50:57,21] Innvandrere - Bosatt : innvandrere_bosatt.py : Completed. 
+[19.12.2024  9:50:57,22] Running script: innvandringsgrunn.py 
+[19.12.2024  9:51:15,21] Innvandrere - Innvandringsgrunn : innvandringsgrunn.py : Completed. 
+[19.12.2024  9:51:26,91] Email script failed. 

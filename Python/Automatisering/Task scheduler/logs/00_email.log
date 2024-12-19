@@ -1,10 +1,14 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Resolved log file path: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
-Successfully pushed Innvandrere - Bosatt.log to GitHub
-Successfully pushed Innvandrere - Flyktninger og arbeidsinnvandrere.log to GitHub
-Successfully pushed Innvandrere - Innvandringsgrunn.log to GitHub
-Processing line: [18.12.2024 15:11:46,07] Innvandrere - Bosatt : innvandrere_bosatt.py : Completed, Yes 
-Processing line: [18.12.2024 15:11:52,89] Innvandrere - Innvandringsgrunn : innvandringsgrunn.py : Completed, No 
-Processing line: [18.12.2024 15:11:57,25] Innvandrere - Flyktninger og arbeidsinnvandrere : andel_flyktninger_og_arbeidsinnvandrere.py : Completed, Yes 
-Email sent successfully to Even (even.sannes.riiser@telemarkfylke.no).
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\email_when_run_completed.py", line 137, in <module>
+    raise FileNotFoundError(f"Log file not found: {log_file_path}")
+FileNotFoundError: Log file not found: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Resolved log file path: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\email_when_run_completed.py", line 137, in <module>
+    raise FileNotFoundError(f"Log file not found: {log_file_path}")
+FileNotFoundError: Log file not found: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
