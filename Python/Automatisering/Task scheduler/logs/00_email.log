@@ -1,0 +1,22 @@
+ 
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Resolved log file path: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
+Successfully read log file: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
+Successfully pushed Innvandrere - Bosatt.log to GitHub
+Successfully pushed Innvandrere - Botid.log to GitHub
+Successfully pushed Innvandrere - Enslige mindreaarige.log to GitHub
+Successfully pushed Innvandrere - Flyktninger og arbeidsinnvandrere.log to GitHub
+Successfully pushed Innvandrere - Innvandringsgrunn.log to GitHub
+Successfully pushed Innvandrere - Sekundaerflytting.log to GitHub
+Processing line: [19.12.2024 14:52:05,59] Initializing Conda 
+Processing line: [19.12.2024 14:52:08,10] Activating Conda environment 
+Processing line: [19.12.2024 14:52:10,46] Starting script execution 
+Processing line: [19.12.2024 14:52:14,19] Innvandrere - Bosatt : innvandrere_bosatt.py : Completed, No 
+Processing line: [19.12.2024 14:52:20,87] Innvandrere - Innvandringsgrunn : innvandringsgrunn.py : Completed, No 
+Processing line: [19.12.2024 14:52:24,78] Innvandrere - Flyktninger og arbeidsinnvandrere : andel_flyktninger_og_arbeidsinnvandrere.py : Completed, No 
+Processing line: [19.12.2024 14:52:27,63] Innvandrere - Botid : botid.py : Completed, No 
+Processing line: [19.12.2024 14:52:30,25] Innvandrere - Enslige mindreaarige : enslige_mindreaarige.py : Completed, No 
+Processing line: [19.12.2024 14:52:32,51] Innvandrere - Sekundaerflytting : sekundaerflytting.py : Failed, No 
+Processing line: [19.12.2024 14:52:32,54] Running email script 
+Email sent successfully to Even (even.sannes.riiser@telemarkfylke.no).
