@@ -1,37 +1,9 @@
-[19.12.2024 11:19:57,90] Running innvandringsgrunn.py 
+[19.12.2024 11:42:28,30] Running innvandringsgrunn.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Innvandringsgrunn CSV data loaded successfully.
-[2024-12-19 11:20:00] Large dataset detected (279324 rows). Limiting detailed comparison to last 200 rows.
-[2024-12-19 11:20:00] Identified key columns: Kommune, Kommunenummer, År
-[2024-12-19 11:20:00] Value columns to compare: Kjønn, Innvandringsgrunn, Enhet, Antall
-
-[2024-12-19 11:20:00] New data detected. Uploading to GitHub.
-
-[2024-12-19 11:20:00] === Data Comparison ===
-File: innvandringsgrunn_telemark.csv
-Note: Only showing changes from the last 200 rows
-
-Changes detected in the following rows:
-
-Row: Kommune: Bjerkreim | Kommunenummer: 1114 | År: 2024
-  Antall: 2.0 -> 77.0
-
-Row: Kommune: Holtålen | Kommunenummer: 5026 | År: 2024
-  Antall: 2.4 -> 4.4
-
-Row: Kommune: Vestnes | Kommunenummer: 1535 | År: 2024
-  Antall: 2.1 -> 26.1
-
-Row: Kommune: Grue | Kommunenummer: 3417 | År: 2024
-  Antall: 1.0 -> 28.0
-
-Total changes found in examined rows: 4
-====================
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/innvandringsgrunn_telemark.csv
-Email notifications disabled. Updates for innvandringsgrunn_telemark.csv were not sent.
+[2024-12-19 11:42:30] No new data to upload. Skipping GitHub update.
 Deleted file from temp folder: innvandringsgrunn_telemark.csv
-[19.12.2024 11:20:08,36] Script completed 
+[19.12.2024 11:42:34,66] Script completed 
