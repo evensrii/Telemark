@@ -1,27 +1,13 @@
-[19.12.2024 16:04:49,59] Running anmodninger_og_faktisk_bosetting.py 
+[20.12.2024  2:00:28,73] Running anmodninger_og_faktisk_bosetting.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Anmodninger og faktisk bosetting CSV data loaded successfully.
-           Kommune         År                Kategori  Antall
-558  Midt-Telemark 1995-01-01  Anmodning om bosetting    35.0
-559  Midt-Telemark 1995-01-01       Faktisk bosetting     0.0
-560  Midt-Telemark 1995-01-01     Vedtak om bosetting    13.0
-561  Midt-Telemark 1996-01-01  Anmodning om bosetting     0.0
-562  Midt-Telemark 1996-01-01       Faktisk bosetting     0.0
-..             ...        ...                     ...     ...
-646  Midt-Telemark 2023-01-01     Vedtak om bosetting   110.0
-647  Midt-Telemark 2024-01-01  Anmodning om bosetting    75.0
-648  Midt-Telemark 2024-01-01       Faktisk bosetting    76.0
-649  Midt-Telemark 2024-01-01     Vedtak om bosetting    75.0
-650  Midt-Telemark 2025-01-01  Anmodning om bosetting    45.0
+[2024-12-20 02:00:30] Large dataset detected (1581 rows). Limiting detailed comparison to last 200 rows.
+[2024-12-20 02:00:30] Identified key columns: År, Kommune
+[2024-12-20 02:00:30] Value columns to compare: Kategori, Antall
 
-[93 rows x 4 columns]
-[2024-12-19 16:04:51] Large dataset detected (1581 rows). Limiting detailed comparison to last 200 rows.
-[2024-12-19 16:04:51] Identified key columns: Kommune, År
-[2024-12-19 16:04:51] Value columns to compare: Kategori, Antall
-
-[2024-12-19 16:04:51] No changes detected in the last 200 rows.
+[2024-12-20 02:00:30] No changes detected in the last 200 rows.
 Deleted file from temp folder: anmodninger_og_faktisk_bosetting.csv
-[19.12.2024 16:04:52,54] Script completed 
+[20.12.2024  2:00:31,37] Script completed 
