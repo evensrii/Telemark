@@ -1,4 +1,4 @@
-[19.12.2024 16:04:55,19] Running sekundaerflytting.py 
+[20.12.2024  2:00:33,79] Running sekundaerflytting.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -21,4 +21,4 @@ Traceback (most recent call last):
   File "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekundaerflytting.py", line 44, in <module>
     raise RuntimeError(
 RuntimeError: A critical error occurred during data fetching, stopping execution.
-[19.12.2024 16:04:57,41] Script failed with error code 1 
+[20.12.2024  2:00:35,85] Script failed with error code 1 
