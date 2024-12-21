@@ -1,35 +1,41 @@
-[20.12.2024  2:03:10,04] Running okologisk_tilstand_server_versjon.py 
+[21.12.2024  2:03:05,68] Running okologisk_tilstand_server_versjon.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-An unexpected error occurred: Message: session not created: Chrome failed to start: exited normally.
-  (session not created: DevToolsActivePort file doesn't exist)
-  (The process started from chrome location C:\Program Files (x86)\Google\Chrome\Application\chrome.exe is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
-Stacktrace:
-	GetHandleVerifier [0x00007FF79F43FB05+28789]
-	(No symbol) [0x00007FF79F3A86E0]
-	(No symbol) [0x00007FF79F24592A]
-	(No symbol) [0x00007FF79F2801E4]
-	(No symbol) [0x00007FF79F27BC59]
-	(No symbol) [0x00007FF79F2CA77C]
-	(No symbol) [0x00007FF79F2C9D60]
-	(No symbol) [0x00007FF79F2BF1E3]
-	(No symbol) [0x00007FF79F28A938]
-	(No symbol) [0x00007FF79F28BAA1]
-	GetHandleVerifier [0x00007FF79F77933D+3410093]
-	GetHandleVerifier [0x00007FF79F78E7DD+3497293]
-	GetHandleVerifier [0x00007FF79F782A73+3448803]
-	GetHandleVerifier [0x00007FF79F507BBB+848171]
-	(No symbol) [0x00007FF79F3B3C3F]
-	(No symbol) [0x00007FF79F3AF6E4]
-	(No symbol) [0x00007FF79F3AF87D]
-	(No symbol) [0x00007FF79F39ED49]
-	BaseThreadInitThunk [0x00007FFE05F67AC4+20]
-	RtlUserThreadStart [0x00007FFE082DA8C1+33]
+Ingen driftsmeldinger dukket opp, continuing...
+An unexpected error occurred: Can only use .str accessor with string values!
+Email notifications disabled. Errors in Vannkvalitet were not sent.
+[2024-12-21 02:03:35] Identified key columns: 
+[2024-12-21 02:03:35] Value columns to compare: Kategori, Svært god, God, Moderat, Dårlig, Svært dårlig
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries\04_Klima_og_energi\Ressursforvaltning\okologisk_tilstand_server_versjon.py", line 285, in <module>
-    driver.quit()
-NameError: name 'driver' is not defined
-[20.12.2024  2:03:20,36] Script failed with error code 1 
+[2024-12-21 02:03:35] New data detected. Uploading to GitHub.
+
+[2024-12-21 02:03:35] === Data Comparison ===
+File: økologisk_tilstand_vann.csv
+
+Changes detected in the following rows:
+
+Row: 
+  Svært god: 20.4 -> 
+
+Row: 
+  God: 65.6 -> 
+
+Row: 
+  Moderat: 11.2 -> 
+
+Row: 
+  Dårlig: 1.7 -> 0
+
+Row: 
+  Svært dårlig: 1.1 -> 0
+
+Total changes found in examined rows: 12
+(Showing first 5 changes only)
+====================
+
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/økologisk_tilstand_vann.csv
+Email notifications disabled. Updates for økologisk_tilstand_vann.csv were not sent.
+Deleted file from temp folder: økologisk_tilstand_vann.csv
+[21.12.2024  2:03:39,31] Script completed 
