@@ -1,4 +1,4 @@
-[22.12.2024  2:03:05,51] Running okologisk_tilstand_server_versjon.py 
+[23.12.2024  2:03:04,32] Running okologisk_tilstand_server_versjon.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -6,39 +6,29 @@ GITHUB_TOKEN loaded successfully.
 Ingen driftsmeldinger dukket opp, continuing...
    Kategori  Svært god   God  Moderat  Dårlig  Svært dårlig
 0       Elv       20.4  65.6     11.2     1.7           1.1
-1    Innsjø       20.5  66.7     12.2     0.3           0.3
+1    Innsjø       19.9  65.0     12.2     0.3           0.3
 2  Kystvann        4.1  40.8     51.0     0.0           4.1
 All tasks completed successfully.
-[2024-12-22 02:03:34] Identified key columns: 
-[2024-12-22 02:03:34] Value columns to compare: Kategori, Svært god, God, Moderat, Dårlig, Svært dårlig
+[2024-12-23 02:03:33] Identified key columns: 
+[2024-12-23 02:03:33] Value columns to compare: Kategori, Svært god, God, Moderat, Dårlig, Svært dårlig
 
-[2024-12-22 02:03:34] New data detected. Uploading to GitHub.
+[2024-12-23 02:03:33] New data detected. Uploading to GitHub.
 
-[2024-12-22 02:03:34] === Data Comparison ===
+[2024-12-23 02:03:33] === Data Comparison ===
 File: økologisk_tilstand_vann.csv
 
 Changes detected in the following rows:
 
 Row: 
-  Svært god:  -> 20.4
+  Svært god: 20.5 -> 19.9
 
 Row: 
-  God:  -> 65.6
+  God: 66.7 -> 65.0
 
-Row: 
-  Moderat:  -> 11.2
-
-Row: 
-  Dårlig: 0 -> 1.7
-
-Row: 
-  Svært dårlig: 0 -> 1.1
-
-Total changes found in examined rows: 12
-(Showing first 5 changes only)
+Total changes found in examined rows: 2
 ====================
 
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/økologisk_tilstand_vann.csv
 Email notifications disabled. Updates for økologisk_tilstand_vann.csv were not sent.
 Deleted file from temp folder: økologisk_tilstand_vann.csv
-[22.12.2024  2:03:38,02] Script completed 
+[23.12.2024  2:03:37,44] Script completed 
