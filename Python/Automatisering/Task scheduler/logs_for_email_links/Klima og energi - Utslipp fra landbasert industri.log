@@ -1,4 +1,4 @@
-[24.12.2024  2:02:55,37] Running norskeutslipp.py 
+[25.12.2024  2:02:52,11] Running norskeutslipp.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -23,42 +23,42 @@ Data columns (total 12 columns):
  11  Unnamed: 11               6282 non-null   object
 dtypes: object(12)
 memory usage: 590.2+ KB
-[2024-12-24 02:03:01] Large dataset detected (297 rows). Limiting detailed comparison to last 200 rows.
-[2024-12-24 02:03:01] Identified key columns: Kommune, År
-[2024-12-24 02:03:01] Value columns to compare: Anleggsnavn, Fylke, NACE Kode, Årlig utslipp til luft, Grunnlagsverdi for luft, Årlig utslipp til vann, Grunnlagsverdi for vann, Enhet, AnleggId, Org.nr.
+[2024-12-25 02:02:58] Large dataset detected (297 rows). Limiting detailed comparison to last 200 rows.
+[2024-12-25 02:02:58] Identified key columns: Kommune, År
+[2024-12-25 02:02:58] Value columns to compare: Anleggsnavn, Fylke, NACE Kode, Årlig utslipp til luft, Grunnlagsverdi for luft, Årlig utslipp til vann, Grunnlagsverdi for vann, Enhet, AnleggId, Org.nr.
 
-[2024-12-24 02:03:01] New data detected. Uploading to GitHub.
+[2024-12-25 02:02:58] New data detected. Uploading to GitHub.
 
-[2024-12-24 02:03:01] === Data Comparison ===
+[2024-12-25 02:02:58] === Data Comparison ===
 File: norskeutslipp_detaljert_telemark.csv
 Note: Only showing changes from the last 200 rows
 
 Changes detected in the following rows:
 
-Row: Kommune: Bamble | År: 2004-01-01 00:00:00
-  Anleggsnavn: Magnor minerals -> Agility subsea fabrication as - tidligere grenland offshore as
+Row: Kommune: Porsgrunn | År: 2007-01-01 00:00:00
+  Anleggsnavn: Agility subsea fabrication as - tidligere grenland offshore as -> Porsgrunds porselænsfabrik a.s, avd husholdningsporselen
 
-Row: Kommune: Bamble | År: 2004-01-01 00:00:00
-  NACE Kode: 20.13 -> 30.113
+Row: Kommune: Porsgrunn | År: 2007-01-01 00:00:00
+  NACE Kode: 30.113 -> 23.410
 
-Row: Kommune: Bamble | År: 2004-01-01 00:00:00
-  Årlig utslipp til luft: 117885.0 -> 2.47
+Row: Kommune: Porsgrunn | År: 2007-01-01 00:00:00
+  Årlig utslipp til luft: 2.47 -> 2670.0
 
-Row: Kommune: Bamble | År: 2004-01-01 00:00:00
-  AnleggId: 5291 -> 5527
+Row: Kommune: Porsgrunn | År: 2007-01-01 00:00:00
+  AnleggId: 5527 -> 5522
 
-Row: Kommune: Bamble | År: 2004-01-01 00:00:00
-  Org.nr.: 984680023 -> 972130095
+Row: Kommune: Porsgrunn | År: 2007-01-01 00:00:00
+  Org.nr.: 972130095 -> 971753838
 
-Total changes found in examined rows: 640
+Total changes found in examined rows: 814
 (Showing first 5 changes only)
 ====================
 
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv
 Email notifications disabled. Updates for norskeutslipp_detaljert_telemark.csv were not sent.
-[2024-12-24 02:03:03] Identified key columns: År
-[2024-12-24 02:03:03] Value columns to compare: Utslipp fra landbasert industri (norskeutslipp.no), Totale utslipp fra industrien (Mdir), Mdir enkeltår
+[2024-12-25 02:02:59] Identified key columns: År
+[2024-12-25 02:02:59] Value columns to compare: Utslipp fra landbasert industri (norskeutslipp.no), Totale utslipp fra industrien (Mdir), Mdir enkeltår
 
-[2024-12-24 02:03:03] No changes detected in the dataset.
+[2024-12-25 02:02:59] No changes detected in the dataset.
 Deleted file from temp folder: norskeutslipp_everviz.csv
-[24.12.2024  2:03:03,47] Script completed 
+[25.12.2024  2:03:00,41] Script completed 
