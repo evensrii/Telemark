@@ -1,38 +1,38 @@
-[25.12.2024  2:03:00,41] Running okologisk_tilstand_server_versjon.py 
+[26.12.2024  2:03:02,22] Running okologisk_tilstand_server_versjon.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Ingen driftsmeldinger dukket opp, continuing...
    Kategori  Svært god   God  Moderat  Dårlig  Svært dårlig
-0       Elv       19.9  65.0     12.8     1.4           1.0
-1    Innsjø       19.9  66.7     12.2     0.3           0.3
+0       Elv       20.4  65.6     11.2     1.7           1.1
+1    Innsjø       20.5  66.7     12.2     0.3           0.3
 2  Kystvann        4.1  40.8     51.0     0.0           4.1
 All tasks completed successfully.
-[2024-12-25 02:03:29] Identified key columns: 
-[2024-12-25 02:03:29] Value columns to compare: Kategori, Svært god, God, Moderat, Dårlig, Svært dårlig
+[2024-12-26 02:03:31] Identified key columns: 
+[2024-12-26 02:03:31] Value columns to compare: Kategori, Svært god, God, Moderat, Dårlig, Svært dårlig
 
-[2024-12-25 02:03:29] New data detected. Uploading to GitHub.
+[2024-12-26 02:03:31] New data detected. Uploading to GitHub.
 
-[2024-12-25 02:03:29] === Data Comparison ===
+[2024-12-26 02:03:31] === Data Comparison ===
 File: økologisk_tilstand_vann.csv
 
 Changes detected in the following rows:
 
 Row: 
-  Svært god: 20.4 -> 19.9
+  Svært god: 19.9 -> 20.4
 
 Row: 
-  God: 65.6 -> 65.0
+  God: 65.0 -> 65.6
 
 Row: 
-  Moderat: 11.2 -> 12.8
+  Moderat: 12.8 -> 11.2
 
 Row: 
-  Dårlig: 1.7 -> 1.4
+  Dårlig: 1.4 -> 1.7
 
 Row: 
-  Svært dårlig: 1.1 -> 1.0
+  Svært dårlig: 1.0 -> 1.1
 
 Total changes found in examined rows: 6
 (Showing first 5 changes only)
@@ -41,4 +41,4 @@ Total changes found in examined rows: 6
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/økologisk_tilstand_vann.csv
 Email notifications disabled. Updates for økologisk_tilstand_vann.csv were not sent.
 Deleted file from temp folder: økologisk_tilstand_vann.csv
-[25.12.2024  2:03:33,20] Script completed 
+[26.12.2024  2:03:34,78] Script completed 
