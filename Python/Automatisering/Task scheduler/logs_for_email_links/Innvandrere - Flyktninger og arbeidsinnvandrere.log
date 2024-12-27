@@ -1,4 +1,4 @@
-[26.12.2024  2:00:21,57] Running andel_flyktninger_og_arbeidsinnvandrere.py 
+[27.12.2024  2:00:22,04] Running andel_flyktninger_og_arbeidsinnvandrere.py 
 D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:153: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
@@ -17,13 +17,13 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
 Selected data from year 2024-01-01 00:00:00
-[2024-12-26 02:00:24] Identified key columns: Label, Kommune
-[2024-12-26 02:00:24] Value columns to compare: Andel arbeidsinnvandrere 2024
+[2024-12-27 02:00:24] Identified key columns: Label, Kommune
+[2024-12-27 02:00:24] Value columns to compare: Andel arbeidsinnvandrere 2024
 
-[2024-12-26 02:00:24] No changes detected in the dataset.
-[2024-12-26 02:00:24] Identified key columns: Label, Kommune
-[2024-12-26 02:00:24] Value columns to compare: Andel flyktninger 2024
+[2024-12-27 02:00:24] No changes detected in the dataset.
+[2024-12-27 02:00:25] Identified key columns: Label, Kommune
+[2024-12-27 02:00:25] Value columns to compare: Andel flyktninger 2024
 
-[2024-12-26 02:00:24] No changes detected in the dataset.
+[2024-12-27 02:00:25] No changes detected in the dataset.
 Deleted file from temp folder: andel_flyktninger.csv
-[26.12.2024  2:00:25,31] Script completed 
+[27.12.2024  2:00:25,57] Script completed 
