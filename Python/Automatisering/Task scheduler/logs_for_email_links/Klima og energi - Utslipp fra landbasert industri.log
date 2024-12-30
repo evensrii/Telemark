@@ -1,4 +1,4 @@
-[29.12.2024  2:02:54,45] Running norskeutslipp.py 
+[30.12.2024  2:02:52,61] Running norskeutslipp.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -23,42 +23,42 @@ Data columns (total 12 columns):
  11  Unnamed: 11               6282 non-null   object
 dtypes: object(12)
 memory usage: 590.2+ KB
-[2024-12-29 02:03:01] Large dataset detected (297 rows). Limiting detailed comparison to last 200 rows.
-[2024-12-29 02:03:01] Identified key columns: År, Kommune
-[2024-12-29 02:03:01] Value columns to compare: Anleggsnavn, Fylke, NACE Kode, Årlig utslipp til luft, Grunnlagsverdi for luft, Årlig utslipp til vann, Grunnlagsverdi for vann, Enhet, AnleggId, Org.nr.
+[2024-12-30 02:02:58] Large dataset detected (297 rows). Limiting detailed comparison to last 200 rows.
+[2024-12-30 02:02:58] Identified key columns: År, Kommune
+[2024-12-30 02:02:58] Value columns to compare: Anleggsnavn, Fylke, NACE Kode, Årlig utslipp til luft, Grunnlagsverdi for luft, Årlig utslipp til vann, Grunnlagsverdi for vann, Enhet, AnleggId, Org.nr.
 
-[2024-12-29 02:03:01] New data detected. Uploading to GitHub.
+[2024-12-30 02:02:58] New data detected. Uploading to GitHub.
 
-[2024-12-29 02:03:01] === Data Comparison ===
+[2024-12-30 02:02:58] === Data Comparison ===
 File: norskeutslipp_detaljert_telemark.csv
 Note: Only showing changes from the last 200 rows
 
 Changes detected in the following rows:
 
-Row: År: 2023-01-01 00:00:00 | Kommune: Porsgrunn
-  Anleggsnavn: Porsgrunds porselænsfabrik a.s, avd husholdningsporselen -> Heidelberg materials brevik sementfabrikk
+Row: År: 2002-01-01 00:00:00 | Kommune: Porsgrunn
+  NACE Kode: 23.51 -> 23.510
 
-Row: År: 2023-01-01 00:00:00 | Kommune: Porsgrunn
-  NACE Kode: 23.41 -> 23.510
+Row: År: 2002-01-01 00:00:00 | Kommune: Porsgrunn
+  Årlig utslipp til luft: 630688.0 -> 905473.0
 
-Row: År: 2023-01-01 00:00:00 | Kommune: Porsgrunn
-  Årlig utslipp til luft: 2994.0 -> 630688.0
+Row: År: 2003-01-01 00:00:00 | Kommune: Porsgrunn
+  Anleggsnavn: Inovyn norge avd. pvc-fabrikk porsgrunn -> Heidelberg materials brevik sementfabrikk
 
-Row: År: 2023-01-01 00:00:00 | Kommune: Porsgrunn
-  AnleggId: 5522 -> 5311
+Row: År: 2003-01-01 00:00:00 | Kommune: Porsgrunn
+  NACE Kode: 20.16 -> 23.510
 
-Row: År: 2023-01-01 00:00:00 | Kommune: Porsgrunn
-  Org.nr.: 971753838 -> 974305461
+Row: År: 2003-01-01 00:00:00 | Kommune: Porsgrunn
+  Årlig utslipp til luft: 1200.0 -> 951516.0
 
-Total changes found in examined rows: 741
+Total changes found in examined rows: 964
 (Showing first 5 changes only)
 ====================
 
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv
 Email notifications disabled. Updates for norskeutslipp_detaljert_telemark.csv were not sent.
-[2024-12-29 02:03:02] Identified key columns: År
-[2024-12-29 02:03:02] Value columns to compare: Utslipp fra landbasert industri (norskeutslipp.no), Totale utslipp fra industrien (Mdir), Mdir enkeltår
+[2024-12-30 02:03:00] Identified key columns: År
+[2024-12-30 02:03:00] Value columns to compare: Utslipp fra landbasert industri (norskeutslipp.no), Totale utslipp fra industrien (Mdir), Mdir enkeltår
 
-[2024-12-29 02:03:02] No changes detected in the dataset.
+[2024-12-30 02:03:00] No changes detected in the dataset.
 Deleted file from temp folder: norskeutslipp_everviz.csv
-[29.12.2024  2:03:03,39] Script completed 
+[30.12.2024  2:03:00,84] Script completed 
