@@ -1,4 +1,4 @@
-[01.01.2025  2:02:56,99] Running norskeutslipp.py 
+[02.01.2025  2:02:54,18] Running norskeutslipp.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -23,42 +23,42 @@ Data columns (total 12 columns):
  11  Unnamed: 11               6282 non-null   object
 dtypes: object(12)
 memory usage: 590.2+ KB
-[2025-01-01 02:03:03] Large dataset detected (297 rows). Limiting detailed comparison to last 200 rows.
-[2025-01-01 02:03:03] Identified key columns: År, Kommune
-[2025-01-01 02:03:03] Value columns to compare: Anleggsnavn, Fylke, NACE Kode, Årlig utslipp til luft, Grunnlagsverdi for luft, Årlig utslipp til vann, Grunnlagsverdi for vann, Enhet, AnleggId, Org.nr.
+[2025-01-02 02:03:00] Large dataset detected (297 rows). Limiting detailed comparison to last 200 rows.
+[2025-01-02 02:03:00] Identified key columns: År, Kommune
+[2025-01-02 02:03:00] Value columns to compare: Anleggsnavn, Fylke, NACE Kode, Årlig utslipp til luft, Grunnlagsverdi for luft, Årlig utslipp til vann, Grunnlagsverdi for vann, Enhet, AnleggId, Org.nr.
 
-[2025-01-01 02:03:03] New data detected. Uploading to GitHub.
+[2025-01-02 02:03:00] New data detected. Uploading to GitHub.
 
-[2025-01-01 02:03:03] === Data Comparison ===
+[2025-01-02 02:03:00] === Data Comparison ===
 File: norskeutslipp_detaljert_telemark.csv
 Note: Only showing changes from the last 200 rows
 
 Changes detected in the following rows:
 
-Row: År: 2012-01-01 00:00:00 | Kommune: Porsgrunn
-  Anleggsnavn: Porsgrunds porselænsfabrik a.s, avd husholdningsporselen -> Yara porsgrunn
+Row: År: 2012-01-01 00:00:00 | Kommune: Kragerø
+  Anleggsnavn: Yara porsgrunn -> Tpi norway as
 
-Row: År: 2012-01-01 00:00:00 | Kommune: Porsgrunn
-  NACE Kode: 23.41 -> 20.150
+Row: År: 2012-01-01 00:00:00 | Kommune: Kragerø
+  NACE Kode: 20.15 -> 21.200
 
-Row: År: 2012-01-01 00:00:00 | Kommune: Porsgrunn
-  Årlig utslipp til luft: 2670.0 -> 1059848.6
+Row: År: 2012-01-01 00:00:00 | Kommune: Kragerø
+  Årlig utslipp til luft: 1059848.6 -> 543.8
 
-Row: År: 2012-01-01 00:00:00 | Kommune: Porsgrunn
-  AnleggId: 5522 -> 5447
+Row: År: 2012-01-01 00:00:00 | Kommune: Kragerø
+  AnleggId: 5447 -> 5524
 
-Row: År: 2012-01-01 00:00:00 | Kommune: Porsgrunn
-  Org.nr.: 971753838 -> 974100169
+Row: År: 2012-01-01 00:00:00 | Kommune: Kragerø
+  Org.nr.: 974100169 -> 873107812
 
-Total changes found in examined rows: 541
+Total changes found in examined rows: 449
 (Showing first 5 changes only)
 ====================
 
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv
 Email notifications disabled. Updates for norskeutslipp_detaljert_telemark.csv were not sent.
-[2025-01-01 02:03:04] Identified key columns: År
-[2025-01-01 02:03:04] Value columns to compare: Utslipp fra landbasert industri (norskeutslipp.no), Totale utslipp fra industrien (Mdir), Mdir enkeltår
+[2025-01-02 02:03:02] Identified key columns: År
+[2025-01-02 02:03:02] Value columns to compare: Utslipp fra landbasert industri (norskeutslipp.no), Totale utslipp fra industrien (Mdir), Mdir enkeltår
 
-[2025-01-01 02:03:04] No changes detected in the dataset.
+[2025-01-02 02:03:02] No changes detected in the dataset.
 Deleted file from temp folder: norskeutslipp_everviz.csv
-[01.01.2025  2:03:05,14] Script completed 
+[02.01.2025  2:03:02,57] Script completed 
