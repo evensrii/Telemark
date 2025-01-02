@@ -1,15 +1,24 @@
-[02.01.2025 12:01:05,46] Running klimagassutslipp.py 
+[02.01.2025 13:18:12,76] Running klimagassutslipp.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 All tasks completed successfully.
-[2025-01-02 12:03:43] Large dataset detected (25245 rows). Limiting detailed comparison to last 200 rows.
-[2025-01-02 12:03:43] Identified key columns: Kommune, År
-[2025-01-02 12:03:43] Value columns to compare: Sektor, Utslippskilde, Utslipp
-
-[2025-01-02 12:03:43] No changes detected in the last 200 rows.
-[2025-01-02 12:03:44] No new data to upload. Skipping GitHub update.
-[2025-01-02 12:03:44] No new data to upload. Skipping GitHub update.
-Deleted file from temp folder: klimagassutslipp_endring.csv
-[02.01.2025 12:03:45,48] Script completed 
+Attempt 1: Error writing file klimagassutslipp_telemark.csv. Retrying in 1 seconds...
+Attempt 2: Error writing file klimagassutslipp_telemark.csv. Retrying in 1 seconds...
+Error writing file klimagassutslipp_telemark.csv after 3 attempts: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\klimagassutslipp_telemark.csv'
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries\04_Klima_og_energi\Klimagassutslipp\klimagassutslipp.py", line 223, in <module>
+    is_new_data1 = compare_to_github(df_telemark, file_name1, github_folder, temp_folder)
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 172, in compare_to_github
+    input_df.to_csv(local_file_path, index=False, encoding='utf-8')
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\generic.py", line 3772, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\format.py", line 1186, in to_csv
+    csv_formatter.save()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\csvs.py", line 240, in save
+    with get_handle(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 859, in get_handle
+    handle = open(
+PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\klimagassutslipp_telemark.csv'
+[02.01.2025 13:20:58,88] Script failed with error code 1 
