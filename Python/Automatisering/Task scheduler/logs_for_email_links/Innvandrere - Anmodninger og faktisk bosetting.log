@@ -1,13 +1,13 @@
-[02.01.2025 11:56:57,28] Running anmodninger_og_faktisk_bosetting.py 
+[02.01.2025 13:12:22,92] Running anmodninger_og_faktisk_bosetting.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Anmodninger og faktisk bosetting CSV data loaded successfully.
-[2025-01-02 11:56:59] Large dataset detected (1581 rows). Limiting detailed comparison to last 200 rows.
-[2025-01-02 11:56:59] Identified key columns: År, Kommune
-[2025-01-02 11:56:59] Value columns to compare: Kategori, Antall
+[2025-01-02 13:12:25] Large dataset detected (1581 rows). Limiting detailed comparison to last 200 rows.
+[2025-01-02 13:12:25] Identified key columns: År, Kommune
+[2025-01-02 13:12:25] Value columns to compare: Kategori, Antall
 
-[2025-01-02 11:56:59] No changes detected in the last 200 rows.
+[2025-01-02 13:12:25] No changes detected in the last 200 rows.
 Deleted file from temp folder: anmodninger_og_faktisk_bosetting.csv
-[02.01.2025 11:57:00,15] Script completed 
+[02.01.2025 13:12:26,52] Script completed 
