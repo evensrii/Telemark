@@ -1,13 +1,13 @@
-[02.01.2025 13:16:39,24] Running minoriteter_barnehage.py 
+[02.01.2025 14:12:28,67] Running minoriteter_barnehage.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 Kommuner CSV data loaded successfully.
-[2025-01-02 13:16:54] Identified key columns: År
-[2025-01-02 13:16:54] Value columns to compare: Minoritetsspråklige, Ikke-minoritetsspråklige
+[2025-01-02 14:12:42] Identified key columns: År
+[2025-01-02 14:12:42] Value columns to compare: Minoritetsspråklige, Ikke-minoritetsspråklige
 
-[2025-01-02 13:16:54] No changes detected in the dataset.
+[2025-01-02 14:12:42] No changes detected in the dataset.
 Deleted file from temp folder: minoritetsspråklige_barnehage.csv
-[02.01.2025 13:16:54,84] Script completed 
+[02.01.2025 14:12:42,71] Script completed 
