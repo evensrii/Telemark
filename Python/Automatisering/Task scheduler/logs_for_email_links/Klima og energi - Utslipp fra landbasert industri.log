@@ -1,4 +1,4 @@
-[02.01.2025 13:20:58,90] Running norskeutslipp.py 
+[02.01.2025 13:39:34,85] Running norskeutslipp.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
@@ -40,4 +40,4 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 859, in get_handle
     handle = open(
 PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\norskeutslipp_detaljert_telemark.csv'
-[02.01.2025 13:21:27,63] Script failed with error code 1 
+[02.01.2025 13:40:03,47] Script failed with error code 1 
