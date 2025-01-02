@@ -1,12 +1,12 @@
-[02.01.2025 13:51:35,36] Running jordbruksareal_per_kommune.py 
+[02.01.2025 14:11:34,35] Running jordbruksareal_per_kommune.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Jordbruksareal per kommune JSON data loaded successfully.
-[2025-01-02 13:51:50] Identified key columns: 
-[2025-01-02 13:51:50] Value columns to compare: Kommunenavn, Jordbruksareal (2024)
+[2025-01-02 14:11:48] Identified key columns: 
+[2025-01-02 14:11:48] Value columns to compare: Kommunenavn, Jordbruksareal (2024)
 
-[2025-01-02 13:51:50] No changes detected in the dataset.
+[2025-01-02 14:11:48] No changes detected in the dataset.
 Deleted file from temp folder: jordbruksareal_per_kommune.csv
-[02.01.2025 13:51:50,43] Script completed 
+[02.01.2025 14:11:49,42] Script completed 
