@@ -1,4 +1,4 @@
-[02.01.2025 15:25:31,18] Running etter_introduksjonsprogram.py 
+[02.01.2025 15:32:47,30] Running etter_introduksjonsprogram.py 
 D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Introduksjonsprogrammet\etter_introduksjonsprogram.py:146: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
@@ -11,9 +11,9 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Introprogram CSV data loaded successfully.
 Statistikken viser andelen i arbeid eller utdanning i 2022-01-01 00:00:00 som avsluttet eller avbrøt programmet i 2021-01-01 00:00:00
-[2025-01-02 15:25:42] Identified key columns: 
-[2025-01-02 15:25:42] Value columns to compare: Fylke, Andel 2022
+[2025-01-02 15:32:59] Identified key columns: 
+[2025-01-02 15:32:59] Value columns to compare: Fylke, Andel 2022
 
-[2025-01-02 15:25:42] No changes detected in the dataset.
+[2025-01-02 15:32:59] No changes detected in the dataset.
 Deleted file from temp folder: etter_introduksjonsprogram.csv
-[02.01.2025 15:25:43,24] Script completed 
+[02.01.2025 15:32:59,97] Script completed 
