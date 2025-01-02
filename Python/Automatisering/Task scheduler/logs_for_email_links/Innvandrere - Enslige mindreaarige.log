@@ -1,13 +1,13 @@
-[01.01.2025  2:00:31,03] Running enslige_mindreaarige.py 
+[02.01.2025  2:00:30,08] Running enslige_mindreaarige.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 Kommuner CSV data loaded successfully.
-[2025-01-01 02:00:33] Identified key columns: År
-[2025-01-01 02:00:33] Value columns to compare: Anmodning om bosetting, Faktisk bosetting
+[2025-01-02 02:00:31] Identified key columns: År
+[2025-01-02 02:00:31] Value columns to compare: Anmodning om bosetting, Faktisk bosetting
 
-[2025-01-01 02:00:33] No changes detected in the dataset.
+[2025-01-02 02:00:31] No changes detected in the dataset.
 Deleted file from temp folder: bosetting_enslige_mindreårige.csv
-[01.01.2025  2:00:33,77] Script completed 
+[02.01.2025  2:00:32,40] Script completed 
