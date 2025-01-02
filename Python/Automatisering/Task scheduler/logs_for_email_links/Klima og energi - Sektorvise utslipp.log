@@ -1,15 +1,15 @@
-[19.12.2024 15:36:40,14] Running klimagassutslipp.py 
+[02.01.2025 10:25:14,86] Running klimagassutslipp.py 
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 All tasks completed successfully.
-[2024-12-19 15:39:24] Large dataset detected (25245 rows). Limiting detailed comparison to last 200 rows.
-[2024-12-19 15:39:24] Identified key columns: Kommune, År
-[2024-12-19 15:39:24] Value columns to compare: Sektor, Utslippskilde, Utslipp
+[2025-01-02 10:28:11] Large dataset detected (25245 rows). Limiting detailed comparison to last 200 rows.
+[2025-01-02 10:28:11] Identified key columns: År, Kommune
+[2025-01-02 10:28:11] Value columns to compare: Sektor, Utslippskilde, Utslipp
 
-[2024-12-19 15:39:24] No changes detected in the last 200 rows.
-[2024-12-19 15:39:25] No new data to upload. Skipping GitHub update.
-[2024-12-19 15:39:25] No new data to upload. Skipping GitHub update.
+[2025-01-02 10:28:11] No changes detected in the last 200 rows.
+[2025-01-02 10:28:12] No new data to upload. Skipping GitHub update.
+[2025-01-02 10:28:13] No new data to upload. Skipping GitHub update.
 Deleted file from temp folder: klimagassutslipp_endring.csv
-[19.12.2024 15:39:26,34] Script completed 
+[02.01.2025 10:28:13,64] Script completed 
