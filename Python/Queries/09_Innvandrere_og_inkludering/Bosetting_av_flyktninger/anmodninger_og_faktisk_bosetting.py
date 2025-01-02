@@ -163,7 +163,7 @@ df["Kommune"] = df["Kommune"].replace(
 df_aggregert = df.groupby(["Kommune", "År", "Kategori"], as_index=False)["Antall"].sum()
 # dtale.show(df_aggregert, open_browser=True)
 
-print(df_aggregert[df_aggregert["Kommune"] == "Midt-Telemark"])
+#print(df_aggregert[df_aggregert["Kommune"] == "Midt-Telemark"])
 
 # Kontroll: Summere antall flyktninger per år og kategori
 df_aggregert.groupby(["År", "Kategori"], as_index=False)["Antall"].sum()

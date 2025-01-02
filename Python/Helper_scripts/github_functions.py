@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from datetime import datetime
 import base64
 import pandas as pd
+import time
 
 from Helper_scripts.email_functions import notify_updated_data
 
@@ -161,7 +162,22 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     
     # Save the DataFrame to a CSV in the Temp folder
     local_file_path = os.path.join(temp_folder, file_name)
-    input_df.to_csv(local_file_path, index=False, encoding='utf-8')
+    
+    # Add retry logic for file writing
+    max_retries = 3
+    retry_delay = 1  # seconds
+    
+    for attempt in range(max_retries):
+        try:
+            input_df.to_csv(local_file_path, index=False, encoding='utf-8')
+            break
+        except PermissionError as e:
+            if attempt < max_retries - 1:
+                print(f"Attempt {attempt + 1}: Error writing file {file_name}. Retrying in {retry_delay} seconds...")
+                time.sleep(retry_delay)
+            else:
+                print(f"Error writing file {file_name} after {max_retries} attempts: {e}")
+                raise
 
     # GitHub configuration
     github_file_path = f"{github_folder}/{file_name}"
