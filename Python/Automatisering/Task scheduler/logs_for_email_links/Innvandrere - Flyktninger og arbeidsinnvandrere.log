@@ -1,4 +1,4 @@
-[02.01.2025 15:25:18,57] Running andel_flyktninger_og_arbeidsinnvandrere.py 
+[02.01.2025 15:32:21,59] Running andel_flyktninger_og_arbeidsinnvandrere.py 
 D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:153: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
@@ -31,4 +31,4 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 859, in get_handle
     handle = open(
 PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\andel_arbeidsinnvandrere.csv'
-[02.01.2025 15:25:31,15] Script failed with error code 1 
+[02.01.2025 15:32:35,08] Script failed with error code 1 
