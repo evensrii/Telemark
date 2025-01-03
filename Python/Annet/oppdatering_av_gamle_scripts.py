@@ -69,4 +69,19 @@ from Helper_scripts.github_functions import handle_output_data
 
 
 
+##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
+
+file_name = "andel_innvandrere_bosatt.csv"
+github_folder = "Data/09_Innvandrere og inkludering/Innvandrerbefolkningen"
+temp_folder = os.environ.get("TEMP_FOLDER")
+
+# Call the function and get the "New Data" status
+is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
+
+# Output results for debugging/testing
+if is_new_data:
+    print("New data detected and pushed to GitHub.")
+else:
+    print("No new data detected.")
+
 

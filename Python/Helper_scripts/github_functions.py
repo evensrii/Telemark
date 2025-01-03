@@ -435,19 +435,20 @@ def identify_key_columns(df):
 
     return list(set(key_columns))  # Remove any duplicates
 
-def handle_output_data(df, file_name, github_folder, temp_folder):
+def handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=False):
     """
     Handles output data:
     1. Saves the DataFrame to the temp folder.
     2. Compares it with GitHub data.
     3. Pushes to GitHub if new data is detected.
-    4. Deletes the local temp file.
+    4. Deletes the local temp file unless 'keepcsv' is True.
 
     Args:
         df (pd.DataFrame): DataFrame to save and compare.
         file_name (str): Name of the output file.
         github_folder (str): GitHub folder for comparison/upload.
         temp_folder (str): Temporary folder for local storage.
+        keepcsv (bool): If True, keeps the CSV file in the temp folder.
 
     Returns:
         bool: True if new data was detected and pushed, False otherwise.
@@ -464,10 +465,13 @@ def handle_output_data(df, file_name, github_folder, temp_folder):
     is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
 
     # Optionally delete the temporary file after processing
-    try:
-        #os.remove(temp_file_path)
-        print(f"Deleted temporary file: {temp_file_path}")
-    except Exception as e:
-        print(f"Error deleting temporary file: {e}")
+    if not keepcsv:
+        try:
+            os.remove(temp_file_path)
+            print(f"Deleted temporary file: {temp_file_path}")
+        except Exception as e:
+            print(f"Error deleting temporary file: {e}")
+    else:
+        print(f"Keeping CSV file: {temp_file_path}")
 
     return is_new_data

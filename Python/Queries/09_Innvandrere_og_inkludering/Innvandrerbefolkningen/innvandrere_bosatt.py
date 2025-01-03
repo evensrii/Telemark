@@ -115,7 +115,7 @@ github_folder = "Data/09_Innvandrere og inkludering/Innvandrerbefolkningen"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df, file_name, github_folder, temp_folder)
+is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
 
 # Output results for debugging/testing
 if is_new_data:

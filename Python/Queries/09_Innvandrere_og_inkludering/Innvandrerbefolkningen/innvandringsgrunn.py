@@ -14,6 +14,7 @@ from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import upload_github_file
 from Helper_scripts.github_functions import download_github_file
 from Helper_scripts.github_functions import compare_to_github
+from Helper_scripts.github_functions import handle_output_data
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -58,21 +59,11 @@ file_name = "innvandringsgrunn_telemark.csv"
 github_folder = "Data/09_Innvandrere og inkludering/Innvandrerbefolkningen"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-""" compare_to_github(
-    df, file_name, github_folder, temp_folder
-)  # <--- Endre navn på dataframe her!
- """
-
 # Call the function and get the "New Data" status
-is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
+is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
 
-# Write the "New Data" status to a log file
-with open("new_data_status.log", "w", encoding="utf-8") as log_file:
-    if is_new_data:
-        log_file.write(f"{file_name},New Data,Yes\n")
-    else:
-        log_file.write(f"{file_name},New Data,No\n")
-
-##################### Remove temporary local files #####################
-
-delete_files_in_temp_folder()
+# Output results for debugging/testing
+if is_new_data:
+    print("New data detected and pushed to GitHub.")
+else:
+    print("No new data detected.")
