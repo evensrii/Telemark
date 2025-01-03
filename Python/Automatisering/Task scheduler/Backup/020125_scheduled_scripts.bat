@@ -30,32 +30,48 @@ IF %ERRORLEVEL% NEQ 0 (
 :: Run scripts with log separation
 echo [%DATE% %TIME%] Starting script execution >> %LOGFILE%
 
+SET OVERALL_STATUS=0
+
 :: Run all scripts first
 CALL :RunAllScripts
 
 :: Only after all scripts are done, send email and log completion
 echo [%DATE% %TIME%] Running email script >> %LOGFILE%
 echo. > %EMAIL_LOG%
-START /WAIT /B python -u "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\email_when_run_completed.py" >> %EMAIL_LOG% 2>&1
+python -u "D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\email_when_run_completed.py" >> %EMAIL_LOG% 2>&1
 
 :: Final status logging
 echo [%DATE% %TIME%] Daily run completed. >> %LOGFILE%
-EXIT /B 0
+IF %OVERALL_STATUS% NEQ 0 (
+    echo [%DATE% %TIME%] One or more scripts failed during execution >> %LOGFILE%
+    EXIT /B 1
+) ELSE (
+    EXIT /B 0
+)
 
 :RunAllScripts
 :: Innvandrere og inkludering
 CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py" "Innvandrere - Bosatt"
-echo. > nul
+SET LAST_ERROR=%ERRORLEVEL%
+IF %LAST_ERROR% NEQ 0 SET OVERALL_STATUS=1
+
 CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandringsgrunn.py" "Innvandrere - Innvandringsgrunn"
-echo. > nul
+SET LAST_ERROR=%ERRORLEVEL%
+IF %LAST_ERROR% NEQ 0 SET OVERALL_STATUS=1
+
 CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py" "Innvandrere - Flyktninger og arbeidsinnvandrere"
-echo. > nul
+SET LAST_ERROR=%ERRORLEVEL%
+IF %LAST_ERROR% NEQ 0 SET OVERALL_STATUS=1
+
 CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Introduksjonsprogrammet\deltakere_introduksjonsprogram.py" "Innvandrere - Deltakere introdukjonsprogrammet"
-echo. > nul
+SET LAST_ERROR=%ERRORLEVEL%
+IF %LAST_ERROR% NEQ 0 SET OVERALL_STATUS=1
+
 CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Introduksjonsprogrammet\etter_introduksjonsprogram.py" "Innvandrere - Etter introduksjonsprogrammet"
+SET LAST_ERROR=%ERRORLEVEL%
+IF %LAST_ERROR% NEQ 0 SET OVERALL_STATUS=1
 
 :: Commented out scripts below
-:: Innvandrere og inkludering
 :: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\botid.py" "Innvandrere - Botid"
 
 :: CALL :RunScript "D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\anmodninger_og_faktisk_bosetting.py" "Innvandrere - Anmodninger og faktisk bosetting"
@@ -92,7 +108,7 @@ SET SCRIPT_LOG="D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler
 
 echo [%DATE% %TIME%] Running %SCRIPT_FILENAME% > %SCRIPT_LOG%
 
-CMD /C python %SCRIPT% >> %SCRIPT_LOG% 2>&1
+python %SCRIPT% >> %SCRIPT_LOG% 2>&1
 SET PYTHON_ERROR=%ERRORLEVEL%
 
 :: Check if new_data_status.log exists and append "New Data" status to the master log

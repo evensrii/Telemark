@@ -165,9 +165,6 @@ df_pivot_flyktninger.columns = [
     "Label",
 ]
 
-df_pivot_arbeidsinnvandrere.head()
-df_pivot_flyktninger.head
-
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name1 = "andel_arbeidsinnvandrere.csv"

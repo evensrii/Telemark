@@ -3,40 +3,16 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Resolved log file path: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
 Successfully read log file: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
-Successfully pushed Areal - Jordbruksareal per kommune.log to GitHub
-Successfully pushed Idrett, friluftsliv og frivillighet - Jegere.log to GitHub
-Successfully pushed Innvandrere - Anmodninger og faktisk bosetting.log to GitHub
 Successfully pushed Innvandrere - Bosatt.log to GitHub
-Successfully pushed Innvandrere - Botid.log to GitHub
-Successfully pushed Innvandrere - Enslige mindreaarige.log to GitHub
+Successfully pushed Innvandrere - Etter introduksjonsprogrammet.log to GitHub
 Successfully pushed Innvandrere - Flyktninger og arbeidsinnvandrere.log to GitHub
 Successfully pushed Innvandrere - Innvandringsgrunn.log to GitHub
-Successfully pushed Innvandrere - Lavinntekt.log to GitHub
-Successfully pushed Innvandrere - Sekundaerflytting.log to GitHub
-Successfully pushed Innvandrere - Sysselsatte etter botid og bakgrunn.log to GitHub
-Successfully pushed Innvandrere - Sysselsatte.log to GitHub
-Successfully pushed Klima og energi - Felte hjortedyr.log to GitHub
-Successfully pushed Klima og energi - Okologisk tilstand vann.log to GitHub
-Successfully pushed Klima og energi - Sektorvise utslipp.log to GitHub
-Successfully pushed Klima og energi - Utslipp fra landbasert industri.log to GitHub
-Processing line: [02.01.2025 10:24:07,36] Initializing Conda 
-Processing line: [02.01.2025 10:24:09,81] Activating Conda environment 
-Processing line: [02.01.2025 10:24:12,25] Starting script execution 
-Processing line: [02.01.2025 10:24:20,91] Innvandrere - Bosatt : innvandrere_bosatt.py : Completed, No 
-Processing line: [02.01.2025 10:24:37,17] Innvandrere - Innvandringsgrunn : innvandringsgrunn.py : Completed, No 
-Processing line: [02.01.2025 10:24:40,77] Innvandrere - Flyktninger og arbeidsinnvandrere : andel_flyktninger_og_arbeidsinnvandrere.py : Completed, No 
-Processing line: [02.01.2025 10:24:44,91] Innvandrere - Botid : botid.py : Completed, No 
-Processing line: [02.01.2025 10:24:50,06] Innvandrere - Anmodninger og faktisk bosetting : anmodninger_og_faktisk_bosetting.py : Completed, No 
-Processing line: [02.01.2025 10:24:53,67] Innvandrere - Enslige mindreaarige : enslige_mindreaarige.py : Completed, No 
-Processing line: [02.01.2025 10:24:55,97] Innvandrere - Sekundaerflytting : sekundaerflytting.py : Failed, No 
-Processing line: [02.01.2025 10:25:02,48] Innvandrere - Sysselsatte : andel_sysselsatte_innvandrere.py : Completed, No 
-Processing line: [02.01.2025 10:25:12,37] Innvandrere - Sysselsatte etter botid og bakgrunn : andel_sysselsatte_etter_botid_og_landbakgrunn.py : Completed, No 
-Processing line: [02.01.2025 10:25:14,84] Innvandrere - Lavinntekt : andel_innvandrere_i_lavinntekt.py : Completed, No 
-Processing line: [02.01.2025 10:28:13,64] Klima og energi - Sektorvise utslipp : klimagassutslipp.py : Completed, No 
-Processing line: [02.01.2025 10:28:23,50] Klima og energi - Utslipp fra landbasert industri : norskeutslipp.py : Completed, Yes 
-Processing line: [02.01.2025 10:28:57,16] Klima og energi - Okologisk tilstand vann : okologisk_tilstand_server_versjon.py : Completed, No 
-Processing line: [02.01.2025 10:29:02,44] Klima og energi - Felte hjortedyr : antall_felt.py : Completed, No 
-Processing line: [02.01.2025 10:29:06,49] Areal - Jordbruksareal per kommune : jordbruksareal_per_kommune.py : Completed, No 
-Processing line: [02.01.2025 10:29:09,94] Idrett, friluftsliv og frivillighet - Jegere : andel_jegere.py : Completed, No 
-Processing line: [02.01.2025 10:29:09,96] Running email script 
+Processing line: [03.01.2025  2:00:00,78] Initializing Conda 
+Processing line: [03.01.2025  2:00:00,78] Activating Conda environment 
+Processing line: [03.01.2025  2:00:06,18] Starting script execution 
+Processing line: [03.01.2025  2:00:12,76] Innvandrere - Bosatt : innvandrere_bosatt.py : Completed, No 
+Processing line: [03.01.2025  2:00:18,88] Innvandrere - Innvandringsgrunn : innvandringsgrunn.py : Completed, No 
+Processing line: [03.01.2025  2:00:22,40] Innvandrere - Flyktninger og arbeidsinnvandrere : andel_flyktninger_og_arbeidsinnvandrere.py : Completed, No 
+Processing line: [03.01.2025  2:00:24,93] Innvandrere - Etter introduksjonsprogrammet : etter_introduksjonsprogram.py : Completed, No 
+Processing line: [03.01.2025  2:00:24,93] Running email script 
 Email sent successfully to Even (even.sannes.riiser@telemarkfylke.no).
