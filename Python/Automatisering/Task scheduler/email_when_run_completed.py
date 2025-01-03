@@ -234,7 +234,7 @@ def format_log_as_html_table(log_content):
         <tr style='background-color: {background_color};'>
             <td>{row["date"]}</td>
             <td>{row["time"]}</td>
-            <td style='text-align: left; padding-left: 20px; vertical-align: middle;'><a href='{log_urls.get(f"{row["task"]}.log", "#")}' style='color: #00008B; text-decoration: none;'>{row["task"]}</a></td>
+            <td style='text-align: left; padding-left: 20px; vertical-align: middle;'><a href='{log_urls.get(f"{row["task"]}", "#")}' style='color: #00008B; text-decoration: none;'>{row["task"]}</a></td>
             <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{row["script"]}</td>
             <td>{status_badge}</td>
             <td>{new_data_badge}</td>

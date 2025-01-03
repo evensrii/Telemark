@@ -1,0 +1,4 @@
+  File "<fstring>", line 1
+    (log_urls.get(f"{row["task"]}", "#"))
+                          ^
+SyntaxError: invalid syntax
