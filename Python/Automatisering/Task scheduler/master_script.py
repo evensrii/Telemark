@@ -37,38 +37,36 @@ with open(MASTER_LOG_FILE, "w", encoding="utf-8") as log_file:
 def run_script(script_path, task_name):
     """Run a single script in the Conda environment and log its result."""
     script_name = os.path.basename(script_path)
-    script_log_file = os.path.join(LOG_DIR, f"{task_name.replace(' ', '_')}.log")
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    # Use the task name as-is for the log file name
+    script_log_file = os.path.join(LOG_DIR, f"{task_name}.log")
+    timestamp = datetime.now().strftime("%d.%m.%Y  %H:%M:%S")
     status = "Completed"
     new_data = "No"
 
     try:
+        # Run the individual script with proper quoting
+        script_path = os.path.abspath(script_path)  # Ensure absolute path
+        command = f'cmd.exe /c "conda activate {CONDA_ENV} && python "{script_path}""'
+        
         with open(script_log_file, "w", encoding="utf-8") as log:
             log.write(f"[{timestamp}] Starting {task_name} ({script_name})\n")
-            command = f"conda activate {CONDA_ENV} && python {script_path}"
             subprocess.run(command, shell=True, stdout=log, stderr=subprocess.STDOUT, check=True)
 
-        # Assume the script outputs a DataFrame and logs to a specific file
-        # Define GitHub parameters and compare the generated data
-        file_name = f"{task_name.replace(' ', '_').lower()}.csv"
-        github_folder = f"Data/09_Innvandrere og inkludering/{task_name}"
-        
-        # Check if new data exists using the compare_to_github function
-        is_new_data = compare_to_github(df=None,  # Assume script saves this DataFrame to TEMP_FOLDER
-                                        file_name=file_name,
-                                        github_folder=github_folder,
-                                        temp_folder=TEMP_FOLDER)
-        new_data = "Ja" if is_new_data else "Nei"
-
-        # Clean up temporary files
-        delete_files_in_temp_folder()
+        # Read new data status (if applicable)
+        task_name_safe = task_name.replace(" ", "_").replace(".", "_")
+        new_data_status_file = os.path.join(LOG_DIR, f"new_data_status_{task_name_safe}.log")
+        if os.path.exists(new_data_status_file):
+            with open(new_data_status_file, "r", encoding="utf-8") as status_file:
+                line = status_file.read().strip()
+                _, _, new_data = line.split(",")
+            os.remove(new_data_status_file)  # Clean up
 
     except subprocess.CalledProcessError as e:
         status = "Failed"
         with open(script_log_file, "a", encoding="utf-8") as log:
             log.write(f"[{timestamp}] Script failed with error: {e}\n")
 
-    # Append to master log
+    # Append results to master log
     with open(MASTER_LOG_FILE, "a", encoding="utf-8") as master_log:
         master_log.write(f"[{timestamp}] {task_name} : {script_name} : {status}, {new_data}\n")
 
@@ -76,7 +74,17 @@ def run_script(script_path, task_name):
 def send_email():
     """Call the email script to format and send the email."""
     with open(EMAIL_LOG_FILE, "w", encoding="utf-8") as email_log:
-        command = f"conda activate {CONDA_ENV} && python D:/Scripts/analyse/Telemark/Python/Automatisering/Task scheduler/email_when_run_completed.py"
+        # Dynamically construct the path to the email script
+        python_path = os.getenv("PYTHONPATH")
+        if python_path is None:
+            raise ValueError("PYTHONPATH environment variable is not set")
+        
+        email_script_path = os.path.join(
+            python_path, "Automatisering", "Task scheduler", "email_when_run_completed.py"
+        )
+        
+        # Quote the script path to handle spaces
+        command = f'cmd.exe /c "conda activate {CONDA_ENV} && python \"{email_script_path}\""'
         subprocess.run(command, shell=True, stdout=email_log, stderr=subprocess.STDOUT)
 
 
