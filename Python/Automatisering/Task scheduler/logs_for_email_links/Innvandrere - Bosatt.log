@@ -4,11 +4,11 @@ Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github
 GITHUB_TOKEN loaded successfully.
 Bosatt JSON data loaded successfully.
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
-[2025-01-03 14:05:27] Identified key columns: Kommune, Label
-[2025-01-03 14:05:27] Value columns to compare: Andel bosatt 2024
+[2025-01-03 15:32:50] Identified key columns: Label, Kommune
+[2025-01-03 15:32:50] Value columns to compare: Andel bosatt 2024
 
-[2025-01-03 14:05:27] No changes detected in the dataset.
+[2025-01-03 15:32:50] No changes detected in the dataset.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
 No new data detected.
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_andel_innvandrere_bosatt_csv.log
-[03.01.2025  14:05:24] Starting Innvandrere - Bosatt (innvandrere_bosatt.py)
+[03.01.2025  15:32:46] Starting Innvandrere - Bosatt (innvandrere_bosatt.py)
