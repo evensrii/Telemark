@@ -58,3 +58,15 @@ compare_to_github(
 ##################### Remove temporary local files #####################
 
 delete_files_in_temp_folder()
+
+
+
+
+
+# ------------ Etter overgang til Python master script ------------
+
+from Helper_scripts.github_functions import handle_output_data
+
+
+
+
