@@ -1,9 +1,11 @@
-[03.01.2025  2:00:12,77] Running innvandringsgrunn.py 
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Innvandringsgrunn CSV data loaded successfully.
-[2025-01-03 02:00:15] No new data to upload. Skipping GitHub update.
-Deleted file from temp folder: innvandringsgrunn_telemark.csv
-[03.01.2025  2:00:18,88] Script completed 
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\innvandringsgrunn_telemark.csv
+[2025-01-03 13:17:38] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\innvandringsgrunn_telemark.csv
+No new data detected.
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_innvandringsgrunn_telemark_csv.log
+[03.01.2025  13:17:33,977] Starting Innvandrere - Innvandringsgrunn (innvandringsgrunn.py)
