@@ -1,12 +1,14 @@
-[03.01.2025 15:34:57,08] Running innvandrere_bosatt.py 
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Bosatt JSON data loaded successfully.
-[2025-01-03 15:35:03] Identified key columns: Kommune, Label
-[2025-01-03 15:35:03] Value columns to compare: Andel bosatt 2024
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
+[2025-01-03 15:32:50] Identified key columns: Label, Kommune
+[2025-01-03 15:32:50] Value columns to compare: Andel bosatt 2024
 
-[2025-01-03 15:35:03] No changes detected in the dataset.
-Deleted file from temp folder: andel_innvandrere_bosatt.csv
-[03.01.2025 15:35:04,04] Script completed 
+[2025-01-03 15:32:50] No changes detected in the dataset.
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
+No new data detected.
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_andel_innvandrere_bosatt_csv.log
+[03.01.2025  15:32:46] Starting Innvandrere - Bosatt (innvandrere_bosatt.py)
