@@ -1,0 +1,19 @@
+[03.01.2025 15:35:14,54] Running etter_introduksjonsprogram.py 
+D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Introduksjonsprogrammet\etter_introduksjonsprogram.py:146: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_fylker["Fylke"] = df_fylker["Fylke"].replace(rename_fylker)
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Introprogram CSV data loaded successfully.
+Statistikken viser andelen i arbeid eller utdanning i 2022-01-01 00:00:00 som avsluttet eller avbrøt programmet i 2021-01-01 00:00:00
+[2025-01-03 15:35:18] Identified key columns: 
+[2025-01-03 15:35:18] Value columns to compare: Fylke, Andel 2022
+
+[2025-01-03 15:35:18] No changes detected in the dataset.
+Deleted file from temp folder: etter_introduksjonsprogram.csv
+[03.01.2025 15:35:19,16] Script completed 
