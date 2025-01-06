@@ -3,19 +3,9 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Innvandringsgrunn CSV data loaded successfully.
-Traceback (most recent call last):
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandringsgrunn.py", line 63, in <module>
-    is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Helper_scripts\github_functions.py", line 461, in handle_output_data
-    df.to_csv(temp_file_path, index=False, encoding="utf-8")
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\generic.py", line 3772, in to_csv
-    return DataFrameRenderer(formatter).to_csv(
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\io\formats\format.py", line 1186, in to_csv
-    csv_formatter.save()
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\io\formats\csvs.py", line 240, in save
-    with get_handle(
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\io\common.py", line 859, in get_handle
-    handle = open(
-OSError: [Errno 22] Invalid argument: 'C:\\Users\\eve1509\\OneDrive - Telemark fylkeskommune\\Github\\Telemark\\Python\\Temp\\innvandringsgrunn_telemark.csv'
-[06.01.2025  10:42:17] Starting Innvandrere - Innvandringsgrunn (innvandringsgrunn.py)
-[06.01.2025  10:42:17] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandringsgrunn.py""' returned non-zero exit status 1.
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\innvandringsgrunn_telemark.csv
+[2025-01-06 10:44:34] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\innvandringsgrunn_telemark.csv
+No new data detected.
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_innvandringsgrunn_telemark_csv.log
+[06.01.2025  10:44:31] Starting Innvandrere - Innvandringsgrunn (innvandringsgrunn.py)
