@@ -28,6 +28,8 @@ X_FUNCTIONS_KEY = os.getenv("X_FUNCTIONS_KEY")
 if not X_FUNCTIONS_KEY:
     raise ValueError("X-FUNCTIONS-KEY not found in the loaded .env file.")
 
+print("X_FUNCTIONS_KEY loaded successfully.")
+
 # Paths and configurations
 base_path = os.getenv("PYTHONPATH")
 if base_path is None:
@@ -66,12 +68,8 @@ def push_logs_to_github():
             local_file_path = os.path.join(LOG_DIR, filename)
 
             # Read local log file content
-            try:
-                with open(local_file_path, "r", encoding="ISO-8859-1") as file:
-                    local_content = file.read()
-            except Exception as e:
-                print(f"Error reading {filename}: {e}")
-                continue
+            with open(local_file_path, "r", encoding="utf-8") as file:
+                local_content = file.read()
 
             # GitHub API endpoint
             github_file_path = f"{logs_path}/{filename}"
@@ -107,15 +105,15 @@ def push_logs_to_github():
             if response.status_code in [200, 201]:
                 generated_url = f"{base_url}/{github_file_path}"
                 log_urls[filename] = generated_url
-                print(f"Successfully uploaded log file {filename}. URL: {generated_url}")
+                print(f"Successfully uploaded {filename}. URL: {generated_url}")
             else:
                 log_urls[filename] = f"Failed: {response.json()}"
                 print(f"Failed to upload {filename}: {response.json()}")
 
     # Print all generated URLs
-    #print("Generated log URLs:")
-    #for filename, url in log_urls.items():
-    #    print(f"{filename}: {url}")
+    print("Generated log URLs:")
+    for filename, url in log_urls.items():
+        print(f"{filename}: {url}")
 
     return log_urls
 
@@ -128,7 +126,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))  # Folder containing thi
 os.chdir(script_dir)  # Ensure CWD is the script's directory
 
 log_file_path = os.path.join(script_dir, "./logs/00_master_run.log")
-#print(f"Resolved log file path: {log_file_path}")
+print(f"Resolved log file path: {log_file_path}")
 
 # Check if the file exists
 if not os.path.exists(log_file_path):
@@ -138,7 +136,7 @@ if not os.path.exists(log_file_path):
 try:
     with open(log_file_path, 'r', encoding='ISO-8859-1') as file:
         log_content = file.read()
-    print(f"Successfully read the master run log file: {log_file_path}")
+    print(f"Successfully read log file: {log_file_path}")
 except Exception as e:
     print(f"Error reading log file: {e}")
     sys.exit(1)

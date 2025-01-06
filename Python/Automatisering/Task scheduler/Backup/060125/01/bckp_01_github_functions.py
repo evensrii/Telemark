@@ -182,10 +182,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         )
         return True
 
-    ####################################
-    # STEP 1: Check for Header Changes #
-    ####################################
-
+    # STEP 1: Check header changes
     def normalize_header(col):
         """Normalize header for comparison by removing case and whitespace"""
         return str(col).strip().lower()
@@ -254,10 +251,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         )
         return True
 
-    ####################################
-    # STEP 2: Check Row Count Changes  #
-    ####################################
-    
+    # STEP 2: Check row count changes
     # Only runs if no header changes were found
     existing_row_count = len(existing_data)
     new_row_count = len(input_df)
@@ -279,10 +273,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             reason=f"Row count changed: {existing_row_count} -> {new_row_count} ({new_row_count - existing_row_count:+d} rows)"
         )
         return True
-
-    ####################################
-    # STEP 3: Check for Value Changes  #
-    ####################################
 
     # Quick check for any changes in full dataset
     if existing_data.equals(input_df):

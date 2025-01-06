@@ -15,6 +15,7 @@ from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import upload_github_file
 from Helper_scripts.github_functions import download_github_file
 from Helper_scripts.github_functions import compare_to_github
+from Helper_scripts.github_functions import handle_output_data
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)

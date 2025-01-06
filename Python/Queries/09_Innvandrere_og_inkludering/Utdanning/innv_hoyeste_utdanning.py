@@ -8,12 +8,9 @@ import pandas as pd
 from pyjstat import pyjstat
 
 # Import the utility functions from the Helper_scripts folder
-from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.utility_functions import delete_files_in_temp_folder
+from Helper_scripts.utility_functions import fetch_data, delete_files_in_temp_folder
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file
-from Helper_scripts.github_functions import download_github_file
-from Helper_scripts.github_functions import compare_to_github
+from Helper_scripts.github_functions import upload_github_file, download_github_file, compare_to_github, handle_output_data
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -109,15 +106,21 @@ github_folder = "Data/09_Innvandrere og inkludering/Utdanningsnivå Telemark"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = compare_to_github(df_fylker_pivot, file_name, github_folder, temp_folder)
+is_new_data = handle_output_data(df_fylker_pivot, file_name, github_folder, temp_folder, keepcsv=True)
 
-# Write the "New Data" status to a log file
-with open("new_data_status.log", "w", encoding="utf-8") as log_file:
-    if is_new_data:
-        log_file.write(f"{file_name},New Data,Yes\n")
-    else:
-        log_file.write(f"{file_name},New Data,No\n")
+# Write the "New Data" status to a unique log file
+log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
+task_name_safe = file_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
-##################### Remove temporary local files #####################
+# Write the result in a detailed format
+with open(new_data_status_file, "w", encoding="utf-8") as log_file:
+    log_file.write(f"{task_name_safe},{file_name},{'Yes' if is_new_data else 'No'}\n")
 
-delete_files_in_temp_folder()
+# Output results for debugging/testing
+if is_new_data:
+    print("New data detected and pushed to GitHub.")
+else:
+    print("No new data detected.")
+
+print(f"New data status log written to {new_data_status_file}")

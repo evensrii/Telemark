@@ -10,9 +10,7 @@ from pyjstat import pyjstat
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import delete_files_in_temp_folder
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file
-from Helper_scripts.github_functions import download_github_file
-from Helper_scripts.github_functions import compare_to_github
+from Helper_scripts.github_functions import upload_github_file, download_github_file, compare_to_github, handle_output_data
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -216,31 +214,73 @@ file_name3 = "klimagassutslipp_endring.csv"
 github_folder = "Data/04_Klima og ressursforvaltning/Klimagassutslipp"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-# Track if any file has new data
-is_any_new_data = False
+##### Klimagassutslipp - stolpediagram over tid
 
-# Check for new data in the first file
-is_new_data1 = compare_to_github(df_telemark, file_name1, github_folder, temp_folder)
+# Call the function and get the "New Data" status
+is_new_data1 = handle_output_data(df_telemark, file_name1, github_folder, temp_folder, keepcsv=True)
+
+# Write the "New Data" status to a unique log file
+log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
+task_name_safe1 = file_name1.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+new_data_status_file1 = os.path.join(log_dir, f"new_data_status_{task_name_safe1}.log")
+
+# Write the result in a detailed format
+with open(new_data_status_file1, "w", encoding="utf-8") as log_file:
+    log_file.write(f"{task_name_safe1},{file_name1},{'Yes' if is_new_data1 else 'No'}\n")
+
+
+# Output results for debugging/testing
 if is_new_data1:
-    is_any_new_data = True
+    print("New data detected and pushed to GitHub.")
+else:
+    print("No new data detected.")
 
-# Check for new data in the second file
-is_new_data2 = compare_to_github(df_donut, file_name2, github_folder, temp_folder)
+print(f"New data status log written to {new_data_status_file1}")
+
+
+##### Klimagassutslipp - Donut
+
+# Call the function and get the "New Data" status
+is_new_data2 = handle_output_data(df_donut, file_name2, github_folder, temp_folder, keepcsv=True)
+
+# Write the "New Data" status to a unique log file
+log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
+task_name_safe2 = file_name2.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+new_data_status_file2 = os.path.join(log_dir, f"new_data_status_{task_name_safe2}.log")
+
+# Write the result in a detailed format
+with open(new_data_status_file2, "w", encoding="utf-8") as log_file:
+    log_file.write(f"{task_name_safe2},{file_name2},{'Yes' if is_new_data2 else 'No'}\n")
+
+# Output results for debugging/testing
 if is_new_data2:
-    is_any_new_data = True
+    print("New data detected and pushed to GitHub.")
+else:
+    print("No new data detected.")
 
-# Check for new data in the third file
-is_new_data3 = compare_to_github(df_pst_endring, file_name3, github_folder, temp_folder)
+print(f"New data status log written to {new_data_status_file2}")
+
+
+##### Klimagassutslipp - endringer
+
+# Call the function and get the "New Data" status
+is_new_data3 = handle_output_data(df_pst_endring, file_name2, github_folder, temp_folder, keepcsv=True)
+
+# Write the "New Data" status to a unique log file
+log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
+task_name_safe3 = file_name3.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+new_data_status_file3 = os.path.join(log_dir, f"new_data_status_{task_name_safe3}.log")
+
+# Write the result in a detailed format
+with open(new_data_status_file3, "w", encoding="utf-8") as log_file:
+    log_file.write(f"{task_name_safe3},{file_name3},{'Yes' if is_new_data3 else 'No'}\n")
+
+# Output results for debugging/testing
 if is_new_data3:
-    is_any_new_data = True
+    print("New data detected and pushed to GitHub.")
+else:
+    print("No new data detected.")
 
-# Write the "New Data" status for the script to a log file
-with open("new_data_status.log", "w", encoding="utf-8") as log_file:
-    if is_any_new_data:
-        log_file.write(f"Klimagassutslipp,New Data,Yes\n")
-    else:
-        log_file.write(f"Klimagassutslipp,New Data,No\n")
+print(f"New data status log written to {new_data_status_file3}")
 
-##################### Remove temporary local files #####################
 
-delete_files_in_temp_folder()
