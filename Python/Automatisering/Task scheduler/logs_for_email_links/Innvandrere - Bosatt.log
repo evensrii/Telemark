@@ -4,11 +4,12 @@ Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github
 GITHUB_TOKEN loaded successfully.
 Bosatt JSON data loaded successfully.
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
-[2025-01-06 14:49:54] Identified key columns: Label, Kommune
-[2025-01-06 14:49:54] Value columns to compare: Andel bosatt 2024
-
-[2025-01-06 14:49:54] No changes detected in the dataset.
+[2025-01-06 14:56:15] Header structure changed in andel_innvandrere_bosatt.csv:
+Removed headers: andel bosatt 2020
+Added headers: andel bosatt 
+File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_innvandrere_bosatt.csv
+Email notifications disabled. Updates for andel_innvandrere_bosatt.csv were not sent.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_andel_innvandrere_bosatt_csv.log
-[06.01.2025  14:49:50] Started Innvandrere - Bosatt (innvandrere_bosatt.py)
+[06.01.2025  14:56:12] Started Innvandrere - Bosatt (innvandrere_bosatt.py)
