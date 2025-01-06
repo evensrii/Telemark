@@ -20,5 +20,5 @@ Traceback (most recent call last):
   File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekundaerflytting.py", line 41, in <module>
     raise RuntimeError(
 RuntimeError: A critical error occurred during data fetching, stopping execution.
-[06.01.2025  15:35:49] Started Innvandrere - Sekundaerflytting (sekundaerflytting.py)
-[06.01.2025  15:35:49] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekundaerflytting.py""' returned non-zero exit status 1.
+[06.01.2025  15:47:19] Started Innvandrere - Sekundaerflytting (sekundaerflytting.py)
+[06.01.2025  15:47:19] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\sekundaerflytting.py""' returned non-zero exit status 1.
