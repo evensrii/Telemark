@@ -75,7 +75,7 @@ def run_script(script_path, task_name):
     # Append results to master log
     with open(MASTER_LOG_FILE, "a", encoding="utf-8") as master_log:
         master_log.write(f"[{timestamp}] {task_name} : {script_name} : {status}, {new_data}\n")
-
+        master_log.flush()  # Ensure the write is complete
 
 def send_email():
     """Call the email script to format and send the email."""

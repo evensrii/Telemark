@@ -178,7 +178,8 @@ is_new_data = handle_output_data(df_aggregert, file_name, github_folder, temp_fo
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-task_name_safe = file_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+task_name = "Innvandrere - Anmodninger og faktisk bosetting"  # This should match the task name in master_script.py
+task_name_safe = task_name.replace(" ", "_").replace(".", "_")  # Ensure the task name is file-system safe
 new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
 # Write the result in a detailed format
