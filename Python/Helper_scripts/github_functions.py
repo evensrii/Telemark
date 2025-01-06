@@ -390,7 +390,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         return True
     else:
         if is_large_dataset:
-            print(f"[{timestamp}] No changes detected in the last 200 rows.")
+            print(f"[{timestamp}] No changes to show in the last 200 rows, but the dataset may still be new.")
         else:
             print(f"[{timestamp}] No changes detected in the dataset.")
         return False
