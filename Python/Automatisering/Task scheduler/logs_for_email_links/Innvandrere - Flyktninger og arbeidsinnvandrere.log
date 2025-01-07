@@ -17,39 +17,19 @@ GITHUB_TOKEN loaded successfully.
 Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
 Selected data from year 2024-01-01 00:00:00
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_arbeidsinnvandrere.csv
-[2025-01-07 11:36:56] Identified key columns: Kommune, Label
-[2025-01-07 11:36:56] Value columns to compare: Andel arbeidsinnvandrere 2024
+[2025-01-07 11:40:13] Identified key columns: Kommune, Label
+[2025-01-07 11:40:13] Value columns to compare: Andel arbeidsinnvandrere 2024
 
-[2025-01-07 11:36:56] No changes detected in the dataset.
+[2025-01-07 11:40:13] No changes detected in the dataset.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_arbeidsinnvandrere.csv
 No new data detected.
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Flyktninger_og_arbeidsinnvandrere.log
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_flyktninger.csv
-[2025-01-07 11:36:56] Identified key columns: Kommune, Label
-[2025-01-07 11:36:56] Value columns to compare: Andel flyktninger 2024
+[2025-01-07 11:40:13] Identified key columns: Kommune, Label
+[2025-01-07 11:40:13] Value columns to compare: Andel flyktninger 2024
 
-[2025-01-07 11:36:56] New data detected. Uploading to GitHub.
-
-[2025-01-07 11:36:56] === Data Comparison ===
-File: andel_flyktninger.csv
-
-Changes detected in the following rows:
-
-Row: Kommune: Kragerø | Label: Kragerø
-  Andel flyktninger 2024: 2 -> 44
-
-Row: Kommune: Tokke | Label: Tokke
-  Andel flyktninger 2024: 2 -> 41
-
-Row: Kommune: Vinje | Label: Vinje
-  Andel flyktninger 2024: 2 -> 49
-
-Total changes found in examined rows: 3
-====================
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_flyktninger.csv
-Email notifications disabled. Updates for andel_flyktninger.csv were not sent.
+[2025-01-07 11:40:13] No changes detected in the dataset.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_flyktninger.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Flyktninger_og_arbeidsinnvandrere.log
-[07.01.2025  11:36:53] Started Innvandrere - Flyktninger og arbeidsinnvandrere (andel_flyktninger_og_arbeidsinnvandrere.py)
+[07.01.2025  11:40:09] Started Innvandrere - Flyktninger og arbeidsinnvandrere (andel_flyktninger_og_arbeidsinnvandrere.py)
