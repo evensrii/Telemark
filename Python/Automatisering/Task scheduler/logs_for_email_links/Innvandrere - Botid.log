@@ -4,12 +4,12 @@ Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github
 GITHUB_TOKEN loaded successfully.
 Botid CSV data loaded successfully.
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\botid.csv
-[2025-01-07 11:25:10] Large dataset detected (204 rows). Limiting detailed comparison to last 200 rows.
-[2025-01-07 11:25:10] Identified key columns: År, Kommunenummer, Kommune
-[2025-01-07 11:25:10] Value columns to compare: Botid i Norge, Verdensregion, Antall
+[2025-01-07 11:32:16] Large dataset detected (204 rows). Limiting detailed comparison to last 200 rows.
+[2025-01-07 11:32:16] Identified key columns: År, Kommunenummer, Kommune
+[2025-01-07 11:32:16] Value columns to compare: Botid i Norge, Verdensregion, Antall
 
-[2025-01-07 11:25:10] No changes to show in the last 200 rows, but the dataset may still be new.
+[2025-01-07 11:32:16] No changes to show in the last 200 rows, but the dataset may still be new.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\botid.csv
 No new data detected.
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Botid.log
-[07.01.2025  11:25:07] Started Innvandrere - Botid (botid.py)
+[07.01.2025  11:32:14] Started Innvandrere - Botid (botid.py)
