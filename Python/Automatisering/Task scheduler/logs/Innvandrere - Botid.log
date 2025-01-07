@@ -4,33 +4,12 @@ Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github
 GITHUB_TOKEN loaded successfully.
 Botid CSV data loaded successfully.
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\botid.csv
-[2025-01-07 11:37:00] Large dataset detected (204 rows). Limiting detailed comparison to last 200 rows.
-[2025-01-07 11:37:00] Identified key columns: Kommunenummer, Kommune, År
-[2025-01-07 11:37:00] Value columns to compare: Botid i Norge, Verdensregion, Antall
+[2025-01-07 11:40:16] Large dataset detected (204 rows). Limiting detailed comparison to last 200 rows.
+[2025-01-07 11:40:16] Identified key columns: Kommunenummer, Kommune, År
+[2025-01-07 11:40:16] Value columns to compare: Botid i Norge, Verdensregion, Antall
 
-[2025-01-07 11:37:00] New data detected. Uploading to GitHub.
-
-[2025-01-07 11:37:00] === Data Comparison ===
-File: botid.csv
-Note: Only showing changes from the last 200 rows
-
-Changes detected in the following rows:
-
-Row: Kommunenummer: 3818 | Kommune: Tinn | År: 2024-01-01 00:00:00
-  Antall: 2.0 -> 223.0
-
-Row: Kommunenummer: 3823 | Kommune: Fyresdal | År: 2024-01-01 00:00:00
-  Antall: 2.0 -> 161.0
-
-Row: Kommunenummer: 3823 | Kommune: Fyresdal | År: 2024-01-01 00:00:00
-  Antall: 2.0 -> 28.0
-
-Total changes found in examined rows: 3
-====================
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/botid.csv
-Email notifications disabled. Updates for botid.csv were not sent.
+[2025-01-07 11:40:16] No changes to show in the last 200 rows, but the dataset may still be new.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\botid.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Botid.log
-[07.01.2025  11:36:58] Started Innvandrere - Botid (botid.py)
+[07.01.2025  11:40:14] Started Innvandrere - Botid (botid.py)
