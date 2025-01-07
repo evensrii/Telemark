@@ -170,6 +170,7 @@ df_pivot_flyktninger.columns = [
 
 file_name1 = "andel_arbeidsinnvandrere.csv"
 file_name2 = "andel_flyktninger.csv"
+task_name = "Innvandrere - Flyktninger og arbeidsinnvandrere"
 github_folder = "Data/09_Innvandrere og inkludering/Innvandrerbefolkningen"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
@@ -181,12 +182,12 @@ is_new_data1 = handle_output_data(df_pivot_arbeidsinnvandrere, file_name1, githu
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-task_name_safe1 = file_name1.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
-new_data_status_file1 = os.path.join(log_dir, f"new_data_status_{task_name_safe1}.log")
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
 # Write the result in a detailed format
-with open(new_data_status_file1, "w", encoding="utf-8") as log_file:
-    log_file.write(f"{task_name_safe1},{file_name1},{'Yes' if is_new_data1 else 'No'}\n")
+with open(new_data_status_file, "w", encoding="utf-8") as log_file:
+    log_file.write(f"{task_name_safe},{file_name1},{'Yes' if is_new_data1 else 'No'}\n")
 
 
 # Output results for debugging/testing
@@ -195,7 +196,7 @@ if is_new_data1:
 else:
     print("No new data detected.")
 
-print(f"New data status log written to {new_data_status_file1}")
+print(f"New data status log written to {new_data_status_file}")
 
 
 ##### Flyktninger
@@ -205,12 +206,12 @@ is_new_data2 = handle_output_data(df_pivot_flyktninger, file_name2, github_folde
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-task_name_safe2 = file_name2.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
-new_data_status_file2 = os.path.join(log_dir, f"new_data_status_{task_name_safe2}.log")
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
 # Write the result in a detailed format
-with open(new_data_status_file2, "w", encoding="utf-8") as log_file:
-    log_file.write(f"{task_name_safe2},{file_name2},{'Yes' if is_new_data2 else 'No'}\n")
+with open(new_data_status_file, "w", encoding="utf-8") as log_file:
+    log_file.write(f"{task_name_safe},{file_name2},{'Yes' if is_new_data2 else 'No'}\n")
 
 # Output results for debugging/testing
 if is_new_data2:
@@ -218,7 +219,7 @@ if is_new_data2:
 else:
     print("No new data detected.")
 
-print(f"New data status log written to {new_data_status_file2}")
+print(f"New data status log written to {new_data_status_file}")
 
 
 

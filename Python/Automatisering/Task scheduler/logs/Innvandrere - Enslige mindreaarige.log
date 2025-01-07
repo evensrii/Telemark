@@ -5,25 +5,11 @@ GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 Kommuner CSV data loaded successfully.
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\bosetting_enslige_mindreårige.csv
-[2025-01-06 15:32:23] Identified key columns: År
-[2025-01-06 15:32:23] Value columns to compare: Anmodning om bosetting, Faktisk bosetting
+[2025-01-07 08:25:43] Identified key columns: År
+[2025-01-07 08:25:43] Value columns to compare: Anmodning om bosetting, Faktisk bosetting
 
-[2025-01-06 15:32:23] New data detected. Uploading to GitHub.
-
-[2025-01-06 15:32:23] === Data Comparison ===
-File: bosetting_enslige_mindreårige.csv
-
-Changes detected in the following rows:
-
-Row: År: 2024-01-01 00:00:00
-  Anmodning om bosetting: 48.0 -> 36.0
-
-Total changes found in examined rows: 1
-====================
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/bosetting_enslige_mindreårige.csv
-Email notifications disabled. Updates for bosetting_enslige_mindreårige.csv were not sent.
+[2025-01-07 08:25:43] No changes detected in the dataset.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\bosetting_enslige_mindreårige.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Enslige_mindreaarige.log
-[06.01.2025  15:32:21] Started Innvandrere - Enslige mindreaarige (enslige_mindreaarige.py)
+[07.01.2025  08:25:41] Started Innvandrere - Enslige mindreaarige (enslige_mindreaarige.py)

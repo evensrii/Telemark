@@ -237,6 +237,7 @@ df_telemark_pivot.head()
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "minoritetsspråklige_barnehage.csv"
+task_name = "Innvandrere - Minoriteter i barnehage"
 github_folder = "Data/09_Innvandrere og inkludering/Utdanningsnivå Telemark"
 temp_folder = os.environ.get("TEMP_FOLDER")
 

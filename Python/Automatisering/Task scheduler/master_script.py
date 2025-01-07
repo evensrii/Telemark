@@ -8,7 +8,9 @@ from Helper_scripts.utility_functions import delete_files_in_temp_folder
 base_path = os.getenv("PYTHONPATH")
 if base_path is None:
     raise ValueError("PYTHONPATH environment variable is not set")
+
 LOG_DIR = os.path.join(base_path, "Automatisering", "Task scheduler", "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
 
 MASTER_LOG_FILE = os.path.join(LOG_DIR, "00_master_run.log")
 EMAIL_LOG_FILE = os.path.join(LOG_DIR, "00_email.log")
@@ -22,18 +24,22 @@ if TEMP_FOLDER is None:
     raise ValueError("TEMP_FOLDER environment variable is not set")
 
 SCRIPTS = [
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py"), "Innvandrere - Flyktninger og arbeidsinnvandrere"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/botid.py"), "Innvandrere - Botid"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandrere_bosatt.py"), "Innvandrere - Bosatt"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandringsgrunn.py"), "Innvandrere - Innvandringsgrunn"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/botid.py"), "Innvandrere - Botid"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py"), "Innvandrere - Flyktninger og arbeidsinnvandrere"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt.py"), "Innvandrere - Lavinntekt"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_innvandrere"), "Innvandrere - Sysselsatte"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_botid_og_landbakgrunn.py"), "Innvandrere - Sysselsatte etter botid og bakgrunn"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/deltakere_introduksjonsprogram.py"), "Innvandrere - Deltakere introduksjonsprogrammet"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.py"), "Innvandrere - Etter introduksjonsprogrammet"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/enslige_mindreaarige.py"), "Innvandrere - Enslige mindreaarige"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/anmodninger_og_faktisk_bosetting.py"), "Innvandrere - Anmodninger og faktisk bosetting"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/sekundaerflytting.py"), "Innvandrere - Sekundaerflytting")
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_fullfort_vgo.py"), "Innvandrere - Fullfort VGO")
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py"), "Innvandrere - Hoyeste utdanning")
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/minoriteter_barnehage.py"), "Innvandrere - Minoriteter i barnehage")
 ]
-
-# Create log directory if it doesn't exist
-os.makedirs(LOG_DIR, exist_ok=True)
 
 # Initialize master log
 with open(MASTER_LOG_FILE, "w", encoding="utf-8") as log_file:
@@ -42,9 +48,9 @@ with open(MASTER_LOG_FILE, "w", encoding="utf-8") as log_file:
 
 def run_script(script_path, task_name):
     """Run a single script in the Conda environment and log its result."""
-    script_name = os.path.basename(script_path)
+    script_name = os.path.basename(script_path) #Eks. "innvandrere_botid.py"
     # Use the task name as-is for the log file name
-    script_log_file = os.path.join(LOG_DIR, f"{task_name}.log")
+    script_log_file = os.path.join(LOG_DIR, f"{task_name}.log") #Eks. "Innvandrere - Botid.log"
     timestamp = datetime.now().strftime("%d.%m.%Y  %H:%M:%S")
     status = "Completed"
     new_data = "No"
@@ -58,9 +64,11 @@ def run_script(script_path, task_name):
             log.write(f"[{timestamp}] Started {task_name} ({script_name})\n")
             subprocess.run(command, shell=True, stdout=log, stderr=subprocess.STDOUT, check=True)
 
-        # Read new data status (if applicable)
-        task_name_safe = task_name.replace(" ", "_").replace(".", "_")
-        new_data_status_file = os.path.join(LOG_DIR, f"new_data_status_{task_name_safe}.log")
+        # Read new data status from the Python/Log directory
+        task_name_safe = task_name.replace(" ", "_").replace(".", "_") #Eks. "Innvandrere_Botid"
+        status_log_dir = os.path.join(base_path, "Log")  # Use base_path to get to Python/Log
+        new_data_status_file = os.path.join(status_log_dir, f"new_data_status_{task_name_safe}.log") #Eks. "Python/Log/new_data_status_Innvandrere_Botid.log"
+        
         if os.path.exists(new_data_status_file):
             with open(new_data_status_file, "r", encoding="utf-8") as status_file:
                 line = status_file.read().strip()

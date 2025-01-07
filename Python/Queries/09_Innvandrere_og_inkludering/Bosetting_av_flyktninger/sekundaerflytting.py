@@ -124,6 +124,7 @@ df_kommuner["Kommune"] = df_kommuner["Kommune"].fillna(
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "sekundærflytting.csv"
+task_name = "Innvandrere - Sekundaerflytting"
 github_folder = "Data/09_Innvandrere og inkludering/Bosetting av flyktninger"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
@@ -132,7 +133,7 @@ is_new_data = handle_output_data(df_kommuner, file_name, github_folder, temp_fol
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-task_name_safe = file_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
 new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
 # Write the result in a detailed format

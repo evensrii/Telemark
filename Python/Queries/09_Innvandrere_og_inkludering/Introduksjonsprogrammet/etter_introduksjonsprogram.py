@@ -164,6 +164,7 @@ df_fylker.head()
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "etter_introduksjonsprogram.csv"
+task_name = "Innvandrere - Etter introduksjonsprogrammet"
 github_folder = "Data/09_Innvandrere og inkludering/Introduksjonsprogrammet"
 temp_folder = os.environ.get("TEMP_FOLDER")
 

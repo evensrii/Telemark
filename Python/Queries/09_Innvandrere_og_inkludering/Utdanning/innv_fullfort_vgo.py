@@ -176,6 +176,7 @@ df_telemark_pivot.head()
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "fullført_vgo_innv_befolk.csv"
+task_name = "Innvandrere - Fullfort VGO"
 github_folder = "Data/09_Innvandrere og inkludering/Utdanningsnivå Telemark"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
@@ -184,7 +185,7 @@ is_new_data = handle_output_data(df_telemark_pivot, file_name, github_folder, te
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-task_name_safe = file_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
 new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
 # Write the result in a detailed format
