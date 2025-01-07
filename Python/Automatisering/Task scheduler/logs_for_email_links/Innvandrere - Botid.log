@@ -3,20 +3,13 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Botid CSV data loaded successfully.
-Traceback (most recent call last):
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\botid.py", line 129, in <module>
-    is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Helper_scripts\github_functions.py", line 471, in handle_output_data
-    df.to_csv(temp_file_path, index=False, encoding="utf-8")
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\generic.py", line 3772, in to_csv
-    return DataFrameRenderer(formatter).to_csv(
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\io\formats\format.py", line 1186, in to_csv
-    csv_formatter.save()
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\io\formats\csvs.py", line 240, in save
-    with get_handle(
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\io\common.py", line 859, in get_handle
-    handle = open(
-FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\eve1509\\OneDrive - Telemark fylkeskommune\\Github\\Telemark\\Python\\Temp \\botid.csv'
-[07.01.2025  11:22:18] Started Innvandrere - Botid (botid.py)
-LOG_FOLDER set to: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log
-[07.01.2025  11:22:18] Script failed with error: Command 'cmd.exe /c "conda activate analyse && set LOG_FOLDER=C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log && set TEMP_FOLDER=C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\botid.py""' returned non-zero exit status 1.
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\botid.csv
+[2025-01-07 11:25:10] Large dataset detected (204 rows). Limiting detailed comparison to last 200 rows.
+[2025-01-07 11:25:10] Identified key columns: År, Kommunenummer, Kommune
+[2025-01-07 11:25:10] Value columns to compare: Botid i Norge, Verdensregion, Antall
+
+[2025-01-07 11:25:10] No changes to show in the last 200 rows, but the dataset may still be new.
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\botid.csv
+No new data detected.
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Botid.log
+[07.01.2025  11:25:07] Started Innvandrere - Botid (botid.py)
