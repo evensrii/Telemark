@@ -174,54 +174,28 @@ task_name = "Innvandrere - Flyktninger og arbeidsinnvandrere"
 github_folder = "Data/09_Innvandrere og inkludering/Innvandrerbefolkningen"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-
-##### Arbeidsinnvandrere
-
-# Call the function and get the "New Data" status
+# Process both files and track their status
 is_new_data1 = handle_output_data(df_pivot_arbeidsinnvandrere, file_name1, github_folder, temp_folder, keepcsv=True)
+is_new_data2 = handle_output_data(df_pivot_flyktninger, file_name2, github_folder, temp_folder, keepcsv=True)
 
-# Write the "New Data" status to a unique log file
-log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+# Write a single status file that indicates if either file has new data
+log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")
 new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
-# Write the result in a detailed format
+# Write the result in a detailed format - set to "Yes" if either file has new data
 with open(new_data_status_file, "w", encoding="utf-8") as log_file:
-    log_file.write(f"{task_name_safe},{file_name1},{'Yes' if is_new_data1 else 'No'}\n")
-
+    log_file.write(f"{task_name_safe},multiple_files,{'Yes' if (is_new_data1 or is_new_data2) else 'No'}\n")
 
 # Output results for debugging/testing
 if is_new_data1:
-    print("New data detected and pushed to GitHub.")
+    print(f"New data detected in {file_name1} and pushed to GitHub.")
 else:
-    print("No new data detected.")
+    print(f"No new data detected in {file_name1}.")
 
-print(f"New data status log written to {new_data_status_file}")
-
-
-##### Flyktninger
-
-# Call the function and get the "New Data" status
-is_new_data2 = handle_output_data(df_pivot_flyktninger, file_name2, github_folder, temp_folder, keepcsv=True)
-
-# Write the "New Data" status to a unique log file
-log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
-new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
-
-# Write the result in a detailed format
-with open(new_data_status_file, "w", encoding="utf-8") as log_file:
-    log_file.write(f"{task_name_safe},{file_name2},{'Yes' if is_new_data2 else 'No'}\n")
-
-# Output results for debugging/testing
 if is_new_data2:
-    print("New data detected and pushed to GitHub.")
+    print(f"New data detected in {file_name2} and pushed to GitHub.")
 else:
-    print("No new data detected.")
+    print(f"No new data detected in {file_name2}.")
 
 print(f"New data status log written to {new_data_status_file}")
-
-
-
-
-
