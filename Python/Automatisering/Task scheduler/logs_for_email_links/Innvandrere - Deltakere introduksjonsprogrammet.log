@@ -6,20 +6,12 @@ Fylker CSV data loaded successfully.
 [15 18 54 34  3 42 38 11 50 46 30  0  8  7  2  4 12 16 14 19  5 10  6 17
  20  1  9]
 Kommuner CSV data loaded successfully.
-Traceback (most recent call last):
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Introduksjonsprogrammet\deltakere_introduksjonsprogram.py", line 188, in <module>
-    is_new_data = handle_output_data(df_telemark, file_name, github_folder, temp_folder, keepcsv=True)
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Helper_scripts\github_functions.py", line 471, in handle_output_data
-    df.to_csv(temp_file_path, index=False, encoding="utf-8")
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\generic.py", line 3772, in to_csv
-    return DataFrameRenderer(formatter).to_csv(
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\io\formats\format.py", line 1186, in to_csv
-    csv_formatter.save()
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\io\formats\csvs.py", line 240, in save
-    with get_handle(
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\io\common.py", line 859, in get_handle
-    handle = open(
-FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\eve1509\\OneDrive - Telemark fylkeskommune\\Github\\Telemark\\Python\\Temp \\deltakere_introduksjonsprogrammet.csv'
-[07.01.2025  11:22:25] Started Innvandrere - Deltakere introduksjonsprogrammet (deltakere_introduksjonsprogram.py)
-LOG_FOLDER set to: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log
-[07.01.2025  11:22:25] Script failed with error: Command 'cmd.exe /c "conda activate analyse && set LOG_FOLDER=C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log && set TEMP_FOLDER=C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Introduksjonsprogrammet\deltakere_introduksjonsprogram.py""' returned non-zero exit status 1.
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\deltakere_introduksjonsprogrammet.csv
+[2025-01-07 11:25:16] Identified key columns: År
+[2025-01-07 11:25:16] Value columns to compare: Deltakere
+
+[2025-01-07 11:25:16] No changes detected in the dataset.
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\deltakere_introduksjonsprogrammet.csv
+No new data detected.
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Deltakere_introduksjonsprogrammet.log
+[07.01.2025  11:25:14] Started Innvandrere - Deltakere introduksjonsprogrammet (deltakere_introduksjonsprogram.py)
