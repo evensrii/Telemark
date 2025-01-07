@@ -4,12 +4,12 @@ Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github
 GITHUB_TOKEN loaded successfully.
 Anmodninger og faktisk bosetting CSV data loaded successfully.
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-[2025-01-07 11:32:28] Large dataset detected (1581 rows). Limiting detailed comparison to last 200 rows.
-[2025-01-07 11:32:28] Identified key columns: År, Kommune
-[2025-01-07 11:32:28] Value columns to compare: Kategori, Antall
+[2025-01-07 11:37:15] Large dataset detected (1581 rows). Limiting detailed comparison to last 200 rows.
+[2025-01-07 11:37:15] Identified key columns: År, Kommune
+[2025-01-07 11:37:15] Value columns to compare: Kategori, Antall
 
-[2025-01-07 11:32:28] No changes to show in the last 200 rows, but the dataset may still be new.
+[2025-01-07 11:37:15] No changes to show in the last 200 rows, but the dataset may still be new.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
 No new data detected.
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Anmodninger_og_faktisk_bosetting.log
-[07.01.2025  11:32:25] Started Innvandrere - Anmodninger og faktisk bosetting (anmodninger_og_faktisk_bosetting.py)
+[07.01.2025  11:37:12] Started Innvandrere - Anmodninger og faktisk bosetting (anmodninger_og_faktisk_bosetting.py)
