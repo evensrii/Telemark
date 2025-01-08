@@ -296,19 +296,26 @@ else:
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "økologisk_tilstand_vann.csv"
+task_name = "Klima og energi - Okologisk tilstand vann"
 github_folder = "Data/04_Klima og ressursforvaltning/Ressursforvaltning"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = compare_to_github(df_pivoted, file_name, github_folder, temp_folder)
+is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
 
-# Write the "New Data" status to a log file
-with open("new_data_status.log", "w", encoding="utf-8") as log_file:
-    if is_new_data:
-        log_file.write(f"{file_name},New Data,Yes\n")
-    else:
-        log_file.write(f"{file_name},New Data,No\n")
+# Write the "New Data" status to a unique log file
+log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
-##################### Remove temporary local files #####################
+# Write the result in a detailed format
+with open(new_data_status_file, "w", encoding="utf-8") as log_file:
+    log_file.write(f"{task_name_safe},{file_name},{'Yes' if is_new_data else 'No'}\n")
 
-delete_files_in_temp_folder()
+# Output results for debugging/testing
+if is_new_data:
+    print("New data detected and pushed to GitHub.")
+else:
+    print("No new data detected.")
+
+print(f"New data status log written to {new_data_status_file}")

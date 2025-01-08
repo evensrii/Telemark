@@ -127,15 +127,16 @@ df_pivot["Menn"] = df_pivot["Menn"].astype(int)
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "andel_jegere.csv"
+task_name = "Idrett, friluftsliv og frivillighet - Jegere"
 github_folder = "Data/07_Idrett_friluftsliv_og_frivillighet/Friluftsliv"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df_pivot, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df_telemark, file_name, github_folder, temp_folder, keepcsv=True)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-task_name_safe = file_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
 new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
 # Write the result in a detailed format
