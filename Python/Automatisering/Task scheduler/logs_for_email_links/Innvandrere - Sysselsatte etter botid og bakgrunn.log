@@ -1,10 +1,26 @@
-[02.01.2025 14:13:26,99] Running andel_sysselsatte_etter_botid_og_landbakgrunn.py 
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Sysselsatte botid land CSV data loaded successfully.
-Selected data from year 2022-01-01 00:00:00
-[2025-01-02 14:13:41] No new data to upload. Skipping GitHub update.
-Deleted file from temp folder: sysselsatte_etter_botid_og_landbakgrunn.csv
-[02.01.2025 14:13:41,65] Script completed 
+Selected data from year 2023-01-01 00:00:00
+Traceback (most recent call last):
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_etter_botid_og_landbakgrunn.py", line 170, in <module>
+    df_pivot["Prosent"] = df_pivot["Prosent"].str.replace(",", ".").astype(float)
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\generic.py", line 6324, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\internals\managers.py", line 451, in astype
+    return self.apply(
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\internals\managers.py", line 352, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\internals\blocks.py", line 511, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\dtypes\astype.py", line 242, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\dtypes\astype.py", line 187, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\dtypes\astype.py", line 138, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: ':'
+[08.01.2025  14:02:15] Started Innvandrere - Sysselsatte etter botid og bakgrunn (andel_sysselsatte_etter_botid_og_landbakgrunn.py)
+[08.01.2025  14:02:15] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_etter_botid_og_landbakgrunn.py""' returned non-zero exit status 1.
