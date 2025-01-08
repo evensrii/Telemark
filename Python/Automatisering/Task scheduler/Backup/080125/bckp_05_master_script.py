@@ -24,34 +24,21 @@ if TEMP_FOLDER is None:
     raise ValueError("TEMP_FOLDER environment variable is not set")
 
 SCRIPTS = [
-    ## Klima og energi
-    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Klimagassutslipp/klimagassutslipp.py"), "Klima og energi - Sektorvise utslipp"),
-    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Klimagassutslipp/norskeutslipp.py"), "Klima og energi - Utslipp fra landbasert industri"),
-    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Ressursforvaltning/okologisk_tilstand_server_versjon.py"), "Klima og energi - Okologisk tilstand vann"),
-    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py"), "Klima og energi - Felte hjortedyr"),
-
-    ## Idrett, friluftsliv og frivillighet
-    (os.path.join(PYTHON_PATH, "Queries/07_Idrett_friluftsliv_og_frivillighet/Friluftsliv/andel_jegere.py"), "Idrett, friluftsliv og frivillighet - Jegere"),
-
-    ## Innvandrere og inkludering
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py"), "Innvandrere - Flyktninger og arbeidsinnvandrere"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/botid.py"), "Innvandrere - Botid"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandrere_bosatt.py"), "Innvandrere - Bosatt"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandringsgrunn.py"), "Innvandrere - Innvandringsgrunn"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt.py"), "Innvandrere - Lavinntekt"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py"), "Innvandrere - Flyktninger og arbeidsinnvandrere"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/botid.py"), "Innvandrere - Botid"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandrere_bosatt.py"), "Innvandrere - Bosatt"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandringsgrunn.py"), "Innvandrere - Innvandringsgrunn"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt.py"), "Innvandrere - Lavinntekt"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_innvandrere"), "Innvandrere - Sysselsatte"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_botid_og_landbakgrunn.py"), "Innvandrere - Sysselsatte etter botid og bakgrunn"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/deltakere_introduksjonsprogram.py"), "Innvandrere - Deltakere introduksjonsprogrammet"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.py"), "Innvandrere - Etter introduksjonsprogrammet"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/enslige_mindreaarige.py"), "Innvandrere - Enslige mindreaarige"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/anmodninger_og_faktisk_bosetting.py"), "Innvandrere - Anmodninger og faktisk bosetting"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/sekundaerflytting.py"), "Innvandrere - Sekundaerflytting"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_fullfort_vgo.py"), "Innvandrere - Fullfort VGO"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py"), "Innvandrere - Hoyeste utdanning"),
-    
-    ## Areal og stedsutvikling
-    #(os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py"), "Areal - Jordbruksareal per kommune"),
-    #(os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/fulldyrka_vs_ikke-fulldyrka.py"), "Areal - Fulldyrka vs ikke-fulldyrka"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/deltakere_introduksjonsprogram.py"), "Innvandrere - Deltakere introduksjonsprogrammet"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.py"), "Innvandrere - Etter introduksjonsprogrammet"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/enslige_mindreaarige.py"), "Innvandrere - Enslige mindreaarige"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/anmodninger_og_faktisk_bosetting.py"), "Innvandrere - Anmodninger og faktisk bosetting"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/sekundaerflytting.py"), "Innvandrere - Sekundaerflytting")
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_fullfort_vgo.py"), "Innvandrere - Fullfort VGO")
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py"), "Innvandrere - Hoyeste utdanning")
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/minoriteter_barnehage.py"), "Innvandrere - Minoriteter i barnehage")
 ]
 
 # Initialize master log

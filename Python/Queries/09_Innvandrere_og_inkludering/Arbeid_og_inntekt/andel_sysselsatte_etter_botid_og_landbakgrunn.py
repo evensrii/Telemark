@@ -167,12 +167,16 @@ df_pivot = df.pivot_table(
 df_pivot.columns.name = None  # Remove the multi-index name for columns
 
 df_pivot["Personer"] = df_pivot["Personer"].astype(int)
+
+# Clean and convert the Prosent column
+df_pivot["Prosent"] = df_pivot["Prosent"].replace(":", "0")  # Replace ':' with '0'
 df_pivot["Prosent"] = df_pivot["Prosent"].str.replace(",", ".").astype(float)
-# df_pivot.info()
 
 # Calculate a new column "Totalt", which is "Personer"/"Prosent"*100
-df_pivot["Totalt"] = (df_pivot["Personer"] / df_pivot["Prosent"]) * 100
-df_pivot["Totalt"] = df_pivot["Totalt"].round().astype(int)
+# Handle division by zero by replacing inf with 0
+df_pivot["Totalt"] = (df_pivot["Personer"] / (df_pivot["Prosent"].replace(0, float('nan'))) * 100)
+df_pivot["Totalt"] = df_pivot["Totalt"].fillna(0)  # Replace NaN with 0
+df_pivot["Totalt"] = df_pivot["Totalt"].round().astype(int)  # Now safe to convert to int
 
 # Group by 'Botid i Norge' and 'Verdensregion', and sum the 'Personer' and 'Totalt' columns
 df_grouped = (
