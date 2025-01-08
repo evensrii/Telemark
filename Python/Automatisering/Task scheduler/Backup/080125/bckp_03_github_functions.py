@@ -287,16 +287,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     
     if len(input_df) != len(existing_data):
         print(f"[{timestamp}] Row count changed: {len(existing_data)} -> {len(input_df)}")
-        upload_github_file(
-            os.path.join(temp_folder, file_name),
-            f"{github_folder}/{file_name}",
-            message=f"Updated {file_name} - Row count changed from {len(existing_data)} to {len(input_df)}"
-        )
-        notify_updated_data(
-            file_name,
-            diff_lines=None,
-            reason=f"Row count changed from {len(existing_data)} to {len(input_df)}"
-        )
         return True
 
     ####################################
