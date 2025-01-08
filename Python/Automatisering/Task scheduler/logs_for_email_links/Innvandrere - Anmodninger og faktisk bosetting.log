@@ -4,8 +4,61 @@ Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github
 GITHUB_TOKEN loaded successfully.
 Anmodninger og faktisk bosetting CSV data loaded successfully.
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-[2025-01-08 10:23:24] No new data to upload. Skipping GitHub update.
+[2025-01-08 10:24:35] DEBUG: DataFrames are not equal. Analyzing differences:
+Input DataFrame info:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1581 entries, 0 to 1580
+Data columns (total 4 columns):
+ #   Column    Non-Null Count  Dtype 
+---  ------    --------------  ----- 
+ 0   Antall    1581 non-null   object
+ 1   Kategori  1581 non-null   object
+ 2   Kommune   1581 non-null   object
+ 3   r         1581 non-null   object
+dtypes: object(4)
+memory usage: 49.5+ KB
+None
+
+Existing DataFrame info:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1581 entries, 0 to 1580
+Data columns (total 4 columns):
+ #   Column    Non-Null Count  Dtype 
+---  ------    --------------  ----- 
+ 0   Antall    1581 non-null   object
+ 1   Kategori  1581 non-null   object
+ 2   Kommune   1581 non-null   object
+ 3   r         1581 non-null   object
+dtypes: object(4)
+memory usage: 49.5+ KB
+None
+
+Checking column by column:
+
+Column 'Antall' has differences:
+First few values in input_df[Antall]:
+0    20.0
+1     0.0
+2     7.0
+3     0.0
+4     0.0
+Name: Antall, dtype: object
+
+First few values in existing_data[Antall]:
+0    1.0
+1    1.0
+2    1.0
+3    1.0
+4    1.0
+Name: Antall, dtype: object
+
+Dtypes - input: object, existing: object
+[2025-01-08 10:24:35] Large dataset detected (1581 rows). Limiting detailed comparison to last 200 rows.
+[2025-01-08 10:24:35] Identified key columns: r, Kommune
+[2025-01-08 10:24:35] Value columns to compare: Antall, Kategori
+
+[2025-01-08 10:24:35] No changes found in the dataset.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
 No new data detected.
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Anmodninger_og_faktisk_bosetting.log
-[08.01.2025  10:23:21] Started Innvandrere - Anmodninger og faktisk bosetting (anmodninger_og_faktisk_bosetting.py)
+[08.01.2025  10:24:33] Started Innvandrere - Anmodninger og faktisk bosetting (anmodninger_og_faktisk_bosetting.py)
