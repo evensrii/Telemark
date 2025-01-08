@@ -4,9 +4,20 @@ Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github
 GITHUB_TOKEN loaded successfully.
 Sysselsatte botid land CSV data loaded successfully.
 Selected data from year 2023-01-01 00:00:00
+
+Unique values in Prosent column before conversion:
+['69.4' '29.8' '73.6' '61.2' '76.7' '61.6' '63.9' '24.7' '72.3' '58.5'
+ '67.4' '52.3' '63.4' '18.4' '73.8' '69.7' '70.1' '100' '42.9' '64.3'
+ '72.9' '62.5' '72' '60.3' '21.5' '70.7' '64.5' '67.2' '56.4' '67.9'
+ '19.4' '64.8' '67.3' '66.2' '45.8' '81.2' '16.5' '75' '55.7' '58.3'
+ '33.9' '59' '11.7' '68' '61.1' '71.1' '64.1' '38.2' '18.2' '68.5' '59.3'
+ '65.8' '56.9' '71.7' '24.5' '72.4' '67.1' '74' '53.9' '28.6' '77.8'
+ '66.7' '40' '51.9' '50' '25' '80.4' '65.9' '61' '71.4' '60' '68.4' '30.3'
+ '65.5' '72.7' ':' '41.7' '23.3' '73.5' '37' '33.3' '76.1' '55.6' '70.6'
+ '32.3' '32.4' '75.2' '73' '77.1']
 Traceback (most recent call last):
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_etter_botid_og_landbakgrunn.py", line 170, in <module>
-    df_pivot["Prosent"] = df_pivot["Prosent"].str.replace(",", ".").astype(float)
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_etter_botid_og_landbakgrunn.py", line 188, in <module>
+    df_pivot["Totalt"] = df_pivot["Totalt"].round().astype(int)
   File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\generic.py", line 6324, in astype
     new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
   File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\internals\managers.py", line 451, in astype
@@ -19,8 +30,10 @@ Traceback (most recent call last):
     new_values = astype_array(values, dtype, copy=copy)
   File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\dtypes\astype.py", line 187, in astype_array
     values = _astype_nansafe(values, dtype, copy=copy)
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\dtypes\astype.py", line 138, in _astype_nansafe
-    return arr.astype(dtype, copy=True)
-ValueError: could not convert string to float: ':'
-[08.01.2025  14:02:15] Started Innvandrere - Sysselsatte etter botid og bakgrunn (andel_sysselsatte_etter_botid_og_landbakgrunn.py)
-[08.01.2025  14:02:15] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_etter_botid_og_landbakgrunn.py""' returned non-zero exit status 1.
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\dtypes\astype.py", line 105, in _astype_nansafe
+    return _astype_float_to_int_nansafe(arr, dtype, copy)
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\dtypes\astype.py", line 150, in _astype_float_to_int_nansafe
+    raise IntCastingNaNError(
+pandas.errors.IntCastingNaNError: Cannot convert non-finite values (NA or inf) to integer
+[08.01.2025  14:41:50] Started Innvandrere - Sysselsatte etter botid og bakgrunn (andel_sysselsatte_etter_botid_og_landbakgrunn.py)
+[08.01.2025  14:41:50] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Arbeid_og_inntekt\andel_sysselsatte_etter_botid_og_landbakgrunn.py""' returned non-zero exit status 1.
