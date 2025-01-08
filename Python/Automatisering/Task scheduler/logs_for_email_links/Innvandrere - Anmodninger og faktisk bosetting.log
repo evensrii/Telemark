@@ -4,12 +4,33 @@ Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github
 GITHUB_TOKEN loaded successfully.
 Anmodninger og faktisk bosetting CSV data loaded successfully.
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-[2025-01-08 09:41:36] Large dataset detected (1581 rows). Limiting detailed comparison to last 200 rows.
-[2025-01-08 09:41:36] Identified key columns: År, Kommune
-[2025-01-08 09:41:36] Value columns to compare: Kategori, Antall
+[2025-01-08 09:43:02] Large dataset detected (1581 rows). Limiting detailed comparison to last 200 rows.
+[2025-01-08 09:43:02] Identified key columns: År, Kommune
+[2025-01-08 09:43:02] Value columns to compare: Kategori, Antall
 
-[2025-01-08 09:41:36] No changes to show in the last 200 rows, but the dataset may still be new.
+[2025-01-08 09:43:02] New data detected. Uploading to GitHub.
+
+[2025-01-08 09:43:02] === Data Comparison ===
+File: anmodninger_og_faktisk_bosetting.csv
+Note: Only showing changes from the last 200 rows
+
+Changes detected in the following rows:
+
+Row: År: 2024-01-01 00:00:00 | Kommune: Vinje
+  Antall: 3.0 -> 40.0
+
+Row: År: 2024-01-01 00:00:00 | Kommune: Vinje
+  Antall: 2.0 -> 40.0
+
+Row: År: 2025-01-01 00:00:00 | Kommune: Vinje
+  Antall: 1.0 -> 30.0
+
+Total changes found in examined rows: 3
+====================
+
+File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/anmodninger_og_faktisk_bosetting.csv
+Email notifications disabled. Updates for anmodninger_og_faktisk_bosetting.csv were not sent.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Anmodninger_og_faktisk_bosetting.log
-[08.01.2025  09:41:31] Started Innvandrere - Anmodninger og faktisk bosetting (anmodninger_og_faktisk_bosetting.py)
+[08.01.2025  09:42:59] Started Innvandrere - Anmodninger og faktisk bosetting (anmodninger_og_faktisk_bosetting.py)
