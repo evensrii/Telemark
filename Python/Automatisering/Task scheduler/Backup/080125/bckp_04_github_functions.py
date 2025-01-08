@@ -287,46 +287,15 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     
     if len(input_df) != len(existing_data):
         print(f"[{timestamp}] Row count changed: {len(existing_data)} -> {len(input_df)}")
-        
-        # Find which rows were added or removed
-        if len(input_df) < len(existing_data):
-            # Rows were removed
-            removed_mask = ~existing_data.apply(tuple, 1).isin(input_df.apply(tuple, 1))
-            removed_rows = existing_data[removed_mask]
-            print("\nRemoved rows:")
-            for _, row in removed_rows.iterrows():
-                print(", ".join(f"{col}: {val}" for col, val in row.items()))
-        else:
-            # Rows were added
-            added_mask = ~input_df.apply(tuple, 1).isin(existing_data.apply(tuple, 1))
-            added_rows = input_df[added_mask]
-            print("\nAdded rows:")
-            for _, row in added_rows.iterrows():
-                print(", ".join(f"{col}: {val}" for col, val in row.items()))
-        
         upload_github_file(
             os.path.join(temp_folder, file_name),
             f"{github_folder}/{file_name}",
             message=f"Updated {file_name} - Row count changed from {len(existing_data)} to {len(input_df)}"
         )
-        
-        # Create detailed change message for notification
-        change_details = []
-        if len(input_df) < len(existing_data):
-            removed_count = len(existing_data) - len(input_df)
-            change_details.append(f"Removed {removed_count} row{'s' if removed_count > 1 else ''}:")
-            for _, row in removed_rows.iterrows():
-                change_details.append("  " + ", ".join(f"{col}: {val}" for col, val in row.items()))
-        else:
-            added_count = len(input_df) - len(existing_data)
-            change_details.append(f"Added {added_count} row{'s' if added_count > 1 else ''}:")
-            for _, row in added_rows.iterrows():
-                change_details.append("  " + ", ".join(f"{col}: {val}" for col, val in row.items()))
-        
         notify_updated_data(
             file_name,
             diff_lines=None,
-            reason="\n".join(change_details)
+            reason=f"Row count changed from {len(existing_data)} to {len(input_df)}"
         )
         return True
 
