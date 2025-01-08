@@ -1,0 +1,31 @@
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Bosatt JSON data loaded successfully.
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
+Traceback (most recent call last):
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\indexes\base.py", line 3653, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas\_libs\index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Andel bosatt 2024'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py", line 119, in <module>
+    is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Helper_scripts\github_functions.py", line 458, in handle_output_data
+    is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Helper_scripts\github_functions.py", line 208, in compare_to_github
+    existing_data[col] = existing_data[col].fillna('').astype(str).str.strip()
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\indexes\base.py", line 3655, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Andel bosatt 2024'
+[08.01.2025  12:27:09] Started Innvandrere - Bosatt (innvandrere_bosatt.py)
+[08.01.2025  12:27:09] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\innvandrere_bosatt.py""' returned non-zero exit status 1.

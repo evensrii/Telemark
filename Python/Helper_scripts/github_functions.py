@@ -163,7 +163,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     existing_data = download_github_file(f"{github_folder}/{file_name}")
     
     if existing_data is None:
-        print(f"[{timestamp}] No existing file found on GitHub. This is new data.")
+        print(f"[{timestamp}] Uploading new file: {file_name}")
         upload_github_file(
             os.path.join(temp_folder, file_name),
             f"{github_folder}/{file_name}",
@@ -173,6 +173,76 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             file_name, 
             diff_lines=None, 
             reason="New file added to repository"
+        )
+        return True
+
+    ####################################
+    # STEP 1: Check for Header Changes #
+    ####################################
+
+    def normalize_header(col):
+        """Normalize header for comparison by removing case and whitespace"""
+        return str(col).strip().lower()
+    
+    def extract_year(header):
+        """Extract year from header if present"""
+        import re
+        year_match = re.search(r'\b20\d{2}\b', header)
+        return year_match.group(0) if year_match else None
+
+    # Check for structural changes in headers (ignoring case)
+    existing_headers = [normalize_header(col) for col in existing_data.columns]
+    new_headers = [normalize_header(col) for col in input_df.columns]
+
+    # First check exact column names (case-insensitive)
+    if set(existing_headers) != set(new_headers):
+        # Find which headers changed
+        removed_headers = set(existing_headers) - set(new_headers)
+        added_headers = set(new_headers) - set(existing_headers)
+        
+        change_msg = []
+        if removed_headers:
+            change_msg.append(f"Removed headers: {', '.join(removed_headers)}")
+        if added_headers:
+            change_msg.append(f"Added headers: {', '.join(added_headers)}")
+            
+        print(f"[{timestamp}] Header structure changed in {file_name}:")
+        print("\n".join(change_msg))
+        
+        upload_github_file(
+            os.path.join(temp_folder, file_name),
+            f"{github_folder}/{file_name}",
+            message=f"Updated {file_name} - Header structure changed"
+        )
+        notify_updated_data(
+            file_name,
+            diff_lines=None,
+            reason=f"Header structure changed: {'; '.join(change_msg)}"
+        )
+        return True
+
+    # If column names are same, check for year changes in headers
+    original_headers = list(existing_data.columns)
+    new_original_headers = list(input_df.columns)
+    year_changes = []
+    for old_h, new_h in zip(original_headers, new_original_headers):
+        if old_h != new_h:  # If headers differ even slightly
+            year_changes.append(f"{old_h} -> {new_h}")
+
+    if year_changes:
+        print(f"[{timestamp}] Header changes detected in {file_name}:")
+        for change in year_changes:
+            print(f"  {change}")
+            
+        upload_github_file(
+            os.path.join(temp_folder, file_name),
+            f"{github_folder}/{file_name}",
+            message=f"Updated {file_name} - Headers updated"
+        )
+        notify_updated_data(
+            file_name,
+            diff_lines=None,
+            reason=f"Headers changed: {'; '.join(year_changes)}"
         )
         return True
 
@@ -210,55 +280,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     # Normalize column names to handle encoding issues
     input_df.columns = [col.encode('ascii', 'ignore').decode('ascii') for col in input_df.columns]
     existing_data.columns = [col.encode('ascii', 'ignore').decode('ascii') for col in existing_data.columns]
-
-    ####################################
-    # STEP 1: Check for Header Changes #
-    ####################################
-
-    def normalize_header(col):
-        """Normalize header for comparison by removing case and whitespace"""
-        return str(col).strip().lower()
-
-    def extract_year(header):
-        """Extract year from header if present"""
-        import re
-        year_match = re.search(r'\b20\d{2}\b', header)
-        return year_match.group(0) if year_match else None
-
-    # Check for structural changes in headers
-    existing_headers = [normalize_header(col) for col in existing_data.columns]
-    new_headers = [normalize_header(col) for col in input_df.columns]
-
-    headers_without_years = [h for h in existing_headers if not extract_year(h)]
-    new_headers_without_years = [h for h in new_headers if not extract_year(h)]
-    
-    if set(headers_without_years) != set(new_headers_without_years):
-        removed_headers = set(headers_without_years) - set(new_headers_without_years)
-        added_headers = set(new_headers_without_years) - set(headers_without_years)
-        
-        change_msg = []
-        if removed_headers:
-            change_msg.append(f"Removed headers: {', '.join(removed_headers)}")
-        if added_headers:
-            change_msg.append(f"Added headers: {', '.join(added_headers)}")
-            
-        print(f"[{timestamp}] Header structure changed:")
-        print("\n".join(change_msg))
-        return True
-
-    # Check for year changes in headers
-    year_changes = []
-    for old_h, new_h in zip(existing_headers, new_headers):
-        old_year = extract_year(old_h)
-        new_year = extract_year(new_h)
-        if old_year and new_year and old_year != new_year:
-            year_changes.append(f"{old_h} -> {new_h}")
-
-    if year_changes:
-        print(f"[{timestamp}] Year changes detected in headers:")
-        for change in year_changes:
-            print(f"  {change}")
-        return True
 
     ####################################
     # STEP 2: Check Row Count Changes  #
