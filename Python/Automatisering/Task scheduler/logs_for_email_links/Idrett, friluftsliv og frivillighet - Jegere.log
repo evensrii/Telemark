@@ -8,5 +8,5 @@ Traceback (most recent call last):
   File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\07_Idrett_friluftsliv_og_frivillighet\Friluftsliv\andel_jegere.py", line 135, in <module>
     is_new_data = handle_output_data(df_telemark, file_name, github_folder, temp_folder, keepcsv=True)
 NameError: name 'df_telemark' is not defined
-[08.01.2025  14:44:51] Started Idrett, friluftsliv og frivillighet - Jegere (andel_jegere.py)
-[08.01.2025  14:44:51] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\07_Idrett_friluftsliv_og_frivillighet\Friluftsliv\andel_jegere.py""' returned non-zero exit status 1.
+[08.01.2025  14:45:29] Started Idrett, friluftsliv og frivillighet - Jegere (andel_jegere.py)
+[08.01.2025  14:45:29] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\07_Idrett_friluftsliv_og_frivillighet\Friluftsliv\andel_jegere.py""' returned non-zero exit status 1.
