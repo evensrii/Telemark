@@ -1,39 +1,11 @@
-C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Helper_scripts\github_functions.py:195: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
-  input_df[col] = pd.to_datetime(input_df[col]).dt.strftime('%Y-%m-%d')
 Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Anmodninger og faktisk bosetting CSV data loaded successfully.
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-Traceback (most recent call last):
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Helper_scripts\github_functions.py", line 195, in compare_to_github
-    input_df[col] = pd.to_datetime(input_df[col]).dt.strftime('%Y-%m-%d')
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\tools\datetimes.py", line 1046, in to_datetime
-    cache_array = _maybe_cache(arg, format, cache, convert_listlike)
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\tools\datetimes.py", line 250, in _maybe_cache
-    cache_dates = convert_listlike(unique_dates, format)
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\tools\datetimes.py", line 455, in _convert_listlike_datetimes
-    result, tz_parsed = objects_to_datetime64ns(
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\arrays\datetimes.py", line 2177, in objects_to_datetime64ns
-    result, tz_parsed = tslib.array_to_datetime(
-  File "pandas\_libs\tslib.pyx", line 402, in pandas._libs.tslib.array_to_datetime
-  File "pandas\_libs\tslib.pyx", line 551, in pandas._libs.tslib.array_to_datetime
-  File "pandas\_libs\tslib.pyx", line 516, in pandas._libs.tslib.array_to_datetime
-  File "pandas\_libs\tslibs\conversion.pyx", line 557, in pandas._libs.tslibs.conversion.convert_str_to_tsobject
-  File "pandas\_libs\tslibs\parsing.pyx", line 329, in pandas._libs.tslibs.parsing.parse_datetime_string
-  File "pandas\_libs\tslibs\parsing.pyx", line 658, in pandas._libs.tslibs.parsing.dateutil_parse
-pandas._libs.tslibs.parsing.DateParseError: Unknown datetime string format, unable to parse: Bamble, at position 0
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\anmodninger_og_faktisk_bosetting.py", line 178, in <module>
-    is_new_data = handle_output_data(df_aggregert, file_name, github_folder, temp_folder, keepcsv=True)
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Helper_scripts\github_functions.py", line 474, in handle_output_data
-    is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Helper_scripts\github_functions.py", line 199, in compare_to_github
-    input_df[col] = input_df[col].astype(str).str.encode('ascii', 'ignore').str.decode()
-TypeError: decode() missing 1 required positional argument: 'encoding'
-[08.01.2025  10:21:49] Started Innvandrere - Anmodninger og faktisk bosetting (anmodninger_og_faktisk_bosetting.py)
-[08.01.2025  10:21:49] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Bosetting_av_flyktninger\anmodninger_og_faktisk_bosetting.py""' returned non-zero exit status 1.
+[2025-01-08 10:23:24] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
+No new data detected.
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Anmodninger_og_faktisk_bosetting.log
+[08.01.2025  10:23:21] Started Innvandrere - Anmodninger og faktisk bosetting (anmodninger_og_faktisk_bosetting.py)
