@@ -1,13 +1,12 @@
-[02.01.2025 14:15:06,92] Running andel_jegere.py 
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Andel jegere JSON data loaded successfully.
 Her hentes tallene for jaktåret 2023-2024
-[2025-01-02 14:15:18] Identified key columns: 
-[2025-01-02 14:15:18] Value columns to compare: Alder (2023-2024), Kvinner, Menn
-
-[2025-01-02 14:15:18] No changes detected in the dataset.
-Deleted file from temp folder: andel_jegere.csv
-[02.01.2025 14:15:19,14] Script completed 
+Traceback (most recent call last):
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\07_Idrett_friluftsliv_og_frivillighet\Friluftsliv\andel_jegere.py", line 135, in <module>
+    is_new_data = handle_output_data(df_telemark, file_name, github_folder, temp_folder, keepcsv=True)
+NameError: name 'df_telemark' is not defined
+[08.01.2025  14:45:29] Started Idrett, friluftsliv og frivillighet - Jegere (andel_jegere.py)
+[08.01.2025  14:45:29] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\07_Idrett_friluftsliv_og_frivillighet\Friluftsliv\andel_jegere.py""' returned non-zero exit status 1.

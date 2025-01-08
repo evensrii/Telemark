@@ -1,3 +1,18 @@
-python: can't open file 'C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\etter_introduksjonsprogram.py': [Errno 2] No such file or directory
-[06.01.2025  14:30:49] Started Innvandrere - Etter introduksjonsprogrammet (etter_introduksjonsprogram.py)
-[06.01.2025  14:30:49] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\etter_introduksjonsprogram.py""' returned non-zero exit status 2.
+C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Introduksjonsprogrammet\etter_introduksjonsprogram.py:147: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_fylker["Fylke"] = df_fylker["Fylke"].replace(rename_fylker)
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Introprogram CSV data loaded successfully.
+Statistikken viser andelen i arbeid eller utdanning i 2022-01-01 00:00:00 som avsluttet eller avbrøt programmet i 2021-01-01 00:00:00
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\etter_introduksjonsprogram.csv
+[2025-01-08 14:02:40] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\etter_introduksjonsprogram.csv
+No new data detected.
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_etter_introduksjonsprogram_csv.log
+[08.01.2025  14:02:36] Started Innvandrere - Etter introduksjonsprogrammet (etter_introduksjonsprogram.py)
