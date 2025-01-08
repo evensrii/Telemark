@@ -40,7 +40,7 @@ SCRIPTS = [
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py"), "Innvandrere - Hoyeste utdanning")
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/minoriteter_barnehage.py"), "Innvandrere - Minoriteter i barnehage")
 ]
-s
+
 # Initialize master log
 with open(MASTER_LOG_FILE, "w", encoding="utf-8") as log_file:
     log_file.write(f"[{datetime.now()}] Master script initialized\n")
