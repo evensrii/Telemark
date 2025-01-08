@@ -176,36 +176,9 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         )
         return True
 
-    # Reset index and sort columns to ensure proper comparison
+    # Reset index to ensure proper comparison
     input_df = input_df.reset_index(drop=True)
     existing_data = existing_data.reset_index(drop=True)
-    
-    # Sort columns to ensure same order
-    input_df = input_df[sorted(input_df.columns)]
-    existing_data = existing_data[sorted(existing_data.columns)]
-
-    # Normalize date formats and string values
-    for col in input_df.columns:
-        # Try to convert to datetime first
-        try:
-            # Check if the column might contain dates
-            sample = input_df[col].dropna().iloc[0] if not input_df[col].isna().all() else None
-            if sample and isinstance(sample, str):
-                # Look for date patterns
-                date_patterns = [
-                    r'\d{4}-\d{2}-\d{2}',  # YYYY-MM-DD
-                    r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'  # YYYY-MM-DD HH:MM:SS
-                ]
-                if any(re.search(pattern, str(sample)) for pattern in date_patterns):
-                    input_df[col] = pd.to_datetime(input_df[col]).dt.strftime('%Y-%m-%d')
-                    existing_data[col] = pd.to_datetime(existing_data[col]).dt.strftime('%Y-%m-%d')
-                    continue
-        except (ValueError, TypeError):
-            pass
-        
-        # If not a date, normalize strings
-        input_df[col] = input_df[col].fillna('').astype(str).str.strip()
-        existing_data[col] = existing_data[col].fillna('').astype(str).str.strip()
 
     # Normalize column names to handle encoding issues
     input_df.columns = [col.encode('ascii', 'ignore').decode('ascii') for col in input_df.columns]
@@ -272,18 +245,46 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     # STEP 3: Check for Value Changes  #
     ####################################
 
+    # Reset index and sort columns to ensure proper comparison
+    input_df = input_df.reset_index(drop=True)
+    existing_data = existing_data.reset_index(drop=True)
+    
+    # Sort columns to ensure same order
+    input_df = input_df[sorted(input_df.columns)]
+    existing_data = existing_data[sorted(existing_data.columns)]
+    
+    # Convert all values to strings for consistent comparison
+    for col in input_df.columns:
+        input_df[col] = input_df[col].fillna('').astype(str).str.strip()
+        existing_data[col] = existing_data[col].fillna('').astype(str).str.strip()
+
     # Quick check for any changes in full dataset
     if input_df.equals(existing_data):
         print(f"[{timestamp}] No new data to upload. Skipping GitHub update.")
         return False
 
-    print(f"[{timestamp}] Changes detected in the dataset.")
+    # Debug output to understand differences
+    print(f"[{timestamp}] DEBUG: DataFrames are not equal. Analyzing differences:")
+    print(f"Input DataFrame info:")
+    print(input_df.info())
+    print("\nExisting DataFrame info:")
+    print(existing_data.info())
+    print("\nChecking column by column:")
+    for col in input_df.columns:
+        if not input_df[col].equals(existing_data[col]):
+            print(f"\nColumn '{col}' has differences:")
+            print(f"First few values in input_df[{col}]:")
+            print(input_df[col].head())
+            print(f"\nFirst few values in existing_data[{col}]:")
+            print(existing_data[col].head())
+            print(f"\nDtypes - input: {input_df[col].dtype}, existing: {existing_data[col].dtype}")
 
     # For large datasets, only show detailed differences for the last 200 rows
     dataset_size = len(input_df)
     is_large_dataset = dataset_size > 200
 
     if is_large_dataset:
+        print(f"[{timestamp}] Large dataset detected ({dataset_size} rows). Limiting detailed comparison to last 200 rows.")
         comparison_start = max(0, dataset_size - 200)
         existing_df_subset = existing_data.iloc[comparison_start:].copy()
         new_df_subset = input_df.iloc[comparison_start:].copy()
@@ -301,7 +302,10 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     # All other columns are value columns
     value_columns = [col for col in new_df_subset.columns if col not in key_columns]
 
-    # Find changes in the last 200 rows
+    print(f"[{timestamp}] Identified key columns: {', '.join(key_columns)}")
+    print(f"[{timestamp}] Value columns to compare: {', '.join(value_columns)}\n")
+
+    # Find rows where values have changed in the subset
     changes = []
     
     # Reset index to make sure we can iterate properly
@@ -314,8 +318,14 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             
         old_row = existing_df_subset.iloc[idx]
         for col in value_columns:
-            old_val = str(old_row[col]).strip() if pd.notna(old_row[col]) else ''
-            new_val = str(new_row[col]).strip() if pd.notna(new_row[col]) else ''
+            # Handle date formats consistently
+            try:
+                old_val = pd.to_datetime(old_row[col]).strftime('%Y-%m-%d') if pd.notna(old_row[col]) else ''
+                new_val = pd.to_datetime(new_row[col]).strftime('%Y-%m-%d') if pd.notna(new_row[col]) else ''
+            except (ValueError, TypeError):
+                # If not a date, handle as before
+                old_val = str(old_row[col]).strip() if pd.notna(old_row[col]) else ''
+                new_val = str(new_row[col]).strip() if pd.notna(new_row[col]) else ''
             
             if old_val != new_val:
                 # Create identifier string from all key columns
@@ -332,51 +342,28 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                     'new_value': new_val
                 })
 
-    # Upload to GitHub since we detected changes in the full dataset
-    upload_github_file(
-        os.path.join(temp_folder, file_name),
-        f"{github_folder}/{file_name}",
-        message=f"Updated {file_name} - New data detected"
-    )
-
-    # Report changes based on where they were found
     if changes:
-        if is_large_dataset:
-            print(f"\n[{timestamp}] Showing up to 5 examples of changes from the last 200 rows:")
-        else:
-            print(f"\n[{timestamp}] Showing up to 5 examples of changes:")
+        print(f"[{timestamp}] Changes detected in the dataset:")
+        for change in changes:
+            print(f"  {change['identifiers']}, Column '{change['column']}': {change['old_value']} -> {change['new_value']}")
 
-        # Show only first 5 examples from the last 200 rows
-        for change in changes[:5]:
-            print(f"\nRow: {change['identifiers']}")
-            print(f"  {change['column']}: {change['old_value']} -> {change['new_value']}")
-        
-        if len(changes) > 5:
-            print(f"\nTotal changes found in examined rows: {len(changes)}")
-            print("(Showing first 5 changes only)")
-    else:
-        if is_large_dataset:
-            print(f"\n[{timestamp}] No changes found in the last 200 rows, but changes exist elsewhere in the dataset.")
-        else:
-            print(f"\n[{timestamp}] Changes detected in the dataset.")
+        # Upload to GitHub
+        upload_github_file(
+            os.path.join(temp_folder, file_name),
+            f"{github_folder}/{file_name}",
+            message=f"Updated {file_name} - New data detected"
+        )
 
-    # Format changes for email notification
-    diff_lines = []
-    if changes:
-        for change in changes[:5]:
-            diff_dict = {'Identifiers': change['identifiers']}
-            diff_dict[f"{change['column']} (Old)"] = change['old_value']
-            diff_dict[f"{change['column']} (New)"] = change['new_value']
-            diff_lines.append(diff_dict)
+        # Notify about the changes
+        notify_updated_data(
+            file_name,
+            diff_lines=None,
+            reason=f"Changes detected in dataset" + (" (showing last 200 rows only)" if is_large_dataset else "")
+        )
+        return True
 
-    notify_updated_data(
-        file_name,
-        diff_lines,
-        reason=f"Changes detected in dataset" + 
-              (" (showing examples from last 200 rows)" if changes and is_large_dataset else "") +
-              (" (changes exist but not in last 200 rows)" if not changes and is_large_dataset else "")
-    )
-    return True
+    print(f"[{timestamp}] No changes found in the dataset.")
+    return False
 
 
 def identify_key_columns(df):
