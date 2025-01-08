@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import base64
 from datetime import datetime
+import urllib.parse
 import sys
 
 ### EMAIL CONFIGURATION ###
@@ -39,6 +40,7 @@ LOG_DIR = os.path.join(base_path, "Automatisering", "Task scheduler", "logs")
 # Recipients and their corresponding names
 recipients = [
     {"email": "even.sannes.riiser@telemarkfylke.no", "name": "Even"},
+    {"email": "even.s.riiser@gmail.com", "name": "Evensen"},
     #{"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
  ]
 
@@ -165,7 +167,13 @@ def generate_raw_github_url(task_name):
     file_name = task_name.replace(" ", "%20") + ".log"
     
     # Combine base URL and file name
-    return f"{base_url}/{file_name}"
+    url = f"{base_url}/{file_name}"
+    
+    # Log the generated URL for debugging
+    print(f"\nDEBUG - Task: {task_name}")
+    print(f"DEBUG - Generated URL: {url}")
+    
+    return url
 
 def format_log_as_html_table(log_content):
     """
@@ -252,18 +260,27 @@ def format_log_as_html_table(log_content):
         # Generate raw GitHub URL for the task
         log_url = generate_raw_github_url(row["task"])
         
+        # Debug print
+        print(f"\nDEBUG - Task: {row['task']}")
+        print(f"DEBUG - Generated URL: {log_url}")
+        
         html_row = f"""
         <tr style='background-color: {background_color};'>
             <td>{row["date"]}</td>
             <td>{row["time"]}</td>
             <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>
-                <a href='{log_url}' style='color: #00008B; text-decoration: none;'>{row["task"]}</a>
+                <a href='{log_url}' target='_blank' style='color: #00008B; text-decoration: none;'>{row["task"]}</a>
             </td>
             <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{row["script"]}</td>
             <td>{status_badge}</td>
             <td>{new_data_badge}</td>
         </tr>
         """
+        
+        # Debug print the HTML row
+        print(f"DEBUG - HTML row anchor tag:")
+        print(html_row.split("<td")[3])  # Print just the cell with the link
+        
         html_rows.append(html_row)
 
     # Join all rows
