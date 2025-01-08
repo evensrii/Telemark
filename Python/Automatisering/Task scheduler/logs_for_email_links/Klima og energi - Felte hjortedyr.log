@@ -1,7 +1,6 @@
-[02.01.2025 14:14:38,18] Running antall_felt.py 
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Elg JSON data loaded successfully.
 Hjort JSON data loaded successfully.
@@ -14,9 +13,9 @@ Data columns (total 2 columns):
  1   Antall felte hjort  38 non-null     int64 
 dtypes: int64(1), object(1)
 memory usage: 736.0+ bytes
-[2025-01-02 14:14:53] Identified key columns: 
-[2025-01-02 14:14:53] Value columns to compare: Jaktår, Antall felte elg, Antall felte hjort
-
-[2025-01-02 14:14:53] No changes detected in the dataset.
-Deleted file from temp folder: antall_felte_elg_og_hjort.csv
-[02.01.2025 14:14:54,32] Script completed 
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\antall_felte_elg_og_hjort.csv
+[2025-01-08 14:01:40] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\antall_felte_elg_og_hjort.csv
+No new data detected.
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Felte_hjortedyr.log
+[08.01.2025  14:01:33] Started Klima og energi - Felte hjortedyr (antall_felt.py)
