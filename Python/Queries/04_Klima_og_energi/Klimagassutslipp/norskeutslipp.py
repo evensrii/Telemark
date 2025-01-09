@@ -79,7 +79,7 @@ else:
 
 df = df_downloaded.copy()
 
-df.info()
+#df.info()
 
 # Drop rows with all na values
 df = df.dropna(how="all")
@@ -90,6 +90,19 @@ df = df[1:].reset_index(drop=True)  # Drop the first row and reset index in one 
 
 # Filter Fylke == "Telemark"
 df = df[df["Fylke"] == "Telemark"]
+
+# Ensure all columns containing "NACE" (case insensitive) stay as strings with 3 decimal places
+nace_columns = [col for col in df.columns if 'nace' in col.lower()]
+for col in nace_columns:
+    df[col] = df[col].astype(str).str.strip()
+    # Ensure 3 decimal places for NACE codes
+    df[col] = df[col].apply(lambda x: f"{float(x):.3f}" if '.' in x else x)
+
+# Debug print for NACE codes
+print("\nUnique NACE codes in the dataset:")
+for col in nace_columns:
+    print(f"\n{col}:")
+    print(df[col].unique())
 
 # Convert "År" to datetime
 df["År"] = pd.to_datetime(df["År"], format="%Y")

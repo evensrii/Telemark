@@ -76,8 +76,18 @@ def download_github_file(file_path):
     if response.status_code == 200:
         # Return the content as a Pandas DataFrame
         from io import StringIO
-
-        return pd.read_csv(StringIO(response.text))
+        
+        # Read CSV with string type for NACE columns
+        df = pd.read_csv(StringIO(response.text))
+        
+        # Convert NACE columns to string and ensure format
+        nace_columns = [col for col in df.columns if 'nace' in col.lower()]
+        for col in nace_columns:
+            df[col] = df[col].astype(str).str.strip()
+            # Ensure 3 decimal places for NACE codes
+            df[col] = df[col].apply(lambda x: f"{float(x):.3f}" if '.' in x else x)
+        
+        return df
     elif response.status_code == 404:
         print(f"File not found on GitHub: {file_path}")
         return None
@@ -281,6 +291,12 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     input_df.columns = [col.encode('ascii', 'ignore').decode('ascii') for col in input_df.columns]
     existing_data.columns = [col.encode('ascii', 'ignore').decode('ascii') for col in existing_data.columns]
 
+    # Special handling for NACE codes - ensure they stay in original format
+    nace_columns = [col for col in input_df.columns if 'nace' in col.lower()]
+    for col in nace_columns:
+        input_df[col] = input_df[col].astype(str).str.strip()
+        existing_data[col] = existing_data[col].astype(str).str.strip()
+
     ####################################
     # STEP 2: Check Row Count Changes  #
     ####################################
@@ -482,7 +498,12 @@ def identify_key_columns(df):
                 # Check if values match date patterns
                 sample = df[col].dropna().iloc[0]
                 if isinstance(sample, str):
-                    if any(pattern in sample for pattern in ['-01-01', '/01/01']):
+                    # Look for date patterns
+                    date_patterns = [
+                        r'\d{4}-\d{2}-\d{2}',  # YYYY-MM-DD
+                        r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'  # YYYY-MM-DD HH:MM:SS
+                    ]
+                    if any(re.search(pattern, str(sample)) for pattern in date_patterns):
                         key_columns.append(col)
                         continue
         except:
