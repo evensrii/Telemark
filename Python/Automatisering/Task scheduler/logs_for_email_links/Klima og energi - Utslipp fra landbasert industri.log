@@ -23,34 +23,33 @@ Data columns (total 12 columns):
 dtypes: object(12)
 memory usage: 590.2+ KB
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-[2025-01-09 14:57:01] Changes detected in the dataset.
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv
+[2025-01-09 15:05:01] Changes detected in the dataset.
 
-[2025-01-09 14:57:01] Showing up to 5 examples of changes from the last 200 rows:
-
-Row: Kommune: Porsgrunn | r: 2012-01-01
-  AnleggId: 5291 -> 5447
+[2025-01-09 15:05:01] Showing up to 5 examples of changes from the last 200 rows:
 
 Row: Kommune: Porsgrunn | r: 2012-01-01
-  Anleggsnavn: Magnor minerals -> Yara porsgrunn
+  NACE Kode: 20.15 -> 20.150
 
-Row: Kommune: Porsgrunn | r: 2012-01-01
-  NACE Kode: 20.13 -> 20.150
+Row: Kommune: Porsgrunn | r: 2013-01-01
+  NACE Kode: 20.15 -> 20.150
 
-Row: Kommune: Porsgrunn | r: 2012-01-01
-  Org.nr.: 984680023 -> 974100169
+Row: Kommune: Porsgrunn | r: 2014-01-01
+  NACE Kode: 20.15 -> 20.150
 
-Row: Kommune: Porsgrunn | r: 2012-01-01
-  rlig utslipp til luft: 5006.0 -> 1059848.6
+Row: Kommune: Porsgrunn | r: 2015-01-01
+  NACE Kode: 20.15 -> 20.150
 
-Total changes found in examined rows: 996
+Row: Kommune: Porsgrunn | r: 2016-01-01
+  NACE Kode: 20.15 -> 20.150
+
+Total changes found in examined rows: 146
 (Showing first 5 changes only)
 Email notifications disabled. Updates for norskeutslipp_detaljert_telemark.csv were not sent.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\norskeutslipp_everviz.csv
-[2025-01-09 14:57:02] No new data to upload. Skipping GitHub update.
+[2025-01-09 15:05:02] No new data to upload. Skipping GitHub update.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\norskeutslipp_everviz.csv
 New data detected in norskeutslipp_detaljert_telemark.csv and pushed to GitHub.
 No new data detected in norskeutslipp_everviz.csv.
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Utslipp_fra_landbasert_industri.log
-[09.01.2025  14:56:54] Started Klima og energi - Utslipp fra landbasert industri (norskeutslipp.py)
+[09.01.2025  15:04:55] Started Klima og energi - Utslipp fra landbasert industri (norskeutslipp.py)
