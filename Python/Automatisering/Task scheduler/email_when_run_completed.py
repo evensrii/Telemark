@@ -176,30 +176,30 @@ def generate_raw_github_url(task_name):
     
     return url
 
-def get_last_commit_time(file_path):
-    """Get the last commit time for a file using GitHub API."""
-    url = f"https://api.github.com/repos/evensrii/Telemark/commits"
-    headers = {
-        "Authorization": f"Bearer {os.getenv('GITHUB_TOKEN')}",
-        "Accept": "application/vnd.github.v3+json"
-    }
-    params = {
-        "path": file_path,
-        "per_page": 1
-    }
-    
+def get_last_commit_time(task_name):
+    """Get the last commit time from the stored log file."""
     try:
-        response = requests.get(url, headers=headers, params=params)
-        if response.status_code == 200 and response.json():
-            commit_time = response.json()[0]["commit"]["committer"]["date"]
-            # Convert to Oslo timezone
-            dt = datetime.fromisoformat(commit_time.replace('Z', '+00:00'))
-            oslo_tz = pytz.timezone('Europe/Oslo')
-            dt_oslo = dt.astimezone(oslo_tz)
-            return dt_oslo.strftime("%Y-%m-%d %H:%M")
+        # Get base path from PYTHONPATH
+        base_path = os.getenv("PYTHONPATH")
+        if not base_path:
+            return "Ikke tilgjengelig"
+        
+        # Get status file path
+        task_name_safe = task_name.replace(" ", "_").replace(".", "_")
+        status_file = os.path.join(base_path, "Log", f"last_commit_{task_name_safe}.log")
+        
+        # Read commit time if file exists
+        if os.path.exists(status_file):
+            with open(status_file, "r", encoding="utf-8") as f:
+                commit_time = f.read().strip()
+                # Convert to Oslo timezone
+                dt = datetime.fromisoformat(commit_time.replace('Z', '+00:00'))
+                oslo_tz = pytz.timezone('Europe/Oslo')
+                dt_oslo = dt.astimezone(oslo_tz)
+                return dt_oslo.strftime("%Y-%m-%d %H:%M")
         return "Ikke lastet opp"
     except Exception as e:
-        print(f"Error getting commit time: {e}")
+        print(f"Error reading commit time: {e}")
         return "Ikke tilgjengelig"
 
 def get_data_file_path(script_path):
@@ -227,12 +227,6 @@ def get_data_file_path(script_path):
 def format_log_as_html_table(log_content):
     """
     Formats the log content into an HTML table with separate "Dato" and "Tid" columns.
-
-    Args:
-        log_content (str): The content of the master log file.
-
-    Returns:
-        str: HTML string for the table.
     """
     # Split log content into lines
     log_lines = log_content.split("\n")
@@ -270,6 +264,9 @@ def format_log_as_html_table(log_content):
                     # Map new_data_status ("Yes" or "No") to "Ja" or "Nei"
                     new_data = "Ja" if new_data_status == "Yes" else "Nei"
 
+                    # Get last commit time
+                    last_commit = get_last_commit_time(task)
+
                     # Get last upload time
                     last_upload = get_data_file_path(script)
 
@@ -281,6 +278,7 @@ def format_log_as_html_table(log_content):
                         "script": script,
                         "status": status,
                         "new_data": new_data,
+                        "last_commit": last_commit,
                         "last_upload": last_upload
                     }
 
@@ -323,6 +321,7 @@ def format_log_as_html_table(log_content):
             <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{row["script"]}</td>
             <td>{status_badge}</td>
             <td>{new_data_badge}</td>
+            <td>{row["last_commit"]}</td>
             <td>{row["last_upload"]}</td>
         </tr>
         """
@@ -376,6 +375,7 @@ def format_log_as_html_table(log_content):
                 <th>Script</th>
                 <th>Status</th>
                 <th>Nye data?</th>
+                <th>Sist commitert</th>
                 <th>Sist opplastet</th>
             </tr>
         </thead>
