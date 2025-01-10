@@ -175,8 +175,8 @@ def get_last_commit_info(file_path):
         return None
 
 ## Function to store the commit time in a status file
-def store_commit_time(task_name, commit_time):
-    """Store the commit time in a status file."""
+def store_commit_time(script_name, commit_time):
+    """Store the commit time in a status file using the script name."""
     try:
         # Get base path from PYTHONPATH
         base_path = os.getenv("PYTHONPATH")
@@ -187,11 +187,11 @@ def store_commit_time(task_name, commit_time):
         status_dir = os.path.join(base_path, "Log")
         os.makedirs(status_dir, exist_ok=True)
         
-        # Convert task name to safe filename
-        task_name_safe = task_name.replace(" ", "_").replace(".", "_")
-        status_file = os.path.join(status_dir, f"last_commit_{task_name_safe}.log")
+        # Convert script name to safe filename
+        script_name_safe = os.path.splitext(script_name)[0]  # Remove .py extension
+        status_file = os.path.join(status_dir, f"last_commit_{script_name_safe}.log")
+        print(f"Storing commit time in: {status_file}")  # Debug print
         
-        # Store commit time
         with open(status_file, "w", encoding="utf-8") as f:
             f.write(commit_time)
             
@@ -208,36 +208,15 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
     # Set the current file being processed
     set_current_file(file_name)
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
-    # Get the task name from _current_file
-    task_name = _current_file.replace(".csv", "")
 
     # Get existing data and commit info from GitHub
     github_path = f"{github_folder}/{file_name}"
     commit_info = get_last_commit_info(github_path)
     existing_data = download_github_file(github_path)
     
-    if existing_data is None:
-        print(f"[{timestamp}] Uploading new file: {file_name}")
-        upload_github_file(
-            os.path.join(temp_folder, file_name),
-            github_path,
-            message=f"Added {file_name}"
-        )
-        # Get and store the commit time after upload
-        commit_info = get_last_commit_info(github_path)
-        if commit_info:
-            store_commit_time(task_name, commit_info["time"])
-        notify_updated_data(
-            file_name, 
-            diff_lines=None, 
-            reason="New file added to repository"
-        )
-        return True
-
-    # Store the last commit time if available
+    # Store the commit time if available
     if commit_info:
-        store_commit_time(task_name, commit_info["time"])
+        store_commit_time(get_current_file(), commit_info["time"])
 
     ####################################
     # STEP 1: Check for Header Changes #

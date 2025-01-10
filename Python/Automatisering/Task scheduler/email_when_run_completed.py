@@ -176,7 +176,7 @@ def generate_raw_github_url(task_name):
     
     return url
 
-def get_last_commit_time(task_name):
+def get_last_commit_time(script_name):
     """Get the last commit time from the stored log file."""
     try:
         # Get base path from PYTHONPATH
@@ -184,9 +184,11 @@ def get_last_commit_time(task_name):
         if not base_path:
             return "Ikke tilgjengelig"
         
-        # Get status file path
-        task_name_safe = task_name.replace(" ", "_").replace(".", "_")
-        status_file = os.path.join(base_path, "Log", f"last_commit_{task_name_safe}.log")
+        # Get script name without .py extension
+        script_name_safe = os.path.splitext(script_name)[0]
+        status_file = os.path.join(base_path, "Log", f"last_commit_{script_name_safe}.log")
+        
+        print(f"Looking for commit time in: {status_file}")  # Debug print
         
         # Read commit time if file exists
         if os.path.exists(status_file):
@@ -265,10 +267,7 @@ def format_log_as_html_table(log_content):
                     new_data = "Ja" if new_data_status == "Yes" else "Nei"
 
                     # Get last commit time
-                    last_commit = get_last_commit_time(task)
-
-                    # Get last upload time
-                    last_upload = get_data_file_path(script)
+                    last_commit = get_last_commit_time(script)
 
                     # Create row data
                     row_data = {
@@ -278,8 +277,7 @@ def format_log_as_html_table(log_content):
                         "script": script,
                         "status": status,
                         "new_data": new_data,
-                        "last_commit": last_commit,
-                        "last_upload": last_upload
+                        "last_upload": last_commit  # Use commit time as last upload time
                     }
 
                     # Add to appropriate list based on new_data value
@@ -321,7 +319,6 @@ def format_log_as_html_table(log_content):
             <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{row["script"]}</td>
             <td>{status_badge}</td>
             <td>{new_data_badge}</td>
-            <td>{row["last_commit"]}</td>
             <td>{row["last_upload"]}</td>
         </tr>
         """
@@ -375,7 +372,6 @@ def format_log_as_html_table(log_content):
                 <th>Script</th>
                 <th>Status</th>
                 <th>Nye data?</th>
-                <th>Sist commitert</th>
                 <th>Sist opplastet</th>
             </tr>
         </thead>
