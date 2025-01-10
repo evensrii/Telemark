@@ -5,7 +5,6 @@ import base64
 from datetime import datetime
 import urllib.parse
 import sys
-import pytz
 
 ### EMAIL CONFIGURATION ###
 
@@ -176,54 +175,6 @@ def generate_raw_github_url(task_name):
     
     return url
 
-def get_last_commit_time(file_path):
-    """Get the last commit time for a file using GitHub API."""
-    url = f"https://api.github.com/repos/evensrii/Telemark/commits"
-    headers = {
-        "Authorization": f"Bearer {os.getenv('GITHUB_TOKEN')}",
-        "Accept": "application/vnd.github.v3+json"
-    }
-    params = {
-        "path": file_path,
-        "per_page": 1
-    }
-    
-    try:
-        response = requests.get(url, headers=headers, params=params)
-        if response.status_code == 200 and response.json():
-            commit_time = response.json()[0]["commit"]["committer"]["date"]
-            # Convert to Oslo timezone
-            dt = datetime.fromisoformat(commit_time.replace('Z', '+00:00'))
-            oslo_tz = pytz.timezone('Europe/Oslo')
-            dt_oslo = dt.astimezone(oslo_tz)
-            return dt_oslo.strftime("%Y-%m-%d %H:%M")
-        return "Ikke lastet opp"
-    except Exception as e:
-        print(f"Error getting commit time: {e}")
-        return "Ikke tilgjengelig"
-
-def get_data_file_path(script_path):
-    """Get the corresponding data file path for a script."""
-    script_dir = os.path.dirname(script_path)
-    data_folder = script_dir.replace("Queries", "Data")
-    
-    # Find the corresponding CSV file(s)
-    csv_files = []
-    if os.path.exists(data_folder):
-        for root, _, files in os.walk(data_folder):
-            csv_files.extend([os.path.join(root, f) for f in files if f.endswith('.csv')])
-    
-    # Get last upload time for each CSV file
-    upload_times = []
-    for csv_file in csv_files:
-        relative_path = os.path.relpath(csv_file, os.path.dirname(data_folder))
-        last_commit = get_last_commit_time(relative_path)
-        if last_commit != "Ikke tilgjengelig" and last_commit != "Ikke lastet opp":
-            upload_times.append(last_commit)
-    
-    # Return the most recent upload time
-    return max(upload_times) if upload_times else "Ikke lastet opp"
-
 def format_log_as_html_table(log_content):
     """
     Formats the log content into an HTML table with separate "Dato" and "Tid" columns.
@@ -270,9 +221,6 @@ def format_log_as_html_table(log_content):
                     # Map new_data_status ("Yes" or "No") to "Ja" or "Nei"
                     new_data = "Ja" if new_data_status == "Yes" else "Nei"
 
-                    # Get last upload time
-                    last_upload = get_data_file_path(script)
-
                     # Create row data
                     row_data = {
                         "date": date,
@@ -280,8 +228,7 @@ def format_log_as_html_table(log_content):
                         "task": task,
                         "script": script,
                         "status": status,
-                        "new_data": new_data,
-                        "last_upload": last_upload
+                        "new_data": new_data
                     }
 
                     # Add to appropriate list based on new_data value
@@ -313,6 +260,10 @@ def format_log_as_html_table(log_content):
         # Generate raw GitHub URL for the task
         log_url = generate_raw_github_url(row["task"])
         
+        # Debug print
+        print(f"\nDEBUG - Task: {row['task']}")
+        print(f"DEBUG - Generated URL: {log_url}")
+        
         html_row = f"""
         <tr style='background-color: {background_color};'>
             <td>{row["date"]}</td>
@@ -323,9 +274,13 @@ def format_log_as_html_table(log_content):
             <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{row["script"]}</td>
             <td>{status_badge}</td>
             <td>{new_data_badge}</td>
-            <td>{row["last_upload"]}</td>
         </tr>
         """
+        
+        # Debug print the HTML row
+        print(f"DEBUG - HTML row anchor tag:")
+        print(html_row.split("<td")[3])  # Print just the cell with the link
+        
         html_rows.append(html_row)
 
     # Join all rows
@@ -376,7 +331,6 @@ def format_log_as_html_table(log_content):
                 <th>Script</th>
                 <th>Status</th>
                 <th>Nye data?</th>
-                <th>Sist opplastet</th>
             </tr>
         </thead>
         <tbody>
