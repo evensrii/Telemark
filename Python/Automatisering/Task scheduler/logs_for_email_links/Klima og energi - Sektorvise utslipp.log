@@ -3,24 +3,28 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 All tasks completed successfully.
-Traceback (most recent call last):
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\indexes\base.py", line 3653, in get_loc
-    return self._engine.get_loc(casted_key)
-  File "pandas\_libs\index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
-  File "pandas\_libs\index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
-  File "pandas\_libs\hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
-  File "pandas\_libs\hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
-KeyError: 'I fjor'
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\04_Klima_og_energi\Klimagassutslipp\klimagassutslipp.py", line 198, in <module>
-    (df_pst_endring["I år"] - df_pst_endring["I fjor"]) / df_pst_endring["I fjor"]
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\frame.py", line 3761, in __getitem__
-    indexer = self.columns.get_loc(key)
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\indexes\base.py", line 3655, in get_loc
-    raise KeyError(key) from err
-KeyError: 'I fjor'
-[10.01.2025  12:45:37] Started Klima og energi - Sektorvise utslipp (klimagassutslipp.py)
-[10.01.2025  12:45:37] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\04_Klima_og_energi\Klimagassutslipp\klimagassutslipp.py""' returned non-zero exit status 1.
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\klimagassutslipp_telemark.csv
+[2025-01-10 13:19:18] Header structure changed in klimagassutslipp_telemark.csv:
+Removed headers: utslippskilde
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_telemark.csv
+Email notifications disabled. Updates for klimagassutslipp_telemark.csv were not sent.
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\klimagassutslipp_telemark.csv
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\klimagassutslipp_donut.csv
+[2025-01-10 13:19:20] Header structure changed in klimagassutslipp_donut.csv:
+Removed headers: utslipp (2022)
+Added headers: utslipp (2023)
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_donut.csv
+Email notifications disabled. Updates for klimagassutslipp_donut.csv were not sent.
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\klimagassutslipp_donut.csv
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\klimagassutslipp_endring.csv
+[2025-01-10 13:19:21] Header structure changed in klimagassutslipp_endring.csv:
+Removed headers: pst_endring_2021_2022
+Added headers: pst_endring_2022_2023
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_endring.csv
+Email notifications disabled. Updates for klimagassutslipp_endring.csv were not sent.
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\klimagassutslipp_endring.csv
+New data detected in klimagassutslipp_telemark.csv and pushed to GitHub.
+New data detected in klimagassutslipp_donut.csv and pushed to GitHub.
+New data detected in klimagassutslipp_endring.csv and pushed to GitHub.
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Sektorvise_utslipp.log
+[10.01.2025  13:18:17] Started Klima og energi - Sektorvise utslipp (klimagassutslipp.py)
