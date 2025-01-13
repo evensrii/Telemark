@@ -1,47 +1,11 @@
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
-
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
-
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-
 Bosatt JSON data loaded successfully.
-
-Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
-
-[2025-01-13 13:08:37] Changes detected in the dataset.
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_innvandrere_bosatt.csv
-
-
-
-[2025-01-13 13:08:37] Showing up to 5 examples of changes:
-
-
-
-Row: Label: KragerÃ¸ | Kommune: KragerÃ¸
-
-  Andel bosatt 2024: 9 -> 12
-
-
-
-Row: Label: Tokke | Kommune: Tokke
-
-  Andel bosatt 2024: 9 -> 11
-
-
-
-Row: Label: Vinje | Kommune: Vinje
-
-  Andel bosatt 2024: 9 -> 13
-
-Email notifications disabled. Updates for andel_innvandrere_bosatt.csv were not sent.
-
-Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
-
-New data detected and pushed to GitHub.
-
-New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Bosatt.log
-
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
+[2025-01-13 14:10:06] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Bosatt.log
 
