@@ -190,8 +190,8 @@ def format_log_as_html_table(log_content):
 
     # Prepare separate lists for rows with "Ja", "Feilet", and others
     rows_ja = []
-    rows_feilet = []
     rows_other = []
+    rows_feilet = []
 
     # Process each log line
     for idx, line in enumerate(log_lines):
@@ -234,11 +234,11 @@ def format_log_as_html_table(log_content):
                         "last_commit": last_commit
                     }
 
-                    # Add to appropriate list based on new_data value
-                    if new_data == "Ja":
-                        rows_ja.append(row_data)
-                    elif status == "Feilet":
+                    # Add to appropriate list based on status and new_data value
+                    if status == "Feilet":
                         rows_feilet.append(row_data)
+                    elif new_data == "Ja":
+                        rows_ja.append(row_data)
                     else:
                         rows_other.append(row_data)
                 else:
@@ -250,8 +250,21 @@ def format_log_as_html_table(log_content):
                 print(f"Error processing line: {line}. Error: {e}")
                 continue
 
-    # Combine rows: "Ja" first, then "Feilet," then others
-    all_rows = rows_ja + rows_feilet + rows_other
+    # Sort each list by last_commit time (most recent first)
+    def sort_by_last_commit(row):
+        last_commit = row.get("last_commit", "")
+        if not last_commit or last_commit == "N/A":
+            return datetime.min  # Put entries with no last_commit at the bottom
+        try:
+            return datetime.strptime(last_commit, '%Y-%m-%d %H:%M:%S')
+        except:
+            return datetime.min
+
+    for row_list in [rows_ja, rows_other, rows_feilet]:
+        row_list.sort(key=sort_by_last_commit, reverse=True)  # reverse=True for most recent first
+
+    # Combine rows: "Ja" first, then successful runs without new data, then "Feilet" at the bottom
+    all_rows = rows_ja + rows_other + rows_feilet
     
     # Create HTML rows
     html_rows = []
@@ -336,7 +349,7 @@ def format_log_as_html_table(log_content):
                 <th>Tid</th>
                 <th>Oppgave</th>
                 <th>Script</th>
-                <th>Status</th>
+                <th>Fullført</th>
                 <th>Nye data?</th>
                 <th>Sist oppdatert</th>
             </tr>

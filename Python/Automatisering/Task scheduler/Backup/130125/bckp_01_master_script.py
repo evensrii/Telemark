@@ -39,8 +39,8 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py"), "Innvandrere - Flyktninger og arbeidsinnvandrere"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/botid.py"), "Innvandrere - Botid"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandrere_bosatt.py"), "Innvandrere - Bosatt"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandringsgrunn.py"), "Innvandrere - Innvandringsgrunn"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt.py"), "Innvandrere - Lavinntekt"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandringsgrunn.py"), "Innvandrere - Innvandringsgrunn"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt.py"), "Innvandrere - Lavinntekt"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_innvandrere.py"), "Innvandrere - Sysselsatte"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_botid_og_landbakgrunn.py"), "Innvandrere - Sysselsatte etter botid og bakgrunn"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/deltakere_introduksjonsprogram.py"), "Innvandrere - Deltakere introduksjonsprogrammet"),
@@ -69,17 +69,37 @@ def run_script(script_path, task_name):
     timestamp = datetime.now().strftime("%d.%m.%Y  %H:%M:%S")
     status = "Completed"
     new_data = "No"
+    last_commit = None  # Initialize last_commit at the start
 
     try:
         # First read the script content to extract github_folder and file_name
-        with open(script_path, 'r', encoding='utf-8') as f:
-            script_content = f.read()
+        try:
+            with open(script_path, 'r', encoding='utf-8') as f:
+                script_content = f.read()
+                
+            # Extract github_folder and potential file names
+            github_folder_match = re.search(r'github_folder\s*=\s*["\']([^"\']+)["\']', script_content)
+            file_name_matches = re.findall(r'file_name\d*\s*=\s*["\']([^"\']+)["\']', script_content)
             
-        # Extract github_folder and potential file names
-        github_folder_match = re.search(r'github_folder\s*=\s*["\']([^"\']+)["\']', script_content)
-        file_name_matches = re.findall(r'file_name\d*\s*=\s*["\']([^"\']+)["\']', script_content)
-        
-        github_folder = github_folder_match.group(1) if github_folder_match else None
+            github_folder = github_folder_match.group(1) if github_folder_match else None
+
+            # Get the last commit time for the CSV files if we found the necessary info
+            if github_folder and file_name_matches:
+                from Helper_scripts.github_functions import get_last_commit_time
+                # Get the most recent commit time among all related files
+                commit_times = []
+                for file_name in file_name_matches:
+                    file_path = f"{github_folder}/{file_name}"
+                    commit_time = get_last_commit_time(file_path)
+                    if commit_time:
+                        commit_times.append(commit_time)
+                
+                if commit_times:
+                    # Use the most recent commit time
+                    last_commit = max(commit_times)
+        except Exception as e:
+            print(f"Warning: Could not extract file information from {script_path}: {e}")
+            # Continue execution even if we can't get the commit time
         
         # Run the script and capture its output
         result = subprocess.run(
@@ -106,22 +126,6 @@ def run_script(script_path, task_name):
         # Check if new data was detected
         if "New data detected" in result.stdout or "New data detected" in result.stderr:
             new_data = "Yes"
-
-        # Get the last commit time for the CSV files
-        last_commit = None
-        if github_folder and file_name_matches:
-            from Helper_scripts.github_functions import get_last_commit_time
-            # Get the most recent commit time among all related files
-            commit_times = []
-            for file_name in file_name_matches:
-                file_path = f"{github_folder}/{file_name}"
-                commit_time = get_last_commit_time(file_path)
-                if commit_time:
-                    commit_times.append(commit_time)
-            
-            if commit_times:
-                # Use the most recent commit time
-                last_commit = max(commit_times)
 
     except subprocess.CalledProcessError as e:
         status = "Failed"
