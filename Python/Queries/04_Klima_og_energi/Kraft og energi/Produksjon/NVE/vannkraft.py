@@ -10,12 +10,7 @@ from pyjstat import pyjstat
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data, delete_files_in_temp_folder
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import (
-    upload_github_file,
-    download_github_file,
-    compare_to_github,
-    handle_output_data
-)
+from Helper_scripts.github_functions import upload_github_file, download_github_file, compare_to_github, handle_output_data
 
 
 # Capture the name of the current script
@@ -60,16 +55,13 @@ def get_hydro_power_plants_in_operation():
 
 df = get_hydro_power_plants_in_operation()
 
-df.info()
-df.head()
-
-df.to_csv(
-    f"{temp_folder}/vannkraft_telemark.csv", index=False
-)  # Relativt til dette scriptet
+#df.info()
+#df.head()
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "vannkraft_telemark.csv"
+task_name = "Klima og energi - Vannkraft Telemark"
 github_folder = (
     "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftproduksjon/NVE"
 )
@@ -80,7 +72,7 @@ is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keep
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-task_name_safe = file_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
 new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
 # Write the result in a detailed format
