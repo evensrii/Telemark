@@ -63,7 +63,7 @@ df = get_hydro_power_plants_in_operation()
 file_name = "vannkraft_telemark.csv"
 task_name = "Klima og energi - Vannkraft Telemark"
 github_folder = (
-    "Data/04_Klima_og_ressursforvaltning/Kraft_og_energi/Kraftproduksjon/NVE"
+    "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftproduksjon/NVE"
 )
 temp_folder = os.environ.get("TEMP_FOLDER")
 
