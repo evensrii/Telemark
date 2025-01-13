@@ -97,12 +97,10 @@ df_telemark.columns = df_telemark.columns.str.replace(
 )
 
 # Remove columns "Fylke", "Kommunenummer" and "Utslippskilde"
-df_telemark = df_telemark.drop(columns=["Fylke", "Kommunenummer", "Klimagass"])
+df_telemark = df_telemark.drop(columns=["Fylke", "Kommunenummer","Klimagass"])
 
-# Convert column 'År' from integer to datetime format
-df_telemark["År"] = pd.to_datetime(
-    df_telemark["År"], format="%Y"
-)  # %Y indicates the format of the input date
+# Ensure År is integer type
+df_telemark["År"] = df_telemark["År"].astype(int)
 
 # Round the values in the "Utslipp" column to two decimal places
 df_telemark["Utslipp"] = df_telemark["Utslipp"].round(2)
@@ -116,14 +114,14 @@ def beregne_utslipp(recent_year=True):
     # Step 1: Create a copy of the original dataframe
     df_donut = df_telemark.copy()
 
-    # Step 2: Fetch the most recent year in the dataframe
-    most_recent_year = df_donut["År"].max()
+    # Step 2: Fetch the most recent year in the dataframe and ensure it's an integer
+    most_recent_year = int(df_donut["År"].max())
 
     # Step 3: Determine the target year based on the recent_year flag
     if recent_year:
         target_year = most_recent_year
     else:
-        target_year = most_recent_year - pd.DateOffset(years=1)
+        target_year = most_recent_year - 1  
 
     # Step 4: Filter rows where "År" is the target year
     df_donut = df_donut[df_donut["År"] == target_year]
@@ -132,7 +130,7 @@ def beregne_utslipp(recent_year=True):
     df_donut = df_donut.groupby(["År", "Sektor"]).agg({"Utslipp": "sum"}).reset_index()
 
     # Step 6: Add the year to the "Utslipp" column name
-    utslipp_column_name = f"Utslipp ({target_year.year})"
+    utslipp_column_name = f"Utslipp ({target_year})"  
     df_donut = df_donut.rename(columns={"Utslipp": utslipp_column_name})
 
     # Step 7: Remove column "År"
@@ -142,23 +140,17 @@ def beregne_utslipp(recent_year=True):
     sectors_to_group = ["Oppvarming", "Luftfart", "Energiforsyning"]
 
     # Calculate the sum of "Utslipp" for the selected sectors
-    annet_sum = df_donut[df_donut["Sektor"].isin(sectors_to_group)][
-        utslipp_column_name
-    ].sum()
+    annet_sum = df_donut[df_donut["Sektor"].isin(sectors_to_group)][utslipp_column_name].sum()
 
     # Remove the original sectors from the DataFrame
     df_donut = df_donut[~df_donut["Sektor"].isin(sectors_to_group)]
 
     # Append the new row with the combined "Annet utslipp"
-    new_row = pd.DataFrame(
-        [{"Sektor": "Annet utslipp", utslipp_column_name: annet_sum}]
-    )
+    new_row = pd.DataFrame([{"Sektor": "Annet utslipp", utslipp_column_name: annet_sum}])
     df_donut = pd.concat([df_donut, new_row], ignore_index=True)
 
     # (Optional) Sort the DataFrame if needed
-    df_donut = df_donut.sort_values(
-        by=utslipp_column_name, ascending=False
-    ).reset_index(drop=True)
+    df_donut = df_donut.sort_values(by=utslipp_column_name, ascending=False).reset_index(drop=True)
 
     # Round the values in the "Utslipp" column to nearest integer
     df_donut[utslipp_column_name] = df_donut[utslipp_column_name].round()
@@ -173,12 +165,8 @@ df_donut = beregne_utslipp(recent_year=True)  # True = siste år
 df_nest_siste = beregne_utslipp(recent_year=False)  # False = året før siste år
 
 # Extract the years from the column names (for dynamic column naming)
-year_next_most_recent = df_nest_siste.columns[-1][
-    -5:-1
-]  # I.e. extracts the year (2021) from "Utslipp (2021)"
-year_most_recent = df_donut.columns[-1][
-    -5:-1
-]  # I.e. extracts the year (2022) from "Utslipp (2022)"
+year_next_most_recent = df_nest_siste.columns[-1][-5:-1]  # I.e. extracts the year (2021) from "Utslipp (2021)"
+year_most_recent = df_donut.columns[-1][-5:-1]  # I.e. extracts the year (2022) from "Utslipp (2022)"
 
 ## Merge de to tabellene og beregne prosentvis endring
 
@@ -187,7 +175,7 @@ df_pst_endring = pd.merge(df_donut, df_nest_siste, on="Sektor", how="inner")
 
 # Step 2: Rename the columns to reflect the years
 df_pst_endring = df_pst_endring.rename(
-    columns={"Utslipp (2021)": "I fjor", "Utslipp (2022)": "I år"}
+    columns={f"Utslipp ({year_next_most_recent})": "I fjor", f"Utslipp ({year_most_recent})": "I år"}
 )
 
 # Step 3: Dynamically set the new column name

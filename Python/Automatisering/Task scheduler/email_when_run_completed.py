@@ -5,7 +5,6 @@ import base64
 from datetime import datetime
 import urllib.parse
 import sys
-import pytz
 
 ### EMAIL CONFIGURATION ###
 
@@ -176,59 +175,15 @@ def generate_raw_github_url(task_name):
     
     return url
 
-def get_last_commit_time(script_name):
-    """Get the last commit time from the stored log file."""
-    try:
-        # Get base path from PYTHONPATH
-        base_path = os.getenv("PYTHONPATH")
-        if not base_path:
-            return "Ikke tilgjengelig"
-        
-        # Get script name without .py extension
-        script_name_safe = os.path.splitext(script_name)[0]
-        status_file = os.path.join(base_path, "Log", f"last_commit_{script_name_safe}.log")
-        
-        print(f"Looking for commit time in: {status_file}")  # Debug print
-        
-        # Read commit time if file exists
-        if os.path.exists(status_file):
-            with open(status_file, "r", encoding="utf-8") as f:
-                commit_time = f.read().strip()
-                # Convert to Oslo timezone
-                dt = datetime.fromisoformat(commit_time.replace('Z', '+00:00'))
-                oslo_tz = pytz.timezone('Europe/Oslo')
-                dt_oslo = dt.astimezone(oslo_tz)
-                return dt_oslo.strftime("%Y-%m-%d %H:%M")
-        return "Ikke lastet opp"
-    except Exception as e:
-        print(f"Error reading commit time: {e}")
-        return "Ikke tilgjengelig"
-
-def get_data_file_path(script_path):
-    """Get the corresponding data file path for a script."""
-    script_dir = os.path.dirname(script_path)
-    data_folder = script_dir.replace("Queries", "Data")
-    
-    # Find the corresponding CSV file(s)
-    csv_files = []
-    if os.path.exists(data_folder):
-        for root, _, files in os.walk(data_folder):
-            csv_files.extend([os.path.join(root, f) for f in files if f.endswith('.csv')])
-    
-    # Get last upload time for each CSV file
-    upload_times = []
-    for csv_file in csv_files:
-        relative_path = os.path.relpath(csv_file, os.path.dirname(data_folder))
-        last_commit = get_last_commit_time(relative_path)
-        if last_commit != "Ikke tilgjengelig" and last_commit != "Ikke lastet opp":
-            upload_times.append(last_commit)
-    
-    # Return the most recent upload time
-    return max(upload_times) if upload_times else "Ikke lastet opp"
-
 def format_log_as_html_table(log_content):
     """
     Formats the log content into an HTML table with separate "Dato" and "Tid" columns.
+
+    Args:
+        log_content (str): The content of the master log file.
+
+    Returns:
+        str: HTML string for the table.
     """
     # Split log content into lines
     log_lines = log_content.split("\n")
@@ -251,23 +206,22 @@ def format_log_as_html_table(log_content):
 
                 # Check if this is a script execution line or an administrative line
                 if ":" in rest and len(rest.split(":")) >= 3:
-                    # Split the rest into task, script, status, and new data
+                    # Split the rest into task, script, status, new data, and last commit
                     task_part, details_part = rest.split(":", 1)
                     task = task_part.strip()
 
-                    # Extract script, status, and new_data_status from details
-                    script_part, status_and_new_data = details_part.rsplit(":", 1)
-                    script = script_part.strip()
-                    status, new_data_status = map(str.strip, status_and_new_data.split(",", 1))
+                    # Extract script, status, new_data_status, and last_commit from details
+                    parts = details_part.split(":", 1)[1].strip().split(",")
+                    script = details_part.split(":")[0].strip()
+                    status = parts[0].strip()
+                    new_data_status = parts[1].strip()
+                    last_commit = parts[2].strip() if len(parts) > 2 else None
                     
                     # Map status ("Completed" or "Failed") to "Fullført" or "Feilet"
                     status = "Fullført" if status.lower() == "completed" else "Feilet"
 
                     # Map new_data_status ("Yes" or "No") to "Ja" or "Nei"
                     new_data = "Ja" if new_data_status == "Yes" else "Nei"
-
-                    # Get last commit time
-                    last_commit = get_last_commit_time(script)
 
                     # Create row data
                     row_data = {
@@ -277,7 +231,7 @@ def format_log_as_html_table(log_content):
                         "script": script,
                         "status": status,
                         "new_data": new_data,
-                        "last_upload": last_commit  # Use commit time as last upload time
+                        "last_commit": last_commit
                     }
 
                     # Add to appropriate list based on new_data value
@@ -306,6 +260,18 @@ def format_log_as_html_table(log_content):
         status_badge = f"<span style='color: #0bb30b; font-size: 22px; font-weight: 900;'>✓</span>" if row["status"] == "Fullført" else f"<span style='color: #FF4500; font-size: 22px; font-weight: 900;'>✗</span>"
         new_data_badge = f"<span style='background-color: #faf334; color: black; font-weight: bold; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Ja</span>" if row["new_data"] == "Ja" else f"<span style='background-color: transparent; color: black; border-radius: 8px; padding: 2px 5px; display: inline-block;'>Nei</span>"
         
+        # Format last commit time if available
+        last_commit = row.get("last_commit", "")
+        if last_commit:
+            try:
+                # Convert to datetime for formatting
+                dt = datetime.strptime(last_commit, '%Y-%m-%d %H:%M:%S')
+                last_commit = dt.strftime('%d.%m.%Y %H:%M')
+            except:
+                last_commit = "N/A"
+        else:
+            last_commit = "N/A"
+        
         # Generate raw GitHub URL for the task
         log_url = generate_raw_github_url(row["task"])
         
@@ -319,7 +285,7 @@ def format_log_as_html_table(log_content):
             <td style='text-align: left; padding-left: 20px; vertical-align: middle;'>{row["script"]}</td>
             <td>{status_badge}</td>
             <td>{new_data_badge}</td>
-            <td>{row["last_upload"]}</td>
+            <td>{last_commit}</td>
         </tr>
         """
         html_rows.append(html_row)
@@ -372,7 +338,7 @@ def format_log_as_html_table(log_content):
                 <th>Script</th>
                 <th>Status</th>
                 <th>Nye data?</th>
-                <th>Sist opplastet</th>
+                <th>Sist oppdatert</th>
             </tr>
         </thead>
         <tbody>

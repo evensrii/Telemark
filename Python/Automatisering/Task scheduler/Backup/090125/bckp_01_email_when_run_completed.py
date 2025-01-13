@@ -40,7 +40,7 @@ LOG_DIR = os.path.join(base_path, "Automatisering", "Task scheduler", "logs")
 # Recipients and their corresponding names
 recipients = [
     {"email": "even.sannes.riiser@telemarkfylke.no", "name": "Even"},
-    {"email": "even.s.riiser@gmail.com", "name": "Evensen"},
+    #{"email": "even.s.riiser@gmail.com", "name": "Evensen"},
     #{"email": "kjersti.aase@telemarkfylke.no", "name": "Kjersti"},
  ]
 

@@ -1,8 +1,10 @@
 import subprocess
 import os
 from datetime import datetime
-from Helper_scripts.github_functions import compare_to_github
+from Helper_scripts.github_functions import compare_to_github, get_last_commit_time
 from Helper_scripts.utility_functions import delete_files_in_temp_folder
+import re
+import sys
 
 # Paths and configurations
 base_path = os.getenv("PYTHONPATH")
@@ -34,12 +36,12 @@ SCRIPTS = [
     #(os.path.join(PYTHON_PATH, "Queries/07_Idrett_friluftsliv_og_frivillighet/Friluftsliv/andel_jegere.py"), "Idrett friluftsliv og frivillighet - Jegere"),
 
     ## Innvandrere og inkludering
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py"), "Innvandrere - Flyktninger og arbeidsinnvandrere"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py"), "Innvandrere - Flyktninger og arbeidsinnvandrere"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/botid.py"), "Innvandrere - Botid"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandrere_bosatt.py"), "Innvandrere - Bosatt"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandringsgrunn.py"), "Innvandrere - Innvandringsgrunn"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt.py"), "Innvandrere - Lavinntekt"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_innvandrere.py"), "Innvandrere - Sysselsatte"),
+    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_innvandrere.py"), "Innvandrere - Sysselsatte"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_botid_og_landbakgrunn.py"), "Innvandrere - Sysselsatte etter botid og bakgrunn"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/deltakere_introduksjonsprogram.py"), "Innvandrere - Deltakere introduksjonsprogrammet"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.py"), "Innvandrere - Etter introduksjonsprogrammet"),
@@ -68,35 +70,66 @@ def run_script(script_path, task_name):
     status = "Completed"
     new_data = "No"
 
-    try:
-        # Run the individual script with proper quoting
-        script_path = os.path.abspath(script_path)  # Ensure absolute path
-        command = f'cmd.exe /c "conda activate {CONDA_ENV} && python "{script_path}""'
-        
-        with open(script_log_file, "w", encoding="utf-8") as log:
-            log.write(f"[{timestamp}] Started {task_name} ({script_name})\n")
-            subprocess.run(command, shell=True, stdout=log, stderr=subprocess.STDOUT, check=True)
+    # Get the script's module name and import it
+    sys.path.append(os.path.dirname(script_path))
+    module_name = os.path.splitext(script_name)[0]
 
-        # Read new data status from the Python/Log directory
-        task_name_safe = task_name.replace(" ", "_").replace(".", "_") #Eks. "Innvandrere_Botid"
-        status_log_dir = os.path.join(base_path, "Log")  # Use base_path to get to Python/Log
-        new_data_status_file = os.path.join(status_log_dir, f"new_data_status_{task_name_safe}.log") #Eks. "Python/Log/new_data_status_Innvandrere_Botid.log"
+    try:
+        # Run the script and capture its output
+        result = subprocess.run(
+            [
+                "conda",
+                "run",
+                "-n",
+                CONDA_ENV,
+                "python",
+                script_path,
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+
+        # Write script output to its log file
+        with open(script_log_file, "w", encoding="utf-8") as log:
+            log.write(result.stdout)
+            if result.stderr:
+                log.write("\nErrors/Warnings:\n")
+                log.write(result.stderr)
+
+        # Check if new data was detected
+        if "New data detected" in result.stdout or "New data detected" in result.stderr:
+            new_data = "Yes"
+
+        # Get the last commit time for the CSV file
+        # Extract github_folder and file_name from the script's output
+        github_folder_match = re.search(r"github_folder\s*=\s*['\"]([^'\"]+)['\"]", result.stdout)
+        file_name_match = re.search(r"file_name\s*=\s*['\"]([^'\"]+)['\"]", result.stdout)
         
-        if os.path.exists(new_data_status_file):
-            with open(new_data_status_file, "r", encoding="utf-8") as status_file:
-                line = status_file.read().strip()
-                _, _, new_data = line.split(",")
-            os.remove(new_data_status_file)  # Clean up
+        last_commit = None
+        if github_folder_match and file_name_match:
+            github_folder = github_folder_match.group(1)
+            file_name = file_name_match.group(1)
+            file_path = f"{github_folder}/{file_name}"
+            last_commit = get_last_commit_time(file_path)
 
     except subprocess.CalledProcessError as e:
         status = "Failed"
-        with open(script_log_file, "a", encoding="utf-8") as log:
-            log.write(f"[{timestamp}] Script failed with error: {e}\n")
+        # Write error output to the script's log file
+        with open(script_log_file, "w", encoding="utf-8") as log:
+            if e.stdout:
+                log.write(e.stdout)
+            if e.stderr:
+                log.write("\nErrors:\n")
+                log.write(e.stderr)
 
-    # Append results to master log
-    with open(MASTER_LOG_FILE, "a", encoding="utf-8") as master_log:
-        master_log.write(f"[{timestamp}] {task_name} : {script_name} : {status}, {new_data}\n")
-        master_log.flush()  # Ensure the write is complete
+    # Log to master log file
+    with open(MASTER_LOG_FILE, "a", encoding="utf-8") as log:
+        log_entry = f"[{timestamp}] {task_name}: {script_name}: {status}, {new_data}"
+        if last_commit:
+            log_entry += f", {last_commit}"
+        log.write(log_entry + "\n")
+
 
 def send_email():
     """Call the email script to format and send the email."""

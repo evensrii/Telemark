@@ -139,7 +139,7 @@ df_industri = pd.read_csv(url)
 df_industri = df_industri[df_industri["Sektor"] == "Industri, olje og gass"]
 df_industri = df_industri.groupby("År")["Utslipp"].sum().reset_index()
 # convert "År" to datetime
-df_industri["År"] = pd.to_datetime(df_industri["År"], format="%Y-%m-%d").dt.year
+# df_industri["År"] = pd.to_datetime(df_industri["År"], format="%Y-%m-%d").dt.year
 
 # Merge df and df_industri by "År"
 df = pd.merge(df, df_industri, on="År", how="outer")
