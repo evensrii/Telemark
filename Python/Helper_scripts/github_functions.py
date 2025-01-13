@@ -581,9 +581,12 @@ def get_last_commit_time(file_path):
             if commits:
                 # Get the commit timestamp
                 commit_date = commits[0]["commit"]["committer"]["date"]
-                # Convert from ISO format to desired format
+                # Convert from ISO format to datetime with timezone info
                 dt = datetime.fromisoformat(commit_date.replace('Z', '+00:00'))
-                return dt.strftime('%Y-%m-%d %H:%M:%S')
+                # Convert to local time (UTC+1)
+                from datetime import timedelta
+                local_dt = dt + timedelta(hours=1)
+                return local_dt.strftime('%Y-%m-%d %H:%M:%S')
     except Exception as e:
         print(f"Error getting last commit time for {file_path}: {e}")
     

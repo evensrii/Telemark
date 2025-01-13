@@ -37,7 +37,7 @@ SCRIPTS = [
 
     ## Innvandrere og inkludering
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py"), "Innvandrere - Flyktninger og arbeidsinnvandrere"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/botid.py"), "Innvandrere - Botid"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/botid.py"), "Innvandrere - Botid"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandrere_bosatt.py"), "Innvandrere - Bosatt"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandringsgrunn.py"), "Innvandrere - Innvandringsgrunn"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt.py"), "Innvandrere - Lavinntekt"),
@@ -45,9 +45,9 @@ SCRIPTS = [
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_botid_og_landbakgrunn.py"), "Innvandrere - Sysselsatte etter botid og bakgrunn"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/deltakere_introduksjonsprogram.py"), "Innvandrere - Deltakere introduksjonsprogrammet"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.py"), "Innvandrere - Etter introduksjonsprogrammet"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/enslige_mindreaarige.py"), "Innvandrere - Enslige mindreaarige"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/anmodninger_og_faktisk_bosetting.py"), "Innvandrere - Anmodninger og faktisk bosetting"),
-    #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/sekundaerflytting.py"), "Innvandrere - Sekundaerflytting"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/enslige_mindreaarige.py"), "Innvandrere - Enslige mindreaarige"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/anmodninger_og_faktisk_bosetting.py"), "Innvandrere - Anmodninger og faktisk bosetting"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/sekundaerflytting.py"), "Innvandrere - Sekundaerflytting"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_fullfort_vgo.py"), "Innvandrere - Fullfort VGO"),
     #(os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py"), "Innvandrere - Hoyeste utdanning"),
     
@@ -70,11 +70,17 @@ def run_script(script_path, task_name):
     status = "Completed"
     new_data = "No"
 
-    # Get the script's module name and import it
-    sys.path.append(os.path.dirname(script_path))
-    module_name = os.path.splitext(script_name)[0]
-
     try:
+        # First read the script content to extract github_folder and file_name
+        with open(script_path, 'r', encoding='utf-8') as f:
+            script_content = f.read()
+            
+        # Extract github_folder and potential file names
+        github_folder_match = re.search(r'github_folder\s*=\s*["\']([^"\']+)["\']', script_content)
+        file_name_matches = re.findall(r'file_name\d*\s*=\s*["\']([^"\']+)["\']', script_content)
+        
+        github_folder = github_folder_match.group(1) if github_folder_match else None
+        
         # Run the script and capture its output
         result = subprocess.run(
             [
@@ -101,17 +107,21 @@ def run_script(script_path, task_name):
         if "New data detected" in result.stdout or "New data detected" in result.stderr:
             new_data = "Yes"
 
-        # Get the last commit time for the CSV file
-        # Extract github_folder and file_name from the script's output
-        github_folder_match = re.search(r"github_folder\s*=\s*['\"]([^'\"]+)['\"]", result.stdout)
-        file_name_match = re.search(r"file_name\s*=\s*['\"]([^'\"]+)['\"]", result.stdout)
-        
+        # Get the last commit time for the CSV files
         last_commit = None
-        if github_folder_match and file_name_match:
-            github_folder = github_folder_match.group(1)
-            file_name = file_name_match.group(1)
-            file_path = f"{github_folder}/{file_name}"
-            last_commit = get_last_commit_time(file_path)
+        if github_folder and file_name_matches:
+            from Helper_scripts.github_functions import get_last_commit_time
+            # Get the most recent commit time among all related files
+            commit_times = []
+            for file_name in file_name_matches:
+                file_path = f"{github_folder}/{file_name}"
+                commit_time = get_last_commit_time(file_path)
+                if commit_time:
+                    commit_times.append(commit_time)
+            
+            if commit_times:
+                # Use the most recent commit time
+                last_commit = max(commit_times)
 
     except subprocess.CalledProcessError as e:
         status = "Failed"
