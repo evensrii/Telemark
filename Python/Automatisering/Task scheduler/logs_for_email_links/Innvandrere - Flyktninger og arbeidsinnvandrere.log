@@ -1,28 +1,58 @@
-C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:154: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  df_pivot_arbeidsinnvandrere["Label"] = df_pivot_arbeidsinnvandrere["Kommune"]
-C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:155: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  df_pivot_flyktninger["Label"] = df_pivot_flyktninger["Kommune"]
 Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
+
 Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
+
 Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
+
 Selected data from year 2024-01-01 00:00:00
+
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_arbeidsinnvandrere.csv
-[2025-01-09 15:26:57] No new data to upload. Skipping GitHub update.
+
+[2025-01-13 12:18:36] No new data to upload. Skipping GitHub update.
+
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_arbeidsinnvandrere.csv
+
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_flyktninger.csv
-[2025-01-09 15:26:57] No new data to upload. Skipping GitHub update.
+
+[2025-01-13 12:18:37] No new data to upload. Skipping GitHub update.
+
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_flyktninger.csv
+
 No new data detected in andel_arbeidsinnvandrere.csv.
+
 No new data detected in andel_flyktninger.csv.
+
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Flyktninger_og_arbeidsinnvandrere.log
-[09.01.2025  15:26:53] Started Innvandrere - Flyktninger og arbeidsinnvandrere (andel_flyktninger_og_arbeidsinnvandrere.py)
+
+
+
+Errors/Warnings:
+C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py:154: SettingWithCopyWarning: 
+
+A value is trying to be set on a copy of a slice from a DataFrame.
+
+Try using .loc[row_indexer,col_indexer] = value instead
+
+
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+
+  df_pivot_arbeidsinnvandrere["Label"] = df_pivot_arbeidsinnvandrere["Kommune"]
+
+C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py:155: SettingWithCopyWarning: 
+
+A value is trying to be set on a copy of a slice from a DataFrame.
+
+Try using .loc[row_indexer,col_indexer] = value instead
+
+
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+
+  df_pivot_flyktninger["Label"] = df_pivot_flyktninger["Kommune"]
+
+
