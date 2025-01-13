@@ -8,6 +8,34 @@ GITHUB_TOKEN loaded successfully.
 
 Email notifications disabled. Errors in strompriser.py were not sent.
 
+Fetching energy prices from 20241214 to 20250113
+
+API URL: https://web-api.tp.entsoe.eu/api
+
+Parameters: {'documentType': 'A44', 'in_Domain': '10YNO-2--------T', 'out_Domain': '10YNO-2--------T', 'periodStart': '202412140000', 'periodEnd': '202501130000', 'securityToken': '5cf92fdd-a882-4158-a5a9-9b0b8e202786'}
+
+Response status code: 200
+
+Response content: <?xml version="1.0" encoding="utf-8"?>
+
+  <Publication_MarketDocument xmlns="urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:3">
+
+    <mRID>087fe6be79344a0583fbb2a11597d788</mRID>
+
+    <revisionNumber>1</revisionNumber>
+
+    <type>A44</type>
+
+    <sender_MarketParticipant.mRID codingScheme="A01">10X1001A1001A450</sender_MarketParticipant.mRID>
+
+    <sender_MarketParticipant.marketRole.type>A32</sender_MarketParticipant.marketRole.type>
+
+    <receiver_MarketParticipant.mRID codingScheme="A01">10X1...
+
+Found 0 TimeSeries elements
+
+Total data points collected: 0
+
 Email notifications disabled. Errors in strompriser.py were not sent.
 
 Error occurred: A critical error occurred while processing the data, stopping execution.
@@ -19,7 +47,7 @@ Email notifications disabled. Errors in strompriser.py were not sent.
 Errors:
 Traceback (most recent call last):
 
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 73, in fetch_energy_prices
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 99, in fetch_energy_prices
 
     raise ValueError("No price data found in the API response")
 
@@ -33,11 +61,11 @@ During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
 
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 187, in <module>
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 213, in <module>
 
     df_prices = fetch_energy_prices(
 
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 88, in fetch_energy_prices
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 114, in fetch_energy_prices
 
     raise RuntimeError(
 
@@ -51,7 +79,7 @@ During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
 
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 252, in <module>
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 278, in <module>
 
     raise RuntimeError(
 
