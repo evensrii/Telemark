@@ -1,0 +1,43 @@
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
+X_FUNCTIONS_KEY loaded successfully.
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
+GITHUB_TOKEN loaded successfully.
+
+<class 'pandas.core.frame.DataFrame'>
+
+Index: 126 entries, 49 to 1809
+
+Data columns (total 4 columns):
+
+ #   Column                        Non-Null Count  Dtype  
+
+---  ------                        --------------  -----  
+
+ 0   Kraftverk                     126 non-null    object 
+
+ 1   Kommune                       126 non-null    object 
+
+ 2   Produksjon oppstart           126 non-null    int64  
+
+ 3   Ãrlig produksjon (1991-2020)  126 non-null    float64
+
+dtypes: float64(1), int64(1), object(2)
+
+memory usage: 4.9+ KB
+
+
+
+Errors:
+Traceback (most recent call last):
+
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Produksjon/NVE/vannkraft.py", line 75, in <module>
+
+    is_new_data = handle_output_data(df_telemark, file_name, github_folder, temp_folder, keepcsv=True)
+
+NameError: name 'df_telemark' is not defined
+
+
+ERROR conda.cli.main_run:execute(124): `conda run python C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Produksjon/NVE/vannkraft.py` failed. (See above for error)
