@@ -4,16 +4,27 @@ Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github
 GITHUB_TOKEN loaded successfully.
 All tasks completed successfully.
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\klimagassutslipp_telemark.csv
-[2025-01-09 15:26:18] No new data to upload. Skipping GitHub update.
+[2025-01-10 13:19:18] Header structure changed in klimagassutslipp_telemark.csv:
+Removed headers: utslippskilde
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_telemark.csv
+Email notifications disabled. Updates for klimagassutslipp_telemark.csv were not sent.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\klimagassutslipp_telemark.csv
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\klimagassutslipp_donut.csv
-[2025-01-09 15:26:20] No new data to upload. Skipping GitHub update.
+[2025-01-10 13:19:20] Header structure changed in klimagassutslipp_donut.csv:
+Removed headers: utslipp (2022)
+Added headers: utslipp (2023)
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_donut.csv
+Email notifications disabled. Updates for klimagassutslipp_donut.csv were not sent.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\klimagassutslipp_donut.csv
 Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\klimagassutslipp_endring.csv
-[2025-01-09 15:26:20] No new data to upload. Skipping GitHub update.
+[2025-01-10 13:19:21] Header structure changed in klimagassutslipp_endring.csv:
+Removed headers: pst_endring_2021_2022
+Added headers: pst_endring_2022_2023
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_endring.csv
+Email notifications disabled. Updates for klimagassutslipp_endring.csv were not sent.
 Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\klimagassutslipp_endring.csv
-No new data detected in klimagassutslipp_telemark.csv.
-No new data detected in klimagassutslipp_donut.csv.
-No new data detected in klimagassutslipp_endring.csv.
+New data detected in klimagassutslipp_telemark.csv and pushed to GitHub.
+New data detected in klimagassutslipp_donut.csv and pushed to GitHub.
+New data detected in klimagassutslipp_endring.csv and pushed to GitHub.
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Sektorvise_utslipp.log
-[09.01.2025  15:24:38] Started Klima og energi - Sektorvise utslipp (klimagassutslipp.py)
+[10.01.2025  13:18:17] Started Klima og energi - Sektorvise utslipp (klimagassutslipp.py)
