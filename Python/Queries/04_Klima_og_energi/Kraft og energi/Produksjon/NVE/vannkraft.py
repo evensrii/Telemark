@@ -84,9 +84,7 @@ except Exception as e:
 
 file_name = "vannkraft_telemark.csv"
 task_name = "Klima og energi - Vannkraft Telemark"
-github_folder = (
-    "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftproduksjon/NVE"
-)
+github_folder= "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftproduksjon/NVE"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
