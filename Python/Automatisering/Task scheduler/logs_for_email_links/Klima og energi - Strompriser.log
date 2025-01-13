@@ -6,28 +6,24 @@ Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github
 
 GITHUB_TOKEN loaded successfully.
 
-Error occurred: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Email notifications disabled. Errors in strompriser.py were not sent.
 
-All requests were successful. No email sent.
+Email notifications disabled. Errors in strompriser.py were not sent.
+
+Error occurred: A critical error occurred while processing the data, stopping execution.
+
+Email notifications disabled. Errors in strompriser.py were not sent.
 
 
 
 Errors:
 Traceback (most recent call last):
 
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 169, in <module>
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 73, in fetch_energy_prices
 
-    latest_date = get_latest_date_from_github(f"{github_folder}/{file_name}")
+    raise ValueError("No price data found in the API response")
 
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 158, in get_latest_date_from_github
-
-    if content:
-
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\generic.py", line 1466, in __nonzero__
-
-    raise ValueError(
-
-ValueError: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+ValueError: No price data found in the API response
 
 
 
@@ -37,7 +33,25 @@ During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
 
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 245, in <module>
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 187, in <module>
+
+    df_prices = fetch_energy_prices(
+
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 88, in fetch_energy_prices
+
+    raise RuntimeError(
+
+RuntimeError: A critical error occurred while processing the data, stopping execution.
+
+
+
+During handling of the above exception, another exception occurred:
+
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 252, in <module>
 
     raise RuntimeError(
 
