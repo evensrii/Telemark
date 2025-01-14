@@ -133,7 +133,6 @@ def query_elhub(date):
         & (df_combined["attributes.municipalityNumber"].astype(int) < 4200)
     ]
     
-    print(f"Retrieved {len(df_telemark)} rows of data for {date}")
     return df_telemark
 
 
@@ -220,9 +219,25 @@ def save_data_by_year_to_github(df):
         # Remove the temporary Year column
         year_data = year_data.drop(columns=["Year"])
         
+        # Try to get existing data from GitHub
+        file_content = download_github_file(os.path.join(github_folder, file_name))
+        if file_content:
+            # If file exists, read it and combine with new data
+            existing_data = pd.read_csv(io.StringIO(file_content))
+            existing_data["Tid"] = pd.to_datetime(existing_data["Tid"], utc=True)
+            
+            # Combine existing and new data
+            combined_data = pd.concat([existing_data, year_data])
+            # Remove duplicates based on all columns
+            combined_data = combined_data.drop_duplicates()
+            # Sort by time
+            combined_data = combined_data.sort_values("Tid")
+        else:
+            combined_data = year_data
+        
         # Use handle_output_data to manage the file
         was_updated = handle_output_data(
-            year_data,  # Pass the DataFrame directly
+            combined_data,
             file_name,
             github_folder,
             temp_folder
