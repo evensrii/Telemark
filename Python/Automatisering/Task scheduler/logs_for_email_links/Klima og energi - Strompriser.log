@@ -14,15 +14,39 @@ Checking for existing data...
 
 Type of existing_df: <class 'pandas.core.frame.DataFrame'>
 
-Latest date in existing data: 2025-01-14 00:00:00
+Latest date in existing data: 2025-01-13 00:00:00
 
-Found 1476 existing records
+Found 1475 existing records
 
 All prices are already up to date (up until yesterday), no new data to fetch.
 
+Combining with existing data...
+
+Combined data now has 2950 records
+
+
+
+Saving and uploading data...
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\strompriser.csv
+
+[2025-01-14 10:32:36] Row count changed: 1475 -> 2950
+
+
+
+Added rows:
+
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
+
+Email notifications disabled. Updates for strompriser.csv were not sent.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\strompriser.csv
+
+New data detected and pushed to GitHub.
+
 New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 
-No new data detected.
+
 
 Script completed successfully!
 
