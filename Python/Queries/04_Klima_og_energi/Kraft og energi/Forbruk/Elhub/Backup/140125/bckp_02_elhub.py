@@ -215,7 +215,7 @@ def save_data_by_year_to_github(df):
     df["Year"] = df["Tid"].dt.year
 
     # Track if any files were updated
-    files_updated = []
+    any_files_updated = False
 
     for year, year_data in df.groupby("Year"):
         file_name = f"{year}.csv"
@@ -241,87 +241,76 @@ def save_data_by_year_to_github(df):
             combined_data = year_data
         
         # Use handle_output_data to manage the file
-        is_updated = handle_output_data(
+        was_updated = handle_output_data(
             combined_data,
             file_name,
             github_folder,
-            temp_folder,
-            keepcsv=True
+            temp_folder
         )
         
-        if is_updated:
-            files_updated.append(file_name)
-            print(f"New data detected in {file_name} and pushed to GitHub.")
-        else:
-            print(f"No new data detected in {file_name}.")
+        if was_updated:
+            any_files_updated = True
+            print(f"Updated data for year {year}")
 
-    return files_updated
+    return any_files_updated
 
+
+# Function to query and append new data based on the latest date in GitHub files
 def query_and_append_new_data():
     # Get the latest date from GitHub files
     latest_date = get_latest_date_from_github()
     print(f"Latest date in GitHub files: {latest_date}")
 
-    if latest_date:
-        # Convert latest_date to datetime if it's a string
-        if isinstance(latest_date, str):
-            latest_date = pd.to_datetime(latest_date)
+    # Set the current date to two days ago to avoid empty data
+    end_date = (datetime.now() - timedelta(days=2)).date()
 
-        # Query data for each day from the latest date until today
-        current_date = datetime.now()
-        dates_to_query = pd.date_range(start=latest_date + timedelta(days=1), end=current_date)
+    # Query new data starting from one day after the latest date
+    current_date = latest_date + timedelta(days=1)
 
-        if not dates_to_query.empty:
-            all_data = []
-            for date in dates_to_query:
-                print(f"Querying data for {date.date()}")
-                df = query_elhub(date)
-                if df is not None and not df.empty:
-                    all_data.append(df)
+    # Initialize an empty DataFrame to store all new data
+    all_new_data = pd.DataFrame()
 
-            if all_data:
-                # Combine all the new data
-                combined_df = pd.concat(all_data, ignore_index=True)
-                # Process the data
-                processed_df = process_data(combined_df)
-                # Save to GitHub by year
-                files_updated = save_data_by_year_to_github(processed_df)
-                
-                # Write status log
-                log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
-                task_name_safe = task_name.replace(".", "_").replace(" ", "_")
-                new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
-                
-                with open(new_data_status_file, "w", encoding="utf-8") as log_file:
-                    log_file.write(f"{task_name_safe},multiple_files,{'Yes' if files_updated else 'No'}\n")
-                
-                print(f"New data status log written to {new_data_status_file}")
-                return bool(files_updated)
-            else:
-                print("No new data retrieved from API")
-                # Create status log for no new data
-                log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
-                task_name_safe = task_name.replace(".", "_").replace(" ", "_")
-                new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
-                
-                with open(new_data_status_file, "w", encoding="utf-8") as log_file:
-                    log_file.write(f"{task_name_safe},multiple_files,No\n")
-                
-                print(f"New data status log written to {new_data_status_file}")
-                return False
-        else:
-            print("No new dates to query")
-            return False
+    # Loop through each day from current_date to end_date
+    while current_date <= end_date:
+        date_str = current_date.strftime("%Y-%m-%d")
+        print(f"Querying data for {date_str}")
+
+        # Query the API for the current date
+        daily_data = query_elhub(date_str)
+        
+        if not daily_data.empty:
+            # Process the data
+            daily_data = process_data(daily_data)
+            all_new_data = pd.concat([all_new_data, daily_data], ignore_index=True)
+
+        current_date += timedelta(days=1)
+
+    if not all_new_data.empty:
+        # Save data by year and check if any files were updated
+        files_updated = save_data_by_year_to_github(all_new_data)
+        
+        if not files_updated:
+            print("No new data to upload")
+            
+        # Create status log
+        with open(os.path.join(PYTHON_PATH, "Log", f"new_data_status_{task_name.replace(' ', '_')}.log"), "w") as f:
+            f.write("New data: No" if not files_updated else "New data: Yes")
     else:
-        print("No existing data found in GitHub")
-        return False
+        print("No new data retrieved from API")
+        # Create status log for no new data
+        with open(os.path.join(PYTHON_PATH, "Log", f"new_data_status_{task_name.replace(' ', '_')}.log"), "w") as f:
+            f.write("New data: No")
+
 
 def main():
+    """Main function to execute the script."""
     try:
         query_and_append_new_data()
+        print("Script completed successfully!")
     except Exception as e:
-        print(f"Error in main: {str(e)}")
-        sys.exit(1)
+        print(f"An error occurred: {str(e)}")
+        raise
+
 
 if __name__ == "__main__":
     main()
