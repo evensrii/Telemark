@@ -6,38 +6,24 @@ Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github
 
 GITHUB_TOKEN loaded successfully.
 
-Error occurred: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+Script starting...
 
-All requests were successful. No email sent.
+Working with file: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
 
+Checking for existing data...
 
+Type of existing_df: <class 'pandas.core.frame.DataFrame'>
 
-Errors:
-Traceback (most recent call last):
+Latest date in existing data: 2025-01-14 00:00:00
 
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 198, in <module>
+Found 1476 existing records
 
-    if existing_content:
+All prices are already up to date (up until yesterday), no new data to fetch.
 
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\generic.py", line 1466, in __nonzero__
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 
-    raise ValueError(
+No new data detected.
 
-ValueError: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
-
-
-
-During handling of the above exception, another exception occurred:
+Script completed successfully!
 
 
-
-Traceback (most recent call last):
-
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 299, in <module>
-
-    raise RuntimeError(
-
-RuntimeError: A critical error occurred during execution, stopping script.
-
-
-ERROR conda.cli.main_run:execute(124): `conda run python C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py` failed. (See above for error)
