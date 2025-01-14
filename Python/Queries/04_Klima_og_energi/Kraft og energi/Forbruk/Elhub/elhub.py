@@ -103,6 +103,10 @@ def query_elhub(date):
     url = f"https://api.elhub.no/energy-data/v0/municipalities?dataset=CONSUMPTION_PER_GROUP_MUNICIPALITY_HOUR&startDate={date}"
     response = requests.get(url)
     data = response.json()
+    
+    if not data.get("data"):
+        print(f"No data available for {date}")
+        return pd.DataFrame()  # Return empty DataFrame if no data
 
     df_data = pd.json_normalize(data["data"])
     df_data_expanded = df_data.explode("attributes.consumptionPerGroupMunicipalityHour")
@@ -215,12 +219,13 @@ def save_data_by_year_to_github(df):
 
     for year, year_data in df.groupby("Year"):
         file_name = f"{year}.csv"
+        github_path = f"{github_folder}/{file_name}".replace("\\", "/")
         
         # Remove the temporary Year column
         year_data = year_data.drop(columns=["Year"])
         
         # Try to get existing data from GitHub
-        file_content = download_github_file(os.path.join(github_folder, file_name))
+        file_content = download_github_file(github_path)
         if file_content:
             # If file exists, read it and combine with new data
             existing_data = pd.read_csv(io.StringIO(file_content))
@@ -228,8 +233,8 @@ def save_data_by_year_to_github(df):
             
             # Combine existing and new data
             combined_data = pd.concat([existing_data, year_data])
-            # Remove duplicates based on all columns
-            combined_data = combined_data.drop_duplicates()
+            # Remove duplicates based on all columns except floating point columns
+            combined_data = combined_data.drop_duplicates(subset=["Knr", "Kommunenavn", "Tid", "Gruppe"])
             # Sort by time
             combined_data = combined_data.sort_values("Tid")
         else:
