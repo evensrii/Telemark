@@ -1,0 +1,21 @@
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Elg JSON data loaded successfully.
+Hjort JSON data loaded successfully.
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 38 entries, 0 to 37
+Data columns (total 2 columns):
+ #   Column              Non-Null Count  Dtype 
+---  ------              --------------  ----- 
+ 0   Jaktår              38 non-null     object
+ 1   Antall felte hjort  38 non-null     int64 
+dtypes: int64(1), object(1)
+memory usage: 736.0+ bytes
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\antall_felte_elg_og_hjort.csv
+[2025-01-09 15:26:49] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\antall_felte_elg_og_hjort.csv
+No new data detected.
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Felte_hjortedyr.log
+[09.01.2025  15:26:42] Started Klima og energi - Felte hjortedyr (antall_felt.py)

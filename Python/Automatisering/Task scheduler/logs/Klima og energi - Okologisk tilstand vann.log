@@ -1,0 +1,33 @@
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+An unexpected error occurred: Message: session not created: Failed to create Chrome process.
+Stacktrace:
+	GetHandleVerifier [0x00007FF755B280D5+2992373]
+	(No symbol) [0x00007FF7557BBFD0]
+	(No symbol) [0x00007FF75565590A]
+	(No symbol) [0x00007FF75568F6F1]
+	(No symbol) [0x00007FF75568BC39]
+	(No symbol) [0x00007FF7556DA6AC]
+	(No symbol) [0x00007FF7556D9C90]
+	(No symbol) [0x00007FF7556CF113]
+	(No symbol) [0x00007FF75569A918]
+	(No symbol) [0x00007FF75569BA81]
+	GetHandleVerifier [0x00007FF755B86A2D+3379789]
+	GetHandleVerifier [0x00007FF755B9C32D+3468109]
+	GetHandleVerifier [0x00007FF755B90043+3418211]
+	GetHandleVerifier [0x00007FF75591C78B+847787]
+	(No symbol) [0x00007FF7557C757F]
+	(No symbol) [0x00007FF7557C2FC4]
+	(No symbol) [0x00007FF7557C315D]
+	(No symbol) [0x00007FF7557B2979]
+	BaseThreadInitThunk [0x00007FFB356BE8D7+23]
+	RtlUserThreadStart [0x00007FFB3697FBCC+44]
+
+Traceback (most recent call last):
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\04_Klima_og_energi\Ressursforvaltning\okologisk_tilstand_server_versjon.py", line 286, in <module>
+    driver.quit()
+NameError: name 'driver' is not defined
+[09.01.2025  15:26:26] Started Klima og energi - Okologisk tilstand vann (okologisk_tilstand_server_versjon.py)
+[09.01.2025  15:26:26] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\04_Klima_og_energi\Ressursforvaltning\okologisk_tilstand_server_versjon.py""' returned non-zero exit status 1.
