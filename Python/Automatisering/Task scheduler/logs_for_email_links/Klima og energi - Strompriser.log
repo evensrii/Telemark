@@ -18,42 +18,20 @@ Latest date in existing data: 2025-01-14 00:00:00
 
 Found 1476 existing records
 
-Will fetch data from 2025-01-15 00:00:00 to 2025-01-14 09:47:19.022462
+Combining with existing data...
 
-Fetching energy prices from ENTSO-E...
+Saving and uploading data...
 
-Error connecting to ENTSO-E API: 400 Client Error: Bad Request for url: https://web-api.tp.entsoe.eu/api?documentType=A44&in_Domain=10YNO-2--------T&out_Domain=10YNO-2--------T&periodStart=202501150000&periodEnd=202501140000&securityToken=5cf92fdd-a882-4158-a5a9-9b0b8e202786
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\strompriser.csv
 
-Email notifications disabled. Errors in strompriser.py were not sent.
+[2025-01-14 09:55:33] No new data to upload. Skipping GitHub update.
 
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\strompriser.csv
 
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 
-Errors:
-Traceback (most recent call last):
+No new data detected.
 
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 75, in <module>
-
-    response.raise_for_status()
-
-  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
-
-    raise HTTPError(http_error_msg, response=self)
-
-requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://web-api.tp.entsoe.eu/api?documentType=A44&in_Domain=10YNO-2--------T&out_Domain=10YNO-2--------T&periodStart=202501150000&periodEnd=202501140000&securityToken=5cf92fdd-a882-4158-a5a9-9b0b8e202786
+Script completed successfully!
 
 
-
-During handling of the above exception, another exception occurred:
-
-
-
-Traceback (most recent call last):
-
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 82, in <module>
-
-    raise RuntimeError("Failed to fetch data from ENTSO-E")
-
-RuntimeError: Failed to fetch data from ENTSO-E
-
-
-ERROR conda.cli.main_run:execute(124): `conda run python C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py` failed. (See above for error)
