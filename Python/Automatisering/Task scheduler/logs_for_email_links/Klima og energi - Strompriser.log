@@ -20,20 +20,34 @@ Found 1476 existing records
 
 All prices are already up to date (up until yesterday), no new data to fetch.
 
-Combining with existing data...
-
-Saving and uploading data...
-
-Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\strompriser.csv
-
-[2025-01-14 09:57:47] No new data to upload. Skipping GitHub update.
-
-Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\strompriser.csv
-
-New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
-
-No new data detected.
-
-Script completed successfully!
 
 
+Errors:
+Traceback (most recent call last):
+
+  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 186, in <module>
+
+    daily_avg.columns = ["time", "EUR/MWh", "kurs", "NOK/MWh"]
+
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\generic.py", line 6002, in __setattr__
+
+    return object.__setattr__(self, name, value)
+
+  File "pandas\_libs\properties.pyx", line 69, in pandas._libs.properties.AxisProperty.__set__
+
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\generic.py", line 730, in _set_axis
+
+    self._mgr.set_axis(axis, labels)
+
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\internals\managers.py", line 225, in set_axis
+
+    self._validate_set_axis(axis, new_labels)
+
+  File "C:\Users\eve1509\.conda\envs\analyse\lib\site-packages\pandas\core\internals\base.py", line 70, in _validate_set_axis
+
+    raise ValueError(
+
+ValueError: Length mismatch: Expected axis has 5 elements, new values have 4 elements
+
+
+ERROR conda.cli.main_run:execute(124): `conda run python C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py` failed. (See above for error)
