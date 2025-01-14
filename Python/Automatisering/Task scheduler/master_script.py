@@ -178,6 +178,16 @@ def main():
     # Send email
     send_email()
 
+    # Clean up individual status log files from the Python/Log folder
+    status_log_dir = os.path.join(PYTHON_PATH, "Log")
+    if os.path.exists(status_log_dir):
+        for file in os.listdir(status_log_dir):
+            if file.startswith("new_data_status_") and file.endswith(".log"):
+                try:
+                    os.remove(os.path.join(status_log_dir, file))
+                except Exception as e:
+                    print(f"Warning: Could not remove status file {file}: {e}")
+
     # Final log entry
     with open(MASTER_LOG_FILE, "a", encoding="utf-8") as master_log:
         master_log.write(f"[{datetime.now()}] Master script completed\n")

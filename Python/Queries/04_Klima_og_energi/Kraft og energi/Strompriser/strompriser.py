@@ -183,30 +183,30 @@ else:
         }).reset_index()
 
         # Format the new data
-        daily_avg_new.columns = ["time", "EUR/MWh", "kurs", "NOK/MWh"]
+        print(f"Columns before renaming: {daily_avg_new.columns.tolist()}")
+        daily_avg_new = daily_avg_new.rename(columns={
+            "date": "time",
+            "price_eur": "EUR/MWh",
+            "eur_nok_rate": "kurs",
+            "price_nok": "NOK/MWh"
+        })
         daily_avg_new["NOK/KWh"] = daily_avg_new["NOK/MWh"] / 1000
         daily_avg_new["time"] = pd.to_datetime(daily_avg_new["time"])
 
         # Combine with existing data
         print("Combining with existing data...")
         if not existing_df.empty:
+            print(f"Columns in existing_df: {existing_df.columns.tolist()}")
+            print(f"Columns in daily_avg_new: {daily_avg_new.columns.tolist()}")
             daily_avg = pd.concat([existing_df, daily_avg_new], ignore_index=True)
             print(f"Combined data now has {len(daily_avg)} records")
         else:
             daily_avg = daily_avg_new
 
-# Step 10: Format the final dataset
-if not is_up_to_date:
-    daily_avg.columns = ["time", "EUR/MWh", "kurs", "NOK/MWh"]
-    daily_avg["NOK/KWh"] = daily_avg["NOK/MWh"] / 1000
-    daily_avg["time"] = pd.to_datetime(daily_avg["time"])
+        # Final sorting
+        daily_avg = daily_avg.sort_values("time")
 
-# Step 11: Final formatting and sorting
-daily_avg["time"] = pd.to_datetime(daily_avg["time"])
-daily_avg = daily_avg.sort_values("time")
-
-# Step 13: Save and upload to GitHub
-print("\nSaving and uploading data...")
+# Step 13: Save (and upload to GitHub if new data)
 
 # Define parameters for handle_output_data
 file_name = "strompriser.csv"
@@ -233,4 +233,4 @@ else:
     print("No new data detected.")
 
 print(f"New data status log written to {new_data_status_file}")
-print("\nScript completed successfully!")
+print("Script completed successfully!")
