@@ -141,59 +141,46 @@ else:
 
     if df_prices.empty:
         print("No new price data to process after filtering")
-        daily_avg = existing_df.copy()
-    else:
-        # Drop the temporary date column used for filtering
-        df_prices = df_prices.drop(columns=["date"])
+        raise RuntimeError("No new price data available")
 
-        # Step 7: Fetch exchange rates
-        print("Fetching exchange rates...")
-        date_str = start_date.strftime("%Y-%m-%d")
-        url = f"https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?format=csv&startPeriod={date_str}"
-        df_rates = pd.read_csv(url, sep=";")
+    # Drop the temporary date column used for filtering
+    df_prices = df_prices.drop(columns=["date"])
 
-        if df_rates.empty:
-            error_msg = "No exchange rate data found"
-            print(error_msg)
-            error_messages.append(error_msg)
-            notify_errors(error_messages, script_name=script_name)
-            raise RuntimeError("No exchange rate data available")
+    # Step 7: Fetch exchange rates
+    print("Fetching exchange rates...")
+    date_str = start_date.strftime("%Y-%m-%d")
+    url = f"https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?format=csv&startPeriod={date_str}"
+    df_rates = pd.read_csv(url, sep=";")
 
-        # Clean and prepare exchange rates data
-        df_rates["TIME_PERIOD"] = pd.to_datetime(df_rates["TIME_PERIOD"])
-        df_rates = df_rates.rename(columns={
-            "TIME_PERIOD": "time",
-            "OBS_VALUE": "eur_nok_rate"
-        })
-        df_rates = df_rates[["time", "eur_nok_rate"]]
+    if df_rates.empty:
+        error_msg = "No exchange rate data found"
+        print(error_msg)
+        error_messages.append(error_msg)
+        notify_errors(error_messages, script_name=script_name)
+        raise RuntimeError("No exchange rate data available")
 
-        # Step 8: Merge prices with exchange rates
-        print("Merging price and exchange rate data...")
-        df = pd.merge(df_prices, df_rates, on="time", how="left")
-        df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
-        df["price_nok"] = df["price_eur"] * df["eur_nok_rate"]
+    # Clean and prepare exchange rates data
+    df_rates["TIME_PERIOD"] = pd.to_datetime(df_rates["TIME_PERIOD"])
+    df_rates = df_rates.rename(columns={
+        "TIME_PERIOD": "time",
+        "OBS_VALUE": "eur_nok_rate"
+    })
+    df_rates = df_rates[["time", "eur_nok_rate"]]
 
-        # Step 9: Calculate daily averages
-        print("Calculating daily averages...")
-        df["date"] = pd.to_datetime(df["time"]).dt.date
-        daily_avg_new = df.groupby("date").agg({
-            "price_eur": "mean",
-            "eur_nok_rate": "mean",
-            "price_nok": "mean"
-        }).reset_index()
+    # Step 8: Merge prices with exchange rates
+    print("Merging price and exchange rate data...")
+    df = pd.merge(df_prices, df_rates, on="time", how="left")
+    df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
+    df["price_nok"] = df["price_eur"] * df["eur_nok_rate"]
 
-        # Format the new data
-        daily_avg_new.columns = ["time", "EUR/MWh", "kurs", "NOK/MWh"]
-        daily_avg_new["NOK/KWh"] = daily_avg_new["NOK/MWh"] / 1000
-        daily_avg_new["time"] = pd.to_datetime(daily_avg_new["time"])
-
-        # Combine with existing data
-        print("Combining with existing data...")
-        if not existing_df.empty:
-            daily_avg = pd.concat([existing_df, daily_avg_new], ignore_index=True)
-            print(f"Combined data now has {len(daily_avg)} records")
-        else:
-            daily_avg = daily_avg_new
+    # Step 9: Calculate daily averages
+    print("Calculating daily averages...")
+    df["date"] = pd.to_datetime(df["time"]).dt.date
+    daily_avg = df.groupby("date").agg({
+        "price_eur": "mean",
+        "eur_nok_rate": "mean",
+        "price_nok": "mean"
+    }).reset_index()
 
 # Step 10: Format the final dataset
 if not is_up_to_date:
@@ -201,36 +188,47 @@ if not is_up_to_date:
     daily_avg["NOK/KWh"] = daily_avg["NOK/MWh"] / 1000
     daily_avg["time"] = pd.to_datetime(daily_avg["time"])
 
-# Step 11: Final formatting and sorting
+    # Step 11: Combine with existing data if available
+    print("Combining with existing data...")
+    if not existing_df.empty:
+        daily_avg = pd.concat([existing_df, daily_avg], ignore_index=True)
+        print(f"Combined data now has {len(daily_avg)} records")
+
+# Step 12: Final formatting and sorting
 daily_avg["time"] = pd.to_datetime(daily_avg["time"])
 daily_avg = daily_avg.sort_values("time")
 
 # Step 13: Save and upload to GitHub
-print("\nSaving and uploading data...")
+if not is_up_to_date:
+    print("Saving and uploading data...")
+    
+    # Save to temporary CSV file
+    temp_dir = os.environ.get("TEMP_FOLDER", os.getcwd())
+    temp_file = os.path.join(temp_dir, "strompriser.csv")
+    daily_avg.to_csv(temp_file, index=False)
+    print(f"Saved file to {temp_file}")
+    
+    # Upload to GitHub
+    try:
+        upload_github_file(temp_file, file_name, "Updated power prices")
+        print("[{}] Successfully uploaded data to GitHub".format(
+            datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+        os.remove(temp_file)
+        print(f"Removed temporary file: {temp_file}")
+    except Exception as e:
+        print("[{}] No new data to upload. Skipping GitHub update.".format(
+            datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+        print(f"Keeping CSV file: {temp_file}")
 
-# Define parameters for handle_output_data
-file_name = "strompriser.csv"
+# Write status to indicate if we had new data
+log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
 task_name = "Klima og energi - Strompriser"
-github_folder = "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e"
-temp_folder = os.environ.get("TEMP_FOLDER")
-
-# Call handle_output_data function
-is_new_data = handle_output_data(daily_avg, file_name, github_folder, temp_folder, keepcsv=True)
-
-# Write the "New Data" status to a unique log file
-log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")
 new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
-# Write the result in a detailed format
 with open(new_data_status_file, "w", encoding="utf-8") as log_file:
-    log_file.write(f"{task_name_safe},{file_name},{'Yes' if is_new_data else 'No'}\n")
-
-# Output results for debugging/testing
-if is_new_data:
-    print("New data detected and pushed to GitHub.")
-else:
-    print("No new data detected.")
+    log_file.write(f"{task_name_safe},{file_name},{'Yes' if not is_up_to_date else 'No'}\n")
 
 print(f"New data status log written to {new_data_status_file}")
-print("\nScript completed successfully!")
+print("No new data detected." if is_up_to_date else "New data detected and pushed to GitHub.")
+print("Script completed successfully!")
