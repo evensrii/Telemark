@@ -302,7 +302,9 @@ def query_and_append_new_data():
                 print(f"New data status log written to {new_data_status_file}")
                 return bool(files_updated)
             else:
-                print("No new data retrieved from API")
+                print("\nNo new data retrieved from API.")
+                print(f"Latest data in GitHub: {latest_date.strftime('%Y-%m-%d')}")
+
                 # Create status log for no new data
                 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
                 task_name_safe = task_name.replace(".", "_").replace(" ", "_")
@@ -314,7 +316,8 @@ def query_and_append_new_data():
                 print(f"New data status log written to {new_data_status_file}")
                 return False
         else:
-            print("No new dates to query")
+            print("\nNo new dates to query.")
+
             return False
     else:
         print("No existing data found in GitHub")
