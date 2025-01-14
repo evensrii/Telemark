@@ -44,10 +44,6 @@ task_name = "Klima og energi - Elhub"
 github_folder = "Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-# Define file names for the master script to track commits
-file_name1 = "2024.csv"
-file_name2 = "2025.csv"
-
 # GitHub Repository information
 REPO = "evensrii/Telemark"
 BRANCH = "main"
@@ -250,7 +246,7 @@ def save_data_by_year_to_github(df):
             file_name,
             github_folder,
             temp_folder,
-            keepcsv=False
+            keepcsv=True
         )
         
         if is_updated:
