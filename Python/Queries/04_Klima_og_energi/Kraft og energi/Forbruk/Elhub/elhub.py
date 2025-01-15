@@ -23,14 +23,14 @@ if not os.path.exists(env_file_path):
 
 # Load the .env file
 load_dotenv(env_file_path)
-print(f"Loaded .env file from: {env_file_path}")
+print(f"{datetime.now().strftime('[%Y-%m-%d %H:%M:%S]')} Loaded .env file from: {env_file_path}")
 
 # Get the GITHUB_TOKEN from the environment
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 if not GITHUB_TOKEN:
     raise ValueError("GITHUB_TOKEN not found in the loaded .env file.")
 
-print("GITHUB_TOKEN loaded successfully.")
+print(f"{datetime.now().strftime('[%Y-%m-%d %H:%M:%S]')} GITHUB_TOKEN loaded successfully.")
 
 # Add PYTHONPATH to sys.path
 PYTHON_PATH = os.environ.get("PYTHONPATH")
@@ -54,6 +54,10 @@ BRANCH = "main"
 GITHUB_API_URL = "https://api.github.com"
 DATA_PATH = github_folder + "/"
 
+# Function to get current timestamp
+def get_timestamp():
+    return datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
+
 # Function to download a file from GitHub
 def download_github_file(file_path):
     url = f"{GITHUB_API_URL}/repos/{REPO}/contents/{file_path}?ref={BRANCH}"
@@ -66,11 +70,11 @@ def download_github_file(file_path):
     if response.status_code == 200:
         return response.text
     elif response.status_code == 404:
-        print(f"File not found: {file_path}")
+        print(f"{get_timestamp()} File not found: {file_path}")
         return None
     else:
         print(
-            f"Failed to download file: {file_path}, Status Code: {response.status_code}"
+            f"{get_timestamp()} Failed to download file: {file_path}, Status Code: {response.status_code}"
         )
         return None
 
@@ -97,9 +101,9 @@ def upload_github_file(file_path, content, message="Updating data"):
     response = requests.put(url, json=payload, headers=headers)
 
     if response.status_code in [201, 200]:
-        print(f"File uploaded successfully: {file_path}")
+        print(f"{get_timestamp()} File uploaded successfully: {file_path}")
     else:
-        print(f"Failed to upload file: {response.json()}")
+        print(f"{get_timestamp()} Failed to upload file: {response.json()}")
 
 
 # Function to query the Elhub API for a specific date
@@ -109,7 +113,7 @@ def query_elhub(date):
     data = response.json()
     
     if not data.get("data"):
-        print(f"No data available for {date}")
+        print(f"{get_timestamp()} No data available for {date}")
         return pd.DataFrame()  # Return empty DataFrame if no data
 
     df_data = pd.json_normalize(data["data"])
@@ -255,16 +259,16 @@ def save_data_by_year_to_github(df):
         
         if is_updated:
             files_updated.append(file_name)
-            print(f"New data detected in {file_name} and pushed to GitHub.")
+            print(f"{get_timestamp()} New data detected in {file_name} and pushed to GitHub.")
         else:
-            print(f"No new data detected in {file_name}.")
+            print(f"{get_timestamp()} No new data detected in {file_name}.")
 
     return files_updated
 
 def query_and_append_new_data():
     # Get the latest date from GitHub files
     latest_date = get_latest_date_from_github()
-    print(f"Latest date in GitHub files: {latest_date}")
+    print(f"{get_timestamp()} Latest date in GitHub files: {latest_date}")
 
     if latest_date:
         # Convert latest_date to datetime if it's a string
@@ -278,7 +282,7 @@ def query_and_append_new_data():
         if not dates_to_query.empty:
             all_data = []
             for date in dates_to_query:
-                print(f"Querying data for {date.date()}")
+                print(f"{get_timestamp()} Querying data for {date.date()}")
                 df = query_elhub(date.date())  # Pass date.date() to get YYYY-MM-DD format
                 if df is not None and not df.empty:
                     all_data.append(df)
@@ -299,11 +303,11 @@ def query_and_append_new_data():
                 with open(new_data_status_file, "w", encoding="utf-8") as log_file:
                     log_file.write(f"{task_name_safe},multiple_files,{'Yes' if files_updated else 'No'}\n")
                 
-                print(f"New data status log written to {new_data_status_file}")
+                print(f"{get_timestamp()} New data status log written to {new_data_status_file}")
                 return bool(files_updated)
             else:
-                print("\nNo new data retrieved from API.")
-                print(f"Latest data in GitHub: {latest_date.strftime('%Y-%m-%d')}")
+                print(f"\n{get_timestamp()} No new data retrieved from API.")
+                print(f"{get_timestamp()} Latest data in GitHub: {latest_date.strftime('%Y-%m-%d')}")
 
                 # Create status log for no new data
                 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
@@ -313,21 +317,20 @@ def query_and_append_new_data():
                 with open(new_data_status_file, "w", encoding="utf-8") as log_file:
                     log_file.write(f"{task_name_safe},multiple_files,No\n")
                 
-                print(f"New data status log written to {new_data_status_file}")
+                print(f"{get_timestamp()} New data status log written to {new_data_status_file}")
                 return False
         else:
-            print("\nNo new dates to query.")
-
+            print(f"\n{get_timestamp()} No new dates to query.")
             return False
     else:
-        print("No existing data found in GitHub")
+        print(f"{get_timestamp()} No existing data found in GitHub")
         return False
 
 def main():
     try:
         query_and_append_new_data()
     except Exception as e:
-        print(f"Error in main: {str(e)}")
+        print(f"{get_timestamp()} Error in main: {str(e)}")
         sys.exit(1)
 
 if __name__ == "__main__":
