@@ -2,246 +2,235 @@ import requests
 import xml.etree.ElementTree as ET
 import pandas as pd
 from datetime import datetime, timedelta
-from dotenv import load_dotenv
 import os
-import base64
+from dotenv import load_dotenv
 import io
+import sys
 
-# Load GitHub token from the .env file
-load_dotenv("../../../token.env", override=True)
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+# Import the utility functions from the Helper_scripts folder
+from Helper_scripts.utility_functions import fetch_data, delete_files_in_temp_folder
+from Helper_scripts.email_functions import notify_errors
+from Helper_scripts.github_functions import upload_github_file, download_github_file, compare_to_github, handle_output_data
 
-if not GITHUB_TOKEN:
-    raise ValueError(
-        "GitHub token not found. Please ensure that the token is set in '../../../token.env'"
-    )
+# Capture the name of the current script
+script_name = os.path.basename(__file__)
 
-# GitHub Repository information
-REPO = "evensrii/Telemark"
-BRANCH = "main"
-GITHUB_API_URL = "https://api.github.com"
-DATA_FILE_PATH = "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv"
+# Example list of error messages to collect errors during execution
+error_messages = []
 
 # ENTSO-E API Key
 API_KEY = "5cf92fdd-a882-4158-a5a9-9b0b8e202786"
 BASE_URL = "https://web-api.tp.entsoe.eu/api"
 
+print("Script starting...")
 
-def download_github_file(file_path):
-    """Download an existing file from GitHub."""
-    url = f"{GITHUB_API_URL}/repos/{REPO}/contents/{file_path}?ref={BRANCH}"
-    headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github.v3.raw",
-    }
-    response = requests.get(url, headers=headers)
+# Step 1: Set up initial parameters and paths
+github_folder = "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e"
+file_name = "strompriser.csv"
+print(f"Working with file: {github_folder}/{file_name}")
 
-    if response.status_code == 200:
-        return response.text
-    elif response.status_code == 404:
-        print(f"File not found: {file_path}")
-        return None
-    else:
-        print(
-            f"Failed to download file: {file_path}, Status Code: {response.status_code}"
-        )
-        return None
+# Step 2: Download and process existing data from GitHub
+existing_df = download_github_file(f"{github_folder}/{file_name}")
+print("Checking for existing data...")
+print(f"Type of existing_df: {type(existing_df)}")
 
+# Initialize default date
+latest_date = datetime(2021, 12, 1)  # Default start date
 
-def upload_github_file(file_path, content, message="Updating data"):
-    """Upload a new or updated file to GitHub."""
-    url = f"{GITHUB_API_URL}/repos/{REPO}/contents/{file_path}"
-    headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github.v3+json",
-    }
+if existing_df is not None and not existing_df.empty:
+    try:
+        # Convert time column to datetime if it's not already
+        existing_df["time"] = pd.to_datetime(existing_df["time"])
+        latest_date = existing_df["time"].max()
+        print(f"Latest date in existing data: {latest_date}")
+        print(f"Found {len(existing_df)} existing records")
+    except Exception as e:
+        print(f"Error processing dates: {e}")
+        existing_df = pd.DataFrame()
+        print(f"Using default start date: {latest_date}")
+else:
+    print("No existing data found")
+    existing_df = pd.DataFrame()
+    print(f"Using default start date: {latest_date}")
 
-    response = requests.get(url, headers=headers)
-    sha = response.json().get("sha") if response.status_code == 200 else None
+# Step 3: Set up date range for new data
+start_date = latest_date + timedelta(days=1)
+end_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=1)
 
-    payload = {
-        "message": message,
-        "content": base64.b64encode(content.encode("utf-8")).decode("utf-8"),
-        "branch": BRANCH,
-    }
-    if sha:
-        payload["sha"] = sha
+# Check if we already have data up to yesterday
+is_up_to_date = start_date.date() > end_date.date()
+if is_up_to_date:
+    print("All prices are already up to date (up until yesterday), no new data to fetch.")
+    daily_avg = existing_df.copy()
+else:
+    print(f"Will fetch data from {start_date} to {end_date} (yesterday)")
 
-    response = requests.put(url, json=payload, headers=headers)
-
-    if response.status_code in [201, 200]:
-        print(f"File uploaded successfully: {file_path}")
-    else:
-        print(f"Failed to upload file: {response.json()}")
-
-
-def get_latest_date_from_github(file_path):
-    """Determine the latest date in the existing GitHub file."""
-    file_content = download_github_file(file_path)
-    if file_content is None:
-        return datetime(2021, 12, 1, 0, 0)
-
-    df = pd.read_csv(io.StringIO(file_content), parse_dates=["time"])
-    return df["time"].max() + timedelta(hours=1)
-
-
-def fetch_energy_prices(period_start, period_end):
-    """Fetch energy prices from the ENTSO-E API."""
+    # Step 4: Prepare parameters for ENTSO-E API
+    domain = "10YNO-2--------T"  # NO2 bidding zone (Southern Norway)
     params = {
-        "securityToken": API_KEY,
         "documentType": "A44",
-        "periodStart": period_start,
-        "periodEnd": period_end,
-        "out_Domain": "10YNO-2--------T",  # NO2
-        "in_Domain": "10YNO-2--------T",
+        "in_Domain": domain,
+        "out_Domain": domain,
+        "periodStart": start_date.strftime("%Y%m%d") + "0000",
+        "periodEnd": end_date.strftime("%Y%m%d") + "0000",
+        "securityToken": API_KEY,
     }
 
-    response = requests.get(BASE_URL, params=params)
-    if response.status_code == 200:
-        ns = {"ns": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:3"}
-        root = ET.fromstring(response.text)
+    # Step 5: Fetch energy prices from ENTSO-E
+    print("Fetching energy prices from ENTSO-E...")
+    try:
+        response = requests.get(BASE_URL, params=params)
+        response.raise_for_status()
+        print("Successfully received response from ENTSO-E")
+    except requests.exceptions.RequestException as e:
+        error_msg = f"Error connecting to ENTSO-E API: {str(e)}"
+        print(error_msg)
+        error_messages.append(error_msg)
+        notify_errors(error_messages, script_name=script_name)
+        raise RuntimeError("Failed to fetch data from ENTSO-E")
 
-        time_price_data = []
-        for timeseries in root.findall("ns:TimeSeries", ns):
-            for period in timeseries.findall("ns:Period", ns):
-                start_time = datetime.fromisoformat(
-                    period.find("ns:timeInterval/ns:start", ns).text[:-1]
-                )
-                for point in period.findall("ns:Point", ns):
-                    position = int(point.find("ns:position", ns).text)
-                    price = float(point.find("ns:price.amount", ns).text)
-                    timestamp = start_time + timedelta(hours=position - 1)
-                    time_price_data.append({"time": timestamp, "price": price})
+    # Step 6: Parse XML response
+    print("Parsing XML response...")
+    ns = {"ns": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:3"}
+    root = ET.fromstring(response.content)
+    price_data = []
 
-        return pd.DataFrame(time_price_data)
+    timeseries = root.findall(".//ns:TimeSeries", ns)
+    print(f"Found {len(timeseries)} TimeSeries elements")
+
+    for ts in timeseries:
+        periods = ts.findall(".//ns:Period", ns)
+        for period in periods:
+            start = period.find(".//ns:start", ns).text
+            print(f"Processing period starting at {start}")
+            
+            points = period.findall(".//ns:Point", ns)
+            print(f"Found {len(points)} Point elements")
+            
+            for point in points:
+                position = int(point.find("ns:position", ns).text)
+                price = float(point.find("ns:price.amount", ns).text)
+                
+                # Convert time (remove Z and parse)
+                time = (datetime.fromisoformat(start[:-1]) + 
+                       timedelta(hours=position-1))
+                
+                price_data.append({
+                    "time": time,
+                    "price_eur": price
+                })
+
+    if not price_data:
+        error_msg = "No price data found in the API response"
+        print(error_msg)
+        error_messages.append(error_msg)
+        notify_errors(error_messages, script_name=script_name)
+        raise RuntimeError("No price data available")
+
+    print(f"Total price data points collected: {len(price_data)}")
+    df_prices = pd.DataFrame(price_data)
+
+    # Convert time to datetime and get just the date part for filtering
+    df_prices["date"] = pd.to_datetime(df_prices["time"]).dt.date
+
+    # Filter out dates that are already in the existing dataset
+    if not existing_df.empty:
+        existing_dates = pd.to_datetime(existing_df["time"]).dt.date
+        df_prices = df_prices[~df_prices["date"].isin(existing_dates)]
+        print(f"After filtering out existing dates, {len(df_prices)} price records remain")
+
+    if df_prices.empty:
+        print("No new price data to process after filtering")
+        daily_avg = existing_df.copy()
     else:
-        print(f"Failed to fetch data: {response.status_code}, {response.text}")
-        return pd.DataFrame()
+        # Drop the temporary date column used for filtering
+        df_prices = df_prices.drop(columns=["date"])
 
+        # Step 7: Fetch exchange rates
+        print("Fetching exchange rates...")
+        date_str = start_date.strftime("%Y-%m-%d")
+        url = f"https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?format=csv&startPeriod={date_str}"
+        df_rates = pd.read_csv(url, sep=";")
 
-def fetch_exchange_rates(latest_date):
-    """Fetch EUR to NOK exchange rates from the latest date."""
-    base_url = "https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP"
-    start_date = latest_date.strftime(
-        "%Y-%m-%d"
-    )  # Use the latest date as the start date
-    end_date = datetime.now().strftime("%Y-%m-%d")  # Use today's date as the end date
+        if df_rates.empty:
+            error_msg = "No exchange rate data found"
+            print(error_msg)
+            error_messages.append(error_msg)
+            notify_errors(error_messages, script_name=script_name)
+            raise RuntimeError("No exchange rate data available")
 
-    params = {
-        "startPeriod": start_date,
-        "endPeriod": end_date,
-        "format": "csv",
-        "bom": "include",
-        "locale": "no",
-    }
-    response = requests.get(base_url, params=params)
+        # Clean and prepare exchange rates data
+        df_rates["TIME_PERIOD"] = pd.to_datetime(df_rates["TIME_PERIOD"])
+        df_rates = df_rates.rename(columns={
+            "TIME_PERIOD": "time",
+            "OBS_VALUE": "eur_nok_rate"
+        })
+        df_rates = df_rates[["time", "eur_nok_rate"]]
 
-    if response.status_code == 200:
-        exchange_data = pd.read_csv(
-            io.StringIO(response.text), encoding="utf-8", sep=";"
-        )
-        exchange_data = exchange_data[["TIME_PERIOD", "OBS_VALUE"]]
-        exchange_data.columns = ["time", "kurs"]
-        exchange_data["time"] = pd.to_datetime(exchange_data["time"])
-        exchange_data["kurs"] = (
-            exchange_data["kurs"].str.replace(",", ".").astype(float)
-        )
-        return exchange_data
-    else:
-        print(f"Failed to fetch exchange rates: {response.status_code}")
-        return pd.DataFrame()
+        # Step 8: Merge prices with exchange rates
+        print("Merging price and exchange rate data...")
+        df = pd.merge(df_prices, df_rates, on="time", how="left")
+        df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
+        df["price_nok"] = df["price_eur"] * df["eur_nok_rate"]
 
+        # Step 9: Calculate daily averages
+        print("Calculating daily averages...")
+        df["date"] = pd.to_datetime(df["time"]).dt.date
+        daily_avg_new = df.groupby("date").agg({
+            "price_eur": "mean",
+            "eur_nok_rate": "mean",
+            "price_nok": "mean"
+        }).reset_index()
 
-def main():
-    # Determine the latest date in GitHub file
-    existing_data_content = download_github_file(DATA_FILE_PATH)
+        # Format the new data
+        print(f"Columns before renaming: {daily_avg_new.columns.tolist()}")
+        daily_avg_new = daily_avg_new.rename(columns={
+            "date": "time",
+            "price_eur": "EUR/MWh",
+            "eur_nok_rate": "kurs",
+            "price_nok": "NOK/MWh"
+        })
+        daily_avg_new["NOK/KWh"] = daily_avg_new["NOK/MWh"] / 1000
+        daily_avg_new["time"] = pd.to_datetime(daily_avg_new["time"])
 
-    if existing_data_content:
-        # Load the existing data from GitHub
-        existing_data = pd.read_csv(io.StringIO(existing_data_content))
-        existing_data["time"] = pd.to_datetime(existing_data["time"])
-        latest_date = existing_data["time"].max()
-        print(f"Latest date found in GitHub file: {latest_date}")
-    else:
-        # If no existing data, initialize empty DataFrame and start from a default date
-        existing_data = pd.DataFrame(
-            columns=["time", "EUR/MWh", "kurs", "NOK/MWh", "NOK/KWh"]
-        )
-        latest_date = datetime(2021, 12, 1)  # Default start date
-        print(f"No existing data found. Starting from {latest_date}.")
+        # Combine with existing data
+        print("Combining with existing data...")
+        if not existing_df.empty:
+            print(f"Columns in existing_df: {existing_df.columns.tolist()}")
+            print(f"Columns in daily_avg_new: {daily_avg_new.columns.tolist()}")
+            daily_avg = pd.concat([existing_df, daily_avg_new], ignore_index=True)
+            print(f"Combined data now has {len(daily_avg)} records")
+        else:
+            daily_avg = daily_avg_new
 
-    ### Exchange Rates
-    # Fetch exchange rates from the latest date onward
-    exchange_data = fetch_exchange_rates(latest_date)
-    if exchange_data.empty:
-        print("No new exchange rates fetched.")
-        return  # Exit if no exchange rate data is available
+        # Final sorting
+        daily_avg = daily_avg.sort_values("time")
 
-    ### Energy Prices
-    # Calculate the query start date as "latest date + 1"
-    query_start_date = latest_date + timedelta(days=1)
-    formatted_period_start = query_start_date.strftime("%Y%m%d%H%M")
-    period_end = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-    formatted_period_end = period_end.strftime("%Y%m%d%H%M")
+# Step 13: Save (and upload to GitHub if new data)
 
-    print(
-        f"Querying energy prices from {formatted_period_start} to {formatted_period_end}..."
-    )
-    new_data = fetch_energy_prices(formatted_period_start, formatted_period_end)
-    if new_data.empty:
-        print("No new energy prices fetched.")
-        return  # Exit if no energy price data is available
+# Define parameters for handle_output_data
+file_name = "strompriser.csv"
+task_name = "Klima og energi - Strompriser"
+github_folder = "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e"
+temp_folder = os.environ.get("TEMP_FOLDER")
 
-    ### Calculate Daily Average Prices
-    # Calculate the average price per day
-    new_data["date"] = new_data["time"].dt.date
-    daily_avg_prices = new_data.groupby("date")["price"].mean().reset_index()
-    daily_avg_prices.columns = ["time", "EUR/MWh"]  # Rename columns
+# Call handle_output_data function
+is_new_data = handle_output_data(daily_avg, file_name, github_folder, temp_folder, keepcsv=True)
 
-    ### Merge Daily Average Prices with Exchange Rates
-    # Convert the "time" column to datetime format
-    daily_avg_prices["time"] = pd.to_datetime(daily_avg_prices["time"])
-    exchange_data["time"] = pd.to_datetime(exchange_data["time"])
+# Write the "New Data" status to a unique log file
+log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
-    # Perform a left join to keep all rows from daily_avg_prices
-    merged_data = pd.merge(
-        daily_avg_prices,
-        exchange_data,
-        on="time",  # Merge on the 'time' column
-        how="left",  # Left join to keep all rows from daily_avg_prices
-    )
+# Write the result in a detailed format
+with open(new_data_status_file, "w", encoding="utf-8") as log_file:
+    log_file.write(f"{task_name_safe},{file_name},{'Yes' if is_new_data else 'No'}\n")
 
-    # Fill NaN values by propagating the previous value
-    merged_data["kurs"] = merged_data["kurs"].fillna(method="ffill")
+# Output results for debugging/testing
+if is_new_data:
+    print("New data detected and pushed to GitHub.")
+else:
+    print("No new data detected.")
 
-    ### Calculate Energy Prices in NOK
-    # Calculate the price in NOK per MWh
-    merged_data["NOK/MWh"] = merged_data["EUR/MWh"] * merged_data["kurs"]
-
-    # Create a column named "NOK/KWh" by dividing "NOK/MWh" by 1000
-    merged_data["NOK/KWh"] = merged_data["NOK/MWh"] / 1000
-
-    ### Finalize Columns
-    # Select relevant columns and ensure proper naming
-    merged_data = merged_data[["time", "EUR/MWh", "kurs", "NOK/MWh", "NOK/KWh"]]
-    merged_data.columns = ["time", "EUR/MWh", "kurs", "NOK/MWh", "NOK/KWh"]
-
-    ### Combine with Existing Data
-    # Append the new data to the existing data
-    combined_data = (
-        pd.concat([existing_data, merged_data])
-        .drop_duplicates(subset="time")
-        .sort_values("time")
-    )
-
-    ### Upload Combined Data to GitHub
-    upload_github_file(
-        DATA_FILE_PATH,
-        combined_data.to_csv(index=False),
-        message="Appended new energy price and exchange rate data",
-    )
-    print("Updated data successfully uploaded to GitHub.")
-
-
-if __name__ == "__main__":
-    main()
+print(f"New data status log written to {new_data_status_file}")
+print("Script completed successfully!")

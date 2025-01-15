@@ -1,47 +1,11 @@
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
-
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
-
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-
 Botid CSV data loaded successfully.
-
-Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\botid.csv
-
-[2025-01-13 13:49:53] Changes detected in the dataset.
-
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/botid.csv
-
-
-
-[2025-01-13 13:49:53] Showing up to 5 examples of changes from the last 200 rows:
-
-
-
-Row: r: 2024-01-01 | Kommunenummer: 3818 | Kommune: Tinn
-
-  Antall: 1.0 -> 223.0
-
-
-
-Row: r: 2024-01-01 | Kommunenummer: 3823 | Kommune: Fyresdal
-
-  Antall: 1.0 -> 161.0
-
-
-
-Row: r: 2024-01-01 | Kommunenummer: 3823 | Kommune: Fyresdal
-
-  Antall: 1.0 -> 28.0
-
-Email notifications disabled. Updates for botid.csv were not sent.
-
-Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\botid.csv
-
-New data detected and pushed to GitHub.
-
-New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Botid.log
-
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\botid.csv
+[2025-01-15 02:00:37] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\botid.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Botid.log
 

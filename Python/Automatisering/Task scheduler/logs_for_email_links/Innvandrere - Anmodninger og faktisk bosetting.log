@@ -1,21 +1,18 @@
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
-
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
-
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-
 Anmodninger og faktisk bosetting CSV data loaded successfully.
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
+[2025-01-15 02:01:23] Changes detected in the dataset.
+File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/anmodninger_og_faktisk_bosetting.csv
 
-Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
+[2025-01-15 02:01:23] Showing up to 5 examples of changes from the last 200 rows:
 
-[2025-01-13 13:50:21] No new data to upload. Skipping GitHub update.
-
-Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-
-No new data detected.
-
-New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Innvandrere_-_Anmodninger_og_faktisk_bosetting.log
-
+Row: r: 2024-01-01 | Kommune: Tokke
+  Antall: 12.0 -> 16.0
+Email notifications disabled. Updates for anmodninger_og_faktisk_bosetting.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Anmodninger_og_faktisk_bosetting.log
 

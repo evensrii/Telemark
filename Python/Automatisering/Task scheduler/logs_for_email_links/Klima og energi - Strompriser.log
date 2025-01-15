@@ -1,0 +1,35 @@
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
+X_FUNCTIONS_KEY loaded successfully.
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
+GITHUB_TOKEN loaded successfully.
+
+Script starting...
+
+Working with file: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
+
+Checking for existing data...
+
+Type of existing_df: <class 'pandas.core.frame.DataFrame'>
+
+Latest date in existing data: 2025-01-13 00:00:00
+
+Found 1475 existing records
+
+All prices are already up to date (up until yesterday), no new data to fetch.
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\strompriser.csv
+
+[2025-01-14 11:01:11] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\strompriser.csv
+
+No new data detected.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
+
+Script completed successfully!
+
+

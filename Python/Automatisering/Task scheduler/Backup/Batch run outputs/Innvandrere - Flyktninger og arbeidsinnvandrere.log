@@ -1,0 +1,29 @@
+[03.01.2025 15:35:10,77] Running andel_flyktninger_og_arbeidsinnvandrere.py 
+D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:153: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_pivot_arbeidsinnvandrere["Label"] = df_pivot_arbeidsinnvandrere["Kommune"]
+D:\Scripts\analyse\Telemark\Python\Queries\09_Innvandrere_og_inkludering\Innvandrerbefolkningen\andel_flyktninger_og_arbeidsinnvandrere.py:154: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_pivot_flyktninger["Label"] = df_pivot_flyktninger["Kommune"]
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
+Selected data from year 2024-01-01 00:00:00
+[2025-01-03 15:35:13] Identified key columns: Label, Kommune
+[2025-01-03 15:35:13] Value columns to compare: Andel arbeidsinnvandrere 2024
+
+[2025-01-03 15:35:13] No changes detected in the dataset.
+[2025-01-03 15:35:14] Identified key columns: Label, Kommune
+[2025-01-03 15:35:14] Value columns to compare: Andel flyktninger 2024
+
+[2025-01-03 15:35:14] No changes detected in the dataset.
+Deleted file from temp folder: andel_flyktninger.csv
+[03.01.2025 15:35:14,52] Script completed 
