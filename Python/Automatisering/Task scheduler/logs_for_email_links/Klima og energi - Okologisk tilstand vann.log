@@ -1,33 +1,20 @@
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-An unexpected error occurred: Message: session not created: Failed to create Chrome process.
-Stacktrace:
-	GetHandleVerifier [0x00007FF755B280D5+2992373]
-	(No symbol) [0x00007FF7557BBFD0]
-	(No symbol) [0x00007FF75565590A]
-	(No symbol) [0x00007FF75568F6F1]
-	(No symbol) [0x00007FF75568BC39]
-	(No symbol) [0x00007FF7556DA6AC]
-	(No symbol) [0x00007FF7556D9C90]
-	(No symbol) [0x00007FF7556CF113]
-	(No symbol) [0x00007FF75569A918]
-	(No symbol) [0x00007FF75569BA81]
-	GetHandleVerifier [0x00007FF755B86A2D+3379789]
-	GetHandleVerifier [0x00007FF755B9C32D+3468109]
-	GetHandleVerifier [0x00007FF755B90043+3418211]
-	GetHandleVerifier [0x00007FF75591C78B+847787]
-	(No symbol) [0x00007FF7557C757F]
-	(No symbol) [0x00007FF7557C2FC4]
-	(No symbol) [0x00007FF7557C315D]
-	(No symbol) [0x00007FF7557B2979]
-	BaseThreadInitThunk [0x00007FFB356BE8D7+23]
-	RtlUserThreadStart [0x00007FFB3697FBCC+44]
+Ingen driftsmeldinger dukket opp, continuing...
+   Kategori  SvÃÂ¦rt god   God  Moderat  DÃÂ¥rlig  SvÃÂ¦rt dÃÂ¥rlig
+0       Elv        0.0   0.0      0.0     0.0           0.0
+1    InnsjÃÂ¸        0.0   0.0     12.2     0.3           0.3
+2  Kystvann        4.1  40.8     51.0     0.0           4.1
+All tasks completed successfully.
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\ÃÂ¸kologisk_tilstand_vann.csv
+[2025-01-16 02:03:03] Header structure changed in ÃÂ¸kologisk_tilstand_vann.csv:
+Removed headers: moderat, dÃÂ¥rlig, svÃÂ¦rt god, god, kategori, svÃÂ¦rt dÃÂ¥rlig
+Added headers: kystvann, innsjÃÂ¸, elv, tilstand
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/ÃÂ¸kologisk_tilstand_vann.csv
+Email notifications disabled. Updates for ÃÂ¸kologisk_tilstand_vann.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\ÃÂ¸kologisk_tilstand_vann.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Okologisk_tilstand_vann.log
 
-Traceback (most recent call last):
-  File "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\04_Klima_og_energi\Ressursforvaltning\okologisk_tilstand_server_versjon.py", line 286, in <module>
-    driver.quit()
-NameError: name 'driver' is not defined
-[09.01.2025  15:26:26] Started Klima og energi - Okologisk tilstand vann (okologisk_tilstand_server_versjon.py)
-[09.01.2025  15:26:26] Script failed with error: Command 'cmd.exe /c "conda activate analyse && python "C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Queries\04_Klima_og_energi\Ressursforvaltning\okologisk_tilstand_server_versjon.py""' returned non-zero exit status 1.
