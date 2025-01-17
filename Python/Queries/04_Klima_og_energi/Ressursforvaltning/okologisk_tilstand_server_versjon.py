@@ -76,6 +76,20 @@ def collect_water_body_data(water_body_name):
     return df
 
 
+def clean_percentage(value):
+    """Clean percentage values by removing % symbol and converting comma to period."""
+    if isinstance(value, str):
+        # Remove % symbol and whitespace
+        value = value.replace('%', '').strip()
+        # Convert comma to period
+        value = value.replace(',', '.')
+        try:
+            return float(value)
+        except ValueError:
+            return 0
+    return value
+
+
 try:
     ########################## SETTING UP SELENIUM AND OPENING THE WEBSITE
 
@@ -243,10 +257,18 @@ try:
     # Replace missing values (represented by "-") with 0
     df.replace("-", 0, inplace=True)
 
+    # Clean percentage values in all numeric columns
+    for col in df.columns:
+        if col != "Tilstand":
+            df[col] = df[col].apply(clean_percentage)
+
     # Melt the dataframe to create a long-form DataFrame
     df_melted = pd.melt(
         df, id_vars=["Tilstand"], var_name="Kategori", value_name="Andel"
     )
+
+    # Clean the "Andel" column after melting
+    df_melted["Andel"] = df_melted["Andel"].apply(clean_percentage)
 
     # Pivot the DataFrame to restructure it with "Kategori" as the index
     df_pivoted = df_melted.pivot(
@@ -257,19 +279,11 @@ try:
     df_pivoted.columns.name = None
 
     # Reorder the columns for a specific layout
-    df_pivoted = df_pivoted[
-        ["Kategori", "Svært god", "God", "Moderat", "Dårlig", "Svært dårlig"]
-    ]
+    df_pivoted = df_pivoted.loc[:, ["Kategori", "Svært god", "God", "Moderat", "Dårlig", "Svært dårlig"]]
 
     # Clean up numeric columns
     for col in df_pivoted.columns[1:]:
-        df_pivoted[col] = df_pivoted[col].str.replace(
-            "%", "", regex=False
-        )  # Remove "%"
-        df_pivoted[col] = df_pivoted[col].str.replace(
-            ",", ".", regex=False
-        )  # Replace ","
-        df_pivoted[col] = pd.to_numeric(df_pivoted[col])  # Convert to numeric type
+        df_pivoted[col] = df_pivoted[col].apply(clean_percentage)
 
     # Fill any NaN values with 0
     df_pivoted.fillna(0, inplace=True)
@@ -301,7 +315,7 @@ github_folder = "Data/04_Klima og ressursforvaltning/Ressursforvaltning"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df_pivoted, file_name, github_folder, temp_folder, keepcsv=True)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
