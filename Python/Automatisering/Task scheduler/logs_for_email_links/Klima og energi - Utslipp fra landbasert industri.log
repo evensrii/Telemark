@@ -11,34 +11,12 @@ NACE Kode:
  '24.102' '20.160' '17.120' '20.140' '24.421' '23.510' '38.220' '10.510'
  '46.693']
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-[2025-01-17 16:56:17] Changes detected in the dataset.
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv
-
-[2025-01-17 16:56:17] Showing up to 5 examples of changes from the last 200 rows:
-
-Row: Kommune: KragerÃÂ¸ | r: 2016-01-01
-  AnleggId: 5651 -> 5524
-
-Row: Kommune: KragerÃÂ¸ | r: 2016-01-01
-  Anleggsnavn: Ineos bamble -> Tpi norway as
-
-Row: Kommune: KragerÃÂ¸ | r: 2016-01-01
-  NACE Kode: 20.160 -> 21.200
-
-Row: Kommune: KragerÃÂ¸ | r: 2016-01-01
-  Org.nr.: 872383352 -> 873107812
-
-Row: Kommune: KragerÃÂ¸ | r: 2016-01-01
-  rlig utslipp til luft: 12911.35 -> 260.75
-
-Total changes found in examined rows: 999
-(Showing first 5 changes only)
-Email notifications disabled. Updates for norskeutslipp_detaljert_telemark.csv were not sent.
+[2025-01-18 02:02:28] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-[2025-01-17 16:56:19] No new data to upload. Skipping GitHub update.
+[2025-01-18 02:02:28] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-New data detected in norskeutslipp_detaljert_telemark.csv and pushed to GitHub.
+No new data detected in norskeutslipp_detaljert_telemark.csv.
 No new data detected in norskeutslipp_everviz.csv.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Utslipp_fra_landbasert_industri.log
 
