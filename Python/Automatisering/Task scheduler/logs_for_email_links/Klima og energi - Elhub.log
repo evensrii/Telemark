@@ -2,9 +2,12 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2025-01-17 16:57:33] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
-[2025-01-17 16:57:33] GITHUB_TOKEN loaded successfully.
-[2025-01-17 16:57:45] Latest date in GitHub files: 2025-01-15
+[2025-01-18 02:03:40] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+[2025-01-18 02:03:40] GITHUB_TOKEN loaded successfully.
+[2025-01-18 02:03:52] Latest date in GitHub files: 2025-01-15
+[2025-01-18 02:03:52] Querying data for 2025-01-16
+[2025-01-18 02:03:52] Error in main: 'Tid'
 
-[2025-01-17 16:57:45] No new dates to query.
 
+Errors:
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Forbruk/Elhub/elhub.py` failed. (See above for error)
