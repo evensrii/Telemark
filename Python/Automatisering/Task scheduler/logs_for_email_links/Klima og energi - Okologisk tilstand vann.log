@@ -4,13 +4,35 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Ingen driftsmeldinger dukket opp, continuing...
    Kategori  SvÃÂ¦rt god   God  Moderat  DÃÂ¥rlig  SvÃÂ¦rt dÃÂ¥rlig
-0       Elv       20.4  65.6     11.2     1.7           1.1
-1    InnsjÃÂ¸       20.5  66.7     12.2     0.3           0.3
+0       Elv        0.0   0.0      0.0     0.0           0.0
+1    InnsjÃÂ¸        0.0   0.0      0.0     0.0           0.0
 2  Kystvann        4.1  40.8     51.0     0.0           4.1
 All tasks completed successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\ÃÂ¸kologisk_tilstand_vann.csv
-[2025-01-19 02:03:00] No new data to upload. Skipping GitHub update.
+[2025-01-20 02:02:57] Changes detected in the dataset.
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/ÃÂ¸kologisk_tilstand_vann.csv
+
+[2025-01-20 02:02:57] Showing up to 5 examples of changes:
+
+Row: 
+  Drlig: 1.7 -> 0.0
+
+Row: 
+  God: 65.6 -> 0.0
+
+Row: 
+  Moderat: 11.2 -> 0.0
+
+Row: 
+  Svrt drlig: 1.1 -> 0.0
+
+Row: 
+  Svrt god: 20.4 -> 0.0
+
+Total changes found in examined rows: 10
+(Showing first 5 changes only)
+Email notifications disabled. Updates for ÃÂ¸kologisk_tilstand_vann.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\ÃÂ¸kologisk_tilstand_vann.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Okologisk_tilstand_vann.log
 
