@@ -148,24 +148,35 @@ else:
 
         # Step 7: Fetch exchange rates
         print("Fetching exchange rates...")
-        date_str = start_date.strftime("%Y-%m-%d")
-        url = f"https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?format=csv&startPeriod={date_str}"
-        df_rates = pd.read_csv(url, sep=";")
-
-        if df_rates.empty:
-            error_msg = "No exchange rate data found"
-            print(error_msg)
-            error_messages.append(error_msg)
-            notify_errors(error_messages, script_name=script_name)
-            raise RuntimeError("No exchange rate data available")
-
-        # Clean and prepare exchange rates data
-        df_rates["TIME_PERIOD"] = pd.to_datetime(df_rates["TIME_PERIOD"])
-        df_rates = df_rates.rename(columns={
-            "TIME_PERIOD": "time",
-            "OBS_VALUE": "eur_nok_rate"
-        })
-        df_rates = df_rates[["time", "eur_nok_rate"]]
+        try:
+            date_str = start_date.strftime("%Y-%m-%d")
+            url = f"https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?format=csv&startPeriod={date_str}"
+            df_rates = pd.read_csv(url, sep=";")
+            
+            # Clean and prepare exchange rates data
+            df_rates["TIME_PERIOD"] = pd.to_datetime(df_rates["TIME_PERIOD"])
+            df_rates = df_rates.rename(columns={
+                "TIME_PERIOD": "time",
+                "OBS_VALUE": "eur_nok_rate"
+            })
+            df_rates = df_rates[["time", "eur_nok_rate"]]
+        except:
+            print("Could not fetch new exchange rates, using latest available rate...")
+            # Get the latest exchange rate from existing data
+            if not existing_df.empty:
+                latest_rate = existing_df.iloc[-1]["kurs"]
+                # Create a dataframe with the latest rate for all new dates
+                dates = pd.date_range(start=start_date, end=end_date, freq='D')
+                df_rates = pd.DataFrame({
+                    'time': dates,
+                    'eur_nok_rate': [latest_rate] * len(dates)
+                })
+            else:
+                error_msg = "No existing data to get latest exchange rate from"
+                print(error_msg)
+                error_messages.append(error_msg)
+                notify_errors(error_messages, script_name=script_name)
+                raise RuntimeError(error_msg)
 
         # Step 8: Merge prices with exchange rates
         print("Merging price and exchange rate data...")

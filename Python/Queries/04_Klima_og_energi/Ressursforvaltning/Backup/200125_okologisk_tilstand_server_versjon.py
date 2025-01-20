@@ -31,127 +31,62 @@ error_messages = []
 
 
 def collect_water_body_data(water_body_name):
-    print(f"\nCollecting data for {water_body_name}...")
-    
-    # Add multiple retries for finding the table
-    max_retries = 3
-    for attempt in range(max_retries):
-        try:
-            # Locate the table element using its class attribute
-            table = wait.until(
-                EC.presence_of_element_located(
-                    (By.XPATH, "//table[contains(@class, '_table_i0c5l_1')]")
-                )
-            )
-            
-            # Wait for table to be visible and interactable
-            wait.until(EC.visibility_of(table))
-            
-            # Additional wait to ensure table is fully loaded
-            driver.execute_script("return document.readyState") == "complete"
-            
-            # Wait until the table contains multiple rows (ensures the table is fully loaded)
-            rows = wait.until(lambda d: table.find_elements(By.XPATH, ".//tbody/tr"))
-            if len(rows) <= 3:
-                if attempt < max_retries - 1:
-                    print(f"Attempt {attempt + 1}: Table not fully loaded (only {len(rows)} rows). Retrying...")
-                    driver.refresh()
-                    continue
-                else:
-                    raise Exception(f"Table not fully loaded after {max_retries} attempts")
-            
-            # Extract header names from the second row of <thead>
-            header_row = wait.until(
-                EC.presence_of_element_located((By.XPATH, ".//thead/tr[2]"))
-            )
-            header_names = [th.text for th in header_row.find_elements(By.TAG_NAME, "th")[:3]]
-            print(f"Headers found: {header_names}")
-            
-            # Extract data from the <tbody> section of the table
-            data_rows = table.find_elements(By.XPATH, ".//tbody/tr")
-            print(f"Number of rows found: {len(data_rows)}")
-            
-            data = []
-            for row in data_rows:
-                try:
-                    # Wait for row elements to be present
-                    wait.until(EC.presence_of_element_located((By.TAG_NAME, "th")))
-                    wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, "td")))
-                    
-                    # Get the header (state) of the row
-                    row_header = row.find_element(By.TAG_NAME, "th").text.strip()
-                    if not row_header:
-                        print(f"Warning: Empty row header found, skipping row")
-                        continue
-                        
-                    # Get the first two data points in the row
-                    cells = row.find_elements(By.TAG_NAME, "td")[:2]
-                    first_two_data = [td.text.strip() for td in cells]
-                    
-                    # Verify we have valid data
-                    if len(first_two_data) < 2 or not all(first_two_data):
-                        print(f"Warning: Invalid data in row: {first_two_data}")
-                        continue
-                        
-                    print(f"Row data - Header: {row_header}, Values: {first_two_data}")
-                    data.append([row_header] + first_two_data)
-                except Exception as e:
-                    print(f"Error processing row: {str(e)}")
-                    continue
-            
-            if not data:
-                if attempt < max_retries - 1:
-                    print("No valid data collected. Retrying...")
-                    driver.refresh()
-                    continue
-                else:
-                    raise Exception("No valid data collected after all retries")
-            
-            # Create a DataFrame from the extracted data
-            df = pd.DataFrame(data, columns=["Tilstand"] + header_names[:2])
-            print(f"\nRaw DataFrame for {water_body_name}:")
-            print(df)
-            
-            # Drop the second column (optional step based on requirement)
-            df.drop(df.columns[1], axis=1, inplace=True)
-            
-            # Rename columns to include the specific water body name
-            df.columns = ["Tilstand", water_body_name]
-            
-            # Remove the last row (if necessary, for cleaning)
-            df = df[:-1]
-            
-            print(f"\nFinal DataFrame for {water_body_name}:")
-            print(df)
-            
-            return df
-            
-        except Exception as e:
-            print(f"Attempt {attempt + 1} failed: {str(e)}")
-            if attempt < max_retries - 1:
-                print("Refreshing page and retrying...")
-                driver.refresh()
-                continue
-            else:
-                raise Exception(f"Failed to collect data for {water_body_name} after {max_retries} attempts")
+    # Locate the table element using its class attribute
+    table = wait.until(
+        EC.presence_of_element_located(
+            # Use XPath to find the table by class name
+            (By.XPATH, "//table[contains(@class, '_table_i0c5l_1')]")
+        )
+    )
+
+    # Wait until the table contains multiple rows (ensures the table is fully loaded)
+    wait.until(lambda d: len(table.find_elements(By.XPATH, ".//tbody/tr")) > 3)
+
+    # Extract header names from the second row of <thead> (skip the first empty header row)
+    header_row = table.find_element(By.XPATH, ".//thead/tr[2]")
+    header_names = [
+        th.text for th in header_row.find_elements(By.TAG_NAME, "th")[:3]
+    ]  # Extract the first three headers
+
+    # Extract data from the <tbody> section of the table
+    data_rows = table.find_elements(By.XPATH, ".//tbody/tr")
+    data = []
+    for row in data_rows:
+        # Get the header (state) of the row (e.g., 'Svært god', 'God')
+        row_header = row.find_element(By.TAG_NAME, "th").text
+        # Get the first two data points in the row
+        first_two_data = [td.text for td in row.find_elements(By.TAG_NAME, "td")[:2]]
+        # Append the row header and data to the list
+        data.append([row_header] + first_two_data)
+
+    # Create a DataFrame from the extracted data
+    df = pd.DataFrame(
+        data, columns=["Tilstand"] + header_names[:2]  # Only use relevant headers
+    )
+
+    # Drop the second column (optional step based on requirement)
+    df.drop(df.columns[1], axis=1, inplace=True)
+
+    # Rename columns to include the specific water body name
+    df.columns = ["Tilstand", water_body_name]
+
+    # Remove the last row (if necessary, for cleaning)
+    df = df[:-1]
+
+    return df
 
 
 def clean_percentage(value):
     """Clean percentage values by removing % symbol and converting comma to period."""
-    print(f"Cleaning value: {value} (type: {type(value)})")
     if isinstance(value, str):
         # Remove % symbol and whitespace
         value = value.replace('%', '').strip()
         # Convert comma to period
         value = value.replace(',', '.')
         try:
-            result = float(value)
-            print(f"Converted to: {result}")
-            return result
+            return float(value)
         except ValueError:
-            print(f"Could not convert {value} to float, returning 0")
             return 0
-    print(f"Value is not a string, returning as is: {value}")
     return value
 
 
@@ -159,7 +94,7 @@ try:
     ########################## SETTING UP SELENIUM AND OPENING THE WEBSITE
 
     options = Options()
-    options.add_argument("--headless=new")  # Run in headless mode
+    #options.add_argument("--headless=new")  # Run in headless mode
 
     # Initialize the WebDriver
     driver = webdriver.Chrome(options=options)
