@@ -254,7 +254,7 @@ def save_data_by_year_to_github(df):
             file_name,
             github_folder,
             temp_folder,
-            keepcsv=False
+            keepcsv=True
         )
         
         if is_updated:

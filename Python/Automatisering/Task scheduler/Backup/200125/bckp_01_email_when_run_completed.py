@@ -263,8 +263,8 @@ def format_log_as_html_table(log_content):
     for row_list in [rows_ja, rows_other, rows_feilet]:
         row_list.sort(key=sort_by_last_commit, reverse=True)  # reverse=True for most recent first
 
-    # Combine rows: "Ja" first, then "Feilet", then successful runs without new data
-    all_rows = rows_ja + rows_feilet + rows_other
+    # Combine rows: "Ja" first, then successful runs without new data, then "Feilet" at the bottom
+    all_rows = rows_ja + rows_other + rows_feilet
     
     # Create HTML rows
     html_rows = []

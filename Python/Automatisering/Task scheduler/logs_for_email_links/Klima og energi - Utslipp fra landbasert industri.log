@@ -7,16 +7,38 @@ All tasks completed successfully.
 Unique NACE codes in the dataset:
 
 NACE Kode:
-['46.739' '23.410' '21.200' '30.113' '11.070' '20.130' '20.160' '20.140'
- '20.150' '17.120' '24.421' '23.510' '24.102' '46.693' '38.220' '10.510'
- '24.510']
+['20.130' '38.220' '10.510' '20.150' '46.739' '23.410' '21.200' '30.113'
+ '11.070' '24.510' '20.160' '20.140' '17.120' '46.693' '24.421' '23.510'
+ '24.102']
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-[2025-01-17 02:02:26] No new data to upload. Skipping GitHub update.
+[2025-01-20 02:02:21] Changes detected in the dataset.
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv
+
+[2025-01-20 02:02:21] Showing up to 5 examples of changes from the last 200 rows:
+
+Row: r: 2003-01-01 | Kommune: KragerÃÂ¸
+  AnleggId: 5313 -> 5524
+
+Row: r: 2003-01-01 | Kommune: KragerÃÂ¸
+  Anleggsnavn: Inovyn norge avd. pvc-fabrikk porsgrunn -> Tpi norway as
+
+Row: r: 2003-01-01 | Kommune: KragerÃÂ¸
+  NACE Kode: 20.160 -> 21.200
+
+Row: r: 2003-01-01 | Kommune: KragerÃÂ¸
+  Org.nr.: 973142844 -> 873107812
+
+Row: r: 2003-01-01 | Kommune: KragerÃÂ¸
+  rlig utslipp til luft: 990.0 -> 337.27
+
+Total changes found in examined rows: 1000
+(Showing first 5 changes only)
+Email notifications disabled. Updates for norskeutslipp_detaljert_telemark.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-[2025-01-17 02:02:27] No new data to upload. Skipping GitHub update.
+[2025-01-20 02:02:22] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-No new data detected in norskeutslipp_detaljert_telemark.csv.
+New data detected in norskeutslipp_detaljert_telemark.csv and pushed to GitHub.
 No new data detected in norskeutslipp_everviz.csv.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Utslipp_fra_landbasert_industri.log
 
