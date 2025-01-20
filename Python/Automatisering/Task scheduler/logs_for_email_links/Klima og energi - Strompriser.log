@@ -8,15 +8,17 @@ Checking for existing data...
 Type of existing_df: <class 'pandas.core.frame.DataFrame'>
 Latest date in existing data: 2025-01-17 00:00:00
 Found 1479 existing records
-Will fetch data from 2025-01-18 00:00:00 to 2025-01-18 00:00:00 (yesterday)
+Will fetch data from 2025-01-18 00:00:00 to 2025-01-19 00:00:00 (yesterday)
 Fetching energy prices from ENTSO-E...
 Successfully received response from ENTSO-E
 Parsing XML response...
-Found 1 TimeSeries elements
+Found 2 TimeSeries elements
 Processing period starting at 2025-01-17T23:00Z
 Found 24 Point elements
-Total price data points collected: 24
-After filtering out existing dates, 23 price records remain
+Processing period starting at 2025-01-18T23:00Z
+Found 24 Point elements
+Total price data points collected: 48
+After filtering out existing dates, 47 price records remain
 Fetching exchange rates...
 
 
