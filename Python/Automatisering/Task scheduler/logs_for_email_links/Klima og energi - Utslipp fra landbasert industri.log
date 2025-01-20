@@ -7,36 +7,36 @@ All tasks completed successfully.
 Unique NACE codes in the dataset:
 
 NACE Kode:
-['20.130' '17.120' '38.220' '24.421' '10.510' '23.510' '20.160' '20.150'
- '46.693' '46.739' '23.410' '21.200' '30.113' '11.070' '24.102' '20.140'
- '24.510']
+['20.130' '38.220' '10.510' '20.150' '46.739' '23.410' '21.200' '30.113'
+ '11.070' '24.510' '20.160' '20.140' '17.120' '46.693' '24.421' '23.510'
+ '24.102']
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-[2025-01-19 02:02:22] Changes detected in the dataset.
+[2025-01-20 02:02:21] Changes detected in the dataset.
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv
 
-[2025-01-19 02:02:22] Showing up to 5 examples of changes from the last 200 rows:
+[2025-01-20 02:02:21] Showing up to 5 examples of changes from the last 200 rows:
 
-Row: Kommune: Porsgrunn | r: 2014-01-01
-  AnleggId: 5524 -> 5313
+Row: r: 2003-01-01 | Kommune: KragerÃÂ¸
+  AnleggId: 5313 -> 5524
 
-Row: Kommune: Porsgrunn | r: 2014-01-01
-  Anleggsnavn: Tpi norway as -> Inovyn norge avd. pvc-fabrikk porsgrunn
+Row: r: 2003-01-01 | Kommune: KragerÃÂ¸
+  Anleggsnavn: Inovyn norge avd. pvc-fabrikk porsgrunn -> Tpi norway as
 
-Row: Kommune: Porsgrunn | r: 2014-01-01
-  NACE Kode: 21.200 -> 20.160
+Row: r: 2003-01-01 | Kommune: KragerÃÂ¸
+  NACE Kode: 20.160 -> 21.200
 
-Row: Kommune: Porsgrunn | r: 2014-01-01
-  Org.nr.: 873107812 -> 973142844
+Row: r: 2003-01-01 | Kommune: KragerÃÂ¸
+  Org.nr.: 973142844 -> 873107812
 
-Row: Kommune: Porsgrunn | r: 2014-01-01
-  rlig utslipp til luft: 260.75 -> 990.0
+Row: r: 2003-01-01 | Kommune: KragerÃÂ¸
+  rlig utslipp til luft: 990.0 -> 337.27
 
-Total changes found in examined rows: 995
+Total changes found in examined rows: 1000
 (Showing first 5 changes only)
 Email notifications disabled. Updates for norskeutslipp_detaljert_telemark.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-[2025-01-19 02:02:25] No new data to upload. Skipping GitHub update.
+[2025-01-20 02:02:22] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
 New data detected in norskeutslipp_detaljert_telemark.csv and pushed to GitHub.
 No new data detected in norskeutslipp_everviz.csv.
