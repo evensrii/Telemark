@@ -6,52 +6,34 @@ Script starting...
 Working with file: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
 Checking for existing data...
 Type of existing_df: <class 'pandas.core.frame.DataFrame'>
-Latest date in existing data: 2025-01-17 00:00:00
-Found 1479 existing records
-Will fetch data from 2025-01-18 00:00:00 to 2025-01-19 00:00:00 (yesterday)
+Latest date in existing data: 2025-01-19 00:00:00
+Found 1481 existing records
+Will fetch data from 2025-01-20 00:00:00 to 2025-01-20 00:00:00 (yesterday)
 Fetching energy prices from ENTSO-E...
 Successfully received response from ENTSO-E
 Parsing XML response...
-Found 2 TimeSeries elements
-Processing period starting at 2025-01-17T23:00Z
+Found 1 TimeSeries elements
+Processing period starting at 2025-01-19T23:00Z
 Found 24 Point elements
-Processing period starting at 2025-01-18T23:00Z
-Found 24 Point elements
-Total price data points collected: 48
-After filtering out existing dates, 47 price records remain
+Total price data points collected: 24
+After filtering out existing dates, 23 price records remain
 Fetching exchange rates...
+Merging price and exchange rate data...
+Calculating daily averages...
+Columns before renaming: ['date', 'price_eur', 'eur_nok_rate', 'price_nok']
+Combining with existing data...
+Columns in existing_df: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh', 'NOK/KWh']
+Columns in daily_avg_new: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh', 'NOK/KWh']
+Combined data now has 1482 records
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
+[2025-01-21 02:03:32] Row count changed: 1481 -> 1482
 
+Added rows (showing up to 10):
+EUR/MWh: 194.5308695652174, NOK/KWh: 2.2889474767391307, NOK/MWh: 2288.9474767391307, kurs: 11.7665, time: 2025-01-20
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
+Email notifications disabled. Updates for strompriser.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
+Script completed successfully!
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 153, in <module>
-    df_rates = pd.read_csv(url, sep=";")
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\parsers\readers.py", line 912, in read_csv
-    return _read(filepath_or_buffer, kwds)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\parsers\readers.py", line 577, in _read
-    parser = TextFileReader(filepath_or_buffer, **kwds)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\parsers\readers.py", line 1407, in __init__
-    self._engine = self._make_engine(f, self.engine)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\parsers\readers.py", line 1661, in _make_engine
-    self.handles = get_handle(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 716, in get_handle
-    ioargs = _get_filepath_or_buffer(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 368, in _get_filepath_or_buffer
-    with urlopen(req_info) as req:
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 270, in urlopen
-    return urllib.request.urlopen(*args, **kwargs)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\urllib\request.py", line 222, in urlopen
-    return opener.open(url, data, timeout)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\urllib\request.py", line 531, in open
-    response = meth(req, response)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\urllib\request.py", line 640, in http_response
-    response = self.parent.error(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\urllib\request.py", line 569, in error
-    return self._call_chain(*args)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\urllib\request.py", line 502, in _call_chain
-    result = func(*args)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\urllib\request.py", line 649, in http_error_default
-    raise HTTPError(req.full_url, code, msg, hdrs, fp)
-urllib.error.HTTPError: HTTP Error 404: 
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py` failed. (See above for error)
