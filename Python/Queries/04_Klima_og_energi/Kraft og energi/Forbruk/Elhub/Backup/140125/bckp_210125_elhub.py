@@ -112,28 +112,15 @@ def query_elhub(date):
     response = requests.get(url)
     data = response.json()
     
-    # Debug prints
-    print(f"{get_timestamp()} API Response status code: {response.status_code}")
-    
     if not data.get("data"):
         print(f"{get_timestamp()} No data available for {date}")
         return pd.DataFrame()  # Return empty DataFrame if no data
 
     df_data = pd.json_normalize(data["data"])
-    
-    # Check if consumption data is empty
-    if df_data.empty or all(df_data['attributes.consumptionPerGroupMunicipalityHour'].apply(lambda x: not x)):
-        print(f"{get_timestamp()} No consumption data available for {date}")
-        return pd.DataFrame()
-    
     df_data_expanded = df_data.explode("attributes.consumptionPerGroupMunicipalityHour")
     df_consumption = pd.json_normalize(
         df_data_expanded["attributes.consumptionPerGroupMunicipalityHour"]
     )
-    
-    if df_consumption.empty:
-        print(f"{get_timestamp()} No consumption records found for {date}")
-        return pd.DataFrame()
 
     df_data_expanded = df_data_expanded.reset_index(drop=True)
     df_consumption = df_consumption.reset_index(drop=True)
@@ -158,10 +145,6 @@ def query_elhub(date):
         & (df_combined["attributes.municipalityNumber"].astype(int) < 4200)
     ]
     
-    if df_telemark.empty:
-        print(f"{get_timestamp()} No Telemark data found for {date}")
-        return pd.DataFrame()
-        
     return df_telemark
 
 
@@ -301,10 +284,10 @@ def query_and_append_new_data():
             for date in dates_to_query:
                 print(f"{get_timestamp()} Querying data for {date.date()}")
                 df = query_elhub(date.date())  # Pass date.date() to get YYYY-MM-DD format
-                if not df.empty:  # Only append if we got data
+                if df is not None and not df.empty:
                     all_data.append(df)
 
-            if all_data:  # Only process if we have any data
+            if all_data:
                 # Combine all the new data
                 combined_df = pd.concat(all_data, ignore_index=True)
                 # Process the data
