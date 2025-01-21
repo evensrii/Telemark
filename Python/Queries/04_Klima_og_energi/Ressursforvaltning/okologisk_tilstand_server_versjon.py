@@ -12,6 +12,7 @@ from io import BytesIO
 from io import StringIO
 import pandas as pd
 from pyjstat import pyjstat
+import time
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import delete_files_in_temp_folder
@@ -37,6 +38,9 @@ def collect_water_body_data(water_body_name):
     max_retries = 3
     for attempt in range(max_retries):
         try:
+            # Force UTF-8 encoding in webdriver
+            driver.execute_script("document.charset='utf-8';")
+            
             # Locate the table element using its class attribute
             table = wait.until(
                 EC.presence_of_element_located(
@@ -56,6 +60,7 @@ def collect_water_body_data(water_body_name):
                 if attempt < max_retries - 1:
                     print(f"Attempt {attempt + 1}: Table not fully loaded (only {len(rows)} rows). Retrying...")
                     driver.refresh()
+                    time.sleep(2)  # Add small delay before retry
                     continue
                 else:
                     raise Exception(f"Table not fully loaded after {max_retries} attempts")
@@ -83,16 +88,32 @@ def collect_water_body_data(water_body_name):
                     if not row_header:
                         print(f"Warning: Empty row header found, skipping row")
                         continue
-                        
+                    
                     # Get the first two data points in the row
                     cells = row.find_elements(By.TAG_NAME, "td")[:2]
                     first_two_data = [td.text.strip() for td in cells]
                     
+                    # Handle dash values
+                    if first_two_data[1] == '-':
+                        # Try to get the value from the first column if second column is dash
+                        if first_two_data[0] != '-':
+                            try:
+                                count = int(first_two_data[0])
+                                total_rows = sum(int(row.find_elements(By.TAG_NAME, "td")[0].text.strip()) 
+                                               for row in data_rows 
+                                               if row.find_elements(By.TAG_NAME, "td")[0].text.strip() != '-')
+                                percentage = f"{(count/total_rows)*100:.1f} %"
+                                first_two_data[1] = percentage
+                            except (ValueError, ZeroDivisionError):
+                                first_two_data[1] = '0,0 %'
+                        else:
+                            first_two_data[1] = '0,0 %'
+                    
                     # Verify we have valid data
-                    if len(first_two_data) < 2 or not all(first_two_data):
+                    if len(first_two_data) < 2 or not all(x.strip() for x in first_two_data):
                         print(f"Warning: Invalid data in row: {first_two_data}")
                         continue
-                        
+                    
                     print(f"Row data - Header: {row_header}, Values: {first_two_data}")
                     data.append([row_header] + first_two_data)
                 except Exception as e:
@@ -103,6 +124,7 @@ def collect_water_body_data(water_body_name):
                 if attempt < max_retries - 1:
                     print("No valid data collected. Retrying...")
                     driver.refresh()
+                    time.sleep(2)  # Add small delay before retry
                     continue
                 else:
                     raise Exception("No valid data collected after all retries")
@@ -131,6 +153,7 @@ def collect_water_body_data(water_body_name):
             if attempt < max_retries - 1:
                 print("Refreshing page and retrying...")
                 driver.refresh()
+                time.sleep(2)  # Add small delay before retry
                 continue
             else:
                 raise Exception(f"Failed to collect data for {water_body_name} after {max_retries} attempts")
