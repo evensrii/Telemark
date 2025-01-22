@@ -219,22 +219,140 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-
 # Drop columns "region", "sektor", "statistikkvariabel"
 df_sysselsatte_over_tid = df_sysselsatte_over_tid.drop(columns=["region", "sektor", "statistikkvariabel"])
 
 # Rename to "År" and "Antall sysselsatte"
-df_sysselsatte_over_tid = df_sysselsatte_over_tid.rename(columns={"tid": "År", "value": "Antall sysselsatte"})
+df_sysselsatte_over_tid = df_sysselsatte_over_tid.rename(columns={"år": "År", "value": "Antall sysselsatte"})
+
+# Calculate year-over-year percentage change
+df_sysselsatte_over_tid['Endring fra året før (%)'] = (df_sysselsatte_over_tid['Antall sysselsatte'].pct_change() * 100).round(1)
+
+# Create period column (e.g., "2015-2016")
+df_sysselsatte_over_tid['Periode'] = df_sysselsatte_over_tid['År'].astype(str).shift(1) + '-' + df_sysselsatte_over_tid['År'].astype(str)
+
+# Drop the first row since it won't have a previous year for comparison
+df_sysselsatte_over_tid = df_sysselsatte_over_tid.iloc[1:].copy()
+
+# Drop rows "År", "Antall sysselsatte"
+df_sysselsatte_over_tid = df_sysselsatte_over_tid.drop(columns=["År", "Antall sysselsatte"])
+
+# Move "Periode" column to the front
+df_sysselsatte_over_tid = df_sysselsatte_over_tid[['Periode', 'Endring fra året før (%)']]
+
+# Set column names to "Periode" and "Telemark"
+df_sysselsatte_over_tid.columns = ['Periode', 'Telemark']
+
+print("\nEndring i antall sysselsatte fra år til år:")
+print(df_sysselsatte_over_tid[['Periode', 'Telemark']])
+
+
+################## ARBEIDSPLASSER (SYSSELSATTE PERSONER ETTER ARBEIDSSTED) I LANDET
+
+# Spørring for å hente ut data fra SSB
+payload_sysselsatte_over_tid_landet = {
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "vs:Landet",
+        "values": [
+          "0"
+        ]
+      }
+    },
+    {
+      "code": "Sektor",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "ALLE"
+        ]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "SysselEtterArbste"
+        ]
+      }
+    },
+    {
+      "code": "Tid",
+      "selection": {
+        "filter": "item",
+        "values": years_str
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}
+
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
+
+try:
+    df_sysselsatte_over_tid_landet = fetch_data(
+        url=POST_URL_sysselsatte,
+        payload=payload_sysselsatte_over_tid_landet,  # The JSON payload for POST requests. If None, a GET request is used.
+        error_messages=error_messages,
+        query_name="Sysselsatte over tid, landet",
+        response_type="json",  # The expected response type, either 'json' or 'csv'.
+        # delimiter=";", # The delimiter for CSV data (default: ';').
+        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+
+# Process national data the same way as Telemark data
+# Drop columns "region", "sektor", "statistikkvariabel"
+df_sysselsatte_over_tid_landet = df_sysselsatte_over_tid_landet.drop(columns=["region", "sektor", "statistikkvariabel"])
+
+# Rename to "År" and "Antall sysselsatte"
+df_sysselsatte_over_tid_landet = df_sysselsatte_over_tid_landet.rename(columns={"år": "År", "value": "Antall sysselsatte"})
+
+# Calculate year-over-year percentage change
+df_sysselsatte_over_tid_landet['Endring fra året før (%)'] = (df_sysselsatte_over_tid_landet['Antall sysselsatte'].pct_change() * 100).round(1)
+
+# Create period column (e.g., "2015-2016")
+df_sysselsatte_over_tid_landet['Periode'] = df_sysselsatte_over_tid_landet['År'].astype(str).shift(1) + '-' + df_sysselsatte_over_tid_landet['År'].astype(str)
+
+# Drop the first row since it won't have a previous year for comparison
+df_sysselsatte_over_tid_landet = df_sysselsatte_over_tid_landet.iloc[1:].copy()
+
+# Drop rows "År", "Antall sysselsatte"
+df_sysselsatte_over_tid_landet = df_sysselsatte_over_tid_landet.drop(columns=["År", "Antall sysselsatte"])
+
+# Move "Periode" column to the front
+df_sysselsatte_over_tid_landet = df_sysselsatte_over_tid_landet[['Periode', 'Endring fra året før (%)']]
+
+# Set column names to "Periode" and "Landet"
+df_sysselsatte_over_tid_landet.columns = ['Periode', 'Landet']
+
+
+
+# Merge Telemark and national data
+df_combined = df_sysselsatte_over_tid.merge(df_sysselsatte_over_tid_landet[['Periode', 'Landet']], on='Periode')
+
+print("\nEndring i antall sysselsatte (%) fra år til år (Telemark og landet):")
+print(df_combined)
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "arbeidsplasser_over_tid.csv"
+file_name = "endring_i_arbeidsplasser_over_tid.csv"
 task_name = "Arbeid og naeringsliv - Arbeidsplasser over tid"
 github_folder = "Data/03_Arbeid og næringsliv/Sysselsetting"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df_sysselsatte_over_tid, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df_combined, file_name, github_folder, temp_folder, keepcsv=True)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
