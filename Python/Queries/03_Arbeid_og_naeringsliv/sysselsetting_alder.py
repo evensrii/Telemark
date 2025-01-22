@@ -555,7 +555,7 @@ print(df_comparison)
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "sysselsatte_etter_aldersgruppe.csv"
-task_name = "Sysselsatte etter aldersgruppe"
+task_name = "Arbeid og naeringsliv - Sysselsatte etter aldersgruppe"
 github_folder = "Data/03_Arbeid og næringsliv/Sysselsetting"
 temp_folder = os.environ.get("TEMP_FOLDER")
 

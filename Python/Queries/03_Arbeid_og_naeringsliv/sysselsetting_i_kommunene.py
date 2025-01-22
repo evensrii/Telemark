@@ -172,7 +172,7 @@ df["Label"] = df["Kommune"]
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "sysselsetting_i_kommunene.csv"
-task_name = "Sysselsatte i kommunene"
+task_name = "Arbeid og naeringsliv - Sysselsatte i kommunene"
 github_folder = "Data/03_Arbeid og næringsliv/Sysselsetting"
 temp_folder = os.environ.get("TEMP_FOLDER")
 

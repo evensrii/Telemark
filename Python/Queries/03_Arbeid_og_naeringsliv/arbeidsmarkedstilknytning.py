@@ -166,6 +166,8 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
+print("\nArbeidsmarkedstilknytning i Telemark:")
+print(df_telemark)
 
 ###################### LANDET
 
@@ -230,6 +232,94 @@ except Exception as e:
     )
 
 
+
+###################### FYLKENE
+
+# Spørring for å hente ut data fra SSB
+payload_fylker = {
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "agg:KommFylker",
+        "values": [
+          "F-31",
+          "F-32",
+          "F-03",
+          "F-34",
+          "F-33",
+          "F-39",
+          "F-40",
+          "F-42",
+          "F-11",
+          "F-46",
+          "F-15",
+          "F-50",
+          "F-18",
+          "F-55",
+          "F-56"
+        ]
+      }
+    },
+    {
+      "code": "HovArbStyrkStatus",
+      "selection": {
+        "filter": "vs:ArbStatus2018niva2a",
+        "values": [
+          "A.01",
+          "A.09",
+          "U.01",
+          "U.03",
+          "U.04-U.05",
+          "U.06-U.07",
+          "U.90A"
+        ]
+      }
+    },
+    {
+      "code": "InnvandrKat",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "A-G"
+        ]
+      }
+    },
+    {
+      "code": "Tid",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "2023"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}
+
+
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
+
+try:
+    df_fylker = fetch_data(
+        url=POST_URL,
+        payload=payload_fylker,  # The JSON payload for POST requests. If None, a GET request is used.
+        error_messages=error_messages,
+        query_name="Arbeidsmarkedstilknytning, fylker",
+        response_type="json",  # The expected response type, either 'json' or 'csv'.
+        # delimiter=";", # The delimiter for CSV data (default: ';').
+        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+
 # Function to process each dataframe
 def process_dataframe(df):
     # Get the year from the 'år' column
@@ -256,6 +346,7 @@ def process_dataframe(df):
 df_kommuner = process_dataframe(df_kommuner)
 df_telemark = process_dataframe(df_telemark)
 df_landet = process_dataframe(df_landet)
+df_fylker = process_dataframe(df_fylker)
 
 def calculate_percentage_share(df):
     """Calculate the percentage share of 'Antall' for each region."""
@@ -277,6 +368,36 @@ def calculate_percentage_share(df):
 # Apply the percentage calculation to df_kommuner and df_telemark
 df_kommuner = calculate_percentage_share(df_kommuner)
 df_telemark = calculate_percentage_share(df_telemark)
+df_fylker = calculate_percentage_share(df_fylker)
+
+############ TILLEGGSINFO TIL TEKST PÅ NETTSIDER ###
+
+# Find the column that starts with 'Arbeidsstyrkestatus'
+arbeidsstatus_col = [col for col in df_fylker.columns if col.startswith('Arbeidsstyrkestatus')][0]
+
+# Filter rows for AFP/alderspensjon recipients
+df_pensjonister = df_fylker[df_fylker[arbeidsstatus_col].str.startswith('Mottakere av AFP/alderspensjon', na=False)]
+
+# Sort by "Andel" in descending order
+df_pensjonister = df_pensjonister.sort_values(by='Andel', ascending=False)
+
+print("\nPensjonister per fylke:")
+print(df_pensjonister)
+
+###---
+
+
+# Filter rows for AFP/alderspensjon recipients
+df_uføre = df_fylker[df_fylker[arbeidsstatus_col].str.startswith('Mottakere av arbeidsavklaringspenger / uføretrygd', na=False)]
+
+# Sort by "Andel" in descending order
+df_uføre = df_uføre.sort_values(by='Andel', ascending=False)
+
+print("\nUføre per fylke:")
+print(df_uføre)
+
+
+####
 
 # Create column "region" in "df_landet", and fill with value "Hele landet"
 df_landet['region'] = 'Hele landet'
@@ -346,7 +467,7 @@ df_pivoted = df_pivoted[new_column_order]
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "arbeidsmarkedstilknytning_per_kommune.csv"
-task_name = "Arbeidsmarkedstilknytning per kommune"
+task_name = "Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune"
 github_folder = "Data/03_Arbeid og næringsliv/Sysselsetting"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
