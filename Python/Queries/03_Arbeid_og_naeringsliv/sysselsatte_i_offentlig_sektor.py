@@ -19,12 +19,12 @@ script_name = os.path.basename(__file__)
 error_messages = []
 
 # Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/table/13472/"
+POST_URL_sysselsatte = "https://data.ssb.no/api/v0/no/table/13472/"
 
-################## KOMMUNER
+################## SYSSELSATTE I KOMMUNER (15-74 ÅR) SISTE ÅR!!
 
 # Spørring for å hente ut data fra SSB
-payload = {
+payload_sysselsatte = {
   "query": [
     {
       "code": "Region",
@@ -89,11 +89,11 @@ payload = {
 }
 
 try:
-    df = fetch_data(
-        url=POST_URL,
-        payload=payload,
+    df_sysselsatte = fetch_data(
+        url=POST_URL_sysselsatte,
+        payload=payload_sysselsatte,
         error_messages=error_messages,
-        query_name="Arbeidsmarkedstilknytning, kommuner",
+        query_name="Sysselsatte, kommuner",
         response_type="json"
     )
 except Exception as e:
@@ -103,15 +103,12 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-print("\nOriginal data:")
-print(df.head())
-
 # Create a mask for private sector
-private_sector_mask = df['sektor'] == 'Privat sektor'
+private_sector_mask = df_sysselsatte['sektor'] == 'Privat sektor'
 
 # Split the data into private and public sectors
-private_sector = df[private_sector_mask].copy()
-public_sector = df[~private_sector_mask].copy()
+private_sector = df_sysselsatte[private_sector_mask].copy()
+public_sector = df_sysselsatte[~private_sector_mask].copy()
 
 # Sum up all public sector values for each region
 public_sector_sum = public_sector.groupby(['region', 'statistikkvariabel', 'år'])['value'].sum().reset_index()
@@ -131,18 +128,113 @@ df_processed["Label"] = df_processed["Kommune"]
 # Sort by Kommune and sektor
 df_processed = df_processed.sort_values(['Kommune', 'sektor'])
 
-print("\nProcessed data:")
-print(df_processed)
+# Calculate total employed in Telemark for the latest year
+latest_year = df_processed['år'].max()
+total_employed = df_processed[df_processed['år'] == latest_year]['Antall sysselsatte'].sum()
+print(f"\nAntall sysselsatte i {latest_year}: {total_employed}")
+
+# Calculate percentage distribution between sectors for latest year
+sector_distribution = df_processed[df_processed['år'] == latest_year].groupby('sektor')['Antall sysselsatte'].sum()
+sector_percentages = (sector_distribution / sector_distribution.sum() * 100).round(1)
+sector_df = pd.DataFrame({
+    'Sektor': sector_percentages.index,
+    'Prosent sysselsatte': sector_percentages.values
+})
+print("\nFordeling mellom sektorer:")
+print(sector_df)
+
+# Create dataframe with total employment by kommune
+kommune_total = df_processed[df_processed['år'] == latest_year].groupby('Kommune')['Antall sysselsatte'].sum().reset_index()
+kommune_total = kommune_total.sort_values('Antall sysselsatte', ascending=False)
+
+# Add the latest year in parentheses after the "Antall sysselsatte" title
+kommune_total.rename(columns={'Antall sysselsatte': f'Antall sysselsatte ({latest_year})'}, inplace=True)
+
+print("\nAntall sysselsatte per kommune:")
+print(kommune_total)
+
+################## ARBEIDSPLASSER (SYSSELSATTE PERSONER ETTER ARBEIDSSTED) I TELEMARK
+
+years_str = [str(year) for year in range(2015, int(latest_year) + 1)]
+
+# Spørring for å hente ut data fra SSB
+payload_sysselsatte_over_tid = {
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "agg:KommFylker",
+        "values": [
+          "F-40"
+        ]
+      }
+    },
+    {
+      "code": "Sektor",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "ALLE"
+        ]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "SysselEtterArbste"
+        ]
+      }
+    },
+    {
+      "code": "Tid",
+      "selection": {
+        "filter": "item",
+        "values": years_str
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}
+
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
+
+try:
+    df_sysselsatte_over_tid = fetch_data(
+        url=POST_URL_sysselsatte,
+        payload=payload_sysselsatte_over_tid,  # The JSON payload for POST requests. If None, a GET request is used.
+        error_messages=error_messages,
+        query_name="Sysselsatte over tid, Telemark",
+        response_type="json",  # The expected response type, either 'json' or 'csv'.
+        # delimiter=";", # The delimiter for CSV data (default: ';').
+        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+
+
+# Drop columns "region", "sektor", "statistikkvariabel"
+df_sysselsatte_over_tid = df_sysselsatte_over_tid.drop(columns=["region", "sektor", "statistikkvariabel"])
+
+# Rename to "År" and "Antall sysselsatte"
+df_sysselsatte_over_tid = df_sysselsatte_over_tid.rename(columns={"tid": "År", "value": "Antall sysselsatte"})
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "sysselsatte_i_offentlig_sektor.csv"
-task_name = "Arbeid og naeringsliv - Sysselsatte i offentlig sektor"
+file_name = "arbeidsplasser_over_tid.csv"
+task_name = "Arbeid og naeringsliv - Arbeidsplasser over tid"
 github_folder = "Data/03_Arbeid og næringsliv/Sysselsetting"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df_processed, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df_sysselsatte_over_tid, file_name, github_folder, temp_folder, keepcsv=True)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory

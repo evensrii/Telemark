@@ -112,7 +112,7 @@ except Exception as e:
 
 
 
-################## SYSSELSATTE I LANDET
+################## SYSSELSATTE I LANDET (FORDELT PÅ ALDERSGRUPPER)
 
 
 # Spørring for å hente ut data fra SSB
@@ -314,7 +314,6 @@ except Exception as e:
     )
 
 
-
 ##### PERSONER I KOMMUNENE
 
 # Spørring for å hente ut data fra SSB
@@ -448,6 +447,29 @@ except Exception as e:
     )
 
 
+
+################## SYSSELSETTING I LANDET (15-74)
+
+sysselsatte_15_74_landet = df_landet['value'].sum()
+
+personer_15_74_landet = df_personer_landet['value'].sum()
+
+sysselsetting_15_74_landet = sysselsatte_15_74_landet / personer_15_74_landet * 100
+
+print(f"\nSysselsetting for 15-74 i landet i {latest_year}: {sysselsetting_15_74_landet:.1f}%")
+
+
+################## SYSSELSETTING I TELEMARK (15-74)
+
+sysselsatte_15_74_telemark = df_kommuner['value'].sum()
+
+personer_15_74_telemark = df_personer_kommuner['value'].sum()
+
+sysselsetting_15_74_telemark = sysselsatte_15_74_telemark / personer_15_74_telemark * 100
+
+print(f"Sysselsetting for 15-74 i Telemark i {latest_year}: {sysselsetting_15_74_telemark:.1f}%")
+
+
 ##### DATABEHANDLING
 
 # Create age groups for df_personer_landet and df_personer_kommuner
@@ -542,12 +564,12 @@ landet_rates = calculate_employment_rate(df_landet, df_personer_landet_grouped)
 # Create final comparison DataFrame
 df_comparison = pd.DataFrame({
     'Aldersgruppe': list(telemark_rates.keys()),
-    'Telemark': list(telemark_rates.values()),
-    'Hele landet': list(landet_rates.values())
+    f'Telemark ({latest_year})': list(telemark_rates.values()),
+    f'Hele landet ({latest_year})': list(landet_rates.values())
 })
 
 # Reorder columns
-df_comparison = df_comparison[['Aldersgruppe', 'Telemark', 'Hele landet']]
+df_comparison = df_comparison[['Aldersgruppe', f'Telemark ({latest_year})', f'Hele landet ({latest_year})']]
 
 print("\nEmployment rates by age group (%):")
 print(df_comparison)
