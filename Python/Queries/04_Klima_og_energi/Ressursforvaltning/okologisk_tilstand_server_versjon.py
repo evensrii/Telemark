@@ -4,9 +4,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import requests
 import sys
 import os
@@ -41,32 +38,29 @@ def collect_water_body_data(water_body_name):
     max_retries = 3
     for attempt in range(max_retries):
         try:
-            # Force UTF-8 encoding and wait for complete page load
+            # Force UTF-8 encoding in webdriver
             driver.execute_script("document.charset='utf-8';")
-            driver.execute_script("return document.readyState") == "complete"
             
-            # Add a small delay to ensure the page is fully rendered
-            time.sleep(5)
-            
-            # Scroll to ensure the table is in view
+            # Locate the table element using its class attribute
             table = wait.until(
                 EC.presence_of_element_located(
                     (By.XPATH, "//table[contains(@class, '_table_i0c5l_1')]")
                 )
             )
-            driver.execute_script("arguments[0].scrollIntoView(true);", table)
             
             # Wait for table to be visible and interactable
             wait.until(EC.visibility_of(table))
-            wait.until(EC.element_to_be_clickable(table))
             
-            # Additional wait to ensure table data is loaded
+            # Additional wait to ensure table is fully loaded
+            driver.execute_script("return document.readyState") == "complete"
+            
+            # Wait until the table contains multiple rows (ensures the table is fully loaded)
             rows = wait.until(lambda d: table.find_elements(By.XPATH, ".//tbody/tr"))
             if len(rows) <= 3:
                 if attempt < max_retries - 1:
                     print(f"Attempt {attempt + 1}: Table not fully loaded (only {len(rows)} rows). Retrying...")
                     driver.refresh()
-                    time.sleep(5)
+                    time.sleep(2)  # Add small delay before retry
                     continue
                 else:
                     raise Exception(f"Table not fully loaded after {max_retries} attempts")
@@ -130,7 +124,7 @@ def collect_water_body_data(water_body_name):
                 if attempt < max_retries - 1:
                     print("No valid data collected. Retrying...")
                     driver.refresh()
-                    time.sleep(5)  # Add small delay before retry
+                    time.sleep(2)  # Add small delay before retry
                     continue
                 else:
                     raise Exception("No valid data collected after all retries")
@@ -159,7 +153,7 @@ def collect_water_body_data(water_body_name):
             if attempt < max_retries - 1:
                 print("Refreshing page and retrying...")
                 driver.refresh()
-                time.sleep(5)  # Add small delay before retry
+                time.sleep(2)  # Add small delay before retry
                 continue
             else:
                 raise Exception(f"Failed to collect data for {water_body_name} after {max_retries} attempts")
@@ -187,44 +181,18 @@ def clean_percentage(value):
 try:
     ########################## SETTING UP SELENIUM AND OPENING THE WEBSITE
 
-    # Initialize the webdriver with proper options
-    options = webdriver.ChromeOptions()
-    options.add_argument('--headless')  # Run in headless mode
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--lang=nb-NO')  # Set Norwegian language
-    options.add_argument('--disable-blink-features=AutomationControlled')
-    options.add_argument('--disable-extensions')
-    options.add_argument('--disable-gpu')
-    options.add_argument('--window-size=1920,1080')
-    options.add_argument('--start-maximized')
-    options.add_argument('--force-device-scale-factor=1')
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument('--ignore-ssl-errors')
-    options.add_argument('--disable-web-security')
-    options.add_argument('--allow-running-insecure-content')
-    options.add_argument('--disable-features=IsolateOrigins,site-per-process')
-    options.add_argument('--force-encoding=UTF-8')  # Force UTF-8 encoding
+    options = Options()
+    options.add_argument("--headless=new")  # Run in headless mode
 
-    # Create a new ChromeDriver service
-    service = Service(ChromeDriverManager().install())
-
-    # Initialize the driver with the service and options
-    driver = webdriver.Chrome(service=service, options=options)
-
-    # Configure network and page behavior
-    driver.execute_cdp_cmd('Network.setBypassServiceWorker', {'bypass': True})
-
-    # Set page load timeout and script timeout
-    driver.set_page_load_timeout(30)
-    driver.set_script_timeout(30)
-
-    # Create a WebDriverWait instance with a longer timeout
-    wait = WebDriverWait(driver, 20)
+    # Initialize the WebDriver
+    driver = webdriver.Chrome(options=options)
 
     # Navigate to the webpage containing the water data
     url = "https://vann-nett.no/waterbodies/factsheet/environmental-status"
     driver.get(url)
+
+    # Set up an explicit wait for elements to load
+    wait = WebDriverWait(driver, 15)
 
     ########################## ACCEPT COOKIES
 
