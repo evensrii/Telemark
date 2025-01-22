@@ -10,7 +10,7 @@ from pyjstat import pyjstat
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import delete_files_in_temp_folder, fetch_data
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file, download_github_file, compare_to_github, handle_output_data, handle_additional_info
+from Helper_scripts.github_functions import upload_github_file, download_github_file, compare_to_github, handle_output_data
 
 
 # Capture the name of the current script
@@ -491,23 +491,3 @@ else:
     print("No new data detected.")
 
 print(f"New data status log written to {new_data_status_file}")
-
-
-##################### Skriv tilleggsinfo #####################
-
-# Create a dictionary with additional information you want to save
-additional_info = {
-    'Data Summary': {
-        'Total rows': len(df_pivoted),
-        'Columns': list(df_pivoted.columns)
-    },
-    'Mean Values': df_pivoted.mean(numeric_only=True).round(2).to_dict(),
-    'Highest Sysselsatte': df_pivoted.nlargest(3, 'Sysselsatte')[['Region', 'Sysselsatte']].to_dict('records'),
-    'Lowest Sysselsatte': df_pivoted.nsmallest(3, 'Sysselsatte')[['Region', 'Sysselsatte']].to_dict('records')
-}
-
-# Get script name without extension
-script_name = os.path.splitext(os.path.basename(__file__))[0]
-
-# Handle additional info
-handle_additional_info(additional_info, script_name, github_folder, temp_folder)
