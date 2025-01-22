@@ -595,3 +595,58 @@ def get_last_commit_time(file_path):
         print(f"Error getting last commit time for {file_path}: {e}")
     
     return None
+
+
+def handle_additional_info(info_dict, script_name, github_folder, temp_folder):
+    """
+    Handles additional information for a script:
+    1. Creates a text file with additional information
+    2. Uploads it to GitHub in a 'tilleggsdata' subfolder
+    
+    Args:
+        info_dict (dict): Dictionary containing the additional information to save
+        script_name (str): Name of the script (without .py extension)
+        github_folder (str): GitHub folder where the main data is stored
+        temp_folder (str): Temporary folder for local storage
+        
+    Returns:
+        bool: True if file was created and uploaded, False if error occurred
+    """
+    try:
+        # Create filename
+        info_filename = f"{script_name}_tilleggsinfo.txt"
+        
+        # Create the content string
+        content = []
+        content.append(f"Additional information for {script_name}")
+        content.append(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        
+        for key, value in info_dict.items():
+            if isinstance(value, pd.DataFrame):
+                content.append(f"\n{key}:")
+                content.append(value.to_string())
+            else:
+                content.append(f"\n{key}: {value}")
+        
+        content = "\n".join(content)
+        
+        # Save to temp folder
+        temp_path = os.path.join(temp_folder, info_filename)
+        with open(temp_path, 'w', encoding='utf-8') as f:
+            f.write(content)
+            
+        # Prepare GitHub path - create tilleggsdata subfolder
+        github_path = os.path.join(github_folder, 'tilleggsdata', info_filename)
+        
+        # Upload to GitHub
+        upload_github_file(temp_path, github_path)
+        
+        # Clean up temp file
+        if os.path.exists(temp_path):
+            os.remove(temp_path)
+            
+        return True
+        
+    except Exception as e:
+        print(f"Error handling additional info: {str(e)}")
+        return False
