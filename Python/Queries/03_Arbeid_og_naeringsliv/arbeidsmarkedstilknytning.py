@@ -6,6 +6,7 @@ from io import BytesIO
 from io import StringIO
 import pandas as pd
 from pyjstat import pyjstat
+from datetime import datetime
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import delete_files_in_temp_folder, fetch_data
@@ -490,3 +491,23 @@ else:
     print("No new data detected.")
 
 print(f"New data status log written to {new_data_status_file}")
+
+
+######### Additional info for webpage ###########
+
+# Path to the additional info file
+additional_info_file = os.path.join(temp_folder, github_folder, "additional_data.txt")
+
+# Ensure the folder exists
+os.makedirs(os.path.dirname(additional_info_file), exist_ok=True)
+
+# Write additional information to the "additional_data.txt" file
+with open(additional_info_file, "a", encoding="utf-8") as info_file:
+    info_file.write(f"Task: {task_name}\n")
+    info_file.write(f"New Data Detected: {'Yes' if is_new_data else 'No'}\n")
+    info_file.write(f"Rows Processed: {len(df_pivoted)}\n")
+    info_file.write(f"Date: {datetime.now()}\n")
+    info_file.write("=" * 50 + "\n")
+
+
+print(f"Additional info written to {additional_info_file}")
