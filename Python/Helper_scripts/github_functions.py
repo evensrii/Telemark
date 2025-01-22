@@ -630,13 +630,16 @@ def handle_additional_info(info_dict, script_name, github_folder, temp_folder):
         
         content = "\n".join(content)
         
-        # Save to temp folder
+        # Save to temp folder using os.path.join for local path
         temp_path = os.path.join(temp_folder, info_filename)
         with open(temp_path, 'w', encoding='utf-8') as f:
             f.write(content)
             
-        # Prepare GitHub path - create tilleggsdata subfolder using forward slashes
-        github_path = f"{github_folder}/tilleggsdata/{info_filename}".replace('\\', '/')
+        # Prepare GitHub path with forward slashes
+        # First normalize the github_folder to use forward slashes
+        github_folder = github_folder.replace('\\', '/')
+        # Then construct the full path with forward slashes
+        github_path = f"{github_folder}/tilleggsdata/{info_filename}"
         
         # Upload to GitHub
         upload_github_file(temp_path, github_path)
