@@ -635,8 +635,8 @@ def handle_additional_info(info_dict, script_name, github_folder, temp_folder):
         with open(temp_path, 'w', encoding='utf-8') as f:
             f.write(content)
             
-        # Prepare GitHub path - create tilleggsdata subfolder
-        github_path = os.path.join(github_folder, 'tilleggsdata', info_filename)
+        # Prepare GitHub path - create tilleggsdata subfolder using forward slashes
+        github_path = f"{github_folder}/tilleggsdata/{info_filename}".replace('\\', '/')
         
         # Upload to GitHub
         upload_github_file(temp_path, github_path)
