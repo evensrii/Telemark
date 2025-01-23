@@ -7,29 +7,29 @@ Ingen driftsmeldinger dukket opp, continuing...
 Collecting data for Elv...
 Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
 Number of rows found: 6
-Row data - Header: SvÃÆÃÂ¦rt god, Values: ['-', '0,0 %']
-Row data - Header: God, Values: ['-', '0,0 %']
-Row data - Header: Moderat, Values: ['-', '0,0 %']
-Row data - Header: DÃÆÃÂ¥rlig, Values: ['-', '0,0 %']
-Row data - Header: SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig, Values: ['-', '0,0 %']
+Row data - Header: SvÃÆÃÂ¦rt god, Values: ['227', '20,4 %']
+Row data - Header: God, Values: ['730', '65,6 %']
+Row data - Header: Moderat, Values: ['125', '11,2 %']
+Row data - Header: DÃÆÃÂ¥rlig, Values: ['19', '1,7 %']
+Row data - Header: SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig, Values: ['12', '1,1 %']
 Row data - Header: Udefinert, Values: ['-', '0,0 %']
 
 Raw DataFrame for Elv:
-       Tilstand TILSTAND ANTALL
-0     SvÃÆÃÂ¦rt god        -  0,0 %
-1           God        -  0,0 %
-2       Moderat        -  0,0 %
-3        DÃÆÃÂ¥rlig        -  0,0 %
-4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig        -  0,0 %
-5     Udefinert        -  0,0 %
+       Tilstand TILSTAND  ANTALL
+0     SvÃÆÃÂ¦rt god      227  20,4 %
+1           God      730  65,6 %
+2       Moderat      125  11,2 %
+3        DÃÆÃÂ¥rlig       19   1,7 %
+4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig       12   1,1 %
+5     Udefinert        -   0,0 %
 
 Final DataFrame for Elv:
-       Tilstand    Elv
-0     SvÃÆÃÂ¦rt god  0,0 %
-1           God  0,0 %
-2       Moderat  0,0 %
-3        DÃÆÃÂ¥rlig  0,0 %
-4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig  0,0 %
+       Tilstand     Elv
+0     SvÃÆÃÂ¦rt god  20,4 %
+1           God  65,6 %
+2       Moderat  11,2 %
+3        DÃÆÃÂ¥rlig   1,7 %
+4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig   1,1 %
 
 Collecting data for InnsjÃÆÃÂ¸...
 Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
@@ -84,16 +84,16 @@ Final DataFrame for Kystvann:
 2       Moderat   51,0 %
 3        DÃÆÃÂ¥rlig    0,0 %
 4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig    4,1 %
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
+Cleaning value: 20,4 % (type: <class 'str'>)
+Converted to: 20.4
+Cleaning value: 65,6 % (type: <class 'str'>)
+Converted to: 65.6
+Cleaning value: 11,2 % (type: <class 'str'>)
+Converted to: 11.2
+Cleaning value: 1,7 % (type: <class 'str'>)
+Converted to: 1.7
+Cleaning value: 1,1 % (type: <class 'str'>)
+Converted to: 1.1
 Cleaning value: 20,5 % (type: <class 'str'>)
 Converted to: 20.5
 Cleaning value: 66,7 % (type: <class 'str'>)
@@ -114,16 +114,16 @@ Cleaning value: 0,0 % (type: <class 'str'>)
 Converted to: 0.0
 Cleaning value: 4,1 % (type: <class 'str'>)
 Converted to: 4.1
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
+Cleaning value: 20.4 (type: <class 'float'>)
+Value is not a string, returning as is: 20.4
+Cleaning value: 65.6 (type: <class 'float'>)
+Value is not a string, returning as is: 65.6
+Cleaning value: 11.2 (type: <class 'float'>)
+Value is not a string, returning as is: 11.2
+Cleaning value: 1.7 (type: <class 'float'>)
+Value is not a string, returning as is: 1.7
+Cleaning value: 1.1 (type: <class 'float'>)
+Value is not a string, returning as is: 1.1
 Cleaning value: 20.5 (type: <class 'float'>)
 Value is not a string, returning as is: 20.5
 Cleaning value: 66.7 (type: <class 'float'>)
@@ -144,61 +144,61 @@ Cleaning value: 0.0 (type: <class 'float'>)
 Value is not a string, returning as is: 0.0
 Cleaning value: 4.1 (type: <class 'float'>)
 Value is not a string, returning as is: 4.1
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
+Cleaning value: 20.4 (type: <class 'float'>)
+Value is not a string, returning as is: 20.4
 Cleaning value: 20.5 (type: <class 'float'>)
 Value is not a string, returning as is: 20.5
 Cleaning value: 4.1 (type: <class 'float'>)
 Value is not a string, returning as is: 4.1
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
+Cleaning value: 65.6 (type: <class 'float'>)
+Value is not a string, returning as is: 65.6
 Cleaning value: 66.7 (type: <class 'float'>)
 Value is not a string, returning as is: 66.7
 Cleaning value: 40.8 (type: <class 'float'>)
 Value is not a string, returning as is: 40.8
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
+Cleaning value: 11.2 (type: <class 'float'>)
+Value is not a string, returning as is: 11.2
 Cleaning value: 12.2 (type: <class 'float'>)
 Value is not a string, returning as is: 12.2
 Cleaning value: 51.0 (type: <class 'float'>)
 Value is not a string, returning as is: 51.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
+Cleaning value: 1.7 (type: <class 'float'>)
+Value is not a string, returning as is: 1.7
 Cleaning value: 0.3 (type: <class 'float'>)
 Value is not a string, returning as is: 0.3
 Cleaning value: 0.0 (type: <class 'float'>)
 Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
+Cleaning value: 1.1 (type: <class 'float'>)
+Value is not a string, returning as is: 1.1
 Cleaning value: 0.3 (type: <class 'float'>)
 Value is not a string, returning as is: 0.3
 Cleaning value: 4.1 (type: <class 'float'>)
 Value is not a string, returning as is: 4.1
    Kategori  SvÃÆÃÂ¦rt god   God  Moderat  DÃÆÃÂ¥rlig  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig
-0       Elv        0.0   0.0      0.0     0.0           0.0
+0       Elv       20.4  65.6     11.2     1.7           1.1
 1    InnsjÃÆÃÂ¸       20.5  66.7     12.2     0.3           0.3
 2  Kystvann        4.1  40.8     51.0     0.0           4.1
 All tasks completed successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\ÃÆÃÂ¸kologisk_tilstand_vann.csv
-[2025-01-23 08:52:00] Changes detected in the dataset.
+[2025-01-23 08:54:51] Changes detected in the dataset.
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/ÃÆÃÂ¸kologisk_tilstand_vann.csv
 
-[2025-01-23 08:52:00] Showing up to 5 examples of changes:
+[2025-01-23 08:54:51] Showing up to 5 examples of changes:
 
 Row: 
-  Drlig: 1.7 -> 0.0
+  Drlig: 0.0 -> 1.7
 
 Row: 
-  God: 65.6 -> 0.0
+  God: 0.0 -> 65.6
 
 Row: 
-  Moderat: 11.2 -> 0.0
+  Moderat: 0.0 -> 11.2
 
 Row: 
-  Svrt drlig: 1.1 -> 0.0
+  Svrt drlig: 0.0 -> 1.1
 
 Row: 
-  Svrt god: 20.4 -> 0.0
+  Svrt god: 0.0 -> 20.4
 Email notifications disabled. Updates for ÃÆÃÂ¸kologisk_tilstand_vann.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\ÃÆÃÂ¸kologisk_tilstand_vann.csv
 New data detected and pushed to GitHub.
