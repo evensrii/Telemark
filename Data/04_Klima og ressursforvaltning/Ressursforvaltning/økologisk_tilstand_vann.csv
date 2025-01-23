@@ -1,4 +1,16 @@
-Kategori,Svært god,God,Moderat,Dårlig,Svært dårlig
-Elv,20.4,65.6,11.2,1.7,1.1
-Innsjø,20.5,66.7,12.2,0.3,0.3
-Kystvann,4.1,40.8,51.0,0.0,4.1
+Vannkategori,Tilstand,Elv,Innsjø,Kystvann
+Elv,Svært god,"20,4 %",,
+Elv,God,"65,6 %",,
+Elv,Moderat,"11,2 %",,
+Elv,Dårlig,"1,7 %",,
+Elv,Svært dårlig,"1,1 %",,
+Innsjø,Svært god,,"20,5 %",
+Innsjø,God,,"66,7 %",
+Innsjø,Moderat,,"12,2 %",
+Innsjø,Dårlig,,"0,3 %",
+Innsjø,Svært dårlig,,"0,3 %",
+Kystvann,Svært god,,,"4,1 %"
+Kystvann,God,,,"40,8 %"
+Kystvann,Moderat,,,"51,0 %"
+Kystvann,Dårlig,,,"0,0 %"
+Kystvann,Svært dårlig,,,"4,1 %"
