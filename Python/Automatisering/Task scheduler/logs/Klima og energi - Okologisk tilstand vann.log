@@ -3,38 +3,49 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Ingen driftsmeldinger dukket opp, continuing...
+Converting total from '1.450' (cleaned: '1450')
+Default total established as: 1450 after Telemark selection
+Successfully initialized default total
+
+Collecting data for Elv...
+Clicking checkbox for Elv
+Waiting for table to update...
 
 Collecting data for Elv...
 Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
 Number of rows found: 6
-Row data - Header: SvÃ¦rt god, Values: ['-', '0,0 %']
-Row data - Header: God, Values: ['-', '0,0 %']
-Row data - Header: Moderat, Values: ['-', '0,0 %']
-Row data - Header: DÃ¥rlig, Values: ['-', '0,0 %']
-Row data - Header: SvÃ¦rt dÃ¥rlig, Values: ['-', '0,0 %']
+Row data - Header: SvÃ¦rt god, Values: ['227', '20,4 %']
+Row data - Header: God, Values: ['730', '65,6 %']
+Row data - Header: Moderat, Values: ['125', '11,2 %']
+Row data - Header: DÃ¥rlig, Values: ['19', '1,7 %']
+Row data - Header: SvÃ¦rt dÃ¥rlig, Values: ['12', '1,1 %']
 Row data - Header: Udefinert, Values: ['-', '0,0 %']
 
 Raw DataFrame for Elv:
-       Tilstand TILSTAND ANTALL
-0     SvÃ¦rt god        -  0,0 %
-1           God        -  0,0 %
-2       Moderat        -  0,0 %
-3        DÃ¥rlig        -  0,0 %
-4  SvÃ¦rt dÃ¥rlig        -  0,0 %
-5     Udefinert        -  0,0 %
+       Tilstand TILSTAND  ANTALL
+0     SvÃ¦rt god      227  20,4 %
+1           God      730  65,6 %
+2       Moderat      125  11,2 %
+3        DÃ¥rlig       19   1,7 %
+4  SvÃ¦rt dÃ¥rlig       12   1,1 %
+5     Udefinert        -   0,0 %
 
 Final DataFrame for Elv:
-       Tilstand    Elv
-0     SvÃ¦rt god  0,0 %
-1           God  0,0 %
-2       Moderat  0,0 %
-3        DÃ¥rlig  0,0 %
-4  SvÃ¦rt dÃ¥rlig  0,0 %
+       Tilstand     Elv
+0     SvÃ¦rt god  20,4 %
+1           God  65,6 %
+2       Moderat  11,2 %
+3        DÃ¥rlig   1,7 %
+4  SvÃ¦rt dÃ¥rlig   1,1 %
+
+Collecting data for InnsjÃ¸...
+Clicking checkbox for InnsjÃ¸
+Waiting for table to update...
 
 Collecting data for InnsjÃ¸...
 Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
 Number of rows found: 6
-Row data - Header: SvÃ¦rt god, Values: ['-', '0,0 %']
+Row data - Header: SvÃ¦rt god, Values: ['59', '20,5 %']
 Row data - Header: God, Values: ['192', '66,7 %']
 Row data - Header: Moderat, Values: ['35', '12,2 %']
 Row data - Header: DÃ¥rlig, Values: ['1', '0,3 %']
@@ -43,7 +54,7 @@ Row data - Header: Udefinert, Values: ['-', '0,0 %']
 
 Raw DataFrame for InnsjÃ¸:
        Tilstand TILSTAND  ANTALL
-0     SvÃ¦rt god        -   0,0 %
+0     SvÃ¦rt god       59  20,5 %
 1           God      192  66,7 %
 2       Moderat       35  12,2 %
 3        DÃ¥rlig        1   0,3 %
@@ -52,11 +63,15 @@ Raw DataFrame for InnsjÃ¸:
 
 Final DataFrame for InnsjÃ¸:
        Tilstand  InnsjÃ¸
-0     SvÃ¦rt god   0,0 %
+0     SvÃ¦rt god  20,5 %
 1           God  66,7 %
 2       Moderat  12,2 %
 3        DÃ¥rlig   0,3 %
 4  SvÃ¦rt dÃ¥rlig   0,3 %
+
+Collecting data for Kystvann...
+Clicking checkbox for Kystvann
+Waiting for table to update...
 
 Collecting data for Kystvann...
 Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
@@ -84,126 +99,32 @@ Final DataFrame for Kystvann:
 2       Moderat   51,0 %
 3        DÃ¥rlig    0,0 %
 4  SvÃ¦rt dÃ¥rlig    4,1 %
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
-Cleaning value: 66,7 % (type: <class 'str'>)
-Converted to: 66.7
-Cleaning value: 12,2 % (type: <class 'str'>)
-Converted to: 12.2
-Cleaning value: 0,3 % (type: <class 'str'>)
-Converted to: 0.3
-Cleaning value: 0,3 % (type: <class 'str'>)
-Converted to: 0.3
-Cleaning value: 4,1 % (type: <class 'str'>)
-Converted to: 4.1
-Cleaning value: 40,8 % (type: <class 'str'>)
-Converted to: 40.8
-Cleaning value: 51,0 % (type: <class 'str'>)
-Converted to: 51.0
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
-Cleaning value: 4,1 % (type: <class 'str'>)
-Converted to: 4.1
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 66.7 (type: <class 'float'>)
-Value is not a string, returning as is: 66.7
-Cleaning value: 12.2 (type: <class 'float'>)
-Value is not a string, returning as is: 12.2
-Cleaning value: 0.3 (type: <class 'float'>)
-Value is not a string, returning as is: 0.3
-Cleaning value: 0.3 (type: <class 'float'>)
-Value is not a string, returning as is: 0.3
-Cleaning value: 4.1 (type: <class 'float'>)
-Value is not a string, returning as is: 4.1
-Cleaning value: 40.8 (type: <class 'float'>)
-Value is not a string, returning as is: 40.8
-Cleaning value: 51.0 (type: <class 'float'>)
-Value is not a string, returning as is: 51.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 4.1 (type: <class 'float'>)
-Value is not a string, returning as is: 4.1
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 4.1 (type: <class 'float'>)
-Value is not a string, returning as is: 4.1
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 66.7 (type: <class 'float'>)
-Value is not a string, returning as is: 66.7
-Cleaning value: 40.8 (type: <class 'float'>)
-Value is not a string, returning as is: 40.8
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 12.2 (type: <class 'float'>)
-Value is not a string, returning as is: 12.2
-Cleaning value: 51.0 (type: <class 'float'>)
-Value is not a string, returning as is: 51.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.3 (type: <class 'float'>)
-Value is not a string, returning as is: 0.3
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
-Cleaning value: 0.3 (type: <class 'float'>)
-Value is not a string, returning as is: 0.3
-Cleaning value: 4.1 (type: <class 'float'>)
-Value is not a string, returning as is: 4.1
+
+Initial combined DataFrame:
+   Vannkategori      Tilstand     Elv  InnsjÃ¸ Kystvann
+0           Elv     SvÃ¦rt god  20,4 %     NaN      NaN
+1           Elv           God  65,6 %     NaN      NaN
+2           Elv       Moderat  11,2 %     NaN      NaN
+3           Elv        DÃ¥rlig   1,7 %     NaN      NaN
+4           Elv  SvÃ¦rt dÃ¥rlig   1,1 %     NaN      NaN
+5        InnsjÃ¸     SvÃ¦rt god     NaN  20,5 %      NaN
+6        InnsjÃ¸           God     NaN  66,7 %      NaN
+7        InnsjÃ¸       Moderat     NaN  12,2 %      NaN
+8        InnsjÃ¸        DÃ¥rlig     NaN   0,3 %      NaN
+9        InnsjÃ¸  SvÃ¦rt dÃ¥rlig     NaN   0,3 %      NaN
+10     Kystvann     SvÃ¦rt god     NaN     NaN    4,1 %
+11     Kystvann           God     NaN     NaN   40,8 %
+12     Kystvann       Moderat     NaN     NaN   51,0 %
+13     Kystvann        DÃ¥rlig     NaN     NaN    0,0 %
+14     Kystvann  SvÃ¦rt dÃ¥rlig     NaN     NaN    4,1 %
+
+Final pivoted DataFrame:
    Kategori  SvÃ¦rt god   God  Moderat  DÃ¥rlig  SvÃ¦rt dÃ¥rlig
-0       Elv        0.0   0.0      0.0     0.0           0.0
-1    InnsjÃ¸        0.0  66.7     12.2     0.3           0.3
+0       Elv       20.4  65.6     11.2     1.7           1.1
+1    InnsjÃ¸       20.5  66.7     12.2     0.3           0.3
 2  Kystvann        4.1  40.8     51.0     0.0           4.1
-All tasks completed successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\Ã¸kologisk_tilstand_vann.csv
-[2025-01-23 02:03:10] Changes detected in the dataset.
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/Ã¸kologisk_tilstand_vann.csv
-
-[2025-01-23 02:03:10] Showing up to 5 examples of changes:
-
-Row: 
-  Drlig: 1.7 -> 0.0
-
-Row: 
-  God: 65.6 -> 0.0
-
-Row: 
-  Moderat: 11.2 -> 0.0
-
-Row: 
-  Svrt drlig: 1.1 -> 0.0
-
-Row: 
-  Svrt god: 20.4 -> 0.0
-
-Total changes found in examined rows: 6
-(Showing first 5 changes only)
-Email notifications disabled. Updates for Ã¸kologisk_tilstand_vann.csv were not sent.
+[2025-01-23 11:07:26] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\Ã¸kologisk_tilstand_vann.csv
-New data detected and pushed to GitHub.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Okologisk_tilstand_vann.log
+No new data detected.
 
