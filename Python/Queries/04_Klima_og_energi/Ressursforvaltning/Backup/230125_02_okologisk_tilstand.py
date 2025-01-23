@@ -534,16 +534,50 @@ try:
             df_combined.index.names = ['Vannkategori', 'Index']
             
             # Reset index to make 'Vannkategori' a column
-            df_combined = df_combined.reset_index(level='Vannkategori')
+            df_combined = df_combined.reset_index()
+            df_combined = df_combined.drop('Index', axis=1)
             
-            # Drop the 'Index' column
-            df_combined = df_combined.reset_index(drop=True)
+            print("\nInitial combined DataFrame:")
+            print(df_combined)
             
             # Create the pivoted dataframe
-            df_pivoted = df_combined
+            df_pivoted = pd.DataFrame()
+            
+            # Process each water category
+            categories = ['Elv', 'Innsjø', 'Kystvann']
+            for category in categories:
+                category_data = df_combined[df_combined['Vannkategori'] == category].copy()
+                if not category_data.empty:
+                    # Get the percentage values and clean them
+                    values = category_data[category].apply(
+                        lambda x: float(str(x).replace('%', '').replace(',', '.').strip()) if pd.notnull(x) else 0.0
+                    )
+                    # Create a dictionary with the values for each condition
+                    row_data = {
+                        'Kategori': category,
+                        'Svært god': values[category_data['Tilstand'] == 'Svært god'].iloc[0],
+                        'God': values[category_data['Tilstand'] == 'God'].iloc[0],
+                        'Moderat': values[category_data['Tilstand'] == 'Moderat'].iloc[0],
+                        'Dårlig': values[category_data['Tilstand'] == 'Dårlig'].iloc[0],
+                        'Svært dårlig': values[category_data['Tilstand'] == 'Svært dårlig'].iloc[0]
+                    }
+                    df_pivoted = pd.concat([df_pivoted, pd.DataFrame([row_data])], ignore_index=True)
+
+            # Ensure the DataFrame is in the exact format requested
+            column_order = ['Kategori', 'Svært god', 'God', 'Moderat', 'Dårlig', 'Svært dårlig']
+            df_pivoted = df_pivoted[column_order]
+
+            # Round all numeric columns to 1 decimal place
+            numeric_columns = ['Svært god', 'God', 'Moderat', 'Dårlig', 'Svært dårlig']
+            df_pivoted[numeric_columns] = df_pivoted[numeric_columns].round(1)
+
+            # Sort categories in the desired order
+            category_order = {'Elv': 0, 'Innsjø': 1, 'Kystvann': 2}
+            df_pivoted['sort_order'] = df_pivoted['Kategori'].map(category_order)
+            df_pivoted = df_pivoted.sort_values('sort_order').drop('sort_order', axis=1).reset_index(drop=True)
 
             print(f"\nFinal pivoted DataFrame:")
-            print(df_pivoted)
+            print(df_pivoted.to_string())
 
             # Call the function and get the "New Data" status
             is_new_data = handle_output_data(
