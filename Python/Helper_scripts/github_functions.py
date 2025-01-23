@@ -148,7 +148,7 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
 
 
 ## Function to compare file to GitHub
-def compare_to_github(input_df, file_name, github_folder, temp_folder):
+def compare_to_github(input_df, file_name, github_folder, temp_folder, value_columns=None, ignore_patterns=None):
     """
     Compares a DataFrame to an existing file on GitHub, and uploads the file if changes are detected.
     Implements a hierarchical comparison:
@@ -161,6 +161,10 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         file_name (str): The name of the file to be saved and compared.
         github_folder (str): The folder path in the GitHub repository.
         temp_folder (str): The local temporary folder for storing files.
+        value_columns (list, optional): List of column names to specifically monitor for changes.
+                                      If None, all non-key columns are treated as value columns.
+        ignore_patterns (list, optional): List of patterns to ignore when comparing columns.
+                                        Columns matching these patterns will be excluded from comparison.
 
     Returns:
         bool: True if new data is uploaded or detected, False otherwise.
@@ -359,9 +363,39 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         print(f"[{timestamp}] No new data to upload. Skipping GitHub update.")
         return False
 
+    # Check for changes in specified columns across the entire dataset
+    if value_columns or ignore_patterns:
+        # Get columns to compare for the full dataset
+        if value_columns:
+            columns_to_compare = [col for col in value_columns if col in input_df.columns]
+        else:
+            key_columns = identify_key_columns(input_df)
+            forced_keys = ['Kommune', 'Label']
+            key_columns = list(set(key_columns + [col for col in forced_keys if col in input_df.columns]))
+            columns_to_compare = [col for col in input_df.columns if col not in key_columns]
+            
+        if ignore_patterns:
+            columns_to_compare = [col for col in columns_to_compare 
+                                if not any(pattern.lower() in col.lower() for pattern in ignore_patterns)]
+        
+        if not columns_to_compare:
+            print(f"[{timestamp}] No value columns found to compare. Skipping GitHub update.")
+            return False
+            
+        # Check for any changes in the full dataset
+        has_changes = False
+        for col in columns_to_compare:
+            if not input_df[col].equals(existing_data[col]):
+                has_changes = True
+                break
+                
+        if not has_changes:
+            print(f"[{timestamp}] No changes found in value columns. Skipping GitHub update.")
+            return False
+            
     print(f"[{timestamp}] Changes detected in the dataset.")
 
-    # For large datasets, only show detailed differences for the last 200 rows
+    # For detailed reporting, only show differences for the last 200 rows
     dataset_size = len(input_df)
     is_large_dataset = dataset_size > 200
 
@@ -369,21 +403,21 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         comparison_start = max(0, dataset_size - 200)
         existing_df_subset = existing_data.iloc[comparison_start:].copy()
         new_df_subset = input_df.iloc[comparison_start:].copy()
+        print(f"\n[{timestamp}] Dataset is large. Showing detailed changes from the last 200 rows only.")
     else:
         existing_df_subset = existing_data.copy()
         new_df_subset = input_df.copy()
 
-    # Identify key columns dynamically
+    # Identify key columns for the subset we're examining
     key_columns = identify_key_columns(new_df_subset)
-    
-    # Force 'Kommune' and 'Label' to be key columns if they exist
     forced_keys = ['Kommune', 'Label']
     key_columns = list(set(key_columns + [col for col in forced_keys if col in new_df_subset.columns]))
     
-    # All other columns are value columns
-    value_columns = [col for col in new_df_subset.columns if col not in key_columns]
+    # Use the same columns_to_compare we determined earlier, or calculate for backward compatibility
+    if not (value_columns or ignore_patterns):
+        columns_to_compare = [col for col in new_df_subset.columns if col not in key_columns]
 
-    # Find changes in the last 200 rows
+    # Find detailed changes in the examined rows
     changes = []
     
     # Reset index to make sure we can iterate properly
@@ -395,7 +429,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
             break
             
         old_row = existing_df_subset.iloc[idx]
-        for col in value_columns:
+        for col in columns_to_compare:
             old_val = str(old_row[col]).strip() if pd.notna(old_row[col]) else ''
             new_val = str(new_row[col]).strip() if pd.notna(new_row[col]) else ''
             
@@ -414,21 +448,21 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
                     'new_value': new_val
                 })
 
-    # Upload to GitHub since we detected changes in the full dataset
+    # Upload to GitHub since we detected changes
     upload_github_file(
         os.path.join(temp_folder, file_name),
         f"{github_folder}/{file_name}",
         message=f"Updated {file_name} - New data detected"
     )
 
-    # Report changes based on where they were found
+    # Report the detailed changes we found
     if changes:
         if is_large_dataset:
-            print(f"\n[{timestamp}] Showing up to 5 examples of changes from the last 200 rows:")
+            print(f"\nShowing up to 5 examples of changes from the last 200 rows:")
         else:
-            print(f"\n[{timestamp}] Showing up to 5 examples of changes:")
+            print(f"\nShowing up to 5 examples of changes:")
 
-        # Show only first 5 examples from the last 200 rows
+        # Show only first 5 examples from the examined rows
         for change in changes[:5]:
             print(f"\nRow: {change['identifiers']}")
             print(f"  {change['column']}: {change['old_value']} -> {change['new_value']}")
@@ -436,12 +470,9 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         if len(changes) > 5:
             print(f"\nTotal changes found in examined rows: {len(changes)}")
             print("(Showing first 5 changes only)")
-    else:
-        if is_large_dataset:
-            print(f"\n[{timestamp}] No changes found in the last 200 rows, but changes exist elsewhere in the dataset.")
-        else:
-            print(f"\n[{timestamp}] Changes detected in the dataset.")
-
+    elif is_large_dataset:
+        print("\nNo changes found in the last 200 rows, but changes exist elsewhere in the dataset.")
+    
     # Format changes for email notification
     diff_lines = []
     if changes:
@@ -455,8 +486,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder):
         file_name,
         diff_lines,
         reason=f"Changes detected in dataset" + 
-              (" (showing examples from last 200 rows)" if changes and is_large_dataset else "") +
-              (" (changes exist but not in last 200 rows)" if not changes and is_large_dataset else "")
+              (" (showing examples from last 200 rows)" if is_large_dataset else "")
     )
     return True
 
@@ -467,6 +497,7 @@ def identify_key_columns(df):
     1. Known identifier columns (Kommune, År, etc.)
     2. Date/time columns
     3. Label columns
+    4. NACE code columns (should be treated as identifiers, not values)
     """
     key_columns = []
     
@@ -475,8 +506,8 @@ def identify_key_columns(df):
     
     # 1. Known identifier columns (case-insensitive)
     known_identifiers = {
-        'exact': ['kommune', 'kommunenummer', 'kommunenr', 'label', 'år', 'year', 'dato', 'date'],
-        'contains': ['_id', '_nr', '_key']
+        'exact': ['kommune', 'kommunenummer', 'kommunenr', 'label', 'dato', 'date', 'anleggid', 'org.nr.', 'anleggsnavn', 'fylke'],
+        'contains': ['_id', '_nr', '_key', 'nace']  
     }
     
     for col in df.columns:
@@ -513,10 +544,10 @@ def identify_key_columns(df):
         except:
             pass
 
-    return list(set(key_columns))  # Remove any duplicates
+    return list(set(key_columns))  
 
 
-def handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=False):
+def handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=False, value_columns=None, ignore_patterns=None):
     """
     Handles output data:
     1. Saves the DataFrame to the temp folder.
@@ -530,6 +561,8 @@ def handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=False)
         github_folder (str): GitHub folder for comparison/upload.
         temp_folder (str): Temporary folder for local storage.
         keepcsv (bool): If True, keeps the CSV file in the temp folder.
+        value_columns (list, optional): List of column names to specifically monitor for changes.
+        ignore_patterns (list, optional): List of patterns to ignore when comparing columns.
 
     Returns:
         bool: True if new data was detected and pushed, False otherwise.
@@ -543,7 +576,14 @@ def handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=False)
     print(f"Saved file to {temp_file_path}")
 
     # Compare with GitHub and push new data if applicable
-    is_new_data = compare_to_github(df, file_name, github_folder, temp_folder)
+    is_new_data = compare_to_github(
+        df, 
+        file_name, 
+        github_folder, 
+        temp_folder,
+        value_columns=value_columns,
+        ignore_patterns=ignore_patterns
+    )
 
     # Optionally delete the temporary file after processing
     if not keepcsv:

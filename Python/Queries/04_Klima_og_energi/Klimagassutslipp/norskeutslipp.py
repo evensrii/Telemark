@@ -173,8 +173,25 @@ github_folder = "Data/04_Klima og ressursforvaltning/Klimagassutslipp"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Process both files and track their status
-is_new_data1 = handle_output_data(df_norske_detaljert, file_name1, github_folder, temp_folder, keepcsv=True)
-is_new_data2 = handle_output_data(df_norskeutslipp_everviz, file_name2, github_folder, temp_folder, keepcsv=True)
+# First file: Monitor specific columns and ignore NACE codes
+is_new_data1 = handle_output_data(
+    df_norske_detaljert,
+    'norskeutslipp_detaljert_telemark.csv',
+    'Data/Klima_og_energi/Klimagassutslipp',
+    temp_folder,
+    keepcsv=True,
+    value_columns=['År', 'Årlig utslipp til luft'],
+    ignore_patterns=['nace']
+)
+
+# Second file: Standard comparison
+is_new_data2 = handle_output_data(
+    df_norskeutslipp_everviz,
+    file_name2,
+    github_folder,
+    temp_folder,
+    keepcsv=True
+)
 
 # Write a single status file that indicates if either file has new data
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
