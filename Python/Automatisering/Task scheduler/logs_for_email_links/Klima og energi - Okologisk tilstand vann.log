@@ -61,8 +61,8 @@ Final DataFrame for InnsjÃÆÃÂ¸:
 Collecting data for Kystvann...
 Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
 Number of rows found: 6
-Row data - Header: SvÃÆÃÂ¦rt god, Values: ['288', '19,9 %']
-Row data - Header: God, Values: ['942', '65,0 %']
+Row data - Header: SvÃÆÃÂ¦rt god, Values: ['2', '4,1 %']
+Row data - Header: God, Values: ['20', '40,8 %']
 Row data - Header: Moderat, Values: ['25', '51,0 %']
 Row data - Header: DÃÆÃÂ¥rlig, Values: ['-', '0,0 %']
 Row data - Header: SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig, Values: ['2', '4,1 %']
@@ -70,8 +70,8 @@ Row data - Header: Udefinert, Values: ['-', '0,0 %']
 
 Raw DataFrame for Kystvann:
        Tilstand TILSTAND  ANTALL
-0     SvÃÆÃÂ¦rt god      288  19,9 %
-1           God      942  65,0 %
+0     SvÃÆÃÂ¦rt god        2   4,1 %
+1           God       20  40,8 %
 2       Moderat       25  51,0 %
 3        DÃÆÃÂ¥rlig        -   0,0 %
 4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig        2   4,1 %
@@ -79,8 +79,8 @@ Raw DataFrame for Kystvann:
 
 Final DataFrame for Kystvann:
        Tilstand Kystvann
-0     SvÃÆÃÂ¦rt god   19,9 %
-1           God   65,0 %
+0     SvÃÆÃÂ¦rt god    4,1 %
+1           God   40,8 %
 2       Moderat   51,0 %
 3        DÃÆÃÂ¥rlig    0,0 %
 4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig    4,1 %
@@ -104,10 +104,10 @@ Cleaning value: 0,3 % (type: <class 'str'>)
 Converted to: 0.3
 Cleaning value: 0,3 % (type: <class 'str'>)
 Converted to: 0.3
-Cleaning value: 19,9 % (type: <class 'str'>)
-Converted to: 19.9
-Cleaning value: 65,0 % (type: <class 'str'>)
-Converted to: 65.0
+Cleaning value: 4,1 % (type: <class 'str'>)
+Converted to: 4.1
+Cleaning value: 40,8 % (type: <class 'str'>)
+Converted to: 40.8
 Cleaning value: 51,0 % (type: <class 'str'>)
 Converted to: 51.0
 Cleaning value: 0,0 % (type: <class 'str'>)
@@ -134,10 +134,10 @@ Cleaning value: 0.3 (type: <class 'float'>)
 Value is not a string, returning as is: 0.3
 Cleaning value: 0.3 (type: <class 'float'>)
 Value is not a string, returning as is: 0.3
-Cleaning value: 19.9 (type: <class 'float'>)
-Value is not a string, returning as is: 19.9
-Cleaning value: 65.0 (type: <class 'float'>)
-Value is not a string, returning as is: 65.0
+Cleaning value: 4.1 (type: <class 'float'>)
+Value is not a string, returning as is: 4.1
+Cleaning value: 40.8 (type: <class 'float'>)
+Value is not a string, returning as is: 40.8
 Cleaning value: 51.0 (type: <class 'float'>)
 Value is not a string, returning as is: 51.0
 Cleaning value: 0.0 (type: <class 'float'>)
@@ -148,14 +148,14 @@ Cleaning value: 20.4 (type: <class 'float'>)
 Value is not a string, returning as is: 20.4
 Cleaning value: 20.5 (type: <class 'float'>)
 Value is not a string, returning as is: 20.5
-Cleaning value: 19.9 (type: <class 'float'>)
-Value is not a string, returning as is: 19.9
+Cleaning value: 4.1 (type: <class 'float'>)
+Value is not a string, returning as is: 4.1
 Cleaning value: 65.6 (type: <class 'float'>)
 Value is not a string, returning as is: 65.6
 Cleaning value: 66.7 (type: <class 'float'>)
 Value is not a string, returning as is: 66.7
-Cleaning value: 65.0 (type: <class 'float'>)
-Value is not a string, returning as is: 65.0
+Cleaning value: 40.8 (type: <class 'float'>)
+Value is not a string, returning as is: 40.8
 Cleaning value: 11.2 (type: <class 'float'>)
 Value is not a string, returning as is: 11.2
 Cleaning value: 12.2 (type: <class 'float'>)
@@ -177,19 +177,19 @@ Value is not a string, returning as is: 4.1
    Kategori  SvÃÆÃÂ¦rt god   God  Moderat  DÃÆÃÂ¥rlig  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig
 0       Elv       20.4  65.6     11.2     1.7           1.1
 1    InnsjÃÆÃÂ¸       20.5  66.7     12.2     0.3           0.3
-2  Kystvann       19.9  65.0     51.0     0.0           4.1
+2  Kystvann        4.1  40.8     51.0     0.0           4.1
 All tasks completed successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\ÃÆÃÂ¸kologisk_tilstand_vann.csv
-[2025-01-23 09:11:53] Changes detected in the dataset.
+[2025-01-23 09:24:55] Changes detected in the dataset.
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/ÃÆÃÂ¸kologisk_tilstand_vann.csv
 
-[2025-01-23 09:11:53] Showing up to 5 examples of changes:
+[2025-01-23 09:24:55] Showing up to 5 examples of changes:
 
 Row: 
-  God: 40.8 -> 65.0
+  God: 65.0 -> 40.8
 
 Row: 
-  Svrt god: 4.1 -> 19.9
+  Svrt god: 19.9 -> 4.1
 Email notifications disabled. Updates for ÃÆÃÂ¸kologisk_tilstand_vann.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\ÃÆÃÂ¸kologisk_tilstand_vann.csv
 New data detected and pushed to GitHub.
