@@ -7,83 +7,83 @@ Ingen driftsmeldinger dukket opp, continuing...
 Collecting data for Elv...
 Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
 Number of rows found: 6
-Row data - Header: SvÃÂ¦rt god, Values: ['-', '0,0 %']
+Row data - Header: SvÃÆÃÂ¦rt god, Values: ['-', '0,0 %']
 Row data - Header: God, Values: ['-', '0,0 %']
 Row data - Header: Moderat, Values: ['-', '0,0 %']
-Row data - Header: DÃÂ¥rlig, Values: ['-', '0,0 %']
-Row data - Header: SvÃÂ¦rt dÃÂ¥rlig, Values: ['-', '0,0 %']
+Row data - Header: DÃÆÃÂ¥rlig, Values: ['-', '0,0 %']
+Row data - Header: SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig, Values: ['-', '0,0 %']
 Row data - Header: Udefinert, Values: ['-', '0,0 %']
 
 Raw DataFrame for Elv:
        Tilstand TILSTAND ANTALL
-0     SvÃÂ¦rt god        -  0,0 %
+0     SvÃÆÃÂ¦rt god        -  0,0 %
 1           God        -  0,0 %
 2       Moderat        -  0,0 %
-3        DÃÂ¥rlig        -  0,0 %
-4  SvÃÂ¦rt dÃÂ¥rlig        -  0,0 %
+3        DÃÆÃÂ¥rlig        -  0,0 %
+4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig        -  0,0 %
 5     Udefinert        -  0,0 %
 
 Final DataFrame for Elv:
        Tilstand    Elv
-0     SvÃÂ¦rt god  0,0 %
+0     SvÃÆÃÂ¦rt god  0,0 %
 1           God  0,0 %
 2       Moderat  0,0 %
-3        DÃÂ¥rlig  0,0 %
-4  SvÃÂ¦rt dÃÂ¥rlig  0,0 %
+3        DÃÆÃÂ¥rlig  0,0 %
+4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig  0,0 %
 
-Collecting data for InnsjÃÂ¸...
+Collecting data for InnsjÃÆÃÂ¸...
 Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
 Number of rows found: 6
-Row data - Header: SvÃÂ¦rt god, Values: ['-', '0,0 %']
+Row data - Header: SvÃÆÃÂ¦rt god, Values: ['59', '20,5 %']
 Row data - Header: God, Values: ['192', '66,7 %']
 Row data - Header: Moderat, Values: ['35', '12,2 %']
-Row data - Header: DÃÂ¥rlig, Values: ['1', '0,3 %']
-Row data - Header: SvÃÂ¦rt dÃÂ¥rlig, Values: ['1', '0,3 %']
+Row data - Header: DÃÆÃÂ¥rlig, Values: ['1', '0,3 %']
+Row data - Header: SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig, Values: ['1', '0,3 %']
 Row data - Header: Udefinert, Values: ['-', '0,0 %']
 
-Raw DataFrame for InnsjÃÂ¸:
+Raw DataFrame for InnsjÃÆÃÂ¸:
        Tilstand TILSTAND  ANTALL
-0     SvÃÂ¦rt god        -   0,0 %
+0     SvÃÆÃÂ¦rt god       59  20,5 %
 1           God      192  66,7 %
 2       Moderat       35  12,2 %
-3        DÃÂ¥rlig        1   0,3 %
-4  SvÃÂ¦rt dÃÂ¥rlig        1   0,3 %
+3        DÃÆÃÂ¥rlig        1   0,3 %
+4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig        1   0,3 %
 5     Udefinert        -   0,0 %
 
-Final DataFrame for InnsjÃÂ¸:
-       Tilstand  InnsjÃÂ¸
-0     SvÃÂ¦rt god   0,0 %
+Final DataFrame for InnsjÃÆÃÂ¸:
+       Tilstand  InnsjÃÆÃÂ¸
+0     SvÃÆÃÂ¦rt god  20,5 %
 1           God  66,7 %
 2       Moderat  12,2 %
-3        DÃÂ¥rlig   0,3 %
-4  SvÃÂ¦rt dÃÂ¥rlig   0,3 %
+3        DÃÆÃÂ¥rlig   0,3 %
+4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig   0,3 %
 
 Collecting data for Kystvann...
 Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
 Number of rows found: 6
-Row data - Header: SvÃÂ¦rt god, Values: ['2', '4,1 %']
+Row data - Header: SvÃÆÃÂ¦rt god, Values: ['2', '4,1 %']
 Row data - Header: God, Values: ['20', '40,8 %']
 Row data - Header: Moderat, Values: ['25', '51,0 %']
-Row data - Header: DÃÂ¥rlig, Values: ['-', '0,0 %']
-Row data - Header: SvÃÂ¦rt dÃÂ¥rlig, Values: ['2', '4,1 %']
+Row data - Header: DÃÆÃÂ¥rlig, Values: ['-', '0,0 %']
+Row data - Header: SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig, Values: ['2', '4,1 %']
 Row data - Header: Udefinert, Values: ['-', '0,0 %']
 
 Raw DataFrame for Kystvann:
        Tilstand TILSTAND  ANTALL
-0     SvÃÂ¦rt god        2   4,1 %
+0     SvÃÆÃÂ¦rt god        2   4,1 %
 1           God       20  40,8 %
 2       Moderat       25  51,0 %
-3        DÃÂ¥rlig        -   0,0 %
-4  SvÃÂ¦rt dÃÂ¥rlig        2   4,1 %
+3        DÃÆÃÂ¥rlig        -   0,0 %
+4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig        2   4,1 %
 5     Udefinert        -   0,0 %
 
 Final DataFrame for Kystvann:
        Tilstand Kystvann
-0     SvÃÂ¦rt god    4,1 %
+0     SvÃÆÃÂ¦rt god    4,1 %
 1           God   40,8 %
 2       Moderat   51,0 %
-3        DÃÂ¥rlig    0,0 %
-4  SvÃÂ¦rt dÃÂ¥rlig    4,1 %
+3        DÃÆÃÂ¥rlig    0,0 %
+4  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig    4,1 %
 Cleaning value: 0,0 % (type: <class 'str'>)
 Converted to: 0.0
 Cleaning value: 0,0 % (type: <class 'str'>)
@@ -94,8 +94,8 @@ Cleaning value: 0,0 % (type: <class 'str'>)
 Converted to: 0.0
 Cleaning value: 0,0 % (type: <class 'str'>)
 Converted to: 0.0
-Cleaning value: 0,0 % (type: <class 'str'>)
-Converted to: 0.0
+Cleaning value: 20,5 % (type: <class 'str'>)
+Converted to: 20.5
 Cleaning value: 66,7 % (type: <class 'str'>)
 Converted to: 66.7
 Cleaning value: 12,2 % (type: <class 'str'>)
@@ -124,8 +124,8 @@ Cleaning value: 0.0 (type: <class 'float'>)
 Value is not a string, returning as is: 0.0
 Cleaning value: 0.0 (type: <class 'float'>)
 Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
+Cleaning value: 20.5 (type: <class 'float'>)
+Value is not a string, returning as is: 20.5
 Cleaning value: 66.7 (type: <class 'float'>)
 Value is not a string, returning as is: 66.7
 Cleaning value: 12.2 (type: <class 'float'>)
@@ -146,8 +146,8 @@ Cleaning value: 4.1 (type: <class 'float'>)
 Value is not a string, returning as is: 4.1
 Cleaning value: 0.0 (type: <class 'float'>)
 Value is not a string, returning as is: 0.0
-Cleaning value: 0.0 (type: <class 'float'>)
-Value is not a string, returning as is: 0.0
+Cleaning value: 20.5 (type: <class 'float'>)
+Value is not a string, returning as is: 20.5
 Cleaning value: 4.1 (type: <class 'float'>)
 Value is not a string, returning as is: 4.1
 Cleaning value: 0.0 (type: <class 'float'>)
@@ -174,16 +174,16 @@ Cleaning value: 0.3 (type: <class 'float'>)
 Value is not a string, returning as is: 0.3
 Cleaning value: 4.1 (type: <class 'float'>)
 Value is not a string, returning as is: 4.1
-   Kategori  SvÃÂ¦rt god   God  Moderat  DÃÂ¥rlig  SvÃÂ¦rt dÃÂ¥rlig
+   Kategori  SvÃÆÃÂ¦rt god   God  Moderat  DÃÆÃÂ¥rlig  SvÃÆÃÂ¦rt dÃÆÃÂ¥rlig
 0       Elv        0.0   0.0      0.0     0.0           0.0
-1    InnsjÃÂ¸        0.0  66.7     12.2     0.3           0.3
+1    InnsjÃÆÃÂ¸       20.5  66.7     12.2     0.3           0.3
 2  Kystvann        4.1  40.8     51.0     0.0           4.1
 All tasks completed successfully.
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\ÃÂ¸kologisk_tilstand_vann.csv
-[2025-01-23 02:03:10] Changes detected in the dataset.
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/ÃÂ¸kologisk_tilstand_vann.csv
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\ÃÆÃÂ¸kologisk_tilstand_vann.csv
+[2025-01-23 08:52:00] Changes detected in the dataset.
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/ÃÆÃÂ¸kologisk_tilstand_vann.csv
 
-[2025-01-23 02:03:10] Showing up to 5 examples of changes:
+[2025-01-23 08:52:00] Showing up to 5 examples of changes:
 
 Row: 
   Drlig: 1.7 -> 0.0
@@ -199,11 +199,8 @@ Row:
 
 Row: 
   Svrt god: 20.4 -> 0.0
-
-Total changes found in examined rows: 6
-(Showing first 5 changes only)
-Email notifications disabled. Updates for ÃÂ¸kologisk_tilstand_vann.csv were not sent.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\ÃÂ¸kologisk_tilstand_vann.csv
+Email notifications disabled. Updates for ÃÆÃÂ¸kologisk_tilstand_vann.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\ÃÆÃÂ¸kologisk_tilstand_vann.csv
 New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Okologisk_tilstand_vann.log
 
