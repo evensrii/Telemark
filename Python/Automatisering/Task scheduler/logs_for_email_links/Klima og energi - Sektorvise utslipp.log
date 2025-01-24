@@ -4,16 +4,51 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 All tasks completed successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_telemark.csv
-[2025-01-23 02:02:09] No new data to upload. Skipping GitHub update.
+[2025-01-24 02:02:08] Row count changed: 20066 -> 20090
+
+Added rows (showing up to 10):
+Kommune: Porsgrunn, Sektor: Avfall og avlÃÂ¸p, Utslipp: 18.84, Utslippskilde: Biologisk behandling av avfall, r: 2023
+Kommune: Porsgrunn, Sektor: Oppvarming, Utslipp: 63.49, Utslippskilde: Naturgass, r: 2023
+Kommune: Skien, Sektor: Avfall og avlÃÂ¸p, Utslipp: 58.15, Utslippskilde: Biologisk behandling av avfall, r: 2023
+Kommune: Skien, Sektor: Oppvarming, Utslipp: 2037.35, Utslippskilde: Naturgass, r: 2023
+Kommune: Notodden, Sektor: Avfall og avlÃÂ¸p, Utslipp: 2.55, Utslippskilde: Biologisk behandling av avfall, r: 2023
+Kommune: Bamble, Sektor: Avfall og avlÃÂ¸p, Utslipp: 3.15, Utslippskilde: Biologisk behandling av avfall, r: 2023
+Kommune: Nome, Sektor: Avfall og avlÃÂ¸p, Utslipp: 46.54, Utslippskilde: Biologisk behandling av avfall, r: 2023
+Kommune: Midt-Telemark, Sektor: Avfall og avlÃÂ¸p, Utslipp: 49.99, Utslippskilde: Biologisk behandling av avfall, r: 2023
+Kommune: Nissedal, Sektor: Avfall og avlÃÂ¸p, Utslipp: 53.11, Utslippskilde: Biologisk behandling av avfall, r: 2023
+Kommune: Porsgrunn, Sektor: Oppvarming, Utslipp: 0.16, Utslippskilde: Naturgass, r: 2023
+... and 31 more rows
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_telemark.csv
+Email notifications disabled. Updates for klimagassutslipp_telemark.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_donut.csv
-[2025-01-23 02:02:10] No new data to upload. Skipping GitHub update.
+[2025-01-24 02:02:11] Changes detected in the dataset.
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_donut.csv
+
+Showing up to 5 examples of changes:
+
+Row: 
+  Utslipp (2023): 53636.0 -> 53366.0
+
+Row: 
+  Utslipp (2023): 19338.0 -> 21229.0
+Email notifications disabled. Updates for klimagassutslipp_donut.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_donut.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_endring.csv
-[2025-01-23 02:02:10] No new data to upload. Skipping GitHub update.
+[2025-01-24 02:02:13] Changes detected in the dataset.
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_endring.csv
+
+Showing up to 5 examples of changes:
+
+Row: 
+  Pst_endring_2022_2023: -3.8 -> -1.5
+
+Row: 
+  Pst_endring_2022_2023: -15.5 -> -7.3
+Email notifications disabled. Updates for klimagassutslipp_endring.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_endring.csv
-No new data detected in klimagassutslipp_telemark.csv.
-No new data detected in klimagassutslipp_donut.csv.
-No new data detected in klimagassutslipp_endring.csv.
+New data detected in klimagassutslipp_telemark.csv and pushed to GitHub.
+New data detected in klimagassutslipp_donut.csv and pushed to GitHub.
+New data detected in klimagassutslipp_endring.csv and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Sektorvise_utslipp.log
 
