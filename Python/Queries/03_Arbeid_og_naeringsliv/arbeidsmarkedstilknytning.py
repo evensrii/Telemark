@@ -457,20 +457,20 @@ sorted_rows = rows_to_sort.sort_values(by=["Sysselsatte", "AFP/Alderspensjon"], 
 # Concatenate the fixed rows with the sorted rows
 df_pivoted = pd.concat([fixed_rows, sorted_rows]).reset_index(drop=True)
 
-# Reorder columns based on mean values (excluding 'Region' and 'Andre')
-value_columns = [col for col in df_pivoted.columns if col not in ['Region', 'Andre']]
+# Reorder columns based on mean values (excluding 'Region', 'Sysselsatte', 'Arbeidsledige', and 'Andre')
+value_columns = [col for col in df_pivoted.columns if col not in ['Region', 'Sysselsatte', 'Arbeidsledige', 'Andre']]
 column_means = df_pivoted[value_columns].mean()
 sorted_columns = column_means.sort_values(ascending=False).index.tolist()
 
-# Create final column order: Region first, then sorted columns by mean, Andre last
-new_column_order = ['Region'] + sorted_columns + ['Andre']
+# Create final column order: Region, Sysselsatte, Arbeidsledige first, then sorted columns by mean, Andre last
+new_column_order = ['Region', 'Sysselsatte', 'Arbeidsledige'] + sorted_columns + ['Andre']
 df_pivoted = df_pivoted[new_column_order]
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "arbeidsmarkedstilknytning_per_kommune.csv"
 task_name = "Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune"
-github_folder = "Data/03_Arbeid og næringsliv/Sysselsetting"
+github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/Sysselsetting"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status

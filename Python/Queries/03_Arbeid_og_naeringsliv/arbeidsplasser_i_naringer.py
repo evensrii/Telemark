@@ -220,7 +220,7 @@ print(df_combined)
 
 file_name = "sysselsatte_i_naringer.csv"
 task_name = "Arbeid og naeringsliv - Sysselsatte i naeringer"
-github_folder = "Data/03_Arbeid og næringsliv/Sysselsetting"
+github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/Sysselsetting"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
