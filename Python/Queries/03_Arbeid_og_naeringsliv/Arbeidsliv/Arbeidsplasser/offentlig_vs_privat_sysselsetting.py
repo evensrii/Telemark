@@ -6,6 +6,7 @@ from io import BytesIO
 from io import StringIO
 import pandas as pd
 from pyjstat import pyjstat
+from datetime import datetime
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import delete_files_in_temp_folder, fetch_data
@@ -22,6 +23,8 @@ error_messages = []
 POST_URL_sysselsatte = "https://data.ssb.no/api/v0/no/table/13472/"
 
 ################## ARBEIDSPLASSER I KOMMUNER (15-74 ÅR) SISTE ÅR!! (Dvs. sysselsatte etter arbeidssted)
+
+#values = [str(year) for year in range(2016, datetime.now().year - 1)]
 
 # Spørring for å hente ut data fra SSB
 payload_sysselsatte = {
@@ -77,9 +80,7 @@ payload_sysselsatte = {
       "code": "Tid",
       "selection": {
         "filter": "top",
-        "values": [
-          "8"
-        ]
+        "values": ["8"]
       }
     }
   ],
