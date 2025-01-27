@@ -1,0 +1,130 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Ingen driftsmeldinger dukket opp, continuing...
+Converting total from '1.450' (cleaned: '1450')
+Default total established as: 1450 after Telemark selection
+Successfully initialized default total
+
+Collecting data for Elv...
+Clicking checkbox for Elv
+Waiting for table to update...
+
+Collecting data for Elv...
+Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
+Number of rows found: 6
+Row data - Header: SvÃ¦rt god, Values: ['227', '20,4 %']
+Row data - Header: God, Values: ['730', '65,6 %']
+Row data - Header: Moderat, Values: ['125', '11,2 %']
+Row data - Header: DÃ¥rlig, Values: ['19', '1,7 %']
+Row data - Header: SvÃ¦rt dÃ¥rlig, Values: ['12', '1,1 %']
+Row data - Header: Udefinert, Values: ['-', '0,0 %']
+
+Raw DataFrame for Elv:
+       Tilstand TILSTAND  ANTALL
+0     SvÃ¦rt god      227  20,4 %
+1           God      730  65,6 %
+2       Moderat      125  11,2 %
+3        DÃ¥rlig       19   1,7 %
+4  SvÃ¦rt dÃ¥rlig       12   1,1 %
+5     Udefinert        -   0,0 %
+
+Final DataFrame for Elv:
+       Tilstand     Elv
+0     SvÃ¦rt god  20,4 %
+1           God  65,6 %
+2       Moderat  11,2 %
+3        DÃ¥rlig   1,7 %
+4  SvÃ¦rt dÃ¥rlig   1,1 %
+
+Collecting data for InnsjÃ¸...
+Clicking checkbox for InnsjÃ¸
+Waiting for table to update...
+
+Collecting data for InnsjÃ¸...
+Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
+Number of rows found: 6
+Row data - Header: SvÃ¦rt god, Values: ['59', '20,5 %']
+Row data - Header: God, Values: ['192', '66,7 %']
+Row data - Header: Moderat, Values: ['35', '12,2 %']
+Row data - Header: DÃ¥rlig, Values: ['1', '0,3 %']
+Row data - Header: SvÃ¦rt dÃ¥rlig, Values: ['1', '0,3 %']
+Row data - Header: Udefinert, Values: ['-', '0,0 %']
+
+Raw DataFrame for InnsjÃ¸:
+       Tilstand TILSTAND  ANTALL
+0     SvÃ¦rt god       59  20,5 %
+1           God      192  66,7 %
+2       Moderat       35  12,2 %
+3        DÃ¥rlig        1   0,3 %
+4  SvÃ¦rt dÃ¥rlig        1   0,3 %
+5     Udefinert        -   0,0 %
+
+Final DataFrame for InnsjÃ¸:
+       Tilstand  InnsjÃ¸
+0     SvÃ¦rt god  20,5 %
+1           God  66,7 %
+2       Moderat  12,2 %
+3        DÃ¥rlig   0,3 %
+4  SvÃ¦rt dÃ¥rlig   0,3 %
+
+Collecting data for Kystvann...
+Clicking checkbox for Kystvann
+Waiting for table to update...
+
+Collecting data for Kystvann...
+Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
+Number of rows found: 6
+Row data - Header: SvÃ¦rt god, Values: ['2', '4,1 %']
+Row data - Header: God, Values: ['20', '40,8 %']
+Row data - Header: Moderat, Values: ['25', '51,0 %']
+Row data - Header: DÃ¥rlig, Values: ['-', '0,0 %']
+Row data - Header: SvÃ¦rt dÃ¥rlig, Values: ['2', '4,1 %']
+Row data - Header: Udefinert, Values: ['-', '0,0 %']
+
+Raw DataFrame for Kystvann:
+       Tilstand TILSTAND  ANTALL
+0     SvÃ¦rt god        2   4,1 %
+1           God       20  40,8 %
+2       Moderat       25  51,0 %
+3        DÃ¥rlig        -   0,0 %
+4  SvÃ¦rt dÃ¥rlig        2   4,1 %
+5     Udefinert        -   0,0 %
+
+Final DataFrame for Kystvann:
+       Tilstand Kystvann
+0     SvÃ¦rt god    4,1 %
+1           God   40,8 %
+2       Moderat   51,0 %
+3        DÃ¥rlig    0,0 %
+4  SvÃ¦rt dÃ¥rlig    4,1 %
+
+Initial combined DataFrame:
+   Vannkategori      Tilstand     Elv  InnsjÃ¸ Kystvann
+0           Elv     SvÃ¦rt god  20,4 %     NaN      NaN
+1           Elv           God  65,6 %     NaN      NaN
+2           Elv       Moderat  11,2 %     NaN      NaN
+3           Elv        DÃ¥rlig   1,7 %     NaN      NaN
+4           Elv  SvÃ¦rt dÃ¥rlig   1,1 %     NaN      NaN
+5        InnsjÃ¸     SvÃ¦rt god     NaN  20,5 %      NaN
+6        InnsjÃ¸           God     NaN  66,7 %      NaN
+7        InnsjÃ¸       Moderat     NaN  12,2 %      NaN
+8        InnsjÃ¸        DÃ¥rlig     NaN   0,3 %      NaN
+9        InnsjÃ¸  SvÃ¦rt dÃ¥rlig     NaN   0,3 %      NaN
+10     Kystvann     SvÃ¦rt god     NaN     NaN    4,1 %
+11     Kystvann           God     NaN     NaN   40,8 %
+12     Kystvann       Moderat     NaN     NaN   51,0 %
+13     Kystvann        DÃ¥rlig     NaN     NaN    0,0 %
+14     Kystvann  SvÃ¦rt dÃ¥rlig     NaN     NaN    4,1 %
+
+Final pivoted DataFrame:
+   Kategori  SvÃ¦rt god   God  Moderat  DÃ¥rlig  SvÃ¦rt dÃ¥rlig
+0       Elv       20.4  65.6     11.2     1.7           1.1
+1    InnsjÃ¸       20.5  66.7     12.2     0.3           0.3
+2  Kystvann        4.1  40.8     51.0     0.0           4.1
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\Ã¸kologisk_tilstand_vann.csv
+[2025-01-27 02:03:27] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\Ã¸kologisk_tilstand_vann.csv
+No new data detected.
+

@@ -213,6 +213,9 @@ df_combined = df_combined[['næring (SN2007)', f'Telemark ({most_recent_year})',
 # Sort df_combined by the Telemark column, descending
 df_combined = df_combined.sort_values(f'Telemark ({most_recent_year})', ascending=False)
 
+#Filter the top 5 rows
+df_combined = df_combined.head(5)
+
 print("\nCombined data:")
 print(df_combined)
 
