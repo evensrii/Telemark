@@ -213,14 +213,17 @@ df_combined = df_combined[['næring (SN2007)', f'Telemark ({most_recent_year})',
 # Sort df_combined by the Telemark column, descending
 df_combined = df_combined.sort_values(f'Telemark ({most_recent_year})', ascending=False)
 
+#Filter the top 5 rows
+df_combined = df_combined.head(5)
+
 print("\nCombined data:")
 print(df_combined)
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "sysselsatte_i_naringer.csv"
+file_name = "ansatte_i_storste_naringer.csv"
 task_name = "Arbeid og naeringsliv - Sysselsatte i naeringer"
-github_folder = "Data/03_Arbeid og næringsliv/Sysselsetting"
+github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/Arbeidsplasser"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status

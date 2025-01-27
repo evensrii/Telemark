@@ -26,10 +26,13 @@ if TEMP_FOLDER is None:
     raise ValueError("TEMP_FOLDER environment variable is not set")
 
 SCRIPTS = [
+    ## Arbeid og næringsliv
+    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/arbeidsmarkedstilknytning.py"), "Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune"),
+   
     ## Klima og energi
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Klimagassutslipp/klimagassutslipp.py"), "Klima og energi - Sektorvise utslipp"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Klimagassutslipp/norskeutslipp.py"), "Klima og energi - Utslipp fra landbasert industri"),
-    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Ressursforvaltning/okologisk_tilstand_server_versjon.py"), "Klima og energi - Okologisk tilstand vann"),
+    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Ressursforvaltning/okologisk_tilstand.py"), "Klima og energi - Okologisk tilstand vann"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py"), "Klima og energi - Felte hjortedyr"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/NVE/vannkraft.py"), "Klima og energi - Vannkraft Telemark"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py"), "Klima og energi - Strompriser"),

@@ -173,7 +173,7 @@ df["Label"] = df["Kommune"]
 
 file_name = "sysselsetting_i_kommunene.csv"
 task_name = "Arbeid og naeringsliv - Sysselsatte i kommunene"
-github_folder = "Data/03_Arbeid og næringsliv/Sysselsetting"
+github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/Sysselsetting"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status

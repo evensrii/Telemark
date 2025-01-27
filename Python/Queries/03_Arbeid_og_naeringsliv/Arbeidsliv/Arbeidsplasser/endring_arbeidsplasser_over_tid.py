@@ -21,7 +21,7 @@ error_messages = []
 # Endepunkt for SSB API
 POST_URL_sysselsatte = "https://data.ssb.no/api/v0/no/table/13472/"
 
-################## SYSSELSATTE I KOMMUNER (15-74 ÅR) SISTE ÅR!!
+################## ARBEIDSPLASSER I KOMMUNER (15-74 ÅR) SISTE ÅR!! (Dvs. sysselsatte etter arbeidssted)
 
 # Spørring for å hente ut data fra SSB
 payload_sysselsatte = {
@@ -347,8 +347,8 @@ print(df_combined)
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "endring_i_arbeidsplasser_over_tid.csv"
-task_name = "Arbeid og naeringsliv - Arbeidsplasser over tid"
-github_folder = "Data/03_Arbeid og næringsliv/Sysselsetting"
+task_name = "Arbeid og naeringsliv - Offentlig vs. privat næringsliv"
+github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/Arbeidsplasser"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status

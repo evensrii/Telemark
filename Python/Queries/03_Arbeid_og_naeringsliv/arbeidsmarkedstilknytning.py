@@ -457,20 +457,20 @@ sorted_rows = rows_to_sort.sort_values(by=["Sysselsatte", "AFP/Alderspensjon"], 
 # Concatenate the fixed rows with the sorted rows
 df_pivoted = pd.concat([fixed_rows, sorted_rows]).reset_index(drop=True)
 
-# Reorder columns based on mean values (excluding 'Region' and 'Andre')
-value_columns = [col for col in df_pivoted.columns if col not in ['Region', 'Andre']]
+# Reorder columns based on mean values (excluding 'Region', 'Sysselsatte', 'Arbeidsledige', and 'Andre')
+value_columns = [col for col in df_pivoted.columns if col not in ['Region', 'Sysselsatte', 'Arbeidsledige', 'Andre']]
 column_means = df_pivoted[value_columns].mean()
 sorted_columns = column_means.sort_values(ascending=False).index.tolist()
 
-# Create final column order: Region first, then sorted columns by mean, Andre last
-new_column_order = ['Region'] + sorted_columns + ['Andre']
+# Create final column order: Region, Sysselsatte, Arbeidsledige first, then sorted columns by mean, Andre last
+new_column_order = ['Region', 'Sysselsatte', 'Arbeidsledige'] + sorted_columns + ['Andre']
 df_pivoted = df_pivoted[new_column_order]
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "arbeidsmarkedstilknytning_per_kommune.csv"
 task_name = "Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune"
-github_folder = "Data/03_Arbeid og næringsliv/Sysselsetting"
+github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/Sysselsetting"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
@@ -492,23 +492,3 @@ else:
     print("No new data detected.")
 
 print(f"New data status log written to {new_data_status_file}")
-
-
-######### Additional info for webpage ###########
-
-# Path to the additional info file
-additional_info_file = os.path.join(temp_folder, github_folder, "additional_data.txt")
-
-# Ensure the folder exists
-os.makedirs(os.path.dirname(additional_info_file), exist_ok=True)
-
-# Write additional information to the "additional_data.txt" file
-with open(additional_info_file, "a", encoding="utf-8") as info_file:
-    info_file.write(f"Task: {task_name}\n")
-    info_file.write(f"New Data Detected: {'Yes' if is_new_data else 'No'}\n")
-    info_file.write(f"Rows Processed: {len(df_pivoted)}\n")
-    info_file.write(f"Date: {datetime.now()}\n")
-    info_file.write("=" * 50 + "\n")
-
-
-print(f"Additional info written to {additional_info_file}")
