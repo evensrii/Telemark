@@ -221,9 +221,9 @@ print(df_combined)
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "sysselsatte_i_naringer.csv"
+file_name = "ansatte_i_storste_naringer.csv"
 task_name = "Arbeid og naeringsliv - Sysselsatte i naeringer"
-github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/Sysselsetting"
+github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/Arbeidsplasser"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
