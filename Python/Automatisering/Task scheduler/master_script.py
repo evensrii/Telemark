@@ -27,7 +27,7 @@ if TEMP_FOLDER is None:
 
 SCRIPTS = [
     ## Arbeid og næringsliv
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/arbeidsmarkedstilknytning.py"), "Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune"),
+    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning.py"), "Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune"),
    
     ## Klima og energi
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Klimagassutslipp/klimagassutslipp.py"), "Klima og energi - Sektorvise utslipp"),
