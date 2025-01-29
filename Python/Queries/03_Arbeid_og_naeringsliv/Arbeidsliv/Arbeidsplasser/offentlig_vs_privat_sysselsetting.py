@@ -22,6 +22,77 @@ error_messages = []
 # Endepunkt for SSB API
 POST_URL_sysselsatte = "https://data.ssb.no/api/v0/no/table/13472/"
 
+
+##### Query for å finne siste år i datasettet
+
+# Spørring for å hente ut data fra SSB
+payload_siste_aar = {
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "agg:KommSummer",
+        "values": [
+          "K-4001"
+        ]
+      }
+    },
+    {
+      "code": "Sektor",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "6100",
+          "6500.6",
+          "6500.7",
+          "A+B+D+E.5-7",
+          "A+B+D+E.0-1+9"
+        ]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "SysselEtterArbste"
+        ]
+      }
+    },
+    {
+      "code": "Tid",
+      "selection": {
+        "filter": "top",
+        "values": ["1"]
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}
+
+try:
+    df_siste_aar = fetch_data(
+        url=POST_URL_sysselsatte,
+        payload=payload_siste_aar,
+        error_messages=error_messages,
+        query_name="Sysselsatte, siste år",
+        response_type="json"
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+
+# Get most recent year
+most_recent_year = df_siste_aar['år'].iloc[0]
+
+# Create a list of years from 2016 until most_recent_year, years as strings enclosed in ""
+years = [str(year) for year in range(2016, int(most_recent_year) + 1)]
+
 ################## ARBEIDSPLASSER I KOMMUNER (15-74 ÅR) SISTE ÅR!! (Dvs. sysselsatte etter arbeidssted)
 
 #values = [str(year) for year in range(2016, datetime.now().year - 1)]
@@ -79,8 +150,8 @@ payload_sysselsatte = {
     {
       "code": "Tid",
       "selection": {
-        "filter": "top",
-        "values": ["8"]
+        "filter": "item",
+        "values": years
       }
     }
   ],

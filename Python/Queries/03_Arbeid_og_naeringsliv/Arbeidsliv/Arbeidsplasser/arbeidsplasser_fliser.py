@@ -21,11 +21,12 @@ error_messages = []
 # Endepunkt for SSB API
 POST_URL = "https://data.ssb.no/api/v0/no/table/13470/"
 
+################## TELEMARK
 
-#### SPØRRING FOR Å FINNE UT HVILKET ÅR SOM ER NYEST I DATASETTET
+# Kjøre spørring første gang, for å finne siste år
 
 # Spørring for å hente ut data fra SSB
-payload_sysselsatte_siste_aar = {
+payload_most_recent_year = {
   "query": [
     {
       "code": "Region",
@@ -41,7 +42,7 @@ payload_sysselsatte_siste_aar = {
       "selection": {
         "filter": "agg_single:NACE2007arb11",
         "values": [
-          "01-03"
+          "01-03",
         ]
       }
     },
@@ -69,13 +70,17 @@ payload_sysselsatte_siste_aar = {
   }
 }
 
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
+
 try:
-    df_sysselsatte_siste_aar = fetch_data(
+    df_last_year = fetch_data(
         url=POST_URL,
-        payload=payload_sysselsatte_siste_aar,
+        payload=payload_most_recent_year,  # The JSON payload for POST requests. If None, a GET request is used.
         error_messages=error_messages,
-        query_name="Sysselsatte, siste år",
-        response_type="json"
+        query_name="Sysselsatte i næringer, Telemark, kun siste år",
+        response_type="json",  # The expected response type, either 'json' or 'csv'.
+        # delimiter=";", # The delimiter for CSV data (default: ';').
+        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
     )
 except Exception as e:
     print(f"Error occurred: {e}")
@@ -85,17 +90,14 @@ except Exception as e:
     )
 
 # Get most recent year
-most_recent_year = df_sysselsatte_siste_aar['år'].iloc[0]
+most_recent_year = df_last_year['år'].iloc[0]
 
 # Create a list of years from 2016 until most_recent_year, years as strings enclosed in ""
 years = [str(year) for year in range(2016, int(most_recent_year) + 1)]
 
+# Kjøre spørring på nytt, fra 2016 til most_recent_year
 
-
-################## ARBEIDSPLASSER I KOMMUNER (Dvs. sysselsatte etter arbeidssted)
-
-# Spørring for å hente ut data fra SSB
-payload_sysselsatte = {
+payload = {
   "query": [
     {
       "code": "Region",
@@ -169,13 +171,17 @@ payload_sysselsatte = {
   }
 }
 
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
+
 try:
-    df_sysselsatte = fetch_data(
+    df = fetch_data(
         url=POST_URL,
-        payload=payload_sysselsatte,
+        payload=payload,  # The JSON payload for POST requests. If None, a GET request is used.
         error_messages=error_messages,
-        query_name="Sysselsatte, kommuner",
-        response_type="json"
+        query_name="Sysselsatte i næringer, Telemark",
+        response_type="json",  # The expected response type, either 'json' or 'csv'.
+        # delimiter=";", # The delimiter for CSV data (default: ';').
+        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
     )
 except Exception as e:
     print(f"Error occurred: {e}")
@@ -184,35 +190,15 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-# Sum values for year
-sysselsatte_per_year = df_sysselsatte.groupby(['region', 'næring (SN2007)', 'år'])['value'].sum().reset_index()
-
-# Group by year and sum value
-sysselsatte_per_year_sum = sysselsatte_per_year.groupby(['år'])['value'].sum().reset_index()
-
-
-print("\nSysselsatte per år:\n")
-print(sysselsatte_per_year_sum)
-
-# Extract latest year
-latest_year = sysselsatte_per_year_sum.iloc[-1]['år']
-
-# Calculate growth in employment from 2016 until latest year in table
-growth = (sysselsatte_per_year_sum.iloc[-1]['value'] - sysselsatte_per_year_sum.iloc[0]['value'])
-
-print(f"Økning i antall arbeidsplasser (sysselsatte med arbeidssted i Telemark) fra 2016 til {latest_year}: {growth}")
-
-
-
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "endring_i_arbeidsplasser_over_tid.csv"
-task_name = "Arbeid og naeringsliv - Offentlig vs. privat næringsliv"
+file_name = "ansatte_i_naringer_fliser.csv"
+task_name = "Arbeid og naeringsliv - Sysselsatte i naeringer"
 github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/Arbeidsplasser"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df_sysselsatte, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
