@@ -194,7 +194,7 @@ except Exception as e:
 
 file_name = "ansatte_i_naringer_fliser.csv"
 task_name = "Arbeid og naeringsliv - Sysselsatte i naeringer"
-github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/Arbeidsplasser"
+github_folder = "Data/03_Arbeid og næringsliv/02_Næringsliv/Næringsstruktur og arbeidsplasser"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
