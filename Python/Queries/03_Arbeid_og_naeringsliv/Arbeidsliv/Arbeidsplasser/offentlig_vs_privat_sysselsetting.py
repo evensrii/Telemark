@@ -93,6 +93,87 @@ most_recent_year = df_siste_aar['år'].iloc[0]
 # Create a list of years from 2016 until most_recent_year, years as strings enclosed in ""
 years = [str(year) for year in range(2016, int(most_recent_year) + 1)]
 
+
+################## ARBEIDSPLASSER OVER TID I FYLKET OG LANDET (15-74 ÅR) (Sysselsatte etter arbeidssted)
+
+####### FYLKET
+
+# Spørring for å hente ut data fra SSB
+payload_fylket = {
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "agg:KommFylker",
+        "values": [
+          "F-40"
+        ]
+      }
+    },
+    {
+      "code": "Sektor",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "6100",
+          "6500.6",
+          "6500.7",
+          "A+B+D+E.5-7",
+          "A+B+D+E.0-1+9"
+        ]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "SysselEtterArbste"
+        ]
+      }
+    },
+    {
+      "code": "Tid",
+      "selection": {
+        "filter": "item",
+        "values": years
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}
+
+try:
+    df_fylket = fetch_data(
+        url=POST_URL_sysselsatte,
+        payload=payload_fylket,
+        error_messages=error_messages,
+        query_name="Sysselsatte over tid, fylket",
+        response_type="json"
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+
+    # Create a mask for private sector in df_fylket
+    private_sector_mask_fylket = df_fylket['sektor'] == 'Privat sektor'
+
+    # Split df_fylket into private and public sectors
+    private_sector_fylket = df_fylket[private_sector_mask_fylket].copy()
+    public_sector_fylket = df_fylket[~private_sector_mask_fylket].copy()
+
+    # Sum up all public sector values for each region in df_fylket
+    public_sector_sum_fylket = public_sector_fylket.groupby(['region', 'statistikkvariabel', 'år'])['value'].sum().reset_index()
+    public_sector_sum_fylket['sektor'] = 'Offentlig sektor'
+
+    # Combine private and public sector data for df_fylket
+    df_fylket = pd.concat([public_sector_sum_fylket, private_sector_fylket], ignore_index=True)
+
 ################## ARBEIDSPLASSER I KOMMUNER (15-74 ÅR) SISTE ÅR!! (Dvs. sysselsatte etter arbeidssted)
 
 #values = [str(year) for year in range(2016, datetime.now().year - 1)]
@@ -175,19 +256,19 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-# Create a mask for private sector
-private_sector_mask = df_sysselsatte['sektor'] == 'Privat sektor'
+    # Create a mask for private sector in df_sysselsatte
+    private_sector_mask = df_sysselsatte['sektor'] == 'Privat sektor'
 
-# Split the data into private and public sectors
-private_sector = df_sysselsatte[private_sector_mask].copy()
-public_sector = df_sysselsatte[~private_sector_mask].copy()
+    # Split df_sysselsatte into private and public sectors
+    private_sector = df_sysselsatte[private_sector_mask].copy()
+    public_sector = df_sysselsatte[~private_sector_mask].copy()
 
-# Sum up all public sector values for each region
-public_sector_sum = public_sector.groupby(['region', 'statistikkvariabel', 'år'])['value'].sum().reset_index()
-public_sector_sum['sektor'] = 'Offentlig sektor'
+    # Sum up all public sector values for each region in df_sysselsatte
+    public_sector_sum = public_sector.groupby(['region', 'statistikkvariabel', 'år'])['value'].sum().reset_index()
+    public_sector_sum['sektor'] = 'Offentlig sektor'
 
-# Combine private and public sector data
-df_processed = pd.concat([public_sector_sum, private_sector], ignore_index=True)
+    # Combine private and public sector data for df_sysselsatte
+    df_processed = pd.concat([public_sector_sum, private_sector], ignore_index=True)
 
 # Clean up the region names and add Label column
 df_processed["region"] = df_processed["region"].str.replace(r'\s*\(\d{4}-\d{4}\)', '', regex=True)
