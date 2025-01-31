@@ -198,7 +198,7 @@ github_folder = "Data/03_Arbeid og næringsliv/02_Næringsliv/Næringsstruktur o
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df_combined, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df_virksomheter, file_name, github_folder, temp_folder, keepcsv=True)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
