@@ -15,8 +15,8 @@ Collecting data for Elv...
 Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
 Number of rows found: 6
 Row data - Header: SvÃÂ¦rt god, Values: ['227', '20,4 %']
-Row data - Header: God, Values: ['730', '65,6 %']
-Row data - Header: Moderat, Values: ['125', '11,2 %']
+Row data - Header: God, Values: ['731', '65,7 %']
+Row data - Header: Moderat, Values: ['124', '11,1 %']
 Row data - Header: DÃÂ¥rlig, Values: ['19', '1,7 %']
 Row data - Header: SvÃÂ¦rt dÃÂ¥rlig, Values: ['12', '1,1 %']
 Row data - Header: Udefinert, Values: ['-', '0,0 %']
@@ -24,8 +24,8 @@ Row data - Header: Udefinert, Values: ['-', '0,0 %']
 Raw DataFrame for Elv:
        Tilstand TILSTAND  ANTALL
 0     SvÃÂ¦rt god      227  20,4 %
-1           God      730  65,6 %
-2       Moderat      125  11,2 %
+1           God      731  65,7 %
+2       Moderat      124  11,1 %
 3        DÃÂ¥rlig       19   1,7 %
 4  SvÃÂ¦rt dÃÂ¥rlig       12   1,1 %
 5     Udefinert        -   0,0 %
@@ -33,8 +33,8 @@ Raw DataFrame for Elv:
 Final DataFrame for Elv:
        Tilstand     Elv
 0     SvÃÂ¦rt god  20,4 %
-1           God  65,6 %
-2       Moderat  11,2 %
+1           God  65,7 %
+2       Moderat  11,1 %
 3        DÃÂ¥rlig   1,7 %
 4  SvÃÂ¦rt dÃÂ¥rlig   1,1 %
 
@@ -103,8 +103,8 @@ Final DataFrame for Kystvann:
 Initial combined DataFrame:
    Vannkategori      Tilstand     Elv  InnsjÃÂ¸ Kystvann
 0           Elv     SvÃÂ¦rt god  20,4 %     NaN      NaN
-1           Elv           God  65,6 %     NaN      NaN
-2           Elv       Moderat  11,2 %     NaN      NaN
+1           Elv           God  65,7 %     NaN      NaN
+2           Elv       Moderat  11,1 %     NaN      NaN
 3           Elv        DÃÂ¥rlig   1,7 %     NaN      NaN
 4           Elv  SvÃÂ¦rt dÃÂ¥rlig   1,1 %     NaN      NaN
 5        InnsjÃÂ¸     SvÃÂ¦rt god     NaN  20,5 %      NaN
@@ -120,11 +120,21 @@ Initial combined DataFrame:
 
 Final pivoted DataFrame:
    Kategori  SvÃÂ¦rt god   God  Moderat  DÃÂ¥rlig  SvÃÂ¦rt dÃÂ¥rlig
-0       Elv       20.4  65.6     11.2     1.7           1.1
+0       Elv       20.4  65.7     11.1     1.7           1.1
 1    InnsjÃÂ¸       20.5  66.7     12.2     0.3           0.3
 2  Kystvann        4.1  40.8     51.0     0.0           4.1
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\ÃÂ¸kologisk_tilstand_vann.csv
-[2025-01-30 02:03:22] No new data to upload. Skipping GitHub update.
+[2025-01-31 02:03:25] Changes detected in the dataset.
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/ÃÂ¸kologisk_tilstand_vann.csv
+
+Showing up to 5 examples of changes:
+
+Row: 
+  God: 65.6 -> 65.7
+
+Row: 
+  Moderat: 11.2 -> 11.1
+Email notifications disabled. Updates for ÃÂ¸kologisk_tilstand_vann.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\ÃÂ¸kologisk_tilstand_vann.csv
-No new data detected.
+New data detected and pushed to GitHub.
 
