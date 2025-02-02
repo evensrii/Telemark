@@ -6,30 +6,31 @@ Script starting...
 Working with file: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
 Checking for existing data...
 Type of existing_df: <class 'pandas.core.frame.DataFrame'>
-Latest date in existing data: 2025-01-30 00:00:00
-Found 1492 existing records
-Will fetch data from 2025-01-31 00:00:00 to 2025-01-31 00:00:00 (yesterday)
+Latest date in existing data: 2025-01-31 00:00:00
+Found 1493 existing records
+Will fetch data from 2025-02-01 00:00:00 to 2025-02-01 00:00:00 (yesterday)
 Fetching energy prices from ENTSO-E...
 Successfully received response from ENTSO-E
 Parsing XML response...
 Found 1 TimeSeries elements
-Processing period starting at 2025-01-30T23:00Z
+Processing period starting at 2025-01-31T23:00Z
 Found 24 Point elements
 Total price data points collected: 24
 After filtering out existing dates, 23 price records remain
 Fetching exchange rates...
+Could not fetch new exchange rates, using latest available rate...
 Merging price and exchange rate data...
 Calculating daily averages...
 Columns before renaming: ['date', 'price_eur', 'eur_nok_rate', 'price_nok']
 Combining with existing data...
 Columns in existing_df: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh', 'NOK/KWh']
 Columns in daily_avg_new: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh', 'NOK/KWh']
-Combined data now has 1493 records
+Combined data now has 1494 records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2025-02-01 02:03:56] Row count changed: 1492 -> 1493
+[2025-02-02 02:03:57] Row count changed: 1493 -> 1494
 
 Added rows (showing up to 10):
-EUR/MWh: 98.35000000000001, NOK/KWh: 1.154363455, NOK/MWh: 1154.363455, kurs: 11.7373, time: 2025-01-31
+EUR/MWh: 96.77739130434783, NOK/KWh: 1.1359052749565217, NOK/MWh: 1135.9052749565217, kurs: 11.7373, time: 2025-02-01
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
 Email notifications disabled. Updates for strompriser.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
