@@ -188,7 +188,6 @@ try:
 except Exception as e:
     error_messages.append(f"Unexpected error in script execution: {str(e)}")
 
-
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "enhetsregisteret_hovedenheter.csv"
@@ -196,41 +195,32 @@ task_name = "Arbeid og naeringsliv - Enhetsregisteret - Hovedenheter"
 github_folder = "Data/03_Arbeid og næringsliv/02_Næringsliv/Virksomheter"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-# Ensure temp folder exists
-if not os.path.exists(temp_folder):
-    os.makedirs(temp_folder)
+# Only specify the one column we know is truly numeric
+value_columns = ['Antall ansatte']
 
-# Save DataFrame to CSV in temp folder
-temp_file_path = os.path.join(temp_folder, file_name)
-df_edit.to_csv(temp_file_path, index=False)
-print(f"Saved file to {temp_file_path}")
+# Ignore all columns that might contain codes or text that look like numbers
+ignore_patterns = [
+    'Org. nr.',
+    'NACE 1',
+    'NACE 2',
+    'NACE 3',
+    'Sektorkode',
+    'Overordnet enhet',
+    'NACE 1 - Bransje',
+    'NACE 2 - Bransje',
+    'NACE 3 - Bransje'
+]
 
-try:
-    # Download existing file from GitHub for comparison
-    github_file_path = f"{github_folder}/{file_name}"
-    existing_df = download_github_file(github_file_path)
-    
-    if existing_df is None:
-        print(f"No existing file found on GitHub. Will upload new file: {file_name}")
-        upload_github_file(temp_file_path, github_file_path)
-        is_new_data = True
-    else:
-        # Compare only the 'Antall ansatte' column for numeric differences
-        existing_df['Antall ansatte'] = pd.to_numeric(existing_df['Antall ansatte'], errors='coerce')
-        df_edit['Antall ansatte'] = pd.to_numeric(df_edit['Antall ansatte'], errors='coerce')
-        
-        # Check if there are any differences
-        if not df_edit.equals(existing_df):
-            print(f"Changes detected in the data. Uploading new version to GitHub: {file_name}")
-            upload_github_file(temp_file_path, github_file_path)
-            is_new_data = True
-        else:
-            print("No changes detected in the data.")
-            is_new_data = False
-
-except Exception as e:
-    error_messages.append(f"Error in GitHub comparison: {str(e)}")
-    is_new_data = False
+# Call the function and get the "New Data" status
+is_new_data = handle_output_data(
+    df_edit, 
+    file_name, 
+    github_folder, 
+    temp_folder, 
+    keepcsv=True,
+    value_columns=value_columns,
+    ignore_patterns=ignore_patterns
+)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
