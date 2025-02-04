@@ -193,8 +193,8 @@ except Exception as e:
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "virksomheter.csv"
-task_name = "Arbeid og naeringsliv - virksomheter"
-github_folder = "Data/03_Arbeid og næringsliv/02_Næringsliv/Næringsstruktur og arbeidsplasser"
+task_name = "Arbeid og naeringsliv - Virksomheter"
+github_folder = "Data/03_Arbeid og næringsliv/02_Næringsliv/Virksomheter"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
