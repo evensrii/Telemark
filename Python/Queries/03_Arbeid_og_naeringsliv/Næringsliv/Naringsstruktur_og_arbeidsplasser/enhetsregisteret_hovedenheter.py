@@ -49,8 +49,8 @@ try:
                     data = response.json()
                     
                     # Write the JSON response to a file for inspection
-                    with open(f'response_page_{page}.json', 'w', encoding='utf-8') as f:
-                        json.dump(data, f, ensure_ascii=False, indent=2)
+                    #with open(f'response_page_{page}.json', 'w', encoding='utf-8') as f:
+                    #    json.dump(data, f, ensure_ascii=False, indent=2)
                     
                     # Check if '_embedded' key is present
                     if '_embedded' in data:
@@ -196,19 +196,41 @@ task_name = "Arbeid og naeringsliv - Enhetsregisteret - Hovedenheter"
 github_folder = "Data/03_Arbeid og næringsliv/02_Næringsliv/Virksomheter"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-# Specify which columns should be treated as numeric values
-value_columns = ['Antall ansatte', 'Sektorkode']
+# Ensure temp folder exists
+if not os.path.exists(temp_folder):
+    os.makedirs(temp_folder)
 
-# Call the function and get the "New Data" status
-is_new_data = handle_output_data(
-    df_edit, 
-    file_name, 
-    github_folder, 
-    temp_folder, 
-    keepcsv=True,
-    value_columns=value_columns,
-    ignore_patterns=['Org. nr.','Sektorkode', 'NACE', ]  # Ignore NACE code columns when comparing numeric values
-)
+# Save DataFrame to CSV in temp folder
+temp_file_path = os.path.join(temp_folder, file_name)
+df_edit.to_csv(temp_file_path, index=False)
+print(f"Saved file to {temp_file_path}")
+
+try:
+    # Download existing file from GitHub for comparison
+    github_file_path = f"{github_folder}/{file_name}"
+    existing_df = download_github_file(github_file_path)
+    
+    if existing_df is None:
+        print(f"No existing file found on GitHub. Will upload new file: {file_name}")
+        upload_github_file(temp_file_path, github_file_path)
+        is_new_data = True
+    else:
+        # Compare only the 'Antall ansatte' column for numeric differences
+        existing_df['Antall ansatte'] = pd.to_numeric(existing_df['Antall ansatte'], errors='coerce')
+        df_edit['Antall ansatte'] = pd.to_numeric(df_edit['Antall ansatte'], errors='coerce')
+        
+        # Check if there are any differences
+        if not df_edit.equals(existing_df):
+            print(f"Changes detected in the data. Uploading new version to GitHub: {file_name}")
+            upload_github_file(temp_file_path, github_file_path)
+            is_new_data = True
+        else:
+            print("No changes detected in the data.")
+            is_new_data = False
+
+except Exception as e:
+    error_messages.append(f"Error in GitHub comparison: {str(e)}")
+    is_new_data = False
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
