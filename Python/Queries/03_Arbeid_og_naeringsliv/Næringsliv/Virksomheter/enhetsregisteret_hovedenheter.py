@@ -136,7 +136,7 @@ try:
                 return name
             
             # List of words that should always be capitalized
-            special_words = ['Vestfold', 'Telemark', 'Skien', 'Porsgrunn', 'Bamble', 
+            special_words = ['Vestfold', 'Telemark', 'Norge', 'Norway', 'Skien', 'Porsgrunn', 'Bamble', 
                             'Kragerø', 'Drangedal', 'Nome', 'Midt-Telemark', 'Tinn', 
                             'Hjartdal', 'Seljord', 'Kviteseid', 'Nissedal', 'Fyresdal', 
                             'Tokke', 'Vinje', 'Notodden', 'Siljan']
@@ -159,6 +159,14 @@ try:
                 # Handle "AS" at the end
                 if i == len(words) - 1 and word.lower() == "as":
                     words[i] = "AS"
+
+                # Handle "HF" at the end
+                if i == len(words) - 1 and word.lower() == "hf":
+                    words[i] = "HF"
+
+                # Handle "AS" at the end
+                if i == len(words) - 1 and word.lower() == "nav":
+                    words[i] = "NAV"
             
             return " ".join(words)
 
