@@ -6,14 +6,14 @@ Script starting...
 Working with file: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
 Checking for existing data...
 Type of existing_df: <class 'pandas.core.frame.DataFrame'>
-Latest date in existing data: 2025-02-04 00:00:00
-Found 1497 existing records
-Will fetch data from 2025-02-05 00:00:00 to 2025-02-05 00:00:00 (yesterday)
+Latest date in existing data: 2025-02-05 00:00:00
+Found 1498 existing records
+Will fetch data from 2025-02-06 00:00:00 to 2025-02-06 00:00:00 (yesterday)
 Fetching energy prices from ENTSO-E...
 Successfully received response from ENTSO-E
 Parsing XML response...
 Found 1 TimeSeries elements
-Processing period starting at 2025-02-04T23:00Z
+Processing period starting at 2025-02-05T23:00Z
 Found 24 Point elements
 Total price data points collected: 24
 After filtering out existing dates, 23 price records remain
@@ -24,12 +24,12 @@ Columns before renaming: ['date', 'price_eur', 'eur_nok_rate', 'price_nok']
 Combining with existing data...
 Columns in existing_df: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh', 'NOK/KWh']
 Columns in daily_avg_new: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh', 'NOK/KWh']
-Combined data now has 1498 records
+Combined data now has 1499 records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2025-02-06 02:03:48] Row count changed: 1497 -> 1498
+[2025-02-07 02:03:49] Row count changed: 1498 -> 1499
 
 Added rows (showing up to 10):
-EUR/MWh: 48.286086956521736, NOK/KWh: 0.5634648345217391, NOK/MWh: 563.4648345217391, kurs: 11.669299999999998, time: 2025-02-05
+EUR/MWh: 106.28478260869566, NOK/KWh: 1.2391211380434783, NOK/MWh: 1239.1211380434784, kurs: 11.658500000000002, time: 2025-02-06
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
 Email notifications disabled. Updates for strompriser.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
