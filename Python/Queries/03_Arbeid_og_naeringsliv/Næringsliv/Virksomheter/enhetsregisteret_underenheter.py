@@ -27,13 +27,13 @@ try:
     # Define paths
     temp_folder = os.environ.get("TEMP_FOLDER", "temp")
     os.makedirs(temp_folder, exist_ok=True)
-    
-    gz_file_path = os.path.join(temp_folder, "enheter.json.gz")
-    json_file_path = os.path.join(temp_folder, "enheter.json")
+
+    gz_file_path = os.path.join(temp_folder, "underenheter.json.gz")
+    json_file_path = os.path.join(temp_folder, "underenheter.json")
 
     # Download and extract data
     print("Downloading file from Enhetsregisteret...")
-    url = "https://data.brreg.no/enhetsregisteret/api/enheter/lastned"
+    url = "https://data.brreg.no/enhetsregisteret/api/underenheter/lastned"
     try:
         response = requests.get(url, stream=True)
         total_size = int(response.headers.get('content-length', 0))
@@ -87,7 +87,6 @@ try:
         raise RuntimeError(f"Download/extraction failed: {str(dl_error)}")
 
     # Process JSON data
-    print("Processing JSON file...")
     telemark_kommunenummer = [
         "4001", "4003", "4005", "4010", "4012", "4014", "4016", "4018", "4020", 
         "4022", "4024", "4026", "4028", "4030", "4032", "4034", "4036"
@@ -98,13 +97,11 @@ try:
         data = json.load(f)
         filtered_data = [
             enhet for enhet in data 
-            if enhet.get('forretningsadresse', {}).get('kommunenummer') in telemark_kommunenummer
+            if enhet.get('beliggenhetsadresse', {}).get('kommunenummer') in telemark_kommunenummer
         ]
 
-    print(f"Found {len(filtered_data)} companies in Telemark")
-
     if not filtered_data:
-        raise RuntimeError("No companies found matching the filter criteria")
+        raise RuntimeError("No sub-units found matching the filter criteria")
 
     # Convert to DataFrame and process nested columns
     full_df = pd.DataFrame(filtered_data)
@@ -112,8 +109,10 @@ try:
 
     # Process nested columns
     nested_columns = [
-        'forretningsadresse', 'postadresse', 'organisasjonsform',
-        'institusjonellSektorkode', 'naeringskode1', 'naeringskode2', 'naeringskode3'
+        'organisasjonsform',
+        'naeringskode1',
+        'beliggenhetsadresse',
+        'postadresse'
     ]
 
     for column in nested_columns:
@@ -136,13 +135,16 @@ try:
 
     # Extract specified columns
     columns_to_extract = [
-        'navn', 'organisasjonsnummer', 'overordnetEnhet', 'antallAnsatte',
-        'institusjonellSektorkode.kode', 'institusjonellSektorkode.beskrivelse',
-        'aktivitet', 'forretningsadresse.kommune', 'postadresse.kommune',
-        'organisasjonsform.beskrivelse', 'naeringskode1.kode',
-        'naeringskode1.beskrivelse', 'naeringskode2.kode',
-        'naeringskode2.beskrivelse', 'naeringskode3.kode',
-        'naeringskode3.beskrivelse'
+        'organisasjonsnummer',
+        'navn',
+        'overordnetEnhet',
+        'antallAnsatte',
+        'organisasjonsform.kode',
+        'organisasjonsform.beskrivelse',
+        'naeringskode1.kode',
+        'naeringskode1.beskrivelse',
+        'beliggenhetsadresse.kommune',
+        'postadresse.kommune'
     ]
 
     existing_columns = [col for col in columns_to_extract if col in full_df.columns]
@@ -156,66 +158,49 @@ try:
         'organisasjonsnummer': 'Org. nr.',
         'navn': 'Navn',
         'overordnetEnhet': 'Overordnet enhet',
+        'antallAnsatte': 'Antall ansatte',
+        'organisasjonsform.kode': 'Organisasjonsform - Kode',
         'organisasjonsform.beskrivelse': 'Organisasjonsform',
-        'institusjonellSektorkode.beskrivelse': 'Sektor',
-        'institusjonellSektorkode.kode': 'Sektorkode',
-        'aktivitet': 'Aktivitet',
-        'forretningsadresse.kommune': 'Forretningsadresse - Kommune',
-        'postadresse.kommune': 'Postadresse - Kommune',
         'naeringskode1.kode': 'NACE 1',
         'naeringskode1.beskrivelse': 'NACE 1 - Bransje',
-        'naeringskode2.kode': 'NACE 2',
-        'naeringskode2.beskrivelse': 'NACE 2 - Bransje',
-        'naeringskode3.kode': 'NACE 3',
-        'naeringskode3.beskrivelse': 'NACE 3 - Bransje',
-        'antallAnsatte': 'Antall ansatte'
+        'beliggenhetsadresse.kommune': 'Beliggenhetsadresse - Kommune',
+        'postadresse.kommune': 'Postadresse - Kommune'
     }
 
     df_telemark = df_telemark.rename(columns=rename_map)
 
     # Format text columns
     def format_company_name(name):
-        # Handle NaN values
         if pd.isna(name):
             return name
         
-        # List of words that should always be capitalized
         special_words = ['Vestfold', 'Telemark', 'Norge', 'Norway', 'Skien', 'Porsgrunn', 'Bamble', 
                         'Kragerø', 'Drangedal', 'Nome', 'Midt-Telemark', 'Tinn', 
                         'Hjartdal', 'Seljord', 'Kviteseid', 'Nissedal', 'Fyresdal', 
                         'Tokke', 'Vinje', 'Notodden', 'Siljan']
         
-        # Split the name into words
         words = str(name).lower().split()
         
-        # Capitalize the first word
         if words:
             words[0] = words[0].capitalize()
         
-        # Handle special cases
         for i, word in enumerate(words):
-            # Check if the word should always be capitalized
             for special_word in special_words:
                 if word.lower() == special_word.lower():
                     words[i] = special_word
                     break
-        
-            # Handle "AS" at the end
-            if i == len(words) - 1 and word.lower() == "as":
-                words[i] = "AS"
-
-            # Handle "HF" at the end
-            if i == len(words) - 1 and word.lower() == "hf":
-                words[i] = "HF"
-
-            # Handle "AS" at the end
-            if i == len(words) - 1 and word.lower() == "nav":
-                words[i] = "NAV"
+            
+            if i == len(words) - 1:
+                if word.lower() == "as":
+                    words[i] = "AS"
+                elif word.lower() == "hf":
+                    words[i] = "HF"
+                elif word.lower() == "nav":
+                    words[i] = "NAV"
         
         return " ".join(words)
 
     def format_municipality_name(name):
-        # Handle NaN values
         if pd.isna(name):
             return name
         
@@ -224,20 +209,16 @@ try:
             return "Midt-Telemark"
         return name.lower().capitalize()
 
-    df_telemark['Navn'] = df_telemark['Navn'].apply(format_company_name)
-    df_telemark['Forretningsadresse - Kommune'] = df_telemark['Forretningsadresse - Kommune'].apply(format_municipality_name)
-    df_telemark['Postadresse - Kommune'] = df_telemark['Postadresse - Kommune'].apply(format_municipality_name)
-
-    # Clean Aktivitet column
-    df_telemark['Aktivitet'] = df_telemark['Aktivitet'].str.replace('[\[\]]', '', regex=True)
-
     # Sort the dataframe
     df_telemark = df_telemark.sort_values(by=['Antall ansatte', 'NACE 1'], ascending=[False, True])
+
+    df_telemark['Navn'] = df_telemark['Navn'].apply(format_company_name)
+    df_telemark['Beliggenhetsadresse - Kommune'] = df_telemark['Beliggenhetsadresse - Kommune'].apply(format_municipality_name)
+    df_telemark['Postadresse - Kommune'] = df_telemark['Postadresse - Kommune'].apply(format_municipality_name)
 
     # Clean up the temporary JSON file
     if os.path.exists(json_file_path):
         os.remove(json_file_path)
-        print("Cleaned up temporary files")
 
 except Exception as e:
     error_messages.append(f"Error in script execution: {str(e)}")
@@ -246,8 +227,8 @@ except Exception as e:
 
 # Output handling
 if df_telemark is not None:
-    file_name = "enhetsregisteret_hovedenheter.csv"
-    task_name = "Arbeid og naeringsliv - Enhetsregisteret - Hovedenheter"
+    file_name = "enhetsregisteret_underenheter.csv"
+    task_name = "Arbeid og naeringsliv - Enhetsregisteret - Underenheter"
     github_folder = "Data/03_Arbeid og næringsliv/02_Næringsliv/Virksomheter"
     temp_folder = os.environ.get("TEMP_FOLDER")
 
@@ -258,13 +239,8 @@ if df_telemark is not None:
     ignore_patterns = [
         'Org. nr.',
         'NACE 1',
-        'NACE 2',
-        'NACE 3',
-        'Sektorkode',
         'Overordnet enhet',
-        'NACE 1 - Bransje',
-        'NACE 2 - Bransje',
-        'NACE 3 - Bransje'
+        'Organisasjonsform - Kode'
     ]
 
     # Call the function and get the "New Data" status
@@ -279,8 +255,8 @@ if df_telemark is not None:
     )
 
     # Write the "New Data" status to a unique log file
-    log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-    task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+    log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
+    task_name_safe = task_name.replace(".", "_").replace(" ", "_")
     new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
     # Write the result in a detailed format
