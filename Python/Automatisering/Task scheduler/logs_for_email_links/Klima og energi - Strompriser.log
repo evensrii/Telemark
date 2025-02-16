@@ -6,30 +6,31 @@ Script starting...
 Working with file: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
 Checking for existing data...
 Type of existing_df: <class 'pandas.core.frame.DataFrame'>
-Latest date in existing data: 2025-02-13 00:00:00
-Found 1506 existing records
-Will fetch data from 2025-02-14 00:00:00 to 2025-02-14 00:00:00 (yesterday)
+Latest date in existing data: 2025-02-14 00:00:00
+Found 1507 existing records
+Will fetch data from 2025-02-15 00:00:00 to 2025-02-15 00:00:00 (yesterday)
 Fetching energy prices from ENTSO-E...
 Successfully received response from ENTSO-E
 Parsing XML response...
 Found 1 TimeSeries elements
-Processing period starting at 2025-02-13T23:00Z
+Processing period starting at 2025-02-14T23:00Z
 Found 24 Point elements
 Total price data points collected: 24
 After filtering out existing dates, 23 price records remain
 Fetching exchange rates...
+Could not fetch new exchange rates, using latest available rate...
 Merging price and exchange rate data...
 Calculating daily averages...
 Columns before renaming: ['date', 'price_eur', 'eur_nok_rate', 'price_nok']
 Combining with existing data...
 Columns in existing_df: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh', 'NOK/KWh']
 Columns in daily_avg_new: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh', 'NOK/KWh']
-Combined data now has 1507 records
+Combined data now has 1508 records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2025-02-15 02:04:07] Row count changed: 1506 -> 1507
+[2025-02-16 02:04:08] Row count changed: 1507 -> 1508
 
 Added rows (showing up to 10):
-EUR/MWh: 156.50260869565219, NOK/KWh: 1.8234901452173913, NOK/MWh: 1823.4901452173913, kurs: 11.6515, time: 2025-02-14
+EUR/MWh: 108.88869565217392, NOK/KWh: 1.2687166373913044, NOK/MWh: 1268.7166373913044, kurs: 11.6515, time: 2025-02-15
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
 Email notifications disabled. Updates for strompriser.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
