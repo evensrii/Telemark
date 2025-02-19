@@ -3,8 +3,8 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Ingen driftsmeldinger dukket opp, continuing...
-Converting total from '1.450' (cleaned: '1450')
-Default total established as: 1450 after Telemark selection
+Converting total from '0' (cleaned: '0')
+Default total established as: 0 after Telemark selection
 Successfully initialized default total
 
 Collecting data for Elv...
@@ -124,7 +124,7 @@ Final pivoted DataFrame:
 1    InnsjÃÂ¸       20.5  66.7     12.2     0.3           0.3
 2  Kystvann        4.1  40.8     51.0     0.0           4.1
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\ÃÂ¸kologisk_tilstand_vann.csv
-[2025-02-18 02:03:30] No new data to upload. Skipping GitHub update.
+[2025-02-19 02:03:26] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\ÃÂ¸kologisk_tilstand_vann.csv
 No new data detected.
 
