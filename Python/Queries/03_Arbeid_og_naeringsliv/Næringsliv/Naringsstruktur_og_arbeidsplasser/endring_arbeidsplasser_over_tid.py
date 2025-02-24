@@ -207,7 +207,7 @@ print(f"Økning i antall arbeidsplasser (sysselsatte med arbeidssted i Telemark)
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "endring_i_arbeidsplasser_over_tid.csv"
-task_name = "Arbeid og naeringsliv - Offentlig vs. privat næringsliv"
+task_name = "Arbeid og naeringsliv - Endring arbeidsplasser over tid"
 github_folder = "Data/03_Arbeid og næringsliv/02_Næringsliv/Næringsstruktur og arbeidsplasser"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
