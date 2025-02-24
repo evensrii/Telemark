@@ -40,7 +40,7 @@ if PYTHON_PATH not in sys.path:
 
 
 # Script parameters
-task_name = "Klima og energi - Elhub"
+task_name = "Klima og energi - Strømforbruk (Elhub)"
 github_folder = "Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
