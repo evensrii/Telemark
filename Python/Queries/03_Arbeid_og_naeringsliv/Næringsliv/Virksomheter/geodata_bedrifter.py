@@ -20,9 +20,6 @@ script_name = os.path.basename(__file__)
 # Example list of error messages to collect errors during execution
 error_messages = []
 
-# Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/table/10309/"
- 
 #Se: https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service-layer/ og https://dokumentasjon.geodataonline.no/docs/Temakart/Bedrifter/
 
 ##### Query
