@@ -1,0 +1,68 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Sysselsatte, kommuner JSON data loaded successfully.
+Sysselsatte, landet JSON data loaded successfully.
+Personer, landet JSON data loaded successfully.
+Personer, kommunene JSON data loaded successfully.
+
+Sysselsetting for 15-74 i landet i 2023: 69.3%
+Sysselsetting for 15-74 i Telemark i 2023: 64.8%
+
+Landet age groups:
+  age_group    value
+0     15-19   325360
+1     20-24   333966
+2     25-39  1133516
+3     40-54  1097236
+4     55-66   790996
+5     67-74   424640
+
+Kommuner age groups:
+age_group      15-19  20-24  25-39  40-54  55-66  67-74
+region                                                 
+Bamble           890    789   2405   2681   2341   1423
+Drangedal        257    247    619    819    692    410
+Fyresdal          78     53    178    242    223    127
+Hjartdal          98     84    248    274    274    157
+KragerÃ¸          582    492   1593   2074   1746   1199
+Kviteseid        121    118    372    465    480    259
+Midt-Telemark    642    788   2077   2040   1497    916
+Nissedal          75     63    195    283    254    180
+Nome             371    365   1050   1255   1176    627
+Notodden         715    736   2339   2421   2197   1225
+Porsgrunn       2183   2107   6815   7582   5766   3231
+Seljord          196    149    426    576    471    331
+Siljan           129    118    401    470    399    198
+Skien           3363   3078  10385  11138   8664   4836
+Tinn             321    296    815   1112   1007    655
+Tokke            136    106    357    397    413    225
+Vinje            206    200    693    698    625    367
+
+Telemark population by age groups:
+age_group  15-19  20-24  25-39  40-54  55-66  67-74
+Telemark   10363   9789  30968  34527  28225  16366
+
+Telemark employment by age groups:
+     region     alder  value
+0  Telemark  15-19 Ã¥r   4270
+1  Telemark  20-24 Ã¥r   6468
+2  Telemark  25-39 Ã¥r  24334
+3  Telemark  40-54 Ã¥r  27454
+4  Telemark  55-66 Ã¥r  18500
+5  Telemark  67-74 Ã¥r   3390
+
+Employment rates by age group (%):
+  Aldersgruppe  Telemark (2023)  Hele landet (2023)
+0     20-24 Ã¥r             66.1                68.3
+1     25-39 Ã¥r             78.6                82.1
+2     40-54 Ã¥r             79.5                82.4
+3     55-66 Ã¥r             65.5                69.8
+4     67-74 Ã¥r             20.7                21.5
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
+[2025-02-25 02:00:44] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_etter_aldersgruppe.log
+
