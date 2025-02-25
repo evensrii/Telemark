@@ -205,8 +205,6 @@ df_telemark = df_telemark.pivot(
     index="År", columns="Kategori", values="Antall"
 ).reset_index()
 
-df_telemark.head()
-
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "bosetting_enslige_mindreårige.csv"
@@ -215,7 +213,14 @@ github_folder = "Data/09_Innvandrere og inkludering/Bosetting av flyktninger"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df_telemark, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(
+    df_telemark, 
+    file_name, 
+    github_folder, 
+    temp_folder, 
+    keepcsv=True,
+    value_columns=['Anmodning om bosetting']  # Only compare this column
+)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
