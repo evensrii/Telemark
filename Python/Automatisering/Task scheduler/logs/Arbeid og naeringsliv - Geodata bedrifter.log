@@ -1,8 +1,0 @@
-
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Virksomheter/geodata_bedrifter.py", line 9, in <module>
-    from pyproj import Transformer
-ModuleNotFoundError: No module named 'pyproj'
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/geodata_bedrifter.py` failed. (See above for error)

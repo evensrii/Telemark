@@ -8,7 +8,7 @@ Personer, landet JSON data loaded successfully.
 Personer, kommunene JSON data loaded successfully.
 
 Sysselsetting for 15-74 i landet i 2023: 69.3%
-Sysselsetting for 15-74 i Telemark i 2023: 64.8%
+Sysselsetting for 15-74 i Telemark i 2023: 65.1%
 
 Landet age groups:
   age_group    value
@@ -46,23 +46,42 @@ Telemark   10363   9789  30968  34527  28225  16366
 
 Telemark employment by age groups:
      region     alder  value
-0  Telemark  15-19 Ã¥r   4270
-1  Telemark  20-24 Ã¥r   6468
-2  Telemark  25-39 Ã¥r  24334
-3  Telemark  40-54 Ã¥r  27454
-4  Telemark  55-66 Ã¥r  18500
-5  Telemark  67-74 Ã¥r   3390
+0  Telemark  15-19 Ã¥r   4487
+1  Telemark  20-24 Ã¥r   6485
+2  Telemark  25-39 Ã¥r  24461
+3  Telemark  40-54 Ã¥r  27088
+4  Telemark  55-66 Ã¥r  18740
+5  Telemark  67-74 Ã¥r   3511
 
 Employment rates by age group (%):
   Aldersgruppe  Telemark (2023)  Hele landet (2023)
-0     20-24 Ã¥r             66.1                68.3
-1     25-39 Ã¥r             78.6                82.1
-2     40-54 Ã¥r             79.5                82.4
-3     55-66 Ã¥r             65.5                69.8
-4     67-74 Ã¥r             20.7                21.5
+0     20-24 Ã¥r             66.2                68.3
+1     25-39 Ã¥r             79.0                82.1
+2     40-54 Ã¥r             78.5                82.4
+3     55-66 Ã¥r             66.4                69.8
+4     67-74 Ã¥r             21.5                21.5
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
-[2025-02-25 02:00:44] No new data to upload. Skipping GitHub update.
+[2025-02-26 09:03:52] Changes detected in the dataset.
+File uploaded successfully: Data/03_Arbeid og nÃ¦ringsliv/01_Arbeidsliv/Sysselsetting/sysselsatte_etter_aldersgruppe.csv
+
+Showing up to 5 examples of changes:
+
+Row: 
+  Telemark (2023): 66.1 -> 66.2
+
+Row: 
+  Telemark (2023): 78.6 -> 79.0
+
+Row: 
+  Telemark (2023): 79.5 -> 78.5
+
+Row: 
+  Telemark (2023): 65.5 -> 66.4
+
+Row: 
+  Telemark (2023): 20.7 -> 21.5
+Email notifications disabled. Updates for sysselsatte_etter_aldersgruppe.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_etter_aldersgruppe.log
 

@@ -3,33 +3,35 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Sysselsetting i kommunene (new codes) JSON data loaded successfully.
-No data found with new municipality codes, trying old codes...
-Sysselsetting i kommunene (old codes) JSON data loaded successfully.
 
 Fetched data:
-                       region     alder  ...    Ã¥r value
-0       Porsgrunn (2020-2023)  15-74 Ã¥r  ...  2023  64.4
-1           Skien (2020-2023)  15-74 Ã¥r  ...  2023  64.0
-2        Notodden (2020-2023)  15-74 Ã¥r  ...  2023  63.9
-3          Siljan (2020-2023)  15-74 Ã¥r  ...  2023  69.4
-4          Bamble (2020-2023)  15-74 Ã¥r  ...  2023  63.7
-5         KragerÃ¸ (2020-2023)  15-74 Ã¥r  ...  2023  61.4
-6       Drangedal (2020-2023)  15-74 Ã¥r  ...  2023  64.1
-7            Nome (2020-2023)  15-74 Ã¥r  ...  2023  63.1
-8   Midt-Telemark (2020-2023)  15-74 Ã¥r  ...  2023  63.0
-9            Tinn (2020-2023)  15-74 Ã¥r  ...  2023  66.1
-10       Hjartdal (2020-2023)  15-74 Ã¥r  ...  2023  69.2
-11        Seljord (2020-2023)  15-74 Ã¥r  ...  2023  66.5
-12      Kviteseid (2020-2023)  15-74 Ã¥r  ...  2023  68.5
-13       Nissedal (2020-2023)  15-74 Ã¥r  ...  2023  65.5
-14       Fyresdal (2020-2023)  15-74 Ã¥r  ...  2023  68.6
-15          Tokke (2020-2023)  15-74 Ã¥r  ...  2023  68.3
-16          Vinje (2020-2023)  15-74 Ã¥r  ...  2023  72.2
+           region     alder  ...    Ã¥r value
+0       Porsgrunn  15-74 Ã¥r  ...  2024  64.5
+1           Skien  15-74 Ã¥r  ...  2024  64.3
+2        Notodden  15-74 Ã¥r  ...  2024  63.8
+3          Siljan  15-74 Ã¥r  ...  2024  69.3
+4          Bamble  15-74 Ã¥r  ...  2024  64.0
+5         KragerÃ¸  15-74 Ã¥r  ...  2024  61.1
+6       Drangedal  15-74 Ã¥r  ...  2024  62.6
+7            Nome  15-74 Ã¥r  ...  2024  62.8
+8   Midt-Telemark  15-74 Ã¥r  ...  2024  61.8
+9         Seljord  15-74 Ã¥r  ...  2024  67.5
+10       Hjartdal  15-74 Ã¥r  ...  2024  68.3
+11           Tinn  15-74 Ã¥r  ...  2024  66.3
+12      Kviteseid  15-74 Ã¥r  ...  2024  67.0
+13       Nissedal  15-74 Ã¥r  ...  2024  63.6
+14       Fyresdal  15-74 Ã¥r  ...  2024  69.5
+15          Tokke  15-74 Ã¥r  ...  2024  70.1
+16          Vinje  15-74 Ã¥r  ...  2024  71.9
 
 [17 rows x 5 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
-[2025-02-25 02:00:53] No new data to upload. Skipping GitHub update.
+[2025-02-26 09:04:22] Header structure changed in sysselsetting_i_kommunene.csv:
+Removed headers: andel sysselsatte (2023)
+Added headers: andel sysselsatte (2024)
+File uploaded successfully: Data/03_Arbeid og nÃ¦ringsliv/01_Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.csv
+Email notifications disabled. Updates for sysselsetting_i_kommunene.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_i_kommunene.log
 

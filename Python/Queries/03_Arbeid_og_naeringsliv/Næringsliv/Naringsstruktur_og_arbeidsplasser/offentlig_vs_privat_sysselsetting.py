@@ -419,7 +419,7 @@ print(kommune_total)
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "offentlige_vs_privat_naringsliv.csv"
-task_name = "Arbeid og naeringsliv - Offentlig vs. privat næringsliv"
+task_name = "Arbeid og naeringsliv - Offentlig vs. privat naeringsliv"
 github_folder = "Data/03_Arbeid og næringsliv/02_Næringsliv/Næringsstruktur og arbeidsplasser"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
