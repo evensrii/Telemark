@@ -87,22 +87,24 @@ Antall sysselsatte per kommune:
 3        Hjartdal                        633
 2        Fyresdal                        541
 12         Siljan                        492
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\offentlige_vs_privat_naringsliv.csv
+[2025-02-26 09:04:59] Row count changed: 272 -> 306
 
+Added rows (showing up to 10):
+Antall sysselsatte: 1647, Kommune: Bamble, Label: Bamble, sektor: Offentlig sektor, statistikkvariabel: Sysselsatte personer etter arbeidssted, r: 2024
+Antall sysselsatte: 3530, Kommune: Bamble, Label: Bamble, sektor: Privat sektor, statistikkvariabel: Sysselsatte personer etter arbeidssted, r: 2024
+Antall sysselsatte: 637, Kommune: Drangedal, Label: Drangedal, sektor: Offentlig sektor, statistikkvariabel: Sysselsatte personer etter arbeidssted, r: 2024
+Antall sysselsatte: 626, Kommune: Drangedal, Label: Drangedal, sektor: Privat sektor, statistikkvariabel: Sysselsatte personer etter arbeidssted, r: 2024
+Antall sysselsatte: 239, Kommune: Fyresdal, Label: Fyresdal, sektor: Offentlig sektor, statistikkvariabel: Sysselsatte personer etter arbeidssted, r: 2024
+Antall sysselsatte: 302, Kommune: Fyresdal, Label: Fyresdal, sektor: Privat sektor, statistikkvariabel: Sysselsatte personer etter arbeidssted, r: 2024
+Antall sysselsatte: 253, Kommune: Hjartdal, Label: Hjartdal, sektor: Offentlig sektor, statistikkvariabel: Sysselsatte personer etter arbeidssted, r: 2024
+Antall sysselsatte: 380, Kommune: Hjartdal, Label: Hjartdal, sektor: Privat sektor, statistikkvariabel: Sysselsatte personer etter arbeidssted, r: 2024
+Antall sysselsatte: 1547, Kommune: KragerÃÂ¸, Label: KragerÃÂ¸, sektor: Offentlig sektor, statistikkvariabel: Sysselsatte personer etter arbeidssted, r: 2024
+Antall sysselsatte: 2398, Kommune: KragerÃÂ¸, Label: KragerÃÂ¸, sektor: Privat sektor, statistikkvariabel: Sysselsatte personer etter arbeidssted, r: 2024
+... and 24 more rows
+File uploaded successfully: Data/03_Arbeid og nÃÂ¦ringsliv/02_NÃÂ¦ringsliv/NÃÂ¦ringsstruktur og arbeidsplasser/offentlige_vs_privat_naringsliv.csv
+Email notifications disabled. Updates for offentlige_vs_privat_naringsliv.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\offentlige_vs_privat_naringsliv.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Offentlig_vs__privat_nÃÂ¦ringsliv.log
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃÂ¦ringsliv/Naringsstruktur_og_arbeidsplasser/offentlig_vs_privat_sysselsetting.py", line 427, in <module>
-    is_new_data = handle_output_data(df_processed, file_name, github_folder, temp_folder, keepcsv=True)
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 575, in handle_output_data
-    df.to_csv(temp_file_path, index=False, encoding="utf-8")
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\generic.py", line 3772, in to_csv
-    return DataFrameRenderer(formatter).to_csv(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\format.py", line 1186, in to_csv
-    csv_formatter.save()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\csvs.py", line 240, in save
-    with get_handle(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 859, in get_handle
-    handle = open(
-PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\offentlige_vs_privat_naringsliv.csv'
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Naringsstruktur_og_arbeidsplasser/offentlig_vs_privat_sysselsetting.py` failed. (See above for error)
