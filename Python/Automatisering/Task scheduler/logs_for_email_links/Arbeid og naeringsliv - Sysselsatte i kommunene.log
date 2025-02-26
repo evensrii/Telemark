@@ -3,33 +3,44 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Sysselsetting i kommunene (new codes) JSON data loaded successfully.
-No data found with new municipality codes, trying old codes...
-Sysselsetting i kommunene (old codes) JSON data loaded successfully.
 
 Fetched data:
-                       region     alder  ...    ÃÂ¥r value
-0       Porsgrunn (2020-2023)  15-74 ÃÂ¥r  ...  2023  64.4
-1           Skien (2020-2023)  15-74 ÃÂ¥r  ...  2023  64.0
-2        Notodden (2020-2023)  15-74 ÃÂ¥r  ...  2023  63.9
-3          Siljan (2020-2023)  15-74 ÃÂ¥r  ...  2023  69.4
-4          Bamble (2020-2023)  15-74 ÃÂ¥r  ...  2023  63.7
-5         KragerÃÂ¸ (2020-2023)  15-74 ÃÂ¥r  ...  2023  61.4
-6       Drangedal (2020-2023)  15-74 ÃÂ¥r  ...  2023  64.1
-7            Nome (2020-2023)  15-74 ÃÂ¥r  ...  2023  63.1
-8   Midt-Telemark (2020-2023)  15-74 ÃÂ¥r  ...  2023  63.0
-9            Tinn (2020-2023)  15-74 ÃÂ¥r  ...  2023  66.1
-10       Hjartdal (2020-2023)  15-74 ÃÂ¥r  ...  2023  69.2
-11        Seljord (2020-2023)  15-74 ÃÂ¥r  ...  2023  66.5
-12      Kviteseid (2020-2023)  15-74 ÃÂ¥r  ...  2023  68.5
-13       Nissedal (2020-2023)  15-74 ÃÂ¥r  ...  2023  65.5
-14       Fyresdal (2020-2023)  15-74 ÃÂ¥r  ...  2023  68.6
-15          Tokke (2020-2023)  15-74 ÃÂ¥r  ...  2023  68.3
-16          Vinje (2020-2023)  15-74 ÃÂ¥r  ...  2023  72.2
+           region     alder  ...    ÃÂ¥r value
+0       Porsgrunn  15-74 ÃÂ¥r  ...  2024  64.5
+1           Skien  15-74 ÃÂ¥r  ...  2024  64.3
+2        Notodden  15-74 ÃÂ¥r  ...  2024  63.8
+3          Siljan  15-74 ÃÂ¥r  ...  2024  69.3
+4          Bamble  15-74 ÃÂ¥r  ...  2024  64.0
+5         KragerÃÂ¸  15-74 ÃÂ¥r  ...  2024  61.1
+6       Drangedal  15-74 ÃÂ¥r  ...  2024  62.6
+7            Nome  15-74 ÃÂ¥r  ...  2024  62.8
+8   Midt-Telemark  15-74 ÃÂ¥r  ...  2024  61.8
+9         Seljord  15-74 ÃÂ¥r  ...  2024  67.5
+10       Hjartdal  15-74 ÃÂ¥r  ...  2024  68.3
+11           Tinn  15-74 ÃÂ¥r  ...  2024  66.3
+12      Kviteseid  15-74 ÃÂ¥r  ...  2024  67.0
+13       Nissedal  15-74 ÃÂ¥r  ...  2024  63.6
+14       Fyresdal  15-74 ÃÂ¥r  ...  2024  69.5
+15          Tokke  15-74 ÃÂ¥r  ...  2024  70.1
+16          Vinje  15-74 ÃÂ¥r  ...  2024  71.9
 
 [17 rows x 5 columns]
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
-[2025-02-26 02:01:01] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_i_kommunene.log
 
+
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py", line 180, in <module>
+    is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 575, in handle_output_data
+    df.to_csv(temp_file_path, index=False, encoding="utf-8")
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\generic.py", line 3772, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\format.py", line 1186, in to_csv
+    csv_formatter.save()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\csvs.py", line 240, in save
+    with get_handle(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 859, in get_handle
+    handle = open(
+PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\sysselsetting_i_kommunene.csv'
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py` failed. (See above for error)
