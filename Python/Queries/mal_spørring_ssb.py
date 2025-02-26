@@ -100,7 +100,7 @@ years = [str(year) for year in range(2016, int(most_recent_year) + 1)]
 # Kjøre spørring på nytt, fra første til siste år
 
 ## Bruke "years" (uten anførselstegn) sammen med "item" for år!!!!!!!!
-# "code": "Tid",
+#      "code": "Tid",
 #      "selection": {
 #        "filter": "item",
 #        "values": years

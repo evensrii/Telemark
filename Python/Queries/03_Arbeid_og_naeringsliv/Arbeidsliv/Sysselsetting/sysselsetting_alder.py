@@ -110,7 +110,9 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
+# Fetch latest year from "år" column in "df_kommuner"
 
+latest_year = df_kommuner['år'].max()
 
 ################## SYSSELSATTE I LANDET (FORDELT PÅ ALDERSGRUPPER)
 
@@ -154,9 +156,7 @@ payload_landet = {
       "code": "Tid",
       "selection": {
         "filter": "item",
-        "values": [
-          "2023"
-        ]
+        "values": [latest_year]
       }
     }
   ],
@@ -184,13 +184,6 @@ except Exception as e:
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )
-
-
-#### (HENT UT SISTE ÅRSTALL FOR SYSSELSATTE)
-
-# Get the latest year in the 'år' column in "df_landet"
-latest_year = df_landet['år'].max()
-
 
 
 #### PERSONER I LANDET
