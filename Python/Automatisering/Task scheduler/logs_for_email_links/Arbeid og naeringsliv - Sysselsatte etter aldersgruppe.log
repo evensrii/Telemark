@@ -60,22 +60,28 @@ Employment rates by age group (%):
 2     40-54 ÃÂ¥r             78.5                82.4
 3     55-66 ÃÂ¥r             66.4                69.8
 4     67-74 ÃÂ¥r             21.5                21.5
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
+[2025-02-26 09:03:52] Changes detected in the dataset.
+File uploaded successfully: Data/03_Arbeid og nÃÂ¦ringsliv/01_Arbeidsliv/Sysselsetting/sysselsatte_etter_aldersgruppe.csv
 
+Showing up to 5 examples of changes:
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_alder.py", line 585, in <module>
-    is_new_data = handle_output_data(df_comparison, file_name, github_folder, temp_folder, keepcsv=True)
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 575, in handle_output_data
-    df.to_csv(temp_file_path, index=False, encoding="utf-8")
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\generic.py", line 3772, in to_csv
-    return DataFrameRenderer(formatter).to_csv(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\format.py", line 1186, in to_csv
-    csv_formatter.save()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\csvs.py", line 240, in save
-    with get_handle(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 859, in get_handle
-    handle = open(
-PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\sysselsatte_etter_aldersgruppe.csv'
+Row: 
+  Telemark (2023): 66.1 -> 66.2
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_alder.py` failed. (See above for error)
+Row: 
+  Telemark (2023): 78.6 -> 79.0
+
+Row: 
+  Telemark (2023): 79.5 -> 78.5
+
+Row: 
+  Telemark (2023): 65.5 -> 66.4
+
+Row: 
+  Telemark (2023): 20.7 -> 21.5
+Email notifications disabled. Updates for sysselsatte_etter_aldersgruppe.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_etter_aldersgruppe.log
+
