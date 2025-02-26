@@ -18,22 +18,24 @@ Sysselsatte per ÃÂ¥r:
 7  2023  78308
 8  2024  78849
 ÃËkning i antall arbeidsplasser (sysselsatte med arbeidssted i Telemark) fra 2016 til 2024: 3661
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\endring_i_arbeidsplasser_over_tid.csv
+[2025-02-26 09:06:41] Row count changed: 2312 -> 2601
 
+Added rows (showing up to 10):
+nring (SN2007): Jordbruk, skogbruk og fiske, region: Porsgrunn, statistikkvariabel: Sysselsatte personer etter arbeidssted, value: 71, r: 2024
+nring (SN2007): Bergverksdrift og utvinning, region: Porsgrunn, statistikkvariabel: Sysselsatte personer etter arbeidssted, value: 106, r: 2024
+nring (SN2007): Industri, region: Porsgrunn, statistikkvariabel: Sysselsatte personer etter arbeidssted, value: 2934, r: 2024
+nring (SN2007): Elektrisitet, vann og renovasjon, region: Porsgrunn, statistikkvariabel: Sysselsatte personer etter arbeidssted, value: 883, r: 2024
+nring (SN2007): Bygge- og anleggsvirksomhet, region: Porsgrunn, statistikkvariabel: Sysselsatte personer etter arbeidssted, value: 1425, r: 2024
+nring (SN2007): Varehandel, reparasjon av motorvogner, region: Porsgrunn, statistikkvariabel: Sysselsatte personer etter arbeidssted, value: 2200, r: 2024
+nring (SN2007): Transport og lagring, region: Porsgrunn, statistikkvariabel: Sysselsatte personer etter arbeidssted, value: 594, r: 2024
+nring (SN2007): Overnattings- og serveringsvirksomhet, region: Porsgrunn, statistikkvariabel: Sysselsatte personer etter arbeidssted, value: 507, r: 2024
+nring (SN2007): Informasjon og kommunikasjon, region: Porsgrunn, statistikkvariabel: Sysselsatte personer etter arbeidssted, value: 647, r: 2024
+nring (SN2007): Finansiering og forsikring, region: Porsgrunn, statistikkvariabel: Sysselsatte personer etter arbeidssted, value: 238, r: 2024
+... and 279 more rows
+File uploaded successfully: Data/03_Arbeid og nÃÂ¦ringsliv/02_NÃÂ¦ringsliv/NÃÂ¦ringsstruktur og arbeidsplasser/endring_i_arbeidsplasser_over_tid.csv
+Email notifications disabled. Updates for endring_i_arbeidsplasser_over_tid.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\endring_i_arbeidsplasser_over_tid.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Endring_arbeidsplasser_over_tid.log
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃÂ¦ringsliv/Naringsstruktur_og_arbeidsplasser/endring_arbeidsplasser_over_tid.py", line 215, in <module>
-    is_new_data = handle_output_data(df_sysselsatte, file_name, github_folder, temp_folder, keepcsv=True)
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 575, in handle_output_data
-    df.to_csv(temp_file_path, index=False, encoding="utf-8")
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\generic.py", line 3772, in to_csv
-    return DataFrameRenderer(formatter).to_csv(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\format.py", line 1186, in to_csv
-    csv_formatter.save()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\formats\csvs.py", line 240, in save
-    with get_handle(
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\io\common.py", line 859, in get_handle
-    handle = open(
-PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\endring_i_arbeidsplasser_over_tid.csv'
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Naringsstruktur_og_arbeidsplasser/endring_arbeidsplasser_over_tid.py` failed. (See above for error)
