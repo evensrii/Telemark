@@ -1,0 +1,43 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+All tasks completed successfully.
+
+Unique NACE codes in the dataset:
+
+NACE Kode:
+['23.510' '20.160' '20.150' '17.120' '20.130' '24.421' '46.739' '23.410'
+ '21.200' '30.113' '11.070' '20.140' '24.102' '24.510' '38.220' '10.510'
+ '46.693']
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
+[2025-02-27 08:16:42] No value columns found to compare. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
+[2025-02-27 08:16:42] Changes detected in the dataset.
+
+Showing up to 5 examples of changes:
+
+Row: 
+  Mdir enkeltr: nan -> 
+
+Row: 
+  Totale utslipp fra industrien (Mdir): nan -> 
+
+Row: 
+  Mdir enkeltr: nan -> 
+
+Row: 
+  Totale utslipp fra industrien (Mdir): nan -> 
+
+Row: 
+  Mdir enkeltr: nan -> 
+
+Total changes found in examined rows: 34
+(Showing first 5 changes only)
+Email notifications disabled. Updates for norskeutslipp_everviz.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
+No new data detected in norskeutslipp_detaljert_telemark.csv.
+New data detected in norskeutslipp_everviz.csv and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Utslipp_fra_landbasert_industri.log
+
