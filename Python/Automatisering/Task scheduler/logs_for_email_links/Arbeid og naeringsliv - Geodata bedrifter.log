@@ -4,29 +4,29 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 
 First few rows with coordinates:
-               Bedriftsnavn  X (UTM33)  ...  Latitude (WGS84)  Longitude (WGS84)
-0                  Ãâ¦grav AS  194101.36  ...         59.145227           9.649384
-1          Iata Velforening  127615.13  ...         58.927622           8.525479
-2       KMG Gebreyesus Taxi  192799.72  ...         59.147586           9.626214
-3     Melum Maskinutleie AS  180789.39  ...         59.193464           9.408301
-4  Left Lane Investments AS  175888.90  ...         58.897590           9.371070
+                         Bedriftsnavn  ...  Longitude (WGS84)
+0                     Jermansen Media  ...           8.522639
+1          THT Foto Tor Helge Thorsen  ...           9.565878
+2  Tomasz Transport Tomasz Pawel Sowa  ...           9.654467
+3    Beck Renhold Andreas Beck Jensen  ...           9.034224
+4     Erik Olstad Montasje og Service  ...           9.695672
 
 [5 rows x 5 columns]
 
 Sample of establishment dates before conversion:
-0    1653004800000
-1    1654905600000
-2    1650240000000
-3    1651795200000
-4    1650067200000
+0    1473033600000
+1    1472860800000
+2    1473033600000
+3    1472601600000
+4    1472860800000
 Name: Dato for etablering, dtype: int64
 
 Sample of establishment dates after conversion:
-0   2022-05-20
-1   2022-06-11
-2   2022-04-18
-3   2022-05-06
-4   2022-04-16
+0   2016-09-05
+1   2016-09-03
+2   2016-09-05
+3   2016-08-31
+4   2016-09-03
 Name: Dato for etablering, dtype: datetime64[ns]
 
 Sample of load dates after conversion:
@@ -37,90 +37,80 @@ Sample of load dates after conversion:
 4   2025-02-05 16:13:14
 Name: load_date, dtype: datetime64[ns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\geodata_bedrifter_api.csv
+[2025-02-27 08:14:09] Changes detected in the dataset.
+
+[2025-02-27 08:14:09] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/03_Arbeid og nÃÂ¦ringsliv/02_NÃÂ¦ringsliv/Virksomheter/geodata_bedrifter_api.csv
+
+No changes found in the last 200 rows, but changes exist elsewhere in the dataset.
+Email notifications disabled. Updates for geodata_bedrifter_api.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\geodata_bedrifter_api.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Geodata_bedrifter.log
 
 
-Errors:
+Errors/Warnings:
 
 Fetching records:   0%|          | 0/59223 [00:00<?, ?it/s]
-Fetching records:   2%|Ã¢â\ufffd         | 1000/59223 [00:03<03:32, 274.46it/s]
-Fetching records:   3%|Ã¢âÅ½         | 2000/59223 [00:07<03:26, 276.84it/s]
-Fetching records:   5%|Ã¢âÅ         | 3000/59223 [00:11<03:34, 261.66it/s]
-Fetching records:   7%|Ã¢ââ¹         | 4000/59223 [00:14<03:13, 284.83it/s]
-Fetching records:   8%|Ã¢âÅ          | 5000/59223 [00:16<02:47, 323.99it/s]
-Fetching records:  10%|Ã¢âË         | 6000/59223 [00:18<02:20, 379.04it/s]
-Fetching records:  12%|Ã¢âËÃ¢â\ufffd        | 7000/59223 [00:20<02:04, 418.01it/s]
-Fetching records:  14%|Ã¢âËÃ¢âÅ½        | 8000/59223 [00:22<01:55, 441.88it/s]
-Fetching records:  15%|Ã¢âËÃ¢âÅ        | 9000/59223 [00:24<01:51, 451.44it/s]
-Fetching records:  17%|Ã¢âËÃ¢ââ¹        | 10000/59223 [00:26<01:50, 445.14it/s]
-Fetching records:  19%|Ã¢âËÃ¢âÅ         | 11000/59223 [00:28<01:46, 451.85it/s]
-Fetching records:  20%|Ã¢âËÃ¢âË        | 12000/59223 [00:30<01:42, 460.70it/s]
-Fetching records:  22%|Ã¢âËÃ¢âËÃ¢â\ufffd       | 13000/59223 [00:33<01:44, 443.18it/s]
-Fetching records:  24%|Ã¢âËÃ¢âËÃ¢âÅ½       | 14000/59223 [00:35<01:40, 449.30it/s]
-Fetching records:  25%|Ã¢âËÃ¢âËÃ¢âÅ       | 15000/59223 [00:38<01:42, 429.71it/s]
-Fetching records:  27%|Ã¢âËÃ¢âËÃ¢ââ¹       | 16000/59223 [00:40<01:42, 422.16it/s]
-Fetching records:  29%|Ã¢âËÃ¢âËÃ¢âÅ        | 17000/59223 [00:43<01:43, 407.82it/s]
-Fetching records:  30%|Ã¢âËÃ¢âËÃ¢âË       | 18000/59223 [00:45<01:43, 396.84it/s]
-Fetching records:  32%|Ã¢âËÃ¢âËÃ¢âËÃ¢â\ufffd      | 19000/59223 [00:48<01:44, 384.82it/s]
-Fetching records:  34%|Ã¢âËÃ¢âËÃ¢âËÃ¢â\ufffd      | 20000/59223 [00:51<01:45, 373.30it/s]
-Fetching records:  35%|Ã¢âËÃ¢âËÃ¢âËÃ¢âÅ      | 21000/59223 [00:54<01:43, 368.45it/s]
-Fetching records:  37%|Ã¢âËÃ¢âËÃ¢âËÃ¢ââ¹      | 22000/59223 [00:57<01:44, 357.23it/s]
-Fetching records:  39%|Ã¢âËÃ¢âËÃ¢âËÃ¢ââ°      | 23000/59223 [01:00<01:44, 347.05it/s]
-Fetching records:  41%|Ã¢âËÃ¢âËÃ¢âËÃ¢âË      | 24000/59223 [01:03<01:46, 330.46it/s]
-Fetching records:  42%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd     | 25000/59223 [01:06<01:44, 327.70it/s]
-Fetching records:  44%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd     | 26000/59223 [01:10<01:42, 323.85it/s]
-Fetching records:  46%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ     | 27000/59223 [01:12<01:34, 340.70it/s]
-Fetching records:  47%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹     | 28000/59223 [01:16<01:40, 309.27it/s]
-Fetching records:  49%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°     | 29000/59223 [01:20<01:46, 284.75it/s]
-Fetching records:  51%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË     | 30000/59223 [01:24<01:43, 283.57it/s]
-Fetching records:  52%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd    | 31000/59223 [01:27<01:38, 286.46it/s]
-Fetching records:  54%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd    | 32000/59223 [01:31<01:35, 286.06it/s]
-Fetching records:  56%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ    | 33000/59223 [01:34<01:33, 280.83it/s]
-Fetching records:  57%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹    | 34000/59223 [01:38<01:31, 276.67it/s]
-Fetching records:  59%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°    | 35000/59223 [01:43<01:33, 258.78it/s]
-Fetching records:  61%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË    | 36000/59223 [01:47<01:30, 256.86it/s]
-Fetching records:  62%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd   | 37000/59223 [01:51<01:26, 256.18it/s]
-Fetching records:  64%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd   | 38000/59223 [01:55<01:26, 244.75it/s]
-Fetching records:  66%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ   | 39000/59223 [01:59<01:23, 242.52it/s]
-Fetching records:  68%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ    | 40000/59223 [02:04<01:20, 239.78it/s]
-Fetching records:  69%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°   | 41000/59223 [02:08<01:17, 235.73it/s]
-Fetching records:  71%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË   | 42000/59223 [02:13<01:17, 222.41it/s]
-Fetching records:  73%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½  | 43000/59223 [02:17<01:12, 222.48it/s]
-Fetching records:  74%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd  | 44000/59223 [02:22<01:08, 222.98it/s]
-Fetching records:  76%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ  | 45000/59223 [02:26<01:03, 224.24it/s]
-Fetching records:  78%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ   | 46000/59223 [02:31<00:59, 221.84it/s]
-Fetching records:  79%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°  | 47000/59223 [02:36<00:57, 212.03it/s]
-Fetching records:  81%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË  | 48000/59223 [02:41<00:53, 209.80it/s]
-Fetching records:  83%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½ | 49000/59223 [02:46<00:48, 210.35it/s]
-Fetching records:  84%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd | 50000/59223 [02:51<00:44, 207.49it/s]
-Fetching records:  86%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ | 51000/59223 [02:56<00:40, 204.55it/s]
-Fetching records:  88%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ  | 52000/59223 [03:01<00:36, 200.41it/s]
-Fetching records:  89%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ° | 53000/59223 [03:06<00:31, 200.52it/s]
-Fetching records:  91%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË | 54000/59223 [03:12<00:27, 189.26it/s]
-Fetching records:  93%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½| 55000/59223 [03:17<00:22, 188.17it/s]
-Fetching records:  95%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd| 56000/59223 [03:22<00:16, 190.91it/s]
-Fetching records:  96%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ| 57000/59223 [03:29<00:12, 181.18it/s]
-Fetching records:  98%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ | 58000/59223 [03:35<00:07, 172.08it/s]
-Fetching records: 100%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°| 59000/59223 [03:42<00:01, 166.19it/s]
-Fetching records: 100%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË| 59223/59223 [03:47<00:00, 131.21it/s]
-Fetching records: 100%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË| 59223/59223 [03:47<00:00, 260.26it/s]
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃÂ¦ringsliv/Virksomheter/geodata_bedrifter.py", line 297, in <module>
-    is_new_data = handle_output_data(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 579, in handle_output_data
-    is_new_data = compare_to_github(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 177, in compare_to_github
-    existing_data = download_github_file(f"{github_folder}/{file_name}")
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 88, in download_github_file
-    df[col] = df[col].apply(lambda x: f"{float(x):.3f}" if '.' in x else x)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\series.py", line 4630, in apply
-    return SeriesApply(self, func, convert_dtype, args, kwargs).apply()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\apply.py", line 1025, in apply
-    return self.apply_standard()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\apply.py", line 1076, in apply_standard
-    mapped = lib.map_infer(
-  File "pandas\_libs\lib.pyx", line 2834, in pandas._libs.lib.map_infer
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 88, in <lambda>
-    df[col] = df[col].apply(lambda x: f"{float(x):.3f}" if '.' in x else x)
-ValueError: could not convert string to float: 'Innrednings- og installasjonsarbeid utfÃÂ¸rt pÃÂ¥ skip over 100 br.tonn'
+Fetching records:   2%|Ã¢â\ufffd         | 1000/59223 [00:04<03:53, 249.08it/s]
+Fetching records:   3%|Ã¢âÅ½         | 2000/59223 [00:06<03:11, 298.82it/s]
+Fetching records:   5%|Ã¢âÅ         | 3000/59223 [00:09<02:52, 326.56it/s]
+Fetching records:   7%|Ã¢ââ¹         | 4000/59223 [00:11<02:19, 396.90it/s]
+Fetching records:   8%|Ã¢âÅ          | 5000/59223 [00:13<02:11, 413.60it/s]
+Fetching records:  10%|Ã¢âË         | 6000/59223 [00:15<01:59, 446.71it/s]
+Fetching records:  12%|Ã¢âËÃ¢â\ufffd        | 7000/59223 [00:17<01:58, 439.87it/s]
+Fetching records:  14%|Ã¢âËÃ¢âÅ½        | 8000/59223 [00:19<01:51, 458.43it/s]
+Fetching records:  15%|Ã¢âËÃ¢âÅ        | 9000/59223 [00:22<01:57, 429.21it/s]
+Fetching records:  17%|Ã¢âËÃ¢ââ¹        | 10000/59223 [00:24<01:52, 439.32it/s]
+Fetching records:  19%|Ã¢âËÃ¢âÅ         | 11000/59223 [00:26<01:49, 441.70it/s]
+Fetching records:  20%|Ã¢âËÃ¢âË        | 12000/59223 [00:29<01:47, 438.84it/s]
+Fetching records:  22%|Ã¢âËÃ¢âËÃ¢â\ufffd       | 13000/59223 [00:32<01:54, 402.50it/s]
+Fetching records:  24%|Ã¢âËÃ¢âËÃ¢âÅ½       | 14000/59223 [00:35<01:58, 380.80it/s]
+Fetching records:  25%|Ã¢âËÃ¢âËÃ¢âÅ       | 15000/59223 [00:37<01:54, 387.80it/s]
+Fetching records:  27%|Ã¢âËÃ¢âËÃ¢ââ¹       | 16000/59223 [00:40<01:51, 386.41it/s]
+Fetching records:  29%|Ã¢âËÃ¢âËÃ¢âÅ        | 17000/59223 [00:42<01:47, 391.84it/s]
+Fetching records:  30%|Ã¢âËÃ¢âËÃ¢âË       | 18000/59223 [00:45<01:48, 379.50it/s]
+Fetching records:  32%|Ã¢âËÃ¢âËÃ¢âËÃ¢â\ufffd      | 19000/59223 [00:48<01:48, 370.68it/s]
+Fetching records:  34%|Ã¢âËÃ¢âËÃ¢âËÃ¢â\ufffd      | 20000/59223 [00:51<01:56, 336.01it/s]
+Fetching records:  35%|Ã¢âËÃ¢âËÃ¢âËÃ¢âÅ      | 21000/59223 [00:55<02:06, 302.39it/s]
+Fetching records:  37%|Ã¢âËÃ¢âËÃ¢âËÃ¢ââ¹      | 22000/59223 [00:58<01:57, 316.60it/s]
+Fetching records:  39%|Ã¢âËÃ¢âËÃ¢âËÃ¢ââ°      | 23000/59223 [01:02<01:55, 312.44it/s]
+Fetching records:  41%|Ã¢âËÃ¢âËÃ¢âËÃ¢âË      | 24000/59223 [01:05<01:50, 319.68it/s]
+Fetching records:  42%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd     | 25000/59223 [01:09<01:56, 295.01it/s]
+Fetching records:  44%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd     | 26000/59223 [01:12<01:52, 295.39it/s]
+Fetching records:  46%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ     | 27000/59223 [01:15<01:49, 294.84it/s]
+Fetching records:  47%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹     | 28000/59223 [01:19<01:51, 279.20it/s]
+Fetching records:  49%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°     | 29000/59223 [01:23<01:51, 272.15it/s]
+Fetching records:  51%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË     | 30000/59223 [01:27<01:47, 272.99it/s]
+Fetching records:  52%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd    | 31000/59223 [01:32<01:54, 247.52it/s]
+Fetching records:  54%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd    | 32000/59223 [01:36<01:48, 250.59it/s]
+Fetching records:  56%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ    | 33000/59223 [01:41<01:54, 229.63it/s]
+Fetching records:  57%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹    | 34000/59223 [01:45<01:51, 226.39it/s]
+Fetching records:  59%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°    | 35000/59223 [01:49<01:42, 236.78it/s]
+Fetching records:  61%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË    | 36000/59223 [01:53<01:37, 238.18it/s]
+Fetching records:  62%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd   | 37000/59223 [01:57<01:29, 248.93it/s]
+Fetching records:  64%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd   | 38000/59223 [02:03<01:35, 221.78it/s]
+Fetching records:  66%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ   | 39000/59223 [02:07<01:28, 229.06it/s]
+Fetching records:  68%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ    | 40000/59223 [02:13<01:37, 197.14it/s]
+Fetching records:  69%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°   | 41000/59223 [02:18<01:29, 204.64it/s]
+Fetching records:  71%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË   | 42000/59223 [02:25<01:33, 183.43it/s]
+Fetching records:  73%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½  | 43000/59223 [02:29<01:23, 194.10it/s]
+Fetching records:  74%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd  | 44000/59223 [02:34<01:15, 201.38it/s]
+Fetching records:  76%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ  | 45000/59223 [02:38<01:09, 203.65it/s]
+Fetching records:  78%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ   | 46000/59223 [02:43<01:05, 202.35it/s]
+Fetching records:  79%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°  | 47000/59223 [02:48<00:59, 203.87it/s]
+Fetching records:  81%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË  | 48000/59223 [02:53<00:54, 207.00it/s]
+Fetching records:  83%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½ | 49000/59223 [02:58<00:50, 204.45it/s]
+Fetching records:  84%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd | 50000/59223 [03:03<00:45, 202.90it/s]
+Fetching records:  86%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ | 51000/59223 [03:08<00:41, 199.38it/s]
+Fetching records:  88%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ  | 52000/59223 [03:16<00:42, 171.35it/s]
+Fetching records:  89%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ° | 53000/59223 [03:21<00:34, 181.15it/s]
+Fetching records:  91%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË | 54000/59223 [03:25<00:27, 191.20it/s]
+Fetching records:  93%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½| 55000/59223 [03:31<00:22, 188.12it/s]
+Fetching records:  95%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd| 56000/59223 [03:36<00:17, 183.62it/s]
+Fetching records:  96%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ| 57000/59223 [03:42<00:12, 177.89it/s]
+Fetching records:  98%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ | 58000/59223 [03:48<00:06, 183.51it/s]
+Fetching records: 100%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°| 59000/59223 [03:53<00:01, 180.83it/s]
+Fetching records: 100%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË| 59223/59223 [03:59<00:00, 134.90it/s]
+Fetching records: 100%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË| 59223/59223 [03:59<00:00, 246.99it/s]
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Virksomheter/geodata_bedrifter.py` failed. (See above for error)
