@@ -51,7 +51,70 @@ except Exception as e:
 # print(df["Kommunenummer"].unique())
 # df.dtypes
 
-df.head()
+df["Kommunenummer"] = df["Kommunenummer"].apply(lambda x: "0" + str(x) if len(str(x)) == 3 else x)
+
+# Dictionary for innfylling av manglende kommunenavn, samt filtrering av datasettet
+
+kommuner_telemark = {
+    "0805": "Porsgrunn",
+    "0806": "Skien",
+    "0807": "Notodden",
+    "0811": "Siljan",
+    "0814": "Bamble",
+    "0815": "Kragerø",
+    "0817": "Drangedal",
+    "0819": "Nome",
+    "0821": "Bø (Telemark)",
+    "0822": "Sauherad",
+    "0826": "Tinn",
+    "0827": "Hjartdal",
+    "0828": "Seljord",
+    "0829": "Kviteseid",
+    "0830": "Nissedal",
+    "0831": "Fyresdal",
+    "0833": "Tokke",
+    "0834": "Vinje",
+    "3806": "Porsgrunn",
+    "3807": "Skien",
+    "3808": "Notodden",
+    "3812": "Siljan",
+    "3813": "Bamble",
+    "3814": "Kragerø",
+    "3815": "Drangedal",
+    "3816": "Nome",
+    "3817": "Midt-Telemark",
+    "3818": "Tinn",
+    "3819": "Hjartdal",
+    "3820": "Seljord",
+    "3821": "Kviteseid",
+    "3822": "Nissedal",
+    "3823": "Fyresdal",
+    "3824": "Tokke",
+    "3825": "Vinje",
+    "4001": "Porsgrunn",
+    "4003": "Skien",
+    "4005": "Notodden",
+    "4010": "Siljan",
+    "4012": "Bamble",
+    "4014": "Kragerø",
+    "4016": "Drangedal",
+    "4018": "Nome",
+    "4020": "Midt-Telemark",
+    "4022": "Seljord",
+    "4024": "Hjartdal",
+    "4026": "Tinn",
+    "4028": "Kviteseid",
+    "4030": "Nissedal",
+    "4032": "Fyresdal",
+    "4034": "Tokke",
+    "4036": "Vinje",
+}
+
+## Filtrering av rader hvor "Kommunenummer" er i kommuner_telemark.keys()
+df = df[df["Kommunenummer"].isin(kommuner_telemark.keys())]
+
+## Innfylling av manglende kommunenavn
+df["Kommune"] = df["Kommune"].fillna(df["Kommunenummer"].map(kommuner_telemark))
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
