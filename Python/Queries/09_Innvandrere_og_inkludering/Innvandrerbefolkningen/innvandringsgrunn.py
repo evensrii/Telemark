@@ -60,8 +60,11 @@ task_name = "Innvandrere - Innvandringsgrunn"
 github_folder = "Data/09_Innvandrere og inkludering/Innvandrerbefolkningen"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
+value_columns = ["Antall"]
+ignore_patterns = [col for col in df.columns if col != 'Antall']
+
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True, value_columns=value_columns, ignore_patterns=ignore_patterns)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
