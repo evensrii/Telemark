@@ -51,7 +51,8 @@ except Exception as e:
 # print(df["Kommunenummer"].unique())
 # df.dtypes
 
-df["Kommunenummer"] = df["Kommunenummer"].apply(lambda x: "0" + str(x) if len(str(x)) == 3 else x)
+# Convert the column "Kommunenummer" to a string with 4 digits
+df["Kommunenummer"] = df["Kommunenummer"].astype(str).str.pad(width=4, fillchar="0")
 
 # Dictionary for innfylling av manglende kommunenavn, samt filtrering av datasettet
 
