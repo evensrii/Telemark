@@ -8,7 +8,6 @@ from datetime import datetime
 import base64
 import pandas as pd
 import re
-from io import BytesIO
 
 from Helper_scripts.email_functions import notify_updated_data
 
@@ -65,7 +64,9 @@ GITHUB_TOKEN = get_github_token()
 ## Function to download a file from GitHub
 def download_github_file(file_path):
     """Download a file from GitHub."""
-    url = f"https://api.github.com/repos/evensrii/Telemark/contents/{file_path}?ref=main"
+    url = (
+        f"https://api.github.com/repos/evensrii/Telemark/contents/{file_path}?ref=main"
+    )
     headers = {
         "Authorization": f"Bearer {GITHUB_TOKEN}",
         "Accept": "application/vnd.github.v3.raw",
@@ -76,26 +77,24 @@ def download_github_file(file_path):
         # Return the content as a Pandas DataFrame
         from io import StringIO
         
-        df = pd.read_csv(BytesIO(response.content))
+        # Read CSV with string type for NACE columns
+        df = pd.read_csv(StringIO(response.text))
         
-        # Clean up the data
-        for col in df.columns:
+        # Convert NACE columns to string and ensure format
+        nace_columns = [col for col in df.columns if 'nace' in col.lower()]
+        for col in nace_columns:
             df[col] = df[col].astype(str).str.strip()
-            # Skip numeric conversion for NACE columns
-            if 'nace' not in col.lower():
-                try:
-                    # Try converting to float if it's not a NACE column
-                    df[col] = pd.to_numeric(df[col], errors='raise')
-                except (ValueError, TypeError):
-                    # If conversion fails, keep as string
-                    pass
+            # Ensure 3 decimal places for NACE codes
+            df[col] = df[col].apply(lambda x: f"{float(x):.3f}" if '.' in x else x)
         
         return df
     elif response.status_code == 404:
         print(f"File not found on GitHub: {file_path}")
         return None
     else:
-        print(f"Failed to download file: {file_path}, Status Code: {response.status_code}")
+        print(
+            f"Failed to download file: {file_path}, Status Code: {response.status_code}"
+        )
         return None
 
 
