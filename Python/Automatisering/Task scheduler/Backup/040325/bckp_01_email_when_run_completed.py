@@ -64,7 +64,7 @@ def push_logs_to_github():
     logs_path = "Python/Automatisering/Task scheduler/logs_for_email_links"
 
     for filename in os.listdir(LOG_DIR):
-        if filename.endswith(".log") and filename not in ["00_email.log", "00_email_weekly.log", "00_master_run.log", "00_master_run_weekly.log", "readme.txt"]:
+        if filename.endswith(".log") and filename != "00_email.log" and filename != "00_master_run.log" and filename != "readme.txt":
             local_file_path = os.path.join(LOG_DIR, filename)
 
             # Read local log file content
@@ -129,10 +129,8 @@ def push_logs_to_github():
 script_dir = os.path.dirname(os.path.abspath(__file__))  # Folder containing this script
 os.chdir(script_dir)  # Ensure CWD is the script's directory
 
-# Determine if this is a weekly or daily run based on the log file
-is_weekly = any(arg == "--weekly" for arg in sys.argv)
-log_file_path = os.path.join(script_dir, "./logs/00_master_run_weekly.log" if is_weekly else "./logs/00_master_run.log")
-print(f"Resolved log file path: {log_file_path}")
+log_file_path = os.path.join(script_dir, "./logs/00_master_run.log")
+#print(f"Resolved log file path: {log_file_path}")
 
 # Check if the file exists
 if not os.path.exists(log_file_path):
@@ -373,7 +371,7 @@ html_table = format_log_as_html_table(log_content)
 # Email sending logic
 for recipient in recipients:
     # Personalize the subject
-    subject = f"God morgen, {recipient['name']}! Her er {'de ukentlige kjøringene.' if is_weekly else 'dagens kjøringer.'}"
+    subject = f"God morgen, {recipient['name']}! Her er dagens kjøringer."
 
     # Define the email payload
     payload = {
