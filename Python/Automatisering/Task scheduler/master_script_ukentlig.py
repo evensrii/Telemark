@@ -27,8 +27,8 @@ if TEMP_FOLDER is None:
 
 SCRIPTS = [  
     ## Arbeid og næringsliv
-    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/enhetsregisteret_hovedenheter.py"), "Arbeid og naeringsliv - Enhetsregisteret - Hovedenheter"),
-    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/enhetsregisteret_underenheter.py"), "Arbeid og naeringsliv - Enhetsregisteret - Underenheter"),
+    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/enhetsregisteret_hovedenheter.py"), "Arbeid og naeringsliv - Enhetsregisteret - Hovedenheter"),
+    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/enhetsregisteret_underenheter.py"), "Arbeid og naeringsliv - Enhetsregisteret - Underenheter"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/geodata_bedrifter.py"), "Arbeid og naeringsliv - Geodata bedrifter"),
 ]
 
