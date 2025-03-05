@@ -62,7 +62,7 @@ try:
     response.raise_for_status()  # Raise an exception for bad status codes
     
     # Read the CSV data into a pandas DataFrame
-    df_ledighet = pd.read_csv(StringIO(response.text), sep=',')
+    df_ledighet = pd.read_csv(StringIO(response.text), sep=';')
     
 except Exception as e:
     error_message = f"Error loading unemployment data: {str(e)}"
@@ -71,8 +71,16 @@ except Exception as e:
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError("Failed to load unemployment data")
 
+## Set new column names
+column_names = ['Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus', 'Kjønn', 'Antall personer', 'Andel av arbeidsstyrken', 'Dato']
+df_ledighet.columns = column_names
+
+## Handle asterisk values
+df_ledighet['Antall personer'] = df_ledighet['Antall personer'].replace('*', np.nan)
+df_ledighet['Antall personer'] = pd.to_numeric(df_ledighet['Antall personer'], errors='coerce').astype('Int64')
+
 ## Convert the "Dato" column to datetime
-df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'])  # Let pandas automatically detect the date format
+df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'], dayfirst=True, format='%d.%m.%Y')  # Specify the date format explicitly
 
 ## Identify the latest date in the dato column
 latest_date = df_ledighet['Dato'].max()
@@ -107,6 +115,24 @@ if new_data_exists:
         # Stack all dataframes vertically
         df_latest_month = pd.concat([df_fylker, df_landet, df_telemark], axis=0, ignore_index=True)
         
+        # Remove column "År" from the dataframe
+        df_latest_month = df_latest_month.drop(columns=['År'])
+        
+        # Convert "År-måned" to datetime "Dato" column
+        # First clean the data by removing decimals and ensuring proper format
+        df_latest_month['År-måned'] = df_latest_month['År-måned'].astype(float).astype(int).astype(str)  # Convert to integer to remove decimals
+        
+        # Create year and month components
+        year = df_latest_month['År-måned'].str[:4]
+        month = df_latest_month['År-måned'].str[4:]
+        
+        # Create date string in YYYY-MM-DD format
+        date_str = year + '-' + month + '-01'
+        
+        # Convert to datetime
+        df_latest_month['Dato'] = pd.to_datetime(date_str, format='%Y-%m-%d')
+        df_latest_month = df_latest_month.drop(columns=['År-måned'])
+
         # Append new data to existing dataset
         df_ledighet = pd.concat([df_ledighet, df_latest_month], axis=0, ignore_index=True)
         
