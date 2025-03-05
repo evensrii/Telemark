@@ -22,60 +22,25 @@ script_name = os.path.basename(__file__)
 # Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
 error_messages = []
 
+################# Import full dataset (jan 2011- jan 2025) #################
 
-################# Spørring #################
-
-# Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/table/XXXXX/"
-
-# Spørring for å hente ut data fra SSB
-payload = {
-    "query": [
-        {"code": "Region", "selection": {"filter": "vs:FylkerJakt", "values": ["40"]}},
-        {"code": "Kjonn", "selection": {"filter": "item", "values": ["1", "2"]}},
-        {
-            "code": "Alder",
-            "selection": {
-                "filter": "item",
-                "values": [
-                    "00-19a",
-                    "20-29",
-                    "30-39",
-                    "40-49",
-                    "50-59",
-                    "60-69",
-                    "070+",
-                ],
-            },
-        },
-        {
-            "code": "ContentsCode",
-            "selection": {"filter": "item", "values": ["BetaltJegeravg"]},
-        },
-        {"code": "Tid", "selection": {"filter": "top", "values": ["1"]}},
-    ],
-    "response": {"format": "json-stat2"},
-}
-
-
-## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
+# URL for the CSV file
+url = "https://raw.githubusercontent.com/evensrii/Telemark/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/Full%20tidsserie/Ledighet_full_tidsserie_long_format.csv"
 
 try:
-    df = fetch_data(
-        url=POST_URL,
-        payload=payload,  # The JSON payload for POST requests. If None, a GET request is used.
-        error_messages=error_messages,
-        query_name="Tittel spørring",
-        response_type="json",  # The expected response type, either 'json' or 'csv'.
-        # delimiter=";", # The delimiter for CSV data (default: ';').
-        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
-    )
+    # Fetch the data
+    response = requests.get(url)
+    response.raise_for_status()  # Raise an exception for bad status codes
+    
+    # Read the CSV data into a pandas DataFrame
+    df_ledighet_full = pd.read_csv(StringIO(response.text), sep=';', encoding='utf-8')
+    
 except Exception as e:
-    print(f"Error occurred: {e}")
+    error_message = f"Error loading unemployment data: {str(e)}"
+    error_messages.append(error_message)
+    print(error_message)
     notify_errors(error_messages, script_name=script_name)
-    raise RuntimeError(
-        "A critical error occurred during data fetching, stopping execution."
-    )
+    raise RuntimeError("Failed to load unemployment data")
 
 ### DATA CLEANING
 
@@ -87,7 +52,7 @@ github_folder = "Data/07_Idrett_friluftsliv_og_frivillighet/Friluftsliv"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df_ledighet, file_name, github_folder, temp_folder, keepcsv=True)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
