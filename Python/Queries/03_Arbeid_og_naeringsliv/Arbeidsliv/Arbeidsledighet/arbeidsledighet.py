@@ -23,10 +23,10 @@ script_name = os.path.basename(__file__)
 # Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
 error_messages = []
 
-################# Import full dataset (jan 2011- jan 2025) #################
+################# Import latest data #################
 
 # URL for the CSV file
-url = "https://raw.githubusercontent.com/evensrii/Telemark/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/Full%20tidsserie/Ledighet_full_tidsserie_long_format.csv"
+url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/arbeidsledighet.csv"
 
 try:
     # Fetch the data
@@ -34,7 +34,7 @@ try:
     response.raise_for_status()  # Raise an exception for bad status codes
     
     # Read the CSV data into a pandas DataFrame
-    df_ledighet_full = pd.read_csv(StringIO(response.text), sep=';')
+    df_ledighet = pd.read_csv(StringIO(response.text), sep=';')
     
 except Exception as e:
     error_message = f"Error loading unemployment data: {str(e)}"
@@ -44,63 +44,52 @@ except Exception as e:
     raise RuntimeError("Failed to load unemployment data")
 
 ## Convert the "Dato" column to datetime
-df_ledighet_full['Dato'] = pd.to_datetime(df_ledighet_full['Dato'], format='%d.%m.%Y')
+df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'], format='%d.%m.%Y')
 
 ## Identify the latest date in the dato column
-latest_date = df_ledighet_full['Dato'].max()
+latest_date = df_ledighet['Dato'].max()
 month_year = latest_date.strftime('%Y_%m')
 next_month_year = (latest_date + pd.DateOffset(months=1)).strftime('%Y_%m')
 
-################# Import latest month not in existing dataset #################
+################# Import new monthly data, if any #################
 
 url_monthly = f"https://github.com/evensrii/Telemark/raw/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/arbeidsledighet_{next_month_year}.xlsx"
 
-def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
-    """
-    Import and process Excel data from two different column ranges.
-    
-    Args:
-        excel_content: BytesIO object containing Excel file
-        sheet_name: Name of the sheet to read
-        range1: First range of columns (e.g., 'B:I')
-        range2: Second range of columns (e.g., 'K:R')
-        column_names: List of column names to apply to both ranges
-    
-    Returns:
-        DataFrame with processed and combined data
-    """
-    df_range1 = pd.read_excel(excel_content, sheet_name=sheet_name, skiprows=1, header=0, usecols=range1)
-    df_range2 = pd.read_excel(excel_content, sheet_name=sheet_name, skiprows=1, header=0, usecols=range2)
-    
-    df_range1.columns = column_names
-    df_range2.columns = column_names
-    
-    df_range2 = df_range2.dropna(how='all')
-    df_combined = pd.concat([df_range1, df_range2], axis=0, ignore_index=True)
-    
-    df_combined['Antall personer'] = df_combined['Antall personer'].replace('*', np.nan)
-    df_combined['Antall personer'] = pd.to_numeric(df_combined['Antall personer'], errors='coerce').astype('Int64')
-    
-    return df_combined
-
+# Check if new monthly data exists
 try:
-    response = requests.get(url_monthly)
-    response.raise_for_status()
-    
-    # Column names for the dataframes
-    column_names = ['År', 'År-måned', 'Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus', 'Kjønn', 'Antall personer', 'Andel av arbeidsstyrken']
-    
-    # Import data for each sheet using the function
-    df_fylker = import_excel_sheet(BytesIO(response.content), 'Fylker', 'B:I', 'K:R', column_names)
-    df_landet = import_excel_sheet(BytesIO(response.content), 'Landet', 'B:I', 'K:R', column_names)
-    df_telemark = import_excel_sheet(BytesIO(response.content), 'Telemark', 'B:I', 'K:R', column_names)
-    
+    response = requests.head(url_monthly)
+    new_data_exists = response.status_code == 200
 except Exception as e:
-    error_message = f"Error loading unemployment data: {str(e)}"
-    error_messages.append(error_message)
-    print(error_message)
-    notify_errors(error_messages, script_name=script_name)
-    raise RuntimeError("Failed to load unemployment data")
+    new_data_exists = False
+    print(f"Error checking for new data: {str(e)}")
+
+if new_data_exists:
+    try:
+        response = requests.get(url_monthly)
+        response.raise_for_status()
+        
+        # Column names for the dataframes
+        column_names = ['År', 'År-måned', 'Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus', 'Kjønn', 'Antall personer', 'Andel av arbeidsstyrken']
+        
+        # Import data for each sheet using the function
+        df_fylker = import_excel_sheet(BytesIO(response.content), 'Fylker', 'B:I', 'K:R', column_names)
+        df_landet = import_excel_sheet(BytesIO(response.content), 'Landet', 'B:I', 'K:R', column_names)
+        df_telemark = import_excel_sheet(BytesIO(response.content), 'Telemark', 'B:I', 'K:R', column_names)
+        
+        # Stack all dataframes vertically
+        df_latest_month = pd.concat([df_fylker, df_landet, df_telemark], axis=0, ignore_index=True)
+        
+        # Append new data to existing dataset
+        df_ledighet = pd.concat([df_ledighet, df_latest_month], axis=0, ignore_index=True)
+        
+    except Exception as e:
+        error_message = f"Error loading unemployment data: {str(e)}"
+        error_messages.append(error_message)
+        print(error_message)
+        notify_errors(error_messages, script_name=script_name)
+        raise RuntimeError("Failed to load unemployment data")
+else:
+    print(f"No new data found for {next_month_year}")
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
