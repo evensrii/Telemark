@@ -271,10 +271,14 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
 
     # Normalize date formats and string values
     for col in input_df.columns:
+        # Fill NaN values with empty string for consistent comparison
+        input_df[col] = input_df[col].fillna('')
+        existing_data[col] = existing_data[col].fillna('')
+        
         # Try to convert to datetime first
         try:
             # Check if the column might contain dates
-            sample = input_df[col].dropna().iloc[0] if not input_df[col].isna().all() else None
+            sample = input_df[col].iloc[0] if not (input_df[col] == '').all() else None
             if sample and isinstance(sample, str):
                 # Look for date patterns
                 date_patterns = [
@@ -289,8 +293,8 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
             pass
         
         # If not a date, normalize strings
-        input_df[col] = input_df[col].fillna('').astype(str).str.strip()
-        existing_data[col] = existing_data[col].fillna('').astype(str).str.strip()
+        input_df[col] = input_df[col].astype(str).str.strip()
+        existing_data[col] = existing_data[col].astype(str).str.strip()
 
     # Normalize column names to handle encoding issues
     input_df.columns = [col.encode('ascii', 'ignore').decode('ascii') for col in input_df.columns]
@@ -386,7 +390,23 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
         # Check for any changes in the full dataset
         has_changes = False
         for col in columns_to_compare:
-            if not input_df[col].equals(existing_data[col]):
+            # Convert both columns to numeric if possible
+            try:
+                input_series = pd.to_numeric(input_df[col], errors='coerce')
+                existing_series = pd.to_numeric(existing_data[col], errors='coerce')
+            except:
+                input_series = input_df[col]
+                existing_series = existing_data[col]
+            
+            # Fill NaN values with empty string for string columns, 0 for numeric columns
+            if pd.api.types.is_numeric_dtype(input_series):
+                input_series = input_series.fillna(0)
+                existing_series = existing_series.fillna(0)
+            else:
+                input_series = input_series.fillna('')
+                existing_series = existing_series.fillna('')
+            
+            if not input_series.equals(existing_series):
                 has_changes = True
                 break
                 
@@ -431,10 +451,27 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
             
         old_row = existing_df_subset.iloc[idx]
         for col in columns_to_compare:
-            old_val = str(old_row[col]).strip() if pd.notna(old_row[col]) else ''
-            new_val = str(new_row[col]).strip() if pd.notna(new_row[col]) else ''
+            # Try converting to numeric for comparison
+            try:
+                old_val = pd.to_numeric(old_row[col], errors='coerce')
+                new_val = pd.to_numeric(new_row[col], errors='coerce')
+                
+                # Fill NaN with 0 for numeric values
+                old_val = 0 if pd.isna(old_val) else old_val
+                new_val = 0 if pd.isna(new_val) else new_val
+                
+                # Compare numeric values with a small tolerance
+                if abs(old_val - new_val) > 1e-10:
+                    old_str = str(old_val) if not pd.isna(old_val) else ''
+                    new_str = str(new_val) if not pd.isna(new_val) else ''
+                else:
+                    continue
+            except:
+                # For non-numeric values, compare as strings
+                old_str = str(old_row[col]).strip() if pd.notna(old_row[col]) else ''
+                new_str = str(new_row[col]).strip() if pd.notna(new_row[col]) else ''
             
-            if old_val != new_val:
+            if old_str != new_str:
                 # Create identifier string from all key columns
                 identifiers = []
                 for key_col in key_columns:
@@ -445,8 +482,8 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
                 changes.append({
                     'identifiers': ' | '.join(identifiers),
                     'column': col,
-                    'old_value': old_val,
-                    'new_value': new_val
+                    'old_value': old_str,
+                    'new_value': new_str
                 })
 
     # Upload to GitHub since we detected changes

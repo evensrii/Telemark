@@ -156,7 +156,16 @@ df["Mdir enkeltår"] = df["Totale utslipp fra industrien (Mdir)"].where(
 )
 
 # Set the values for those years in the original column to NaN (optional)
-df.loc[df["År"].isin([2009, 2011, 2013]), "Totale utslipp fra industrien (Mdir)"] = None
+df.loc[df["År"].isin([2009, 2011, 2013]), "Totale utslipp fra industrien (Mdir)"] = pd.NA
+
+# Print column names and sample data for debugging
+print("\nColumn names in DataFrame:")
+print(df.columns.tolist())
+print("\nSample data:")
+print(df.head())
+
+# Fill NaN values with empty string for consistent comparison
+df = df.fillna('')
 
 # Round all float64 values to 2 decimals
 df = df.round(2)
@@ -180,17 +189,18 @@ is_new_data1 = handle_output_data(
     'Data/Klima_og_energi/Klimagassutslipp',
     temp_folder,
     keepcsv=True,
-    value_columns=['År', 'Årlig utslipp til luft'],
+    value_columns=['Årlig utslipp til luft'],
     ignore_patterns=['nace']
 )
 
-# Second file: Standard comparison
+# Second file: Monitor specific value columns
 is_new_data2 = handle_output_data(
     df_norskeutslipp_everviz,
     file_name2,
     github_folder,
     temp_folder,
-    keepcsv=True
+    keepcsv=True,
+    value_columns=['Utslipp fra landbasert industri (norskeutslipp.no)', 'Totale utslipp fra industrien (Mdir)', 'Mdir enkeltår']
 )
 
 # Write a single status file that indicates if either file has new data
