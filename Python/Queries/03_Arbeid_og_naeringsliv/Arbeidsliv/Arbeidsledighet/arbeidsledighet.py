@@ -17,6 +17,34 @@ from Helper_scripts.github_functions import download_github_file
 from Helper_scripts.github_functions import compare_to_github
 from Helper_scripts.github_functions import handle_output_data
 
+def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
+    """
+    Import and process Excel data from two different column ranges.
+    
+    Args:
+        excel_content: BytesIO object containing Excel file
+        sheet_name: Name of the sheet to read
+        range1: First range of columns (e.g., 'B:I')
+        range2: Second range of columns (e.g., 'K:R')
+        column_names: List of column names to apply to both ranges
+    
+    Returns:
+        DataFrame with processed and combined data
+    """
+    df_range1 = pd.read_excel(excel_content, sheet_name=sheet_name, skiprows=1, header=0, usecols=range1)
+    df_range2 = pd.read_excel(excel_content, sheet_name=sheet_name, skiprows=1, header=0, usecols=range2)
+    
+    df_range1.columns = column_names
+    df_range2.columns = column_names
+    
+    df_range2 = df_range2.dropna(how='all')
+    df_combined = pd.concat([df_range1, df_range2], axis=0, ignore_index=True)
+    
+    df_combined['Antall personer'] = df_combined['Antall personer'].replace('*', np.nan)
+    df_combined['Antall personer'] = pd.to_numeric(df_combined['Antall personer'], errors='coerce').astype('Int64')
+    
+    return df_combined
+
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
 
@@ -34,7 +62,7 @@ try:
     response.raise_for_status()  # Raise an exception for bad status codes
     
     # Read the CSV data into a pandas DataFrame
-    df_ledighet = pd.read_csv(StringIO(response.text), sep=';')
+    df_ledighet = pd.read_csv(StringIO(response.text), sep=',')
     
 except Exception as e:
     error_message = f"Error loading unemployment data: {str(e)}"
@@ -44,7 +72,7 @@ except Exception as e:
     raise RuntimeError("Failed to load unemployment data")
 
 ## Convert the "Dato" column to datetime
-df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'], format='%d.%m.%Y')
+df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'])  # Let pandas automatically detect the date format
 
 ## Identify the latest date in the dato column
 latest_date = df_ledighet['Dato'].max()
