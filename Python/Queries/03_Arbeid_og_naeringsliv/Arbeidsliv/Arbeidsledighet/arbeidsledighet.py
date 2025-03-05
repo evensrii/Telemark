@@ -33,7 +33,7 @@ try:
     response.raise_for_status()  # Raise an exception for bad status codes
     
     # Read the CSV data into a pandas DataFrame
-    df_ledighet_full = pd.read_csv(StringIO(response.text), sep=';', encoding='utf-8')
+    df_ledighet_full = pd.read_csv(StringIO(response.text), sep=';')
     
 except Exception as e:
     error_message = f"Error loading unemployment data: {str(e)}"
@@ -42,7 +42,18 @@ except Exception as e:
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError("Failed to load unemployment data")
 
-### DATA CLEANING
+
+
+
+
+
+
+
+
+
+
+
+
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
