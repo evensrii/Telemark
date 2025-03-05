@@ -81,7 +81,9 @@ next_month_year = (latest_date + pd.DateOffset(months=1)).strftime('%Y_%m')
 
 ################# Import new monthly data, if any #################
 
-url_monthly = f"https://github.com/evensrii/Telemark/raw/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/arbeidsledighet_{next_month_year}.xlsx"
+url_monthly = f"https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/arbeidsledighet_{next_month_year}.xlsx"
+
+#url_monthly = f"https://github.com/evensrii/Telemark/raw/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/arbeidsledighet_{next_month_year}.xlsx"
 
 # Check if new monthly data exists
 try:
