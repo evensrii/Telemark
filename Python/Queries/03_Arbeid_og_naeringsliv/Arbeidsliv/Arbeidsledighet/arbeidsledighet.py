@@ -42,7 +42,15 @@ except Exception as e:
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError("Failed to load unemployment data")
 
+## Convert the "Dato" column to datetime
+df_ledighet_full['Dato'] = pd.to_datetime(df_ledighet_full['Dato'], format='%d.%m.%Y')
 
+## Identify the latest date in the dato column
+latest_date = df_ledighet_full['Dato'].max()
+month_year = latest_date.strftime('%Y_%m')
+
+
+################# Import full dataset (jan 2011- jan 2025) #################
 
 
 
