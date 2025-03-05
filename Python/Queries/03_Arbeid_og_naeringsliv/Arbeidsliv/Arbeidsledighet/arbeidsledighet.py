@@ -48,11 +48,26 @@ df_ledighet_full['Dato'] = pd.to_datetime(df_ledighet_full['Dato'], format='%d.%
 ## Identify the latest date in the dato column
 latest_date = df_ledighet_full['Dato'].max()
 month_year = latest_date.strftime('%Y_%m')
+next_month_year = (latest_date + pd.DateOffset(months=1)).strftime('%Y_%m')
 
+################# Import latest month not in existing dataset #################
 
-################# Import full dataset (jan 2011- jan 2025) #################
+url_monthly = f"https://github.com/evensrii/Telemark/raw/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/arbeidsledighet_{next_month_year}.xlsx"
 
-
+try:
+    # Fetch the data
+    response = requests.get(url_monthly)
+    response.raise_for_status()  # Raise an exception for bad status codes
+    
+    # Read the CSV data into a pandas DataFrame
+    df_monthly = pd.read_csv(StringIO(response.text), sep=';')
+    
+except Exception as e:
+    error_message = f"Error loading unemployment data: {str(e)}"
+    error_messages.append(error_message)
+    print(error_message)
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError("Failed to load unemployment data")
 
 
 
