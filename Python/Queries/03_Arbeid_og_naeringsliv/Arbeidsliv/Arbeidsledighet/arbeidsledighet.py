@@ -6,6 +6,7 @@ from io import BytesIO
 from io import StringIO
 import pandas as pd
 from pyjstat import pyjstat
+import numpy as np
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
@@ -54,13 +55,45 @@ next_month_year = (latest_date + pd.DateOffset(months=1)).strftime('%Y_%m')
 
 url_monthly = f"https://github.com/evensrii/Telemark/raw/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/arbeidsledighet_{next_month_year}.xlsx"
 
-try:
-    # Fetch the data
-    response = requests.get(url_monthly)
-    response.raise_for_status()  # Raise an exception for bad status codes
+def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
+    """
+    Import and process Excel data from two different column ranges.
     
-    # Read the CSV data into a pandas DataFrame
-    df_monthly = pd.read_csv(StringIO(response.text), sep=';')
+    Args:
+        excel_content: BytesIO object containing Excel file
+        sheet_name: Name of the sheet to read
+        range1: First range of columns (e.g., 'B:I')
+        range2: Second range of columns (e.g., 'K:R')
+        column_names: List of column names to apply to both ranges
+    
+    Returns:
+        DataFrame with processed and combined data
+    """
+    df_range1 = pd.read_excel(excel_content, sheet_name=sheet_name, skiprows=1, header=0, usecols=range1)
+    df_range2 = pd.read_excel(excel_content, sheet_name=sheet_name, skiprows=1, header=0, usecols=range2)
+    
+    df_range1.columns = column_names
+    df_range2.columns = column_names
+    
+    df_range2 = df_range2.dropna(how='all')
+    df_combined = pd.concat([df_range1, df_range2], axis=0, ignore_index=True)
+    
+    df_combined['Antall personer'] = df_combined['Antall personer'].replace('*', np.nan)
+    df_combined['Antall personer'] = pd.to_numeric(df_combined['Antall personer'], errors='coerce').astype('Int64')
+    
+    return df_combined
+
+try:
+    response = requests.get(url_monthly)
+    response.raise_for_status()
+    
+    # Column names for the dataframes
+    column_names = ['År', 'År-måned', 'Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus', 'Kjønn', 'Antall personer', 'Andel av arbeidsstyrken']
+    
+    # Import data for each sheet using the function
+    df_fylker = import_excel_sheet(BytesIO(response.content), 'Fylker', 'B:I', 'K:R', column_names)
+    df_landet = import_excel_sheet(BytesIO(response.content), 'Landet', 'B:I', 'K:R', column_names)
+    df_telemark = import_excel_sheet(BytesIO(response.content), 'Telemark', 'B:I', 'K:R', column_names)
     
 except Exception as e:
     error_message = f"Error loading unemployment data: {str(e)}"
@@ -69,20 +102,11 @@ except Exception as e:
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError("Failed to load unemployment data")
 
-
-
-
-
-
-
-
-
-
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "xxx.csv"
-task_name = "Tema - Tittel"
-github_folder = "Data/07_Idrett_friluftsliv_og_frivillighet/Friluftsliv"
+file_name = "arbeidsledighet.csv"
+task_name = "NAV - Arbeidsledighet"
+github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/NAV/Arbeidsledighet"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
