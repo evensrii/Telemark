@@ -1,10 +1,8 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Resolved log file path: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
 Successfully read the master run log file: D:\Scripts\analyse\Telemark\Python\Automatisering\Task scheduler\./logs/00_master_run.log
 Successfully uploaded log file Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune.log
 Successfully uploaded log file Arbeid og naeringsliv - Endring arbeidsplasser over tid.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Arbeid og naeringsliv - Endring arbeidsplasser over tid.log
-Successfully uploaded log file Arbeid og naeringsliv - Enhetsregisteret - Hovedenheter.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Arbeid og naeringsliv - Enhetsregisteret - Hovedenheter.log
-Successfully uploaded log file Arbeid og naeringsliv - Enhetsregisteret - Underenheter.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Arbeid og naeringsliv - Enhetsregisteret - Underenheter.log
-Successfully uploaded log file Arbeid og naeringsliv - Geodata bedrifter.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Arbeid og naeringsliv - Geodata bedrifter.log
 Successfully uploaded log file Arbeid og naeringsliv - Offentlig vs. privat naeringsliv.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Arbeid og naeringsliv - Offentlig vs. privat naeringsliv.log
 Successfully uploaded log file Arbeid og naeringsliv - Sysselsatte (fliser).log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Arbeid og naeringsliv - Sysselsatte (fliser).log
 Successfully uploaded log file Arbeid og naeringsliv - Sysselsatte etter aldersgruppe.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Arbeid og naeringsliv - Sysselsatte etter aldersgruppe.log
@@ -37,23 +35,29 @@ Successfully uploaded log file Klima og energi - Strompriser.log. URL: https://g
 Successfully uploaded log file Klima og energi - Utslipp fra landbasert industri.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Utslipp fra landbasert industri.log
 Successfully uploaded log file Klima og energi - Vannkraft Telemark.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Vannkraft Telemark.log
 
-DEBUG - Task: Klima og energi - Stromforbruk (Elhub)
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Stromforbruk%20(Elhub).log
+DEBUG - Task: Innvandrere - Flyktninger og arbeidsinnvandrere
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Flyktninger%20og%20arbeidsinnvandrere.log
+
+DEBUG - Task: Innvandrere - Bosatt
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Bosatt.log
+
+DEBUG - Task: Innvandrere - Innvandringsgrunn
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Innvandringsgrunn.log
+
+DEBUG - Task: Innvandrere - Enslige mindreaarige
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Enslige%20mindreaarige.log
 
 DEBUG - Task: Innvandrere - Anmodninger og faktisk bosetting
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Anmodninger%20og%20faktisk%20bosetting.log
 
-DEBUG - Task: Arbeid og naeringsliv - Geodata bedrifter
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Arbeid%20og%20naeringsliv%20-%20Geodata%20bedrifter.log
+DEBUG - Task: Innvandrere - Sekundaerflytting
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Sekundaerflytting.log
 
-DEBUG - Task: Arbeid og naeringsliv - Enhetsregisteret - Hovedenheter
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Arbeid%20og%20naeringsliv%20-%20Enhetsregisteret%20-%20Hovedenheter.log
+DEBUG - Task: Klima og energi - Utslipp fra landbasert industri
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Utslipp%20fra%20landbasert%20industri.log
 
-DEBUG - Task: Arbeid og naeringsliv - Enhetsregisteret - Underenheter
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Arbeid%20og%20naeringsliv%20-%20Enhetsregisteret%20-%20Underenheter.log
-
-DEBUG - Task: Innvandrere - Innvandringsgrunn
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Innvandringsgrunn.log
+DEBUG - Task: Klima og energi - Stromforbruk (Elhub)
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Stromforbruk%20(Elhub).log
 
 DEBUG - Task: Klima og energi - Strompriser
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Strompriser.log
@@ -82,9 +86,6 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 DEBUG - Task: Innvandrere - Hoyeste utdanning
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Hoyeste%20utdanning.log
 
-DEBUG - Task: Innvandrere - Enslige mindreaarige
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Enslige%20mindreaarige.log
-
 DEBUG - Task: Arbeid og naeringsliv - Virksomheter
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Arbeid%20og%20naeringsliv%20-%20Virksomheter.log
 
@@ -100,15 +101,6 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 DEBUG - Task: Klima og energi - Sektorvise utslipp
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Sektorvise%20utslipp.log
 
-DEBUG - Task: Innvandrere - Bosatt
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Bosatt.log
-
-DEBUG - Task: Innvandrere - Flyktninger og arbeidsinnvandrere
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Flyktninger%20og%20arbeidsinnvandrere.log
-
-DEBUG - Task: Klima og energi - Utslipp fra landbasert industri
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Utslipp%20fra%20landbasert%20industri.log
-
 DEBUG - Task: Innvandrere - Botid
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Botid.log
 
@@ -120,9 +112,6 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 
 DEBUG - Task: Idrett friluftsliv og frivillighet - Jegere
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Idrett%20friluftsliv%20og%20frivillighet%20-%20Jegere.log
-
-DEBUG - Task: Innvandrere - Sekundaerflytting
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Sekundaerflytting.log
 
 DEBUG - Task: Innvandrere - Lavinntekt
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Lavinntekt.log

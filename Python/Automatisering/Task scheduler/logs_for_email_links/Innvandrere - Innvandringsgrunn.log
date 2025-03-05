@@ -4,8 +4,23 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Innvandringsgrunn CSV data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\innvandringsgrunn_telemark.csv
-[2025-03-04 08:19:05] No changes found in value columns. Skipping GitHub update.
+[2025-03-05 10:09:59] Changes detected in the dataset.
+
+[2025-03-05 10:09:59] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/innvandringsgrunn_telemark.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: Kommunenummer: 4034 | Kommune: Tokke
+  Antall: 1.0 -> 39.0
+
+Row: Kommunenummer: 4024 | Kommune: Hjartdal
+  Antall: 1.0 -> 20.0
+
+Row: Kommunenummer: 4028 | Kommune: Kviteseid
+  Antall: 1.0 -> 16.9
+Email notifications disabled. Updates for innvandringsgrunn_telemark.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\innvandringsgrunn_telemark.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Innvandringsgrunn.log
 
