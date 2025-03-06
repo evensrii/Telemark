@@ -91,8 +91,6 @@ df_ledighet['Antall personer'] = pd.to_numeric(df_ledighet['Antall personer'], e
 ## Convert the "Dato" column to datetime
 df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'])
 
-df_ledighet.dtypes
-
 ## Identify the latest date in the dato column
 latest_date = df_ledighet['Dato'].max()
 month_year = latest_date.strftime('%Y-%m')
@@ -107,7 +105,7 @@ url_monthly = None
 
 # Try each day of the month as suffix
 for day in range(1, 32):  # 1 to 31
-    test_url = f"{base_url}_{next_months_file}-{str(day).zfill(2)}.xlsx"
+    test_url = f"{base_url}/{next_months_file}-{str(day).zfill(2)}.xlsx"
     try:
         response = requests.head(test_url)
         if response.status_code == 200:
@@ -171,7 +169,7 @@ if new_data_exists:
         notify_errors(error_messages, script_name=script_name)
         raise RuntimeError("Failed to load unemployment data")
 else:
-    print(f"No new data found for {next_month_year}")
+    print(f"No new data found for {next_months_file}")
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
