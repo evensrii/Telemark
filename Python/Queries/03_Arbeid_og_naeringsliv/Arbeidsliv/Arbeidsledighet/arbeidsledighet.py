@@ -2,6 +2,7 @@ import requests
 import sys
 import os
 import glob
+import csv
 from io import BytesIO
 from io import StringIO
 import pandas as pd
@@ -40,8 +41,12 @@ def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
     df_range2 = df_range2.dropna(how='all')
     df_combined = pd.concat([df_range1, df_range2], axis=0, ignore_index=True)
     
+    # Handle numeric columns
     df_combined['Antall personer'] = df_combined['Antall personer'].replace('*', np.nan)
     df_combined['Antall personer'] = pd.to_numeric(df_combined['Antall personer'], errors='coerce').astype('Int64')
+    
+    # Convert percentage values to numeric
+    df_combined['Andel av arbeidsstyrken'] = pd.to_numeric(df_combined['Andel av arbeidsstyrken'], errors='coerce')
     
     return df_combined
 
@@ -62,7 +67,18 @@ try:
     response.raise_for_status()  # Raise an exception for bad status codes
     
     # Read the CSV data into a pandas DataFrame
-    df_ledighet = pd.read_csv(StringIO(response.text), sep=';')
+    df_ledighet = pd.read_csv(
+        StringIO(response.text),
+        sep=',',
+        quoting=csv.QUOTE_MINIMAL,
+        quotechar='"',
+        thousands=None,  # Don't interpret thousands separators
+        decimal=','  # Use comma as decimal separator
+    )
+    
+    # Print the structure for debugging
+    print("CSV columns:", df_ledighet.columns.tolist())
+    print("Number of columns:", len(df_ledighet.columns))
     
 except Exception as e:
     error_message = f"Error loading unemployment data: {str(e)}"
@@ -71,9 +87,25 @@ except Exception as e:
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError("Failed to load unemployment data")
 
-## Set new column names
 column_names = ['Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus', 'Kjønn', 'Antall personer', 'Andel av arbeidsstyrken', 'Dato']
 df_ledighet.columns = column_names
+
+# Convert "Andel av arbeidsstyrken" to numeric, handling both formats (comma and period decimals)
+def convert_percentage(x):
+    if pd.isna(x):
+        return x
+    if isinstance(x, str):
+        # Remove any quotes and convert to float
+        x = x.strip('"')
+        try:
+            # Try parsing with comma as decimal separator
+            return float(x.replace(',', '.'))
+        except ValueError:
+            # If that fails, try direct float conversion
+            return float(x)
+    return float(x)
+
+df_ledighet['Andel av arbeidsstyrken'] = df_ledighet['Andel av arbeidsstyrken'].apply(convert_percentage)
 
 ## Handle asterisk values
 df_ledighet['Antall personer'] = df_ledighet['Antall personer'].replace('*', np.nan)
@@ -111,7 +143,7 @@ if new_data_exists:
         df_fylker = import_excel_sheet(BytesIO(response.content), 'Fylker', 'B:I', 'K:R', column_names)
         df_landet = import_excel_sheet(BytesIO(response.content), 'Landet', 'B:I', 'K:R', column_names)
         df_telemark = import_excel_sheet(BytesIO(response.content), 'Telemark', 'B:I', 'K:R', column_names)
-        
+
         # Stack all dataframes vertically
         df_latest_month = pd.concat([df_fylker, df_landet, df_telemark], axis=0, ignore_index=True)
         
@@ -132,6 +164,9 @@ if new_data_exists:
         # Convert to datetime
         df_latest_month['Dato'] = pd.to_datetime(date_str, format='%Y-%m-%d')
         df_latest_month = df_latest_month.drop(columns=['År-måned'])
+
+        # Ensure values are numeric
+        df_latest_month['Andel av arbeidsstyrken'] = pd.to_numeric(df_latest_month['Andel av arbeidsstyrken'], errors='coerce')
 
         # Append new data to existing dataset
         df_ledighet = pd.concat([df_ledighet, df_latest_month], axis=0, ignore_index=True)
