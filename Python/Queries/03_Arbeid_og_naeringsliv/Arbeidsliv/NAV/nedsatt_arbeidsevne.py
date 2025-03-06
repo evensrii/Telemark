@@ -59,7 +59,7 @@ error_messages = []
 ################# Import latest data #################
 
 # URL for the CSV file
-url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/nedsatt_arbeidsevne.csv"
+url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Nedsatt%20arbeidsevne/nedsatt_arbeidsevne.csv"
 
 try:
     # Fetch the data
@@ -96,10 +96,14 @@ latest_date = df_nedsatt['Dato'].max()
 month_year = latest_date.strftime('%Y-%m')
 next_months_file = (latest_date + pd.DateOffset(months=2)).strftime('%Y-%m')  # Format as YYYY-MM
 
+
+TESTE HERFRA NÅR NYE DATA!!!!
+
+
 ################# Import new monthly data, if any #################
 
 # Try all possible day suffixes (01-31) for the monthly file
-base_url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/"
+base_url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Nedsatt%20arbeidsevne/"
 new_data_exists = False
 url_monthly = None
 
@@ -125,15 +129,18 @@ if new_data_exists:
         response.raise_for_status()
         
         # Column names for the dataframes
-        column_names = ['År', 'År-måned', 'Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus', 'Kjønn', 'Antall personer', 'Andel av arbeidsstyrken']
-        
+        column_names = ['Nivå', 'Geografisk enhet', 'Kjønn', 'Alder', 'Antall personer', 'Andel av befolkningen', 'Dato']
+
         # Import data for each sheet using the function
-        df_fylker = import_excel_sheet(BytesIO(response.content), 'Fylker', 'B:I', 'K:R', column_names)
-        df_landet = import_excel_sheet(BytesIO(response.content), 'Landet', 'B:I', 'K:R', column_names)
-        df_telemark = import_excel_sheet(BytesIO(response.content), 'Telemark', 'B:I', 'K:R', column_names)
+        df_landet_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år landet', 'B:I', 'K:R', column_names)
+        df_landet_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år landet', 'B:I', 'K:R', column_names)
+        df_fylker_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år fylker', 'B:I', 'K:R', column_names)
+        df_fylker_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år fylker', 'B:I', 'K:R', column_names)
+        df_telemark_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år Telemark', 'B:I', 'K:R', column_names)       
+        df_telemark_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år Telemark', 'B:I', 'K:R', column_names)
 
         # Stack all dataframes vertically
-        df_latest_month = pd.concat([df_fylker, df_landet, df_telemark], axis=0, ignore_index=True)
+        df_latest_month = pd.concat([df_landet_18_29, df_landet_18_66, df_fylker_18_29, df_fylker_18_66, df_telemark_18_29, df_telemark_18_66], axis=0, ignore_index=True)
         
         # Remove column "År" from the dataframe
         df_latest_month = df_latest_month.drop(columns=['År'])
