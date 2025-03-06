@@ -69,8 +69,8 @@ try:
     # Read the CSV data into a pandas DataFrame
     df_ledighet = pd.read_csv(
         StringIO(response.text),
-        sep=';',
-        decimal=',',  # Use comma as decimal separator
+        sep=',',
+        decimal='.',  # Use comma as decimal separator
         thousands=None  # Don't interpret thousands separators
     )
     
