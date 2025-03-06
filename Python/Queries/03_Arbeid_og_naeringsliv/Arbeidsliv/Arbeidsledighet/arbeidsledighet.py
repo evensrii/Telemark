@@ -105,7 +105,7 @@ url_monthly = None
 
 # Try each day of the month as suffix
 for day in range(1, 32):  # 1 to 31
-    test_url = f"{base_url}/{next_months_file}-{str(day).zfill(2)}.xlsx"
+    test_url = f"{base_url}{next_months_file}-{str(day).zfill(2)}.xlsx"
     try:
         response = requests.head(test_url)
         if response.status_code == 200:
