@@ -46,7 +46,7 @@ def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
     df_combined['Antall personer'] = pd.to_numeric(df_combined['Antall personer'], errors='coerce').astype('Int64')
     
     # Convert percentage values to numeric
-    df_combined['Andel av arbeidsstyrken'] = pd.to_numeric(df_combined['Andel av arbeidsstyrken'], errors='coerce')
+    df_combined['Andel av befolkningen'] = pd.to_numeric(df_combined['Andel av befolkningen'], errors='coerce')
     
     return df_combined
 
@@ -59,7 +59,7 @@ error_messages = []
 ################# Import latest data #################
 
 # URL for the CSV file
-url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/arbeidsledighet.csv"
+url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/nedsatt_arbeidsevne.csv"
 
 try:
     # Fetch the data
@@ -67,7 +67,7 @@ try:
     response.raise_for_status()  # Raise an exception for bad status codes
     
     # Read the CSV data into a pandas DataFrame
-    df_ledighet = pd.read_csv(
+    df_nedsatt = pd.read_csv(
         StringIO(response.text),
         sep=',',
         decimal='.',  # Use comma as decimal separator
@@ -81,18 +81,18 @@ except Exception as e:
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError("Failed to load unemployment data")
 
-column_names = ['Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus', 'Kjønn', 'Antall personer', 'Andel av arbeidsstyrken', 'Dato']
-df_ledighet.columns = column_names
+column_names = ['Nivå', 'Geografisk enhet', 'Kjønn', 'Alder', 'Antall personer', 'Andel av befolkningen', 'Dato']
+df_nedsatt.columns = column_names
 
 ## Handle asterisk values
-df_ledighet['Antall personer'] = df_ledighet['Antall personer'].replace('*', np.nan)
-df_ledighet['Antall personer'] = pd.to_numeric(df_ledighet['Antall personer'], errors='coerce').astype('Int64')
+df_nedsatt['Antall personer'] = df_nedsatt['Antall personer'].replace('*', np.nan)
+df_nedsatt['Antall personer'] = pd.to_numeric(df_nedsatt['Antall personer'], errors='coerce').astype('Int64')
 
 ## Convert the "Dato" column to datetime
-df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'])
+df_nedsatt['Dato'] = pd.to_datetime(df_nedsatt['Dato'])
 
 ## Identify the latest date in the dato column
-latest_date = df_ledighet['Dato'].max()
+latest_date = df_nedsatt['Dato'].max()
 month_year = latest_date.strftime('%Y-%m')
 next_months_file = (latest_date + pd.DateOffset(months=2)).strftime('%Y-%m')  # Format as YYYY-MM
 
@@ -160,7 +160,7 @@ if new_data_exists:
         df_latest_month['Andel av arbeidsstyrken'] = df_latest_month['Andel av arbeidsstyrken'] / 100
 
         # Append new data to existing dataset
-        df_ledighet = pd.concat([df_ledighet, df_latest_month], axis=0, ignore_index=True)
+        df_nedsatt = pd.concat([df_nedsatt, df_latest_month], axis=0, ignore_index=True)
 
     except Exception as e:
         error_message = f"Error loading unemployment data: {str(e)}"
@@ -173,13 +173,13 @@ else:
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "arbeidsledighet.csv"
-task_name = "NAV - Arbeidsledighet"
+file_name = "nedsatt_arbeidsevne.csv"
+task_name = "NAV - Nedsatt arbeidsevne"
 github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/NAV/Arbeidsledighet"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df_ledighet, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df_nedsatt, file_name, github_folder, temp_folder, keepcsv=True)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
