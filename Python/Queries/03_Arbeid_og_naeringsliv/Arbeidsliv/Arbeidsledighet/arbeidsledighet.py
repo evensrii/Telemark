@@ -69,11 +69,9 @@ try:
     # Read the CSV data into a pandas DataFrame
     df_ledighet = pd.read_csv(
         StringIO(response.text),
-        sep=',',
-        quoting=csv.QUOTE_MINIMAL,
-        quotechar='"',
-        thousands=None,  # Don't interpret thousands separators
-        decimal=','  # Use comma as decimal separator
+        sep=';',
+        decimal=',',  # Use comma as decimal separator
+        thousands=None  # Don't interpret thousands separators
     )
     
     # Print the structure for debugging
@@ -90,29 +88,12 @@ except Exception as e:
 column_names = ['Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus', 'Kjønn', 'Antall personer', 'Andel av arbeidsstyrken', 'Dato']
 df_ledighet.columns = column_names
 
-# Convert "Andel av arbeidsstyrken" to numeric, handling both formats (comma and period decimals)
-def convert_percentage(x):
-    if pd.isna(x):
-        return x
-    if isinstance(x, str):
-        # Remove any quotes and convert to float
-        x = x.strip('"')
-        try:
-            # Try parsing with comma as decimal separator
-            return float(x.replace(',', '.'))
-        except ValueError:
-            # If that fails, try direct float conversion
-            return float(x)
-    return float(x)
-
-df_ledighet['Andel av arbeidsstyrken'] = df_ledighet['Andel av arbeidsstyrken'].apply(convert_percentage)
-
 ## Handle asterisk values
 df_ledighet['Antall personer'] = df_ledighet['Antall personer'].replace('*', np.nan)
 df_ledighet['Antall personer'] = pd.to_numeric(df_ledighet['Antall personer'], errors='coerce').astype('Int64')
 
 ## Convert the "Dato" column to datetime
-df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'], dayfirst=True, format='%d.%m.%Y')  # Specify the date format explicitly
+df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'], format='%d.%m.%Y')  # Date format is DD.MM.YYYY
 
 ## Identify the latest date in the dato column
 latest_date = df_ledighet['Dato'].max()
@@ -168,9 +149,12 @@ if new_data_exists:
         # Ensure values are numeric
         df_latest_month['Andel av arbeidsstyrken'] = pd.to_numeric(df_latest_month['Andel av arbeidsstyrken'], errors='coerce')
 
+        # Divide andel by 100
+        df_latest_month['Andel av arbeidsstyrken'] = df_latest_month['Andel av arbeidsstyrken'] / 100
+
         # Append new data to existing dataset
         df_ledighet = pd.concat([df_ledighet, df_latest_month], axis=0, ignore_index=True)
-        
+
     except Exception as e:
         error_message = f"Error loading unemployment data: {str(e)}"
         error_messages.append(error_message)
