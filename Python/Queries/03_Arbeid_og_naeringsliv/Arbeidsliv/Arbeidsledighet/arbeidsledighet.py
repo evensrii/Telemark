@@ -74,10 +74,6 @@ try:
         thousands=None  # Don't interpret thousands separators
     )
     
-    # Print the structure for debugging
-    print("CSV columns:", df_ledighet.columns.tolist())
-    print("Number of columns:", len(df_ledighet.columns))
-    
 except Exception as e:
     error_message = f"Error loading unemployment data: {str(e)}"
     error_messages.append(error_message)
@@ -93,24 +89,37 @@ df_ledighet['Antall personer'] = df_ledighet['Antall personer'].replace('*', np.
 df_ledighet['Antall personer'] = pd.to_numeric(df_ledighet['Antall personer'], errors='coerce').astype('Int64')
 
 ## Convert the "Dato" column to datetime
-df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'], format='%d.%m.%Y')  # Date format is DD.MM.YYYY
+df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'])
+
+df_ledighet.dtypes
 
 ## Identify the latest date in the dato column
 latest_date = df_ledighet['Dato'].max()
-month_year = latest_date.strftime('%Y_%m')
-next_month_year = (latest_date + pd.DateOffset(months=1)).strftime('%Y_%m')
+month_year = latest_date.strftime('%Y-%m')
+next_months_file = (latest_date + pd.DateOffset(months=2)).strftime('%Y-%m')  # Format as YYYY-MM
 
 ################# Import new monthly data, if any #################
 
-url_monthly = f"https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/arbeidsledighet_{next_month_year}.xlsx"
+# Try all possible day suffixes (01-31) for the monthly file
+base_url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/"
+new_data_exists = False
+url_monthly = None
 
-# Check if new monthly data exists
-try:
-    response = requests.head(url_monthly)
-    new_data_exists = response.status_code == 200
-except Exception as e:
-    new_data_exists = False
-    print(f"Error checking for new data: {str(e)}")
+# Try each day of the month as suffix
+for day in range(1, 32):  # 1 to 31
+    test_url = f"{base_url}_{next_months_file}-{str(day).zfill(2)}.xlsx"
+    try:
+        response = requests.head(test_url)
+        if response.status_code == 200:
+            new_data_exists = True
+            url_monthly = test_url
+            print(f"Found monthly data file: {test_url}")
+            break
+    except Exception as e:
+        continue
+
+if not new_data_exists:
+    print(f"No new data found for {next_months_file} with any day suffix")
 
 if new_data_exists:
     try:
