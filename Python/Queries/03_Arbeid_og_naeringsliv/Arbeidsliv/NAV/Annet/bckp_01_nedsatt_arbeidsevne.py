@@ -44,7 +44,7 @@ def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
     
     # Handle numeric columns
     df_combined['Antall personer'] = df_combined['Antall personer'].replace('*', np.nan)
-    df_combined['Antall personer'] = pd.to_numeric(df_combined['Antall personer'], errors='coerce')  # Keep as float
+    df_combined['Antall personer'] = pd.to_numeric(df_combined['Antall personer'], errors='coerce').astype('Int64')
     
     # Convert percentage values to numeric
     df_combined['Andel av befolkningen'] = pd.to_numeric(df_combined['Andel av befolkningen'], errors='coerce')
@@ -104,7 +104,7 @@ df_nedsatt.columns = column_names
 
 ## Handle asterisk values
 df_nedsatt['Antall personer'] = df_nedsatt['Antall personer'].replace('*', np.nan)
-df_nedsatt['Antall personer'] = pd.to_numeric(df_nedsatt['Antall personer'], errors='coerce')  # Keep as float
+df_nedsatt['Antall personer'] = pd.to_numeric(df_nedsatt['Antall personer'], errors='coerce').astype('Int64')
 
 ## Convert the "Dato" column to datetime
 df_nedsatt['Dato'] = pd.to_datetime(df_nedsatt['Dato'])
@@ -186,12 +186,8 @@ task_name = "NAV - Nedsatt arbeidsevne"
 github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/NAV/Nedsatt arbeidsevne"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-# Create a copy for comparison and convert Int64 to string to avoid type conflicts
-df_compare = df_nedsatt.copy()
-df_compare['Antall personer'] = df_compare['Antall personer'].astype(str)
-
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df_compare, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df_nedsatt, file_name, github_folder, temp_folder, keepcsv=True)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
