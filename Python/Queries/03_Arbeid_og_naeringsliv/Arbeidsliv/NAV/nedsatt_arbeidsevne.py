@@ -71,7 +71,8 @@ try:
         StringIO(response.text),
         sep=',',
         decimal='.',  # Use comma as decimal separator
-        thousands=None  # Don't interpret thousands separators
+        thousands=None,  # Don't interpret thousands separators
+        low_memory=False  # Prevent mixed type inference warning
     )
     
 except Exception as e:
