@@ -109,9 +109,6 @@ df_nedsatt['Antall personer'] = pd.to_numeric(df_nedsatt['Antall personer'], err
 ## Convert the "Dato" column to datetime
 df_nedsatt['Dato'] = pd.to_datetime(df_nedsatt['Dato'])
 
-# Show unique values in the "Alder" column
-print(df_nedsatt['Alder'].unique())
-
 ## Identify the latest date in the dato column
 latest_date = df_nedsatt['Dato'].max()
 month_year = latest_date.strftime('%Y-%m')
@@ -157,19 +154,21 @@ if new_data_exists:
         df_telemark_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år Telemark', 'A:I', 'K:S', column_names)       
         df_telemark_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år Telemark', 'A:I', 'K:S', column_names)
 
+        # Replace values "Alle aldre" with "18 - 66 år" in "df_landet_18_66"
+        df_landet_18_66['Alder'] = df_landet_18_66['Alder'].replace('Alle aldre', '18 - 66 år')
+        df_fylker_18_66['Alder'] = df_fylker_18_66['Alder'].replace('Alle aldre', '18 - 66 år')
+        df_telemark_18_66['Alder'] = df_telemark_18_66['Alder'].replace('Alle aldre', '18 - 66 år')
+
+        # Replace values "Alle aldre" with "18 - 29 år" in df_landet_18_29, df_fylker_18_29, df_telemark_18_29
+        df_landet_18_29['Alder'] = df_landet_18_29['Alder'].replace('Under 30 år', '18 - 29 år')
+        df_fylker_18_29['Alder'] = df_fylker_18_29['Alder'].replace('Under 30 år', '18 - 29 år')
+        df_telemark_18_29['Alder'] = df_telemark_18_29['Alder'].replace('Under 30 år', '18 - 29 år')
+
         # Stack all dataframes vertically
         df_latest_month = pd.concat([df_landet_18_29, df_landet_18_66, df_fylker_18_29, df_fylker_18_66, df_telemark_18_29, df_telemark_18_66], axis=0, ignore_index=True)
 
-        # Replace values "Under 30 år" with "18 - 29 år" and "Over 66 år" with "18 - 66 år"
-        df_latest_month['Alder'] = df_latest_month['Alder'].replace('Under 30 år', '18 - 29 år')
-        df_latest_month['Alder'] = df_latest_month['Alder'].replace('Over 66 år', '18 - 66 år')
-
-        # Show unique values in the "Alder" column
-        print(df_latest_month['Alder'].unique())
-        print(df_nedsatt['Alder'].unique())
-
         # Append new data to existing dataset
-        df_nedsatt = pd.concat([df_nedsatt, df_latest_month], axis=0, ignore_index=True)
+        df_updated = pd.concat([df_nedsatt, df_latest_month], axis=0, ignore_index=True)
 
     except Exception as e:
         error_message = f"Error loading unemployment data: {str(e)}"
@@ -184,11 +183,11 @@ else:
 
 file_name = "nedsatt_arbeidsevne.csv"
 task_name = "NAV - Nedsatt arbeidsevne"
-github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/NAV/Arbeidsledighet"
+github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/NAV/Nedsatt arbeidsevne"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df_nedsatt, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df_updated, file_name, github_folder, temp_folder, keepcsv=True)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
