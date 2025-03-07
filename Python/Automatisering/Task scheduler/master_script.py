@@ -39,6 +39,10 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/endring_arbeidsplasser_over_tid.py"), "Arbeid og naeringsliv - Endring arbeidsplasser over tid"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/virksomheter.py"), "Arbeid og naeringsliv - Virksomheter"),
 
+    ## Arbeid og næringsliv - NAV
+    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py"), "NAV - Arbeidsledighet"),
+    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/nedsatt_arbeidsevne.py"), "NAV - Nedsatt arbeidsevne"),
+
     ## Klima og energi
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Klimagassutslipp/klimagassutslipp.py"), "Klima og energi - Sektorvise utslipp"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Klimagassutslipp/norskeutslipp.py"), "Klima og energi - Utslipp fra landbasert industri"),
