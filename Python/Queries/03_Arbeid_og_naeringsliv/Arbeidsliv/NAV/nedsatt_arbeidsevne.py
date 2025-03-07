@@ -25,20 +25,21 @@ def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
     Args:
         excel_content: BytesIO object containing Excel file
         sheet_name: Name of the sheet to read
-        range1: First range of columns (e.g., 'B:I')
-        range2: Second range of columns (e.g., 'K:R')
+        range1: First range of columns (e.g., 'A:I')
+        range2: Second range of columns (e.g., 'K:S')
         column_names: List of column names to apply to both ranges
     
     Returns:
         DataFrame with processed and combined data
     """
-    df_range1 = pd.read_excel(excel_content, sheet_name=sheet_name, skiprows=1, header=0, usecols=range1)
-    df_range2 = pd.read_excel(excel_content, sheet_name=sheet_name, skiprows=1, header=0, usecols=range2)
+    # Read both ranges from Excel with proper range and header, applying column names directly
+    df_range1 = pd.read_excel(excel_content, sheet_name=sheet_name, usecols=range1, skiprows=1, names=column_names)
+    df_range2 = pd.read_excel(excel_content, sheet_name=sheet_name, usecols=range2, skiprows=1, names=column_names)
     
-    df_range1.columns = column_names
-    df_range2.columns = column_names
-    
+    # Drop rows where all values are NaN
     df_range2 = df_range2.dropna(how='all')
+    
+    # Combine the dataframes
     df_combined = pd.concat([df_range1, df_range2], axis=0, ignore_index=True)
     
     # Handle numeric columns
@@ -47,6 +48,22 @@ def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
     
     # Convert percentage values to numeric
     df_combined['Andel av befolkningen'] = pd.to_numeric(df_combined['Andel av befolkningen'], errors='coerce')
+    
+    # Convert Dato column to proper datetime format
+    # First convert to integer to remove decimals
+    df_combined['Dato'] = df_combined['Dato'].astype(float).astype(int).astype(str)
+    # Extract year and month
+    df_combined['year'] = df_combined['Dato'].str[:4]
+    df_combined['month'] = df_combined['Dato'].str[4:]
+    # Create date string in YYYY-MM-DD format with day=01
+    df_combined['Dato'] = df_combined['year'] + '-' + df_combined['month'] + '-01'
+    # Convert to datetime
+    df_combined['Dato'] = pd.to_datetime(df_combined['Dato'], format='%Y-%m-%d')
+    # Drop temporary columns
+    df_combined = df_combined.drop(['year', 'month'], axis=1)
+    
+    # Drop the unnecessary columns
+    df_combined = df_combined.drop(['Månednummer', 'År'], axis=1)
     
     return df_combined
 
@@ -82,7 +99,7 @@ except Exception as e:
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError("Failed to load unemployment data")
 
-column_names = ['Nivå', 'Geografisk enhet', 'Kjønn', 'Alder', 'Antall personer', 'Andel av befolkningen', 'Dato']
+column_names = ['Nivå','Geografisk enhet','Kjønn','Alder','Antall personer','Andel av befolkningen','Dato']
 df_nedsatt.columns = column_names
 
 ## Handle asterisk values
@@ -92,13 +109,13 @@ df_nedsatt['Antall personer'] = pd.to_numeric(df_nedsatt['Antall personer'], err
 ## Convert the "Dato" column to datetime
 df_nedsatt['Dato'] = pd.to_datetime(df_nedsatt['Dato'])
 
+# Show unique values in the "Alder" column
+print(df_nedsatt['Alder'].unique())
+
 ## Identify the latest date in the dato column
 latest_date = df_nedsatt['Dato'].max()
 month_year = latest_date.strftime('%Y-%m')
 next_months_file = (latest_date + pd.DateOffset(months=2)).strftime('%Y-%m')  # Format as YYYY-MM
-
-
-TESTE HERFRA NÅR NYE DATA!!!!
 
 
 ################# Import new monthly data, if any #################
@@ -129,43 +146,27 @@ if new_data_exists:
         response = requests.get(url_monthly)
         response.raise_for_status()
         
-        # Column names for the dataframes
-        column_names = ['Nivå', 'Geografisk enhet', 'Kjønn', 'Alder', 'Antall personer', 'Andel av befolkningen', 'Dato']
+        # Define column names for the dataframe - these match the exact order in Excel (A:I and K:S)
+        column_names = ['Månednummer', 'År', 'Nivå', 'Geografisk enhet', 'Kjønn', 'Alder', 'Antall personer', 'Andel av befolkningen', 'Dato']
 
         # Import data for each sheet using the function
-        df_landet_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år landet', 'B:I', 'K:R', column_names)
-        df_landet_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år landet', 'B:I', 'K:R', column_names)
-        df_fylker_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år fylker', 'B:I', 'K:R', column_names)
-        df_fylker_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år fylker', 'B:I', 'K:R', column_names)
-        df_telemark_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år Telemark', 'B:I', 'K:R', column_names)       
-        df_telemark_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år Telemark', 'B:I', 'K:R', column_names)
+        df_landet_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år landet', 'A:I', 'K:S', column_names)
+        df_landet_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år landet', 'A:I', 'K:S', column_names)
+        df_fylker_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år fylker', 'A:I', 'K:S', column_names)
+        df_fylker_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år fylker', 'A:I', 'K:S', column_names)
+        df_telemark_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år Telemark', 'A:I', 'K:S', column_names)       
+        df_telemark_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år Telemark', 'A:I', 'K:S', column_names)
 
         # Stack all dataframes vertically
         df_latest_month = pd.concat([df_landet_18_29, df_landet_18_66, df_fylker_18_29, df_fylker_18_66, df_telemark_18_29, df_telemark_18_66], axis=0, ignore_index=True)
-        
-        # Remove column "År" from the dataframe
-        df_latest_month = df_latest_month.drop(columns=['År'])
-        
-        # Convert "År-måned" to datetime "Dato" column
-        # First clean the data by removing decimals and ensuring proper format
-        df_latest_month['År-måned'] = df_latest_month['År-måned'].astype(float).astype(int).astype(str)  # Convert to integer to remove decimals
-        
-        # Create year and month components
-        year = df_latest_month['År-måned'].str[:4]
-        month = df_latest_month['År-måned'].str[4:]
-        
-        # Create date string in YYYY-MM-DD format
-        date_str = year + '-' + month + '-01'
-        
-        # Convert to datetime
-        df_latest_month['Dato'] = pd.to_datetime(date_str, format='%Y-%m-%d')
-        df_latest_month = df_latest_month.drop(columns=['År-måned'])
 
-        # Ensure values are numeric
-        df_latest_month['Andel av arbeidsstyrken'] = pd.to_numeric(df_latest_month['Andel av arbeidsstyrken'], errors='coerce')
+        # Replace values "Under 30 år" with "18 - 29 år" and "Over 66 år" with "18 - 66 år"
+        df_latest_month['Alder'] = df_latest_month['Alder'].replace('Under 30 år', '18 - 29 år')
+        df_latest_month['Alder'] = df_latest_month['Alder'].replace('Over 66 år', '18 - 66 år')
 
-        # Divide andel by 100
-        df_latest_month['Andel av arbeidsstyrken'] = df_latest_month['Andel av arbeidsstyrken'] / 100
+        # Show unique values in the "Alder" column
+        print(df_latest_month['Alder'].unique())
+        print(df_nedsatt['Alder'].unique())
 
         # Append new data to existing dataset
         df_nedsatt = pd.concat([df_nedsatt, df_latest_month], axis=0, ignore_index=True)
