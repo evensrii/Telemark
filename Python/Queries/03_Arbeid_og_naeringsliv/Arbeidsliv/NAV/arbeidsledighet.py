@@ -132,6 +132,13 @@ if new_data_exists:
         df_landet = import_excel_sheet(BytesIO(response.content), 'Landet', 'B:I', 'K:R', column_names)
         df_telemark = import_excel_sheet(BytesIO(response.content), 'Telemark', 'B:I', 'K:R', column_names)
 
+        # Clean up geographic names by removing numeric codes
+        # For fylker, remove codes like "03 Oslo" -> "Oslo"
+        df_fylker['Geografisk enhet'] = df_fylker['Geografisk enhet'].str.replace(r'^\d+\s+', '', regex=True)
+        
+        # For kommuner in Telemark, remove codes like "4001 Porsgrunn" -> "Porsgrunn"
+        df_telemark['Geografisk enhet'] = df_telemark['Geografisk enhet'].str.replace(r'^\d+\s+', '', regex=True)
+
         # Stack all dataframes vertically
         df_latest_month = pd.concat([df_fylker, df_landet, df_telemark], axis=0, ignore_index=True)
         
@@ -158,6 +165,8 @@ if new_data_exists:
 
         # Divide andel by 100
         df_latest_month['Andel av arbeidsstyrken'] = df_latest_month['Andel av arbeidsstyrken'] / 100
+
+
 
         # Append new data to existing dataset
         df_ledighet = pd.concat([df_ledighet, df_latest_month], axis=0, ignore_index=True)
