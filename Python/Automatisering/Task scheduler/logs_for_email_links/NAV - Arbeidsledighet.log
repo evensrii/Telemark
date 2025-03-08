@@ -1,0 +1,36 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+No new data found for 2025-04 with any day suffix
+No new data found for 2025-04
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arbeidsledighet.csv
+
+
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py", line 182, in <module>
+    is_new_data = handle_output_data(df_ledighet, file_name, github_folder, temp_folder, keepcsv=True)
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 617, in handle_output_data
+    is_new_data = compare_to_github(
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 275, in compare_to_github
+    input_df[col] = input_df[col].fillna('')
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\series.py", line 5145, in fillna
+    return super().fillna(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\generic.py", line 6904, in fillna
+    new_data = self._mgr.fillna(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\internals\managers.py", line 433, in fillna
+    return self.apply(
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\internals\managers.py", line 352, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\internals\blocks.py", line 1868, in fillna
+    new_values = self.values.fillna(value=value, method=None, limit=limit)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\arrays\masked.py", line 195, in fillna
+    new_values[mask] = value
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\arrays\masked.py", line 240, in __setitem__
+    value = self._validate_setitem_value(value)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\arrays\masked.py", line 231, in _validate_setitem_value
+    raise TypeError(f"Invalid value '{str(value)}' for dtype {self.dtype}")
+TypeError: Invalid value '' for dtype Int64
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py` failed. (See above for error)
