@@ -132,6 +132,22 @@ if new_data_exists:
         df_landet = import_excel_sheet(BytesIO(response.content), 'Landet', 'B:I', 'K:R', column_names)
         df_telemark = import_excel_sheet(BytesIO(response.content), 'Telemark', 'B:I', 'K:R', column_names)
 
+        # Clean up geographic names by removing numeric codes
+        # For fylker, remove codes like "03 Oslo" -> "Oslo"
+        df_fylker['Geografisk enhet'] = df_fylker['Geografisk enhet'].str.replace(r'^\d+\s+', '', regex=True)
+        
+        # For kommuner in Telemark, remove codes like "4001 Porsgrunn" -> "Porsgrunn"
+        df_telemark['Geografisk enhet'] = df_telemark['Geografisk enhet'].str.replace(r'^\d+\s+', '', regex=True)
+
+        # Standardize county names
+        county_name_mapping = {
+            'Trøndelag - Trööndelage': 'Trøndelag',
+            'Troms - Romsa - Tromssa ': 'Troms',  # Note: includes trailing space
+            'Finnmark - Finnmárku - Finmarkku': 'Finnmark',
+            'Nordland - Nordlánnda': 'Nordland'
+        }
+        df_fylker['Geografisk enhet'] = df_fylker['Geografisk enhet'].replace(county_name_mapping)
+
         # Stack all dataframes vertically
         df_latest_month = pd.concat([df_fylker, df_landet, df_telemark], axis=0, ignore_index=True)
         
