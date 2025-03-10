@@ -117,7 +117,7 @@ for day in range(1, 32):  # 1 to 31
         continue
 
 if not new_data_exists:
-    print(f"No new data found for {next_months_file} with any day suffix")
+    print(f"No new data found for {next_months_file}")
 
 if new_data_exists:
     try:
@@ -178,8 +178,17 @@ task_name = "NAV - Arbeidsledighet"
 github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/NAV/Arbeidsledighet"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
+# Create a copy for comparison and convert Int64 to regular int to avoid type conflicts
+df_compare = df_ledighet.copy()
+for col in df_compare.select_dtypes(include=['Int64']).columns:
+    # Convert Int64 to regular int, filling NaN with 0
+    df_compare[col] = df_compare[col].fillna(0).astype('int64')
+
+# Specify which columns contain the actual values we want to compare
+value_columns = df_compare.select_dtypes(include=['Int64', 'float64']).columns.tolist()
+
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df_ledighet, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df_compare, file_name, github_folder, temp_folder, keepcsv=True, value_columns=value_columns)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
