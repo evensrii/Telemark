@@ -1,0 +1,236 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "white",
+  "config": {
+    "view": {
+      "stroke": "transparent",
+      "strokeWidth": 1
+    }
+  },
+  "data": {
+    "name": "dataset"
+  },
+  "transform": [
+    {
+      "window": [{"op": "row_number", "as": "row_number"}],
+      "sort": [{"field": "Tid", "order": "ascending"}]
+    },
+    {
+      "calculate": "datum['Valgt measure'] * 100",
+      "as": "Andel"
+    },
+    {
+      "calculate": "replace(format(datum['Andel'], '.1f'), '.', ',') + ' %'",
+      "as": "Andel formatted"
+    },
+    {
+      "calculate": "timeFormat(datum['Tid'], '%B %Y')",
+      "as": "Dato formatted"
+    },
+    {
+      "calculate": "datum.row_number % 10 == 0 ? 1 : 0",
+      "as": "ShowLabel"
+    },
+    {
+      "window": [{"op": "max", "field": "Tid", "as": "LatestDate"}]
+    },
+    {
+      "calculate": "datum.Tid == datum.LatestDate ? 1 : 0",
+      "as": "ShowLatestLabel"
+    }
+  ],
+  //Base layer
+  "layer": [ //Line
+    {
+      "encoding": {
+        "x": {
+          "field": "Tid",
+          "type": "temporal",
+          "axis": {
+            "labelExpr": "timeFormat(datum.value, '%Y')",
+            "ticks": true,
+            "tickCount": "year",
+            "labelFont": "Calibri",
+            "labelFontSize": 24,
+            "titleFont": "Calibri",
+            "titleFontSize": 20
+          }
+        },
+        "y": {
+          "field": "Andel",
+          "type": "quantitative",
+          "axis": null
+        }
+      },
+      "layer": [ //Area
+        {
+          "mark": {
+            "type": "area",
+            "interpolate": "monotone",
+            "opacity": 0.3,
+            "line": {
+              "color": "#005260"
+            },
+            "color": {
+              "x1": 1,
+              "y1": 1,
+              "x2": 1,
+              "y2": 0,
+              "gradient": "linear",
+              "stops": [
+                {
+                  "offset": 0.05,
+                  "color": "white"
+                },
+                {
+                  "offset": 1,
+                  "color": "#005260"
+                }
+              ]
+            }
+          }
+        },
+        //Tooltip
+        {
+          "params": [
+            {
+              "name": "label",
+              "select": {
+                "type": "point",
+                "encodings": ["x"],
+                "nearest": true,
+                "on": "mouseover"
+              }
+            }
+          ],
+          "mark": {
+            "type": "point",
+            "tooltip": {"content": "data"},
+            "color": "#3A3D56"
+          },
+          "encoding": {
+            "tooltip": [
+              {
+                "field": "Dato formatted",
+                "type": "nominal",
+                "title": "Dato"
+              },
+              {
+                "field": "Andel formatted",
+                "type": "nominal",
+                "title": "Andel"
+              }
+            ],
+            "opacity": {
+              "condition": {
+                "param": "label",
+                "empty": false,
+                "value": 1
+              },
+              "value": 0
+            }
+          }
+        },
+        //Data labels
+        {
+          "transform": [
+            {
+              "filter": "datum.ShowLabel == 1 || timeFormat(datum['Tid'], '%Y-%m') == '2020-03'"
+            },
+            {
+            "window": [{"op": "row_number", "as": "filtered_row_number"}],
+            "sort": [{"field": "Tid", "order": "ascending"}]
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "dy": { "expr": "datum.filtered_row_number % 20 === 0 ? -30 : -30" },
+            "fontSize": 20,
+            "color": "#3A3D56",
+            "font": "Calibri"
+          },
+          "encoding": {
+            "x": {"field": "Tid", "type": "temporal"},
+            "y": {"field": "Andel", "type": "quantitative"},
+            "text": {
+              "field": "Andel formatted",
+              "type": "nominal"
+            }
+          }
+        },
+        // Only points that have been hovered over or selected will be included in this transformed dataset.
+        {
+          "transform": [
+            {
+              "filter": {
+                "param": "label", // Filtrerer punkter definert i "params" lenger opp
+                "empty": false
+              }
+            }
+          ],
+          "layer": [
+            // Ruler
+            {
+              "mark": {
+                "type": "rule",
+                "color": "gray"
+              },
+              "encoding": {
+                "x": {
+                  "type": "temporal",
+                  "field": "Tid",
+                  "aggregate": "min"
+                },
+                "y": {
+                  "datum": {"expr": "domain('y')[0]"}
+                },
+                "y2": {
+                  "datum": {"expr": "domain('y')[1]"}
+                }
+              }
+            },
+            // Text labels when hovering over a data point
+            {
+              "encoding": {
+                "text": {
+                  "type": "quantitative",
+                  "field": "Andel"
+                },
+                "x": {
+                  "type": "temporal",
+                  "field": "Tid"
+                },
+                "y": {
+                  "type": "quantitative",
+                  "field": "Andel"
+                }
+              },
+              "layer": [
+                {
+                  "mark": {
+                    "type": "text",
+                    "stroke": "white",
+                    "color": "#3A3D56",
+                    "strokeWidth": 2,
+                    "align": "left",
+                    "dx": 5,
+                    "dy": -5
+                  }
+                },
+                {
+                  "mark": {
+                    "type": "text",
+                    "align": "left",
+                    "dx": 5,
+                    "dy": -5
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
