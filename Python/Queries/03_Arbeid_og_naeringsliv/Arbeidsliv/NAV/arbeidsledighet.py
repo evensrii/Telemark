@@ -122,7 +122,7 @@ if not new_data_exists:
 if new_data_exists:
     try:
         response = requests.get(url_monthly)
-        response.raise_for_qstatus()
+        response.raise_for_status()
         
         # Column names for the dataframes
         column_names = ['År', 'År-måned', 'Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus', 'Kjønn', 'Antall personer', 'Andel av arbeidsstyrken']
