@@ -103,7 +103,7 @@ first_year = df_flytting_til["År"].iloc[0]
 df_flytting_til = df_flytting_til.rename(columns={"Antall": f"Antall ({first_year})"})
 df_flytting_til = df_flytting_til.drop(columns=["År"])
 df_flytting_til["Fra fylke"] = df_flytting_til["Fra fylke"].replace({"Trøndelag - Trööndelage": "Trøndelag", "Nordland - Nordlánnda": "Nordland", "Troms - Romsa - Tromssa": "Troms", "Finnmark - Finnmárku - Finmarkku": "Finnmark"})
-
+df_flytting_til.insert(0, "series", "Series 1")
 
 ################# Spørring - Fraflytting #################
 
@@ -187,7 +187,7 @@ first_year = df_flytting_fra["År"].iloc[0]
 df_flytting_fra = df_flytting_fra.rename(columns={"Antall": f"Antall ({first_year})"})
 df_flytting_fra = df_flytting_fra.drop(columns=["År"])
 df_flytting_fra["Til fylke"] = df_flytting_fra["Til fylke"].replace({"Trøndelag - Trööndelage": "Trøndelag", "Nordland - Nordlánnda": "Nordland", "Troms - Romsa - Tromssa": "Troms", "Finnmark - Finnmárku - Finmarkku": "Finnmark"})
-
+df_flytting_fra.insert(0, "series", "Series 1")
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
