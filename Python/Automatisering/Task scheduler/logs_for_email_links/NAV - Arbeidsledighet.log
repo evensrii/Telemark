@@ -2,40 +2,11 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Found monthly data file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2025-03-05.xlsx
+No new data found for 2025-04
+No new data found for 2025-04
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arbeidsledighet.csv
-[2025-03-14 08:07:28] Row count changed: 49997 -> 50293
-
-Added rows (showing up to 10):
-Andel av arbeidsstyrken: 0.006, Antall personer: 1209, Arbeidsmarkedsstatus: ArbeidssÃÂ¸kere pÃÂ¥ tiltak, Dato: 2025-02-01, Geografisk enhet: Oslo, Kjnn: Kvinner, Niv: Fylker
-Andel av arbeidsstyrken: 0.005, Antall personer: 994, Arbeidsmarkedsstatus: ArbeidssÃÂ¸kere pÃÂ¥ tiltak, Dato: 2025-02-01, Geografisk enhet: Oslo, Kjnn: Menn, Niv: Fylker
-Andel av arbeidsstyrken: 0.008, Antall personer: 1677, Arbeidsmarkedsstatus: Delvis ledige, Dato: 2025-02-01, Geografisk enhet: Oslo, Kjnn: Kvinner, Niv: Fylker
-Andel av arbeidsstyrken: 0.008, Antall personer: 1783, Arbeidsmarkedsstatus: Delvis ledige, Dato: 2025-02-01, Geografisk enhet: Oslo, Kjnn: Menn, Niv: Fylker
-Andel av arbeidsstyrken: 0.023, Antall personer: 4714, Arbeidsmarkedsstatus: Helt ledige, Dato: 2025-02-01, Geografisk enhet: Oslo, Kjnn: Kvinner, Niv: Fylker
-Andel av arbeidsstyrken: 0.032, Antall personer: 6782, Arbeidsmarkedsstatus: Helt ledige, Dato: 2025-02-01, Geografisk enhet: Oslo, Kjnn: Menn, Niv: Fylker
-Andel av arbeidsstyrken: 0.006999999999999999, Antall personer: 935, Arbeidsmarkedsstatus: ArbeidssÃÂ¸kere pÃÂ¥ tiltak, Dato: 2025-02-01, Geografisk enhet: Rogaland, Kjnn: Kvinner, Niv: Fylker
-Andel av arbeidsstyrken: 0.005, Antall personer: 698, Arbeidsmarkedsstatus: ArbeidssÃÂ¸kere pÃÂ¥ tiltak, Dato: 2025-02-01, Geografisk enhet: Rogaland, Kjnn: Menn, Niv: Fylker
-Andel av arbeidsstyrken: 0.006999999999999999, Antall personer: 931, Arbeidsmarkedsstatus: Delvis ledige, Dato: 2025-02-01, Geografisk enhet: Rogaland, Kjnn: Kvinner, Niv: Fylker
-Andel av arbeidsstyrken: 0.005, Antall personer: 736, Arbeidsmarkedsstatus: Delvis ledige, Dato: 2025-02-01, Geografisk enhet: Rogaland, Kjnn: Menn, Niv: Fylker
-... and 286 more rows
-File uploaded successfully: Data/03_Arbeid og nÃÂ¦ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/arbeidsledighet.csv
-Email notifications disabled. Updates for arbeidsledighet.csv were not sent.
+[2025-03-17 08:07:15] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\arbeidsledighet.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_NAV_-_Arbeidsledighet.log
-
-
-Errors/Warnings:
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
 
