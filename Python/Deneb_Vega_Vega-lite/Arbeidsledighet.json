@@ -21,9 +21,6 @@
   },
   "transform": [
     {
-    "filter": "datum['Show Last 24 Months?'] == 1"
-    },
-    {
       "calculate": "datum.SelectedMeasureName === 'Andel av arbeidsstyrken' ? datum.SelectedMeasure * 100 : datum.SelectedMeasure",
       "as": "Formatted_measure"
     },
