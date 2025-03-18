@@ -167,6 +167,16 @@ if new_data_exists:
         # Stack all dataframes vertically
         df_latest_month = pd.concat([df_landet_18_29, df_landet_18_66, df_fylker_18_29, df_fylker_18_66, df_telemark_18_29, df_telemark_18_66], axis=0, ignore_index=True)
 
+         # Standardize county names
+        county_name_mapping = {
+            'Trøndelag - Trööndelage': 'Trøndelag',
+            'Troms - Romsa - Tromssa ': 'Troms',  # Note: includes trailing space
+            'Finnmark - Finnmárku - Finmarkku': 'Finnmark',
+            'Nordland - Nordlánnda': 'Nordland'
+        }
+        
+        df_latest_month['Geografisk enhet'] = df_latest_month['Geografisk enhet'].replace(county_name_mapping)
+
         # Append new data to existing dataset
         df_nedsatt = pd.concat([df_nedsatt, df_latest_month], axis=0, ignore_index=True)
 
