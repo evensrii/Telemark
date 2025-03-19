@@ -2,11 +2,17 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-No new data found for 2025-02 with any day suffix
-No new data found for 2025-02
+No new data found for 2025-04 with any day suffix
+No new data found for 2025-04
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\nedsatt_arbeidsevne.csv
-[2025-03-18 08:07:49] No new data to upload. Skipping GitHub update.
+[2025-03-19 08:07:55] Changes detected in the dataset.
+
+[2025-03-19 08:07:55] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/03_Arbeid og nÃÂ¦ringsliv/01_Arbeidsliv/NAV/Nedsatt arbeidsevne/nedsatt_arbeidsevne.csv
+
+No changes found in the last 200 rows, but changes exist elsewhere in the dataset.
+Email notifications disabled. Updates for nedsatt_arbeidsevne.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\nedsatt_arbeidsevne.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_NAV_-_Nedsatt_arbeidsevne.log
 
