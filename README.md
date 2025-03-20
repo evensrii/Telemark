@@ -1,2 +1,2 @@
-# Vestfold
-Repository for nettsiden "Kunnskap om Vestfold"
+# Telemark
+Repository for nettsiden "Kunnskap om Telemark"
