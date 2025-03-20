@@ -47,7 +47,7 @@ tfk_query = {
             "code": "ContentsCode",
             "selection": {"filter": "item", "values": ["Sysselsatte2"]},
         },
-        {"code": "Tid", "selection": {"filter": "top", "values": ["1"]}},
+        {"code": "Tid", "selection": {"filter": "top", "values": ["2"]}},
     ],
     "response": {"format": "json-stat2"},
 }
@@ -66,8 +66,15 @@ if response.status_code == 200:
 
     # Konverter dataset til pandas DataFrame
     df = dataset.write("dataframe")
+    
+    # Print column names to verify the correct name
+    print("\nColumn names:", df.columns.tolist())
+    
+    # Fjern rader hvor kjønn er "Begge kjønn"
+    df = df[df['kjønn'] != 'Begge kjønn']
 
     # Skriv ut DataFrame for å verifisere data
+    print("\nFirst few rows of filtered data:")
     print(df.head())
 else:
     print(f"Feil ved henting av data. Statuskode: {response.status_code}")
@@ -85,9 +92,9 @@ df.info()
 # Vis de første 5 radene i datasettet
 df.head()
 
+
 ## TIPS: Dobbeltklikke på en enkeltvariabel (f. eks. "df") og trykk "Shift + Enter" for å se innholdet i variabelen.
 # Sammenlikne f. eks. "print(df)" med å dobbeltklikke på "df" og trykke "Shift + Enter"
-
 
 ######## Til slutt: Skrive endelig dataframe (df) til .csv-fil
 df.to_csv("ssb_data.csv", index=False)
