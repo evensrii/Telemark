@@ -9,8 +9,12 @@
     <script src="config.js"></script>
     <script>
         window.onload = function() {
-            console.log("Mapbox Token:", MAPBOX_ACCESS_TOKEN); // Debugging line
-            mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+            if (typeof MAPBOX_ACCESS_TOKEN !== "undefined") {
+                console.log("Mapbox Token:", MAPBOX_ACCESS_TOKEN); // Debugging line
+                mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+            } else {
+                console.error("MAPBOX_ACCESS_TOKEN is not defined! Check config.js.");
+            }
         };
     </script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
