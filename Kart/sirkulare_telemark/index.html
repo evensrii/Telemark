@@ -6,6 +6,10 @@
     <title>D3 + Mapbox GL Map</title>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="config.js"></script>
+    <script>
+        mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+    </script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
     <style>
         body { margin: 0; padding: 0; }
@@ -23,8 +27,6 @@
 <div id="map"></div>
 
 <script>
-    // Mapbox token (replace with your own)
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZXZlbnNyaWkiLCJhIjoiY2t4YWVoNmJoMGQ5eTJ1bzduNW9qdjEzaSJ9.K7CFqvAoUt2IwInPoQlC_A';
 
     // Initialize Mapbox map
     const map = new mapboxgl.Map({
