@@ -1,0 +1,24 @@
+Kart (geojson) er lastet ned fra https://kartkatalog.geonorge.no/metadata/norske-fylker-og-kommuner-illustrasjonsdata-2021-klippet-etter-kyst/f08fca3c-33ee-49b9-be9f-028ebba5e460.
+Dette er "Norske fylker og kommuner illustrasjonsdata 2021 (klippet etter kyst").
+
+Man redigerer filene i https://mapshaper.org/:
+
+Her kan man åpne fila med alle landets kommuner, velge ønskede kommuner ("Select features") og trykke "Keep". Man velger så
+"simplify", og reduserer figuren en del (i kompleksitet og dermed også filstørrelse). Pass på å trykke "Repair" øverst i 
+venstre hjørne ved behov. Man velger så "Export", og lagrer som geojson.
+
+Valgfritt steg: Fila kan evnt. reduseres ytterligere i størrelse her: https://jsfiddle.net/highcharts/92oymdb7/.
+Dobbeltsjekk da den nye fila i mapshaper.org, og se at det ikke er introdusert noen feil.
+
+Fila bør uansett sjekkes her: https://jsfiddle.net/highcharts/xbzxfx2L
+Dersom det kommer opp et kart når man limer inn geojson-koden og trykker "Run", skal geojson-fila fungere i Everviz.
+
+NB: HUSK Å HAKE VEKK "PROJECT" (projiser) VED INNLASTING I EVERVIZ, UNDER "CHOOSE MAP"! Øverst i høyre hjørne.
+
+----------
+
+Power BI: Her må kartet være i "topojson"-format (ikke geojson). Konverteres ved å åpne geojson i mapshaper.org, trykke 
+"Export", og velge topojson.
+
+
+
