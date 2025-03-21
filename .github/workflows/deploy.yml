@@ -46,3 +46,4 @@ jobs:
           clean: true  # Remove old files before deploying
           force: true  # Ensure deployment happens even if no detected changes
           single-commit: false  # Prevent unnecessary re-commits
+          commit-message: "Automated deployment including config.js"
