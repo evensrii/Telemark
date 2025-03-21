@@ -23,6 +23,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: Kart/sirkulare_telemark  # ✅ Deploy only this folder
-          publish_branch: gh-pages  # ✅ Push only to gh-pages
+          publish_branch: main  # ✅ Push only to main
           keep_files: true  # Prevents deletion of previous files
           force_orphan: false  # Keep commit history
