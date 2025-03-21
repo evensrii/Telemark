@@ -2,7 +2,7 @@ name: Deploy Mapbox Site
 
 on:
   push:
-    branches: [main]  # Or your default branch
+    branches: [main]  # Change if needed
   workflow_dispatch:
 
 jobs:
@@ -12,10 +12,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up deployment directory
+      - name: Ensure deployment directory exists
         run: |
           mkdir -p Kart/sirkulare_telemark
           echo "const MAPBOX_ACCESS_TOKEN = '${{ secrets.MAPBOX_ACCESS_TOKEN }}';" > Kart/sirkulare_telemark/config.js
+          ls -l Kart/sirkulare_telemark  # Debugging: Check if the file is there
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
