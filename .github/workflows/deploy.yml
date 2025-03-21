@@ -12,24 +12,16 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Inject Mapbox Token
+      - name: Inject Mapbox Token (Hardcoded Approach)
         run: |
-          echo "const MAPBOX_ACCESS_TOKEN = '${{ secrets.MAPBOX_ACCESS_TOKEN }}';" > config.js
-          cat config.js  # Debugging: Confirm the file is created
-
-      - name: Move config.js to Deployment Directory
-        run: |
-          mv config.js Kart/sirkulare_telemark/config.js  # Move it where it should be
-          ls -lah Kart/sirkulare_telemark/  # Verify the file is in place
-
-      - name: Temporarily Remove config.js from .gitignore
-        run: sed -i '/config.js/d' .gitignore
+          echo "const MAPBOX_ACCESS_TOKEN = '${{ secrets.MAPBOX_ACCESS_TOKEN }}';" > Kart/sirkulare_telemark_2/config.js
+          ls -lah Kart/sirkulare_telemark_2/  # Debugging: Confirm it's in the right place
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: main  # Ensure this matches your GitHub Pages branch
-          folder: .  # Deploy everything, including config.js
+          folder: Kart/sirkulare_telemark_2  # Deploy only this folder
           clean: true  # Remove old files before deploying
           force: true  # Ensure deployment happens even if no detected changes
           single-commit: false  # Prevent unnecessary re-commits
