@@ -1,0 +1,422 @@
+require no.ssb.fdb:30 as db
+create-dataset utafor2018
+
+//Henter alle bosatte i 2023, beholder folk i VTFK.
+// Bruker 1.1.2023 som utgangspunkt, og deretter se hva tilstanden var i året fram til da. Det gir oss enedlige NEETs-tall som er nærmere SSBs tall. Det er også logisk å ta utgangspunkt i de som er bosatt få måneder etter arbeidsstyrkestatus måles, enn de som er bosatt 10,5 måneder etterpå. 
+// Faktisk befolkning gi 5-6000 færre bosatte i vtfk. Om vi velger faktisk eller formell adresse har betydning og må begrunnes. Vi velger faktisk. Antallet NEETs blir så å si helt likt, men det blir færre å dele på, så andelenen blir litt høyere og mer i tråd med andelene i SSBs tabeller. Det er særlig de i utdanning som forsvinner fra datasettet.
+// import db/BEFOLKNING_KOMMNR_FAKTISK 2022-01-01 as bosted
+import db/BEFOLKNING_KOMMNR_FORMELL 2019-01-01 as bosted
+generate fylkenr = substr(bosted,1,2)
+generate kommunenr = substr(bosted,1,4)
+keep if fylkenr == '08'
+
+
+//henter alder - bruker år -1 for å sikre at aldersfordelt befolkning samsvarere med tallene i statistikkbanken. 2021 gir det beste samsvaret med ssb befolkningstall. 
+import db/BEFOLKNING_FOEDSELS_AAR_MND as faarmnd
+import db/BEFOLKNING_KJOENN as kjønn
+generate alder = 2018- int(faarmnd/100)
+//Beholder bare unge 15-29 år. Her kan man bytte aldersgrupper.
+keep if alder >=15 & alder < 30
+
+//lager aldersgrupper 5 årsgrupper
+generate aldersgruppe = '0'
+// replace aldersgruppe = '0-4 år' if alder >= 0
+// replace aldersgruppe = '5-9 år' if alder >= 5
+// replace aldersgruppe = '10-14 år' if alder >= 10
+replace aldersgruppe = '15-19 år' if alder >= 15
+replace aldersgruppe = '20-24 år' if alder >= 20
+replace aldersgruppe = '25-29 år' if alder >= 25
+// replace aldersgruppe = '30-34 år' if alder >= 30
+// replace aldersgruppe = '35-39 år' if alder >= 35
+// replace aldersgruppe = '40-44 år' if alder >= 40
+// replace aldersgruppe = '45-49 år' if alder >= 45
+// replace aldersgruppe = '50-54 år' if alder >= 50
+// replace aldersgruppe = '55-59 år' if alder >= 55
+// replace aldersgruppe = '60-64 år' if alder >= 60
+// replace aldersgruppe = '65-69 år' if alder >= 65
+// replace aldersgruppe = '70-74 år' if alder >= 70
+// replace aldersgruppe = '75-79 år' if alder >= 75
+// replace aldersgruppe = '80-84 år' if alder >= 80
+// replace aldersgruppe = '85-89 år' if alder >= 85
+// replace aldersgruppe = '90 eller eldre år' if alder >= 90
+// replace aldersgruppe = 'Ukjent alder' if sysmiss(faarmnd)
+
+// Lager aldersgrupper som passer med OTs oppfølgingsplikt
+generate aldersgruppeOT = '0'
+replace aldersgruppeOT = '15-21 år' if alder < 22
+replace aldersgruppeOT = '22-29 år' if alder >= 22
+tabulate aldersgruppeOT
+
+//Legger til yrkesstatus, og lager ny variabel som putter lønnstaker og selvstendige i jobb=1 og utenfor og ledige i jobb=0
+// Henter inn trygdedata på gruppa vår: AAP og uføretrygd
+import db/REGSYS_ARB_ARBMARK_STATUS 2018-11-16 as yrkstat
+import db/REGSYS_ARB_ARBMARK_STATUS 2019-11-16 as yrkstat19
+import db/REGSYS_ARB_ARBMARK_STATUS 2020-11-16 as yrkstat20
+import db/REGSYS_ARB_ARBMARK_STATUS 2021-11-16 as yrkstat21
+import db/REGSYS_ARB_ARBMARK_STATUS 2022-11-16 as yrkstat22
+
+
+import db/ARBEIDSSOKER_TILTAK 2018-11-30 as arb_tiltak
+import db/ARBEIDSSOKER_TILTAK 2019-11-30 as arb_tiltak19
+import db/ARBEIDSSOKER_TILTAK 2020-11-30 as arb_tiltak20
+import db/ARBEIDSSOKER_TILTAK 2021-11-30 as arb_tiltak21
+import db/ARBEIDSSOKER_TILTAK 2022-11-30 as arb_tiltak22
+
+import db/ARBAVKLARPFDT_MOTTAK 2018-11-16 as arbavklaring
+import db/ARBAVKLARPFDT_MOTTAK 2019-11-16 as arbavklaring19
+import db/ARBAVKLARPFDT_MOTTAK 2020-11-16 as arbavklaring20
+import db/ARBAVKLARPFDT_MOTTAK 2021-11-16 as arbavklaring21
+import db/ARBAVKLARPFDT_MOTTAK 2022-11-16 as arbavklaring22
+
+import db/UFOERP2011FDT_MOTTAK 2018-11-16 as ufoeretrygd
+import db/UFOERP2011FDT_MOTTAK 2019-11-16 as ufoeretrygd19
+import db/UFOERP2011FDT_MOTTAK 2020-11-16 as ufoeretrygd20
+import db/UFOERP2011FDT_MOTTAK 2021-11-16 as ufoeretrygd21
+import db/UFOERP2011FDT_MOTTAK 2022-11-16 as ufoeretrygd22
+
+
+create-dataset kursdata
+import-event db/NUDB_KURS_NUS 2018-08-01 to 2018-10-01 as kurstype
+destring kurstype, force 
+
+create-dataset kursdata19
+import-event db/NUDB_KURS_NUS 2019-08-01 to 2019-10-01 as kurstype19
+destring kurstype19, force 
+
+create-dataset kursdata20
+import-event db/NUDB_KURS_NUS 2020-08-01 to 2020-10-01 as kurstype20
+destring kurstype20, force 
+
+create-dataset kursdata21
+import-event db/NUDB_KURS_NUS 2021-08-01 to 2021-10-01 as kurstype21
+destring kurstype21, force 
+
+create-dataset kursdata22
+import-event db/NUDB_KURS_NUS 2022-08-01 to 2022-09-01 as kurstype22
+destring kurstype22, force 
+
+//Henter datasett med fnr til kursdataene som brukes til å koble utdanningen til datasettet fra VT
+create-dataset lenke_kurs_person
+import db/NUDB_KURS_FNR as fnr
+merge fnr into kursdata
+merge fnr into kursdata19
+merge fnr into kursdata20
+merge fnr into kursdata21
+merge fnr into kursdata22
+
+//Lager statistikk (collapser) over antall hendelser av utdanning per individ, og kobler dette på persondatasettet
+use kursdata
+collapse (count) kurstype, by(fnr)
+merge kurstype  into utafor2018
+
+use kursdata19
+collapse (count) kurstype19, by(fnr)
+merge kurstype19  into utafor2018
+
+use kursdata20
+collapse (count) kurstype20, by(fnr)
+merge kurstype20  into utafor2018
+
+use kursdata21
+collapse (count) kurstype21, by(fnr)
+merge kurstype21  into utafor2018
+
+use kursdata22
+collapse (count) kurstype22, by(fnr)
+merge kurstype22  into utafor2018
+
+use utafor2018
+
+import db/NUDB_BU 2018-10-01 as utdanningsnivå_BU
+destring utdanningsnivå_BU
+generate utd_nivå = '1_Ikke fullført GS eller missing'
+replace utd_nivå = '2_Grunnskole' if utdanningsnivå_BU >= 200000 & utdanningsnivå_BU < 300000
+replace utd_nivå = '3_Vgo SF' if utdanningsnivå_BU >= 400000 & utdanningsnivå_BU < 415302 | utdanningsnivå_BU == 435101 | utdanningsnivå_BU == 435102
+replace utd_nivå = '3_Vgo YF' if utdanningsnivå_BU >= 415303 & utdanningsnivå_BU < 500000
+replace utd_nivå = '3_Vgo SF' if utdanningsnivå_BU == 415302 | utdanningsnivå_BU == 435101 | utdanningsnivå_BU == 435102
+replace utd_nivå = '4_Fagskole' if utdanningsnivå_BU >= 500000 & utdanningsnivå_BU < 600000
+replace utd_nivå = '5_Høyere utdanning' if utdanningsnivå_BU >= 600000 & utdanningsnivå_BU < 900000
+// tabulate utdanningsnivå_BU
+
+
+//////////////////////////////////////////////////////////////////
+// Lager NEETS-kategorier og arbeidsstyrkestatus for 2018
+//////////////////////////////////////////////////////////////////
+use utafor2018
+generate utdanning = 0
+generate utdanning19 = 0
+generate utdanning20 = 0
+generate utdanning21 = 0
+generate utdanning22 = 0
+
+replace utdanning = 1 if kurstype >= 1
+replace utdanning19 = 1 if kurstype19 >= 1
+replace utdanning20 = 1 if kurstype20 >= 1
+replace utdanning21 = 1 if kurstype21 >= 1
+replace utdanning22 = 1 if kurstype22 >= 1
+
+// Legger 15- og 16-åringer til gruppen som er i utdanning hvis de ikke har fullført GS. Noen av disse står med utdanningsnivå GS men har ikke opplysninger om grunnskolepoeng. Regner de til ikke fullført GS og regner med at de fortsatt har noe opplegg for å fullføre GS.
+replace utdanning = 1 if utd_nivå == '1_Ikke fullført GS eller missing' & alder <= 16
+
+// Tar også bort noen personer som ikke gjenfinnes i regsys_arbeidsmarkedsstatus
+generate jobb = 1
+generate jobb19 = 1
+generate jobb20 = 1
+generate jobb21 = 1
+generate jobb22 = 1
+
+replace jobb = 0 if yrkstat == "0" | yrkstat == "3"
+replace jobb19 = 0 if yrkstat19 == "0" | yrkstat19 == "3"
+replace jobb20 = 0 if yrkstat20 == "0" | yrkstat20 == "3"
+replace jobb21 = 0 if yrkstat21 == "0" | yrkstat21 == "3"
+replace jobb22 = 0 if yrkstat22 == "0" | yrkstat22 == "3"
+
+drop if sysmiss(yrkstat)
+
+generate tiltak = 0
+generate tiltak19 = 0
+generate tiltak20 = 0
+generate tiltak21 = 0
+generate tiltak22 = 0
+
+replace tiltak = 1 if arb_tiltak == "1" |arb_tiltak == "5" | arb_tiltak == "7"
+replace tiltak19 = 1 if arb_tiltak19 == "1" |arb_tiltak19 == "5" | arb_tiltak19 == "7"
+replace tiltak20 = 1 if arb_tiltak20 == "1" |arb_tiltak20 == "5" | arb_tiltak20 == "7"
+replace tiltak21 = 1 if arb_tiltak21 == "1" |arb_tiltak21 == "5" | arb_tiltak21 == "7"
+replace tiltak22 = 1 if arb_tiltak22 == "1" |arb_tiltak22 == "5" | arb_tiltak22 == "7"
+
+generate ledig = 0
+generate ledig19 = 0
+generate ledig20 = 0
+generate ledig21 = 0
+generate ledig22 = 0
+
+replace ledig = 1 if yrkstat == "3"
+replace ledig19 = 1 if yrkstat19 == "3"
+replace ledig20 = 1 if yrkstat20 == "3"
+replace ledig21 = 1 if yrkstat21 == "3"
+replace ledig22 = 1 if yrkstat22 == "3"
+// replace ledig = 1 if ledig_hovedstatus == '1' | ledig_hovedstatus == '4' | ledig_hovedstatus == '6' |ledig_hovedstatus == '14' |ledig_hovedstatus == '15' 
+
+generate aapufoer = 0
+generate aapufoer19 = 0
+generate aapufoer20 = 0
+generate aapufoer21 = 0
+generate aapufoer22 = 0
+
+replace aapufoer = 1 if arbavklaring == "1" | ufoeretrygd == "1"
+replace aapufoer19 = 1 if arbavklaring19 == "1" | ufoeretrygd19 == "1"
+replace aapufoer20 = 1 if arbavklaring20 == "1" | ufoeretrygd20 == "1"
+replace aapufoer21 = 1 if arbavklaring21 == "1" | ufoeretrygd21 == "1"
+replace aapufoer22 = 1 if arbavklaring22 == "1" | ufoeretrygd22 == "1"
+
+// generate ufoer = 0
+// generate ufoer19 = 0
+// generate ufoer20 = 0
+// generate ufoer21 = 0
+// generate ufoer22 = 0
+
+// replace ufoer = 1 if ufoeretrygd == "1"
+// replace ufoer19 = 1 if ufoeretrygd19 == "1"
+// replace ufoer20 = 1 if ufoeretrygd20 == "1"
+// replace ufoer21 = 1 if ufoeretrygd21 == "1"
+// replace ufoer22 = 1 if ufoeretrygd22 == "1"
+
+// generate aapufoer = 0
+// replace aapufoer = 1 if aap == 1 | ufoer == 1
+
+generate arbeidsstyrkestatus = '0'
+replace arbeidsstyrkestatus = '1' if aapufoer== 1
+replace arbeidsstyrkestatus = '4' if utdanning == 1
+replace arbeidsstyrkestatus = '3' if tiltak == 1 
+replace arbeidsstyrkestatus = '2' if ledig == 1
+replace arbeidsstyrkestatus = '5' if jobb == 1
+define-labels Arbeidsstyrkestatustxt '0' 'Utenfor arbeidsstyrken, ikke på tiltak ' '1' 'Mottakere av AAP/uføretrygd' '2' 'Registrerte arbeidsledige' '3' 'Arbeidsmarkedstiltak' '4' 'Ordinær utdanning' '5' 'Sysselsatte'
+assign-labels arbeidsstyrkestatus Arbeidsstyrkestatustxt
+
+generate arbeidsstyrkestatus19 = '0'
+replace arbeidsstyrkestatus19 = '1' if aapufoer19== 1
+replace arbeidsstyrkestatus19 = '4' if utdanning19 == 1
+replace arbeidsstyrkestatus19 = '3' if tiltak19 == 1 
+replace arbeidsstyrkestatus19 = '2' if ledig19 == 1
+replace arbeidsstyrkestatus19 = '5' if jobb19 == 1
+
+assign-labels arbeidsstyrkestatus19 Arbeidsstyrkestatustxt
+
+generate arbeidsstyrkestatus20 = '0'
+replace arbeidsstyrkestatus20 = '1' if aapufoer20== 1
+replace arbeidsstyrkestatus20 = '4' if utdanning20 == 1
+replace arbeidsstyrkestatus20 = '3' if tiltak20 == 1 
+replace arbeidsstyrkestatus20 = '2' if ledig20 == 1
+replace arbeidsstyrkestatus20 = '5' if jobb20 == 1
+
+assign-labels arbeidsstyrkestatus20 Arbeidsstyrkestatustxt
+
+generate arbeidsstyrkestatus21 = '0'
+replace arbeidsstyrkestatus21 = '1' if aapufoer21== 1
+replace arbeidsstyrkestatus21 = '4' if utdanning21 == 1
+replace arbeidsstyrkestatus21 = '3' if tiltak21 == 1 
+replace arbeidsstyrkestatus21 = '2' if ledig21 == 1
+replace arbeidsstyrkestatus21 = '5' if jobb21 == 1
+
+assign-labels arbeidsstyrkestatus21 Arbeidsstyrkestatustxt
+
+generate arbeidsstyrkestatus22 = '0'
+replace arbeidsstyrkestatus22 = '1' if aapufoer22== 1
+replace arbeidsstyrkestatus22 = '4' if utdanning22 == 1
+replace arbeidsstyrkestatus22 = '3' if tiltak22 == 1 
+replace arbeidsstyrkestatus22 = '2' if ledig22 == 1
+replace arbeidsstyrkestatus22 = '5' if jobb22 == 1
+
+assign-labels arbeidsstyrkestatus22 Arbeidsstyrkestatustxt
+
+// tabulate arbeidsstyrkestatus
+// tabulate arbeidsstyrkestatus , cellpct
+
+// Lager variabel for Neets.
+generate neet = 0
+generate neet19 = 0
+generate neet20 = 0
+generate neet21 = 0
+generate neet22 = 0
+
+replace neet = 1 if arbeidsstyrkestatus == '0' |arbeidsstyrkestatus == '1' |arbeidsstyrkestatus == '2'  
+replace neet19 = 1 if arbeidsstyrkestatus19 == '0' |arbeidsstyrkestatus19 == '1' |arbeidsstyrkestatus19 == '2'  
+replace neet20 = 1 if arbeidsstyrkestatus20 == '0' |arbeidsstyrkestatus20 == '1' |arbeidsstyrkestatus20 == '2'  
+replace neet21 = 1 if arbeidsstyrkestatus21 == '0' |arbeidsstyrkestatus21 == '1' |arbeidsstyrkestatus21 == '2'  
+replace neet22 = 1 if arbeidsstyrkestatus22 == '0' |arbeidsstyrkestatus22 == '1' |arbeidsstyrkestatus22 == '2'  
+
+
+
+/////////////////////////////////////////////////////////////////////////////////
+///BAKGRUNNSVARIABLER
+/////////////////////////////////////////////////////////////////////////////////
+
+
+
+import db/NUDB_SOSBAK as sosbakgr
+tabulate sosbakgr
+generate utd_mor_far = '0'
+replace utd_mor_far = '1' if sosbakgr == '4'
+replace utd_mor_far = '2' if sosbakgr == '3'
+replace utd_mor_far = '3' if sosbakgr == '2' |sosbakgr == '1'
+define-labels utd_mor_fartxt '0' 'Uoppgitt/missing' '1' 'Grunnskole' '2' 'Videregående skole' '3' 'Høyere utdanning'
+assign-labels utd_mor_far utd_mor_fartxt
+tabulate utd_mor_far
+
+// Henter inn andre stønader
+import db/BARNETRMOTFDT_STATUSK 2018-11-12 as barnetrygd_statuskode
+generate Barnetrygd = '0' 
+replace Barnetrygd = '1' if barnetrygd_statuskode == '1'
+replace Barnetrygd = '2' if barnetrygd_statuskode == '2'
+// avsløringskontroll nekter meg denne. Dermed slår jeg de sammen men ingen barn, og tenker at det uansett ikke spiller noen rolle siden de er så få
+// replace Barnetrygd = '3' if barnetrygd_statuskode == '4' |  barnetrygd_statuskode == '0'
+define-labels Barnetrygdtxt '0' 'Ingen barn' '1' 'Ordinær barnetrygd' '2' 'Enslig forsørger' '3' 'Barn i institusjon mm'
+assign-labels Barnetrygd Barnetrygdtxt
+
+import db/INNTEKT_GRUNN_HJELP 2018-12-21 as inntektgrunnoghjelp
+generate grunnoghjelpestønad = '0'
+replace grunnoghjelpestønad = '1' if inntektgrunnoghjelp > 0
+// tabulate grunnoghjelpestønad
+
+import db/INNTEKT_KONTANTSTOTTE 2018-12-31 as innt_kontstøtte
+generate kontantstøtte = '0'
+replace kontantstøtte = '1' if innt_kontstøtte > 0
+// tabulate kontantstøtte
+
+import db/SOSHJLPFDT_MOTTAK 2018-12-01 as soshjelp_mottak
+generate sosialhjelp = '0'
+replace sosialhjelp = '1' if soshjelp_mottak == '1'
+
+import db/KRIMINALITET_SIKTEDE_GRUPPELOV 2018-12-31 as krim_1
+generate krim = '0'
+replace krim = '1' if krim_1 == '1' | krim_1 == '2' | krim_1 == '3'
+replace krim = '2' if krim_1 == '4' | krim_1 == '5' 
+replace krim = '3' if krim_1 == '6' 
+replace krim = '4' if krim_1 == '7' | krim_1 == '8'| krim_1 == '9'
+define-labels krimtxt '0' 'Ingen lovbrudd' '1' 'Vinning og eiendomsskade' '2' 'Vold- og seksuallovbrudd' '3' 'Rusmiddellovbrudd' '4' 'Andre lovbrudd'
+assign-labels krim krimtxt
+
+// Henter invvndringsstatus og fødeland og kategoriserer dem i vestlig eller ikke-vestlig.
+import db/BEFOLKNING_INVKAT as kat
+import db/BEFOLKNING_FODELAND as land
+generate innvandringskategori = '3'
+replace innvandringskategori = '1' if kat == 'B'
+replace innvandringskategori = '2' if kat == 'C'
+define-labels innvandringskategoritxt '1' 'Innvandrere' '2' 'Norskfødt med innvandrerforeldre' '3' 'Øvrig befolkning'
+assign-labels innvandringskategori innvandringskategoritxt
+
+clone-variables land -> landgruppe
+clone-variables land -> landgruppe2
+destring landgruppe
+destring landgruppe2
+// recode landgruppe (111 120 138 139 140 148 155 156 159/164 = 2 'Europeiske land utenom EU') (101/141 144/158 = 1 'EU/EØS') (203/393 = 3 'Afrika') (143 404/578 = 4 'Asia med Tyrkia') (612 684 = 5 'Nord-Amerika') (601/775 = 6 'Sør- og Mellom-Amerika') (802/840 = 7 'Oseania') (980 = 8 'Statsløse') (990 = 9 'Uoppgitt')
+recode landgruppe2 (000 = 0 'Norsk') (143 404/578 111 120 138 140 148 155 156 159 160 161 203/393 601/605 616/672 680 705/775 980 990 = 2 'Ikke-Vestlig') (101/158 612 684 805 820 = 1 'Vestlig') 
+replace landgruppe2 = 0 if innvandringskategori == '2' | innvandringskategori == '3'
+
+generate innvandring = 'Øvrig befolkning'
+replace innvandring = 'Norskfødt med innvandrerforeldre' if innvandringskategori == '2'
+replace innvandring = 'Landruppe 1 - Vestlige land' if landgruppe2 == 1
+replace innvandring = 'Landgruppe 2 - resten av verden' if landgruppe2 == 2
+
+//Statsløse inkludert som ikke-vestlig, kan gjerne endres til egen kategori, se variabel "land" 
+
+// Ser på hva slags husholdning folk bor i
+import db/BEFOLKNING_REGSTAT_HUSHTYP 2018-01-01 as husholdningstype
+
+// Henter inn grunnskolepoeng som bakgrunnsvariabel. 
+// kun personer som har karakter i minst 8 av 11 fag får grunnskolepoeng
+import db/NUDB_KURS_GRPOENG as Gpoeng
+generate Grunnpoeng = '0 - Manglende opplysninger'
+replace Grunnpoeng = '0-20' if Gpoeng >= 0
+replace Grunnpoeng = '20-30' if Gpoeng > 20
+replace Grunnpoeng = '30-40' if Gpoeng > 30
+replace Grunnpoeng = '40-50' if Gpoeng > 40
+replace Grunnpoeng = 'Over 50' if Gpoeng > 50
+
+
+
+///////////////////////////////
+//FORLØPSVARIABLER
+//////////////////////////////
+
+generate neet_varig = 0
+replace neet_varig  = 1 if neet == 1 
+replace neet_varig  = 2 if neet == 1 & neet19 == 1
+replace neet_varig  = 3 if neet == 1 & neet19 == 1 & neet20 == 1
+replace neet_varig  = 4 if neet == 1 & neet19 == 1 & neet20 == 1 & neet21 == 1
+replace neet_varig  = 5 if neet == 1 & neet19 == 1 & neet20 == 1 & neet21 == 1 & neet22 == 1
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// TABULATE HERFRA OG INN
+/////////////////////////////////////////////////////////////////////////////////////////////
+//lager tabell sett 1
+
+tabulate arbeidsstyrkestatus
+tabulate arbeidsstyrkestatus , cellpct
+
+tabulate arbeidsstyrkestatus19 if neet == 1
+tabulate arbeidsstyrkestatus20 if neet == 1
+tabulate arbeidsstyrkestatus21 if neet == 1
+tabulate arbeidsstyrkestatus22 if neet == 1
+
+tabulate neet_varig if neet == 1
+histogram neet_varig if neet == 1, discrete
+tabulate neet19 if neet==1
+tabulate neet20 if neet==1
+tabulate neet21 if neet==1
+tabulate neet22 if neet==1
+// tabulate arbeidsstyrkestatus , cellpct
+
+tabulate arbeidsstyrkestatus22 neet_varig , colpct 
+
+sankey arbeidsstyrkestatus arbeidsstyrkestatus19 if neet == 1
+sankey arbeidsstyrkestatus19 arbeidsstyrkestatus20 if neet == 1
+sankey arbeidsstyrkestatus20 arbeidsstyrkestatus21 if neet == 1
+sankey arbeidsstyrkestatus arbeidsstyrkestatus22 if neet == 1
+
+
+
+
+ 
