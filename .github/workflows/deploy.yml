@@ -38,6 +38,13 @@ jobs:
           git status  # Check what Git sees as changes
           cat config.js  # Print config.js to confirm it exists
 
+      - name: Commit Config.js Before Deploying
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add -f config.js
+          git commit -m "Ensure config.js is included in deployment" || echo "No changes to commit"
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
