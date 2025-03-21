@@ -5,12 +5,9 @@ GITHUB_TOKEN loaded successfully.
 SekundÃ¦rflytting CSV data loaded successfully.
 Most recent year in table is 2023-01-01 00:00:00
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sekundÃ¦rflytting.csv
-Failed to download file: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/sekundÃ¦rflytting.csv, Status Code: 401
-[2025-03-21 08:41:03] Uploading new file: sekundÃ¦rflytting.csv
-Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
-Email notifications disabled. Updates for sekundÃ¦rflytting.csv were not sent.
+[2025-03-21 09:19:06] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sekundÃ¦rflytting.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Sekundaerflytting.log
 
 
