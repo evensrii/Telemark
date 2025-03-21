@@ -1,9 +1,9 @@
-name: Deploy Mapbox Site
+name: Deploy Webpage to GitHub Pages
 
 on:
   push:
-    branches: [main]  # Change if needed
-  workflow_dispatch:
+    branches: [main]  # 🚀 Triggers when pushing to main
+  workflow_dispatch:  # Allow manual runs
 
 jobs:
   build-and-deploy:
@@ -16,10 +16,13 @@ jobs:
         run: |
           mkdir -p Kart/sirkulare_telemark
           echo "const MAPBOX_ACCESS_TOKEN = '${{ secrets.MAPBOX_ACCESS_TOKEN }}';" > Kart/sirkulare_telemark/config.js
-          ls -l Kart/sirkulare_telemark  # Debugging: Check if the file is there
+          ls -l Kart/sirkulare_telemark  # Debugging
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: Kart/sirkulare_telemark
+          publish_dir: Kart/sirkulare_telemark  # ✅ Deploy only this folder
+          publish_branch: gh-pages  # ✅ Push only to gh-pages
+          keep_files: true  # Prevents deletion of previous files
+          force_orphan: false  # Keep commit history
