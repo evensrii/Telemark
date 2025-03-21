@@ -7,8 +7,11 @@ Fylker CSV data loaded successfully.
  20  1  9]
 Kommuner CSV data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\deltakere_introduksjonsprogrammet.csv
-[2025-03-17 08:12:26] No new data to upload. Skipping GitHub update.
+Failed to download file: Data/09_Innvandrere og inkludering/Introduksjonsprogrammet/deltakere_introduksjonsprogrammet.csv, Status Code: 401
+[2025-03-21 08:40:36] Uploading new file: deltakere_introduksjonsprogrammet.csv
+Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
+Email notifications disabled. Updates for deltakere_introduksjonsprogrammet.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\deltakere_introduksjonsprogrammet.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Deltakere_introduksjonsprogrammet.log
 
