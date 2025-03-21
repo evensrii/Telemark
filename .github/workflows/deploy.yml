@@ -21,3 +21,4 @@ jobs:
         with:
           branch: main  # Change from gh-pages to main
           folder: .
+          clean: true
