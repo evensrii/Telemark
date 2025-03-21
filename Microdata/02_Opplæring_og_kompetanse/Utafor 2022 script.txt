@@ -1,0 +1,458 @@
+require no.ssb.fdb:30 as db
+create-dataset utafor2022
+
+//Henter alle bosatte i 2023, beholder folk i VTFK.
+// Bruker 1.1.2023 som utgangspunkt, og deretter se hva tilstanden var i året fram til da. Det gir oss endelige NEETs-tall som er nærmere SSBs tall. Det er også logisk å ta utgangspunkt i de som er bosatt få måneder etter arbeidsstyrkestatus måles, enn de som er bosatt 10,5 måneder før. 
+
+
+import db/BEFOLKNING_KOMMNR_FORMELL 2023-01-01 as bosted
+generate fylkenr = substr(bosted,1,2)
+generate kommunenr = substr(bosted,1,4)
+keep if fylkenr == '38'
+
+//skille vestfoldinger og telemarkinger
+generate fylke = 'Telemark'
+replace fylke = 'Vestfold' if kommunenr == '3801' | kommunenr == '3802' | kommunenr == '3803'| kommunenr == '3804' | kommunenr == '3805' | kommunenr == '3811'
+
+// Beholder bare Telemark
+keep if fylke == 'Telemark'
+
+//Regner ut alder. 
+import db/BEFOLKNING_FOEDSELS_AAR_MND as faarmnd
+import db/BEFOLKNING_KJOENN as kjønn
+generate alder = 2022- int(faarmnd/100)
+//Beholder bare unge 15-29 år. Her kan man bytte aldersgrupper.
+keep if alder >=15 & alder < 30
+
+//lager aldersgrupper 5 årsgrupper
+generate aldersgruppe = '0'
+// replace aldersgruppe = '0-4 år' if alder >= 0
+// replace aldersgruppe = '5-9 år' if alder >= 5
+// replace aldersgruppe = '10-14 år' if alder >= 10
+replace aldersgruppe = '15-19 år' if alder >= 15
+replace aldersgruppe = '20-24 år' if alder >= 20
+replace aldersgruppe = '25-29 år' if alder >= 25
+// replace aldersgruppe = '30-34 år' if alder >= 30
+// replace aldersgruppe = '35-39 år' if alder >= 35
+// replace aldersgruppe = '40-44 år' if alder >= 40
+// replace aldersgruppe = '45-49 år' if alder >= 45
+// replace aldersgruppe = '50-54 år' if alder >= 50
+// replace aldersgruppe = '55-59 år' if alder >= 55
+// replace aldersgruppe = '60-64 år' if alder >= 60
+// replace aldersgruppe = '65-69 år' if alder >= 65
+// replace aldersgruppe = '70-74 år' if alder >= 70
+// replace aldersgruppe = '75-79 år' if alder >= 75
+// replace aldersgruppe = '80-84 år' if alder >= 80
+// replace aldersgruppe = '85-89 år' if alder >= 85
+// replace aldersgruppe = '90 eller eldre år' if alder >= 90
+
+
+// Lager aldersgrupper som passer med OTs oppfølgingsplikt
+generate aldersgruppeOT = '0'
+replace aldersgruppeOT = '15-21 år' if alder < 22
+replace aldersgruppeOT = '22-29 år' if alder >= 22
+tabulate aldersgruppeOT
+
+// Legger til yrkesstatus, og lager ny variabel som putter lønnstaker og selvstendige i jobb = 1 og utenfor og ledige i jobb = 0
+// Henter inn trygdedata på gruppa vår: AAP og uføretrygd
+// Henter også inn ledighetstall
+import db/REGSYS_ARB_ARBMARK_STATUS 2022-11-16 as yrkstat
+import db/ARBEIDSSOKER_TILTAK 2022-11-30 as arb_tiltak
+import db/ARBAVKLARPFDT_MOTTAK 2022-11-16 as arbavklaring
+import db/UFOERP2011FDT_MOTTAK 2022-11-16 as ufoeretrygd
+// import db/ARBEIDSSOKER_AS_HOVED 2022-11-30 as ledig_status
+// import db/ARBEIDSSOKER_REG_STAT 2022-11-30 as ledig_regstat
+import db/ARBSOEK2001FDT_HOVED 2022-11-30 as ledig_hovedstatus
+import db/NUDB_BU 2022-09-01 as utdanningsnivå_BU
+
+// Utdanningsnivå er egentlig en bakgrunnsvariabel, men vi trenger å identifisere 15-16-åringer som ikke har fullført grunnskolen i kategorisering av NEET.
+destring utdanningsnivå_BU
+generate utd_nivå = '1_Ikke fullført GS eller missing'
+replace utd_nivå = '2_Grunnskole' if utdanningsnivå_BU >= 200000 & utdanningsnivå_BU < 300000
+replace utd_nivå = '3_Vgo SF' if utdanningsnivå_BU >= 400000 & utdanningsnivå_BU < 415302 | utdanningsnivå_BU == 435101 | utdanningsnivå_BU == 435102
+replace utd_nivå = '3_Vgo YF' if utdanningsnivå_BU >= 415303 & utdanningsnivå_BU < 500000
+replace utd_nivå = '3_Vgo SF' if utdanningsnivå_BU == 415302 | utdanningsnivå_BU == 435101 | utdanningsnivå_BU == 435102
+replace utd_nivå = '4_Fagskole' if utdanningsnivå_BU >= 500000 & utdanningsnivå_BU < 600000
+replace utd_nivå = '5_Høyere utdanning' if utdanningsnivå_BU >= 600000 & utdanningsnivå_BU < 900000
+// tabulate utdanningsnivå_BU
+
+//Henter utdanningsdata - personer som tar utdanning i perioden. 2022-09-01 er siste tilgjengelige dato for utdanning. Det er greit, siden alle skoler uansett har sine elever og studenter påmeldt innen denne datoen.
+ 
+create-dataset kursdata
+import-event db/NUDB_KURS_NUS 2022-08-01 to 2022-09-01 as kurstype
+destring kurstype, force //tvinger til tallvariabler, ikke sikkert det er nødvendig
+
+//Henter datasett med fnr til kursdataene som brukes til å koble utdanningen til datasettet fra VT
+create-dataset lenke_kurs_person
+import db/NUDB_KURS_FNR as fnr
+merge fnr into kursdata
+
+//Lager statistikk (collapser) over antall hendelser av utdanning per individ, og kobler dette på persondatasettet
+use kursdata
+collapse (count) kurstype, by(fnr)
+rename kurstype ant_kurs
+merge ant_kurs into utafor2022
+
+use utafor2022
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+// LAGER VARIABLER FOR ARBEIDSSTYRKESTATUS OG NEET
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+use utafor2022
+generate utdanning = 0
+replace utdanning = 1 if ant_kurs >= 1
+
+// Legger 15- og 16-åringer til gruppen som er i utdanning hvis de ikke har fullført GS. Noen av disse står med utdanningsnivå GS men har ikke opplysninger om grunnskolepoeng. Regner de til ikke fullført GS og regner med at de fortsatt har noe opplegg for å fullføre GS.
+replace utdanning = 1 if utd_nivå == '1_Ikke fullført GS eller missing' & alder <= 16
+
+
+// tabulate yrkstat
+// Tar også bort 166 personer som ikke gjenfinnes i regsys_arbeidsmarkedsstatus
+generate jobb = 1
+replace jobb = 0 if yrkstat == "0" | yrkstat == "3"
+drop if sysmiss(yrkstat)
+
+generate tiltak = 0
+replace tiltak = 1 if arb_tiltak == "1" |arb_tiltak == "5" | arb_tiltak == "7"
+
+// tabulate ledig_status yrkstat
+// tabulate ledig_regstat
+
+generate ledig = 0
+replace ledig = 1 if yrkstat == "3"
+// replace ledig = 1 if ledig_hovedstatus == '1' | ledig_hovedstatus == '4' | ledig_hovedstatus == '6' |ledig_hovedstatus == '14' |ledig_hovedstatus == '15' 
+
+generate aap = 0
+replace aap = 1 if arbavklaring == "1"
+generate ufoer = 0
+replace ufoer = 1 if ufoeretrygd == "1"
+generate aapufoer = 0
+replace aapufoer = 1 if aap == 1 | ufoer == 1
+
+generate arbeidsstyrkestatus = '0'
+replace arbeidsstyrkestatus = '1' if aapufoer== 1
+replace arbeidsstyrkestatus = '4' if utdanning == 1
+replace arbeidsstyrkestatus = '3' if tiltak == 1 
+replace arbeidsstyrkestatus = '2' if ledig == 1
+replace arbeidsstyrkestatus = '5' if jobb == 1
+define-labels Arbeidsstyrkestatustxt '0' 'Utenfor arbeidsstyrken, ikke på tiltak ' '1' 'Mottakere av AAP/uføretrygd' '2' 'Registrerte arbeidsledige' '3' 'Arbeidsmarkedstiltak' '4' 'Ordinær utdanning' '5' 'Sysselsatte'
+assign-labels arbeidsstyrkestatus Arbeidsstyrkestatustxt
+// tabulate arbeidsstyrkestatus
+// tabulate arbeidsstyrkestatus , cellpct
+
+// Lager variabel for Neets.
+generate neet = 0
+replace neet = 1 if arbeidsstyrkestatus == '0' |arbeidsstyrkestatus == '1' |arbeidsstyrkestatus == '2'  
+
+// Sjekker at begge måtene å regne neet på virker likt. Og det gjør de.
+// generate neet2 = 0
+// replace neet2 = 1 if arbeidsstyrkestatus == '0'|arbeidsstyrkestatus == '1'|arbeidsstyrkestatus == '2'
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// HENTER DIVERSE BAKGRUNNSVARIABLER TIL ANALYSEN
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+import db/NUDB_SOSBAK as sosbakgr
+tabulate sosbakgr
+generate utd_mor_far = '0'
+replace utd_mor_far = '1' if sosbakgr == '4'
+replace utd_mor_far = '2' if sosbakgr == '3'
+replace utd_mor_far = '3' if sosbakgr == '2' |sosbakgr == '1'
+define-labels utd_mor_fartxt '0' 'Uoppgitt/missing' '1' 'Grunnskole' '2' 'Videregående skole' '3' 'Høyere utdanning'
+assign-labels utd_mor_far utd_mor_fartxt
+tabulate utd_mor_far
+
+
+
+// Henter inn andre stønader
+import db/BARNETRMOTFDT_STATUSK 2022-11-12 as barnetrygd_statuskode
+generate Barnetrygd = '0' 
+replace Barnetrygd = '1' if barnetrygd_statuskode == '1'
+replace Barnetrygd = '2' if barnetrygd_statuskode == '2'
+// avsløringskontroll nekter meg denne. Dermed slår jeg de sammen men ingen barn, og tenker at det uansett ikke spiller noen rolle siden de er så få
+// replace Barnetrygd = '3' if barnetrygd_statuskode == '4' |  barnetrygd_statuskode == '0'
+define-labels Barnetrygdtxt '0' 'Ingen barn' '1' 'Ordinær barnetrygd' '2' 'Enslig forsørger' '3' 'Barn i institusjon mm'
+assign-labels Barnetrygd Barnetrygdtxt
+
+import db/INNTEKT_GRUNN_HJELP 2022-12-21 as inntektgrunnoghjelp
+generate grunnoghjelpestønad = '0'
+replace grunnoghjelpestønad = '1' if inntektgrunnoghjelp > 0
+// tabulate grunnoghjelpestønad
+
+import db/INNTEKT_KONTANTSTOTTE 2022-12-31 as innt_kontstøtte
+generate kontantstøtte = '0'
+replace kontantstøtte = '1' if innt_kontstøtte > 0
+// tabulate kontantstøtte
+
+import db/SOSHJLPFDT_MOTTAK 2022-12-01 as soshjelp_mottak
+generate sosialhjelp = '0'
+replace sosialhjelp = '1' if soshjelp_mottak == '1'
+
+// Statistikk over siktelser
+import db/KRIMINALITET_SIKTEDE_GRUPPELOV 2020-12-31 as krim_1
+generate krim = '0'
+replace krim = '1' if krim_1 == '1' | krim_1 == '2' | krim_1 == '3'
+replace krim = '2' if krim_1 == '4' | krim_1 == '5' 
+replace krim = '3' if krim_1 == '6' 
+replace krim = '4' if krim_1 == '7' | krim_1 == '8'| krim_1 == '9'
+define-labels krimtxt '0' 'Ingen lovbrudd' '1' 'Vinning og eiendomsskade' '2' 'Vold- og seksuallovbrudd' '3' 'Rusmiddellovbrudd' '4' 'Andre lovbrudd'
+assign-labels krim krimtxt
+
+// Henter invvndringsstatus og fødeland og kategoriserer dem i vestlig eller ikke-vestlig.
+import db/BEFOLKNING_INVKAT as kat
+import db/BEFOLKNING_FODELAND as land
+generate innvandringskategori = '3'
+replace innvandringskategori = '1' if kat == 'B'
+replace innvandringskategori = '2' if kat == 'C'
+define-labels innvandringskategoritxt '1' 'Innvandrere' '2' 'Norskfødt med innvandrerforeldre' '3' 'Øvrig befolkning'
+assign-labels innvandringskategori innvandringskategoritxt
+
+clone-variables land -> landgruppe
+clone-variables land -> landgruppe2
+destring landgruppe
+destring landgruppe2
+// recode landgruppe (111 120 138 139 140 148 155 156 159/164 = 2 'Europeiske land utenom EU') (101/141 144/158 = 1 'EU/EØS') (203/393 = 3 'Afrika') (143 404/578 = 4 'Asia med Tyrkia') (612 684 = 5 'Nord-Amerika') (601/775 = 6 'Sør- og Mellom-Amerika') (802/840 = 7 'Oseania') (980 = 8 'Statsløse') (990 = 9 'Uoppgitt')
+recode landgruppe2 (000 = 0 'Norsk') (143 404/578 111 120 138 140 148 155 156 159 160 161 203/393 601/605 616/672 680 705/775 980 990 = 2 'Ikke-Vestlig') (101/158 612 684 805 820 = 1 'Vestlig') 
+replace landgruppe2 = 0 if innvandringskategori == '2' | innvandringskategori == '3'
+
+generate innvandring = 'Øvrig befolkning'
+replace innvandring = 'Norskfødt med innvandrerforeldre' if innvandringskategori == '2'
+replace innvandring = 'Landruppe 1 - Vestlige land' if landgruppe2 == 1
+replace innvandring = 'Landgruppe 2 - resten av verden' if landgruppe2 == 2
+
+//Statsløse inkludert som ikke-vestlig, kan gjerne endres til egen kategori, se variabel "land" 
+
+// Ser på hva slags husholdning folk bor i
+import db/BEFOLKNING_REGSTAT_HUSHTYP 2022-01-01 as husholdningstype
+
+// Henter inn grunnskolepoeng som bakgrunnsvariabel. 
+// kun personer som har karakter i minst 8 av 11 fag får grunnskolepoeng
+import db/NUDB_KURS_GRPOENG as Gpoeng
+generate Grunnpoeng = '0 - Manglende opplysninger'
+replace Grunnpoeng = '0-20' if Gpoeng >= 0
+replace Grunnpoeng = '20-30' if Gpoeng > 20
+replace Grunnpoeng = '30-40' if Gpoeng > 30
+replace Grunnpoeng = '40-50' if Gpoeng > 40
+replace Grunnpoeng = 'Over 50' if Gpoeng > 50
+// fjerner pga for få individer : replace Grunnpoeng = 'Over 60' if Gpoeng > 60 
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+// TABULURING OG ANALYSE
+/////////////////////////////////////////////////////////////////////////////////////////////
+//lager tabell sett 1
+
+// tabulate arbeidsstyrkestatus
+// tabulate arbeidsstyrkestatus , cellpct
+
+// tabulate arbeidsstyrkestatus utdanning
+
+// tabulate neet aldersgruppe
+// tabulate neet aldersgruppe , colpct
+// tabulate neet aldersgruppeOT
+// tabulate neet aldersgruppeOT , colpct
+
+// tabulate neet aapufoer
+// tabulate neet aapufoer , cellpct
+// tabulate neet aapufoer , colpct
+// tabulate neet aapufoer , rowpct
+
+
+// tabulate aapufoer aldersgruppe if neet == 1
+// tabulate aapufoer aldersgruppe if neet == 1, colpct
+
+// tabulate kjønn aldersgruppe
+// tabulate kjønn aldersgruppe , colpct
+// tabulate neet kjønn
+// tabulate neet kjønn , colpct
+// tabulate aapufoer kjønn  
+// tabulate aapufoer kjønn  , colpct
+// tabulate aapufoer kjønn  if neet == 1
+// tabulate aapufoer kjønn  if neet == 1 , colpct
+// tabulate neet kjønn if aapufoer == 0 
+// tabulate neet kjønn if aapufoer == 0 , colpct
+// tabulate neet aapufoer if kjønn == '1' , colpct
+// tabulate neet aapufoer if kjønn == '2' , colpct
+
+// tabulate innvandring neet
+// tabulate innvandring neet , rowpct
+// tabulate innvandring kjønn
+// tabulate innvandring neet , colpct
+// tabulate innvandring neet , rowpct
+// tabulate innvandring kjønn 
+// tabulate innvandring kjønn , rowpct
+// tabulate innvandring kjønn if neet == 0 , rowpct
+// tabulate innvandring kjønn if neet == 1 , rowpct
+
+// tabulate landgruppe2 aapufoer if neet ==1 , rowpct
+// tabulate Innvandringskategori aapufoer if neet ==1 , rowpct
+// tabulate neet aapufoer , rowpct
+
+tabulate Grunnpoeng neet
+tabulate Grunnpoeng neet, colpct
+tabulate Grunnpoeng neet, rowpct
+
+// tabulate Grunnpoeng innvandring
+// tabulate Grunnpoeng innvandring , rowpct
+// tabulate Grunnpoeng innvandring , colpct
+// tabulate innvandring  Grunnpoeng if neet == 1, cellpct
+// tabulate innvandring  Grunnpoeng if neet == 1
+// tabulate Grunnpoeng if neet == 1 , cellpct
+// tabulate Grunnpoeng arbeidsstyrkestatus, rowpct
+// tabulate Grunnpoeng arbeidsstyrkestatus
+// // tabulate neet sosialhjelp
+
+
+// tabulate husholdningstype neet if aldersgruppe == '15-19 år' & innvandring == 'Øvrig befolkning' , colpct
+// tabulate husholdningstype neet if aldersgruppe == '20-24 år' , colpct
+// tabulate husholdningstype neet if aldersgruppe == '25-29 år' , colpct
+// tabulate husholdningstype neet if aldersgruppe == '15-19 år' 
+// tabulate husholdningstype neet if aldersgruppe == '20-24 år' 
+// tabulate husholdningstype neet if aldersgruppe == '25-29 år' 
+
+// Her er det noen interessante saker. Barn av innvandrere er mest kriminelle, men og litt mer utafor enn norske, men ikke mye. Men unge med innvandrerbakgrunn som er NEET er oftere kriminelle, 12 %.
+// tabulate neet krim
+// tabulate neet krim if innvandring == 'Øvrig befolkning' , rowpct
+// tabulate krim innvandring if neet == 1 , colpct
+// tabulate krim innvandring, colpct
+
+tabulate neet utd_mor_far
+tabulate neet  utd_mor_far , colpct
+tabulate neet  utd_mor_far , rowpct
+
+// tabulate aldersgruppeOT neet , colpct
+// tabulate fylke Innvandringskategori kjønn
+// tabulate neet Innvandringskategori
+// tabulate neet Innvandringskategori , colpct
+
+// /
+tabulate fylke utd_nivaa aldersgruppe
+tabulate fylke utd_nivaa Innvandringskategori
+tabulate fylke Innvandringskategori utd_nivaa_mor //utd_nivaa_far  
+
+
+//lager tabell sett 1
+tabulate fylke utdanning
+tabulate fylke utdanning yrkstat, missing
+tabulate fylke utdanning yrkstat, missing
+tabulate fylke utdanning yrkstat aldersgruppe, missing
+tabulate fylke aldersgruppe yrkstat, missing
+
+/
+
+
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+// BITS AND SCRAPS SOM KAN HENTES OPP ELLER KASTES//
+
+
+// // Henter inn foreldres personnummer for å koble på deres lønnsinntekt, utdanningsnuvå ev. uføretrygd og etter hvert annen informasjon
+// import db/BEFOLKNING_FAR_FNR as fnr_far
+// import db/BEFOLKNING_MOR_FNR as fnr_mor
+
+
+// / Henter foreldredata til eget datasett
+// create-dataset foreldredata
+// import db/INNTEKT_WYRKINNT 2021-01-01 as inntekt_far
+// import db/NUDB_BU 2021-01-01 as utd_far
+// //Henter info om foreldre var ufør (usikker på hvilket tidspunkt vi skal bruke)
+// import db/UFOERP2011FDT_MOTTAK 2021-01-01 as ufor_far
+// clone-variables inntekt_far -> inntekt_mor
+// clone-variables utd_far -> utd_mor
+// clone-variables ufor_far -> ufor_mor
+// merge inntekt_far utd_far ufor_far into utafor2022 on fnr_far
+// merge inntekt_mor utd_mor ufor_mor into utafor2022 on fnr_mor
+
+// use utafor2022
+// replace ufor_far = 0 if sysmiss(ufor_far)
+// replace ufor_mor = 0 if sysmiss(ufor_mor)
+
+// // tabulate fylke ufor_mor ufor_far, missing
+
+// destring utd
+// generate utd_nivaa = '1_Ikke vgo'
+// replace utd_nivaa = '2_Vgo/fagskole' if utd >= 400000 & utd < 600000
+// replace utd_nivaa = '3_Høyere utdanning' if utd >= 600000 & utd < 900000
+// //replace utd_nivaa = utd if sysmiss(utd)
+
+// destring utd_far
+// generate utd_nivaa_far = '1_Ikke vgo'
+// replace utd_nivaa_far = '2_Vgo/fagskole' if utd_far >= 400000 & utd_far < 600000
+// replace utd_nivaa_far = '3_Høyere utdanning' if utd_far >= 600000 & utd_far < 900000
+// //replace utd_nivaa_far = utd_far if sysmiss(utd_far)
+
+// destring utd_mor
+// generate utd_nivaa_mor = '1_Ikke vgo'
+// replace utd_nivaa_mor = '2_Vgo/fagskole' if utd_mor >= 400000 & utd_mor < 600000
+// replace utd_nivaa_mor = '3_Høyere utdanning' if utd_mor >= 600000 & utd_mor < 900000
+// //replace utd_nivaa_mor = utd_mor if sysmiss(utd_mor)
+
+
+// Variabler som kan hentes inn: huskeliste, forslag og kommentarer
+// For å undersøke om populasjonen vår har barn, kan vi kanskje bruke denne. Må sjekke at tallet øker med alder i gruppa vår.
+// Antall barn (0-17 år) i familien
+// BEFOLKNING_BARN_I_REGSTAT_FAMNR
+// Som barn regnes her personer under 18 år som er registrert bosatt i familien til minst en av foreldrene. Familie er definert som personer som er bosatt i samme bolig og som er knyttet til hverandre som ektefeller, registrerte partnere, samboere og/eller som foreldre og barn (uansett barnets alder).
+
+// AH brukte denne for å undersøke om populasjonen bodde hos foreldrene. Jeg er usikker på hvordan den virker, men vi kan sjekke om antallet barn i familien synker med økende alder. 15-19 åringer bor stort sett hjemme, men ikke 28-åringer.
+// Antall barn i husholdningen, uansett alder
+// BEFOLKNING_BARN3_I_HUSH
+// Som barn regnes her personer uansett alder som er registrert bosatt i husholdningen til minst én av foreldrene. Mindreårige som er bosatt sammen med andre voksne enn sine foreldre, for eksempel fosterbarn, regnes i denne sammenheng ikke som barn i husholdningen.
+
+// Får ikke til ennå, men prøver når jeg har tid!
+// Mottatt hjelpetiltak fra barnevernet
+// create-dataset barnevern
+// import db/BARNEVERN_HJELPETIL 1993-12-31 as bt93
+// import db/BARNEVERN_HJELPETIL 1994-12-31 as bt94
+// import db/BARNEVERN_HJELPETIL 1995-12-31 as bt95
+// import db/BARNEVERN_HJELPETIL 1996-12-31 as bt96
+// import db/BARNEVERN_HJELPETIL 1997-12-31 as bt97
+// import db/BARNEVERN_HJELPETIL 1998-12-31 as bt98
+// import db/BARNEVERN_HJELPETIL 1999-12-31 as bt99
+// import db/BARNEVERN_HJELPETIL 2000-12-31 as bt00
+// import db/BARNEVERN_HJELPETIL 2001-12-31 as bt01
+// import db/BARNEVERN_HJELPETIL 2002-12-31 as bt02
+// import db/BARNEVERN_HJELPETIL 2003-12-31 as bt03
+// import db/BARNEVERN_HJELPETIL 2004-12-31 as bt04
+// import db/BARNEVERN_HJELPETIL 2005-12-31 as bt05
+// import db/BARNEVERN_HJELPETIL 2006-12-31 as bt06
+// import db/BARNEVERN_HJELPETIL 2007-12-31 as bt07
+// import db/BARNEVERN_HJELPETIL 2008-12-31 as bt08
+// import db/BARNEVERN_HJELPETIL 2009-12-31 as bt09
+// import db/BARNEVERN_HJELPETIL 2010-12-31 as bt10
+// import db/BARNEVERN_HJELPETIL 2011-12-31 as bt11
+// import db/BARNEVERN_HJELPETIL 2012-12-31 as bt12
+// import db/BARNEVERN_HJELPETIL 2013-12-31 as bt13
+// import db/BARNEVERN_HJELPETIL 2014-12-31 as bt14
+// import db/BARNEVERN_HJELPETIL 2015-12-31 as bt15
+// import db/BARNEVERN_HJELPETIL 2016-12-31 as bt16
+// import db/BARNEVERN_HJELPETIL 2017-12-31 as bt17
+// import db/BARNEVERN_HJELPETIL 2018-12-31 as bt18
+// import db/BARNEVERN_HJELPETIL 2019-12-31 as bt19
+// import db/BARNEVERN_HJELPETIL 2020-12-31 as bt20
+// import db/BARNEVERN_HJELPETIL 2021-12-31 as bt21
+// import db/BARNEVERN_HJELPETIL 2022-12-31 as bt22
+// collapse(count) utafor2022 by fnr
+
+
+
+
+
+
+ 
