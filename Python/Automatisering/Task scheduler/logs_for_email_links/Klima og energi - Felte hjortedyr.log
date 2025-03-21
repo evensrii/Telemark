@@ -5,22 +5,17 @@ GITHUB_TOKEN loaded successfully.
 Elg JSON data loaded successfully.
 Hjort JSON data loaded successfully.
 <class 'pandas.core.frame.DataFrame'>
-RangeIndex: 39 entries, 0 to 38
+RangeIndex: 38 entries, 0 to 37
 Data columns (total 2 columns):
  #   Column              Non-Null Count  Dtype 
 ---  ------              --------------  ----- 
- 0   JaktÃÂ¥r              39 non-null     object
- 1   Antall felte hjort  39 non-null     int64 
+ 0   JaktÃÂ¥r              38 non-null     object
+ 1   Antall felte hjort  38 non-null     int64 
 dtypes: int64(1), object(1)
-memory usage: 752.0+ bytes
+memory usage: 736.0+ bytes
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\antall_felte_elg_og_hjort.csv
-[2025-03-21 09:16:43] Row count changed: 38 -> 39
-
-Added rows (showing up to 10):
-Antall felte elg: 1496, Antall felte hjort: 1024, Jaktr: 2024
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/antall_felte_elg_og_hjort.csv
-Email notifications disabled. Updates for antall_felte_elg_og_hjort.csv were not sent.
+[2025-03-20 08:10:41] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\antall_felte_elg_og_hjort.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Felte_hjortedyr.log
 
