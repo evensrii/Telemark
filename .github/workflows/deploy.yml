@@ -3,7 +3,7 @@ name: Deploy GitHub Pages
 on:
   push:
     branches:
-      - main  # Change this if using a different branch
+      - main  # Runs on push to the main branch
 
 jobs:
   deploy:
@@ -15,35 +15,12 @@ jobs:
       - name: Inject Mapbox Token
         run: |
           echo "const MAPBOX_ACCESS_TOKEN = '${{ secrets.MAPBOX_ACCESS_TOKEN }}';" > config.js
-          cat config.js  # Debugging: Print the file to confirm it exists
+          cat config.js  # Debugging: Confirm the file is created
 
-      - name: Force Add config.js to Deployment
+      - name: Move config.js to Deployment Directory
         run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git config --global --add safe.directory /home/runner/work/Telemark/Telemark
-
-          if [ -f "config.js" ]; then  # Ensure file exists before adding
-            git add -f config.js  # Force add config.js
-            git commit -m "Add config.js for deployment"
-          else
-            echo "⚠️ config.js is missing!" && exit 1
-          fi
-
-          git status  # Debugging: Check if config.js is staged
-
-      - name: Debug Deployment Files  # 🛠️ Debugging Step
-        run: |
-          ls -lah  # List all files to check if config.js exists
-          git status  # Check what Git sees as changes
-          cat config.js  # Print config.js to confirm it exists
-
-      - name: Commit Config.js Before Deploying
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add -f config.js
-          git commit -m "Ensure config.js is included in deployment" || echo "No changes to commit"
+          mv config.js Kart/sirkulare_telemark/config.js  # Move it where it should be
+          ls -lah Kart/sirkulare_telemark/  # Verify the file is in place
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
