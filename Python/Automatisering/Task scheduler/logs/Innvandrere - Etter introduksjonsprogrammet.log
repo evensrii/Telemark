@@ -5,9 +5,12 @@ GITHUB_TOKEN loaded successfully.
 Introprogram CSV data loaded successfully.
 Statistikken viser andelen i arbeid eller utdanning i 2022-01-01 00:00:00 som avsluttet eller avbrÃ¸t programmet i 2021-01-01 00:00:00
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\etter_introduksjonsprogram.csv
-[2025-03-17 08:12:32] No new data to upload. Skipping GitHub update.
+Failed to download file: Data/09_Innvandrere og inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.csv, Status Code: 401
+[2025-03-21 08:40:43] Uploading new file: etter_introduksjonsprogram.csv
+Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
+Email notifications disabled. Updates for etter_introduksjonsprogram.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\etter_introduksjonsprogram.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_etter_introduksjonsprogram_csv.log
 
 

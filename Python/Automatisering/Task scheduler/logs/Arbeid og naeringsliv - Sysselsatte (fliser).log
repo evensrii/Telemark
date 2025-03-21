@@ -5,8 +5,11 @@ GITHUB_TOKEN loaded successfully.
 Sysselsatte i nÃ¦ringer, Telemark, kun siste Ã¥r JSON data loaded successfully.
 Sysselsatte i nÃ¦ringer, Telemark JSON data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\ansatte_i_naringer_fliser.csv
-[2025-03-17 08:06:41] No new data to upload. Skipping GitHub update.
+Failed to download file: Data/03_Arbeid og nÃ¦ringsliv/02_NÃ¦ringsliv/NÃ¦ringsstruktur og arbeidsplasser/ansatte_i_naringer_fliser.csv, Status Code: 401
+[2025-03-21 08:06:38] Uploading new file: ansatte_i_naringer_fliser.csv
+Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
+Email notifications disabled. Updates for ansatte_i_naringer_fliser.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\ansatte_i_naringer_fliser.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_(fliser).log
 

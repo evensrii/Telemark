@@ -5,8 +5,11 @@ GITHUB_TOKEN loaded successfully.
 Andel jegere JSON data loaded successfully.
 Her hentes tallene for jaktÃ¥ret 2023-2024
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_jegere.csv
-[2025-03-17 08:11:27] No new data to upload. Skipping GitHub update.
+Failed to download file: Data/07_Idrett_friluftsliv_og_frivillighet/Friluftsliv/andel_jegere.csv, Status Code: 401
+[2025-03-21 08:39:31] Uploading new file: andel_jegere.csv
+Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
+Email notifications disabled. Updates for andel_jegere.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_jegere.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Idrett_friluftsliv_og_frivillighet_-_Jegere.log
 

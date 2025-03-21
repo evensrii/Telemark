@@ -59,8 +59,11 @@ UfÃ¸re per fylke:
 
 [15 rows x 5 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arbeidsmarkedstilknytning_per_kommune.csv
-[2025-03-17 08:05:46] No new data to upload. Skipping GitHub update.
+Failed to download file: Data/03_Arbeid og nÃ¦ringsliv/01_Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning_per_kommune.csv, Status Code: 401
+[2025-03-21 08:05:43] Uploading new file: arbeidsmarkedstilknytning_per_kommune.csv
+Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
+Email notifications disabled. Updates for arbeidsmarkedstilknytning_per_kommune.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\arbeidsmarkedstilknytning_per_kommune.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Arbeidsmarkedstilknytning_per_kommune.log
 

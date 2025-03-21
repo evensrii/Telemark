@@ -4,8 +4,11 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Jordbruksareal per kommune JSON data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\jordbruksareal_per_kommune.csv
-[2025-03-17 08:13:15] No new data to upload. Skipping GitHub update.
+Failed to download file: Data/10_Areal- og stedsutvikling/Areal til jordbruk/jordbruksareal_per_kommune.csv, Status Code: 401
+[2025-03-21 08:41:30] Uploading new file: jordbruksareal_per_kommune.csv
+Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
+Email notifications disabled. Updates for jordbruksareal_per_kommune.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\jordbruksareal_per_kommune.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Areal_-_Jordbruksareal_per_kommune.log
 
