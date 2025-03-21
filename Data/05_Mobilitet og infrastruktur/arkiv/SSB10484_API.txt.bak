@@ -1,0 +1,26 @@
+{
+  ""query"": [
+    {
+      ""code"": ""Togstrekning"",
+      ""selection"": {
+        ""filter"": ""item"",
+        ""values"": [
+          ""260"",
+          ""321""
+        ]
+      }
+    },
+    {
+      ""code"": ""ContentsCode"",
+      ""selection"": {
+        ""filter"": ""item"",
+        ""values"": [
+          ""Passasjerer""
+        ]
+      }
+    }
+  ],
+  ""response"": {
+    ""format"": ""csv2""
+  }
+}

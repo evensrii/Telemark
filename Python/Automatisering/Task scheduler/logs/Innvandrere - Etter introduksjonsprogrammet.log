@@ -1,0 +1,24 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Introprogram CSV data loaded successfully.
+Statistikken viser andelen i arbeid eller utdanning i 2022-01-01 00:00:00 som avsluttet eller avbrÃ¸t programmet i 2021-01-01 00:00:00
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\etter_introduksjonsprogram.csv
+Failed to download file: Data/09_Innvandrere og inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.csv, Status Code: 401
+[2025-03-21 08:40:43] Uploading new file: etter_introduksjonsprogram.csv
+Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
+Email notifications disabled. Updates for etter_introduksjonsprogram.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\etter_introduksjonsprogram.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_etter_introduksjonsprogram_csv.log
+
+
+Errors/Warnings:
+D:\Scripts\analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.py:147: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_fylker["Fylke"] = df_fylker["Fylke"].replace(rename_fylker)
+

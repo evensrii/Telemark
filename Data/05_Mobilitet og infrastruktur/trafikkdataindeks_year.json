@@ -1,0 +1,3133 @@
+{ publishedAreaTrafficVolumeIndex(id: 962, year: 2020, month:12) {
+    name
+    period{
+      calculationMonth{
+        year
+      }}
+    aggregatedTrafficVolumeIndex(areaTypes:[COUNTY]) {
+      area{name}
+      byRoadCategoryCombination {
+        roadCategoryCombination
+        last12MonthsIndicesByDayType {
+          dayType
+          byLengthRange {
+            lengthRange {
+              representation
+            }
+            volumeIndexNumber {
+              percentageChange
+            }}}}}}}
+
+
+
+{
+  "data": {
+    "publishedAreaTrafficVolumeIndex": [
+      {
+        "name": "Vegtrafikkindeksen",
+        "period": {
+          "calculationMonth": {
+            "year": 2020
+          }
+        },
+        "aggregatedTrafficVolumeIndex": [
+          {
+            "area": {
+              "name": "Agder"
+            },
+            "byRoadCategoryCombination": [
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.88
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.37
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.31
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.01
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 1.85
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.19
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.9
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 2.88
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG_FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.74
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.76
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.42
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.67
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.65
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 1.4
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.72
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.67
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 2.06
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.57
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.14
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.8
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.02
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.29
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 0.94
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.26
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.43
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 1.22
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "area": {
+              "name": "Innlandet"
+            },
+            "byRoadCategoryCombination": [
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -15.26
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -15.04
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.26
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.93
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.19
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.07
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.59
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.84
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.5
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG_FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -12.76
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -12.44
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.07
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.34
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.47
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.34
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.47
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.64
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.18
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.81
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.39
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.49
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.47
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.46
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.48
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.15
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.23
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 0.21
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "area": {
+              "name": "Møre og Romsdal"
+            },
+            "byRoadCategoryCombination": [
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.34
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.23
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.56
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.58
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.94
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 1.34
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.1
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.48
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 2.41
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG_FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.85
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.55
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.67
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.35
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.67
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.92
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.96
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.39
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 0.25
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.53
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.11
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.68
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.2
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.49
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.38
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.87
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.34
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.16
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "area": {
+              "name": "Nordland"
+            },
+            "byRoadCategoryCombination": [
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -13.26
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -14.11
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -13.12
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.56
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.7
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.67
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.77
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.87
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.11
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG_FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.18
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.57
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.73
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.51
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.24
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.91
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.02
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.77
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.57
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.62
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.48
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.69
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.1
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.38
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 3.39
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 0.04
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.32
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 4.5
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "area": {
+              "name": "Oslo"
+            },
+            "byRoadCategoryCombination": [
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.6
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.91
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.66
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.71
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.11
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.82
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.95
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.25
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.63
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG_FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.6
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.91
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.66
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.71
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.11
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.82
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.95
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.25
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.63
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": null
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": null
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": null
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": null
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": null
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": null
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": null
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": null
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": null
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "area": {
+              "name": "Rogaland"
+            },
+            "byRoadCategoryCombination": [
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.13
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.41
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.81
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.57
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.28
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 0.47
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.44
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.24
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 1.12
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG_FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.43
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.95
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.27
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.29
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.69
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.65
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.34
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.67
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.96
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.68
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.23
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.14
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.89
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.86
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.23
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.08
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.86
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.51
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "area": {
+              "name": "Troms og Finnmark"
+            },
+            "byRoadCategoryCombination": [
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.44
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -11.22
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.77
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.48
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.28
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.48
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.69
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.44
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 1.23
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG_FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.58
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.05
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.46
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.49
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.1
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.32
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.95
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.55
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 0.1
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.49
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.58
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.07
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.5
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.87
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.39
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.27
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.69
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.33
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "area": {
+              "name": "Trøndelag"
+            },
+            "byRoadCategoryCombination": [
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -13.59
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -14.54
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.5
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.03
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.17
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.57
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.25
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.33
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.41
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG_FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -12.03
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -12.43
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.3
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.26
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.76
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.89
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.71
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.14
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.86
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.73
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.69
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.95
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.62
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.6
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.98
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.26
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.17
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.05
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "area": {
+              "name": "Vestfold og Telemark"
+            },
+            "byRoadCategoryCombination": [
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -11.61
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -12.65
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.77
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.74
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.33
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.07
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.02
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.65
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 1.11
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG_FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.14
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.22
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.47
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.1
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.36
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 1.21
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.77
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.01
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 2.01
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.06
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.17
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.69
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.73
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.7
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 2.28
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.72
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.63
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 2.77
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "area": {
+              "name": "Vestland"
+            },
+            "byRoadCategoryCombination": [
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -12.85
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -12.79
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -11.24
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.87
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.75
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.11
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.87
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.38
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG_FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -11.89
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -11.93
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.58
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.76
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.88
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.75
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.17
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.26
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.52
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.95
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -11.08
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.93
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.52
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.9
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.76
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.23
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.65
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.66
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "area": {
+              "name": "Viken"
+            },
+            "byRoadCategoryCombination": [
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -18.51
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -17.84
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -12.58
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.42
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -10.71
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -2.28
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -7.64
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.03
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.61
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "EUROPAVEG_RIKSVEG_FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -14.45
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -14.41
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.33
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.07
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.56
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -1.37
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.96
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -6.48
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.09
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "roadCategoryCombination": "FYLKESVEG",
+                "last12MonthsIndicesByDayType": [
+                  {
+                    "dayType": "WEEKEND",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -8.93
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -9.75
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.9
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "ALL",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.86
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -5.64
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -0.12
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "dayType": "WEEKDAY",
+                    "byLengthRange": [
+                      {
+                        "lengthRange": {
+                          "representation": "[..,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -3.67
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[..,5.6)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": -4.37
+                        }
+                      },
+                      {
+                        "lengthRange": {
+                          "representation": "[5.6,..)"
+                        },
+                        "volumeIndexNumber": {
+                          "percentageChange": 0.61
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
