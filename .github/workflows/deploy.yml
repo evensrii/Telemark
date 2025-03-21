@@ -15,7 +15,7 @@ jobs:
       - name: Set up deployment directory
         run: |
           mkdir -p Kart/sirkulare_telemark
-          echo "const MAPBOX_ACCESS_TOKEN = '${{ secrets.MAPBOX_TOKEN }}';" > Kart/sirkulare_telemark/config.js
+          echo "const MAPBOX_ACCESS_TOKEN = '${{ secrets.MAPBOX_ACCESS_TOKEN }}';" > Kart/sirkulare_telemark/config.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
