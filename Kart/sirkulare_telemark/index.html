@@ -27,6 +27,9 @@
 
 <script>
 
+    // Set the Mapbox token before using the API
+    mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+    
     // Initialize Mapbox map
     const map = new mapboxgl.Map({
         container: 'map',
