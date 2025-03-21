@@ -14,9 +14,11 @@ Data columns (total 2 columns):
 dtypes: int64(1), object(1)
 memory usage: 752.0+ bytes
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\antall_felte_elg_og_hjort.csv
-Failed to download file: Data/04_Klima og ressursforvaltning/Ressursforvaltning/antall_felte_elg_og_hjort.csv, Status Code: 401
-[2025-03-21 08:10:34] Uploading new file: antall_felte_elg_og_hjort.csv
-Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
+[2025-03-21 09:16:43] Row count changed: 38 -> 39
+
+Added rows (showing up to 10):
+Antall felte elg: 1496, Antall felte hjort: 1024, Jaktr: 2024
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Ressursforvaltning/antall_felte_elg_og_hjort.csv
 Email notifications disabled. Updates for antall_felte_elg_og_hjort.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\antall_felte_elg_og_hjort.csv
 New data detected and pushed to GitHub.

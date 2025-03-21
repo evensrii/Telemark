@@ -124,10 +124,7 @@ Final pivoted DataFrame:
 1    InnsjÃ¸       20.5  66.7     12.2     0.3           0.3
 2  Kystvann        4.1  40.8     51.0     0.0           4.1
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\Ã¸kologisk_tilstand_vann.csv
-Failed to download file: Data/04_Klima og ressursforvaltning/Ressursforvaltning/Ã¸kologisk_tilstand_vann.csv, Status Code: 401
-[2025-03-21 08:10:21] Uploading new file: Ã¸kologisk_tilstand_vann.csv
-Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
-Email notifications disabled. Updates for Ã¸kologisk_tilstand_vann.csv were not sent.
+[2025-03-21 09:16:28] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\Ã¸kologisk_tilstand_vann.csv
-New data detected and pushed to GitHub.
+No new data detected.
 
