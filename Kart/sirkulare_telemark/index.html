@@ -6,15 +6,9 @@
     <title>D3 + Mapbox GL Map - Apekatt</title>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="config.js"></script>
     <script>
-        console.log("Mapbox Token:", typeof MAPBOX_ACCESS_TOKEN !== "undefined" ? MAPBOX_ACCESS_TOKEN : "NOT LOADED");
-        if (typeof MAPBOX_ACCESS_TOKEN !== "undefined") {
-          mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
-        } else {
-          console.error("MAPBOX_ACCESS_TOKEN is not defined! Check config.js.");
-        }
-      </script>
+        const MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoiZXZlbnNyaWkiLCJhIjoiY204aHI0cm42MDUyaTJqczl6a2lsN2hneCJ9.cK3hBNaY_aEu2tfLjwH6kA";  // 🔥 Replace this with your actual token
+    </script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
     <style>
         body { margin: 0; padding: 0; }
