@@ -1,0 +1,16 @@
+Jeg bruker samme endepunkt som i IMDi-APIet for å laste ned csv-filer.
+
+API-løsningen åpner også opp for mulighet til å filtere på f. eks. fylke i selve spørringen, eks.
+
+{ 
+    "TableName":"bosatt_befolkning", 
+    "Include":["bosetting","fylkeNr","enhet","aar"], 
+    "Conditions":{ 
+        "bosetting":["bosatt_per_1000"], 
+        "fylkeNr":["00"], 
+        "enhet":["promille"], 
+        "aar":["2021"] 
+        } 
+}
+
+Min løsning fungerer helt utmerket. Laster riktignok ned data for alle kommuner før jeg så filtrerer i etterkant, men dette er ikke noe problem!

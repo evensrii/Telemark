@@ -1,0 +1,15 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+No new data found for 2025-04
+No new data found for 2025-04
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arbeidsledighet.csv
+Failed to download file: Data/03_Arbeid og nÃ¦ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/arbeidsledighet.csv, Status Code: 401
+[2025-03-21 08:07:09] Uploading new file: arbeidsledighet.csv
+Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
+Email notifications disabled. Updates for arbeidsledighet.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\arbeidsledighet.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_NAV_-_Arbeidsledighet.log
+
