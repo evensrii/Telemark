@@ -16,7 +16,7 @@ jobs:
         run: |
           echo "const MAPBOX_ACCESS_TOKEN = '${{ secrets.MAPBOX_ACCESS_TOKEN }}';" > config.js
           cat config.js  # Debug: Print the file to confirm it exists
-          git add config.js  # Force add config.js to be deployed
+          git add -f config.js  # Force add config.js even if it's ignored
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
