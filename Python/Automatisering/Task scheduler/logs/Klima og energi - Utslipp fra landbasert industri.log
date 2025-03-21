@@ -24,18 +24,12 @@ Sample data:
 
 [5 rows x 4 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-Failed to download file: Data/Klima_og_energi/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv, Status Code: 401
-[2025-03-21 08:09:34] Uploading new file: norskeutslipp_detaljert_telemark.csv
-Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
-Email notifications disabled. Updates for norskeutslipp_detaljert_telemark.csv were not sent.
+[2025-03-21 09:15:41] No value columns found to compare. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-Failed to download file: Data/04_Klima og ressursforvaltning/Klimagassutslipp/norskeutslipp_everviz.csv, Status Code: 401
-[2025-03-21 08:09:34] Uploading new file: norskeutslipp_everviz.csv
-Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
-Email notifications disabled. Updates for norskeutslipp_everviz.csv were not sent.
+[2025-03-21 09:15:41] No changes found in value columns. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-New data detected in norskeutslipp_detaljert_telemark.csv and pushed to GitHub.
-New data detected in norskeutslipp_everviz.csv and pushed to GitHub.
+No new data detected in norskeutslipp_detaljert_telemark.csv.
+No new data detected in norskeutslipp_everviz.csv.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Utslipp_fra_landbasert_industri.log
 

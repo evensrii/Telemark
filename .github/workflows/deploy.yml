@@ -1,0 +1,24 @@
+name: Deploy Mapbox Site
+
+on:
+  push:
+    branches: [main]  # Or your default branch
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up deployment directory
+        run: |
+          mkdir -p Kart/sirkulare_telemark
+          echo "const MAPBOX_ACCESS_TOKEN = '${{ secrets.MAPBOX_ACCESS_TOKEN }}';" > Kart/sirkulare_telemark/config.js
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: Kart/sirkulare_telemark
