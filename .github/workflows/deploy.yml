@@ -15,6 +15,8 @@ jobs:
       - name: Inject Mapbox Token
         run: |
           echo "const MAPBOX_ACCESS_TOKEN = '${{ secrets.MAPBOX_ACCESS_TOKEN }}';" > config.js
+          cat config.js  # Debug: Print the file to confirm it exists
+          git add config.js  # Force add config.js to be deployed
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
@@ -22,3 +24,4 @@ jobs:
           branch: main  # Change from gh-pages to main
           folder: .
           clean: true
+          single-commit: true  # Avoid unnecessary commits
