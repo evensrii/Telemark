@@ -88,8 +88,11 @@ Antall sysselsatte per kommune:
 2        Fyresdal                        541
 12         Siljan                        492
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\offentlige_vs_privat_naringsliv.csv
-[2025-03-21 09:11:56] No new data to upload. Skipping GitHub update.
+Failed to download file: Data/03_Arbeid og nÃ¦ringsliv/02_NÃ¦ringsliv/NÃ¦ringsstruktur og arbeidsplasser/offentlige_vs_privat_naringsliv.csv, Status Code: 401
+[2025-03-24 08:06:14] Uploading new file: offentlige_vs_privat_naringsliv.csv
+Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
+Email notifications disabled. Updates for offentlige_vs_privat_naringsliv.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\offentlige_vs_privat_naringsliv.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Offentlig_vs__privat_naeringsliv.log
 
