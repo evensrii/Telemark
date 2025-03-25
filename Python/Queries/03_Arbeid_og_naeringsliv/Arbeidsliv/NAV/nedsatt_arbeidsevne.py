@@ -154,7 +154,7 @@ try:
             df_telemark_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år Telemark', 'A:I', 'K:S', column_names)       
             df_telemark_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år Telemark', 'A:I', 'K:S', column_names)
 
-            # Replace values "Alle aldre" with "18 - 66 år" in "df_landet_18_66"
+            # Replace values "Alle aldre" with "18 - 66 år" in df_landet_18_66, df_fylker_18_66, df_telemark_18_66
             df_landet_18_66['Alder'] = df_landet_18_66['Alder'].replace('Alle aldre', '18 - 66 år')
             df_fylker_18_66['Alder'] = df_fylker_18_66['Alder'].replace('Alle aldre', '18 - 66 år')
             df_telemark_18_66['Alder'] = df_telemark_18_66['Alder'].replace('Alle aldre', '18 - 66 år')
@@ -176,8 +176,7 @@ try:
             }
             
             df_latest_month['Geografisk enhet'] = df_latest_month['Geografisk enhet'].replace(county_name_mapping)
-
-            # Append new data to existing dataset
+            
             df_nedsatt = pd.concat([df_nedsatt, df_latest_month], axis=0, ignore_index=True)
 
         except Exception as e:
@@ -196,12 +195,15 @@ try:
     github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/NAV/Nedsatt arbeidsevne"
     temp_folder = os.environ.get("TEMP_FOLDER")
 
-    # Create a copy for comparison and convert Int64 to string to avoid type conflicts
+    # Create a copy for comparison, keeping numeric types
     df_compare = df_nedsatt.copy()
-    df_compare['Antall personer'] = df_compare['Antall personer'].astype(str)
-
+    
+    # Ensure consistent numeric types
+    df_compare['Antall personer'] = pd.to_numeric(df_compare['Antall personer'], errors='coerce')
+    df_compare['Andel av befolkningen'] = pd.to_numeric(df_compare['Andel av befolkningen'], errors='coerce')
+    
     # Call the function and get the "New Data" status
-    is_new_data = handle_output_data(df_compare, file_name, github_folder, temp_folder, keepcsv=True)
+    is_new_data = handle_output_data(df_compare, file_name, github_folder, temp_folder, keepcsv=True, value_columns=['Antall personer', 'Andel av befolkningen'])  # Specify which columns to compare
 
     # Write the "New Data" status to a unique log file
     log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
