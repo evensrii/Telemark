@@ -610,7 +610,7 @@ def handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=False,
 
     # Save the DataFrame to a temporary file
     temp_file_path = os.path.join(temp_folder, file_name)
-    df.to_csv(temp_file_path, index=False, encoding="utf-8", float_format='%.6f')  # Use consistent float precision
+    df.to_csv(temp_file_path, index=False, encoding="utf-8")
     print(f"Saved file to {temp_file_path}")
 
     # Compare with GitHub and push new data if applicable
