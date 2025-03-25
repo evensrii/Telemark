@@ -73,12 +73,12 @@ script_name = os.path.basename(__file__)
 # Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
 error_messages = []
 
-################# Import latest data #################
-
-# URL for the CSV file
-url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Nedsatt%20arbeidsevne/nedsatt_arbeidsevne.csv"
-
 try:
+    ################# Import latest data #################
+
+    # URL for the CSV file
+    url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Nedsatt%20arbeidsevne/nedsatt_arbeidsevne.csv"
+
     # Fetch the data
     response = requests.get(url)
     response.raise_for_status()  # Raise an exception for bad status codes
@@ -89,133 +89,140 @@ try:
         sep=',',
         decimal='.',  # Use comma as decimal separator
         thousands=None,  # Don't interpret thousands separators
-        low_memory=False  # Prevent mixed type inference warning
+        low_memory=False,  # Prevent mixed type inference warning
+        dtype={
+            'Antall personer': str,  # Convert to numeric later
+            'Andel av befolkningen': str  # Convert to numeric later
+        }
     )
     
+    # Set column names
+    column_names = ['Nivå','Geografisk enhet','Kjønn','Alder','Antall personer','Andel av befolkningen','Dato']
+    df_nedsatt.columns = column_names
+
+    ## Handle asterisk values and convert to numeric
+    df_nedsatt['Antall personer'] = df_nedsatt['Antall personer'].replace('*', np.nan)
+    df_nedsatt['Antall personer'] = pd.to_numeric(df_nedsatt['Antall personer'], errors='coerce')  # Keep as float
+
+    ## Convert percentage values to numeric
+    df_nedsatt['Andel av befolkningen'] = pd.to_numeric(df_nedsatt['Andel av befolkningen'], errors='coerce')
+
+    ## Convert the "Dato" column to datetime with consistent format
+    df_nedsatt['Dato'] = pd.to_datetime(df_nedsatt['Dato'])
+
+    ## Identify the latest date in the dato column
+    latest_date = df_nedsatt['Dato'].max()
+    month_year = latest_date.strftime('%Y-%m')
+    next_months_file = (latest_date + pd.DateOffset(months=2)).strftime('%Y-%m')  # Format as YYYY-MM
+
+    ################# Import new monthly data, if any #################
+
+    # Try all possible day suffixes (01-31) for the monthly file
+    base_url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Nedsatt%20arbeidsevne/"
+    new_data_exists = False
+    url_monthly = None
+
+    # Try each day of the month as suffix
+    for day in range(1, 32):  # 1 to 31
+        test_url = f"{base_url}{next_months_file}-{str(day).zfill(2)}.xlsx"
+        try:
+            response = requests.head(test_url)
+            if response.status_code == 200:
+                new_data_exists = True
+                url_monthly = test_url
+                print(f"Found monthly data file: {test_url}")
+                break
+        except Exception as e:
+            continue
+
+    if not new_data_exists:
+        print(f"No new data found for {next_months_file} with any day suffix")
+
+    if new_data_exists:
+        try:
+            response = requests.get(url_monthly)
+            response.raise_for_status()
+            
+            # Define column names for the dataframe - these match the exact order in Excel (A:I and K:S)
+            column_names = ['Månednummer', 'År', 'Nivå', 'Geografisk enhet', 'Kjønn', 'Alder', 'Antall personer', 'Andel av befolkningen', 'Dato']
+
+            # Import data for each sheet using the function
+            df_landet_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år landet', 'A:I', 'K:S', column_names)
+            df_landet_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år landet', 'A:I', 'K:S', column_names)
+            df_fylker_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år fylker', 'A:I', 'K:S', column_names)
+            df_fylker_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år fylker', 'A:I', 'K:S', column_names)
+            df_telemark_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år Telemark', 'A:I', 'K:S', column_names)       
+            df_telemark_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år Telemark', 'A:I', 'K:S', column_names)
+
+            # Replace values "Alle aldre" with "18 - 66 år" in "df_landet_18_66"
+            df_landet_18_66['Alder'] = df_landet_18_66['Alder'].replace('Alle aldre', '18 - 66 år')
+            df_fylker_18_66['Alder'] = df_fylker_18_66['Alder'].replace('Alle aldre', '18 - 66 år')
+            df_telemark_18_66['Alder'] = df_telemark_18_66['Alder'].replace('Alle aldre', '18 - 66 år')
+
+            # Replace values "Alle aldre" with "18 - 29 år" in df_landet_18_29, df_fylker_18_29, df_telemark_18_29
+            df_landet_18_29['Alder'] = df_landet_18_29['Alder'].replace('Under 30 år', '18 - 29 år')
+            df_fylker_18_29['Alder'] = df_fylker_18_29['Alder'].replace('Under 30 år', '18 - 29 år')
+            df_telemark_18_29['Alder'] = df_telemark_18_29['Alder'].replace('Under 30 år', '18 - 29 år')
+
+            # Stack all dataframes vertically
+            df_latest_month = pd.concat([df_landet_18_29, df_landet_18_66, df_fylker_18_29, df_fylker_18_66, df_telemark_18_29, df_telemark_18_66], axis=0, ignore_index=True)
+
+            # Standardize county names
+            county_name_mapping = {
+                'Trøndelag - Trööndelage': 'Trøndelag',
+                'Troms - Romsa - Tromssa ': 'Troms',  # Note: includes trailing space
+                'Finnmark - Finnmárku - Finmarkku': 'Finnmark',
+                'Nordland - Nordlánnda': 'Nordland'
+            }
+            
+            df_latest_month['Geografisk enhet'] = df_latest_month['Geografisk enhet'].replace(county_name_mapping)
+
+            # Append new data to existing dataset
+            df_nedsatt = pd.concat([df_nedsatt, df_latest_month], axis=0, ignore_index=True)
+
+        except Exception as e:
+            error_message = f"Error loading unemployment data: {str(e)}"
+            error_messages.append(error_message)
+            print(error_message)
+            notify_errors(error_messages, script_name=script_name)
+            raise RuntimeError("Failed to load unemployment data")
+    else:
+        print(f"No new data found for {next_months_file}")
+
+    ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
+
+    file_name = "nedsatt_arbeidsevne.csv"
+    task_name = "NAV - Nedsatt arbeidsevne"
+    github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/NAV/Nedsatt arbeidsevne"
+    temp_folder = os.environ.get("TEMP_FOLDER")
+
+    # Create a copy for comparison and convert Int64 to string to avoid type conflicts
+    df_compare = df_nedsatt.copy()
+    df_compare['Antall personer'] = df_compare['Antall personer'].astype(str)
+
+    # Call the function and get the "New Data" status
+    is_new_data = handle_output_data(df_compare, file_name, github_folder, temp_folder, keepcsv=True)
+
+    # Write the "New Data" status to a unique log file
+    log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
+    task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+    new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
+
+    # Write the result in a detailed format
+    with open(new_data_status_file, "w", encoding="utf-8") as log_file:
+        log_file.write(f"{task_name_safe},{file_name},{'Yes' if is_new_data else 'No'}\n")
+
+    # Output results for debugging/testing
+    if is_new_data:
+        print("New data detected and pushed to GitHub.")
+    else:
+        print("No new data detected.")
+
+    print(f"New data status log written to {new_data_status_file}")
+
 except Exception as e:
     error_message = f"Error loading unemployment data: {str(e)}"
     error_messages.append(error_message)
     print(error_message)
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError("Failed to load unemployment data")
-
-column_names = ['Nivå','Geografisk enhet','Kjønn','Alder','Antall personer','Andel av befolkningen','Dato']
-df_nedsatt.columns = column_names
-
-## Handle asterisk values
-df_nedsatt['Antall personer'] = df_nedsatt['Antall personer'].replace('*', np.nan)
-df_nedsatt['Antall personer'] = pd.to_numeric(df_nedsatt['Antall personer'], errors='coerce')  # Keep as float
-
-## Convert the "Dato" column to datetime
-df_nedsatt['Dato'] = pd.to_datetime(df_nedsatt['Dato'])
-
-## Identify the latest date in the dato column
-latest_date = df_nedsatt['Dato'].max()
-month_year = latest_date.strftime('%Y-%m')
-next_months_file = (latest_date + pd.DateOffset(months=2)).strftime('%Y-%m')  # Format as YYYY-MM
-
-
-################# Import new monthly data, if any #################
-
-# Try all possible day suffixes (01-31) for the monthly file
-base_url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Nedsatt%20arbeidsevne/"
-new_data_exists = False
-url_monthly = None
-
-# Try each day of the month as suffix
-for day in range(1, 32):  # 1 to 31
-    test_url = f"{base_url}{next_months_file}-{str(day).zfill(2)}.xlsx"
-    try:
-        response = requests.head(test_url)
-        if response.status_code == 200:
-            new_data_exists = True
-            url_monthly = test_url
-            print(f"Found monthly data file: {test_url}")
-            break
-    except Exception as e:
-        continue
-
-if not new_data_exists:
-    print(f"No new data found for {next_months_file} with any day suffix")
-
-if new_data_exists:
-    try:
-        response = requests.get(url_monthly)
-        response.raise_for_status()
-        
-        # Define column names for the dataframe - these match the exact order in Excel (A:I and K:S)
-        column_names = ['Månednummer', 'År', 'Nivå', 'Geografisk enhet', 'Kjønn', 'Alder', 'Antall personer', 'Andel av befolkningen', 'Dato']
-
-        # Import data for each sheet using the function
-        df_landet_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år landet', 'A:I', 'K:S', column_names)
-        df_landet_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år landet', 'A:I', 'K:S', column_names)
-        df_fylker_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år fylker', 'A:I', 'K:S', column_names)
-        df_fylker_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år fylker', 'A:I', 'K:S', column_names)
-        df_telemark_18_29 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 29 år Telemark', 'A:I', 'K:S', column_names)       
-        df_telemark_18_66 = import_excel_sheet(BytesIO(response.content), 'Nedsatt 18 - 66 år Telemark', 'A:I', 'K:S', column_names)
-
-        # Replace values "Alle aldre" with "18 - 66 år" in "df_landet_18_66"
-        df_landet_18_66['Alder'] = df_landet_18_66['Alder'].replace('Alle aldre', '18 - 66 år')
-        df_fylker_18_66['Alder'] = df_fylker_18_66['Alder'].replace('Alle aldre', '18 - 66 år')
-        df_telemark_18_66['Alder'] = df_telemark_18_66['Alder'].replace('Alle aldre', '18 - 66 år')
-
-        # Replace values "Alle aldre" with "18 - 29 år" in df_landet_18_29, df_fylker_18_29, df_telemark_18_29
-        df_landet_18_29['Alder'] = df_landet_18_29['Alder'].replace('Under 30 år', '18 - 29 år')
-        df_fylker_18_29['Alder'] = df_fylker_18_29['Alder'].replace('Under 30 år', '18 - 29 år')
-        df_telemark_18_29['Alder'] = df_telemark_18_29['Alder'].replace('Under 30 år', '18 - 29 år')
-
-        # Stack all dataframes vertically
-        df_latest_month = pd.concat([df_landet_18_29, df_landet_18_66, df_fylker_18_29, df_fylker_18_66, df_telemark_18_29, df_telemark_18_66], axis=0, ignore_index=True)
-
-         # Standardize county names
-        county_name_mapping = {
-            'Trøndelag - Trööndelage': 'Trøndelag',
-            'Troms - Romsa - Tromssa ': 'Troms',  # Note: includes trailing space
-            'Finnmark - Finnmárku - Finmarkku': 'Finnmark',
-            'Nordland - Nordlánnda': 'Nordland'
-        }
-        
-        df_latest_month['Geografisk enhet'] = df_latest_month['Geografisk enhet'].replace(county_name_mapping)
-
-        # Append new data to existing dataset
-        df_nedsatt = pd.concat([df_nedsatt, df_latest_month], axis=0, ignore_index=True)
-
-    except Exception as e:
-        error_message = f"Error loading unemployment data: {str(e)}"
-        error_messages.append(error_message)
-        print(error_message)
-        notify_errors(error_messages, script_name=script_name)
-        raise RuntimeError("Failed to load unemployment data")
-else:
-    print(f"No new data found for {next_months_file}")
-
-##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
-
-file_name = "nedsatt_arbeidsevne.csv"
-task_name = "NAV - Nedsatt arbeidsevne"
-github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/NAV/Nedsatt arbeidsevne"
-temp_folder = os.environ.get("TEMP_FOLDER")
-
-# Create a copy for comparison and convert Int64 to string to avoid type conflicts
-df_compare = df_nedsatt.copy()
-df_compare['Antall personer'] = df_compare['Antall personer'].astype(str)
-
-# Call the function and get the "New Data" status
-is_new_data = handle_output_data(df_compare, file_name, github_folder, temp_folder, keepcsv=True)
-
-# Write the "New Data" status to a unique log file
-log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
-new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
-
-# Write the result in a detailed format
-with open(new_data_status_file, "w", encoding="utf-8") as log_file:
-    log_file.write(f"{task_name_safe},{file_name},{'Yes' if is_new_data else 'No'}\n")
-
-# Output results for debugging/testing
-if is_new_data:
-    print("New data detected and pushed to GitHub.")
-else:
-    print("No new data detected.")
-
-print(f"New data status log written to {new_data_status_file}")
