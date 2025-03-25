@@ -5,19 +5,13 @@ GITHUB_TOKEN loaded successfully.
 Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
 Selected data from year 2024-01-01 00:00:00
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_arbeidsinnvandrere.csv
-Failed to download file: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_arbeidsinnvandrere.csv, Status Code: 401
-[2025-03-24 08:39:14] Uploading new file: andel_arbeidsinnvandrere.csv
-Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
-Email notifications disabled. Updates for andel_arbeidsinnvandrere.csv were not sent.
+[2025-03-25 08:11:37] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_arbeidsinnvandrere.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_flyktninger.csv
-Failed to download file: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_flyktninger.csv, Status Code: 401
-[2025-03-24 08:39:15] Uploading new file: andel_flyktninger.csv
-Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
-Email notifications disabled. Updates for andel_flyktninger.csv were not sent.
+[2025-03-25 08:11:37] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_flyktninger.csv
-New data detected in andel_arbeidsinnvandrere.csv and pushed to GitHub.
-New data detected in andel_flyktninger.csv and pushed to GitHub.
+No new data detected in andel_arbeidsinnvandrere.csv.
+No new data detected in andel_flyktninger.csv.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Flyktninger_og_arbeidsinnvandrere.log
 
 

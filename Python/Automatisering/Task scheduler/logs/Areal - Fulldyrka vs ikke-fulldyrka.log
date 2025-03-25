@@ -4,11 +4,8 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Fulldyrka vs ikke-fulldyrka jordbruksareal JSON data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\fulldyrka_vs_ikke-fulldyrka.csv
-Failed to download file: Data/10_Areal- og stedsutvikling/Areal til jordbruk/fulldyrka_vs_ikke-fulldyrka.csv, Status Code: 401
-[2025-03-24 08:41:30] Uploading new file: fulldyrka_vs_ikke-fulldyrka.csv
-Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
-Email notifications disabled. Updates for fulldyrka_vs_ikke-fulldyrka.csv were not sent.
+[2025-03-25 08:13:27] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\fulldyrka_vs_ikke-fulldyrka.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Areal_-_Fulldyrka_vs_ikke-fulldyrka.log
 

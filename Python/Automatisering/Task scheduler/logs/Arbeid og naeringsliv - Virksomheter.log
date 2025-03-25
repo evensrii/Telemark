@@ -53,11 +53,8 @@ Name: value, dtype: int64
 Prosentvis endring i Norge fra 2009 til 2025:
 40.8%
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\virksomheter.csv
-Failed to download file: Data/03_Arbeid og nÃ¦ringsliv/02_NÃ¦ringsliv/Virksomheter/virksomheter.csv, Status Code: 401
-[2025-03-24 08:06:57] Uploading new file: virksomheter.csv
-Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
-Email notifications disabled. Updates for virksomheter.csv were not sent.
+[2025-03-25 08:06:58] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\virksomheter.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Virksomheter.log
 

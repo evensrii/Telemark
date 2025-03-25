@@ -4,11 +4,8 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 HÃ¸yeste utdanning fylker CSV data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\hÃ¸yeste_utdanning_innv.csv
-Failed to download file: Data/09_Innvandrere og inkludering/UtdanningsnivÃ¥ Telemark/hÃ¸yeste_utdanning_innv.csv, Status Code: 401
-[2025-03-24 08:41:10] Uploading new file: hÃ¸yeste_utdanning_innv.csv
-Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
-Email notifications disabled. Updates for hÃ¸yeste_utdanning_innv.csv were not sent.
+[2025-03-25 08:13:11] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\hÃ¸yeste_utdanning_innv.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Hoyeste_utdanning.log
 

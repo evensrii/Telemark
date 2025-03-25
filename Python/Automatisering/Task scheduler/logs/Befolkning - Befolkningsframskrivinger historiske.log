@@ -5,11 +5,8 @@ GITHUB_TOKEN loaded successfully.
 Tittel spÃ¸rring - fÃ¸rste Ã¥r JSON data loaded successfully.
 Befolkningsframskrivinger historiske JSON data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_historiske.csv
-Failed to download file: Data/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske.csv, Status Code: 401
-[2025-03-24 08:05:18] Uploading new file: befolkningsframskrivinger_historiske.csv
-Failed to check file on GitHub: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
-Email notifications disabled. Updates for befolkningsframskrivinger_historiske.csv were not sent.
+[2025-03-25 08:05:18] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_historiske.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_historiske.log
 
