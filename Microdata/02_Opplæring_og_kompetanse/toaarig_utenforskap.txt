@@ -179,7 +179,7 @@ for yy in $yy1 : $yy2 // <--- Definert øverst i scriptet
 
 end
 
-// Fjerne en del sysmiss fra datasett år 1
+// Fjerne en del sysmiss fra KUN datasett år 1 (holdes derfor utenfor loop)
 tabulate yrkstat ++ $yy1, missing
 drop if sysmiss(yrkstat ++ $yy1) // Missing kan oppstå når mismatches mellom befolkningsdatasettet ("populasjon") og de andre datasettene.
 
