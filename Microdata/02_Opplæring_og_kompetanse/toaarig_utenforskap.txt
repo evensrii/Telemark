@@ -148,9 +148,8 @@ import db/NUDB_BU $yyyy_10_01 as utdanningsnivå_BU
 destring utdanningsnivå_BU
 generate utd_nivå = '1_Ikke fullført GS eller missing'
 replace utd_nivå = '2_Grunnskole' if utdanningsnivå_BU >= 200000 & utdanningsnivå_BU < 300000
-replace utd_nivå = '3_Vgo SF' if utdanningsnivå_BU >= 400000 & utdanningsnivå_BU < 415302 | utdanningsnivå_BU == 435101 | utdanningsnivå_BU == 435102
+replace utd_nivå = '3_Vgo SF' if utdanningsnivå_BU >= 400000 & utdanningsnivå_BU <= 415302 | utdanningsnivå_BU == 435101 | utdanningsnivå_BU == 435102
 replace utd_nivå = '3_Vgo YF' if utdanningsnivå_BU >= 415303 & utdanningsnivå_BU < 500000
-replace utd_nivå = '3_Vgo SF' if utdanningsnivå_BU == 415302 | utdanningsnivå_BU == 435101 | utdanningsnivå_BU == 435102
 replace utd_nivå = '4_Fagskole' if utdanningsnivå_BU >= 500000 & utdanningsnivå_BU < 600000
 replace utd_nivå = '5_Høyere utdanning' if utdanningsnivå_BU >= 600000 & utdanningsnivå_BU < 900000
 tabulate utd_nivå kjønn
