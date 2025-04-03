@@ -8,13 +8,16 @@ Scriptet egner seg til å analysere utenforskap mellom to valgte år, men kan fo
 Scriptet er basert på bindings (globale variabler) og loops. Bindings og deres verdier vises for oversikts skyld i høyre marg.
 
 Vi henter inn befolkningen i år 1 (basert på bostedskommune 1/1/år2) og variabler:
-  - alder (ser på 15-29 år)
+  - alder (ser på 15-29 år) *
   - yrkesstatus (utenfor arbeidsstyrken, lønnstaker, selvstendig, helt ledig osv.)
   - tiltaksstatus (hvis man er arbeidsledig eller har nedsatt arbeidsevne)
   - arbeidsavklaringspenger (mottaker ja/nei)
   - uføretrygd (ja/nei)
-  - kurstype (konkrete kurs en person tar - dvs. om vedkommende er under utdanning)
-  - utdanningsnivå (detaljert nivå, dvs. "idrettsfag", "veterinærfag" osv.)
+  - kurstype (dvs. om vedkommende er under utdanning)
+
+Vi henter også inn info om utdanningsnivå, men dette brukes ikke til selve klassifiseringen av utenforskap.
+
+* To alternative måter å hente inn populasjon. Ved alternativ 1) Hvis jeg benytter BEFOLKNING_KOMMNR_FORMELL må jeg bruke alder år1 - 1 (altså minus 1) for å sikre at aldersfordelt befolkning samsvarer med tallene i statistikkbanken (07459). I statistikkbanken blir personer som er født i løpet av år X regnet som 0 år per 1. januar året etter. Altså en teknikalitet. Eksempel: Umiddelbart vil det være naturlig å regne en person født i år 2000 som 22 år i 2022. Men, personer som er født i løpet av 2000 blir av SSB altså regnet som 21 år per 1.1.2022. Vi  må altså bruke "alder = 2022 - 1 - 2000", som gir 21 år. Ved alternativ 2) Hvis jeg bruker BOSATTEFDT_BOSTED (på samme telletidspunkt som sysselsettingsstatistikk) kan jeg bare bruke "alder".
 
 Vi kaller persondatasettet for "populasjon", og filtrerer og grupperer videre basert på ovennevnte variabler til et endelig datasett.
 
@@ -37,8 +40,17 @@ require no.ssb.fdb:39 as db
 
 // Opprette persondatasett for bosatte i Telemark
 create-dataset populasjon
-let yyyy_01_01 = $yyyy2 ++ "-01-01" // Eks. 2023-01-01 (referansetidspunkt befolkning)
-import db/BEFOLKNING_KOMMNR_FORMELL $yyyy_01_01 as bosted
+
+// Alternativ 1: Befolkning på samme telledato som sysselsettingsstatistikken (år1-11-16). Bra når studere utenforskap.
+let yyyy_11_16 = $yyyy1 ++ "-11-16" // Eks. 2022-11-16 (referansetidspunkt befolkning)
+import db/BOSATTEFDT_BOSTED $yyyy_11_16 as bosted
+// NB: Trenger da ikke bruke "alder - 1" når man lage aldersfordeling.
+
+// Alternativ 2: Befolkningen per år2-01-01. 
+//let yyyy_01_01 = $yyyy2 ++ "-01-01" // Eks. 2023-01-01 (referansetidspunkt befolkning) for 2022
+//import db/BEFOLKNING_KOMMNR_FORMELL $yyyy_01_01 as bosted // <--- Merk annen variabel enn alt. 1!
+// NB: Bruker jeg denne, må jeg også bruke "alder - 1" lenger ned (ca. linje 67).
+
 generate fylkenr = substr(bosted,1,2)
 generate kommunenr = substr(bosted,1,4)
 keep if fylkenr == '38' // Vestfold og Telemark
@@ -50,7 +62,10 @@ keep if fylke == 'Telemark' // Beholder bare Telemark
 import db/BEFOLKNING_FOEDSELS_AAR_MND as faarmnd // Fødselsår og -måned i format YYYYMM
 import db/BEFOLKNING_KJOENN as kjønn
 generate faar = int(faarmnd/100) // Eks. 201004 dele på 100 gir 2010 (fødselsår)
-generate alder = $yyyy1 - 1 - faar // Alder per 2022. Jon Olav: "Bruker år -1 for å sikre at aldersfordelt befolkning samsvarer med tallene i statistikkbanken" Tallet jeg får stemmer overens med SSB tabell 07459.
+
+generate alder = $yyyy1 - faar // Eks. 2022 - fødselsår
+//generate alder = $yyyy1 - 1 - faar // <-- Kun hvis "Alternativ 2" for befolkningstall (linje 49). Se forklaring øverst.
+
 keep if alder >=15 & alder < 30 // Beholder bare unge 15-29 år. Her kan man bytte aldersgrupper.
 
 // Lage en variabel "aldersgruppe" med 5-årige inndelinger
@@ -58,6 +73,15 @@ generate aldersgruppe = '0'
 replace aldersgruppe = '15-19 år' if alder >= 15
 replace aldersgruppe = '20-24 år' if alder >= 20
 replace aldersgruppe = '25-29 år' if alder >= 25
+
+tabulate aldersgruppe
+
+// Troubleshooting:
+// SSB (2022): 29 821
+// Alt. 1: Microdata (2022) (BOSATTEFDT_BOSTED): 29 814 <--- Gir nærmest SSB tabell 13563!
+// Alt. 2: Microdata (2022) (BEFOLKNING_KOMMNR_FORMELL): 29 918
+// Endelig datasett: 29 493 (321 unna alt. 1)
+
 
 //------- Da er grunnleggende bakgrunnsvariabler på plass, og vi ser nærmere på variabler som kan si noe om utenforskap -------//
 
@@ -75,6 +99,11 @@ for yyyy in $yyyy1 : $yyyy2 // <-- Definert øverst i scriptet (eks. 2022 : 2023
   
   let yyyy_11_30 = $yyyy ++ "-11-30" // Eks. 2022-11-30
   import db/ARBEIDSSOKER_TILTAK $yyyy_11_30 as arb_tiltak ++ $yy // Månedlig, ref. variabelbeskrivelsen. Nærmest YYYY-11-16.
+  
+  tabulate yrkstat ++ $yy
+  tabulate arbavklaring ++ $yy
+  tabulate ufoeretrygd ++ $yy
+  tabulate arb_tiltak ++ $yy
 end
 
   //-------------- Informasjon om pågående utdanning --------------//
@@ -134,28 +163,11 @@ end
 for yyyy in $yyyy1 : $yyyy2 // Eks. 2022 : 2023
   let yy = $yyyy - 2000 // Eks. 22
   use kursdata ++ $yy
-  let kurstype = kurstype ++ $yy // Using inline bindings (++) is not compatible with the collapse() command. Therefore, you should use bindings through the use of let in conjunction with collapse() operations.
+  // Using inline bindings (++) is not compatible with the collapse() command. Therefore, you should use bindings through the use of let in conjunction with collapse() operations.
+  let kurstype = kurstype ++ $yy
   collapse (count) $kurstype, by(fnr) // Aggregerer kursdatasettet etter grupperingsvariabel "fnr". Vi får et PERSONDATASETT med unike fnr og tilhørende ANTALL kurs. En rad per person.
   merge $kurstype into populasjon // Koble info om antall kurs (kolonne "kurstype22", dvs. antall kurs) per person på vårt store persondatasett "populasjon".
 end
-
-//-------------- Informasjon om detaljert utdanningsnivå --------------//
-
-use populasjon
-
-let yyyy_10_01 = $yyyy1 ++ "-10-01"
-import db/NUDB_BU $yyyy_10_01 as utdanningsnivå_BU
-destring utdanningsnivå_BU
-generate utd_nivå = '1_Ikke fullført GS eller missing'
-replace utd_nivå = '2_Grunnskole' if utdanningsnivå_BU >= 200000 & utdanningsnivå_BU < 300000
-replace utd_nivå = '3_Vgo SF' if utdanningsnivå_BU >= 400000 & utdanningsnivå_BU <= 415302 | utdanningsnivå_BU == 435101 | utdanningsnivå_BU == 435102
-replace utd_nivå = '3_Vgo YF' if utdanningsnivå_BU >= 415303 & utdanningsnivå_BU < 500000
-replace utd_nivå = '4_Fagskole' if utdanningsnivå_BU >= 500000 & utdanningsnivå_BU < 600000
-replace utd_nivå = '5_Høyere utdanning' if utdanningsnivå_BU >= 600000 & utdanningsnivå_BU < 900000
-tabulate utd_nivå kjønn
-
-// HVA MED 300 000 - 400 000?
-// 415302 "Ballettutdanning", men neste er "Danseutanning"
 
 //-------------- Overfor har vi hentet inn informasjon vi nå kan bruke for å definere kategorier av utenforskap (diverse binære ja/nei-variabler). --------------//
 
@@ -163,7 +175,7 @@ use populasjon // Hoveddatasettet vårt
 
 for yy in $yy1 : $yy2 // <--- Definert øverst i scriptet
   
-  //-------------- Under utdanning (0 = nei, 1 = ja) --------------//
+  //-------------- Under utdanning (0 = nei, 1 = ja) --------------// <--- Basert på "kurstype", ikke utdanningsnivå (utdniv).
   
   generate utdanning ++ $yy = 0 // <-- utdanning22, utdanning23 osv.
   replace utdanning ++ $yy  = 1 if kurstype ++ $yy >= 1 // Antall kurs større eller lik 1, dvs. under utdanning.
@@ -211,10 +223,10 @@ for yy in $yy1 : $yy2 // <--- Definert øverst i scriptet
 
 end
 
-// Spesialtilfelle: 15- og 16-åringer settes til "under utdanning" selv om de ikke ennå har fullført grunnskolen.
+// Spesialtilfelle: 15- og 16-åringer settes til "under utdanning" selv om de mangler utdanning eller ikke ennå har fullført grunnskolen.
 // Forutsetter at mange av disse fortsatt har et opplegg for å fullføre GS. 
 
-replace utdanning ++ $yy1 = 1 if utd_nivå == '1_Ikke fullført GS eller missing' & alder <= 16
+replace utdanning ++ $yy1 = 1 if utdniv == 'Uoppgitt el ingen utdanning' & alder <= 16
 tabulate utdanning ++ $yy1
 tabulate utdanning ++ $yy2
 
@@ -234,6 +246,9 @@ endblock
 
 define-labels Arbeidsstyrkestatus_labels '0' 'Utenfor arbeidsstyrken, ikke på tiltak' '1' 'Mottakere av AAP/uføretrygd' '2' 'Registrerte arbeidsledige' '3' 'Arbeidsmarkedstiltak' '4' 'Ordinær utdanning' '5' 'Sysselsatte'
 
+// Rekkefølgen på linjene under er viktig mtp. klassifisering.
+// De grønne tallene styrer kun rekkefølgen på kategoriene når de vises i tabellen.
+
 for yy in $yy1 : $yy2
   generate arbeidsstyrkestatus ++ $yy = '0' // Tom variabel. Alle er "Utenfor arbeidsstyrken, ikke på tiltak.
   replace arbeidsstyrkestatus ++ $yy = '1' if aapufoer ++ $yy== 1 // Mottakere av AAP/uføretrygd
@@ -241,9 +256,11 @@ for yy in $yy1 : $yy2
   replace arbeidsstyrkestatus ++ $yy = '3' if tiltak ++ $yy == 1 // Arbeidsmarkedstiltak
   replace arbeidsstyrkestatus ++ $yy = '2' if ledig ++ $yy == 1 // Registrerte arbeidsledige
   replace arbeidsstyrkestatus ++ $yy = '5' if jobb ++ $yy == 1 // Sysselsatte
+  
   tabulate arbeidsstyrkestatus ++ $yy
   
   assign-labels arbeidsstyrkestatus ++ $yy Arbeidsstyrkestatus_labels
+  tabulate arbeidsstyrkestatus ++ $yy
 end
 
 tabulate arbeidsstyrkestatus ++ $yy2 arbeidsstyrkestatus ++ $yy1, missing
@@ -251,9 +268,9 @@ sankey arbeidsstyrkestatus ++ $yy1 arbeidsstyrkestatus ++ $yy2
 sankey arbeidsstyrkestatus ++ $yy1 arbeidsstyrkestatus ++ $yy2 if arbeidsstyrkestatus ++ $yy1 == '0'
 sankey arbeidsstyrkestatus ++ $yy1 arbeidsstyrkestatus ++ $yy2 if arbeidsstyrkestatus ++ $yy1 == '5'
 
-clone-dataset populasjon populasjon_long
+clone-dataset populasjon populasjon_long // Når man lager nytt datasett kjøres muligens støyleggings-rutinen til Microdata på nytt. Kan derfor få bittelitt annerledes tall.
 use populasjon_long
-reshape-to-panel arbeidsstyrkestatus
+reshape-to-panel arbeidsstyrkestatus // Her kjøres også muligens støyleggings-rutinen til Microdata på nytt. Ingen fare, men minimale endringer kan skje.
 tabulate-panel arbeidsstyrkestatus
 
 //-------------- Nå skal vi klassifisere hver person som "NEET" eller ikke. --------------//
@@ -307,7 +324,33 @@ sankey kategori22 kategori23
 
 
 //-------------- Valgfritt: Lage et datasett med KUN personer som var NEETs i både 2022 og 2023.
+
 clone-dataset populasjon neet_kun_toaarige
 use neet_kun_toaarige
 keep if neet_toaarig == '3'
 tabulate neet_toaarig, missing
+
+
+//---------------------------- Bakgrunnsvariabler ----------------------------//
+
+// ------ Informasjon om detaljert utdanningsnivå (år 1) ------ //
+
+// Klassifisering: https://www.ssb.no/utdanning/artikler-og-publikasjoner/hvordan-klassifiseres-en-persons-hoyeste-utdanningsniva
+// 6-sifrede NUS-koder hvorav første siffer angir utdanningsnivå.
+
+textblock
+use populasjon // Hoveddatasettet vårt
+
+let yyyy_10_01 = $yyyy1 ++ "-10-01" // <-- Hvorfor akkurat 1. oktober: Variabelbeskrivelsen --> Lenke til SSB. Altså "gravearbeid".
+import db/NUDB_BU $yyyy_10_01 as utd // 6-sifrede NUS-koder
+generate utd_1 = substr(utd,1,1) // Første siffer angir utdanningsnivå
+generate utdniv = '9' // Alle settes først som "Uoppgitt eller ingen utdanning"
+replace utdniv = '1' if utd_1 == '1' | utd_1 == '2'
+replace utdniv = '2' if utd_1 == '3' | utd_1 == '4' | utd_1 == '5'
+replace utdniv = '3' if utd_1 == '6'
+replace utdniv = '4' if utd_1 == '7' | utd_1 == '8' 
+define-labels utdnivtxt '1' 'Grunnskolenivå' '2'  'Videregående grunnopplæring' '3' 'Universitets og høgskolenivå kort' '4' 'Universitets og høgskolenivå lang' '9' 'Uoppgitt el ingen utdanning'
+assign-labels utdniv utdnivtxt
+endblock
+
+tabulate utdniv
