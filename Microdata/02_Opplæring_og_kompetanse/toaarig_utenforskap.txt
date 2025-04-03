@@ -77,7 +77,7 @@ replace aldersgruppe = '25-29 år' if alder >= 25
 tabulate aldersgruppe
 
 // Troubleshooting:
-// SSB (2022): 29 821
+// SSB 13653 (2022): 29 821
 // Alt. 1: Microdata (2022) (BOSATTEFDT_BOSTED): 29 814 <--- Gir nærmest SSB tabell 13563!
 // Alt. 2: Microdata (2022) (BEFOLKNING_KOMMNR_FORMELL): 29 918
 // Endelig datasett: 29 493 (321 unna alt. 1)
