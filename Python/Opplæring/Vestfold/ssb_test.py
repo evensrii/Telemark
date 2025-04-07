@@ -47,7 +47,7 @@ tfk_query = {
             "code": "ContentsCode",
             "selection": {"filter": "item", "values": ["Sysselsatte2"]},
         },
-        {"code": "Tid", "selection": {"filter": "top", "values": ["2"]}},
+        {"code": "Tid", "selection": {"filter": "top", "values": ["1"]}},
     ],
     "response": {"format": "json-stat2"},
 }
@@ -92,4 +92,3 @@ df.head()
  
 ######## Til slutt: Skrive endelig dataframe (df) til .csv-fil
 df.to_csv("ssb_data.csv", index=False)
- 
