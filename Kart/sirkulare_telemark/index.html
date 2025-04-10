@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3 + Mapbox GL Map - Apekatt</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="config.js"></script>
+    <script>
+        if (typeof MAPBOX_ACCESS_TOKEN !== "undefined") {
+            mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+        } else {
+            console.error("MAPBOX_ACCESS_TOKEN is not defined! Check config.js.");
+        }
+    </script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { width: 100vw; height: 100vh; }
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none; /* Allow map interaction */
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+
+    // Set the Mapbox token before using the API
+    //mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+    
+    // Initialize Mapbox map
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [10.75, 59.91], // Oslo, Norway
+        zoom: 6
+    });
+
+    // Sample data: Array of objects with lat/lon
+    const points = [
+        { name: "Oslo", coords: [10.75, 59.91] },
+        { name: "Bergen", coords: [5.32, 60.39] },
+        { name: "Trondheim", coords: [10.39, 63.43] }
+    ];
+
+    // Create SVG overlay
+    const svg = d3.select("body").append("svg")
+        .attr("width", window.innerWidth)
+        .attr("height", window.innerHeight)
+        .style("pointer-events", "none"); // Allow map interaction
+
+    const g = svg.append("g");
+
+    // Function to project latitude/longitude to screen coordinates
+    function project(d) {
+        const p = map.project(new mapboxgl.LngLat(d.coords[0], d.coords[1]));
+        return [p.x, p.y];
+    }
+
+    // Create a line generator (STRAIGHT LINES)
+    const lineGenerator = d3.line()
+        .x(d => project(d)[0])
+        .y(d => project(d)[1])
+        .curve(d3.curveLinear);  // Ensures straight lines
+
+    // Draw path for lines (initially hidden)
+    let isLineVisible = false; // Track visibility state
+    const path = g.append("path")
+        .attr("fill", "none")
+        .attr("stroke", "blue")
+        .attr("stroke-width", 2)
+        .attr("opacity", 0);  // Hide initially
+
+    // Draw circles for points
+    function updatePoints() {
+        const circles = g.selectAll("circle").data(points);
+
+        // Enter + Update circles
+        circles.enter().append("circle")
+            .attr("r", 8)
+            .attr("fill", "red")
+            .attr("stroke", "white")
+            .attr("stroke-width", 2)
+            .attr("cursor", "pointer") // Indicate interactivity
+            .merge(circles)
+            .attr("cx", d => project(d)[0])
+            .attr("cy", d => project(d)[1])
+            .style("pointer-events", "all") // Allow clicking
+            .on("click", function () {
+                isLineVisible = !isLineVisible; // Toggle state
+                path.attr("opacity", isLineVisible ? 1 : 0); // Show/Hide line
+            });
+
+        // Remove old elements
+        circles.exit().remove();
+
+        // Update the line path
+        path.attr("d", lineGenerator(points));
+    }
+
+    // Update points and lines when the map moves
+    map.on("render", updatePoints);
+
+    // Initial render
+    updatePoints();
+
+</script>
+
+</body>
+</html>

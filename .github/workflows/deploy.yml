@@ -1,0 +1,26 @@
+name: Inject Mapbox Token
+
+on:
+  push:
+    branches: [main]  # Trigger when pushing to main
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  inject-token:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Inject Mapbox Token into config.js
+        run: |
+          echo "const MAPBOX_ACCESS_TOKEN = '${{ secrets.MAPBOX_ACCESS_TOKEN }}';" > Kart/sirkulare_telemark/config.js
+          ls -l Kart/sirkulare_telemark  # Debugging: Check if the file is created
+
+      - name: Commit and Push config.js
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add Kart/sirkulare_telemark/config.js
+          git commit -m "Auto-update config.js with secret"
+          git push origin main

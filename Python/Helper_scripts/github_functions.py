@@ -191,6 +191,19 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
         )
         return True
 
+    # Ensure consistent numeric types for comparison columns
+    if value_columns:
+        for col in value_columns:
+            if col in input_df.columns and col in existing_data.columns:
+                input_df[col] = pd.to_numeric(input_df[col], errors='coerce')
+                existing_data[col] = pd.to_numeric(existing_data[col], errors='coerce')
+    
+    # Convert all integer columns to int64 for consistent comparison
+    for col in input_df.columns:
+        if pd.api.types.is_integer_dtype(input_df[col]) and pd.api.types.is_integer_dtype(existing_data[col]):
+            input_df[col] = input_df[col].astype('int64')
+            existing_data[col] = existing_data[col].astype('int64')
+
     ####################################
     # STEP 1: Check for Header Changes #
     ####################################
@@ -570,7 +583,7 @@ def identify_key_columns(df):
             if df[col].dtype == 'object':  # Only check string columns
                 # Check if values match date patterns
                 sample = df[col].dropna().iloc[0]
-                if isinstance(sample, str):
+                if sample and isinstance(sample, str):
                     # Look for date patterns
                     date_patterns = [
                         r'\d{4}-\d{2}-\d{2}',  # YYYY-MM-DD
@@ -610,7 +623,7 @@ def handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=False,
 
     # Save the DataFrame to a temporary file
     temp_file_path = os.path.join(temp_folder, file_name)
-    df.to_csv(temp_file_path, index=False, encoding="utf-8")
+    df.to_csv(temp_file_path, index=False, encoding="utf-8")  # Use consistent float precision
     print(f"Saved file to {temp_file_path}")
 
     # Compare with GitHub and push new data if applicable
