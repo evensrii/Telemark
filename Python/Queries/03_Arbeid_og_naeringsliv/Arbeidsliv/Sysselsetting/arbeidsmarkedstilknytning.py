@@ -466,6 +466,84 @@ sorted_columns = column_means.sort_values(ascending=False).index.tolist()
 new_column_order = ['Region', 'Sysselsatte', 'Arbeidsledige'] + sorted_columns + ['Andre']
 df_pivoted = df_pivoted[new_column_order]
 
+################# Til tekst på nettside om sysselsetting: Sysselsetting i fylket, arbeidssted i Telemark, tabell 13470
+
+
+# Endepunkt for SSB API
+POST_URL_sysselsatte = "https://data.ssb.no/api/v0/no/table/13470/"
+
+
+################## KOMMUNER
+
+# Spørring for å hente ut data fra SSB
+payload_sysselsatte_telemark = {
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "agg:KommFylker",
+        "values": [
+          "F-40"
+        ]
+      }
+    },
+    {
+      "code": "NACE2007",
+      "selection": {
+        "filter": "agg_single:NACE2007arb11",
+        "values": [
+          "00-99"
+        ]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "SysselsatteArb"
+        ]
+      }
+    },
+    {
+      "code": "Tid",
+      "selection": {
+        "filter": "top",
+        "values": [
+          "1"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}
+
+
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
+
+try:
+    df_sysselsatte_telemark = fetch_data(
+        url=POST_URL_sysselsatte,
+        payload=payload_sysselsatte_telemark,  # The JSON payload for POST requests. If None, a GET request is used.
+        error_messages=error_messages,
+        query_name="Sysselsatte med arbeidssted i Telemark",
+        response_type="json",  # The expected response type, either 'json' or 'csv'.
+        # delimiter=";", # The delimiter for CSV data (default: ';').
+        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+
+# Print "Sysselsatte med arbeidssted i Telemark in" år from the "år" column: "value"
+latest_year = df_sysselsatte_telemark["år"][0]
+print(f"Sysselsatte med arbeidssted i Telemark i {latest_year}: {df_sysselsatte_telemark['value'][0]}")
+
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "arbeidsmarkedstilknytning_per_kommune.csv"
