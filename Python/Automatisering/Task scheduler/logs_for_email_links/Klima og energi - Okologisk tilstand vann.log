@@ -2,29 +2,129 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-An unexpected error occurred during setup: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
-Stacktrace:
-	GetHandleVerifier [0x00007FF7D84DEFA5+77893]
-	GetHandleVerifier [0x00007FF7D84DF000+77984]
-	(No symbol) [0x00007FF7D82A91BA]
-	(No symbol) [0x00007FF7D82E5DCF]
-	(No symbol) [0x00007FF7D82E19FD]
-	(No symbol) [0x00007FF7D8334F48]
-	(No symbol) [0x00007FF7D8334520]
-	(No symbol) [0x00007FF7D8326F03]
-	(No symbol) [0x00007FF7D82F0328]
-	(No symbol) [0x00007FF7D82F1093]
-	GetHandleVerifier [0x00007FF7D8797B6D+2931725]
-	GetHandleVerifier [0x00007FF7D8792132+2908626]
-	GetHandleVerifier [0x00007FF7D87B00F3+3031443]
-	GetHandleVerifier [0x00007FF7D84F91EA+184970]
-	GetHandleVerifier [0x00007FF7D850086F+215311]
-	GetHandleVerifier [0x00007FF7D84E6EC4+110436]
-	GetHandleVerifier [0x00007FF7D84E7072+110866]
-	GetHandleVerifier [0x00007FF7D84CD479+5401]
-	BaseThreadInitThunk [0x00007FFB065D7AC4+20]
-	RtlUserThreadStart [0x00007FFB06B7A8C1+33]
+Ingen driftsmeldinger dukket opp, continuing...
+Converting total from '1.450' (cleaned: '1450')
+Default total established as: 1450 after Telemark selection
+Successfully initialized default total
 
-Failed to quit driver, it may have already been closed
-Email notifications disabled. Errors in Vannkvalitet were not sent.
+Collecting data for Elv...
+Clicking checkbox for Elv
+Waiting for table to update...
+
+Collecting data for Elv...
+Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
+Number of rows found: 6
+Row data - Header: SvÃÂ¦rt god, Values: ['227', '20,4 %']
+Row data - Header: God, Values: ['731', '65,7 %']
+Row data - Header: Moderat, Values: ['124', '11,1 %']
+Row data - Header: DÃÂ¥rlig, Values: ['19', '1,7 %']
+Row data - Header: SvÃÂ¦rt dÃÂ¥rlig, Values: ['12', '1,1 %']
+Row data - Header: Udefinert, Values: ['-', '0,0 %']
+
+Raw DataFrame for Elv:
+       Tilstand TILSTAND  ANTALL
+0     SvÃÂ¦rt god      227  20,4 %
+1           God      731  65,7 %
+2       Moderat      124  11,1 %
+3        DÃÂ¥rlig       19   1,7 %
+4  SvÃÂ¦rt dÃÂ¥rlig       12   1,1 %
+5     Udefinert        -   0,0 %
+
+Final DataFrame for Elv:
+       Tilstand     Elv
+0     SvÃÂ¦rt god  20,4 %
+1           God  65,7 %
+2       Moderat  11,1 %
+3        DÃÂ¥rlig   1,7 %
+4  SvÃÂ¦rt dÃÂ¥rlig   1,1 %
+
+Collecting data for InnsjÃÂ¸...
+Clicking checkbox for InnsjÃÂ¸
+Waiting for table to update...
+
+Collecting data for InnsjÃÂ¸...
+Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
+Number of rows found: 6
+Row data - Header: SvÃÂ¦rt god, Values: ['59', '20,5 %']
+Row data - Header: God, Values: ['192', '66,7 %']
+Row data - Header: Moderat, Values: ['35', '12,2 %']
+Row data - Header: DÃÂ¥rlig, Values: ['1', '0,3 %']
+Row data - Header: SvÃÂ¦rt dÃÂ¥rlig, Values: ['1', '0,3 %']
+Row data - Header: Udefinert, Values: ['-', '0,0 %']
+
+Raw DataFrame for InnsjÃÂ¸:
+       Tilstand TILSTAND  ANTALL
+0     SvÃÂ¦rt god       59  20,5 %
+1           God      192  66,7 %
+2       Moderat       35  12,2 %
+3        DÃÂ¥rlig        1   0,3 %
+4  SvÃÂ¦rt dÃÂ¥rlig        1   0,3 %
+5     Udefinert        -   0,0 %
+
+Final DataFrame for InnsjÃÂ¸:
+       Tilstand  InnsjÃÂ¸
+0     SvÃÂ¦rt god  20,5 %
+1           God  66,7 %
+2       Moderat  12,2 %
+3        DÃÂ¥rlig   0,3 %
+4  SvÃÂ¦rt dÃÂ¥rlig   0,3 %
+
+Collecting data for Kystvann...
+Clicking checkbox for Kystvann
+Waiting for table to update...
+
+Collecting data for Kystvann...
+Headers found: ['TILSTAND', 'ANTALL', 'PROSENT %']
+Number of rows found: 6
+Row data - Header: SvÃÂ¦rt god, Values: ['2', '4,1 %']
+Row data - Header: God, Values: ['20', '40,8 %']
+Row data - Header: Moderat, Values: ['25', '51,0 %']
+Row data - Header: DÃÂ¥rlig, Values: ['-', '0,0 %']
+Row data - Header: SvÃÂ¦rt dÃÂ¥rlig, Values: ['2', '4,1 %']
+Row data - Header: Udefinert, Values: ['-', '0,0 %']
+
+Raw DataFrame for Kystvann:
+       Tilstand TILSTAND  ANTALL
+0     SvÃÂ¦rt god        2   4,1 %
+1           God       20  40,8 %
+2       Moderat       25  51,0 %
+3        DÃÂ¥rlig        -   0,0 %
+4  SvÃÂ¦rt dÃÂ¥rlig        2   4,1 %
+5     Udefinert        -   0,0 %
+
+Final DataFrame for Kystvann:
+       Tilstand Kystvann
+0     SvÃÂ¦rt god    4,1 %
+1           God   40,8 %
+2       Moderat   51,0 %
+3        DÃÂ¥rlig    0,0 %
+4  SvÃÂ¦rt dÃÂ¥rlig    4,1 %
+
+Initial combined DataFrame:
+   Vannkategori      Tilstand     Elv  InnsjÃÂ¸ Kystvann
+0           Elv     SvÃÂ¦rt god  20,4 %     NaN      NaN
+1           Elv           God  65,7 %     NaN      NaN
+2           Elv       Moderat  11,1 %     NaN      NaN
+3           Elv        DÃÂ¥rlig   1,7 %     NaN      NaN
+4           Elv  SvÃÂ¦rt dÃÂ¥rlig   1,1 %     NaN      NaN
+5        InnsjÃÂ¸     SvÃÂ¦rt god     NaN  20,5 %      NaN
+6        InnsjÃÂ¸           God     NaN  66,7 %      NaN
+7        InnsjÃÂ¸       Moderat     NaN  12,2 %      NaN
+8        InnsjÃÂ¸        DÃÂ¥rlig     NaN   0,3 %      NaN
+9        InnsjÃÂ¸  SvÃÂ¦rt dÃÂ¥rlig     NaN   0,3 %      NaN
+10     Kystvann     SvÃÂ¦rt god     NaN     NaN    4,1 %
+11     Kystvann           God     NaN     NaN   40,8 %
+12     Kystvann       Moderat     NaN     NaN   51,0 %
+13     Kystvann        DÃÂ¥rlig     NaN     NaN    0,0 %
+14     Kystvann  SvÃÂ¦rt dÃÂ¥rlig     NaN     NaN    4,1 %
+
+Final pivoted DataFrame:
+   Kategori  SvÃÂ¦rt god   God  Moderat  DÃÂ¥rlig  SvÃÂ¦rt dÃÂ¥rlig
+0       Elv       20.4  65.7     11.1     1.7           1.1
+1    InnsjÃÂ¸       20.5  66.7     12.2     0.3           0.3
+2  Kystvann        4.1  40.8     51.0     0.0           4.1
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\ÃÂ¸kologisk_tilstand_vann.csv
+[2025-04-28 08:11:08] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\ÃÂ¸kologisk_tilstand_vann.csv
+No new data detected.
 
