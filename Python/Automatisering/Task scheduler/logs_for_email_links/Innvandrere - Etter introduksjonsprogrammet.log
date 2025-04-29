@@ -3,11 +3,15 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Introprogram CSV data loaded successfully.
-Statistikken viser andelen i arbeid eller utdanning i 2022-01-01 00:00:00 som avsluttet eller avbrÃÂ¸t programmet i 2021-01-01 00:00:00
+Statistikken viser andelen i arbeid eller utdanning i 2023-01-01 00:00:00 som avsluttet eller avbrÃÂ¸t programmet i 2022-01-01 00:00:00
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\etter_introduksjonsprogram.csv
-[2025-04-28 08:14:06] No new data to upload. Skipping GitHub update.
+[2025-04-29 08:13:26] Header structure changed in etter_introduksjonsprogram.csv:
+Removed headers: andel 2022
+Added headers: andel 2023
+File uploaded successfully: Data/09_Innvandrere og inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.csv
+Email notifications disabled. Updates for etter_introduksjonsprogram.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\etter_introduksjonsprogram.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_etter_introduksjonsprogram_csv.log
 
 
