@@ -150,8 +150,7 @@ else:
         print("Fetching exchange rates...")
         try:
             date_str = start_date.strftime("%Y-%m-%d")
-            end_str = end_date.strftime("%Y-%m-%d")
-            url = f"https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?format=csv&startPeriod={date_str}&endPeriod={end_str}&bom=include&locale=no"
+            url = f"https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?format=csv&startPeriod={date_str}"
             df_rates = pd.read_csv(url, sep=";")
             
             # Clean and prepare exchange rates data
@@ -161,13 +160,8 @@ else:
                 "OBS_VALUE": "eur_nok_rate"
             })
             df_rates = df_rates[["time", "eur_nok_rate"]]
-            
-            # Convert comma to period in exchange rate and make it a float
-            if isinstance(df_rates["eur_nok_rate"].iloc[0], str):
-                df_rates["eur_nok_rate"] = df_rates["eur_nok_rate"].str.replace(',', '.').astype(float)
-                
-        except Exception as e:
-            print(f"Could not fetch new exchange rates: {str(e)}, using latest available rate...")
+        except:
+            print("Could not fetch new exchange rates, using latest available rate...")
             # Get the latest exchange rate from existing data
             if not existing_df.empty:
                 latest_rate = existing_df.iloc[-1]["kurs"]
