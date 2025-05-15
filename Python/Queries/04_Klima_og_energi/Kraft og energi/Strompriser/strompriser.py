@@ -159,11 +159,38 @@ else:
                 "locale": "no",
             }
             
+            # Construct and print the full URL for debugging
+            query_params = "&".join([f"{k}={v}" for k, v in params.items()])
+            full_url = f"{base_url}?{query_params}"
+            print(f"Full API URL: {full_url}")
+            
+            # Make the API request
             print(f"Requesting exchange rates from {params['startPeriod']} to {params['endPeriod']}")
             response = requests.get(base_url, params=params)
+            
+            # Print response status and headers
+            print(f"Response status code: {response.status_code}")
+            print(f"Response headers: {response.headers}")
+            
+            # Print the first 500 characters of response for inspection
+            print(f"Response preview: {response.text[:500]}...")
+            
             response.raise_for_status()  # Raise exception for bad status codes
             
+            # Debug: Save response content to file for inspection
+            debug_file = os.path.join(os.environ.get("TEMP_FOLDER", ""), "exchange_rate_response.txt")
+            with open(debug_file, "w", encoding="utf-8") as f:
+                f.write(response.text)
+            print(f"Full response saved to {debug_file}")
+            
+            # Read the CSV data
             df_rates = pd.read_csv(io.StringIO(response.text), sep=";")
+            
+            # Print the shape and first rows of the dataframe
+            print(f"Exchange rate data shape: {df_rates.shape}")
+            print(f"Exchange rate columns: {df_rates.columns.tolist()}")
+            print("First rows of exchange rate data:")
+            print(df_rates.head())
             
             # Clean and prepare exchange rates data
             df_rates["TIME_PERIOD"] = pd.to_datetime(df_rates["TIME_PERIOD"])
@@ -176,41 +203,107 @@ else:
             # Convert comma to period in exchange rate and make it a float
             if df_rates["eur_nok_rate"].dtype == object:  # Check if it's string type
                 df_rates["eur_nok_rate"] = df_rates["eur_nok_rate"].str.replace(',', '.').astype(float)
-                
+                print("Converted comma to period in exchange rates")
+            
+            print("Final exchange rate data:")
+            print(df_rates.head())
+            print(f"Date range in exchange rate data: {df_rates['time'].min()} - {df_rates['time'].max()}")
             print(f"Successfully fetched {len(df_rates)} exchange rate records")
+            
+            # If dataframe is empty, raise an exception
+            if df_rates.empty:
+                raise Exception("Exchange rate dataframe is empty")
                 
         except Exception as e:
             print(f"Could not fetch new exchange rates: {str(e)}, using latest available rate...")
-            # Get the latest exchange rate from existing data
-            if not existing_df.empty:
-                latest_rate = existing_df.iloc[-1]["kurs"]
-                # Create a dataframe with the latest rate for all new dates
-                dates = pd.date_range(start=start_date, end=end_date, freq='D')
-                df_rates = pd.DataFrame({
-                    'time': dates,
-                    'eur_nok_rate': [latest_rate] * len(dates)
-                })
-            else:
-                error_msg = "No existing data to get latest exchange rate from"
-                print(error_msg)
-                error_messages.append(error_msg)
-                notify_errors(error_messages, script_name=script_name)
-                raise RuntimeError(error_msg)
+            # Try a direct construction of the URL as in your working example
+            try:
+                print("Attempting direct URL method as fallback...")
+                direct_url = f"https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?format=csv&startPeriod={start_date.strftime('%Y-%m-%d')}&endPeriod={end_date.strftime('%Y-%m-%d')}&bom=include&locale=no"
+                print(f"Direct fallback URL: {direct_url}")
+                response = requests.get(direct_url)
+                print(f"Fallback response status: {response.status_code}")
+                
+                if response.status_code == 200 and len(response.text) > 0:
+                    df_rates = pd.read_csv(io.StringIO(response.text), sep=";")
+                    df_rates["TIME_PERIOD"] = pd.to_datetime(df_rates["TIME_PERIOD"])
+                    df_rates = df_rates.rename(columns={
+                        "TIME_PERIOD": "time",
+                        "OBS_VALUE": "eur_nok_rate"
+                    })
+                    df_rates = df_rates[["time", "eur_nok_rate"]]
+                    
+                    if df_rates["eur_nok_rate"].dtype == object:
+                        df_rates["eur_nok_rate"] = df_rates["eur_nok_rate"].str.replace(',', '.').astype(float)
+                    
+                    print(f"Fallback method successful. Got {len(df_rates)} records.")
+                else:
+                    raise Exception(f"Fallback request failed with status {response.status_code}")
+            except Exception as fallback_error:
+                print(f"Fallback method also failed: {str(fallback_error)}")
+                # Fall back to using the latest exchange rate from existing data
+                if not existing_df.empty:
+                    latest_rate = existing_df.iloc[-1]["kurs"]
+                    # Create a dataframe with the latest rate for all new dates
+                    dates = pd.date_range(start=start_date, end=end_date, freq='D')
+                    df_rates = pd.DataFrame({
+                        'time': dates,
+                        'eur_nok_rate': [latest_rate] * len(dates)
+                    })
+                    print(f"Using latest available rate from existing data: {latest_rate}")
+                else:
+                    error_msg = "No existing data to get latest exchange rate from"
+                    print(error_msg)
+                    error_messages.append(error_msg)
+                    notify_errors(error_messages, script_name=script_name)
+                    raise RuntimeError(error_msg)
 
         # Step 8: Merge prices with exchange rates
         print("Merging price and exchange rate data...")
         df = pd.merge(df_prices, df_rates, on="time", how="left")
+        
+        # Print out some diagnostics for the merge
+        print(f"Shape of df_prices: {df_prices.shape}")
+        print(f"Shape of df_rates: {df_rates.shape}")
+        print(f"Shape after merge: {df.shape}")
+        print(f"Number of NaNs in eur_nok_rate after merge: {df['eur_nok_rate'].isna().sum()}")
+        
+        # Check time formats to ensure they're matching properly
+        print(f"Sample times from df_prices: {df_prices['time'].iloc[:3]}")
+        print(f"Sample times from df_rates: {df_rates['time'].iloc[:3]}")
+        
+        # This might be the issue - the merge might not be working correctly because of time format differences
+        # Let's convert df_prices time to date only since df_rates only has date information
+        df_prices_for_merge = df_prices.copy()
+        df_prices_for_merge["time"] = pd.to_datetime(df_prices_for_merge["time"]).dt.floor('D')  # Floor to day
+        
+        # Now do the merge again with date-only times
+        df = pd.merge(df_prices_for_merge, df_rates, on="time", how="left")
+        print(f"Shape after improved merge: {df.shape}")
+        print(f"NaNs in eur_nok_rate after improved merge: {df['eur_nok_rate'].isna().sum()}")
+        
         df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
+        print(f"Sample of merged data:\n{df.head()}")
         df["price_nok"] = df["price_eur"] * df["eur_nok_rate"]
 
         # Step 9: Calculate daily averages
         print("Calculating daily averages...")
+        # Get just the date part for grouping
         df["date"] = pd.to_datetime(df["time"]).dt.date
+        
+        # Debug: Check the data before grouping
+        print("Sample data before grouping:")
+        print(df[['date', 'price_eur', 'eur_nok_rate', 'price_nok']].head())
+        
         daily_avg_new = df.groupby("date").agg({
             "price_eur": "mean",
-            "eur_nok_rate": "mean",
+            "eur_nok_rate": "mean",  # Make sure we're aggregating the exchange rate
             "price_nok": "mean"
         }).reset_index()
+        
+        # Debug: Check after grouping
+        print("Sample data after grouping:")
+        print(daily_avg_new.head())
 
         # Format the new data
         print(f"Columns before renaming: {daily_avg_new.columns.tolist()}")
@@ -220,7 +313,18 @@ else:
             "eur_nok_rate": "kurs",
             "price_nok": "NOK/MWh"
         })
+        
+        # Debug: Verify columns after renaming
+        print(f"Columns after renaming: {daily_avg_new.columns.tolist()}")
+        print("Sample data after renaming:")
+        print(daily_avg_new.head())
+        
         daily_avg_new["NOK/KWh"] = daily_avg_new["NOK/MWh"] / 1000
+        
+        # Debug: Check final data
+        print("Final prepared data:")
+        print(daily_avg_new.head())
+        
         daily_avg_new["time"] = pd.to_datetime(daily_avg_new["time"])
 
         # Combine with existing data
