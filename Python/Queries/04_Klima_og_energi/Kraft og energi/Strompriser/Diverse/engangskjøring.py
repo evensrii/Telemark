@@ -13,8 +13,8 @@ security_token = (
 )
 
 # Define the start and end dates
-start_date = datetime(2021, 1, 1, 0, 0)  # Start at midnight
-end_date = datetime(2024, 10, 31, 23, 59)  # End at the last minute of October 31, 2024
+start_date = datetime(2025, 5, 1, 0, 0)  # Start at midnight
+end_date = datetime(2025, 5, 14, 23, 59)  # End at the last minute of October 31, 2024
 
 # Initialize an empty DataFrame to store all data
 all_data = pd.DataFrame()
@@ -100,8 +100,8 @@ daily_avg_prices.info()
 
 base_url = "https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP"
 params = {
-    "startPeriod": "2019-01-01",
-    "endPeriod": "2024-10-31",
+    "startPeriod": "2025-05-01",
+    "endPeriod": "2025-05-14",
     "format": "csv",
     "bom": "include",
     "locale": "no",

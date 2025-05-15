@@ -57,6 +57,12 @@ else:
 start_date = latest_date + timedelta(days=1)
 end_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=1)
 
+# Ensure we're not processing future dates - strictly cap at yesterday
+yesterday = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=1)
+if end_date > yesterday:
+    end_date = yesterday
+    print(f"Capping end date to yesterday: {end_date.date()}")
+
 # Check if we already have data up to yesterday
 is_up_to_date = start_date.date() > end_date.date()
 if is_up_to_date:
@@ -143,7 +149,13 @@ else:
         print("No new price data to process after filtering")
         daily_avg = existing_df.copy()
     else:
-        # Drop the temporary date column used for filtering
+        # Filter out any future dates (should be redundant with the earlier cap, but just to be safe)
+        df_prices["date"] = pd.to_datetime(df_prices["time"]).dt.date
+        yesterday_date = yesterday.date()
+        df_prices = df_prices[df_prices["date"] <= yesterday_date]
+        print(f"After filtering out future dates, {len(df_prices)} price records remain")
+        
+        # Drop the temporary date column after filtering
         df_prices = df_prices.drop(columns=["date"])
 
         # Step 7: Fetch exchange rates
@@ -260,50 +272,61 @@ else:
 
         # Step 8: Merge prices with exchange rates
         print("Merging price and exchange rate data...")
-        df = pd.merge(df_prices, df_rates, on="time", how="left")
         
-        # Print out some diagnostics for the merge
-        print(f"Shape of df_prices: {df_prices.shape}")
-        print(f"Shape of df_rates: {df_rates.shape}")
-        print(f"Shape after merge: {df.shape}")
-        print(f"Number of NaNs in eur_nok_rate after merge: {df['eur_nok_rate'].isna().sum()}")
+        # This is the key fix: filter prices to only include dates where we have exchange rates
+        available_dates = pd.to_datetime(df_rates['time']).dt.date
+        print(f"Exchange rates are available for dates: {available_dates}")
         
-        # Check time formats to ensure they're matching properly
-        print(f"Sample times from df_prices: {df_prices['time'].iloc[:3]}")
-        print(f"Sample times from df_rates: {df_rates['time'].iloc[:3]}")
-        
-        # This might be the issue - the merge might not be working correctly because of time format differences
-        # Let's convert df_prices time to date only since df_rates only has date information
         df_prices_for_merge = df_prices.copy()
-        df_prices_for_merge["time"] = pd.to_datetime(df_prices_for_merge["time"]).dt.floor('D')  # Floor to day
+        df_prices_for_merge["date"] = pd.to_datetime(df_prices_for_merge["time"]).dt.date
         
-        # Now do the merge again with date-only times
-        df = pd.merge(df_prices_for_merge, df_rates, on="time", how="left")
-        print(f"Shape after improved merge: {df.shape}")
-        print(f"NaNs in eur_nok_rate after improved merge: {df['eur_nok_rate'].isna().sum()}")
+        # Only keep price data for dates that have exchange rates
+        df_prices_for_merge = df_prices_for_merge[df_prices_for_merge["date"].isin(available_dates)]
+        print(f"After filtering for dates with exchange rates, price data points: {len(df_prices_for_merge)}")
         
-        df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
-        print(f"Sample of merged data:\n{df.head()}")
-        df["price_nok"] = df["price_eur"] * df["eur_nok_rate"]
+        if df_prices_for_merge.empty:
+            print("No price data remains after filtering for available exchange rates")
+            daily_avg = existing_df.copy()
+        else:
+            # Convert time to date for merging with exchange rates
+            df_prices_for_merge["time_for_merge"] = pd.to_datetime(df_prices_for_merge["time"]).dt.floor('D')
+            
+            # Merge with exchange rates
+            df = pd.merge(
+                df_prices_for_merge, 
+                df_rates, 
+                left_on="time_for_merge", 
+                right_on="time", 
+                suffixes=('', '_exchange')
+            )
+            
+            # Keep only the original time from prices and drop the merge columns
+            df = df.drop(columns=["time_exchange", "time_for_merge"])
+            
+            print(f"Shape after merge: {df.shape}")
+            print(f"Number of NaNs in eur_nok_rate after merge: {df['eur_nok_rate'].isna().sum()}")
+            
+            # Fill any missing exchange rates (should be minimal after our filtering)
+            df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
+            df["price_nok"] = df["price_eur"] * df["eur_nok_rate"]
 
-        # Step 9: Calculate daily averages
-        print("Calculating daily averages...")
-        # Get just the date part for grouping
-        df["date"] = pd.to_datetime(df["time"]).dt.date
-        
-        # Debug: Check the data before grouping
-        print("Sample data before grouping:")
-        print(df[['date', 'price_eur', 'eur_nok_rate', 'price_nok']].head())
-        
-        daily_avg_new = df.groupby("date").agg({
-            "price_eur": "mean",
-            "eur_nok_rate": "mean",  # Make sure we're aggregating the exchange rate
-            "price_nok": "mean"
-        }).reset_index()
-        
-        # Debug: Check after grouping
-        print("Sample data after grouping:")
-        print(daily_avg_new.head())
+            # Step 9: Calculate daily averages
+            print("Calculating daily averages...")
+            df["date"] = pd.to_datetime(df["time"]).dt.date
+            
+            # Debug: Check the data before grouping
+            print("Sample data before grouping:")
+            print(df[['date', 'price_eur', 'eur_nok_rate', 'price_nok']].head())
+            
+            daily_avg_new = df.groupby("date").agg({
+                "price_eur": "mean",
+                "eur_nok_rate": "mean",
+                "price_nok": "mean"
+            }).reset_index()
+            
+            # Debug: Check after grouping
+            print("Sample data after grouping:")
+            print(daily_avg_new.head())
 
         # Format the new data
         print(f"Columns before renaming: {daily_avg_new.columns.tolist()}")
