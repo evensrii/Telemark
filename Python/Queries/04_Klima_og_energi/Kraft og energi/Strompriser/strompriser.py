@@ -149,10 +149,21 @@ else:
         # Step 7: Fetch exchange rates
         print("Fetching exchange rates...")
         try:
-            date_str = start_date.strftime("%Y-%m-%d")
-            end_str = end_date.strftime("%Y-%m-%d")
-            url = f"https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?format=csv&startPeriod={date_str}&endPeriod={end_str}&bom=include&locale=no"
-            df_rates = pd.read_csv(url, sep=";")
+            # Use the same approach as engangskjøring.py - using params dictionary
+            base_url = "https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP"
+            params = {
+                "startPeriod": start_date.strftime("%Y-%m-%d"),
+                "endPeriod": end_date.strftime("%Y-%m-%d"),
+                "format": "csv",
+                "bom": "include",
+                "locale": "no",
+            }
+            
+            print(f"Requesting exchange rates from {params['startPeriod']} to {params['endPeriod']}")
+            response = requests.get(base_url, params=params)
+            response.raise_for_status()  # Raise exception for bad status codes
+            
+            df_rates = pd.read_csv(io.StringIO(response.text), sep=";")
             
             # Clean and prepare exchange rates data
             df_rates["TIME_PERIOD"] = pd.to_datetime(df_rates["TIME_PERIOD"])
@@ -163,8 +174,10 @@ else:
             df_rates = df_rates[["time", "eur_nok_rate"]]
             
             # Convert comma to period in exchange rate and make it a float
-            if isinstance(df_rates["eur_nok_rate"].iloc[0], str):
+            if df_rates["eur_nok_rate"].dtype == object:  # Check if it's string type
                 df_rates["eur_nok_rate"] = df_rates["eur_nok_rate"].str.replace(',', '.').astype(float)
+                
+            print(f"Successfully fetched {len(df_rates)} exchange rate records")
                 
         except Exception as e:
             print(f"Could not fetch new exchange rates: {str(e)}, using latest available rate...")
