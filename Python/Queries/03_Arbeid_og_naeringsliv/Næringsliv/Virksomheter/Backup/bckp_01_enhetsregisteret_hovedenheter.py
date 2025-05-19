@@ -1,6 +1,4 @@
 import requests
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 import sys
 import os
 import glob
@@ -33,20 +31,11 @@ try:
     gz_file_path = os.path.join(temp_folder, "enheter.json.gz")
     json_file_path = os.path.join(temp_folder, "enheter.json")
 
-    # Setup session with retry strategy
-    session = requests.Session()
-    retries = Retry(
-        total=5,
-        backoff_factor=1,
-        status_forcelist=[500, 502, 503, 504]
-    )
-    session.mount('https://', HTTPAdapter(max_retries=retries))
-
     # Download and extract data
     print("Downloading file from Enhetsregisteret...")
     url = "https://data.brreg.no/enhetsregisteret/api/enheter/lastned"
     try:
-        response = session.get(url, stream=True, timeout=300)  # 5 minute timeout
+        response = requests.get(url, stream=True)
         total_size = int(response.headers.get('content-length', 0))
         print(f"Total file size: {total_size / (1024*1024):.1f} MB")
 
@@ -59,7 +48,7 @@ try:
                 f.write(response.content)
             else:
                 downloaded = 0
-                for data in response.iter_content(chunk_size=32768):  # Increased chunk size
+                for data in response.iter_content(chunk_size=8192):
                     downloaded += len(data)
                     f.write(data)
                     done = int(50 * downloaded / total_size)
