@@ -50,6 +50,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Ressursforvaltning/okologisk_tilstand.py"), "Klima og energi - Okologisk tilstand vann"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py"), "Klima og energi - Felte hjortedyr"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/NVE/vannkraft.py"), "Klima og energi - Vannkraft Telemark"),
+    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/SSB/kraftproduksjon_ssb.py"), "Klima og energi - Kraftproduksjon Telemark (SSB)"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py"), "Klima og energi - Strompriser"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Forbruk/Elhub/elhub.py"), "Klima og energi - Stromforbruk (Elhub)"),
 
