@@ -6,7 +6,6 @@ import os
 from dotenv import load_dotenv
 import io
 import sys
-import logging
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data, delete_files_in_temp_folder
@@ -392,63 +391,3 @@ else:
 
 print(f"New data status log written to {new_data_status_file}")
 print("Script completed successfully!")
-
-def get_exchange_rate(date):
-    """Get EUR/NOK exchange rate for a specific date"""
-    base_url = "https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?"
-    date_str = date.strftime("%Y-%m-%d")
-    
-    try:
-        response = requests.get(f"{base_url}&startPeriod={date_str}&endPeriod={date_str}")
-        data = response.json()
-        
-        if data.get('data') and data['data'].get('dataSets'):
-            return float(data['data']['dataSets'][0]['series']['0:0:0:0']['observations']['0'][0])
-        return None
-    except Exception as e:
-        logging.warning(f"Error fetching exchange rate for {date_str}: {str(e)}")
-        return None
-
-def process_exchange_rates(df):
-    """Process exchange rates and fill missing values with most recent rate"""
-    rates = []
-    last_valid_rate = None
-    
-    # Sort dataframe by date to ensure proper filling
-    df = df.sort_values('time')
-    
-    for date_str in df['time']:
-        date = datetime.strptime(date_str, '%Y-%m-%d')
-        current_date = datetime.now()
-        
-        # If date is in the future or today, use last known rate
-        if date >= current_date:
-            rate = last_valid_rate
-        else:
-            rate = get_exchange_rate(date)
-            if rate is not None:
-                last_valid_rate = rate
-            else:
-                rate = last_valid_rate
-                
-        rates.append(rate)
-    
-    df['kurs'] = rates
-    
-    # Calculate NOK values
-    df['NOK/MWh'] = df['EUR/MWh'] * df['kurs']
-    df['NOK/KWh'] = df['NOK/MWh'] / 1000
-    
-    return df
-
-# In your main processing function:
-def main():
-    # ...existing code...
-    
-    # Process exchange rates and calculations
-    df = process_exchange_rates(df)
-    
-    # ...existing code...
-
-if __name__ == "__main__":
-    main()
