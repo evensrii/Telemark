@@ -440,15 +440,3 @@ def process_exchange_rates(df):
     df['NOK/KWh'] = df['NOK/MWh'] / 1000
     
     return df
-
-# In your main processing function:
-def main():
-    # ...existing code...
-    
-    # Process exchange rates and calculations
-    df = process_exchange_rates(df)
-    
-    # ...existing code...
-
-if __name__ == "__main__":
-    main()
