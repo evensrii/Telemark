@@ -44,10 +44,6 @@ task_name = "Klima og energi - Stromforbruk (Elhub)"
 github_folder = "Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-# Define file names for the master script to track commits
-file_name1 = "2024.csv"
-file_name2 = "2025.csv"
-
 # GitHub Repository information
 REPO = "evensrii/Telemark"
 BRANCH = "main"
