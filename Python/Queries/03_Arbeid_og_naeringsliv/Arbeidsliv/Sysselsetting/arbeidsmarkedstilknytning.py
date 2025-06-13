@@ -322,6 +322,80 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
+###################### TABLE 05749 KOMMUNER
+
+# Add a new query for table 05749 for kommuner
+POST_URL_05749 = "https://data.ssb.no/api/v0/no/table/05749/"
+
+payload_05749_kommuner = {
+    "query": [
+        {
+            "code": "Region",
+            "selection": {
+                "filter": "agg:KommSummer",
+                "values": [
+                    "K-4001",
+                    "K-4003",
+                    "K-4005",
+                    "K-4010",
+                    "K-4012",
+                    "K-4014",
+                    "K-4016",
+                    "K-4018",
+                    "K-4020",
+                    "K-4022",
+                    "K-4024",
+                    "K-4026",
+                    "K-4028",
+                    "K-4030",
+                    "K-4032",
+                    "K-4034",
+                    "K-4036"
+                ]
+            }
+        },
+        {
+            "code": "ContentsCode",
+            "selection": {
+                "filter": "item",
+                "values": [
+                    "Verdi1",  # Replace with actual content codes for table 05749
+                    "Verdi2"
+                ]
+            }
+        },
+        {
+            "code": "Tid",
+            "selection": {
+                "filter": "top",
+                "values": [
+                    "1"
+                ]
+            }
+        }
+    ],
+    "response": {
+        "format": "json-stat2"
+    }
+}
+
+try:
+    df_05749_kommuner = fetch_data(
+        url=POST_URL_05749,
+        payload=payload_05749_kommuner,
+        error_messages=error_messages,
+        query_name="Table 05749, kommuner",
+        response_type="json"
+    )
+    print("\nData from table 05749 for kommuner:")
+    print(df_05749_kommuner)
+except Exception as e:
+    print(f"Error occurred while fetching data from table 05749: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching for table 05749, stopping execution."
+    )
+
 # Function to process each dataframe
 def process_dataframe(df):
     # Get the year from the 'år' column
