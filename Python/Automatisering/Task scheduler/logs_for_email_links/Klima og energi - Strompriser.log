@@ -10,23 +10,74 @@ Latest date in existing data: 2025-06-11 00:00:00
 Found 1624 existing records
 Will fetch data from 2025-06-12 00:00:00 to 2025-06-12 00:00:00 (yesterday)
 Fetching energy prices from ENTSO-E...
-Error connecting to ENTSO-E API: 400 Client Error: Bad Request for url: https://web-api.tp.entsoe.eu/api?documentType=A44&in_Domain=10YNO-2--------T&out_Domain=10YNO-2--------T&periodStart=202506120000&periodEnd=202506120000&securityToken=5cf92fdd-a882-4158-a5a9-9b0b8e202786
-Email notifications disabled. Errors in strompriser.py were not sent.
+Successfully received response from ENTSO-E
+Parsing XML response...
+Found 1 TimeSeries elements
+Processing period starting at 2025-06-11T22:00Z
+Found 24 Point elements
+Total price data points collected: 24
+After filtering out existing dates, 23 price records remain
+After filtering out future dates, 6 price records remain
+Fetching exchange rates...
+Full API URL: https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?startPeriod=2025-06-12&endPeriod=2025-06-12&format=csv&bom=include&locale=no
+Requesting exchange rates from 2025-06-12 to 2025-06-12
+Response status code: 200
+Response headers: {'Set-Cookie': 'JSESSIONID=A36DE1A39E915ADF51816E2C6818C059; Path=/FusionRegistry; HttpOnly; SameSite=Strict', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Accept,Accept-Language', 'Content-Disposition': 'inline; filename="EXR.csv"', 'X-XSS-Protection': '1; mode=block', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Content-Type': 'text/csv;charset=UTF-8', 'Date': 'Fri, 13 Jun 2025 11:16:11 GMT', 'Keep-Alive': 'timeout=20', 'Connection': 'keep-alive', 'Strict-Transport-Security': 'max-age=31556926; includeSubDomains', 'Content-Encoding': 'gzip', 'Transfer-Encoding': 'chunked'}
+Response preview: Ã¯Â»Â¿FREQ;Frekvens;BASE_CUR;Basisvaluta;QUOTE_CUR;Kvoteringsvaluta;TENOR;LÃÂ¸petid;DECIMALS;CALCULATED;UNIT_MULT;Multiplikator;COLLECTION;Innsamlingstidspunkt;TIME_PERIOD;OBS_VALUE
+B;Virkedag;EUR;Euro;NOK;Norske kroner;SP;Spot;4;false;0;Enheter;C;ECB concertation tidspunkt 14:15 CET;2025-06-12;11,574
+...
+Full response saved to D:\Scripts\analyse\Telemark\Python\Temp\exchange_rate_response.txt
+Exchange rate data shape: (1, 16)
+Exchange rate columns: ['FREQ', 'Frekvens', 'BASE_CUR', 'Basisvaluta', 'QUOTE_CUR', 'Kvoteringsvaluta', 'TENOR', 'LÃÂ¸petid', 'DECIMALS', 'CALCULATED', 'UNIT_MULT', 'Multiplikator', 'COLLECTION', 'Innsamlingstidspunkt', 'TIME_PERIOD', 'OBS_VALUE']
+First rows of exchange rate data:
+  FREQ  Frekvens  ... TIME_PERIOD OBS_VALUE
+0    B  Virkedag  ...  2025-06-12    11,574
 
+[1 rows x 16 columns]
+Converted comma to period in exchange rates
+Final exchange rate data:
+        time  eur_nok_rate
+0 2025-06-12        11.574
+Date range in exchange rate data: 2025-06-12 00:00:00 - 2025-06-12 00:00:00
+Successfully fetched 1 exchange rate records
+Merging price and exchange rate data...
+Exchange rates are available for dates: 0    2025-06-12
+Name: time, dtype: object
+After filtering for dates with exchange rates, price data points: 6
+Shape after merge: (6, 4)
+Number of NaNs in eur_nok_rate after merge: 0
+Calculating daily averages...
+Sample data before grouping:
+         date  price_eur  eur_nok_rate  price_nok
+0  2025-06-12      74.23        11.574  859.13802
+1  2025-06-12      69.74        11.574  807.17076
+2  2025-06-12      67.77        11.574  784.36998
+3  2025-06-12      63.44        11.574  734.25456
+4  2025-06-12      64.29        11.574  744.09246
+Sample data after grouping:
+         date  price_eur  eur_nok_rate  price_nok
+0  2025-06-12  67.076667        11.574  776.34534
+Columns before renaming: ['date', 'price_eur', 'eur_nok_rate', 'price_nok']
+Columns after renaming: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh']
+Sample data after renaming:
+         time    EUR/MWh    kurs    NOK/MWh
+0  2025-06-12  67.076667  11.574  776.34534
+Final prepared data:
+         time    EUR/MWh    kurs    NOK/MWh   NOK/KWh
+0  2025-06-12  67.076667  11.574  776.34534  0.776345
+Combining with existing data...
+Columns in existing_df: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh', 'NOK/KWh']
+Columns in daily_avg_new: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh', 'NOK/KWh']
+Combined data now has 1625 records
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
+[2025-06-13 13:16:11] Row count changed: 1624 -> 1625
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 83, in <module>
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://web-api.tp.entsoe.eu/api?documentType=A44&in_Domain=10YNO-2--------T&out_Domain=10YNO-2--------T&periodStart=202506120000&periodEnd=202506120000&securityToken=5cf92fdd-a882-4158-a5a9-9b0b8e202786
+Added rows (showing up to 10):
+EUR/MWh: 67.07666666666667, NOK/KWh: 0.77634534, NOK/MWh: 776.34534, kurs: 11.574, time: 2025-06-12
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
+Email notifications disabled. Updates for strompriser.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
+Script completed successfully!
 
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 90, in <module>
-    raise RuntimeError("Failed to fetch data from ENTSO-E")
-RuntimeError: Failed to fetch data from ENTSO-E
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py` failed. (See above for error)
