@@ -2,29 +2,29 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-An unexpected error occurred during setup: Message: 
+An unexpected error occurred during setup: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
 Stacktrace:
-	GetHandleVerifier [0x0x7ff79e5bfe75+79173]
-	GetHandleVerifier [0x0x7ff79e5bfed0+79264]
-	(No symbol) [0x0x7ff79e379e5a]
-	(No symbol) [0x0x7ff79e3d0586]
-	(No symbol) [0x0x7ff79e3d083c]
-	(No symbol) [0x0x7ff79e424247]
-	(No symbol) [0x0x7ff79e3f89af]
-	(No symbol) [0x0x7ff79e42100d]
-	(No symbol) [0x0x7ff79e3f8743]
-	(No symbol) [0x0x7ff79e3c14c1]
-	(No symbol) [0x0x7ff79e3c2253]
-	GetHandleVerifier [0x0x7ff79e88a2ad+3004797]
-	GetHandleVerifier [0x0x7ff79e8846fd+2981325]
-	GetHandleVerifier [0x0x7ff79e8a3350+3107360]
-	GetHandleVerifier [0x0x7ff79e5da9fe+188622]
-	GetHandleVerifier [0x0x7ff79e5e228f+219487]
-	GetHandleVerifier [0x0x7ff79e5c8dc4+115860]
-	GetHandleVerifier [0x0x7ff79e5c8f79+116297]
-	GetHandleVerifier [0x0x7ff79e5af528+11256]
+	GetHandleVerifier [0x0x7ff67218cda5+78885]
+	GetHandleVerifier [0x0x7ff67218ce00+78976]
+	(No symbol) [0x0x7ff671f49bca]
+	(No symbol) [0x0x7ff671f884d2]
+	(No symbol) [0x0x7ff671f82d5d]
+	(No symbol) [0x0x7ff671fd69ee]
+	(No symbol) [0x0x7ff671fd6180]
+	(No symbol) [0x0x7ff671fc8963]
+	(No symbol) [0x0x7ff671f916b1]
+	(No symbol) [0x0x7ff671f92443]
+	GetHandleVerifier [0x0x7ff672464eed+3061101]
+	GetHandleVerifier [0x0x7ff67245f33d+3037629]
+	GetHandleVerifier [0x0x7ff67247e592+3165202]
+	GetHandleVerifier [0x0x7ff6721a730e+186766]
+	GetHandleVerifier [0x0x7ff6721aeb3f+217535]
+	GetHandleVerifier [0x0x7ff6721959b4+114740]
+	GetHandleVerifier [0x0x7ff672195b69+115177]
+	GetHandleVerifier [0x0x7ff67217c368+10728]
 	BaseThreadInitThunk [0x0x7ffcadd67ac4+20]
 	RtlUserThreadStart [0x0x7ffcae91a8c1+33]
 
+Failed to quit driver, it may have already been closed
 Email notifications disabled. Errors in Vannkvalitet were not sent.
 
