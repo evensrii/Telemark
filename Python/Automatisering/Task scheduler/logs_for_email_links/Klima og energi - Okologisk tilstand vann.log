@@ -2,15 +2,16 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-An unexpected error occurred during setup: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
+An unexpected error occurred during setup: Message: 
 Stacktrace:
 	GetHandleVerifier [0x0x7ff67218cda5+78885]
 	GetHandleVerifier [0x0x7ff67218ce00+78976]
 	(No symbol) [0x0x7ff671f49bca]
-	(No symbol) [0x0x7ff671f884d2]
-	(No symbol) [0x0x7ff671f82d5d]
-	(No symbol) [0x0x7ff671fd69ee]
-	(No symbol) [0x0x7ff671fd6180]
+	(No symbol) [0x0x7ff671fa0766]
+	(No symbol) [0x0x7ff671fa0a1c]
+	(No symbol) [0x0x7ff671ff4467]
+	(No symbol) [0x0x7ff671fc8bcf]
+	(No symbol) [0x0x7ff671ff122f]
 	(No symbol) [0x0x7ff671fc8963]
 	(No symbol) [0x0x7ff671f916b1]
 	(No symbol) [0x0x7ff671f92443]
@@ -25,6 +26,5 @@ Stacktrace:
 	BaseThreadInitThunk [0x0x7ffcadd67ac4+20]
 	RtlUserThreadStart [0x0x7ffcae91a8c1+33]
 
-Failed to quit driver, it may have already been closed
 Email notifications disabled. Errors in Vannkvalitet were not sent.
 
