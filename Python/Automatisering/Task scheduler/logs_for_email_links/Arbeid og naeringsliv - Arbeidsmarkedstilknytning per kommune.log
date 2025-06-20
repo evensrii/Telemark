@@ -18,51 +18,26 @@ Arbeidsmarkedstilknytning i Telemark:
 [7 rows x 5 columns]
 Arbeidsmarkedstilknytning, Landet JSON data loaded successfully.
 Arbeidsmarkedstilknytning, fylker JSON data loaded successfully.
+Request error in Table 05749, kommuner: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/05749/
+Error occurred while fetching data from table 05749: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/05749/
+Email notifications disabled. Errors in arbeidsmarkedstilknytning.py were not sent.
 
-Pensjonister per fylke:
-                               region  ... Andel
-26                          Innlandet  ...  22.1
-47                           Telemark  ...  21.5
-89                           Nordland  ...  21.3
-40                           Vestfold  ...  20.5
-75                    MÃÂ¸re og Romsdal  ...  20.3
-5                             ÃËstfold  ...  20.1
-33                           Buskerud  ...  19.0
-96            Troms - Romsa - Tromssa  ...  18.7
-103  Finnmark - FinnmÃÂ¡rku - Finmarkku  ...  18.5
-54                              Agder  ...  18.4
-82                          TrÃÂ¸ndelag  ...  18.3
-68                           Vestland  ...  18.2
-12                           Akershus  ...  16.6
-61                           Rogaland  ...  16.3
-19                               Oslo  ...  12.0
 
-[15 rows x 5 columns]
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning.py", line 383, in <module>
+    df_05749_kommuner = fetch_data(
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/05749/
 
-UfÃÂ¸re per fylke:
-                               region  ... Andel
-4                             ÃËstfold  ...  10.4
-53                              Agder  ...   9.7
-46                           Telemark  ...   9.0
-25                          Innlandet  ...   8.9
-39                           Vestfold  ...   8.6
-88                           Nordland  ...   8.4
-102  Finnmark - FinnmÃÂ¡rku - Finmarkku  ...   8.2
-32                           Buskerud  ...   7.9
-95            Troms - Romsa - Tromssa  ...   7.5
-81                          TrÃÂ¸ndelag  ...   7.3
-60                           Rogaland  ...   6.8
-74                    MÃÂ¸re og Romsdal  ...   6.8
-67                           Vestland  ...   6.4
-11                           Akershus  ...   6.0
-18                               Oslo  ...   5.7
+During handling of the above exception, another exception occurred:
 
-[15 rows x 5 columns]
-Sysselsatte med arbeidssted i Telemark JSON data loaded successfully.
-Sysselsatte med arbeidssted i Telemark i 2024: 78849
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arbeidsmarkedstilknytning_per_kommune.csv
-[2025-06-13 08:05:52] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\arbeidsmarkedstilknytning_per_kommune.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Arbeidsmarkedstilknytning_per_kommune.log
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning.py", line 395, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching for table 05749, stopping execution.
 
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning.py` failed. (See above for error)
