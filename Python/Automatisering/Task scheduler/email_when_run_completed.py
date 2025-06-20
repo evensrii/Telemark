@@ -385,7 +385,7 @@ for recipient in recipients:
     }
 
     # API endpoint and headers
-    url = "https://mail.api.telemarkfylke.no/api/mail"
+    url = "https://email.api.telemarkfylke.no/api/send"
     headers = {
         "Content-Type": "application/json; charset=utf-8",  # Explicitly set charset
         "User-Agent": "insomnia/10.1.1",
