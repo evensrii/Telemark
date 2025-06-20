@@ -322,7 +322,7 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-###################### TABLE 05749 KOMMUNER
+""" ###################### TABLE 05749 KOMMUNER
 
 # Add a new query for table 05749 for kommuner
 POST_URL_05749 = "https://data.ssb.no/api/v0/no/table/05749/"
@@ -395,7 +395,7 @@ except Exception as e:
     raise RuntimeError(
         "A critical error occurred during data fetching for table 05749, stopping execution."
     )
-
+ """
 # Function to process each dataframe
 def process_dataframe(df):
     # Get the year from the 'år' column
