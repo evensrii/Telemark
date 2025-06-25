@@ -1,6 +1,5 @@
 import requests
 import pandas as pd
-import json
 import os
 from datetime import datetime, timedelta
 import time
@@ -137,18 +136,35 @@ def main():
         print(f"{get_timestamp()} Could not download existing installed_capacity.csv from Github: {e}")
         existing_df = None
 
-    # 2. Find latest date in 'Dato'
+    # 2. Determine latest date in existing data
     latest_date = None
-    if existing_df is not None and not existing_df.empty and 'Dato' in existing_df.columns:
-        try:
-            existing_df['Dato'] = pd.to_datetime(existing_df['Dato'])
-            latest_date = existing_df['Dato'].max()
-            print(f"{get_timestamp()} Latest date found in existing installed_capacity.csv: {latest_date.date()}")
-            query_start_date = (latest_date + pd.Timedelta(days=1)).date()
-            print(f"{get_timestamp()} Will query for data from: {query_start_date}")
-        except Exception as e:
-            print(f"{get_timestamp()} Error parsing 'Dato' in existing file: {e}")
-            query_start_date = None
+    if existing_df is not None and not existing_df.empty:
+        if 'Dato' in existing_df.columns:
+            existing_df['Dato'] = pd.to_datetime(existing_df['Dato'], errors='coerce')
+            latest_date = existing_df['Dato'].max().date()
+            print(f"{get_timestamp()} Latest date found in existing installed_capacity.csv: {latest_date}")
+    else:
+        print(f"{get_timestamp()} No existing data found in installed_capacity.csv on Github.")
+
+    # Early exit if data is already up to date
+    today = datetime.now().date()
+    if latest_date is not None and latest_date >= today:
+        print(f"{get_timestamp()} Data is already up to date (latest: {latest_date}, today: {today}). No queries needed.")
+        # Still write log file for master script monitoring
+        task_name = "Klima og energi - Installert_effekt (Elhub)"
+        log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
+        log_file_path = os.path.join(log_dir, f"new_data_status_{task_name.replace('.', '_').replace(' ', '_')}.log")
+        with open(log_file_path, "w", encoding="utf-8") as log_file:
+            log_file.write(f"{task_name},installed_capacity_telemark.csv,No\n")
+        print(f"{get_timestamp()} New data status log written to {log_file_path}")
+        print(f"{get_timestamp()} Query completed")
+        return
+
+    # 3. Determine query range (start from day after latest_date, or from start_date if no data)
+    query_start_date = None
+    if latest_date is not None:
+        query_start_date = (latest_date + timedelta(days=1))
+        print(f"{get_timestamp()} Will query for data from: {query_start_date}")
     else:
         print(f"{get_timestamp()} No existing installed_capacity.csv found or file is empty. Will query all data.")
         query_start_date = None
@@ -223,6 +239,11 @@ def main():
         combined_df = combined_df.sort_values('Dato')
 
     # 6. Save and upload only the combined file
+    task_name = "Klima og energi - Installert_effekt (Elhub)"
+    log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
+    log_file_path = os.path.join(log_dir, f"new_data_status_{task_name.replace('.', '_').replace(' ', '_')}.log")
+    new_data_detected = False
+
     if not combined_df.empty:
         handle_output_data(
             combined_df,
@@ -233,8 +254,14 @@ def main():
         )
         print(f"\n{get_timestamp()} Combined file processed and uploaded via handle_output_data")
         print(f"{get_timestamp()} Total records in combined file: {len(combined_df)}")
+        new_data_detected = True
     else:
         print(f"\n{get_timestamp()} No new or existing data to save.")
+
+    # Write log file
+    with open(log_file_path, "w", encoding="utf-8") as log_file:
+        log_file.write(f"{task_name},{combined_file_name},{'Yes' if new_data_detected else 'No'}\n")
+    print(f"{get_timestamp()} New data status log written to {log_file_path}")
     print(f"\n{get_timestamp()} Query completed")
 
 if __name__ == "__main__":
