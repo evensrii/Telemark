@@ -154,13 +154,21 @@ def main():
         query_start_date = None
 
     # 3. Determine months/years to query
-    current_year = 2025
-    current_month = 6  # June (as of current local time 2025-06-25)
     years = [2024, 2025]
-    months_by_year = {
     yearly_results = {2024: pd.DataFrame(), 2025: pd.DataFrame()}
 
-    # 4. Query only for months after the latest date
+    # 4. Define start/end year/month based on query_start_date and current date
+    if query_start_date is not None:
+        start_year = query_start_date.year
+        start_month = query_start_date.month
+    else:
+        start_year = years[0]
+        start_month = 1
+    # End year/month: use current date (local time as of 2025-06-25)
+    end_year = 2025
+    end_month = 6
+
+    # 5. Query only for months after the latest date
     for municipality_id in TELEMARK_MUNICIPALITIES:
         print(f"\n{get_timestamp()} Querying municipality {municipality_id} for new data...")
         for year in years:
