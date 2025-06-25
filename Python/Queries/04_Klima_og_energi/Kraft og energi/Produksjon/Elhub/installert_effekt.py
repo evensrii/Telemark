@@ -8,7 +8,8 @@ from Helper_scripts.github_functions import handle_output_data, download_github_
 
 # List of Telemark municipalities
 TELEMARK_MUNICIPALITIES = [
-    '4001', '4003'
+    '4001', '4003', '4005', '4010', '4012', '4014', '4016', '4018',
+    '4020', '4022', '4024', '4026', '4028', '4030', '4032', '4034', '4036'
 ]
 
 # Get the GITHUB_TOKEN from the environment
@@ -23,23 +24,42 @@ def get_timestamp():
     return datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
 
 def query_elhub_municipality(municipality_id, start_date, end_date):
-    """Query Elhub API for a specific municipality and date range"""
+    """Query Elhub API for a specific municipality and date range, with retry logic for transient errors"""
     url = f"https://api.elhub.no/energy-data/v0/municipalities/{municipality_id}?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate={start_date}&endDate={end_date}"
-    
     headers = {"Accept": "application/json"}
-    print(f"{get_timestamp()} Querying URL: {url}")
-    
-    response = requests.get(url, headers=headers)
-    
-    if response.status_code != 200:
-        print(f"{get_timestamp()} Error: Status code {response.status_code}")
-        print(f"{get_timestamp()} Response: {response.text}")
-        return None
-        
-    print(f"{get_timestamp()} Got successful response")
-    
-    # Return the raw JSON for inspection
-    return response.json()
+    max_retries = 3
+    backoff_times = [1, 3, 7]  # seconds
+    attempt = 0
+    while attempt < max_retries:
+        print(f"{get_timestamp()} Querying URL: {url} (attempt {attempt + 1})")
+        try:
+            response = requests.get(url, headers=headers, timeout=30)
+        except requests.RequestException as e:
+            print(f"{get_timestamp()} Request exception: {e}")
+            if attempt < max_retries - 1:
+                print(f"{get_timestamp()} Retrying in {backoff_times[attempt]} seconds...")
+                time.sleep(backoff_times[attempt])
+                attempt += 1
+                continue
+            else:
+                print(f"{get_timestamp()} Failed after {max_retries} attempts.")
+                return None
+        if response.status_code == 200:
+            print(f"{get_timestamp()} Got successful response")
+            return response.json()
+        else:
+            print(f"{get_timestamp()} Error: Status code {response.status_code}")
+            print(f"{get_timestamp()} Response: {response.text}")
+            # Retry only for 5xx errors
+            if response.status_code >= 500 and attempt < max_retries - 1:
+                print(f"{get_timestamp()} Retrying in {backoff_times[attempt]} seconds...")
+                time.sleep(backoff_times[attempt])
+                attempt += 1
+                continue
+            else:
+                print(f"{get_timestamp()} Failed after {attempt + 1} attempts.")
+                return None
+    return None
 
 def extract_data(json_data):
     """Extract data from the API response"""
@@ -160,29 +180,24 @@ def main():
         print(f"{get_timestamp()} Query completed")
         return
 
-    # 3. Determine query range (start from day after latest_date, or from start_date if no data)
-    query_start_date = None
+    # 3. Determine query range (start from day after latest_date, or from 2016-01-01 if no data)
+    today = datetime.now().date()
     if latest_date is not None:
         query_start_date = (latest_date + timedelta(days=1))
         print(f"{get_timestamp()} Will query for data from: {query_start_date}")
     else:
-        print(f"{get_timestamp()} No existing installed_capacity.csv found or file is empty. Will query all data.")
-        query_start_date = None
+        query_start_date = datetime(2016, 1, 1).date()
+        print(f"{get_timestamp()} No existing installed_capacity.csv found or file is empty. Will query from {query_start_date}")
+    query_end_date = today
+    print(f"{get_timestamp()} Will query up to: {query_end_date}")
 
-    # 3. Determine months/years to query
-    years = [2024, 2025]
-    yearly_results = {2024: pd.DataFrame(), 2025: pd.DataFrame()}
-
-    # 4. Define start/end year/month based on query_start_date and current date
-    if query_start_date is not None:
-        start_year = query_start_date.year
-        start_month = query_start_date.month
-    else:
-        start_year = years[0]
-        start_month = 1
-    # End year/month: use current date (local time as of 2025-06-25)
-    end_year = 2025
-    end_month = 6
+    # 3. Determine months/years to query dynamically
+    start_year = query_start_date.year
+    start_month = query_start_date.month
+    end_year = query_end_date.year
+    end_month = query_end_date.month
+    years = list(range(start_year, end_year + 1))
+    yearly_results = {year: pd.DataFrame() for year in years}
 
     # 5. Query only for months after the latest date
     for municipality_id in TELEMARK_MUNICIPALITIES:
