@@ -246,12 +246,33 @@ def main():
                 df_year = df_year.sort_values('Dato')
             combined_df = pd.concat([combined_df, df_year], ignore_index=True)
 
+    # Ensure both existing_df and combined_df are sorted by all key columns before deduplication or merging
+    sort_cols = ['Kommunenummer', 'Dato', 'MeteringPointTypeCode', 'Kilde']
+    if existing_df is not None and not existing_df.empty:
+        if all(col in existing_df.columns for col in sort_cols):
+            existing_df = existing_df.sort_values(sort_cols).reset_index(drop=True)
+    if not combined_df.empty and all(col in combined_df.columns for col in sort_cols):
+        # Normalize date columns to string YYYY-MM-DD
+        if 'Dato' in combined_df.columns:
+            combined_df['Dato'] = pd.to_datetime(combined_df['Dato'], errors='coerce').dt.strftime('%Y-%m-%d')
+        if 'SistOppdatert' in combined_df.columns:
+            # Only normalize if it's a date/time column
+            try:
+                combined_df['SistOppdatert'] = pd.to_datetime(combined_df['SistOppdatert'], errors='coerce').dt.strftime('%Y-%m-%d')
+            except Exception:
+                pass
+        # Fill NaNs in key columns with ''
+        for col in sort_cols:
+            combined_df[col] = combined_df[col].fillna('')
+        combined_df = combined_df.sort_values(sort_cols).reset_index(drop=True)
+
     if existing_df is not None and not existing_df.empty:
         combined_df = pd.concat([existing_df, combined_df], ignore_index=True)
     if 'Dato' in combined_df.columns:
         combined_df['Dato'] = pd.to_datetime(combined_df['Dato'], errors='coerce')
         combined_df = combined_df.drop_duplicates(subset=['Kommunenummer', 'Dato', 'MeteringPointTypeCode', 'Kilde'], keep='last')
-        combined_df = combined_df.sort_values('Dato')
+        if all(col in combined_df.columns for col in sort_cols):
+            combined_df = combined_df.sort_values(sort_cols).reset_index(drop=True)
 
     # 6. Save and upload only the combined file
     task_name = "Klima og energi - Installert_effekt (Elhub)"
