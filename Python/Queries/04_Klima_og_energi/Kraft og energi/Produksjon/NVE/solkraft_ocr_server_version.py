@@ -13,9 +13,6 @@ ctypes.windll.user32.SetProcessDPIAware()
 print(f"Screen size: {pyautogui.size()}")
 print(f"Window box: {window.box}")  # should be (left, top, width, height)
 
-border_left = window.left if window.left >= 0 else 0
-adjusted_left = border_left + offset_x
-
 # Step 1: Open the NVE Solkraft webpage
 url = "https://www.nve.no/energi/energisystem/solkraft/oversikt-over-solkraftanlegg-i-norge/"
 print(f"Opening {url} in your default browser...")
