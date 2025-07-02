@@ -10,6 +10,7 @@ import time
 
 import ctypes
 ctypes.windll.user32.SetProcessDPIAware()
+
 print(f"Screen size: {pyautogui.size()}")
 print(f"Window box: {window.box}")  # should be (left, top, width, height)
 
@@ -129,9 +130,9 @@ def ocr_and_click_flexible(target_keyword, screenshot, window, left=0, top=0, de
     print(f"Keyword '{target_keyword}' not found. Debug images saved as {debug_img_inv} and {debug_img_raw}")
     return False
 
-# Crop to x=590:750, y=750:1100 before searching for 'Datagrunnlag'
-x1, x2 = 590, 750
-y1, y2 = 750, 1100
+# Crop to x=660:770, y=700:1010 before searching for 'Datagrunnlag'
+x1, x2 = 660, 770
+y1, y2 = 700, 1010
 screenshot1_cropped = screenshot.crop((x1, y1, x2, y2))
 screenshot1_cropped.save("ocr_debug_step1_Datagrunnlag_crop.png")
 
@@ -210,9 +211,9 @@ if clicked:
             if abs(y - y_target) <= tol:
                 print(f"Clicking '{target_keyword}' at y={y} (target={y_target})")
                 if window is not None:
-                    pyautogui.moveTo(left + x + crop_offset_x, top + y + crop_offset_y, duration=0.5)
+                    pyautogui.moveTo(left + x + crop_offset_x + X_OFFSET, top + y + crop_offset_y + Y_OFFSET, duration=0.5)
                 else:
-                    pyautogui.moveTo(x + crop_offset_x, y + crop_offset_y, duration=0.5)
+                    pyautogui.moveTo(x + crop_offset_x + X_OFFSET, y + crop_offset_y + Y_OFFSET, duration=0.5)
                 pyautogui.click()
                 return (x, y)
         print(f"Keyword '{target_keyword}' not found at y~={y_target}. Debug image saved as {debug_img_raw}")
@@ -244,9 +245,9 @@ if alle_coords:
                 y = data['top'][i] + data['height'][i] // 2
                 print(f"[SLICER] Found '{target_keyword}' at ({x}, {y}), clicking...")
                 if window is not None:
-                    pyautogui.moveTo(left + x + crop_offset_x, top + y + crop_offset_y, duration=0.5)
+                    pyautogui.moveTo(left + x + crop_offset_x + X_OFFSET, top + y + crop_offset_y + Y_OFFSET, duration=0.5)
                 else:
-                    pyautogui.moveTo(x + crop_offset_x, y + crop_offset_y, duration=0.5)
+                    pyautogui.moveTo(x + crop_offset_x + X_OFFSET, y + crop_offset_y + Y_OFFSET, duration=0.5)
                 pyautogui.click()
                 return (x, y)
         print(f"Keyword '{target_keyword}' not found in slicer crop. Debug image saved as {debug_img}")
