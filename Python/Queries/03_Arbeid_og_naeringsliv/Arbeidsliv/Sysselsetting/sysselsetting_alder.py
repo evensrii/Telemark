@@ -454,13 +454,15 @@ print(f"\nSysselsetting for 15-74 i landet i {latest_year}: {sysselsetting_15_74
 
 ################## SYSSELSETTING I TELEMARK (15-74)
 
-sysselsatte_15_74_telemark = df_kommuner['value'].sum()
+sysselsatte_15_74_telemark_absolutt = df_kommuner['value'].sum()
 
-personer_15_74_telemark = df_personer_kommuner['value'].sum()
+personer_15_74_telemark_absolutt = df_personer_kommuner['value'].sum()
 
-sysselsetting_15_74_telemark = sysselsatte_15_74_telemark / personer_15_74_telemark * 100
+sysselsetting_15_74_telemark_prosent = sysselsatte_15_74_telemark_absolutt / personer_15_74_telemark_absolutt * 100
 
-print(f"Sysselsetting for 15-74 i Telemark i {latest_year}: {sysselsetting_15_74_telemark:.1f}%")
+print(f"Sysselsetting for 15-74 bosatte i Telemark i {latest_year}: {sysselsetting_15_74_telemark_prosent:.1f}%")
+
+print(f"Sysselsetting for 15-74 bosatte i Telemark i {latest_year}: {sysselsatte_15_74_telemark_absolutt}")
 
 
 ##### DATABEHANDLING

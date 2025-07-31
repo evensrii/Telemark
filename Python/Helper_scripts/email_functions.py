@@ -59,7 +59,7 @@ def notify_errors(error_messages, script_name="Unknown Script", send_email=False
             "html": f"<b>The following errors were found in {script_name}:</b><br>{'<br>'.join(error_messages)}",
         }
 
-        url = "https://mail.api.telemarkfylke.no/api/mail"
+        url = "https://email.api.telemarkfylke.no/api/send"
         headers = {
             "Content-Type": "application/json",
             "User-Agent": "insomnia/10.1.1",
@@ -131,7 +131,7 @@ def notify_updated_data(file_name, diff_lines=None, reason="", send_email=False)
         ),
     }
 
-    url = "https://mail.api.telemarkfylke.no/api/mail"
+    url = "https://email.api.telemarkfylke.no/api/send"
     headers = {
         "Content-Type": "application/json",
         "User-Agent": "insomnia/10.1.1",
