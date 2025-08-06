@@ -116,27 +116,6 @@ task_name = "Areal - Jordbruksareal per kommune"
 github_folder = "Data/10_Areal- og stedsutvikling/Areal til jordbruk"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
-# Debugging: Print DataFrame columns and file path info before calling handle_output_data
-print(f"[DEBUG] Columns in df before handle_output_data: {df.columns.tolist()}")
-# Fix: Use correct path to actual data file for column alignment
-# Hardcode the correct absolute path for the existing GitHub data file
-existing_file_path = r"c:\\Users\\eve1509\\OneDrive - Telemark fylkeskommune\\Github\\Telemark\\Data\\10_Areal- og stedsutvikling\\Areal til jordbruk\\jordbruksareal_per_kommune.csv"
-
-print(f"[DEBUG] Looking for existing GitHub file at: {existing_file_path}")
-print(f"[DEBUG] File exists: {os.path.exists(existing_file_path)}")
-if os.path.exists(existing_file_path):
-    try:
-        existing_df = pd.read_csv(existing_file_path)
-        print(f"[DEBUG] Columns in existing GitHub file: {existing_df.columns.tolist()}")
-        # Column alignment logic (only if columns differ)
-        existing_cols = [col for col in existing_df.columns if col.startswith('Jordbruksareal')]
-        new_cols = [col for col in df.columns if col.startswith('Jordbruksareal')]
-        if existing_cols and new_cols and existing_cols[0] != new_cols[0]:
-            print(f"[DEBUG] Renaming column {new_cols[0]} -> {existing_cols[0]}")
-            df = df.rename(columns={new_cols[0]: existing_cols[0]})
-    except Exception as e:
-        print(f"[DEBUG] Could not read or align existing GitHub file: {e}")
-
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
 
