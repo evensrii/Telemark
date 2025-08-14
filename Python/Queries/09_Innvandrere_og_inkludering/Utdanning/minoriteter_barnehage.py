@@ -19,11 +19,10 @@ script_name = os.path.basename(__file__)
 # Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
 error_messages = []
 
-###### Fylker tom. 2019 + 2024
+###### Telemark tom. 2019 + 2024
 
 # Finner URL vha. "Inspiser side" og fane "Network" (F12)
 url_fylker = "https://app-simapi-prod.azurewebsites.net/download_csv/f/barnehagedeltakelse_spraak"
-
 
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
@@ -44,33 +43,44 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-# df_fylker.info()
-df_fylker.head()
+df_telemark = df_fylker.copy()
+
+# df_telemark.info()
+df_telemark.head()
+
+#Identify duplicates
+#print(df_telemark.duplicated().sum()) #9640 duplikater
+
+# Remove duplicates
+df_telemark = df_telemark.drop_duplicates()
 
 # Convert fylkesnummer til string with leading zeros and convert to string
-df_fylker["Fylkesnummer"] = df_fylker["Fylkesnummer"].astype(str).str.zfill(2)
-# print(df_fylker["Fylkesnummer"].unique())
+df_telemark["Fylkesnummer"] = df_telemark["Fylkesnummer"].astype(str).str.zfill(2)
+#print(df_telemark["Fylkesnummer"].unique())
 
 # Filter rows
-df_fylker = df_fylker[
-    df_fylker["Fylkesnummer"].isin(["08", "40"])
+df_telemark = df_telemark[
+    df_telemark["Fylkesnummer"].isin(["08", "40"])
 ]  # Telemark before and after VTFK.
-df_fylker = df_fylker[df_fylker["Enhet"] == "Prosent"]
-df_fylker = df_fylker[df_fylker["Språk"] != "Alle"]
-df_fylker = df_fylker[df_fylker["Alder"] == "5 år"]
-df_fylker = df_fylker[df_fylker["År"] != 2013]
+
+#Sort by colum "År"
+df_telemark = df_telemark.sort_values(by="År", ascending=True)
+df_telemark = df_telemark[df_telemark["Enhet"] == "Prosent"]
+df_telemark = df_telemark[df_telemark["Alder"] == "5 år"]
+df_telemark = df_telemark[df_telemark["Språk"] != "Alle"]
+df_telemark = df_telemark[df_telemark["År"] != 2013]
 
 # Remove columns
-df_fylker = df_fylker.drop(columns=["Enhet", "Fylkesnummer", "Fylke", "Alder"])
+df_telemark = df_telemark.drop(columns=["Enhet", "Fylkesnummer", "Fylke", "Alder"])
 
 # Rename columns
-df_fylker = df_fylker.rename(columns={"Antall": "Andel"})
+df_telemark = df_telemark.rename(columns={"Antall": "Andel"})
 
 # Format "År" as datetime
-df_fylker["År"] = pd.to_datetime(df_fylker["År"], format="%Y")
+df_telemark["År"] = pd.to_datetime(df_telemark["År"], format="%Y")
 
 # Rename values containing "Minoritetsspråklige (utenom norsk" to "Minoritetsspråklige"
-df_fylker["Språk"] = df_fylker["Språk"].replace(
+df_telemark["Språk"] = df_telemark["Språk"].replace(
     {
         "Minoritetsspråklige (utenom norsk, samisk, svensk, dansk og engelsk)": "Minoritetsspråklige",
         "Ikke-minoritetsspråklige (inkl. norsk, samisk, svensk, dansk og engelsk)": "Ikke-minoritetsspråklige",
@@ -78,26 +88,88 @@ df_fylker["Språk"] = df_fylker["Språk"].replace(
 )
 
 # Sort by "Språk" (ascending) and "År" (ascending)
-df_fylker = df_fylker.sort_values(by=["Språk", "År"], ascending=True)
+df_telemark = df_telemark.sort_values(by=["Språk", "År"], ascending=True)
 
 # If values in "Andel" is >100, set to 100
-# df_fylker["Andel"] = np.where(df_fylker["Andel"] > 100, 100, df_fylker["Andel"])
+# df_telemark["Andel"] = np.where(df_telemark["Andel"] > 100, 100, df_telemark["Andel"])
 
 # Reset index
-df_fylker = df_fylker.reset_index(drop=True)
+df_telemark = df_telemark.reset_index(drop=True)
 
 # If values in "Prosent" is >100, set to 100
-df_fylker["Andel"] = np.where(df_fylker["Andel"] > 100, 100, df_fylker["Andel"])
+df_telemark["Andel"] = np.where(df_telemark["Andel"] > 100, 100, df_telemark["Andel"])
 
 # dtale.show(open_browser=True)
 
 
+
+###### VESTFOLD OG TELEMARK 2020 - 2023
+
+df_vestfold_telemark = df_fylker.copy()
+
+# df_vestfold_telemark.info()
+df_vestfold_telemark.head()
+
+# Convert fylkesnummer til string with leading zeros and convert to string
+df_vestfold_telemark["Fylkesnummer"] = df_vestfold_telemark["Fylkesnummer"].astype(str).str.zfill(2)
+print(df_vestfold_telemark["Fylkesnummer"].unique())
+
+# Filter rows
+df_vestfold_telemark = df_vestfold_telemark[
+    df_vestfold_telemark["Fylkesnummer"].isin(["38"])
+]  # Telemark before and after VTFK.
+
+#Identify duplicates
+#print(df_vestfold_telemark.duplicated().sum()) #9640 duplikater
+
+# Remove duplicates
+df_vestfold_telemark = df_vestfold_telemark.drop_duplicates()
+
+#Sort by colum "År"
+df_vestfold_telemark = df_vestfold_telemark.sort_values(by="År", ascending=True)
+df_vestfold_telemark = df_vestfold_telemark[df_vestfold_telemark["Enhet"] == "Prosent"]
+df_vestfold_telemark = df_vestfold_telemark[df_vestfold_telemark["Alder"] == "5 år"]
+df_vestfold_telemark = df_vestfold_telemark[df_vestfold_telemark["Språk"] != "Alle"]
+df_vestfold_telemark = df_vestfold_telemark[df_vestfold_telemark["År"] != 2013]
+
+# Remove columns
+df_vestfold_telemark = df_vestfold_telemark.drop(columns=["Enhet", "Fylkesnummer", "Fylke", "Alder"])
+
+# Rename columns
+df_vestfold_telemark = df_vestfold_telemark.rename(columns={"Antall": "Andel"})
+
+# Format "År" as datetime
+df_vestfold_telemark["År"] = pd.to_datetime(df_vestfold_telemark["År"], format="%Y")
+
+# Rename values containing "Minoritetsspråklige (utenom norsk" to "Minoritetsspråklige"
+df_vestfold_telemark["Språk"] = df_vestfold_telemark["Språk"].replace(
+    {
+        "Minoritetsspråklige (utenom norsk, samisk, svensk, dansk og engelsk)": "Minoritetsspråklige",
+        "Ikke-minoritetsspråklige (inkl. norsk, samisk, svensk, dansk og engelsk)": "Ikke-minoritetsspråklige",
+    }
+)
+
+# Sort by "Språk" (ascending) and "År" (ascending)
+df_vestfold_telemark = df_vestfold_telemark.sort_values(by=["Språk", "År"], ascending=True)
+
+# If values in "Andel" is >100, set to 100
+# df_vestfold_telemark["Andel"] = np.where(df_vestfold_telemark["Andel"] > 100, 100, df_vestfold_telemark["Andel"])
+
+# Reset index
+df_vestfold_telemark = df_vestfold_telemark.reset_index(drop=True)
+
+# If values in "Prosent" is >100, set to 100
+df_vestfold_telemark["Andel"] = np.where(df_vestfold_telemark["Andel"] > 100, 100, df_vestfold_telemark["Andel"])
+
+
 ###### Telemark 2020-2023 (Aggregeres fra kommunenivå)
+
+### NEI, FOR ALT FOR MANGE PRIKKEDE TALL FOR MINORITETSSÅRÅKELIGE I DISTRIKTENE!!
 
 ## Har ikke andel for Telemark, men får hentet ut antall barn i barnehage, og andelen disse utgjør, per kommune.
 ## Kan da beregne og summere tall for (barn i barnehage) og (totalt antall barn), og fra dette kalkulere den totale
 ## andelen barn i barnehage i Telemark.
-
+""" 
 url_kommuner = "https://app-simapi-prod.azurewebsites.net/download_csv/k/barnehagedeltakelse_spraak"
 
 
@@ -153,6 +225,12 @@ kommuner_telemark = {
 ## Filtrering av kommuner i Telemark
 df_kommuner = df_kommuner[df_kommuner["Kommunenummer"].isin(kommuner_telemark.keys())]
 
+#Identify duplicates
+print(df_kommuner.duplicated().sum())
+
+# Remove duplicates
+df_kommuner = df_kommuner.drop_duplicates()
+
 ## Innfylling av manglende kommunenavn
 df_kommuner["Kommune"] = df_kommuner["Kommune"].fillna(
     df_kommuner["Kommunenummer"].map(kommuner_telemark)
@@ -166,6 +244,9 @@ df_kommuner = df_kommuner[df_kommuner["Språk"] != "Alle"]
 # Conversions
 df_kommuner["År"] = pd.to_datetime(df_kommuner["År"], format="%Y")
 df_kommuner["Antall"] = pd.to_numeric(df_kommuner["Antall"], errors="coerce")
+
+# List all NaN values
+df_kommuner[df_kommuner.isnull().any(axis=1)]
 
 # Rename values containing "Minoritetsspråklige (utenom norsk" to "Minoritetsspråklige"
 df_kommuner["Språk"] = df_kommuner["Språk"].replace(
@@ -212,26 +293,26 @@ df_aggregert_fylke["andel_i_bhg"] = (
 df_aggregert_fylke = df_aggregert_fylke.drop(
     columns=["antall_barn_i_bhg", "antall_barn_tot"]
 )
-df_aggregert_fylke = df_aggregert_fylke.rename(columns={"andel_i_bhg": "Andel"})
+df_aggregert_fylke = df_aggregert_fylke.rename(columns={"andel_i_bhg": "Andel"}) """
 
 
-########## Merge df_fylker (fylkesdata) and df_aggregert_fylke (kommunedata) ##########
+########## Merge df_telemark (<-- 2019, 2024 -->) og df_vestfold_telemark (2020 - 2023) ##########
 
-# Merge df_aggregert_fylke to df_fylker
-df_telemark = pd.concat([df_fylker, df_aggregert_fylke], ignore_index=True)
+# Merge df_aggregert_fylke to df_telemark
+df_barnehage = pd.concat([df_telemark, df_vestfold_telemark], ignore_index=True)
 
 # Sort by "Språk" and "År"
-df_telemark = df_telemark.sort_values(by=["Språk", "År"], ascending=True)
+df_barnehage = df_barnehage.sort_values(by=["Språk", "År"], ascending=True)
 
 # Pivotere til rett format
-df_telemark_pivot = df_telemark.pivot_table(
+df_barnehage_pivot = df_barnehage.pivot_table(
     index=["År"], columns="Språk", values="Andel"
 ).reset_index()
-df_telemark_pivot = df_telemark_pivot[
+df_barnehage_pivot = df_barnehage_pivot[
     ["År", "Minoritetsspråklige", "Ikke-minoritetsspråklige"]
 ]
 
-df_telemark_pivot.head()
+df_barnehage_pivot.head()
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
@@ -241,7 +322,7 @@ github_folder = "Data/09_Innvandrere og inkludering/Utdanningsnivå Telemark"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
-is_new_data = handle_output_data(df_telemark_pivot, file_name, github_folder, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(df_barnehage_pivot, file_name, github_folder, temp_folder, keepcsv=True)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
