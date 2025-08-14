@@ -9,9 +9,9 @@ from pyjstat import pyjstat
 import numpy as np
 
 # Import the utility functions from the Helper_scripts folder
-from Helper_scripts.utility_functions import fetch_data, delete_files_in_temp_folder
+from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file, download_github_file, compare_to_github, handle_output_data
+from Helper_scripts.github_functions import handle_output_data
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
