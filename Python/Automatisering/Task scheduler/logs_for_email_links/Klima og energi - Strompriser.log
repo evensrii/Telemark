@@ -6,42 +6,42 @@ Script starting...
 Working with file: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
 Checking for existing data...
 Type of existing_df: <class 'pandas.core.frame.DataFrame'>
-Latest date in existing data: 2025-06-30 00:00:00
-Found 1637 existing records
-Will fetch data from 2025-07-01 00:00:00 to 2025-07-01 00:00:00 (yesterday)
+Latest date in existing data: 2025-08-12 00:00:00
+Found 1668 existing records
+Will fetch data from 2025-08-13 00:00:00 to 2025-08-13 00:00:00 (yesterday)
 Fetching energy prices from ENTSO-E...
 Successfully received response from ENTSO-E
 Parsing XML response...
 Found 1 TimeSeries elements
-Processing period starting at 2025-06-30T22:00Z
+Processing period starting at 2025-08-12T22:00Z
 Found 24 Point elements
 Total price data points collected: 24
 After filtering out existing dates, 23 price records remain
 After filtering out future dates, 6 price records remain
 Fetching exchange rates...
-Full API URL: https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?startPeriod=2025-07-01&endPeriod=2025-07-01&format=csv&bom=include&locale=no
-Requesting exchange rates from 2025-07-01 to 2025-07-01
+Full API URL: https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?startPeriod=2025-08-13&endPeriod=2025-08-13&format=csv&bom=include&locale=no
+Requesting exchange rates from 2025-08-13 to 2025-08-13
 Response status code: 200
-Response headers: {'Set-Cookie': 'JSESSIONID=8087D7BF01E54BD5335F00AFAC26197F; Path=/FusionRegistry; HttpOnly; SameSite=Strict', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Accept,Accept-Language', 'Content-Disposition': 'inline; filename="EXR.csv"', 'X-XSS-Protection': '1; mode=block', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Content-Type': 'text/csv;charset=UTF-8', 'Date': 'Wed, 02 Jul 2025 06:11:08 GMT', 'Keep-Alive': 'timeout=20', 'Connection': 'keep-alive', 'Strict-Transport-Security': 'max-age=31556926; includeSubDomains', 'Content-Encoding': 'gzip', 'Transfer-Encoding': 'chunked'}
+Response headers: {'Set-Cookie': 'JSESSIONID=803C105D0820401748B7E9BB0CE78C6E; Path=/FusionRegistry; HttpOnly; SameSite=Strict', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Accept,Accept-Language', 'Content-Disposition': 'inline; filename="EXR.csv"', 'X-XSS-Protection': '1; mode=block', 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Content-Type': 'text/csv;charset=UTF-8', 'Date': 'Thu, 14 Aug 2025 06:11:10 GMT', 'Keep-Alive': 'timeout=20', 'Connection': 'keep-alive', 'Strict-Transport-Security': 'max-age=31556926; includeSubDomains', 'Content-Encoding': 'gzip', 'Transfer-Encoding': 'chunked'}
 Response preview: Ã¯Â»Â¿FREQ;Frekvens;BASE_CUR;Basisvaluta;QUOTE_CUR;Kvoteringsvaluta;TENOR;LÃÂ¸petid;DECIMALS;CALCULATED;UNIT_MULT;Multiplikator;COLLECTION;Innsamlingstidspunkt;TIME_PERIOD;OBS_VALUE
-B;Virkedag;EUR;Euro;NOK;Norske kroner;SP;Spot;4;false;0;Enheter;C;ECB concertation tidspunkt 14:15 CET;2025-07-01;11,8445
+B;Virkedag;EUR;Euro;NOK;Norske kroner;SP;Spot;4;false;0;Enheter;C;ECB concertation tidspunkt 14:15 CET;2025-08-13;11,944
 ...
 Full response saved to D:\Scripts\analyse\Telemark\Python\Temp\exchange_rate_response.txt
 Exchange rate data shape: (1, 16)
 Exchange rate columns: ['FREQ', 'Frekvens', 'BASE_CUR', 'Basisvaluta', 'QUOTE_CUR', 'Kvoteringsvaluta', 'TENOR', 'LÃÂ¸petid', 'DECIMALS', 'CALCULATED', 'UNIT_MULT', 'Multiplikator', 'COLLECTION', 'Innsamlingstidspunkt', 'TIME_PERIOD', 'OBS_VALUE']
 First rows of exchange rate data:
   FREQ  Frekvens  ... TIME_PERIOD OBS_VALUE
-0    B  Virkedag  ...  2025-07-01   11,8445
+0    B  Virkedag  ...  2025-08-13    11,944
 
 [1 rows x 16 columns]
 Converted comma to period in exchange rates
 Final exchange rate data:
         time  eur_nok_rate
-0 2025-07-01       11.8445
-Date range in exchange rate data: 2025-07-01 00:00:00 - 2025-07-01 00:00:00
+0 2025-08-13        11.944
+Date range in exchange rate data: 2025-08-13 00:00:00 - 2025-08-13 00:00:00
 Successfully fetched 1 exchange rate records
 Merging price and exchange rate data...
-Exchange rates are available for dates: 0    2025-07-01
+Exchange rates are available for dates: 0    2025-08-13
 Name: time, dtype: object
 After filtering for dates with exchange rates, price data points: 6
 Shape after merge: (6, 4)
@@ -49,31 +49,31 @@ Number of NaNs in eur_nok_rate after merge: 0
 Calculating daily averages...
 Sample data before grouping:
          date  price_eur  eur_nok_rate   price_nok
-0  2025-07-01      65.10       11.8445  771.076950
-1  2025-07-01      64.47       11.8445  763.614915
-2  2025-07-01      63.01       11.8445  746.321945
-3  2025-07-01      62.63       11.8445  741.821035
-4  2025-07-01      63.81       11.8445  755.797545
+0  2025-08-13      88.76        11.944  1060.14944
+1  2025-08-13      84.72        11.944  1011.89568
+2  2025-08-13      84.56        11.944  1009.98464
+3  2025-08-13      86.91        11.944  1038.05304
+4  2025-08-13      92.70        11.944  1107.20880
 Sample data after grouping:
-         date  price_eur  eur_nok_rate   price_nok
-0  2025-07-01  63.976667       11.8445  757.771628
+         date  price_eur  eur_nok_rate    price_nok
+0  2025-08-13  88.741667        11.944  1059.930467
 Columns before renaming: ['date', 'price_eur', 'eur_nok_rate', 'price_nok']
 Columns after renaming: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh']
 Sample data after renaming:
-         time    EUR/MWh     kurs     NOK/MWh
-0  2025-07-01  63.976667  11.8445  757.771628
+         time    EUR/MWh    kurs      NOK/MWh
+0  2025-08-13  88.741667  11.944  1059.930467
 Final prepared data:
-         time    EUR/MWh     kurs     NOK/MWh   NOK/KWh
-0  2025-07-01  63.976667  11.8445  757.771628  0.757772
+         time    EUR/MWh    kurs      NOK/MWh  NOK/KWh
+0  2025-08-13  88.741667  11.944  1059.930467  1.05993
 Combining with existing data...
 Columns in existing_df: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh', 'NOK/KWh']
 Columns in daily_avg_new: ['time', 'EUR/MWh', 'kurs', 'NOK/MWh', 'NOK/KWh']
-Combined data now has 1638 records
+Combined data now has 1669 records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2025-07-02 08:11:08] Row count changed: 1637 -> 1638
+[2025-08-14 08:11:10] Row count changed: 1668 -> 1669
 
 Added rows (showing up to 10):
-EUR/MWh: 63.97666666666667, NOK/KWh: 0.7577716283333333, NOK/MWh: 757.7716283333333, kurs: 11.844500000000002, time: 2025-07-01
+EUR/MWh: 88.74166666666667, NOK/KWh: 1.0599304666666667, NOK/MWh: 1059.9304666666667, kurs: 11.944, time: 2025-08-13
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
 Email notifications disabled. Updates for strompriser.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
