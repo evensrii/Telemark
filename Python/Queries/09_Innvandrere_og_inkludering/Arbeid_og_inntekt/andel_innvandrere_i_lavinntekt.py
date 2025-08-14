@@ -1,19 +1,10 @@
-import requests
-import sys
 import os
-import glob
-from io import BytesIO
-from io import StringIO
 import pandas as pd
 from pyjstat import pyjstat
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.utility_functions import delete_files_in_temp_folder
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file
-from Helper_scripts.github_functions import download_github_file
-from Helper_scripts.github_functions import compare_to_github
 from Helper_scripts.github_functions import handle_output_data
 
 # Capture the name of the current script

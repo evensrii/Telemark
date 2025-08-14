@@ -50,17 +50,10 @@ def fetch_data(
         # Process the response based on the expected response type
         if response_type == "json":
             try:
-                # First try parsing as regular JSON
-                data = response.json()
-                if isinstance(data, list) or not any(key in data for key in ['dimension', 'value', 'status']):
-                    # If it's a list or doesn't look like JSON-stat, return as is
-                    print(f"{query_name} JSON data loaded successfully.")
-                    return data
-                else:
-                    # If it looks like JSON-stat data, use pyjstat
-                    dataset = pyjstat.Dataset.read(response.text)
-                    print(f"{query_name} JSON-stat data loaded successfully.")
-                    return dataset.write("dataframe")
+                # Use pyjstat for JSON-stat2 data
+                dataset = pyjstat.Dataset.read(response.text)
+                print(f"{query_name} JSON data loaded successfully.")
+                return dataset.write("dataframe")
             except Exception as e:
                 raise ValueError(
                     f"Error processing JSON response for {query_name}: {e}"
