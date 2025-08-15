@@ -2,341 +2,341 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2025-08-14 08:12:06] GITHUB_TOKEN loaded successfully.
-[2025-08-14 08:12:06] Starting Elhub query for all Telemark municipalities (incremental mode)
-[2025-08-14 08:12:06] Checking GitHub path: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/Installert_kapasitet/installed_capacity.csv
-[2025-08-14 08:12:08] Latest date found in existing installed_capacity.csv: 2025-08-12
-[2025-08-14 08:12:08] Will query for data from: 2025-08-13
-[2025-08-14 08:12:08] Will query up to: 2025-08-14
+[2025-08-15 08:11:42] GITHUB_TOKEN loaded successfully.
+[2025-08-15 08:11:42] Starting Elhub query for all Telemark municipalities (incremental mode)
+[2025-08-15 08:11:42] Checking GitHub path: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/Installert_kapasitet/installed_capacity.csv
+[2025-08-15 08:11:44] Latest date found in existing installed_capacity.csv: 2025-08-13
+[2025-08-15 08:11:44] Will query for data from: 2025-08-14
+[2025-08-15 08:11:44] Will query up to: 2025-08-15
 
-[2025-08-14 08:12:08] Querying municipality 4001 for new data...
-[2025-08-14 08:12:08] Querying municipality 4001 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:08] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:09] Got successful response
-[2025-08-14 08:12:09] Extracting data from response for municipality 4001...
-[2025-08-14 08:12:09] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:09] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:09] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:09] Found 4 data points for Porsgrunn (4001)
-[2025-08-14 08:12:09] Extracted 4 records
+[2025-08-15 08:11:44] Querying municipality 4001 for new data...
+[2025-08-15 08:11:44] Querying municipality 4001 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:11:44] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:11:44] Got successful response
+[2025-08-15 08:11:44] Extracting data from response for municipality 4001...
+[2025-08-15 08:11:44] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:11:44] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:11:44] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:11:44] Found 4 data points for Porsgrunn (4001)
+[2025-08-15 08:11:44] Extracted 4 records
 
 Sample data:
   Kommunenummer    Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4001  Porsgrunn                   E18  solar                754.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4001  Porsgrunn                   E19  solar               8101.0  2025-08-13  2025-08-13T14:35:05+02:00
-2          4001  Porsgrunn                   E18  other               1180.0  2025-08-13  2025-08-13T14:35:05+02:00
-3          4001  Porsgrunn                   E19  other                 13.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:09] Added 4 records from 4001 for 2025-08-13 to 2025-08-31
+0          4001  Porsgrunn                   E18  solar                754.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4001  Porsgrunn                   E19  solar               8101.0  2025-08-14  2025-08-14T14:36:25+02:00
+2          4001  Porsgrunn                   E19  other                 13.0  2025-08-14  2025-08-14T14:36:25+02:00
+3          4001  Porsgrunn                   E18  other               1180.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:11:44] Added 4 records from 4001 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:10] Querying municipality 4003 for new data...
-[2025-08-14 08:12:10] Querying municipality 4003 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:10] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:11] Got successful response
-[2025-08-14 08:12:11] Extracting data from response for municipality 4003...
-[2025-08-14 08:12:11] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:11] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:11] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:11] Found 5 data points for Skien (4003)
-[2025-08-14 08:12:11] Extracted 5 records
+[2025-08-15 08:11:45] Querying municipality 4003 for new data...
+[2025-08-15 08:11:45] Querying municipality 4003 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:11:45] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:11:45] Got successful response
+[2025-08-15 08:11:45] Extracting data from response for municipality 4003...
+[2025-08-15 08:11:45] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:11:45] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:11:45] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:11:45] Found 5 data points for Skien (4003)
+[2025-08-15 08:11:45] Extracted 5 records
 
 Sample data:
   Kommunenummer Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4003   Skien                   E19  solar              13342.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4003   Skien                   E18  solar                650.0  2025-08-13  2025-08-13T14:35:05+02:00
-2          4003   Skien                   E18  hydro              58930.0  2025-08-13  2025-08-13T14:35:05+02:00
-3          4003   Skien                   E18  other               1100.0  2025-08-13  2025-08-13T14:35:05+02:00
-4          4003   Skien                   E19  other                 98.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:11] Added 5 records from 4003 for 2025-08-13 to 2025-08-31
+0          4003   Skien                   E18  solar                650.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4003   Skien                   E19  solar              13342.0  2025-08-14  2025-08-14T14:36:25+02:00
+2          4003   Skien                   E18  hydro              58930.0  2025-08-14  2025-08-14T14:36:25+02:00
+3          4003   Skien                   E19  other                 98.0  2025-08-14  2025-08-14T14:36:25+02:00
+4          4003   Skien                   E18  other               1100.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:11:45] Added 5 records from 4003 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:12] Querying municipality 4005 for new data...
-[2025-08-14 08:12:12] Querying municipality 4005 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:12] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:12] Got successful response
-[2025-08-14 08:12:12] Extracting data from response for municipality 4005...
-[2025-08-14 08:12:12] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:12] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:12] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:12] Found 4 data points for Notodden (4005)
-[2025-08-14 08:12:12] Extracted 4 records
+[2025-08-15 08:11:46] Querying municipality 4005 for new data...
+[2025-08-15 08:11:46] Querying municipality 4005 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:11:46] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:11:47] Got successful response
+[2025-08-15 08:11:47] Extracting data from response for municipality 4005...
+[2025-08-15 08:11:47] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:11:47] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:11:47] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:11:47] Found 4 data points for Notodden (4005)
+[2025-08-15 08:11:47] Extracted 4 records
 
 Sample data:
   Kommunenummer   Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4005  Notodden                   E19  solar               5339.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4005  Notodden                   E18  solar                180.0  2025-08-13  2025-08-13T14:35:05+02:00
-2          4005  Notodden                   E18  hydro             204500.0  2025-08-13  2025-08-13T14:35:05+02:00
-3          4005  Notodden                   E19  other                  0.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:12] Added 4 records from 4005 for 2025-08-13 to 2025-08-31
+0          4005  Notodden                   E19  solar               5339.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4005  Notodden                   E18  solar                180.0  2025-08-14  2025-08-14T14:36:25+02:00
+2          4005  Notodden                   E18  hydro             204500.0  2025-08-14  2025-08-14T14:36:25+02:00
+3          4005  Notodden                   E19  other                  0.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:11:47] Added 4 records from 4005 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:13] Querying municipality 4010 for new data...
-[2025-08-14 08:12:13] Querying municipality 4010 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:13] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:14] Got successful response
-[2025-08-14 08:12:14] Extracting data from response for municipality 4010...
-[2025-08-14 08:12:14] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:14] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:14] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:14] Found 2 data points for Siljan (4010)
-[2025-08-14 08:12:14] Extracted 2 records
-
-Sample data:
-  Kommunenummer Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4010  Siljan                   E19  solar                567.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4010  Siljan                   E18  hydro              20700.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:14] Added 2 records from 4010 for 2025-08-13 to 2025-08-31
-
-[2025-08-14 08:12:15] Querying municipality 4012 for new data...
-[2025-08-14 08:12:15] Querying municipality 4012 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:15] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:16] Got successful response
-[2025-08-14 08:12:16] Extracting data from response for municipality 4012...
-[2025-08-14 08:12:16] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:16] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:16] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:16] Found 3 data points for Bamble (4012)
-[2025-08-14 08:12:16] Extracted 3 records
+[2025-08-15 08:11:48] Querying municipality 4010 for new data...
+[2025-08-15 08:11:48] Querying municipality 4010 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:11:48] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:11:48] Got successful response
+[2025-08-15 08:11:48] Extracting data from response for municipality 4010...
+[2025-08-15 08:11:48] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:11:48] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:11:48] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:11:48] Found 2 data points for Siljan (4010)
+[2025-08-15 08:11:48] Extracted 2 records
 
 Sample data:
   Kommunenummer Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4012  Bamble                   E18  solar                644.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4012  Bamble                   E19  solar               4780.0  2025-08-13  2025-08-13T14:35:05+02:00
-2          4012  Bamble                   E19  other                 25.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:16] Added 3 records from 4012 for 2025-08-13 to 2025-08-31
+0          4010  Siljan                   E19  solar                567.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4010  Siljan                   E18  hydro              20700.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:11:48] Added 2 records from 4010 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:17] Querying municipality 4014 for new data...
-[2025-08-14 08:12:17] Querying municipality 4014 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:17] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:17] Got successful response
-[2025-08-14 08:12:17] Extracting data from response for municipality 4014...
-[2025-08-14 08:12:17] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:17] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:17] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:17] Found 4 data points for KragerÃ¸ (4014)
-[2025-08-14 08:12:17] Extracted 4 records
+[2025-08-15 08:11:49] Querying municipality 4012 for new data...
+[2025-08-15 08:11:49] Querying municipality 4012 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:11:49] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:11:50] Got successful response
+[2025-08-15 08:11:50] Extracting data from response for municipality 4012...
+[2025-08-15 08:11:50] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:11:50] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:11:50] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:11:50] Found 3 data points for Bamble (4012)
+[2025-08-15 08:11:50] Extracted 3 records
+
+Sample data:
+  Kommunenummer Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
+0          4012  Bamble                   E18  solar                644.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4012  Bamble                   E19  solar               4780.0  2025-08-14  2025-08-14T14:36:25+02:00
+2          4012  Bamble                   E19  other                 25.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:11:50] Added 3 records from 4012 for 2025-08-14 to 2025-08-31
+
+[2025-08-15 08:11:51] Querying municipality 4014 for new data...
+[2025-08-15 08:11:51] Querying municipality 4014 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:11:51] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:11:51] Got successful response
+[2025-08-15 08:11:51] Extracting data from response for municipality 4014...
+[2025-08-15 08:11:51] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:11:51] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:11:51] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:11:51] Found 4 data points for KragerÃ¸ (4014)
+[2025-08-15 08:11:51] Extracted 4 records
 
 Sample data:
   Kommunenummer  Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4014  KragerÃ¸                   E19  solar               1926.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4014  KragerÃ¸                   E19  hydro                 23.0  2025-08-13  2025-08-13T14:35:05+02:00
-2          4014  KragerÃ¸                   E18  hydro              22110.0  2025-08-13  2025-08-13T14:35:05+02:00
-3          4014  KragerÃ¸                   E19  other                  8.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:17] Added 4 records from 4014 for 2025-08-13 to 2025-08-31
+0          4014  KragerÃ¸                   E19  solar               1926.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4014  KragerÃ¸                   E18  hydro              22110.0  2025-08-14  2025-08-14T14:36:25+02:00
+2          4014  KragerÃ¸                   E19  hydro                 23.0  2025-08-14  2025-08-14T14:36:25+02:00
+3          4014  KragerÃ¸                   E19  other                  8.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:11:51] Added 4 records from 4014 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:18] Querying municipality 4016 for new data...
-[2025-08-14 08:12:18] Querying municipality 4016 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:18] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:18] Got successful response
-[2025-08-14 08:12:18] Extracting data from response for municipality 4016...
-[2025-08-14 08:12:18] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:18] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:18] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:18] Found 4 data points for Drangedal (4016)
-[2025-08-14 08:12:18] Extracted 4 records
+[2025-08-15 08:11:52] Querying municipality 4016 for new data...
+[2025-08-15 08:11:52] Querying municipality 4016 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:11:52] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:11:52] Got successful response
+[2025-08-15 08:11:52] Extracting data from response for municipality 4016...
+[2025-08-15 08:11:52] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:11:52] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:11:52] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:11:52] Found 4 data points for Drangedal (4016)
+[2025-08-15 08:11:52] Extracted 4 records
 
 Sample data:
   Kommunenummer    Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4016  Drangedal                   E19  solar                677.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4016  Drangedal                   E18  hydro              14760.0  2025-08-13  2025-08-13T14:35:05+02:00
-2          4016  Drangedal                   E19  hydro                 10.0  2025-08-13  2025-08-13T14:35:05+02:00
-3          4016  Drangedal                   E19  other                 63.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:18] Added 4 records from 4016 for 2025-08-13 to 2025-08-31
+0          4016  Drangedal                   E19  solar                677.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4016  Drangedal                   E19  hydro                 10.0  2025-08-14  2025-08-14T14:36:25+02:00
+2          4016  Drangedal                   E18  hydro              14760.0  2025-08-14  2025-08-14T14:36:25+02:00
+3          4016  Drangedal                   E19  other                 63.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:11:52] Added 4 records from 4016 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:19] Querying municipality 4018 for new data...
-[2025-08-14 08:12:19] Querying municipality 4018 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:19] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:20] Got successful response
-[2025-08-14 08:12:20] Extracting data from response for municipality 4018...
-[2025-08-14 08:12:20] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:20] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:20] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:20] Found 3 data points for Nome (4018)
-[2025-08-14 08:12:20] Extracted 3 records
+[2025-08-15 08:11:53] Querying municipality 4018 for new data...
+[2025-08-15 08:11:53] Querying municipality 4018 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:11:53] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:11:53] Got successful response
+[2025-08-15 08:11:53] Extracting data from response for municipality 4018...
+[2025-08-15 08:11:53] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:11:53] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:11:53] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:11:53] Found 3 data points for Nome (4018)
+[2025-08-15 08:11:53] Extracted 3 records
 
 Sample data:
   Kommunenummer Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4018    Nome                   E19  solar               1855.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4018    Nome                   E18  hydro              64925.0  2025-08-13  2025-08-13T14:35:05+02:00
-2          4018    Nome                   E19  other                 55.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:20] Added 3 records from 4018 for 2025-08-13 to 2025-08-31
+0          4018    Nome                   E19  solar               1855.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4018    Nome                   E18  hydro              64925.0  2025-08-14  2025-08-14T14:36:25+02:00
+2          4018    Nome                   E19  other                 55.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:11:53] Added 3 records from 4018 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:21] Querying municipality 4020 for new data...
-[2025-08-14 08:12:21] Querying municipality 4020 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:21] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:21] Got successful response
-[2025-08-14 08:12:21] Extracting data from response for municipality 4020...
-[2025-08-14 08:12:21] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:21] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:21] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:21] Found 2 data points for Midt-Telemark (4020)
-[2025-08-14 08:12:21] Extracted 2 records
+[2025-08-15 08:11:54] Querying municipality 4020 for new data...
+[2025-08-15 08:11:54] Querying municipality 4020 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:11:54] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:11:56] Got successful response
+[2025-08-15 08:11:56] Extracting data from response for municipality 4020...
+[2025-08-15 08:11:56] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:11:56] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:11:56] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:11:56] Found 2 data points for Midt-Telemark (4020)
+[2025-08-15 08:11:56] Extracted 2 records
 
 Sample data:
   Kommunenummer        Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4020  Midt-Telemark                   E19  solar               5242.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4020  Midt-Telemark                   E19  other                 63.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:21] Added 2 records from 4020 for 2025-08-13 to 2025-08-31
+0          4020  Midt-Telemark                   E19  solar               5242.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4020  Midt-Telemark                   E19  other                 63.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:11:56] Added 2 records from 4020 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:22] Querying municipality 4022 for new data...
-[2025-08-14 08:12:22] Querying municipality 4022 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:22] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:22] Got successful response
-[2025-08-14 08:12:22] Extracting data from response for municipality 4022...
-[2025-08-14 08:12:22] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:22] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:22] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:22] Found 3 data points for Seljord (4022)
-[2025-08-14 08:12:22] Extracted 3 records
+[2025-08-15 08:11:57] Querying municipality 4022 for new data...
+[2025-08-15 08:11:57] Querying municipality 4022 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:11:57] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:11:57] Got successful response
+[2025-08-15 08:11:57] Extracting data from response for municipality 4022...
+[2025-08-15 08:11:57] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:11:57] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:11:57] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:11:57] Found 3 data points for Seljord (4022)
+[2025-08-15 08:11:57] Extracted 3 records
 
 Sample data:
   Kommunenummer  Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4022  Seljord                   E19  solar               1185.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4022  Seljord                   E18  hydro             128323.0  2025-08-13  2025-08-13T14:35:05+02:00
-2          4022  Seljord                   E19  hydro                 11.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:22] Added 3 records from 4022 for 2025-08-13 to 2025-08-31
+0          4022  Seljord                   E19  solar               1185.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4022  Seljord                   E19  hydro                 11.0  2025-08-14  2025-08-14T14:36:25+02:00
+2          4022  Seljord                   E18  hydro             128323.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:11:57] Added 3 records from 4022 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:23] Querying municipality 4024 for new data...
-[2025-08-14 08:12:23] Querying municipality 4024 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:23] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:23] Got successful response
-[2025-08-14 08:12:23] Extracting data from response for municipality 4024...
-[2025-08-14 08:12:23] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:23] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:23] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:23] Found 3 data points for Hjartdal (4024)
-[2025-08-14 08:12:23] Extracted 3 records
+[2025-08-15 08:11:58] Querying municipality 4024 for new data...
+[2025-08-15 08:11:58] Querying municipality 4024 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:11:58] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:11:58] Got successful response
+[2025-08-15 08:11:58] Extracting data from response for municipality 4024...
+[2025-08-15 08:11:58] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:11:58] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:11:58] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:11:58] Found 3 data points for Hjartdal (4024)
+[2025-08-15 08:11:58] Extracted 3 records
 
 Sample data:
   Kommunenummer   Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4024  Hjartdal                   E19  solar                302.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4024  Hjartdal                   E18  hydro             136631.0  2025-08-13  2025-08-13T14:35:05+02:00
-2          4024  Hjartdal                   E19  hydro                  5.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:23] Added 3 records from 4024 for 2025-08-13 to 2025-08-31
+0          4024  Hjartdal                   E19  solar                302.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4024  Hjartdal                   E19  hydro                  5.0  2025-08-14  2025-08-14T14:36:25+02:00
+2          4024  Hjartdal                   E18  hydro             136631.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:11:58] Added 3 records from 4024 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:24] Querying municipality 4026 for new data...
-[2025-08-14 08:12:24] Querying municipality 4026 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:24] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:25] Got successful response
-[2025-08-14 08:12:25] Extracting data from response for municipality 4026...
-[2025-08-14 08:12:25] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:25] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:25] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:25] Found 3 data points for Tinn (4026)
-[2025-08-14 08:12:25] Extracted 3 records
+[2025-08-15 08:11:59] Querying municipality 4026 for new data...
+[2025-08-15 08:11:59] Querying municipality 4026 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:11:59] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:11:59] Got successful response
+[2025-08-15 08:11:59] Extracting data from response for municipality 4026...
+[2025-08-15 08:11:59] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:11:59] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:11:59] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:11:59] Found 3 data points for Tinn (4026)
+[2025-08-15 08:11:59] Extracted 3 records
 
 Sample data:
   Kommunenummer Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4026    Tinn                   E19  solar                270.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4026    Tinn                   E18  hydro             701967.0  2025-08-13  2025-08-13T14:35:05+02:00
-2          4026    Tinn                   E19  other                 76.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:25] Added 3 records from 4026 for 2025-08-13 to 2025-08-31
+0          4026    Tinn                   E19  solar                270.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4026    Tinn                   E18  hydro             701967.0  2025-08-14  2025-08-14T14:36:25+02:00
+2          4026    Tinn                   E19  other                 76.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:11:59] Added 3 records from 4026 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:26] Querying municipality 4028 for new data...
-[2025-08-14 08:12:26] Querying municipality 4028 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:26] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:26] Got successful response
-[2025-08-14 08:12:26] Extracting data from response for municipality 4028...
-[2025-08-14 08:12:26] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:26] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:26] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:26] Found 2 data points for Kviteseid (4028)
-[2025-08-14 08:12:26] Extracted 2 records
+[2025-08-15 08:12:00] Querying municipality 4028 for new data...
+[2025-08-15 08:12:00] Querying municipality 4028 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:12:00] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:12:00] Got successful response
+[2025-08-15 08:12:00] Extracting data from response for municipality 4028...
+[2025-08-15 08:12:00] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:12:00] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:12:00] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:12:00] Found 2 data points for Kviteseid (4028)
+[2025-08-15 08:12:00] Extracted 2 records
 
 Sample data:
   Kommunenummer    Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4028  Kviteseid                   E19  solar               1026.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4028  Kviteseid                   E18  hydro              15303.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:26] Added 2 records from 4028 for 2025-08-13 to 2025-08-31
+0          4028  Kviteseid                   E19  solar               1026.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4028  Kviteseid                   E18  hydro              15303.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:12:00] Added 2 records from 4028 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:27] Querying municipality 4030 for new data...
-[2025-08-14 08:12:27] Querying municipality 4030 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:27] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:27] Got successful response
-[2025-08-14 08:12:27] Extracting data from response for municipality 4030...
-[2025-08-14 08:12:27] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:27] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:27] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:27] Found 3 data points for Nissedal (4030)
-[2025-08-14 08:12:27] Extracted 3 records
+[2025-08-15 08:12:01] Querying municipality 4030 for new data...
+[2025-08-15 08:12:01] Querying municipality 4030 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:12:01] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:12:01] Got successful response
+[2025-08-15 08:12:01] Extracting data from response for municipality 4030...
+[2025-08-15 08:12:01] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:12:01] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:12:01] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:12:01] Found 3 data points for Nissedal (4030)
+[2025-08-15 08:12:01] Extracted 3 records
 
 Sample data:
   Kommunenummer   Kommune MeteringPointTypeCode    Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4030  Nissedal                   E19    solar                406.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4030  Nissedal                   E18    hydro             132701.0  2025-08-13  2025-08-13T14:35:05+02:00
-2          4030  Nissedal                   E18  thermal                480.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:27] Added 3 records from 4030 for 2025-08-13 to 2025-08-31
+0          4030  Nissedal                   E19    solar                406.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4030  Nissedal                   E18    hydro             132701.0  2025-08-14  2025-08-14T14:36:25+02:00
+2          4030  Nissedal                   E18  thermal                480.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:12:01] Added 3 records from 4030 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:28] Querying municipality 4032 for new data...
-[2025-08-14 08:12:28] Querying municipality 4032 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:28] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:29] Got successful response
-[2025-08-14 08:12:29] Extracting data from response for municipality 4032...
-[2025-08-14 08:12:29] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:29] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:29] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:29] Found 2 data points for Fyresdal (4032)
-[2025-08-14 08:12:29] Extracted 2 records
+[2025-08-15 08:12:02] Querying municipality 4032 for new data...
+[2025-08-15 08:12:02] Querying municipality 4032 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:12:02] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:12:03] Got successful response
+[2025-08-15 08:12:03] Extracting data from response for municipality 4032...
+[2025-08-15 08:12:03] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:12:03] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:12:03] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:12:03] Found 2 data points for Fyresdal (4032)
+[2025-08-15 08:12:03] Extracted 2 records
 
 Sample data:
   Kommunenummer   Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4032  Fyresdal                   E19  solar                452.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4032  Fyresdal                   E18  hydro             135393.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:29] Added 2 records from 4032 for 2025-08-13 to 2025-08-31
+0          4032  Fyresdal                   E19  solar                452.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4032  Fyresdal                   E18  hydro             135393.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:12:03] Added 2 records from 4032 for 2025-08-14 to 2025-08-31
 
-[2025-08-14 08:12:30] Querying municipality 4034 for new data...
-[2025-08-14 08:12:30] Querying municipality 4034 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:30] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:31] Got successful response
-[2025-08-14 08:12:31] Extracting data from response for municipality 4034...
-[2025-08-14 08:12:31] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:31] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:31] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:31] Found 2 data points for Tokke (4034)
-[2025-08-14 08:12:31] Extracted 2 records
-
-Sample data:
-  Kommunenummer Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4034   Tokke                   E19  solar                126.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4034   Tokke                   E18  hydro            1028000.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:31] Added 2 records from 4034 for 2025-08-13 to 2025-08-31
-
-[2025-08-14 08:12:32] Querying municipality 4036 for new data...
-[2025-08-14 08:12:32] Querying municipality 4036 for period 2025-08-13 to 2025-08-31
-[2025-08-14 08:12:32] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-13&endDate=2025-08-31 (attempt 1)
-[2025-08-14 08:12:32] Got successful response
-[2025-08-14 08:12:32] Extracting data from response for municipality 4036...
-[2025-08-14 08:12:32] Response keys: ['meta', 'links', 'data']
-[2025-08-14 08:12:32] First data item keys: ['type', 'id', 'attributes']
-[2025-08-14 08:12:32] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
-[2025-08-14 08:12:32] Found 3 data points for Vinje (4036)
-[2025-08-14 08:12:32] Extracted 3 records
+[2025-08-15 08:12:04] Querying municipality 4034 for new data...
+[2025-08-15 08:12:04] Querying municipality 4034 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:12:04] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:12:04] Got successful response
+[2025-08-15 08:12:04] Extracting data from response for municipality 4034...
+[2025-08-15 08:12:04] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:12:04] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:12:04] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:12:04] Found 2 data points for Tokke (4034)
+[2025-08-15 08:12:04] Extracted 2 records
 
 Sample data:
   Kommunenummer Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
-0          4036   Vinje                   E19  solar               1217.0  2025-08-13  2025-08-13T14:35:05+02:00
-1          4036   Vinje                   E18  hydro               6300.0  2025-08-13  2025-08-13T14:35:05+02:00
-2          4036   Vinje                   E19  hydro                 18.0  2025-08-13  2025-08-13T14:35:05+02:00
-[2025-08-14 08:12:32] Added 3 records from 4036 for 2025-08-13 to 2025-08-31
+0          4034   Tokke                   E19  solar                126.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4034   Tokke                   E18  hydro            1028000.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:12:04] Added 2 records from 4034 for 2025-08-14 to 2025-08-31
+
+[2025-08-15 08:12:05] Querying municipality 4036 for new data...
+[2025-08-15 08:12:05] Querying municipality 4036 for period 2025-08-14 to 2025-08-31
+[2025-08-15 08:12:05] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2025-08-14&endDate=2025-08-31 (attempt 1)
+[2025-08-15 08:12:06] Got successful response
+[2025-08-15 08:12:06] Extracting data from response for municipality 4036...
+[2025-08-15 08:12:06] Response keys: ['meta', 'links', 'data']
+[2025-08-15 08:12:06] First data item keys: ['type', 'id', 'attributes']
+[2025-08-15 08:12:06] First attributes keys: ['municipalityNumber', 'name', 'nameNo', 'installedCapacityPerMeteringPointTypeGroupMunicipalityDaily']
+[2025-08-15 08:12:06] Found 3 data points for Vinje (4036)
+[2025-08-15 08:12:06] Extracted 3 records
+
+Sample data:
+  Kommunenummer Kommune MeteringPointTypeCode  Kilde  InstallertKapasitet        Dato              SistOppdatert
+0          4036   Vinje                   E19  solar               1217.0  2025-08-14  2025-08-14T14:36:25+02:00
+1          4036   Vinje                   E18  hydro               6300.0  2025-08-14  2025-08-14T14:36:25+02:00
+2          4036   Vinje                   E19  hydro                 18.0  2025-08-14  2025-08-14T14:36:25+02:00
+[2025-08-15 08:12:06] Added 3 records from 4036 for 2025-08-14 to 2025-08-31
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\installed_capacity.csv
-[2025-08-14 08:12:35] Row count changed: 78253 -> 78305
+[2025-08-15 08:12:08] Row count changed: 78305 -> 78357
 
 Added rows (showing up to 10):
-Dato: 2025-08-13, InstallertKapasitet: 1180.0, Kilde: other, Kommune: Porsgrunn, Kommunenummer: 4001, MeteringPointTypeCode: E18, SistOppdatert: 2025-08-13 14:35:05+02:00
-Dato: 2025-08-13, InstallertKapasitet: 754.0, Kilde: solar, Kommune: Porsgrunn, Kommunenummer: 4001, MeteringPointTypeCode: E18, SistOppdatert: 2025-08-13 14:35:05+02:00
-Dato: 2025-08-13, InstallertKapasitet: 13.0, Kilde: other, Kommune: Porsgrunn, Kommunenummer: 4001, MeteringPointTypeCode: E19, SistOppdatert: 2025-08-13 14:35:05+02:00
-Dato: 2025-08-13, InstallertKapasitet: 8101.0, Kilde: solar, Kommune: Porsgrunn, Kommunenummer: 4001, MeteringPointTypeCode: E19, SistOppdatert: 2025-08-13 14:35:05+02:00
-Dato: 2025-08-13, InstallertKapasitet: 58930.0, Kilde: hydro, Kommune: Skien, Kommunenummer: 4003, MeteringPointTypeCode: E18, SistOppdatert: 2025-08-13 14:35:05+02:00
-Dato: 2025-08-13, InstallertKapasitet: 1100.0, Kilde: other, Kommune: Skien, Kommunenummer: 4003, MeteringPointTypeCode: E18, SistOppdatert: 2025-08-13 14:35:05+02:00
-Dato: 2025-08-13, InstallertKapasitet: 650.0, Kilde: solar, Kommune: Skien, Kommunenummer: 4003, MeteringPointTypeCode: E18, SistOppdatert: 2025-08-13 14:35:05+02:00
-Dato: 2025-08-13, InstallertKapasitet: 98.0, Kilde: other, Kommune: Skien, Kommunenummer: 4003, MeteringPointTypeCode: E19, SistOppdatert: 2025-08-13 14:35:05+02:00
-Dato: 2025-08-13, InstallertKapasitet: 13342.0, Kilde: solar, Kommune: Skien, Kommunenummer: 4003, MeteringPointTypeCode: E19, SistOppdatert: 2025-08-13 14:35:05+02:00
-Dato: 2025-08-13, InstallertKapasitet: 204500.0, Kilde: hydro, Kommune: Notodden, Kommunenummer: 4005, MeteringPointTypeCode: E18, SistOppdatert: 2025-08-13 14:35:05+02:00
+Dato: 2025-08-14, InstallertKapasitet: 1180.0, Kilde: other, Kommune: Porsgrunn, Kommunenummer: 4001, MeteringPointTypeCode: E18, SistOppdatert: 2025-08-14 14:36:25+02:00
+Dato: 2025-08-14, InstallertKapasitet: 754.0, Kilde: solar, Kommune: Porsgrunn, Kommunenummer: 4001, MeteringPointTypeCode: E18, SistOppdatert: 2025-08-14 14:36:25+02:00
+Dato: 2025-08-14, InstallertKapasitet: 13.0, Kilde: other, Kommune: Porsgrunn, Kommunenummer: 4001, MeteringPointTypeCode: E19, SistOppdatert: 2025-08-14 14:36:25+02:00
+Dato: 2025-08-14, InstallertKapasitet: 8101.0, Kilde: solar, Kommune: Porsgrunn, Kommunenummer: 4001, MeteringPointTypeCode: E19, SistOppdatert: 2025-08-14 14:36:25+02:00
+Dato: 2025-08-14, InstallertKapasitet: 58930.0, Kilde: hydro, Kommune: Skien, Kommunenummer: 4003, MeteringPointTypeCode: E18, SistOppdatert: 2025-08-14 14:36:25+02:00
+Dato: 2025-08-14, InstallertKapasitet: 1100.0, Kilde: other, Kommune: Skien, Kommunenummer: 4003, MeteringPointTypeCode: E18, SistOppdatert: 2025-08-14 14:36:25+02:00
+Dato: 2025-08-14, InstallertKapasitet: 650.0, Kilde: solar, Kommune: Skien, Kommunenummer: 4003, MeteringPointTypeCode: E18, SistOppdatert: 2025-08-14 14:36:25+02:00
+Dato: 2025-08-14, InstallertKapasitet: 98.0, Kilde: other, Kommune: Skien, Kommunenummer: 4003, MeteringPointTypeCode: E19, SistOppdatert: 2025-08-14 14:36:25+02:00
+Dato: 2025-08-14, InstallertKapasitet: 13342.0, Kilde: solar, Kommune: Skien, Kommunenummer: 4003, MeteringPointTypeCode: E19, SistOppdatert: 2025-08-14 14:36:25+02:00
+Dato: 2025-08-14, InstallertKapasitet: 204500.0, Kilde: hydro, Kommune: Notodden, Kommunenummer: 4005, MeteringPointTypeCode: E18, SistOppdatert: 2025-08-14 14:36:25+02:00
 ... and 42 more rows
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/Installert_kapasitet/installed_capacity.csv
 Email notifications disabled. Updates for installed_capacity.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\installed_capacity.csv
 
-[2025-08-14 08:12:41] Combined file processed and uploaded via handle_output_data
-[2025-08-14 08:12:41] Total records in combined file: 78305
-[2025-08-14 08:12:41] New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Installert_effekt_(Elhub).log
+[2025-08-15 08:12:15] Combined file processed and uploaded via handle_output_data
+[2025-08-15 08:12:15] Total records in combined file: 78357
+[2025-08-15 08:12:15] New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Installert_effekt_(Elhub).log
 
-[2025-08-14 08:12:41] Query completed
+[2025-08-15 08:12:15] Query completed
 
