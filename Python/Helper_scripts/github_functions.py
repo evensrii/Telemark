@@ -191,18 +191,11 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
         )
         return True
 
-    # Ensure consistent numeric types for comparison columns
-    if value_columns:
-        for col in value_columns:
-            if col in input_df.columns and col in existing_data.columns:
-                input_df[col] = pd.to_numeric(input_df[col], errors='coerce')
-                existing_data[col] = pd.to_numeric(existing_data[col], errors='coerce')
-    
     # Convert all integer columns to int64 for consistent comparison
     for col in input_df.columns:
         if pd.api.types.is_integer_dtype(input_df[col]) and pd.api.types.is_integer_dtype(existing_data[col]):
             input_df[col] = input_df[col].astype('int64')
-            existing_data[col] = existing_data[col].astype('int64')
+            existing_data[col] = existing_data[col].astype('int64')    
 
     ####################################
     # STEP 1: Check for Header Changes #

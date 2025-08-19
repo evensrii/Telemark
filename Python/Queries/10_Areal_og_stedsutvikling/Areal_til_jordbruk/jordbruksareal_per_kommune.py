@@ -93,12 +93,14 @@ df = df.drop(columns=["År"])
 df[f"Jordbruksareal ({siste_aar})"] = df[f"Jordbruksareal ({siste_aar})"] * 1000
 
 # Show as integer/no decimals
-df[f"Jordbruksareal ({siste_aar})"] = df[f"Jordbruksareal ({siste_aar})"].astype(int)
+df[f"Jordbruksareal ({siste_aar})"] = df[f"Jordbruksareal ({siste_aar})"].astype(float)
 
 # Sort by "Jordbruksareal (2019)" descending
 df = df.sort_values(by=f"Jordbruksareal ({siste_aar})", ascending=False)
 
-df.head()
+print(df)
+print("\nData types:")
+print(df.dtypes)
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 

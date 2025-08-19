@@ -153,7 +153,7 @@ except Exception as e:
     )
 
 print("\nFetched data:")
-print(df)
+#print(df)
 
 # Remove any "(YYYY-YYYY)" in column "region"
 df["region"] = df["region"].str.replace(r'\s*\(\d{4}-\d{4}\)', '', regex=True)
@@ -168,6 +168,9 @@ df = df.drop(columns=["alder", "statistikkvariabel", "år"])
 
 # Add a copy of the "Kommune" column, with the name "Label".
 df["Label"] = df["Kommune"]
+print(df)
+print("\nData types:")
+print(df.dtypes)
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
