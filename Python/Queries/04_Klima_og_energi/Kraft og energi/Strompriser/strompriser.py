@@ -36,7 +36,7 @@ print("Checking for existing data...")
 print(f"Type of existing_df: {type(existing_df)}")
 
 # Initialize default date
-latest_date = datetime(2025, 5, 1)  # Default start date
+latest_date = datetime(2024, 1, 1)  # Default start date
 
 if existing_df is not None and not existing_df.empty:
     try:
