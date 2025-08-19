@@ -24,7 +24,7 @@ Successfully uploaded log file Innvandrere - Flyktninger og arbeidsinnvandrere.l
 Successfully uploaded log file Innvandrere - Fullfort VGO.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Innvandrere - Fullfort VGO.log
 Successfully uploaded log file Innvandrere - Hoyeste utdanning.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Innvandrere - Hoyeste utdanning.log
 Successfully uploaded log file Innvandrere - Innvandringsgrunn.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Innvandrere - Innvandringsgrunn.log
-No changes detected for Innvandrere - Lavinntekt.log. Skipping upload. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Innvandrere - Lavinntekt.log
+Successfully uploaded log file Innvandrere - Lavinntekt.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Innvandrere - Lavinntekt.log
 Successfully uploaded log file Innvandrere - Sekundaerflytting.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Innvandrere - Sekundaerflytting.log
 Successfully uploaded log file Innvandrere - Sysselsatte etter botid og bakgrunn.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Innvandrere - Sysselsatte etter botid og bakgrunn.log
 Successfully uploaded log file Innvandrere - Sysselsatte.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Innvandrere - Sysselsatte.log
@@ -43,17 +43,20 @@ Successfully uploaded log file NAV - Nedsatt arbeidsevne.log. URL: https://githu
 DEBUG - Task: Klima og energi - Strompriser
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Strompriser.log
 
+DEBUG - Task: Klima og energi - Stromforbruk (Elhub)
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Stromforbruk%20(Elhub).log
+
 DEBUG - Task: Areal - Jordbruksareal per kommune
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Areal%20-%20Jordbruksareal%20per%20kommune.log
-
-DEBUG - Task: Innvandrere - Lavinntekt
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Lavinntekt.log
 
 DEBUG - Task: Areal - Fulldyrka vs ikke-fulldyrka
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Areal%20-%20Fulldyrka%20vs%20ikke-fulldyrka.log
 
 DEBUG - Task: Klima og energi - Installert_effekt (Elhub)
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Installert_effekt%20(Elhub).log
+
+DEBUG - Task: Innvandrere - Lavinntekt
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Lavinntekt.log
 
 DEBUG - Task: Innvandrere - Anmodninger og faktisk bosetting
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Anmodninger%20og%20faktisk%20bosetting.log
@@ -150,7 +153,4 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 
 DEBUG - Task: Innvandrere - Sekundaerflytting
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Sekundaerflytting.log
-
-DEBUG - Task: Klima og energi - Stromforbruk (Elhub)
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Stromforbruk%20(Elhub).log
 Email sent successfully to Even (even.sannes.riiser@telemarkfylke.no).

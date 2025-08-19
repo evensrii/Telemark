@@ -2,33 +2,10 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Lavinntekt CSV data loaded successfully.
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_innvandrere_i_lavinntekt.csv
+Lavinntekt JSON-stat data loaded successfully.
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_innvandrere_i_lavinntekt_fhi.csv
+[2025-08-19 08:13:30] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_innvandrere_i_lavinntekt_fhi.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Lavinntekt.log
 
-
-Errors:
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\indexes\base.py", line 3653, in get_loc
-    return self._engine.get_loc(casted_key)
-  File "pandas\_libs\index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
-  File "pandas\_libs\index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
-  File "pandas\_libs\hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
-  File "pandas\_libs\hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
-KeyError: 'Andel (2023)'
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt.py", line 114, in <module>
-    is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 630, in handle_output_data
-    is_new_data = compare_to_github(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 203, in compare_to_github
-    if pd.api.types.is_integer_dtype(input_df[col]) and pd.api.types.is_integer_dtype(existing_data[col]):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\frame.py", line 3761, in __getitem__
-    indexer = self.columns.get_loc(key)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\indexes\base.py", line 3655, in get_loc
-    raise KeyError(key) from err
-KeyError: 'Andel (2023)'
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt.py` failed. (See above for error)
