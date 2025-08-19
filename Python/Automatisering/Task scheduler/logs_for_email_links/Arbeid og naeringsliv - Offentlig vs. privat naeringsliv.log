@@ -2,9 +2,9 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Sysselsatte, siste ÃÂ¥r JSON data loaded successfully.
-Sysselsatte over tid, fylket JSON data loaded successfully.
-Sysselsatte over tid, landet JSON data loaded successfully.
+Sysselsatte, siste ÃÂ¥r JSON-stat data loaded successfully.
+Sysselsatte over tid, fylket JSON-stat data loaded successfully.
+Sysselsatte over tid, landet JSON-stat data loaded successfully.
 
 Arbeidsplasser over tid, fylket:
       region                      statistikkvariabel  ...  value            sektor
@@ -59,7 +59,7 @@ Privat sektor: 4.5% (45234 -> 47256)
 Endring i antall arbeidsplasser i landet fra 2016 til 2024:
 Offentlig sektor: 9.3% (935235 -> 1021807)
 Privat sektor: 9.7% (1678419 -> 1841510)
-Sysselsatte, kommuner JSON data loaded successfully.
+Sysselsatte, kommuner JSON-stat data loaded successfully.
 
 Antall sysselsatte i 2024: 78846
 
@@ -88,7 +88,7 @@ Antall sysselsatte per kommune:
 2        Fyresdal                        541
 12         Siljan                        492
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\offentlige_vs_privat_naringsliv.csv
-[2025-08-15 08:06:27] No new data to upload. Skipping GitHub update.
+[2025-08-19 08:06:20] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\offentlige_vs_privat_naringsliv.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Offentlig_vs__privat_naeringsliv.log
