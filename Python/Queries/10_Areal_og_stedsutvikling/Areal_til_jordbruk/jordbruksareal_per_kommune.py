@@ -98,9 +98,11 @@ df[f"Jordbruksareal ({siste_aar})"] = df[f"Jordbruksareal ({siste_aar})"].astype
 # Sort by "Jordbruksareal (2019)" descending
 df = df.sort_values(by=f"Jordbruksareal ({siste_aar})", ascending=False)
 
-print(df)
-print("\nData types:")
-print(df.dtypes)
+df.head()
+
+#print(df)
+#print("\nData types:")
+#print(df.dtypes)
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 

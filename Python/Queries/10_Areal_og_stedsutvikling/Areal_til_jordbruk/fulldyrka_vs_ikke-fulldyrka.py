@@ -122,9 +122,9 @@ df_total = pd.DataFrame(
 
 df_total.head()
 
-print(df_total)
-print("\nData types:")
-print(df_total.dtypes)
+#print(df_total)
+#print("\nData types:")
+#print(df_total.dtypes)
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
