@@ -99,7 +99,7 @@ def fetch_energy_prices(start_date, end_date, api_key, error_messages):
 
 def find_missing_date_ranges(df, start_date, end_date):
     """Finds gaps in the data and returns a list of (start, end) tuples for missing ranges."""
-    if df.empty:
+    if df is None or df.empty:
         return [(start_date, end_date)]
     
     # Ensure the 'time' column is timezone-naive datetime objects at date level
@@ -202,8 +202,12 @@ if missing_ranges:
         # Merge, process, and append gap data
         # Remove timezone from price data to allow merging with naive exchange rate dates
         df_prices["date_for_merge"] = pd.to_datetime(df_prices["time"]).dt.tz_localize(None).dt.floor('D')
-        df = pd.merge(df_prices, df_rates, left_on="date_for_merge", right_on="time", suffixes=('', '_exchange'))
+        
+        # Use a left merge to keep all energy price entries, even if exchange rate is missing
+        df = pd.merge(df_prices, df_rates, how='left', left_on="date_for_merge", right_on="time", suffixes=('', '_exchange'))
         df = df.drop(columns=["time_exchange", "date_for_merge"])
+        
+        # Forward-fill missing exchange rates (for weekends/holidays)
         df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
         df["price_nok"] = df["price_eur"] * df["eur_nok_rate"]
         df["date"] = pd.to_datetime(df["time"]).dt.date
