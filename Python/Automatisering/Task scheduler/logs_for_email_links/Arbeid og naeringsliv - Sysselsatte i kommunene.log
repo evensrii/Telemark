@@ -2,7 +2,7 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Sysselsetting i kommunene (new codes) JSON data loaded successfully.
+Sysselsetting i kommunene (new codes) JSON-stat data loaded successfully.
 
 Fetched data:
            region     alder  ...    ÃÂ¥r value
@@ -26,7 +26,7 @@ Fetched data:
 
 [17 rows x 5 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
-[2025-08-12 08:06:12] No new data to upload. Skipping GitHub update.
+[2025-08-20 08:06:07] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_i_kommunene.log

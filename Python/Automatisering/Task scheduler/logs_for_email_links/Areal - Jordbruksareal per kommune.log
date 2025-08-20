@@ -2,7 +2,7 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Jordbruksareal per kommune JSON data loaded successfully.
+Jordbruksareal per kommune JSON-stat data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\jordbruksareal_per_kommune.csv
 
 
@@ -19,7 +19,7 @@ KeyError: 'Jordbruksareal (2025)'
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py", line 120, in <module>
+  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py", line 111, in <module>
     is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
   File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 630, in handle_output_data
     is_new_data = compare_to_github(

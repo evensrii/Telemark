@@ -2,10 +2,17 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Fulldyrka vs ikke-fulldyrka jordbruksareal JSON data loaded successfully.
+Fulldyrka vs ikke-fulldyrka jordbruksareal JSON-stat data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\fulldyrka_vs_ikke-fulldyrka.csv
-[2025-07-02 08:14:54] No new data to upload. Skipping GitHub update.
+[2025-08-20 08:14:41] Changes detected in the dataset.
+File uploaded successfully: Data/10_Areal- og stedsutvikling/Areal til jordbruk/fulldyrka_vs_ikke-fulldyrka.csv
+
+Showing up to 5 examples of changes:
+
+Row: 
+  Dekar (2025): 52550.0 -> 52548
+Email notifications disabled. Updates for fulldyrka_vs_ikke-fulldyrka.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\fulldyrka_vs_ikke-fulldyrka.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Areal_-_Fulldyrka_vs_ikke-fulldyrka.log
 

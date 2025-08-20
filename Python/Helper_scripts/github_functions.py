@@ -212,34 +212,13 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
         """Normalize header for comparison by removing case and whitespace"""
         return str(col).strip().lower()
     
-    def extract_year(header):
-        """Extract year from header if present, handling both formats: 'Column 2023' and 'Column (2023)'"""
-        import re
-        # Look for year pattern with or without parentheses
-        year_match = re.search(r'(?:\()?\b20\d{2}\b(?:\))?', header)
-        if year_match:
-            # Extract just the year digits
-            year = re.search(r'20\d{2}', year_match.group(0))
-            return year.group(0) if year else None
-        return None
-
-    def strip_year(header):
-        """Remove year from header while preserving the base name"""
-        year = extract_year(header)
-        if year:
-            # Remove year and any surrounding parentheses or spaces, then clean up extra spaces
-            return re.sub(r'\s*\(' + year + r'\)|\s+' + year + r'\b', '', header).strip()
-        return header
-
     # Check for structural changes in headers (ignoring case)
     existing_headers = [normalize_header(col) for col in existing_data.columns]
     new_headers = [normalize_header(col) for col in input_df.columns]
 
-    existing_base_headers = [strip_year(normalize_header(col)) for col in existing_data.columns]
-    new_base_headers = [strip_year(normalize_header(col)) for col in input_df.columns]
-
-    # If base headers (without years) are different, treat as structural change
-    if set(existing_base_headers) != set(new_base_headers):
+    # First check exact column names (case-insensitive)
+    if set(existing_headers) != set(new_headers):
+        # Find which headers changed
         removed_headers = set(existing_headers) - set(new_headers)
         added_headers = set(new_headers) - set(existing_headers)
         

@@ -2,8 +2,8 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Arbeidsmarkedstilknytning, kommuner JSON data loaded successfully.
-Arbeidsmarkedstilknytning, Telemark JSON data loaded successfully.
+Arbeidsmarkedstilknytning, kommuner JSON-stat data loaded successfully.
+Arbeidsmarkedstilknytning, Telemark JSON-stat data loaded successfully.
 
 Arbeidsmarkedstilknytning i Telemark:
      region                     prioritert arbeidsstyrkestatus  ...    ÃÂ¥r  value
@@ -16,8 +16,8 @@ Arbeidsmarkedstilknytning i Telemark:
 6  Telemark                                              Andre  ...  2023   6568
 
 [7 rows x 5 columns]
-Arbeidsmarkedstilknytning, Landet JSON data loaded successfully.
-Arbeidsmarkedstilknytning, fylker JSON data loaded successfully.
+Arbeidsmarkedstilknytning, Landet JSON-stat data loaded successfully.
+Arbeidsmarkedstilknytning, fylker JSON-stat data loaded successfully.
 
 Pensjonister per fylke:
                                region  ... Andel
@@ -58,10 +58,10 @@ UfÃÂ¸re per fylke:
 18                               Oslo  ...   5.7
 
 [15 rows x 5 columns]
-Sysselsatte med arbeidssted i Telemark JSON data loaded successfully.
+Sysselsatte med arbeidssted i Telemark JSON-stat data loaded successfully.
 Sysselsatte med arbeidssted i Telemark i 2024: 78849
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arbeidsmarkedstilknytning_per_kommune.csv
-[2025-08-12 08:05:51] No new data to upload. Skipping GitHub update.
+[2025-08-20 08:05:48] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\arbeidsmarkedstilknytning_per_kommune.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Arbeidsmarkedstilknytning_per_kommune.log

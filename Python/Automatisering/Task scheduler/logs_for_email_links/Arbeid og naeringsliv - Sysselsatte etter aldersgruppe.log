@@ -2,10 +2,10 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Sysselsatte, kommuner JSON data loaded successfully.
-Sysselsatte, landet JSON data loaded successfully.
-Personer, landet JSON data loaded successfully.
-Personer, kommunene JSON data loaded successfully.
+Sysselsatte, kommuner JSON-stat data loaded successfully.
+Sysselsatte, landet JSON-stat data loaded successfully.
+Personer, landet JSON-stat data loaded successfully.
+Personer, kommunene JSON-stat data loaded successfully.
 
 Sysselsetting for 15-74 i landet i 2024: 68.9%
 Sysselsetting for 15-74 bosatte i Telemark i 2024: 64.6%
@@ -62,7 +62,7 @@ Employment rates by age group (%):
 3     55-66 ÃÂ¥r             65.8                69.9
 4     67-74 ÃÂ¥r             21.2                22.0
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
-[2025-08-12 08:06:04] No new data to upload. Skipping GitHub update.
+[2025-08-20 08:06:00] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_etter_aldersgruppe.log
