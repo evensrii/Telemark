@@ -212,12 +212,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
         """Normalize header for comparison by removing case and whitespace"""
         return str(col).strip().lower()
     
-    def extract_year(header):
-        """Extract year from header if present"""
-        import re
-        year_match = re.search(r'\b20\d{2}\b', header)
-        return year_match.group(0) if year_match else None
-
     # Check for structural changes in headers (ignoring case)
     existing_headers = [normalize_header(col) for col in existing_data.columns]
     new_headers = [normalize_header(col) for col in input_df.columns]
