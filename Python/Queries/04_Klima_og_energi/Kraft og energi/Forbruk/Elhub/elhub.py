@@ -263,7 +263,7 @@ def save_data_by_year_to_github(df):
             combined_data = year_data
         
         # Use handle_output_data to manage the file
-        is_updated, commit_time = handle_output_data(
+        is_updated = handle_output_data(
             combined_data,
             file_name,
             github_folder,
@@ -273,8 +273,7 @@ def save_data_by_year_to_github(df):
         
         if is_updated:
             files_updated.append(file_name)
-            if commit_time:
-                commit_times.append(commit_time)
+            commit_times.append(datetime.now())
             print(f"{get_timestamp()} New data detected in {file_name} and pushed to GitHub.")
         else:
             print(f"{get_timestamp()} No new data detected in {file_name}.")
