@@ -237,6 +237,7 @@ def save_data_by_year_to_github(df):
 
     # Track if any files were updated
     files_updated = []
+    commit_times = []
 
     for year, year_data in df.groupby("Year"):
         file_name = f"{year}.csv"
@@ -262,7 +263,7 @@ def save_data_by_year_to_github(df):
             combined_data = year_data
         
         # Use handle_output_data to manage the file
-        is_updated = handle_output_data(
+        is_updated, commit_time = handle_output_data(
             combined_data,
             file_name,
             github_folder,
@@ -272,11 +273,15 @@ def save_data_by_year_to_github(df):
         
         if is_updated:
             files_updated.append(file_name)
+            if commit_time:
+                commit_times.append(commit_time)
             print(f"{get_timestamp()} New data detected in {file_name} and pushed to GitHub.")
         else:
             print(f"{get_timestamp()} No new data detected in {file_name}.")
 
-    return files_updated
+    # Return the latest commit time if available
+    latest_commit_time = max(commit_times) if commit_times else None
+    return files_updated, latest_commit_time
 
 def query_and_append_new_data():
     # Get the latest date from GitHub files
@@ -306,7 +311,7 @@ def query_and_append_new_data():
                 # Process the data
                 processed_df = process_data(combined_df)
                 # Save to GitHub by year
-                files_updated = save_data_by_year_to_github(processed_df)
+                files_updated, latest_commit_time = save_data_by_year_to_github(processed_df)
                 
                 # Write status log
                 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
@@ -314,7 +319,7 @@ def query_and_append_new_data():
                 new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
                 
                 with open(new_data_status_file, "w", encoding="utf-8") as log_file:
-                    log_file.write(f"{task_name_safe},multiple_files,{'Yes' if files_updated else 'No'}\n")
+                    log_file.write(f"{task_name_safe},multiple_files,{'Yes' if files_updated else 'No'},{latest_commit_time or ''}\n")
                 
                 print(f"{get_timestamp()} New data status log written to {new_data_status_file}")
                 return bool(files_updated)
