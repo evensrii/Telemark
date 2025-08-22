@@ -14,29 +14,61 @@ script_name = os.path.basename(__file__)
 # Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
 error_messages = []
 
-""" ######### Kjøre spørring første gang, for å finne siste år (top 1)
+################# Spørring #################
 
 # Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/table/XXXXX/"
+POST_URL = "https://data.ssb.no/api/v0/no/table/09429/"
 
 # Spørring for å hente ut data fra SSB
-payload_most_recent_year = {
+payload = {
   "query": [
     {
       "code": "Region",
       "selection": {
-        "filter": "agg:KommSummer",
+        "filter": "agg_single:KommGjeldende",
         "values": [
-          "K-4001",
+          "4001",
+          "4003",
+          "4005",
+          "4010",
+          "4012",
+          "4014",
+          "4016",
+          "4018",
+          "4020",
+          "4022",
+          "4024",
+          "4026",
+          "4028",
+          "4030",
+          "4032",
+          "4034",
+          "4036"
         ]
       }
     },
     {
-      "code": "NACE2007",
+      "code": "Nivaa",
       "selection": {
-        "filter": "agg_single:NACE2007arb11",
+        "filter": "item",
         "values": [
-          "01-03",
+          "01",
+          "02a",
+          "11",
+          "03a",
+          "04a",
+          "09a"
+        ]
+      }
+    },
+    {
+      "code": "Kjonn",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "0",                              
+          "2",
+          "1"
         ]
       }
     },
@@ -45,16 +77,16 @@ payload_most_recent_year = {
       "selection": {
         "filter": "item",
         "values": [
-          "SysselsatteArb"
+          "Personer"
         ]
       }
     },
     {
       "code": "Tid",
       "selection": {
-        "filter": "top",
+        "filter": "item",
         "values": [
-          "1"
+          "2024"
         ]
       }
     }
@@ -62,75 +94,6 @@ payload_most_recent_year = {
   "response": {
     "format": "json-stat2"
   }
-}
-
-## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
-
-try:
-    df_last_year = fetch_data(
-        url=POST_URL,
-        payload=payload_most_recent_year,  # The JSON payload for POST requests. If None, a GET request is used.
-        error_messages=error_messages,
-        query_name="Tittel spørring - første år",
-        response_type="json",  # The expected response type, either 'json' or 'csv'.
-        # delimiter=";", # The delimiter for CSV data (default: ';').
-        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
-    )
-except Exception as e:
-    print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
-    raise RuntimeError(
-        "A critical error occurred during data fetching, stopping execution."
-    )
-
-# Get most recent year
-most_recent_year = df_last_year['år'].iloc[0]
-
-# Create a list of years from XXXX until most_recent_year, years as strings enclosed in ""
-years = [str(year) for year in range(2016, int(most_recent_year) + 1)]
-
-# Kjøre spørring på nytt, fra første til siste år
-
-## Bruke "years" (uten anførselstegn) sammen med "item" for år!!!!!!!!
-#      "code": "Tid",
-#      "selection": {
-#        "filter": "item",
-#        "values": years
-#      }
-#  """
-
-################# Spørring #################
-
-# Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/table/XXXXX/"
-
-# Spørring for å hente ut data fra SSB
-payload = {
-    "query": [
-        {"code": "Region", "selection": {"filter": "vs:FylkerJakt", "values": ["40"]}},
-        {"code": "Kjonn", "selection": {"filter": "item", "values": ["1", "2"]}},
-        {
-            "code": "Alder",
-            "selection": {
-                "filter": "item",
-                "values": [
-                    "00-19a",
-                    "20-29",
-                    "30-39",
-                    "40-49",
-                    "50-59",
-                    "60-69",
-                    "070+",
-                ],
-            },
-        },
-        {
-            "code": "ContentsCode",
-            "selection": {"filter": "item", "values": ["BetaltJegeravg"]},
-        },
-        {"code": "Tid", "selection": {"filter": "top", "values": ["1"]}},
-    ],
-    "response": {"format": "json-stat2"},
 }
 
 
@@ -180,4 +143,4 @@ if is_new_data:
 else:
     print("No new data detected.")
 
-print(f"New data status log written to {new_data_status_file}")
+print(f"New data status log written to {new_data_status_file}")   Q2
