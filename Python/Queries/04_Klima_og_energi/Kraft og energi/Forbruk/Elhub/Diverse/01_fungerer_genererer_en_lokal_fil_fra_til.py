@@ -1,9 +1,11 @@
+import os
 import requests
 import pandas as pd
 from datetime import datetime, timedelta
 
 # Define the path for the existing CSV file
-csv_file = "../../../Temp/elhub_telemark.csv"
+temp_folder = os.environ.get("TEMP_FOLDER")
+csv_file = os.path.join(temp_folder, "elhub_telemark.csv")
 
 
 # Function to query the Elhub API for a specific date
@@ -35,6 +37,14 @@ def query_elhub(date):
         ],
         axis=1,
     )
+
+    # Convert 'attributes.municipalityNumber' to numeric, coercing errors to NaN
+    df_combined["attributes.municipalityNumber"] = pd.to_numeric(
+        df_combined["attributes.municipalityNumber"], errors="coerce"
+    )
+
+    # Drop rows where 'attributes.municipalityNumber' is NaN
+    df_combined.dropna(subset=["attributes.municipalityNumber"], inplace=True)
 
     # Filter for municipalities in Telemark (Knr 4000 to 4200)
     df_telemark = df_combined[
@@ -83,23 +93,30 @@ def process_data(df):
 
 
 # Function to query and append new data
-def query_and_append_new_data(df_existing):
-    # Determine the latest date in the CSV file
-    if not df_existing.empty:
-        latest_date_in_csv = df_existing["Tid"].max().date()
-        print(f"Latest date in CSV: {latest_date_in_csv}")
+def query_and_append_new_data(df_existing, start_date_str=None, end_date_str=None):
+    # Determine the start date
+    if start_date_str:
+        start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
+        print(f"Using provided start date: {start_date}")
+    elif not df_existing.empty and "Tid" in df_existing.columns:
+        latest_date_in_csv = pd.to_datetime(df_existing["Tid"]).max().date()
+        start_date = latest_date_in_csv + timedelta(days=1)
+        print(f"Latest date in CSV: {latest_date_in_csv}, starting from next day.")
     else:
-        latest_date_in_csv = datetime(2021, 1, 1).date()
-        print(f"No existing data, starting from {latest_date_in_csv}")
+        start_date = datetime(2022, 1, 1).date()
+        print(f"No existing data or 'Tid' column, starting from {start_date}")
 
-    # Set the current date to two days ago to avoid empty data
-    end_date = (datetime.now() - timedelta(days=2)).date()
-
-    # Query new data starting from one day after the latest date in the CSV
-    current_date = latest_date_in_csv + timedelta(days=1)
+    # Determine the end date
+    if end_date_str:
+        end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
+        print(f"Using provided end date: {end_date}")
+    else:
+        end_date = (datetime.now() - timedelta(days=2)).date()
+        print(f"Using default end date (2 days ago): {end_date}")
 
     # Initialize a list to store all daily data
     new_data = []
+    current_date = start_date
 
     # Loop through each day from current_date to end_date
     while current_date <= end_date:
@@ -118,11 +135,11 @@ def query_and_append_new_data(df_existing):
 
     # If there's new data, process and append it to the existing data
     if new_data:
-        new_data = pd.concat(new_data, ignore_index=True)
-        new_data = process_data(new_data)
+        new_data_df = pd.concat(new_data, ignore_index=True)
+        new_data_df = process_data(new_data_df)
 
         # Combine the cleaned new data with the cleaned existing data
-        combined_data = pd.concat([df_existing, new_data], ignore_index=True)
+        combined_data = pd.concat([df_existing, new_data_df], ignore_index=True)
 
         # Save the updated data to the CSV
         combined_data.to_csv(csv_file, index=False)
@@ -131,7 +148,7 @@ def query_and_append_new_data(df_existing):
         print("No new data to update.")
 
 
-def main():
+def main(start_date=None, end_date=None):
     # Step 1: Load the existing CSV file (if it exists)
     try:
         df_existing = pd.read_csv(csv_file)
@@ -144,12 +161,16 @@ def main():
         df_existing = pd.DataFrame()
 
     # Step 2: Query and append new data to the existing CSV
-    query_and_append_new_data(df_existing)
+    query_and_append_new_data(df_existing, start_date, end_date)
 
 
 # Run the main function
 if __name__ == "__main__":
-    main()
+    # To run with a specific date range, uncomment the following line and set the dates:
+    main(start_date="2022-01-01", end_date="2022-01-03")
+
+    # To run with default date logic (from last date in file to two days ago), use this:
+    # main()
 
 # Explanation:
 # 1) Initial Data Collection:
