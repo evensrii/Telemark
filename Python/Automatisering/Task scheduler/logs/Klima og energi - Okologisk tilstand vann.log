@@ -2,30 +2,29 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Ingen driftsmeldinger dukket opp, continuing...
-An unexpected error occurred during setup: Message: 
+An unexpected error occurred during setup: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir
 Stacktrace:
-	GetHandleVerifier [0x0x7ff67218cda5+78885]
-	GetHandleVerifier [0x0x7ff67218ce00+78976]
-	(No symbol) [0x0x7ff671f49bca]
-	(No symbol) [0x0x7ff671fa0766]
-	(No symbol) [0x0x7ff671fa0a1c]
-	(No symbol) [0x0x7ff671ff4467]
-	(No symbol) [0x0x7ff671fc8bcf]
-	(No symbol) [0x0x7ff671ff122f]
-	(No symbol) [0x0x7ff671fc8963]
-	(No symbol) [0x0x7ff671f916b1]
-	(No symbol) [0x0x7ff671f92443]
-	GetHandleVerifier [0x0x7ff672464eed+3061101]
-	GetHandleVerifier [0x0x7ff67245f33d+3037629]
-	GetHandleVerifier [0x0x7ff67247e592+3165202]
-	GetHandleVerifier [0x0x7ff6721a730e+186766]
-	GetHandleVerifier [0x0x7ff6721aeb3f+217535]
-	GetHandleVerifier [0x0x7ff6721959b4+114740]
-	GetHandleVerifier [0x0x7ff672195b69+115177]
-	GetHandleVerifier [0x0x7ff67217c368+10728]
-	BaseThreadInitThunk [0x0x7ffcadd67ac4+20]
-	RtlUserThreadStart [0x0x7ffcae91a8c1+33]
+	GetHandleVerifier [0x0x7ff6e2dccda5+78885]
+	GetHandleVerifier [0x0x7ff6e2dcce00+78976]
+	(No symbol) [0x0x7ff6e2b89bca]
+	(No symbol) [0x0x7ff6e2bc84d2]
+	(No symbol) [0x0x7ff6e2bc2d5d]
+	(No symbol) [0x0x7ff6e2c169ee]
+	(No symbol) [0x0x7ff6e2c16180]
+	(No symbol) [0x0x7ff6e2c08963]
+	(No symbol) [0x0x7ff6e2bd16b1]
+	(No symbol) [0x0x7ff6e2bd2443]
+	GetHandleVerifier [0x0x7ff6e30a4eed+3061101]
+	GetHandleVerifier [0x0x7ff6e309f33d+3037629]
+	GetHandleVerifier [0x0x7ff6e30be592+3165202]
+	GetHandleVerifier [0x0x7ff6e2de730e+186766]
+	GetHandleVerifier [0x0x7ff6e2deeb3f+217535]
+	GetHandleVerifier [0x0x7ff6e2dd59b4+114740]
+	GetHandleVerifier [0x0x7ff6e2dd5b69+115177]
+	GetHandleVerifier [0x0x7ff6e2dbc368+10728]
+	BaseThreadInitThunk [0x0x7ffa49677ac4+20]
+	RtlUserThreadStart [0x0x7ffa49e1a8c1+33]
 
+Failed to quit driver, it may have already been closed
 Email notifications disabled. Errors in Vannkvalitet were not sent.
 
