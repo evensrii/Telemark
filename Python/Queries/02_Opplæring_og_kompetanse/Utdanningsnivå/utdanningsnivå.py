@@ -730,6 +730,20 @@ df_combined = pd.concat([df_antall, df_andel], ignore_index=True)
 #Rename the columnss to "Kommune", "Utdanningsnivå", "Kjønn", "Variabel", "År" and "Verdi"
 df_combined.columns = ["Kommune", "Utdanningsnivå", "Kjønn", "Variabel", "År", "Verdi"]
 
+# Standardize data types for consistent comparison
+# Convert 'Verdi' to numeric, rounding to 4 decimal places to avoid float precision issues
+df_combined['Verdi'] = pd.to_numeric(df_combined['Verdi'], errors='coerce').round(4)
+
+# Ensure all other columns are treated as strings
+for col in df_combined.columns:
+    if col != 'Verdi':
+        df_combined[col] = df_combined[col].astype(str)
+
+# Sort the dataframe to ensure consistent order
+df_combined = df_combined.sort_values(by=list(df_combined.columns)).reset_index(drop=True)
+
+df_combined.info()
+
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "utdanningsnivå.csv"
