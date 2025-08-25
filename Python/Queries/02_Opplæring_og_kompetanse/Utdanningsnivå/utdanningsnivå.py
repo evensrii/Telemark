@@ -730,24 +730,22 @@ df_combined = pd.concat([df_antall, df_andel], ignore_index=True)
 #Rename the columnss to "Kommune", "Utdanningsnivå", "Kjønn", "Variabel", "År" and "Verdi"
 df_combined.columns = ["Kommune", "Utdanningsnivå", "Kjønn", "Variabel", "År", "Verdi"]
 
-# Standardize data types for consistent comparison
-# Convert 'Verdi' to numeric, rounding to 4 decimal places to avoid float precision issues
+# Standardize data types to match what pandas reads from CSV
+# Convert 'År' to int64 (pandas infers this when reading CSV)
+df_combined['År'] = df_combined['År'].astype('int64')
+
+# Convert 'Verdi' to float64, rounding to 4 decimal places to avoid precision issues
+# Empty strings will become NaN, which is what pandas does when reading CSV
 df_combined['Verdi'] = pd.to_numeric(df_combined['Verdi'], errors='coerce').round(4)
 
-# Fill NaN values in Verdi column with empty string to match CSV format
-df_combined['Verdi'] = df_combined['Verdi'].fillna('')
-
-# Ensure all other columns are treated as strings
-for col in df_combined.columns:
-    if col != 'Verdi':
-        df_combined[col] = df_combined[col].astype(str)
+# Ensure other columns are strings
+for col in ['Kommune', 'Utdanningsnivå', 'Kjønn', 'Variabel']:
+    df_combined[col] = df_combined[col].astype(str)
 
 # Sort the dataframe to ensure consistent order
 df_combined = df_combined.sort_values(by=list(df_combined.columns)).reset_index(drop=True)
 
-df_combined.info()
-print("Sample of Verdi column with empty values:")
-print(df_combined[df_combined['Verdi'] == ''].head())
+# Data is now properly formatted for comparison
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
