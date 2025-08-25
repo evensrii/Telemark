@@ -734,9 +734,9 @@ df_combined.columns = ["Kommune", "Utdanningsnivå", "Kjønn", "Variabel", "År"
 # Convert 'År' to int64 (pandas infers this when reading CSV)
 df_combined['År'] = df_combined['År'].astype('int64')
 
-# Convert 'Verdi' to float64, rounding to 4 decimal places to avoid precision issues
-# Empty strings will become NaN, which is what pandas does when reading CSV
-df_combined['Verdi'] = pd.to_numeric(df_combined['Verdi'], errors='coerce').round(4)
+# Keep 'Verdi' as string to match what github_functions.py expects
+# Convert numeric values to strings with proper formatting
+df_combined['Verdi'] = df_combined['Verdi'].apply(lambda x: str(float(x)) if pd.notna(x) and str(x).strip() != '' else '')
 
 # Ensure other columns are strings
 for col in ['Kommune', 'Utdanningsnivå', 'Kjønn', 'Variabel']:
@@ -753,6 +753,39 @@ file_name = "utdanningsnivå.csv"
 task_name = "Opplæring og kompetanse - Utdanningsnivå"
 github_folder = "Data/02_Opplæring og kompetanse/Utdanningsnivå"
 temp_folder = os.environ.get("TEMP_FOLDER")
+
+# Temporary debugging: Let's see what the GitHub comparison is actually doing
+from Helper_scripts.github_functions import download_github_file
+
+# Save our file first
+temp_csv_path = os.path.join(temp_folder, file_name)
+df_combined.to_csv(temp_csv_path, index=False, encoding="utf-8")
+
+# Download the GitHub version and compare directly
+github_df = download_github_file(f"{github_folder}/{file_name}")
+
+if github_df is not None:
+    print(f"\nDirect comparison:")
+    print(f"Local df shape: {df_combined.shape}")
+    print(f"GitHub df shape: {github_df.shape}")
+    print(f"Local df dtypes:\n{df_combined.dtypes}")
+    print(f"GitHub df dtypes:\n{github_df.dtypes}")
+    
+    # Check if they're equal
+    are_equal = df_combined.equals(github_df)
+    print(f"DataFrames equal: {are_equal}")
+    
+    if not are_equal:
+        # Check each column
+        for col in df_combined.columns:
+            if col in github_df.columns:
+                col_equal = df_combined[col].equals(github_df[col])
+                print(f"Column '{col}' equal: {col_equal}")
+                if not col_equal:
+                    # Show first few differences
+                    diff_mask = df_combined[col] != github_df[col]
+                    if diff_mask.any():
+                        print(f"  First difference at index {diff_mask.idxmax()}: '{df_combined[col].iloc[diff_mask.idxmax()]}' vs '{github_df[col].iloc[diff_mask.idxmax()]}'")
 
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df_combined, file_name, github_folder, temp_folder, keepcsv=True)
