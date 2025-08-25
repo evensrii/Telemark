@@ -734,6 +734,9 @@ df_combined.columns = ["Kommune", "Utdanningsnivå", "Kjønn", "Variabel", "År"
 # Convert 'Verdi' to numeric, rounding to 4 decimal places to avoid float precision issues
 df_combined['Verdi'] = pd.to_numeric(df_combined['Verdi'], errors='coerce').round(4)
 
+# Fill NaN values in Verdi column with empty string to match CSV format
+df_combined['Verdi'] = df_combined['Verdi'].fillna('')
+
 # Ensure all other columns are treated as strings
 for col in df_combined.columns:
     if col != 'Verdi':
@@ -743,6 +746,8 @@ for col in df_combined.columns:
 df_combined = df_combined.sort_values(by=list(df_combined.columns)).reset_index(drop=True)
 
 df_combined.info()
+print("Sample of Verdi column with empty values:")
+print(df_combined[df_combined['Verdi'] == ''].head())
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
