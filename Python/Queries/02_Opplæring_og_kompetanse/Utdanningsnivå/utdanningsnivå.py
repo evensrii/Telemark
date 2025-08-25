@@ -735,8 +735,8 @@ df_combined.columns = ["Kommune", "Utdanningsnivå", "Kjønn", "Variabel", "År"
 df_combined['År'] = df_combined['År'].astype('int64')
 
 # Keep 'Verdi' as string to match what github_functions.py expects
-# Convert numeric values to strings with proper formatting
-df_combined['Verdi'] = df_combined['Verdi'].apply(lambda x: str(float(x)) if pd.notna(x) and str(x).strip() != '' else '')
+# Convert numeric values to strings, and empty values to 'nan' to match GitHub format
+df_combined['Verdi'] = df_combined['Verdi'].apply(lambda x: str(float(x)) if pd.notna(x) and str(x).strip() != '' else 'nan')
 
 # Ensure other columns are strings
 for col in ['Kommune', 'Utdanningsnivå', 'Kjønn', 'Variabel']:
