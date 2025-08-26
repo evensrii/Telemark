@@ -2,26 +2,25 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Elg JSON-stat data loaded successfully.
-Request error in Hjort: 502 Server Error: Bad Gateway for url: https://data.ssb.no/api/v0/no/table/03434/
-Error occurred: 502 Server Error: Bad Gateway for url: https://data.ssb.no/api/v0/no/table/03434/
+Request error in Elg: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/03432/
+Error occurred: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/03432/
 Email notifications disabled. Errors in antall_felt.py were not sent.
 
 
 Errors:
 Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py", line 90, in <module>
-    df_hjort = fetch_data(
+  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py", line 48, in <module>
+    df_elg = fetch_data(
   File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
     response.raise_for_status()
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
     raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://data.ssb.no/api/v0/no/table/03434/
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/03432/
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py", line 102, in <module>
+  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py", line 60, in <module>
     raise RuntimeError(
 RuntimeError: A critical error occurred during data fetching, stopping execution.
 
