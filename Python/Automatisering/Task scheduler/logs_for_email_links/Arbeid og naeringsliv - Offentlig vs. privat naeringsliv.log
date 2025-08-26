@@ -2,26 +2,94 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Sysselsatte, siste ÃÂ¥r: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/13472/
-Error occurred: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/13472/
-Email notifications disabled. Errors in offentlig_vs_privat_sysselsetting.py were not sent.
+Sysselsatte, siste ÃÂ¥r JSON-stat data loaded successfully.
+Sysselsatte over tid, fylket JSON-stat data loaded successfully.
+Sysselsatte over tid, landet JSON-stat data loaded successfully.
 
+Arbeidsplasser over tid, fylket:
+      region                      statistikkvariabel  ...  value            sektor
+0   Telemark  Sysselsatte personer etter arbeidssted  ...  29956  Offentlig sektor
+1   Telemark  Sysselsatte personer etter arbeidssted  ...  29935  Offentlig sektor
+2   Telemark  Sysselsatte personer etter arbeidssted  ...  29784  Offentlig sektor
+3   Telemark  Sysselsatte personer etter arbeidssted  ...  29890  Offentlig sektor
+4   Telemark  Sysselsatte personer etter arbeidssted  ...  30025  Offentlig sektor
+5   Telemark  Sysselsatte personer etter arbeidssted  ...  30049  Offentlig sektor
+6   Telemark  Sysselsatte personer etter arbeidssted  ...  30440  Offentlig sektor
+7   Telemark  Sysselsatte personer etter arbeidssted  ...  31154  Offentlig sektor
+8   Telemark  Sysselsatte personer etter arbeidssted  ...  31590  Offentlig sektor
+9   Telemark  Sysselsatte personer etter arbeidssted  ...  45234     Privat sektor
+10  Telemark  Sysselsatte personer etter arbeidssted  ...  45704     Privat sektor
+11  Telemark  Sysselsatte personer etter arbeidssted  ...  45968     Privat sektor
+12  Telemark  Sysselsatte personer etter arbeidssted  ...  46288     Privat sektor
+13  Telemark  Sysselsatte personer etter arbeidssted  ...  45734     Privat sektor
+14  Telemark  Sysselsatte personer etter arbeidssted  ...  47045     Privat sektor
+15  Telemark  Sysselsatte personer etter arbeidssted  ...  47126     Privat sektor
+16  Telemark  Sysselsatte personer etter arbeidssted  ...  47166     Privat sektor
+17  Telemark  Sysselsatte personer etter arbeidssted  ...  47256     Privat sektor
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃÂ¦ringsliv/Naringsstruktur_og_arbeidsplasser/offentlig_vs_privat_sysselsetting.py", line 76, in <module>
-    df_siste_aar = fetch_data(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/13472/
+[18 rows x 5 columns]
 
-During handling of the above exception, another exception occurred:
+Arbeidsplasser over tid, landet:
+         region  ...            sektor
+0   Hele landet  ...  Offentlig sektor
+1   Hele landet  ...  Offentlig sektor
+2   Hele landet  ...  Offentlig sektor
+3   Hele landet  ...  Offentlig sektor
+4   Hele landet  ...  Offentlig sektor
+5   Hele landet  ...  Offentlig sektor
+6   Hele landet  ...  Offentlig sektor
+7   Hele landet  ...  Offentlig sektor
+8   Hele landet  ...  Offentlig sektor
+9   Hele landet  ...     Privat sektor
+10  Hele landet  ...     Privat sektor
+11  Hele landet  ...     Privat sektor
+12  Hele landet  ...     Privat sektor
+13  Hele landet  ...     Privat sektor
+14  Hele landet  ...     Privat sektor
+15  Hele landet  ...     Privat sektor
+16  Hele landet  ...     Privat sektor
+17  Hele landet  ...     Privat sektor
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃÂ¦ringsliv/Naringsstruktur_og_arbeidsplasser/offentlig_vs_privat_sysselsetting.py", line 86, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+[18 rows x 5 columns]
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Naringsstruktur_og_arbeidsplasser/offentlig_vs_privat_sysselsetting.py` failed. (See above for error)
+Endring i antall arbeidsplasser i fylket fra 2016 til 2024:
+Offentlig sektor: 5.5% (29956 -> 31590)
+Privat sektor: 4.5% (45234 -> 47256)
+
+Endring i antall arbeidsplasser i landet fra 2016 til 2024:
+Offentlig sektor: 9.3% (935235 -> 1021807)
+Privat sektor: 9.7% (1678419 -> 1841510)
+Sysselsatte, kommuner JSON-stat data loaded successfully.
+
+Antall sysselsatte i 2024: 78846
+
+Fordeling mellom sektorer:
+             Sektor  Prosent sysselsatte
+0  Offentlig sektor                 40.1
+1     Privat sektor                 59.9
+
+Antall sysselsatte per kommune:
+          Kommune  Antall sysselsatte (2024)
+13          Skien                      27034
+10      Porsgrunn                      18440
+9        Notodden                       5852
+0          Bamble                       5177
+6   Midt-Telemark                       4486
+4         KragerÃÂ¸                       3945
+14           Tinn                       2643
+8            Nome                       2228
+16          Vinje                       1847
+11        Seljord                       1467
+1       Drangedal                       1263
+15          Tokke                       1086
+5       Kviteseid                       1077
+7        Nissedal                        635
+3        Hjartdal                        633
+2        Fyresdal                        541
+12         Siljan                        492
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\offentlige_vs_privat_naringsliv.csv
+[2025-08-26 09:42:36] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\offentlige_vs_privat_naringsliv.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Offentlig_vs__privat_naeringsliv.log
+
