@@ -2,26 +2,10 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Tittel spÃÂ¸rring - fÃÂ¸rste ÃÂ¥r: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/08308/
-Error occurred: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/08308/
-Email notifications disabled. Errors in kraftproduksjon_ssb.py were not sent.
+Tittel spÃÂ¸rring - fÃÂ¸rste ÃÂ¥r JSON-stat data loaded successfully.
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\kraftproduksjon_ssb.csv
+[2025-08-27 08:10:59] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\kraftproduksjon_ssb.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Kraftproduksjon_Telemark_(SSB).log
 
-
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Produksjon/SSB/kraftproduksjon_ssb.py", line 60, in <module>
-    df = fetch_data(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/08308/
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Produksjon/SSB/kraftproduksjon_ssb.py", line 72, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Produksjon/SSB/kraftproduksjon_ssb.py` failed. (See above for error)

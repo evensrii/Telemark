@@ -2,11 +2,26 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Innvandrere JSON-stat data loaded successfully.
-Hele befolkningen JSON-stat data loaded successfully.
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\fullfÃ¸rt_vgo_innv_befolk.csv
-[2025-08-22 08:14:02] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\fullfÃ¸rt_vgo_innv_befolk.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Fullfort_VGO.log
+Request error in Innvandrere: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/13628/
+Error occurred: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/13628/
+Email notifications disabled. Errors in innv_fullfort_vgo.py were not sent.
 
+
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Utdanning/innv_fullfort_vgo.py", line 48, in <module>
+    df_innvandrere = fetch_data(
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/13628/
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Utdanning/innv_fullfort_vgo.py", line 60, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Utdanning/innv_fullfort_vgo.py` failed. (See above for error)

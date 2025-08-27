@@ -2,36 +2,26 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Sysselsetting i kommunene (new codes) JSON-stat data loaded successfully.
+Request error in Sysselsetting i kommunene (new codes): 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/06445/
+Error occurred: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/06445/
+Email notifications disabled. Errors in sysselsetting_i_kommunene.py were not sent.
 
-Fetched data:
-          Kommune  Andel sysselsatte (2024)          Label
-0       Porsgrunn                      64.5      Porsgrunn
-1           Skien                      64.3          Skien
-2        Notodden                      63.8       Notodden
-3          Siljan                      69.3         Siljan
-4          Bamble                      64.0         Bamble
-5         KragerÃ¸                      61.1        KragerÃ¸
-6       Drangedal                      62.6      Drangedal
-7            Nome                      62.8           Nome
-8   Midt-Telemark                      61.8  Midt-Telemark
-9         Seljord                      67.5        Seljord
-10       Hjartdal                      68.3       Hjartdal
-11           Tinn                      66.3           Tinn
-12      Kviteseid                      67.0      Kviteseid
-13       Nissedal                      63.6       Nissedal
-14       Fyresdal                      69.5       Fyresdal
-15          Tokke                      70.1          Tokke
-16          Vinje                      71.9          Vinje
 
-Data types:
-Kommune                      object
-Andel sysselsatte (2024)    float64
-Label                        object
-dtype: object
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
-[2025-08-22 08:06:10] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_i_kommunene.log
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py", line 130, in <module>
+    df = fetch_data(
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/06445/
 
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py", line 151, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py` failed. (See above for error)

@@ -2,26 +2,59 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Virksomheter i kommunene: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/10309/
-Error occurred: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/10309/
-Email notifications disabled. Errors in virksomheter.py were not sent.
+Virksomheter i kommunene JSON-stat data loaded successfully.
+Virksomheter i landet JSON-stat data loaded successfully.
 
+Totalt antall virksomheter i Telemark per ÃÂ¥r :
+ÃÂ¥r
+2009    16008
+2010    16489
+2011    16535
+2012    16519
+2013    17301
+2014    17633
+2015    18332
+2016    18683
+2017    18753
+2018    19103
+2019    19295
+2020    19520
+2021    20108
+2022    20685
+2023    21129
+2024    21249
+2025    21153
+Name: value, dtype: int64
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃÂ¦ringsliv/Virksomheter/virksomheter.py", line 107, in <module>
-    df_virksomheter = fetch_data(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/10309/
+Prosentvis endring i Telemark fra 2009 til 2025:
+32.1%
 
-During handling of the above exception, another exception occurred:
+Totalt antall virksomheter i Norge per ÃÂ¥r:
+ÃÂ¥r
+2009    467330
+2010    481720
+2011    485907
+2012    487138
+2013    513646
+2014    526703
+2015    547232
+2016    558959
+2017    565054
+2018    577067
+2019    581956
+2020    590810
+2021    606642
+2022    629953
+2023    646884
+2024    656410
+2025    657993
+Name: value, dtype: int64
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃÂ¦ringsliv/Virksomheter/virksomheter.py", line 117, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+Prosentvis endring i Norge fra 2009 til 2025:
+40.8%
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\virksomheter.csv
+[2025-08-27 08:07:06] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\virksomheter.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Virksomheter.log
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Virksomheter/virksomheter.py` failed. (See above for error)
