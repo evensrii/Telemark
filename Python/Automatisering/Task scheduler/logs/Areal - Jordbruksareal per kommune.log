@@ -2,33 +2,26 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Jordbruksareal per kommune JSON-stat data loaded successfully.
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\jordbruksareal_per_kommune.csv
+Request error in Jordbruksareal per kommune: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/09594/
+Error occurred: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/09594/
+Email notifications disabled. Errors in jordbruksareal_per_kommune.py were not sent.
 
 
 Errors:
 Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\indexes\base.py", line 3653, in get_loc
-    return self._engine.get_loc(casted_key)
-  File "pandas\_libs\index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
-  File "pandas\_libs\index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
-  File "pandas\_libs\hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
-  File "pandas\_libs\hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
-KeyError: 'Jordbruksareal (2025)'
+  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py", line 60, in <module>
+    df = fetch_data(
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/09594/
 
-The above exception was the direct cause of the following exception:
+During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py", line 111, in <module>
-    is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 630, in handle_output_data
-    is_new_data = compare_to_github(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 203, in compare_to_github
-    if pd.api.types.is_integer_dtype(input_df[col]) and pd.api.types.is_integer_dtype(existing_data[col]):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\frame.py", line 3761, in __getitem__
-    indexer = self.columns.get_loc(key)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\pandas\core\indexes\base.py", line 3655, in get_loc
-    raise KeyError(key) from err
-KeyError: 'Jordbruksareal (2025)'
+  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py", line 72, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
 
 ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py` failed. (See above for error)

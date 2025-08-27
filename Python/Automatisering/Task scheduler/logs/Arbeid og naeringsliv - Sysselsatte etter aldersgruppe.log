@@ -2,68 +2,26 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Sysselsatte, kommuner JSON-stat data loaded successfully.
-Sysselsatte, landet JSON-stat data loaded successfully.
-Personer, landet JSON-stat data loaded successfully.
-Personer, kommunene JSON-stat data loaded successfully.
+Request error in Sysselsatte, kommuner: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/07984/
+Error occurred: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/07984/
+Email notifications disabled. Errors in sysselsetting_alder.py were not sent.
 
-Sysselsetting for 15-74 i landet i 2024: 68.9%
-Sysselsetting for 15-74 bosatte i Telemark i 2024: 64.6%
-Sysselsetting for 15-74 bosatte i Telemark i 2024: 84772
 
-Landet age groups:
-  age_group    value
-0     15-19   333154
-1     20-24   334878
-2     25-39  1148739
-3     40-54  1100920
-4     55-66   805903
-5     67-74   429409
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_alder.py", line 97, in <module>
+    df_kommuner = fetch_data(
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/07984/
 
-Kommuner age groups:
-age_group      15-19  20-24  25-39  40-54  55-66  67-74
-region                                                 
-Bamble           908    777   2422   2631   2381   1433
-Drangedal        248    242    614    821    688    405
-Fyresdal          80     57    179    255    227    137
-Hjartdal          89     94    259    277    271    153
-KragerÃ¸          589    508   1582   2036   1795   1164
-Kviteseid        117    126    378    460    485    259
-Midt-Telemark    676    795   2084   2068   1531    924
-Nissedal          88     70    202    279    256    179
-Nome             370    359   1062   1243   1162    645
-Notodden         757    724   2396   2467   2166   1280
-Porsgrunn       2200   2042   6931   7504   5836   3275
-Seljord          187    155    442    571    487    307
-Siljan           143    116    410    458    382    212
-Skien           3433   3058  10629  11160   8742   4923
-Tinn             317    309    817   1090    997    646
-Tokke            142    103    368    392    412    235
-Vinje            206    184    696    704    641    372
+During handling of the above exception, another exception occurred:
 
-Telemark population by age groups:
-age_group  15-19  20-24  25-39  40-54  55-66  67-74
-Telemark   10550   9719  31471  34416  28459  16549
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_alder.py", line 109, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
 
-Telemark employment by age groups:
-     region     alder  value
-0  Telemark  15-19 Ã¥r   4487
-1  Telemark  20-24 Ã¥r   6485
-2  Telemark  25-39 Ã¥r  24461
-3  Telemark  40-54 Ã¥r  27088
-4  Telemark  55-66 Ã¥r  18740
-5  Telemark  67-74 Ã¥r   3511
-
-Employment rates by age group (%):
-  Aldersgruppe  Telemark (2024)  Hele landet (2024)
-0     20-24 Ã¥r             66.7                67.8
-1     25-39 Ã¥r             77.7                81.5
-2     40-54 Ã¥r             78.7                81.6
-3     55-66 Ã¥r             65.8                69.9
-4     67-74 Ã¥r             21.2                22.0
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
-[2025-08-20 08:06:00] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_etter_aldersgruppe.log
-
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_alder.py` failed. (See above for error)

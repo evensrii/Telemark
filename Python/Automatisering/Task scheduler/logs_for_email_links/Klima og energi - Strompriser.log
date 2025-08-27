@@ -3,14 +3,8 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
-Working with file: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
-Checking for existing data...
-Type of existing_df: <class 'pandas.core.frame.DataFrame'>
-Latest date in existing data: 2025-08-23 00:00:00
-Found 1697 existing records
-All prices are already up to date (up until yesterday), no new data to fetch.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2025-08-21 08:11:09] No new data to upload. Skipping GitHub update.
+[2025-08-27 08:11:06] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
