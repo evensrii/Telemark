@@ -15,6 +15,7 @@ script_name = os.path.basename(__file__)
 # Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
 error_messages = []
 
+# Alle fylker, siste år
 
 # Antall 2024 - NÅ
 # Antall 2020 - 2023
@@ -137,6 +138,9 @@ while df_antall_2024_naa is None and years_to_query:
         if "400 Client Error" in str(e) and len(years_to_query) > 1:
             removed_year = years_to_query.pop()
             print(f"Query failed for years up to {removed_year}. Retrying with years up to {years_to_query[-1]}.")
+            # If we successfully fall back from current year, explain this is normal
+            if removed_year == str(current_year):
+                print(f"NOTE: This error is perfectly normal - data for {removed_year} is not yet available in SSB. The script will continue with data up to {years_to_query[-1]}.")
         else:
             print(f"An unrecoverable error occurred: {e}")
             notify_errors(error_messages, script_name=script_name)
@@ -484,6 +488,9 @@ while df_andel_2024_naa is None and years_to_query:
         if "400 Client Error" in str(e) and len(years_to_query) > 1:
             removed_year = years_to_query.pop()
             print(f"Query failed for years up to {removed_year}. Retrying with years up to {years_to_query[-1]}.")
+            # If we successfully fall back from current year, explain this is normal
+            if removed_year == str(current_year):
+                print(f"NOTE: This error is perfectly normal - data for {removed_year} is not yet available in SSB. The script will continue with data up to {years_to_query[-1]}.")
         else:
             print(f"An unrecoverable error occurred: {e}")
             notify_errors(error_messages, script_name=script_name)
@@ -806,3 +813,112 @@ else:
     print("No new data detected.")
 
 print(f"New data status log written to {new_data_status_file}")  
+
+
+################################ Alle fylker, siste år (for tekst på nettside)
+
+POST_URL = "https://data.ssb.no/api/v0/no/table/09429/"
+
+# Spørring for å hente ut data fra SSB
+payload = {
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "agg_single:FylkerGjeldende",
+        "values": [
+          "31",
+          "32",
+          "03",
+          "33",
+          "34",
+          "39",
+          "40",
+          "42",
+          "11",
+          "46",
+          "15",
+          "50",
+          "18",
+          "55",
+          "56"
+        ]
+      }
+    },
+    {
+      "code": "Nivaa",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "03a",
+          "04a"
+        ]
+      }
+    },
+    {
+      "code": "Kjonn",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "0"
+        ]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "PersonerProsent"
+        ]
+      }
+    },
+    {
+      "code": "Tid",
+      "selection": {
+        "filter": "top",
+        "values": [
+          "1"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}
+
+
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
+
+try:
+    df_andel_alle_fylker = fetch_data(
+        url=POST_URL,
+        payload=payload,  # The JSON payload for POST requests. If None, a GET request is used.
+        error_messages=error_messages,
+        query_name="Alle fylker siste år",
+        response_type="json",  # The expected response type, either 'json' or 'csv'.
+        # delimiter=";", # The delimiter for CSV data (default: ';').
+        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+
+# Get the year from the data (since we use "top 1" filter)
+latest_year = df_andel_alle_fylker['år'].iloc[0] if 'år' in df_andel_alle_fylker.columns else "ukjent år"
+
+# Sum the value for each individual region
+df_andel_alle_fylker = df_andel_alle_fylker.groupby(['region']).sum('value').reset_index()
+
+# Sort by the value column in descending order
+df_andel_alle_fylker = df_andel_alle_fylker.sort_values(by='value', ascending=False)
+
+# Rename the columns to include the year
+df_andel_alle_fylker.columns = ['Kommune', f'Andel høyere utdanning (kort eller lang) {latest_year}']
+
+# Print df_andel_alle_fylker
+print(df_andel_alle_fylker)
