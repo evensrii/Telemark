@@ -756,8 +756,8 @@ df_combined = df_combined.sort_values(by=list(df_combined.columns)).reset_index(
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "utdanningsnivå.csv"
-task_name = "Opplæring og kompetanse - Utdanningsnivå"
+file_name = "utdanningsnivaa.csv"
+task_name = "Opplaering og kompetanse - Utdanningsnivaa"
 github_folder = "Data/02_Opplæring og kompetanse/Utdanningsnivå"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
