@@ -2,26 +2,57 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Sysselsatte i nÃ¦ringer, Telemark: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/13470/
-Error occurred: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/13470/
-Email notifications disabled. Errors in arbeidsplasser_i_naringer.py were not sent.
+Sysselsatte i nÃ¦ringer, Telemark JSON-stat data loaded successfully.
+Sysselsatte i nÃ¦ringer, landet JSON-stat data loaded successfully.
 
+Processed Telemark data:
+                          nÃ¦ring (SN2007)  Telemark (2024)
+0             Jordbruk, skogbruk og fiske              2.0
+1             Bergverksdrift og utvinning              0.4
+2                                Industri             10.9
+3        Elektrisitet, vann og renovasjon              2.3
+4             Bygge- og anleggsvirksomhet              9.1
+5   Varehandel, reparasjon av motorvogner             13.1
+6                    Transport og lagring              3.8
+7   Overnattings- og serveringsvirksomhet              3.1
+8            Informasjon og kommunikasjon              1.9
+9              Finansiering og forsikring              0.9
+10   Teknisk tjenesteyting, eiendomsdrift              5.1
+11        Forretningsmessig tjenesteyting              3.9
+12    Off.adm., forsvar, sosialforsikring              5.6
+13                           Undervisning              8.6
+14              Helse- og sosialtjenester             25.4
+15                Personlig tjenesteyting              3.7
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_i_naringer.py", line 90, in <module>
-    df_telemark = fetch_data(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/13470/
+Processed national data:
+                          nÃ¦ring (SN2007)  Landet (2024)
+0             Jordbruk, skogbruk og fiske            2.3
+1             Bergverksdrift og utvinning            2.3
+2                                Industri            7.6
+3        Elektrisitet, vann og renovasjon            1.3
+4             Bygge- og anleggsvirksomhet            8.3
+5   Varehandel, reparasjon av motorvogner           12.5
+6                    Transport og lagring            4.8
+7   Overnattings- og serveringsvirksomhet            3.7
+8            Informasjon og kommunikasjon            4.1
+9              Finansiering og forsikring            1.9
+10   Teknisk tjenesteyting, eiendomsdrift            6.9
+11        Forretningsmessig tjenesteyting            4.5
+12    Off.adm., forsvar, sosialforsikring            6.3
+13                           Undervisning            8.2
+14              Helse- og sosialtjenester           20.9
+15                Personlig tjenesteyting            4.3
 
-During handling of the above exception, another exception occurred:
+Combined data:
+                          nÃ¦ring (SN2007)  Telemark (2024)  Landet (2024)
+14              Helse- og sosialtjenester             25.4           20.9
+5   Varehandel, reparasjon av motorvogner             13.1           12.5
+2                                Industri             10.9            7.6
+4             Bygge- og anleggsvirksomhet              9.1            8.3
+13                           Undervisning              8.6            8.2
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\ansatte_i_storste_naringer.csv
+[2025-08-28 08:06:31] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\ansatte_i_storste_naringer.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_i_naeringer.log
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_i_naringer.py", line 102, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_i_naringer.py` failed. (See above for error)
