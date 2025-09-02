@@ -15,6 +15,7 @@ script_name = os.path.basename(__file__)
 # Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
 error_messages = []
 
+# Alle fylker, siste år
 
 # Antall 2024 - NÅ
 # Antall 2020 - 2023
@@ -137,6 +138,9 @@ while df_antall_2024_naa is None and years_to_query:
         if "400 Client Error" in str(e) and len(years_to_query) > 1:
             removed_year = years_to_query.pop()
             print(f"Query failed for years up to {removed_year}. Retrying with years up to {years_to_query[-1]}.")
+            # If we successfully fall back from current year, explain this is normal
+            if removed_year == str(current_year):
+                print(f"NOTE: This error is perfectly normal - data for {removed_year} is not yet available in SSB. The script will continue with data up to {years_to_query[-1]}.")
         else:
             print(f"An unrecoverable error occurred: {e}")
             notify_errors(error_messages, script_name=script_name)
@@ -484,6 +488,9 @@ while df_andel_2024_naa is None and years_to_query:
         if "400 Client Error" in str(e) and len(years_to_query) > 1:
             removed_year = years_to_query.pop()
             print(f"Query failed for years up to {removed_year}. Retrying with years up to {years_to_query[-1]}.")
+            # If we successfully fall back from current year, explain this is normal
+            if removed_year == str(current_year):
+                print(f"NOTE: This error is perfectly normal - data for {removed_year} is not yet available in SSB. The script will continue with data up to {years_to_query[-1]}.")
         else:
             print(f"An unrecoverable error occurred: {e}")
             notify_errors(error_messages, script_name=script_name)
@@ -496,6 +503,60 @@ if df_andel_2024_naa is None:
     error_messages.append(error_msg)
     notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(error_msg)
+
+# Process df_andel_2024_naa: filter most recent year and kjønn = "Begge kjønn"
+# Get the most recent year
+latest_year_2024 = df_andel_2024_naa['år'].max()
+
+# Filter for most recent year and "Begge kjønn"
+df_filtered = df_andel_2024_naa[
+    (df_andel_2024_naa['år'] == latest_year_2024) & 
+    (df_andel_2024_naa['kjønn'] == 'Begge kjønn')
+].copy()
+
+# Create "Høyere utdanning, kort eller lang" by summing the two university levels
+# First, get the data for the two university levels
+df_kort = df_filtered[df_filtered['nivå'] == 'Universitets- og høgskolenivå, kort'].copy()
+df_lang = df_filtered[df_filtered['nivå'] == 'Universitets- og høgskolenivå, lang'].copy()
+
+# Sum the values by region
+df_hoyere_utdanning = df_kort.groupby('region')['value'].sum().reset_index()
+df_lang_grouped = df_lang.groupby('region')['value'].sum().reset_index()
+
+# Merge and sum the values
+df_hoyere_utdanning = df_hoyere_utdanning.merge(df_lang_grouped, on='region', how='outer', suffixes=('_kort', '_lang'))
+df_hoyere_utdanning['value'] = df_hoyere_utdanning['value_kort'].fillna(0) + df_hoyere_utdanning['value_lang'].fillna(0)
+
+# Keep only region and the combined value
+df_hoyere_utdanning = df_hoyere_utdanning[['region', 'value']].copy()
+df_hoyere_utdanning['nivå'] = 'Høyere utdanning, kort eller lang'
+
+# Remove the original university levels from the filtered dataframe
+df_filtered_clean = df_filtered[
+    ~df_filtered['nivå'].isin(['Universitets- og høgskolenivå, kort', 'Universitets- og høgskolenivå, lang'])
+].copy()
+
+# Add the new combined education level
+df_hoyere_utdanning_full = df_hoyere_utdanning.copy()
+# Add the other columns to match the structure
+if len(df_filtered_clean) > 0:
+    sample_row = df_filtered_clean.iloc[0]
+    for col in df_filtered_clean.columns:
+        if col not in df_hoyere_utdanning_full.columns:
+            df_hoyere_utdanning_full[col] = sample_row[col]
+
+# Combine the dataframes
+df_final = pd.concat([df_filtered_clean, df_hoyere_utdanning_full], ignore_index=True)
+
+# Create the final table with region and "Høyere utdanning, kort eller lang" values
+df_hoyere_utdanning_table = df_hoyere_utdanning[['region', 'value']].copy()
+df_hoyere_utdanning_table.columns = ['Kommune', 'Høyere utdanning, kort eller lang']
+
+# Sort by value descending
+df_hoyere_utdanning_table = df_hoyere_utdanning_table.sort_values('Høyere utdanning, kort eller lang', ascending=False).reset_index(drop=True)
+
+print(f"\nHøyere utdanning (kort eller lang) per region for {latest_year_2024}:")
+print(df_hoyere_utdanning_table.to_string(index=False))
 
 
 
@@ -749,8 +810,8 @@ df_combined = df_combined.sort_values(by=list(df_combined.columns)).reset_index(
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "utdanningsnivå.csv"
-task_name = "Opplæring og kompetanse - Utdanningsnivå"
+file_name = "utdanningsnivaa.csv"
+task_name = "Opplaering og kompetanse - Utdanningsnivaa"
 github_folder = "Data/02_Opplæring og kompetanse/Utdanningsnivå"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
@@ -806,3 +867,130 @@ else:
     print("No new data detected.")
 
 print(f"New data status log written to {new_data_status_file}")  
+
+
+################################ Landet utenom Oslo, siste år (for tekst på nettside)
+
+POST_URL = "https://data.ssb.no/api/v0/no/table/09429/"
+
+# Spørring for å hente ut data fra SSB
+payload = {
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "agg_single:FylkerGjeldende",
+        "values": [
+          "31",
+          "32",
+          "33",
+          "34",
+          "39",
+          "40",
+          "42",
+          "11",
+          "46",
+          "15",
+          "50",
+          "18",
+          "55",
+          "56"
+        ]
+      }
+    },
+    {
+      "code": "Nivaa",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "01",
+          "02a",
+          "11",
+          "03a",
+          "04a",
+          "09a"
+        ]
+      }
+    },
+    {
+      "code": "Kjonn",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "0"
+        ]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "Personer"
+        ]
+      }
+    },
+    {
+      "code": "Tid",
+      "selection": {
+        "filter": "top",
+        "values": [
+          "1"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}
+
+
+## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
+
+try:
+    df_antall_alle_fylker = fetch_data(
+        url=POST_URL,
+        payload=payload,  # The JSON payload for POST requests. If None, a GET request is used.
+        error_messages=error_messages,
+        query_name="Antall alle fylker siste år",
+        response_type="json",  # The expected response type, either 'json' or 'csv'.
+        # delimiter=";", # The delimiter for CSV data (default: ';').
+        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+
+# Get the year from the data (since we use "top 1" filter)
+latest_year = df_antall_alle_fylker['år'].iloc[0] if 'år' in df_antall_alle_fylker.columns else "ukjent år"
+
+# Calculate percentage of each education level (nivå)
+# Group by 'nivå' and sum the values to get total for each education level
+df_nivaa_summary = df_antall_alle_fylker.groupby('nivå')['value'].sum().reset_index()
+df_nivaa_summary.columns = ['nivå', 'antall']
+
+# Calculate total across all education levels
+total_personer = df_nivaa_summary['antall'].sum()
+
+# Calculate percentage for each education level
+df_nivaa_summary['prosent'] = (df_nivaa_summary['antall'] / total_personer * 100).round(2)
+
+# Sort by percentage descending for better readability
+df_nivaa_summary = df_nivaa_summary.sort_values('prosent', ascending=False).reset_index(drop=True)
+
+print(f"\nUtdanningsnivå fordeling for {latest_year}:")
+print(f"Total antall personer: {total_personer:,}")
+print("\nFordeling per utdanningsnivå:")
+print(df_nivaa_summary.to_string(index=False))
+
+# Calculate the sum of "Universitets- og høgskolenivå, kort" og "Universitets- og høgskolenivå, lang"
+universitets_prosent = df_nivaa_summary[df_nivaa_summary['nivå'].isin(['Universitets- og høgskolenivå, kort', 'Universitets- og høgskolenivå, lang'])]['prosent'].sum()
+
+# Print a sentence "Andel personer i landet utenom Oslo som har høyere utdanning (kort eller lang) er {universitets_prosent:.1f} %"
+print(f"Andel personer i landet utenom Oslo som har høyere utdanning (kort eller lang) er {universitets_prosent:.1f} %")
+
+

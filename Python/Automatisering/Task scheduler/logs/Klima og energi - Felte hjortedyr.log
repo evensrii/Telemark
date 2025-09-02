@@ -2,26 +2,20 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Elg: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/03432/
-Error occurred: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/03432/
-Email notifications disabled. Errors in antall_felt.py were not sent.
+Elg JSON-stat data loaded successfully.
+Hjort JSON-stat data loaded successfully.
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 39 entries, 0 to 38
+Data columns (total 2 columns):
+ #   Column              Non-Null Count  Dtype 
+---  ------              --------------  ----- 
+ 0   JaktÃ¥r              39 non-null     object
+ 1   Antall felte hjort  39 non-null     int64 
+dtypes: int64(1), object(1)
+memory usage: 752.0+ bytes
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\antall_felte_elg_og_hjort.csv
+[2025-09-01 08:11:22] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\antall_felte_elg_og_hjort.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Felte_hjortedyr.log
 
-
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py", line 48, in <module>
-    df_elg = fetch_data(
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\lib\site-packages\requests\models.py", line 1024, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/03432/
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py", line 60, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py` failed. (See above for error)
