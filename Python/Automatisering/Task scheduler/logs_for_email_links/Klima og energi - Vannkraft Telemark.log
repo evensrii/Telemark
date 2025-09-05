@@ -3,8 +3,13 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\vannkraft_telemark.csv
-[2025-09-02 08:11:25] No new data to upload. Skipping GitHub update.
+[2025-09-05 08:11:45] Row count changed: 127 -> 126
+
+Removed rows (showing up to 10):
+Kommune: Fyresdal, Kraftverk: Rui, Produksjon oppstart: 2000, rlig produksjon (1991-2020): 0.939
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftproduksjon/NVE/vannkraft_telemark.csv
+Email notifications disabled. Updates for vannkraft_telemark.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\vannkraft_telemark.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Vannkraft_Telemark.log
 
