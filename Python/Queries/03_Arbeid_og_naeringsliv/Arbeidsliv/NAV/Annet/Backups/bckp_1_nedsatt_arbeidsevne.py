@@ -117,52 +117,28 @@ try:
 
     ################# Import new monthly data, if any #################
 
-    # Find all available Excel files in the GitHub repository dynamically
+    # Try all possible day suffixes (01-31) for the monthly file
     base_url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Nedsatt%20arbeidsevne/"
-    
-    # Generate potential Excel filenames to check (current approach + future months)
-    # Start from the month after latest_date and check several months ahead
-    potential_files = []
-    
-    # Check from next month up to 12 months ahead to catch any new files
-    for months_ahead in range(1, 13):
-        check_date = latest_date + pd.DateOffset(months=months_ahead)
-        
-        # Try different day suffixes that might be used in filenames
-        for day in [15, 16, 17, 18, 19, 20]:  # Common days used in NAV file naming
-            filename = f"{check_date.strftime('%Y-%m')}-{day:02d}.xlsx"
-            potential_files.append(filename)
-    
-    available_files = []
-    
-    # Check which files are available
-    for filename in potential_files:
-        test_url = f"{base_url}{filename}"
+    new_data_exists = False
+    url_monthly = None
+
+    # Try each day of the month as suffix
+    for day in range(1, 32):  # 1 to 31
+        test_url = f"{base_url}{next_months_file}-{str(day).zfill(2)}.xlsx"
         try:
             response = requests.head(test_url)
             if response.status_code == 200:
-                # Extract the publication date from filename (YYYY-MM-DD format)
-                file_date_str = filename.replace('.xlsx', '')
-                file_publication_date = pd.to_datetime(file_date_str)
-                
-                # Calculate the data month (previous month from publication date)
-                data_month = file_publication_date.replace(day=1) - pd.DateOffset(months=1)
-                
-                # Only include files where the data month is newer than the latest date in CSV
-                if data_month > latest_date.replace(day=1):
-                    available_files.append((filename, test_url, file_publication_date, data_month))
-                    print(f"Found newer data file: {filename} (contains {data_month.strftime('%Y-%m')} data)")
+                new_data_exists = True
+                url_monthly = test_url
+                print(f"Found monthly data file: {test_url}")
+                break
         except Exception as e:
             continue
-    
-    # Sort files by data month to process them in chronological order
-    available_files.sort(key=lambda x: x[3])  # Sort by data_month
-    
-    if not available_files:
-        print(f"No new Excel files found with data newer than {latest_date.strftime('%Y-%m')}")
 
-    # Process each available file
-    for filename, url_monthly, file_publication_date, data_month in available_files:
+    if not new_data_exists:
+        print(f"No new data found for {next_months_file} with any day suffix")
+
+    if new_data_exists:
         try:
             response = requests.get(url_monthly)
             response.raise_for_status()
@@ -202,17 +178,15 @@ try:
             df_latest_month['Geografisk enhet'] = df_latest_month['Geografisk enhet'].replace(county_name_mapping)
             
             df_nedsatt = pd.concat([df_nedsatt, df_latest_month], axis=0, ignore_index=True)
-            print(f"Successfully processed {filename} (contains {data_month.strftime('%Y-%m')} data)")
 
         except Exception as e:
-            error_message = f"Error loading data from {filename}: {str(e)}"
+            error_message = f"Error loading unemployment data: {str(e)}"
             error_messages.append(error_message)
             print(error_message)
             notify_errors(error_messages, script_name=script_name)
-            raise RuntimeError(f"Failed to load data from {filename}")
-    
-    if not available_files:
-        print("No new Excel files were processed.")
+            raise RuntimeError("Failed to load unemployment data")
+    else:
+        print(f"No new data found for {next_months_file}")
 
     ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
