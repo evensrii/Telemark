@@ -3,29 +3,10 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
-Found missing date ranges: [(Timestamp('2025-08-29 00:00:00'), Timestamp('2025-08-31 00:00:00'))]
-Fetching data for missing periods...
--- Processing gap: 2025-08-29 to 2025-08-31 --
-Fetching energy prices from 2025-08-29 to 2025-08-31...
-  Fetching chunk from 2025-08-29 to 2025-08-31...
-Total price data points collected: 95
-Fetching exchange rates...
-Successfully fetched 1 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2025-09-01 08:11:44] Row count changed: 1702 -> 1709
-
-Added rows (showing up to 10):
-EUR/MWh: 85.62, NOK/KWh: 1.0057353299999998, NOK/MWh: 1005.7353299999999, kurs: 11.7465, time: 2025-08-29
-EUR/MWh: 87.55307692307693, NOK/KWh: 1.0284422180769228, NOK/MWh: 1028.442218076923, kurs: 11.7465, time: 2025-08-30
-EUR/MWh: 67.20421052631578, NOK/KWh: 0.7894142589473684, NOK/MWh: 789.4142589473684, kurs: 11.7465, time: 2025-08-31
-EUR/MWh: 57.01130434782608, NOK/KWh: 0.6696832865217391, NOK/MWh: 669.6832865217391, kurs: 11.7465, time: 2025-09-01
-EUR/MWh: 75.104375, NOK/KWh: 0.8822135409374999, NOK/MWh: 882.2135409374999, kurs: 11.7465, time: 2025-09-02
-EUR/MWh: 82.67636363636363, NOK/KWh: 0.9711579054545454, NOK/MWh: 971.1579054545454, kurs: 11.7465, time: 2025-09-03
-EUR/MWh: 89.186, NOK/KWh: 1.047623349, NOK/MWh: 1047.623349, kurs: 11.7465, time: 2025-09-04
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
-Email notifications disabled. Updates for strompriser.csv were not sent.
+[2025-09-04 08:11:44] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 Script completed successfully!
 
