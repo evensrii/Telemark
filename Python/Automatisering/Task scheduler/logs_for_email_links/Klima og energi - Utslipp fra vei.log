@@ -1,5 +1,11 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+All tasks completed successfully.
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_vei_telemark.csv
+[2025-09-09 08:17:37] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_vei_telemark.csv
+No new data detected in klimagassutslipp_vei_telemark.csv.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Utslipp_fra_vei.log
 
-Errors:
-python: can't open file 'D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py': [Errno 2] No such file or directory
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py` failed. (See above for error)
