@@ -84,7 +84,8 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/fulldyrka_vs_ikke-fulldyrka.py"), "Areal - Fulldyrka vs ikke-fulldyrka"),
 
     ## Bystrategi Grenland
-    (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py"), "Klima og energi - Utslipp fra vei"),
+    (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py"), "Bystrategi Grenland - Utslipp fra vei"),
+    (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.py"), "Bystrategi Grenland - Arealprofiler"),
 ]
 
 # Initialize master log

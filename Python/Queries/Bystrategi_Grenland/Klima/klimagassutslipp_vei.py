@@ -108,7 +108,7 @@ df_telemark["Utslipp"] = df_telemark["Utslipp"].round(2)
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "klimagassutslipp_vei_telemark.csv"
-task_name = "Klima og energi - Utslipp fra vei"
+task_name = "Bystrategi Grenland - Utslipp fra vei"
 github_folder = "Data/Bystrategi_Grenland/Klima"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
