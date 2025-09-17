@@ -8,14 +8,13 @@ from io import StringIO
 import pandas as pd
 from pyjstat import pyjstat
 import numpy as np
+import warnings
+
+# Suppress openpyxl warnings
+warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
 
 # Import the utility functions from the Helper_scripts folder
-from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.utility_functions import delete_files_in_temp_folder
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file
-from Helper_scripts.github_functions import download_github_file
-from Helper_scripts.github_functions import compare_to_github
 from Helper_scripts.github_functions import handle_output_data
 
 def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
@@ -110,59 +109,130 @@ try:
     ## Convert the "Dato" column to datetime with consistent format
     df_nedsatt['Dato'] = pd.to_datetime(df_nedsatt['Dato'])
 
-    ## Identify the latest date in the dato column
+    ## Identify existing months and find gaps
+    # Extract year-month strings from existing data
+    existing_months = set(df_nedsatt['Dato'].dt.strftime('%Y-%m').unique())
     latest_date = df_nedsatt['Dato'].max()
-    month_year = latest_date.strftime('%Y-%m')
-    next_months_file = (latest_date + pd.DateOffset(months=2)).strftime('%Y-%m')  # Format as YYYY-MM
+    earliest_date = df_nedsatt['Dato'].min()
 
-    ################# Import new monthly data, if any #################
+    print(f"Existing data range: {earliest_date.strftime('%Y-%m-%d')} to {latest_date.strftime('%Y-%m-%d')}")
 
-    # Find all available Excel files in the GitHub repository dynamically
+    # Define the search range: last 2 years up to current date + 3 months
+    current_date = pd.Timestamp.now()
+    search_start_date = current_date - pd.DateOffset(years=2)
+    search_end_date = current_date + pd.DateOffset(months=3)
+
+    # Generate expected monthly sequence for the search period
+    expected_months = []
+    check_date = search_start_date.replace(day=1)
+    while check_date <= search_end_date:
+        expected_months.append(check_date.strftime('%Y-%m'))
+        check_date = check_date + pd.DateOffset(months=1)
+
+    # Find missing months
+    missing_months = []
+    for month_str in expected_months:
+        if month_str not in existing_months:
+            missing_months.append(month_str)
+
+    print(f"Missing months in dataset: {missing_months}")
+    if any(month >= current_date.strftime('%Y-%m') for month in missing_months):
+        print("(These may not be available yet.)")
+
+    ################# Search for files to fill gaps and add new data #################
+
     base_url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Nedsatt%20arbeidsevne/"
+    found_files = []
+
+    # Find files that could contain data for missing months
+    # Use a set to track unique files and avoid duplicates
+    unique_files = set()
+    found_files = []
     
-    # Generate potential Excel filenames to check (current approach + future months)
-    # Start from the month after latest_date and check several months ahead
-    potential_files = []
+    # First, collect all potential files (both gap-filling and new data)
+    all_potential_files = set()
     
-    # Check from next month up to 12 months ahead to catch any new files
-    for months_ahead in range(1, 13):
-        check_date = latest_date + pd.DateOffset(months=months_ahead)
+    # For each missing month, check for files 1-3 months later
+    for missing_month in missing_months:
+        missing_date = pd.to_datetime(missing_month + '-01')
         
-        # Try different day suffixes that might be used in filenames
-        for day in [15, 16, 17, 18, 19, 20]:  # Common days used in NAV file naming
-            filename = f"{check_date.strftime('%Y-%m')}-{day:02d}.xlsx"
-            potential_files.append(filename)
+        # Check files 1-3 months after the missing month
+        for months_ahead in range(1, 4):  # 1, 2, 3 months ahead
+            check_date = missing_date + pd.DateOffset(months=months_ahead)
+            
+            # Look for files with both -16.xlsx and -17.xlsx patterns
+            for pattern in ['-16.xlsx', '-17.xlsx']:
+                filename_pattern = check_date.strftime('%Y-%m') + pattern
+                all_potential_files.add(filename_pattern)
     
-    available_files = []
+    # Also check for new data files (up to 3 months ahead of latest data)
+    if latest_date:
+        for months_ahead in range(1, 4):  # 1, 2, 3 months ahead
+            future_date = latest_date + pd.DateOffset(months=months_ahead)
+            for pattern in ['-16.xlsx', '-17.xlsx']:
+                filename_pattern = future_date.strftime('%Y-%m') + pattern
+                all_potential_files.add(filename_pattern)
     
-    # Check which files are available
-    for filename in potential_files:
-        test_url = f"{base_url}{filename}"
-        try:
-            response = requests.head(test_url)
-            if response.status_code == 200:
-                # Extract the publication date from filename (YYYY-MM-DD format)
-                file_date_str = filename.replace('.xlsx', '')
-                file_publication_date = pd.to_datetime(file_date_str)
-                
-                # Calculate the data month (previous month from publication date)
-                data_month = file_publication_date.replace(day=1) - pd.DateOffset(months=1)
-                
-                # Only include files where the data month is newer than the latest date in CSV
-                if data_month > latest_date.replace(day=1):
-                    available_files.append((filename, test_url, file_publication_date, data_month))
-                    print(f"Found newer data file: {filename} (contains {data_month.strftime('%Y-%m')} data)")
-        except Exception as e:
-            continue
+    # Get list of available files from GitHub directory using GitHub API
+    
+    try:
+        # Use GitHub API to get directory contents
+        api_url = "https://api.github.com/repos/evensrii/Telemark/contents/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Nedsatt%20arbeidsevne"
+        response = requests.get(api_url)
+        response.raise_for_status()
+        
+        files_data = response.json()
+        available_files = []
+        
+        # Process each file in the directory
+        for file_info in files_data:
+            if file_info['type'] == 'file' and file_info['name'].endswith('.xlsx'):
+                filename = file_info['name']
+                if filename.endswith('-16.xlsx') or filename.endswith('-17.xlsx'):
+                    # Extract date from filename (YYYY-MM-16.xlsx or YYYY-MM-17.xlsx)
+                    try:
+                        date_part = filename.replace('-16.xlsx', '').replace('-17.xlsx', '')
+                        file_publication_date = pd.to_datetime(filename.replace('.xlsx', ''), format='%Y-%m-%d')
+                        data_month = pd.to_datetime(date_part + '-01', format='%Y-%m-%d')
+                        
+                        # Construct the raw GitHub URL
+                        raw_url = base_url + filename
+                        
+                        available_files.append((filename, raw_url, file_publication_date, data_month))
+                    except Exception as parse_error:
+                        print(f"Error parsing filename {filename}: {parse_error}")
+                        continue
+        
+        print(f"Found {len(available_files)} Excel files in GitHub directory")
+        
+    except Exception as e:
+        print(f"Error fetching file list from GitHub API: {e}")
+        available_files = []
+    
+    # Now find files that match our potential file patterns
+    for filename_pattern in all_potential_files:
+        for filename, url_monthly, file_publication_date, data_month in available_files:
+            if filename == filename_pattern and filename not in unique_files:
+                unique_files.add(filename)
+                found_files.append((filename, url_monthly, file_publication_date, data_month))
+                print(f"Found file to process: {filename} (contains data for {data_month.strftime('%Y-%m')})")
+                break
+    
+
+    print(f"Total files found to process: {len(found_files)}")
     
     # Sort files by data month to process them in chronological order
-    available_files.sort(key=lambda x: x[3])  # Sort by data_month
+    found_files.sort(key=lambda x: x[3])  # Sort by data_month
     
-    if not available_files:
-        print(f"No new Excel files found with data newer than {latest_date.strftime('%Y-%m')}")
+    if not found_files:
+        print(f"No new Excel files found with data for missing months")
+    else:
+        print(f"\nFiles to be processed:")
+        for filename, url_monthly, file_publication_date, data_month in found_files:
+            print(f"  - {filename}: Contains {data_month.strftime('%B %Y')} data (published {file_publication_date.strftime('%Y-%m-%d')})")
 
-    # Process each available file
-    for filename, url_monthly, file_publication_date, data_month in available_files:
+    # Process each found file
+    for filename, url_monthly, file_publication_date, data_month in found_files:
         try:
             response = requests.get(url_monthly)
             response.raise_for_status()
@@ -201,8 +271,17 @@ try:
             
             df_latest_month['Geografisk enhet'] = df_latest_month['Geografisk enhet'].replace(county_name_mapping)
             
-            df_nedsatt = pd.concat([df_nedsatt, df_latest_month], axis=0, ignore_index=True)
-            print(f"Successfully processed {filename} (contains {data_month.strftime('%Y-%m')} data)")
+            # Filter out data that already exists in the dataset
+            new_dates = df_latest_month['Dato'].unique()
+            existing_dates = df_nedsatt['Dato'].unique()
+            dates_to_add = [date for date in new_dates if date not in existing_dates]
+            
+            if dates_to_add:
+                df_new_data = df_latest_month[df_latest_month['Dato'].isin(dates_to_add)]
+                df_nedsatt = pd.concat([df_nedsatt, df_new_data], axis=0, ignore_index=True)
+                print(f"Successfully processed {filename} - Added data for dates: {[pd.Timestamp(d).strftime('%Y-%m-%d') for d in dates_to_add]}")
+            else:
+                print(f"Data from {filename} already exists in dataset - skipping")
 
         except Exception as e:
             error_message = f"Error loading data from {filename}: {str(e)}"
@@ -211,8 +290,11 @@ try:
             notify_errors(error_messages, script_name=script_name)
             raise RuntimeError(f"Failed to load data from {filename}")
     
-    if not available_files:
+    if not found_files:
         print("No new Excel files were processed.")
+    
+    # Sort the final dataset by date and other key columns for consistency
+    df_nedsatt = df_nedsatt.sort_values(['Dato', 'Nivå', 'Geografisk enhet', 'Kjønn', 'Alder'], ignore_index=True)
 
     ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
