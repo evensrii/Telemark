@@ -6,16 +6,11 @@ import csv
 from io import BytesIO
 from io import StringIO
 import pandas as pd
-from pyjstat import pyjstat
 import numpy as np
 
 # Import the utility functions from the Helper_scripts folder
-from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.utility_functions import delete_files_in_temp_folder
+
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file
-from Helper_scripts.github_functions import download_github_file
-from Helper_scripts.github_functions import compare_to_github
 from Helper_scripts.github_functions import handle_output_data
 
 def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
@@ -91,101 +86,163 @@ df_ledighet['Antall personer'] = pd.to_numeric(df_ledighet['Antall personer'], e
 ## Convert the "Dato" column to datetime
 df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'])
 
-## Identify the latest date in the dato column
+## Identify existing months and find gaps
+# Extract year-month strings from existing data
+existing_months = set(df_ledighet['Dato'].dt.strftime('%Y-%m').unique())
 latest_date = df_ledighet['Dato'].max()
-month_year = latest_date.strftime('%Y-%m')
-next_months_file = (latest_date + pd.DateOffset(months=2)).strftime('%Y-%m')  # Format as YYYY-MM
+earliest_date = df_ledighet['Dato'].min()
 
-################# Import new monthly data, if any #################
+print(f"Existing data range: {earliest_date.strftime('%Y-%m-%d')} to {latest_date.strftime('%Y-%m-%d')}")
 
-# Try all possible day suffixes (01-31) for the monthly file
+# Define the search range: last 2 years up to current date + 3 months
+current_date = pd.Timestamp.now()
+search_start_date = current_date - pd.DateOffset(years=2)
+search_end_date = current_date + pd.DateOffset(months=3)
+
+# Generate expected monthly sequence for the search period
+expected_months = []
+check_date = search_start_date.replace(day=1)
+while check_date <= search_end_date:
+    expected_months.append(check_date.strftime('%Y-%m'))
+    check_date = check_date + pd.DateOffset(months=1)
+
+# Find missing months
+missing_months = []
+for month_str in expected_months:
+    if month_str not in existing_months:
+        missing_months.append(month_str)
+
+print(f"Missing months in dataset: {missing_months}")
+if any(month >= current_date.strftime('%Y-%m') for month in missing_months):
+    print("(These may not be available yet.)")
+
+################# Search for files to fill gaps and add new data #################
+
 base_url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/"
-new_data_exists = False
-url_monthly = None
+found_files = []
 
-# Try each day of the month as suffix
-for day in range(1, 32):  # 1 to 31
-    test_url = f"{base_url}{next_months_file}-{str(day).zfill(2)}.xlsx"
-    try:
-        response = requests.head(test_url)
-        if response.status_code == 200:
-            new_data_exists = True
-            url_monthly = test_url
-            print(f"Found monthly data file: {test_url}")
-            break
-    except Exception as e:
-        continue
-
-if not new_data_exists:
-    print(f"No new data found for {next_months_file}")
-
-if new_data_exists:
-    try:
-        response = requests.get(url_monthly)
-        response.raise_for_status()
+# Search for files that could contain data for missing months
+# Files are typically published 1-2 months after the data period
+for missing_month in missing_months:
+    # Convert missing month string to timestamp for date arithmetic
+    missing_date = pd.Timestamp(missing_month + '-01')
+    
+    # Check for files 1-3 months after the missing data month
+    for offset in range(1, 4):  # 1, 2, 3 months after
+        file_date = missing_date + pd.DateOffset(months=offset)
+        month_year_to_check = file_date.strftime('%Y-%m')
         
-        # Column names for the dataframes
-        column_names = ['År', 'År-måned', 'Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus', 'Kjønn', 'Antall personer', 'Andel av arbeidsstyrken']
-        
-        # Import data for each sheet using the function
-        df_fylker = import_excel_sheet(BytesIO(response.content), 'Fylker', 'B:I', 'K:R', column_names)
-        df_landet = import_excel_sheet(BytesIO(response.content), 'Landet', 'B:I', 'K:R', column_names)
-        df_telemark = import_excel_sheet(BytesIO(response.content), 'Telemark', 'B:I', 'K:R', column_names)
+        # Check for file with -05 suffix (standard pattern)
+        test_url = f"{base_url}{month_year_to_check}-05.xlsx"
+        try:
+            response = requests.head(test_url)
+            if response.status_code == 200:
+                # Check if we haven't already found this file
+                if not any(url == test_url for url, _ in found_files):
+                    found_files.append((test_url, file_date))
+                    print(f"Found file for missing month {missing_month}: {test_url}")
+        except Exception as e:
+            continue
 
-        # Clean up geographic names by removing numeric codes
-        # For fylker, remove codes like "03 Oslo" -> "Oslo"
-        df_fylker['Geografisk enhet'] = df_fylker['Geografisk enhet'].str.replace(r'^\d+\s+', '', regex=True)
-        
-        # For kommuner in Telemark, remove codes like "4001 Porsgrunn" -> "Porsgrunn"
-        df_telemark['Geografisk enhet'] = df_telemark['Geografisk enhet'].str.replace(r'^\d+\s+', '', regex=True)
+print(f"Total files found to process: {len(found_files)}")
+new_data_exists = len(found_files) > 0
 
-        # Standardize county names
-        county_name_mapping = {
-            'Trøndelag - Trööndelage': 'Trøndelag',
-            'Troms - Romsa - Tromssa ': 'Troms',  # Note: includes trailing space
-            'Finnmark - Finnmárku - Finmarkku': 'Finnmark',
-            'Nordland - Nordlánnda': 'Nordland'
-        }
-        df_fylker['Geografisk enhet'] = df_fylker['Geografisk enhet'].replace(county_name_mapping)
+# Sort found files by date and process all of them
+if found_files:
+    found_files.sort(key=lambda x: x[1])  # Sort by date
+    new_data_exists = True
+    print(f"Found {len(found_files)} file(s) to process")
+    
+    # Process each file in chronological order
+    for url_monthly, file_date in found_files:
+        print(f"Processing file: {url_monthly}")
+        try:
+            response = requests.get(url_monthly)
+            response.raise_for_status()
+            
+            # Column names for the dataframes
+            column_names = ['År', 'År-måned', 'Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus', 'Kjønn', 'Antall personer', 'Andel av arbeidsstyrken']
+            
+            # Import data for each sheet using the function
+            df_fylker = import_excel_sheet(BytesIO(response.content), 'Fylker', 'B:I', 'K:R', column_names)
+            df_landet = import_excel_sheet(BytesIO(response.content), 'Landet', 'B:I', 'K:R', column_names)
+            df_telemark = import_excel_sheet(BytesIO(response.content), 'Telemark', 'B:I', 'K:R', column_names)
 
-        # Stack all dataframes vertically
-        df_latest_month = pd.concat([df_fylker, df_landet, df_telemark], axis=0, ignore_index=True)
-        
-        # Remove column "År" from the dataframe
-        df_latest_month = df_latest_month.drop(columns=['År'])
-        
-        # Convert "År-måned" to datetime "Dato" column
-        # First clean the data by removing decimals and ensuring proper format
-        df_latest_month['År-måned'] = df_latest_month['År-måned'].astype(float).astype(int).astype(str)  # Convert to integer to remove decimals
-        
-        # Create year and month components
-        year = df_latest_month['År-måned'].str[:4]
-        month = df_latest_month['År-måned'].str[4:]
-        
-        # Create date string in YYYY-MM-DD format
-        date_str = year + '-' + month + '-01'
-        
-        # Convert to datetime
-        df_latest_month['Dato'] = pd.to_datetime(date_str, format='%Y-%m-%d')
-        df_latest_month = df_latest_month.drop(columns=['År-måned'])
+            # Clean up geographic names by removing numeric codes
+            # For fylker, remove codes like "03 Oslo" -> "Oslo"
+            df_fylker['Geografisk enhet'] = df_fylker['Geografisk enhet'].str.replace(r'^\d+\s+', '', regex=True)
+            
+            # For kommuner in Telemark, remove codes like "4001 Porsgrunn" -> "Porsgrunn"
+            df_telemark['Geografisk enhet'] = df_telemark['Geografisk enhet'].str.replace(r'^\d+\s+', '', regex=True)
 
-        # Ensure values are numeric
-        df_latest_month['Andel av arbeidsstyrken'] = pd.to_numeric(df_latest_month['Andel av arbeidsstyrken'], errors='coerce')
+            # Standardize county names
+            county_name_mapping = {
+                'Trøndelag - Trööndelage': 'Trøndelag',
+                'Troms - Romsa - Tromssa ': 'Troms',  # Note: includes trailing space
+                'Finnmark - Finnmárku - Finmarkku': 'Finnmark',
+                'Nordland - Nordlánnda': 'Nordland'
+            }
+            df_fylker['Geografisk enhet'] = df_fylker['Geografisk enhet'].replace(county_name_mapping)
 
-        # Divide andel by 100
-        df_latest_month['Andel av arbeidsstyrken'] = df_latest_month['Andel av arbeidsstyrken'] / 100
+            # Stack all dataframes vertically
+            df_latest_month = pd.concat([df_fylker, df_landet, df_telemark], axis=0, ignore_index=True)
+            
+            # Remove column "År" from the dataframe
+            df_latest_month = df_latest_month.drop(columns=['År'])
+            
+            # Convert "År-måned" to datetime "Dato" column
+            # First clean the data by removing decimals and ensuring proper format
+            df_latest_month['År-måned'] = df_latest_month['År-måned'].astype(float).astype(int).astype(str)  # Convert to integer to remove decimals
+            
+            # Create year and month components
+            year = df_latest_month['År-måned'].str[:4]
+            month = df_latest_month['År-måned'].str[4:]
+            
+            # Create date string in YYYY-MM-DD format
+            date_str = year + '-' + month + '-01'
+            
+            # Convert to datetime
+            df_latest_month['Dato'] = pd.to_datetime(date_str, format='%Y-%m-%d')
+            df_latest_month = df_latest_month.drop(columns=['År-måned'])
 
-        # Append new data to existing dataset
-        df_ledighet = pd.concat([df_ledighet, df_latest_month], axis=0, ignore_index=True)
+            # Ensure values are numeric
+            df_latest_month['Andel av arbeidsstyrken'] = pd.to_numeric(df_latest_month['Andel av arbeidsstyrken'], errors='coerce')
 
-    except Exception as e:
-        error_message = f"Error loading unemployment data: {str(e)}"
-        error_messages.append(error_message)
-        print(error_message)
-        notify_errors(error_messages, script_name=script_name)
-        raise RuntimeError("Failed to load unemployment data")
+            # Divide andel by 100
+            df_latest_month['Andel av arbeidsstyrken'] = df_latest_month['Andel av arbeidsstyrken'] / 100
+
+            # Filter out data that already exists in the dataset
+            new_dates = df_latest_month['Dato'].unique()
+            existing_dates = df_ledighet['Dato'].unique()
+            dates_to_add = [date for date in new_dates if date not in existing_dates]
+            
+            if dates_to_add:
+                df_new_data = df_latest_month[df_latest_month['Dato'].isin(dates_to_add)]
+                df_ledighet = pd.concat([df_ledighet, df_new_data], axis=0, ignore_index=True)
+                print(f"Successfully processed data from {url_monthly} - Added data for dates: {[pd.Timestamp(d).strftime('%Y-%m-%d') for d in dates_to_add]}")
+            else:
+                print(f"Data from {url_monthly} already exists in dataset - skipping")
+
+        except Exception as e:
+            error_message = f"Error loading unemployment data from {url_monthly}: {str(e)}"
+            error_messages.append(error_message)
+            print(error_message)
+            # Continue processing other files instead of stopping completely
+            continue
 else:
-    print(f"No new data found for {next_months_file}")
+    new_data_exists = False
+    print(f"No new data found after {month_year}")
+
+# Check if we had any errors during processing
+if error_messages and not new_data_exists:
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError("Failed to load unemployment data")
+
+# Sort the final dataset for consistent ordering
+df_ledighet = df_ledighet.sort_values(
+    by=['Dato', 'Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus'],
+    ascending=[True, True, True, True]
+).reset_index(drop=True)
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
