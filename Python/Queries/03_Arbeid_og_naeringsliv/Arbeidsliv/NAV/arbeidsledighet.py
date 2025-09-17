@@ -6,16 +6,11 @@ import csv
 from io import BytesIO
 from io import StringIO
 import pandas as pd
-from pyjstat import pyjstat
 import numpy as np
 
 # Import the utility functions from the Helper_scripts folder
-from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.utility_functions import delete_files_in_temp_folder
+
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file
-from Helper_scripts.github_functions import download_github_file
-from Helper_scripts.github_functions import compare_to_github
 from Helper_scripts.github_functions import handle_output_data
 
 def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
@@ -91,42 +86,66 @@ df_ledighet['Antall personer'] = pd.to_numeric(df_ledighet['Antall personer'], e
 ## Convert the "Dato" column to datetime
 df_ledighet['Dato'] = pd.to_datetime(df_ledighet['Dato'])
 
-## Identify the latest date in the dato column
+## Identify existing months and find gaps
+# Extract year-month strings from existing data
+existing_months = set(df_ledighet['Dato'].dt.strftime('%Y-%m').unique())
 latest_date = df_ledighet['Dato'].max()
-month_year = latest_date.strftime('%Y-%m')
+earliest_date = df_ledighet['Dato'].min()
 
-################# Import new monthly data, if any #################
+print(f"Existing data range: {earliest_date.strftime('%Y-%m-%d')} to {latest_date.strftime('%Y-%m-%d')}")
 
-# Check for all available files after the latest date
+# Define the search range: last 2 years up to current date + 3 months
+current_date = pd.Timestamp.now()
+search_start_date = current_date - pd.DateOffset(years=2)
+search_end_date = current_date + pd.DateOffset(months=3)
+
+# Generate expected monthly sequence for the search period
+expected_months = []
+check_date = search_start_date.replace(day=1)
+while check_date <= search_end_date:
+    expected_months.append(check_date.strftime('%Y-%m'))
+    check_date = check_date + pd.DateOffset(months=1)
+
+# Find missing months
+missing_months = []
+for month_str in expected_months:
+    if month_str not in existing_months:
+        missing_months.append(month_str)
+
+print(f"Missing months in dataset: {missing_months}")
+if any(month >= current_date.strftime('%Y-%m') for month in missing_months):
+    print("(These may not be available yet.)")
+
+################# Search for files to fill gaps and add new data #################
+
 base_url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/"
-new_data_exists = False
-url_monthly = None
 found_files = []
 
-# Check for files from 2 months after latest date up to current date + 6 months
-current_date = pd.Timestamp.now()
-start_check_date = latest_date + pd.DateOffset(months=2)
-end_check_date = current_date + pd.DateOffset(months=6)
-
-# Generate all possible month-year combinations to check
-check_date = start_check_date
-while check_date <= end_check_date:
-    month_year_to_check = check_date.strftime('%Y-%m')
+# Search for files that could contain data for missing months
+# Files are typically published 1-2 months after the data period
+for missing_month in missing_months:
+    # Convert missing month string to timestamp for date arithmetic
+    missing_date = pd.Timestamp(missing_month + '-01')
     
-    # Try each day of the month as suffix
-    for day in range(1, 32):  # 1 to 31
-        test_url = f"{base_url}{month_year_to_check}-{str(day).zfill(2)}.xlsx"
+    # Check for files 1-3 months after the missing data month
+    for offset in range(1, 4):  # 1, 2, 3 months after
+        file_date = missing_date + pd.DateOffset(months=offset)
+        month_year_to_check = file_date.strftime('%Y-%m')
+        
+        # Check for file with -05 suffix (standard pattern)
+        test_url = f"{base_url}{month_year_to_check}-05.xlsx"
         try:
             response = requests.head(test_url)
             if response.status_code == 200:
-                found_files.append((test_url, check_date))
-                print(f"Found monthly data file: {test_url}")
-                break
+                # Check if we haven't already found this file
+                if not any(url == test_url for url, _ in found_files):
+                    found_files.append((test_url, file_date))
+                    print(f"Found file for missing month {missing_month}: {test_url}")
         except Exception as e:
             continue
-    
-    # Move to next month
-    check_date = check_date + pd.DateOffset(months=1)
+
+print(f"Total files found to process: {len(found_files)}")
+new_data_exists = len(found_files) > 0
 
 # Sort found files by date and process all of them
 if found_files:
@@ -192,9 +211,17 @@ if found_files:
             # Divide andel by 100
             df_latest_month['Andel av arbeidsstyrken'] = df_latest_month['Andel av arbeidsstyrken'] / 100
 
-            # Append new data to existing dataset
-            df_ledighet = pd.concat([df_ledighet, df_latest_month], axis=0, ignore_index=True)
-            print(f"Successfully processed data from {url_monthly}")
+            # Filter out data that already exists in the dataset
+            new_dates = df_latest_month['Dato'].unique()
+            existing_dates = df_ledighet['Dato'].unique()
+            dates_to_add = [date for date in new_dates if date not in existing_dates]
+            
+            if dates_to_add:
+                df_new_data = df_latest_month[df_latest_month['Dato'].isin(dates_to_add)]
+                df_ledighet = pd.concat([df_ledighet, df_new_data], axis=0, ignore_index=True)
+                print(f"Successfully processed data from {url_monthly} - Added data for dates: {[pd.Timestamp(d).strftime('%Y-%m-%d') for d in dates_to_add]}")
+            else:
+                print(f"Data from {url_monthly} already exists in dataset - skipping")
 
         except Exception as e:
             error_message = f"Error loading unemployment data from {url_monthly}: {str(e)}"
