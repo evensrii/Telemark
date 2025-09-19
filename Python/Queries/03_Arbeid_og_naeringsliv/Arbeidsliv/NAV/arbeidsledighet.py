@@ -231,7 +231,10 @@ if found_files:
             continue
 else:
     new_data_exists = False
-    print(f"No new data found after {month_year}")
+    if latest_date:
+        print(f"No new data found after {latest_date.strftime('%Y-%m')}")
+    else:
+        print("No new data found")
 
 # Check if we had any errors during processing
 if error_messages and not new_data_exists:
