@@ -146,6 +146,10 @@ df_edit = df_edit.drop(columns=['gridx', 'gridy', 'fylke_id', 'fylkesnavn'])
 # List unique values in "Kommune"
 print(f"Unique municipalities: {df_edit['kommunenavn'].unique()}")
 
+# If last column name is "Hovesentrum2024_intersect", rename to "Hovedsentrum2024_intersect"
+if df_edit.columns[-1] == 'Hovesentrum2024_intersect':
+    df_edit = df_edit.rename(columns={'Hovesentrum2024_intersect': 'Hovedsentrum2024_intersect'})
+
 # Filter to keep only rows that have values in center zone columns
 center_columns = ['Hovedsentrum2024_centroid', 'Hovedsentrum2024_intersect']
 
