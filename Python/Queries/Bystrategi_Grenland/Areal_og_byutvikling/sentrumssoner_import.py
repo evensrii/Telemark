@@ -143,35 +143,22 @@ print(df_edit.columns)
 # Remove columns "geometry_b", "geometry_1", "geometry_2", "geometry_3", "Shape_Length", "Shape_Area", "ssbid250m"
 df_edit = df_edit.drop(columns=['gridx', 'gridy', 'fylke_id', 'fylkesnavn'])
 
-# Convert column "Antall innbyggere" to int
-merged_df_edit['Antall innbyggere'] = merged_df_edit['Antall innbyggere'].astype(int)
-
-# Convert column "År" to datetime format (year only)
-merged_df_edit['År'] = pd.to_datetime(merged_df_edit['År'], format='%Y')
-
-# Sort df by year
-merged_df_edit = merged_df_edit.sort_values(by='År')
-
 # List unique values in "Kommune"
-print(f"Unique municipalities: {merged_df_edit['Kommune'].unique()}")
+print(f"Unique municipalities: {df_edit['kommunenavn'].unique()}")
 
 # Filter to keep only rows that have values in center zone columns
-center_columns = ['SSB_sentrum2019_intersect', 'SSB_sentrum2019_centroid', 
-                 'SSB_sentrum2024_intersect', 'SSB_sentrum2024_centroid',
-                 'Hovedsentrum2019_intersect', 'Hovedsentrum2019_centroid',
-                 'Hovedsentrum2024_intersect', 'Hovedsentrum2024_centroid']
+center_columns = ['Hovedsentrum2024_centroid', 'Hovedsentrum2024_intersect']
 
-print(f"Before center zone filter: {len(merged_df_edit)} rows")
+print(f"Before center zone filter: {len(df_edit)} rows")
 
 # Create a mask for rows that have non-null values in any of the center columns
-mask = merged_df_edit[center_columns].notna().any(axis=1)
-merged_df_edit = merged_df_edit[mask]
+mask = df_edit[center_columns].notna().any(axis=1)
+df_edit = df_edit[mask]
 
-print(f"After center zone filter: {len(merged_df_edit)} rows")
-print(f"Unique municipalities: {merged_df_edit['Kommune'].unique()}")
-print(f"Filtered out {len(merged_df_edit[~mask])} rows with no center zone values")
+print(f"After center zone filter: {len(df_edit)} rows")
+print(f"Unique municipalities: {df_edit['kommunenavn'].unique()}")
 
-output_path = r'c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Data\Bystrategi_Grenland\Areal_og_byutvikling\Sentrumssoner\sentrumssoner_med_befolkning.csv'
+output_path = r'c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Data\Bystrategi_Grenland\Areal_og_byutvikling\Sentrumssoner\sentrumssoner_100m.csv'
 print(f"Saving modified data to: {output_path}")
-merged_df_edit.to_csv(output_path, index=False, sep=';')
+df_edit.to_csv(output_path, index=False, sep=';')
 print(f"File saved successfully!")
