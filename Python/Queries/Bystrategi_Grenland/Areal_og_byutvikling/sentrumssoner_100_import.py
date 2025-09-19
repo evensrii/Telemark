@@ -158,7 +158,7 @@ df_edit = df_edit[mask]
 print(f"After center zone filter: {len(df_edit)} rows")
 print(f"Unique municipalities: {df_edit['kommunenavn'].unique()}")
 
-output_path = r'c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Data\Bystrategi_Grenland\Areal_og_byutvikling\Sentrumssoner\sentrumssoner_100m.csv'
+output_path = r'c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Data\Bystrategi_Grenland\Areal_og_byutvikling\Sentrumssoner\sentrumssoner_100m_filtered.csv'
 print(f"Saving modified data to: {output_path}")
 df_edit.to_csv(output_path, index=False, sep=';')
 print(f"File saved successfully!")
