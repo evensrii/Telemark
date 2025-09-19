@@ -214,20 +214,26 @@ if __name__ == "__main__":
 # Run these lines individually in your Jupyter interactive window
 # ===================================================================
 
+# Copy the merged DataFrame to a new variable
+merged_df_edit = merged_df.copy()
+
 # Remove columns "geometry_b", "geometry_1", "geometry_2", "geometry_3", "Shape_Length", "Shape_Area", "ssbid250m"
-merged_df = merged_df.drop(columns=['geometry_b', 'geometry_1', 'geometry_2', 'geometry_3', 'Shape_Length', 'Shape_Area', 'ssbid250m'])
+merged_df_edit = merged_df_edit.drop(columns=['geometry_b', 'geometry_1', 'geometry_2', 'geometry_3', 'Shape_Length', 'Shape_Area', 'ssbid250m'])
 
 # Rename columns "pop_tot" to "Antall innbyggere"
-merged_df = merged_df.rename(columns={'pop_tot': 'Antall innbyggere'})
+merged_df_edit = merged_df_edit.rename(columns={'pop_tot': 'Antall innbyggere'})
 
 # Convert column "Antall innbyggere" to int
-merged_df['Antall innbyggere'] = merged_df['Antall innbyggere'].astype(int)
+merged_df_edit['Antall innbyggere'] = merged_df_edit['Antall innbyggere'].astype(int)
 
 # Convert column "År" to datetime format (year only)
-merged_df['År'] = pd.to_datetime(merged_df['År'], format='%Y')
+merged_df_edit['År'] = pd.to_datetime(merged_df_edit['År'], format='%Y')
 
 # Sort df by year
-merged_df = merged_df.sort_values(by='År')
+merged_df_edit = merged_df_edit.sort_values(by='År')
+
+# List unique values in "Kommune"
+print(f"Unique municipalities: {merged_df_edit['Kommune'].unique()}")
 
 # Filter to keep only rows that have values in center zone columns
 center_columns = ['SSB_sentrum2019_intersect', 'SSB_sentrum2019_centroid', 
@@ -235,16 +241,17 @@ center_columns = ['SSB_sentrum2019_intersect', 'SSB_sentrum2019_centroid',
                  'Hovedsentrum2019_intersect', 'Hovedsentrum2019_centroid',
                  'Hovedsentrum2024_intersect', 'Hovedsentrum2024_centroid']
 
-print(f"Before center zone filter: {len(merged_df)} rows")
+print(f"Before center zone filter: {len(merged_df_edit)} rows")
 
 # Create a mask for rows that have non-null values in any of the center columns
-mask = merged_df[center_columns].notna().any(axis=1)
-merged_df = merged_df[mask]
+mask = merged_df_edit[center_columns].notna().any(axis=1)
+merged_df_edit = merged_df_edit[mask]
 
-print(f"After center zone filter: {len(merged_df)} rows")
-print(f"Filtered out {len(merged_df[~mask])} rows with no center zone values")
+print(f"After center zone filter: {len(merged_df_edit)} rows")
+print(f"Unique municipalities: {merged_df_edit['Kommune'].unique()}")
+print(f"Filtered out {len(merged_df_edit[~mask])} rows with no center zone values")
 
 output_path = r'c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Data\Bystrategi_Grenland\Areal_og_byutvikling\Sentrumssoner\sentrumssoner_med_befolkning.csv'
 print(f"Saving modified data to: {output_path}")
-merged_df.to_csv(output_path, index=False, sep=';')
+merged_df_edit.to_csv(output_path, index=False, sep=';')
 print(f"File saved successfully!")
