@@ -196,23 +196,23 @@ for file_index, (file_url, file_date) in enumerate(found_files, 1):
         # Initialize dictionaries to store dataframes for this file
         job_seeker_dataframes = {}
         job_vacancy_dataframes = {}
-    
-    ################# Process job seeker sheets #################
-    
-    print("\n=== Processing Job Seeker Sheets ===")
-    for sheet_name in target_sheets['job_seekers']:
-        if sheet_name in available_sheets:
-            print(f"Processing sheet: {sheet_name}")
-            df = import_job_seeker_sheet(excel_content, sheet_name)
-            if not df.empty:
-                job_seeker_dataframes[sheet_name] = df
-                print(f"Successfully imported {len(df)} rows from {sheet_name}")
-                print(f"Columns: {list(df.columns)}")
-                print(f"Sample data:\n{df.head()}\n")
+        
+        ################# Process job seeker sheets #################
+        
+        print("\n=== Processing Job Seeker Sheets ===")
+        for sheet_name in target_sheets['job_seekers']:
+            if sheet_name in available_sheets:
+                print(f"Processing sheet: {sheet_name}")
+                df = import_job_seeker_sheet(excel_content, sheet_name)
+                if not df.empty:
+                    job_seeker_dataframes[sheet_name] = df
+                    print(f"Successfully imported {len(df)} rows from {sheet_name}")
+                    print(f"Columns: {list(df.columns)}")
+                    print(f"Sample data:\n{df.head()}\n")
+                else:
+                    print(f"No data found in sheet: {sheet_name}\n")
             else:
-                print(f"No data found in sheet: {sheet_name}\n")
-        else:
-            print(f"Sheet not found: {sheet_name}\n")
+                print(f"Sheet not found: {sheet_name}\n")
     
     ################# Merge job seeker dataframes #################
     
