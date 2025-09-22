@@ -145,6 +145,9 @@ print("=== Checking for Existing Data ===")
 # Try to get existing data from GitHub to determine what we need to fetch
 github_file_url = f"https://raw.githubusercontent.com/{github_repo}/refs/heads/main/Data/02_Oppl%C3%A6ring%20og%20kompetanse/Kompetansebehov/soekere_stillinger_yrkespraksis.csv"
 
+print(f"Attempting to access: {github_file_url}")
+print(f"GitHub repo variable: '{github_repo}'")
+
 existing_data = None
 latest_existing_date = None
 missing_months = []
@@ -323,7 +326,10 @@ if not found_files:
     print(f"New data status log written to {new_data_status_file}")
     print("No new data detected.")
     print("\nScript completed successfully!")
-    exit()
+    
+    # Use sys.exit() instead of exit() for better reliability
+    import sys
+    sys.exit(0)
 
 # Sort found files by date and process all of them
 found_files.sort(key=lambda x: x[1])  # Sort by date
