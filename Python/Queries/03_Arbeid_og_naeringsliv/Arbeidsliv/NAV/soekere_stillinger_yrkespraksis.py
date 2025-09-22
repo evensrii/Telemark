@@ -152,47 +152,68 @@ missing_months = []
 try:
     response = requests.get(github_file_url)
     if response.status_code == 200:
-        # Try semicolon separator first, then comma if that fails
+        print(f"Successfully downloaded existing CSV file (size: {len(response.text)} characters)")
+        
+        # Try comma separator first (since the file is comma-separated), then semicolon if that fails
         try:
-            existing_data = pd.read_csv(StringIO(response.text), sep=';')
-        except:
             existing_data = pd.read_csv(StringIO(response.text), sep=',')
+            print(f"Successfully parsed with comma separator: {len(existing_data)} rows, columns: {list(existing_data.columns)}")
+            
+            # Check if we have the expected number of columns (should be 6)
+            if len(existing_data.columns) == 1:
+                print("Only 1 column found with comma separator - trying semicolon separator")
+                raise ValueError("Wrong separator detected")
+                
+        except Exception as e:
+            print(f"Comma parsing failed or detected wrong separator: {e}")
+            try:
+                existing_data = pd.read_csv(StringIO(response.text), sep=';')
+                print(f"Successfully parsed with semicolon separator: {len(existing_data)} rows, columns: {list(existing_data.columns)}")
+            except Exception as e2:
+                print(f"Semicolon parsing also failed: {e2}")
+                existing_data = pd.DataFrame()
         
         # Check if we have actual data (more than just headers)
         if len(existing_data) > 0 and 'Dato' in existing_data.columns:
+            print(f"Valid data found: {len(existing_data)} rows with Dato column")
+            
             # Convert Dato column to datetime for analysis
             existing_data['Dato'] = pd.to_datetime(existing_data['Dato'])
             
-            # Find the latest date in existing data
+            # Find the earliest and latest dates in existing data
+            earliest_existing_date = existing_data['Dato'].min()
             latest_existing_date = existing_data['Dato'].max()
-            print(f"Latest existing data: {latest_existing_date.strftime('%Y-%m')}")
+            print(f"Existing data range: {earliest_existing_date.strftime('%Y-%m')} to {latest_existing_date.strftime('%Y-%m')}")
             
-            # Find missing months within the last 2 years
+            # Find missing months only within the existing data range (no historical gaps before earliest date)
+            existing_months_set = set(existing_data['Dato'].dt.strftime('%Y-%m'))
+            
+            # Create complete monthly sequence from earliest existing date to current date
             current_date = pd.Timestamp.now()
-            analysis_start = current_date - pd.DateOffset(years=2)
-            
-            # Create complete monthly sequence
-            all_months = pd.date_range(start=analysis_start, end=current_date, freq='MS')
-            existing_months = pd.to_datetime(existing_data['Dato'].dt.to_period('M').astype(str))
+            all_months_in_range = pd.date_range(start=earliest_existing_date, end=current_date, freq='MS')
             
             missing_months = []
-            for month in all_months:
+            for month in all_months_in_range:
                 month_key = month.strftime('%Y-%m')
-                if not any(existing_months.dt.strftime('%Y-%m') == month_key):
+                if month_key not in existing_months_set:
                     missing_months.append(month_key)
             
             if missing_months:
-                print(f"Found {len(missing_months)} missing months in existing data:")
+                print(f"Found {len(missing_months)} missing months within existing data range:")
                 for month in missing_months:
                     print(f"  - {month}")
             else:
-                print("No gaps found in existing data within the last 2 years")
+                print(f"No gaps found within existing data range ({earliest_existing_date.strftime('%Y-%m')} to {current_date.strftime('%Y-%m')})")
         else:
-            print("Existing CSV file found but contains no data - will fetch all available data")
+            print(f"Existing CSV file found but contains no usable data:")
+            print(f"  - Rows: {len(existing_data) if 'existing_data' in locals() else 'unknown'}")
+            print(f"  - Columns: {list(existing_data.columns) if 'existing_data' in locals() and len(existing_data.columns) > 0 else 'none or unknown'}")
+            print(f"  - Has Dato column: {'Dato' in existing_data.columns if 'existing_data' in locals() else 'unknown'}")
+            print("Will fetch all available data")
             latest_existing_date = None
             missing_months = []
     else:
-        print("No existing data found on GitHub - will fetch all available data")
+        print(f"No existing data found on GitHub (HTTP {response.status_code}) - will fetch all available data")
         
 except Exception as e:
     print(f"Could not fetch existing data: {e}")
@@ -229,34 +250,37 @@ for missing_month in missing_months:
         except Exception as e:
             continue
 
-# Also search for new files after the latest existing date
+# Search for new files after the latest existing date
 if latest_existing_date:
-    search_start = latest_existing_date + pd.DateOffset(months=1)
+    # Calculate which files would contain data newer than what we have
+    # If latest data is 2025-06-01, we need files from 2025-08-05.xlsx onwards
+    # (since 2025-07-05.xlsx contains June data)
+    next_data_month = latest_existing_date + pd.DateOffset(months=1)
+    first_file_to_check = next_data_month + pd.DateOffset(months=1)  # File is published ~1 month after data
+    
+    print(f"Latest existing data: {latest_existing_date.strftime('%Y-%m')}")
+    print(f"Looking for files from {first_file_to_check.strftime('%Y-%m')}-05.xlsx onwards...")
+    
+    # Search from the first file we need to check up to 6 months in the future
     search_end = pd.Timestamp.now() + pd.DateOffset(months=6)
+    current_check_date = first_file_to_check
     
-    print(f"Searching for new files from {search_start.strftime('%Y-%m')} onwards...")
-    
-    search_range = pd.date_range(start=search_start, end=search_end, freq='MS')
-    for search_date in search_range:
-        # Files are typically published 1-2 months after the data period
-        # So search for files that could contain this month's data
-        for offset in range(1, 4):
-            file_date = search_date + pd.DateOffset(months=offset)
-            if file_date > pd.Timestamp.now() + pd.DateOffset(months=6):
-                break
-                
-            month_year_to_check = file_date.strftime('%Y-%m')
-            test_url = f"{base_url}{month_year_to_check}-05.xlsx"
+    while current_check_date <= search_end:
+        month_year_to_check = current_check_date.strftime('%Y-%m')
+        test_url = f"{base_url}{month_year_to_check}-05.xlsx"
+        
+        try:
+            response = requests.head(test_url)
+            if response.status_code == 200:
+                if not any(url == test_url for url, _ in found_files):
+                    # Calculate which month's data this file likely contains
+                    data_month = current_check_date - pd.DateOffset(months=1)
+                    found_files.append((test_url, current_check_date))
+                    print(f"Found new file: {test_url} (likely contains data for {data_month.strftime('%Y-%m')})")
+        except Exception as e:
+            pass  # File doesn't exist, continue checking
             
-            try:
-                response = requests.head(test_url)
-                if response.status_code == 200:
-                    if not any(url == test_url for url, _ in found_files):
-                        found_files.append((test_url, file_date))
-                        print(f"Found new file: {test_url} (likely contains data for {search_date.strftime('%Y-%m')})")
-                        break  # Found file for this month, no need to check further offsets
-            except Exception as e:
-                continue
+        current_check_date = current_check_date + pd.DateOffset(months=1)
 else:
     # No existing data, search for all available files in the last 2 years
     print("No existing data found - searching for all available files...")
@@ -282,7 +306,23 @@ new_data_exists = len(found_files) > 0
 
 if not found_files:
     print("No new files found to process.")
+    if latest_existing_date:
+        print(f"All data up to {latest_existing_date.strftime('%Y-%m')} is already up to date.")
     print("Script completed - no new data to fetch.")
+    
+    # Still need to report the status for automation
+    file_name = "soekere_stillinger_yrkespraksis.csv"  
+    task_name = "Opplaering og kompetanse - Sokere stillinger yrkespraksis"
+    log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
+    task_name_safe = task_name.replace(".", "_").replace(" ", "_")
+    new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
+    
+    with open(new_data_status_file, "w", encoding="utf-8") as log_file:
+        log_file.write(f"{task_name_safe},{file_name},No\n")
+    
+    print(f"New data status log written to {new_data_status_file}")
+    print("No new data detected.")
+    print("\nScript completed successfully!")
     exit()
 
 # Sort found files by date and process all of them
