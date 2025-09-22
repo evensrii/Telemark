@@ -306,6 +306,7 @@ else:
 
 print(f"Total files found to process: {len(found_files)}")
 new_data_exists = len(found_files) > 0
+skip_processing = False
 
 if not found_files:
     print("No new files found to process.")
@@ -327,9 +328,8 @@ if not found_files:
     print("No new data detected.")
     print("\nScript completed successfully!")
     
-    # Use sys.exit() instead of exit() for better reliability
-    import sys
-    sys.exit(0)
+    # Set flag to skip further processing
+    skip_processing = True
 
 # Sort found files by date and process all of them
 found_files.sort(key=lambda x: x[1])  # Sort by date
