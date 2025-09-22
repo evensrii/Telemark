@@ -2,34 +2,14 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-All tasks completed successfully.
+An error occurred: Error reading Excel file: File is not a zip file
+Email notifications disabled. Errors in Extract_NorskeUtslipp_Data were not sent.
 
-Unique NACE codes in the dataset:
 
-NACE Kode:
-['20.130' '24.102' '46.739' '24.510' '17.120' '38.220' '10.510' '46.693'
- '24.421' '23.510' '20.160' '20.150' '23.410' '21.200' '30.113' '11.070'
- '20.140']
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Klimagassutslipp/norskeutslipp.py", line 80, in <module>
+    df = df_downloaded.copy()
+NameError: name 'df_downloaded' is not defined
 
-Column names in DataFrame:
-['Ãâ¦r', 'Utslipp fra landbasert industri (norskeutslipp.no)', 'Totale utslipp fra industrien (Mdir)', 'Mdir enkeltÃÂ¥r']
-
-Sample data:
-     Ãâ¦r  ...  Mdir enkeltÃÂ¥r
-0  2001  ...            NaN
-1  2002  ...            NaN
-2  2003  ...            NaN
-3  2004  ...            NaN
-4  2005  ...            NaN
-
-[5 rows x 4 columns]
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-[2025-09-19 08:10:29] No value columns found to compare. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-[2025-09-19 08:10:29] No changes found in value columns. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-No new data detected in norskeutslipp_detaljert_telemark.csv.
-No new data detected in norskeutslipp_everviz.csv.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Utslipp_fra_landbasert_industri.log
-
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Klimagassutslipp/norskeutslipp.py` failed. (See above for error)
