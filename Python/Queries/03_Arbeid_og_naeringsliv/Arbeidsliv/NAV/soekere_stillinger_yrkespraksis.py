@@ -165,28 +165,37 @@ if not found_files:
     print("No Excel files found to process")
     sys.exit(1)
 
-# Sort files by date (newest first) and take the most recent one for testing
-found_files.sort(key=lambda x: x[1], reverse=True)
-latest_file_url, latest_file_date = found_files[0]
+# Sort files by date (oldest first) to process chronologically
+found_files.sort(key=lambda x: x[1], reverse=False)
 
-print(f"Processing latest file: {latest_file_url}")
+print(f"Found {len(found_files)} files to process:")
+for file_url, file_date in found_files:
+    print(f"  - {file_url} (Date: {file_date.strftime('%Y-%m')})")
 
-################# Process the Excel file #################
+################# Process all Excel files #################
 
-try:
-    # Download the Excel file
-    response = requests.get(latest_file_url)
-    response.raise_for_status()
-    excel_content = BytesIO(response.content)
+# Initialize lists to store dataframes from all files
+all_job_seeker_dataframes = []
+all_job_vacancy_dataframes = []
+
+# Process each file
+for file_index, (file_url, file_date) in enumerate(found_files, 1):
+    print(f"\n=== Processing file {file_index}/{len(found_files)}: {file_url} ===")
     
-    # Check which sheets are available
-    excel_file = pd.ExcelFile(excel_content)
-    available_sheets = excel_file.sheet_names
-    print(f"Available sheets in file: {available_sheets}")
-    
-    # Initialize dictionaries to store dataframes
-    job_seeker_dataframes = {}
-    job_vacancy_dataframes = {}
+    try:
+        # Download the Excel file
+        response = requests.get(file_url)
+        response.raise_for_status()
+        excel_content = BytesIO(response.content)
+        
+        # Check which sheets are available
+        excel_file = pd.ExcelFile(excel_content)
+        available_sheets = excel_file.sheet_names
+        print(f"Available sheets in file: {available_sheets}")
+        
+        # Initialize dictionaries to store dataframes for this file
+        job_seeker_dataframes = {}
+        job_vacancy_dataframes = {}
     
     ################# Process job seeker sheets #################
     
