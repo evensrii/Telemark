@@ -4,110 +4,125 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 
 First few rows with coordinates:
-          Bedriftsnavn  X (UTM33)  ...  Latitude (WGS84)  Longitude (WGS84)
-0     Beck Arne Gunnar   95849.58  ...         59.669917           7.816359
-1         Stein Versto  105392.85  ...         59.564131           8.008536
-2  Lauvstad Dag Halvor  161254.36  ...         59.441534           9.021987
-3              Paho AS  191438.00  ...         59.220588           9.590804
-4         HusstÃÂ¸yl Jon  106148.00  ...         59.230637           8.090500
+                    Bedriftsnavn  ...  Longitude (WGS84)
+0              Trirack Frode Rui  ...           9.256687
+1         Seland Maskintransport  ...           9.058774
+2          Equinor Bil Porsgrunn  ...           9.628776
+3  Foreningen for Sauar Friskole  ...           9.280634
+4                Henry Lilleland  ...           8.654309
 
 [5 rows x 5 columns]
 
 Sample of establishment dates before conversion:
-0     793238400000
-1     793238400000
-2     793238400000
-3    1161043200000
-4     793238400000
+0    1222819200000
+1    1222819200000
+2    1221091200000
+3    1218931200000
+4    1222819200000
 Name: Dato for etablering, dtype: int64
 
 Sample of establishment dates after conversion:
-0   1995-02-20
-1   1995-02-20
-2   1995-02-20
-3   2006-10-17
-4   1995-02-20
+0   2008-10-01
+1   2008-10-01
+2   2008-09-11
+3   2008-08-17
+4   2008-10-01
 Name: Dato for etablering, dtype: datetime64[ns]
 
 Sample of load dates after conversion:
-0   2025-09-05 03:19:38
-1   2025-09-05 03:19:38
-2   2025-09-05 03:19:38
-3   2025-09-05 03:19:38
-4   2025-09-05 03:19:38
+0   2025-09-19 02:55:44
+1   2025-09-19 02:55:44
+2   2025-09-19 02:55:44
+3   2025-09-19 02:55:44
+4   2025-09-19 02:55:44
 Name: load_date, dtype: datetime64[ns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\geodata_bedrifter_api.csv
-[2025-09-15 02:11:37] No changes found in value columns. Skipping GitHub update.
+[2025-09-22 02:11:44] Row count changed: 60031 -> 60198
+
+Added rows (showing up to 10):
+Antall ansatte: , Bedriftsnavn: Trirack Frode Rui, Bedriftsstatus: 3, Bransjegruppe 1: , Dato for etablering: 2008-10-01, Driftsresultat i hele tusen: 0.0, Fylkesnavn: Telemark, Intervallkode antall ansatte: 0-1, Kode: 00000, Kommunenavn: NOME, Kommunenummer: 4018, Lat: 59,276075439816914, Lon: 9,25668677020577, NACE-kategori (Fire frste siffer): 00.00, NACE-kategori (Frste siffer): 0, NACE-kategori (To frste siffer): 00, NACE-kategori (Tre frste siffer): 00.0, NACE-kode (numerisk): 00.000, Nacetittel1: , Navn p overliggende enhet: , Omsetning i hele tusen: 0.0, Organisasjonsform: Enkeltpersonforetak, Organisasjonsnummer: 993155225, Orgnr overliggende enhet: , Orgnr til overliggende enhet: , Privat eller offentlig: Privat sektor, Sektorkode fra SSB: Personlig nÃÂ¦ringsdrivende, fylkesnavn: Telemark, kommune_id: 4018, kommunenavn: Nome, load_date: 2025-09-19 02:55:44, objectid: 34963
+Antall ansatte: , Bedriftsnavn: Seland Maskintransport, Bedriftsstatus: 1, Bransjegruppe 1: , Dato for etablering: 2008-10-01, Driftsresultat i hele tusen: 0.0, Fylkesnavn: Telemark, Intervallkode antall ansatte: 0-1, Kode: 00000, Kommunenavn: MIDT-TELEMARK, Kommunenummer: 4020, Lat: 59,42482896747098, Lon: 9,058773682250026, NACE-kategori (Fire frste siffer): 00.00, NACE-kategori (Frste siffer): 0, NACE-kategori (To frste siffer): 00, NACE-kategori (Tre frste siffer): 00.0, NACE-kode (numerisk): 00.000, Nacetittel1: , Navn p overliggende enhet: , Omsetning i hele tusen: 0.0, Organisasjonsform: Enkeltpersonforetak, Organisasjonsnummer: 993155993, Orgnr overliggende enhet: , Orgnr til overliggende enhet: , Privat eller offentlig: Privat sektor, Sektorkode fra SSB: Personlig nÃÂ¦ringsdrivende, fylkesnavn: Telemark, kommune_id: 4020, kommunenavn: Midt-Telemark, load_date: 2025-09-19 02:55:44, objectid: 34966
+Antall ansatte: , Bedriftsnavn: Equinor Bil Porsgrunn, Bedriftsstatus: 1, Bransjegruppe 1: , Dato for etablering: 2008-09-11, Driftsresultat i hele tusen: 0.0, Fylkesnavn: Telemark, Intervallkode antall ansatte: 0-1, Kode: 00000, Kommunenavn: PORSGRUNN, Kommunenummer: 4001, Lat: 59,121448228088056, Lon: 9,628776075916596, NACE-kategori (Fire frste siffer): 00.00, NACE-kategori (Frste siffer): 0, NACE-kategori (To frste siffer): 00, NACE-kategori (Tre frste siffer): 00.0, NACE-kode (numerisk): 00.000, Nacetittel1: , Navn p overliggende enhet: , Omsetning i hele tusen: 0.0, Organisasjonsform: Forening/lag/innretning, Organisasjonsnummer: 993123145, Orgnr overliggende enhet: , Orgnr til overliggende enhet: , Privat eller offentlig: Privat sektor, Sektorkode fra SSB: Ideelle organisasjoner, fylkesnavn: Telemark, kommune_id: 4001, kommunenavn: Porsgrunn, load_date: 2025-09-19 02:55:44, objectid: 34850
+Antall ansatte: , Bedriftsnavn: Foreningen for Sauar Friskole, Bedriftsstatus: 1, Bransjegruppe 1: , Dato for etablering: 2008-08-17, Driftsresultat i hele tusen: 0.0, Fylkesnavn: Telemark, Intervallkode antall ansatte: 0-1, Kode: 00000, Kommunenavn: MIDT-TELEMARK, Kommunenummer: 4020, Lat: 59,41963036822253, Lon: 9,280633515024931, NACE-kategori (Fire frste siffer): 00.00, NACE-kategori (Frste siffer): 0, NACE-kategori (To frste siffer): 00, NACE-kategori (Tre frste siffer): 00.0, NACE-kode (numerisk): 00.000, Nacetittel1: , Navn p overliggende enhet: , Omsetning i hele tusen: 0.0, Organisasjonsform: Forening/lag/innretning, Organisasjonsnummer: 993077712, Orgnr overliggende enhet: , Orgnr til overliggende enhet: , Privat eller offentlig: Privat sektor, Sektorkode fra SSB: Ideelle organisasjoner, fylkesnavn: Telemark, kommune_id: 4020, kommunenavn: Midt-Telemark, load_date: 2025-09-19 02:55:44, objectid: 34597
+Antall ansatte: , Bedriftsnavn: Henry Lilleland, Bedriftsstatus: 1, Bransjegruppe 1: , Dato for etablering: 2008-10-01, Driftsresultat i hele tusen: 0.0, Fylkesnavn: Telemark, Intervallkode antall ansatte: 0-1, Kode: 00000, Kommunenavn: TINN, Kommunenummer: 4026, Lat: 60,00821098750028, Lon: 8,654309120642338, NACE-kategori (Fire frste siffer): 00.00, NACE-kategori (Frste siffer): 0, NACE-kategori (To frste siffer): 00, NACE-kategori (Tre frste siffer): 00.0, NACE-kode (numerisk): 00.000, Nacetittel1: , Navn p overliggende enhet: , Omsetning i hele tusen: 0.0, Organisasjonsform: Enkeltpersonforetak, Organisasjonsnummer: 993129275, Orgnr overliggende enhet: , Orgnr til overliggende enhet: , Privat eller offentlig: Privat sektor, Sektorkode fra SSB: Personlig nÃÂ¦ringsdrivende, fylkesnavn: Telemark, kommune_id: 4026, kommunenavn: Tinn, load_date: 2025-09-19 02:55:44, objectid: 34803
+Antall ansatte: , Bedriftsnavn: Tilly Holding AS, Bedriftsstatus: 1, Bransjegruppe 1: , Dato for etablering: 2008-09-15, Driftsresultat i hele tusen: 198.0, Fylkesnavn: Telemark, Intervallkode antall ansatte: 0-1, Kode: 00000, Kommunenavn: SKIEN, Kommunenummer: 4003, Lat: 59,17542367721522, Lon: 9,644970091258632, NACE-kategori (Fire frste siffer): 00.00, NACE-kategori (Frste siffer): 0, NACE-kategori (To frste siffer): 00, NACE-kategori (Tre frste siffer): 00.0, NACE-kode (numerisk): 00.000, Nacetittel1: , Navn p overliggende enhet: , Omsetning i hele tusen: 256.0, Organisasjonsform: Aksjeselskap, Organisasjonsnummer: 993128651, Orgnr overliggende enhet: , Orgnr til overliggende enhet: , Privat eller offentlig: Privat sektor, Sektorkode fra SSB: Private aksjeselskaper mv., fylkesnavn: Telemark, kommune_id: 4003, kommunenavn: Skien, load_date: 2025-09-19 02:55:44, objectid: 34780
+Antall ansatte: , Bedriftsnavn: Margaret HÃÂ¥tveit InngÃÂ¥r i DÃÂ¸dsbo, Bedriftsstatus: 3, Bransjegruppe 1: , Dato for etablering: 2008-09-27, Driftsresultat i hele tusen: 0.0, Fylkesnavn: Telemark, Intervallkode antall ansatte: 0-1, Kode: 00000, Kommunenavn: KVITESEID, Kommunenummer: 4028, Lat: 59,49216069960653, Lon: 8,4133833513449, NACE-kategori (Fire frste siffer): 00.00, NACE-kategori (Frste siffer): 0, NACE-kategori (To frste siffer): 00, NACE-kategori (Tre frste siffer): 00.0, NACE-kode (numerisk): 00.000, Nacetittel1: , Navn p overliggende enhet: , Omsetning i hele tusen: 0.0, Organisasjonsform: Enkeltpersonforetak, Organisasjonsnummer: 993108383, Orgnr overliggende enhet: , Orgnr til overliggende enhet: , Privat eller offentlig: Privat sektor, Sektorkode fra SSB: Personlig nÃÂ¦ringsdrivende, fylkesnavn: Telemark, kommune_id: 4028, kommunenavn: Kviteseid, load_date: 2025-09-19 02:55:44, objectid: 34704
+Antall ansatte: , Bedriftsnavn: Jonathan Bjerk Data og Design, Bedriftsstatus: 1, Bransjegruppe 1: , Dato for etablering: 2008-09-25, Driftsresultat i hele tusen: 0.0, Fylkesnavn: Telemark, Intervallkode antall ansatte: 0-1, Kode: 00000, Kommunenavn: SKIEN, Kommunenummer: 4003, Lat: 59,21204813837695, Lon: 9,550892586430775, NACE-kategori (Fire frste siffer): 00.00, NACE-kategori (Frste siffer): 0, NACE-kategori (To frste siffer): 00, NACE-kategori (Tre frste siffer): 00.0, NACE-kode (numerisk): 00.000, Nacetittel1: , Navn p overliggende enhet: , Omsetning i hele tusen: 0.0, Organisasjonsform: Enkeltpersonforetak, Organisasjonsnummer: 993131415, Orgnr overliggende enhet: , Orgnr til overliggende enhet: , Privat eller offentlig: Privat sektor, Sektorkode fra SSB: Personlig nÃÂ¦ringsdrivende, fylkesnavn: Telemark, kommune_id: 4003, kommunenavn: Skien, load_date: 2025-09-19 02:55:44, objectid: 34738
+Antall ansatte: , Bedriftsnavn: Grivi Gruppen AS, Bedriftsstatus: 3, Bransjegruppe 1: , Dato for etablering: 2008-09-06, Driftsresultat i hele tusen: 0.0, Fylkesnavn: Telemark, Intervallkode antall ansatte: 0-1, Kode: 00000, Kommunenavn: MIDT-TELEMARK, Kommunenummer: 4020, Lat: 59,40486491793166, Lon: 9,078518462226555, NACE-kategori (Fire frste siffer): 00.00, NACE-kategori (Frste siffer): 0, NACE-kategori (To frste siffer): 00, NACE-kategori (Tre frste siffer): 00.0, NACE-kode (numerisk): 00.000, Nacetittel1: , Navn p overliggende enhet: , Omsetning i hele tusen: 0.0, Organisasjonsform: Aksjeselskap, Organisasjonsnummer: 993104299, Orgnr overliggende enhet: , Orgnr til overliggende enhet: , Privat eller offentlig: Privat sektor, Sektorkode fra SSB: Private aksjeselskaper mv., fylkesnavn: Telemark, kommune_id: 4020, kommunenavn: Midt-Telemark, load_date: 2025-09-19 02:55:44, objectid: 34399
+Antall ansatte: , Bedriftsnavn: Wikdahl Kunst, Bedriftsstatus: 3, Bransjegruppe 1: , Dato for etablering: 2008-10-01, Driftsresultat i hele tusen: 0.0, Fylkesnavn: Telemark, Intervallkode antall ansatte: 0-1, Kode: 00000, Kommunenavn: SKIEN, Kommunenummer: 4003, Lat: 59,16699825459131, Lon: 9,64528382825576, NACE-kategori (Fire frste siffer): 00.00, NACE-kategori (Frste siffer): 0, NACE-kategori (To frste siffer): 00, NACE-kategori (Tre frste siffer): 00.0, NACE-kode (numerisk): 00.000, Nacetittel1: , Navn p overliggende enhet: , Omsetning i hele tusen: 0.0, Organisasjonsform: Enkeltpersonforetak, Organisasjonsnummer: 993053481, Orgnr overliggende enhet: , Orgnr til overliggende enhet: , Privat eller offentlig: Privat sektor, Sektorkode fra SSB: Personlig nÃÂ¦ringsdrivende, fylkesnavn: Telemark, kommune_id: 4003, kommunenavn: Skien, load_date: 2025-09-19 02:55:44, objectid: 34561
+... and 60188 more rows
+File uploaded successfully: Data/03_Arbeid og nÃÂ¦ringsliv/02_NÃÂ¦ringsliv/Virksomheter/geodata_bedrifter_api.csv
+Email notifications disabled. Updates for geodata_bedrifter_api.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\geodata_bedrifter_api.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Geodata_bedrifter.log
 
 
 Errors/Warnings:
 
-Fetching records:   0%|          | 0/60031 [00:00<?, ?it/s]
-Fetching records:   2%|Ã¢â\ufffd         | 1000/60031 [00:01<01:56, 508.79it/s]
-Fetching records:   3%|Ã¢âÅ½         | 2000/60031 [00:02<01:22, 706.26it/s]
-Fetching records:   5%|Ã¢â\ufffd         | 3000/60031 [00:04<01:15, 754.21it/s]
-Fetching records:   7%|Ã¢ââ¹         | 4000/60031 [00:05<01:09, 810.22it/s]
-Fetching records:   8%|Ã¢âÅ          | 5000/60031 [00:06<01:11, 771.45it/s]
-Fetching records:  10%|Ã¢ââ°         | 6000/60031 [00:08<01:10, 768.17it/s]
-Fetching records:  12%|Ã¢âËÃ¢â\ufffd        | 7000/60031 [00:09<01:12, 729.02it/s]
-Fetching records:  13%|Ã¢âËÃ¢âÅ½        | 8000/60031 [00:11<01:12, 714.34it/s]
-Fetching records:  15%|Ã¢âËÃ¢â\ufffd        | 9000/60031 [00:12<01:13, 696.34it/s]
-Fetching records:  17%|Ã¢âËÃ¢ââ¹        | 10000/60031 [00:14<01:15, 660.63it/s]
-Fetching records:  18%|Ã¢âËÃ¢âÅ         | 11000/60031 [00:15<01:17, 630.57it/s]
-Fetching records:  20%|Ã¢âËÃ¢ââ°        | 12000/60031 [00:17<01:20, 595.74it/s]
-Fetching records:  22%|Ã¢âËÃ¢âËÃ¢â\ufffd       | 13000/60031 [00:19<01:20, 586.53it/s]
-Fetching records:  23%|Ã¢âËÃ¢âËÃ¢âÅ½       | 14000/60031 [00:21<01:20, 574.00it/s]
-Fetching records:  25%|Ã¢âËÃ¢âËÃ¢â\ufffd       | 15000/60031 [00:23<01:22, 545.25it/s]
-Fetching records:  27%|Ã¢âËÃ¢âËÃ¢ââ¹       | 16000/60031 [00:25<01:22, 534.80it/s]
-Fetching records:  28%|Ã¢âËÃ¢âËÃ¢âÅ        | 17000/60031 [00:27<01:22, 518.73it/s]
-Fetching records:  30%|Ã¢âËÃ¢âËÃ¢ââ°       | 18000/60031 [00:29<01:20, 523.03it/s]
-Fetching records:  32%|Ã¢âËÃ¢âËÃ¢âËÃ¢â\ufffd      | 19000/60031 [00:31<01:22, 495.50it/s]
-Fetching records:  33%|Ã¢âËÃ¢âËÃ¢âËÃ¢âÅ½      | 20000/60031 [00:33<01:23, 481.14it/s]
-Fetching records:  35%|Ã¢âËÃ¢âËÃ¢âËÃ¢â\ufffd      | 21000/60031 [00:36<01:24, 461.38it/s]
-Fetching records:  37%|Ã¢âËÃ¢âËÃ¢âËÃ¢ââ¹      | 22000/60031 [00:38<01:27, 433.00it/s]
-Fetching records:  38%|Ã¢âËÃ¢âËÃ¢âËÃ¢âÅ       | 23000/60031 [00:41<01:29, 412.73it/s]
-Fetching records:  40%|Ã¢âËÃ¢âËÃ¢âËÃ¢ââ°      | 24000/60031 [00:44<01:27, 411.65it/s]
-Fetching records:  42%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd     | 25000/60031 [00:46<01:29, 390.17it/s]
-Fetching records:  43%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½     | 26000/60031 [00:49<01:28, 385.96it/s]
-Fetching records:  45%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd     | 27000/60031 [00:52<01:27, 379.65it/s]
-Fetching records:  47%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹     | 28000/60031 [00:54<01:22, 386.23it/s]
-Fetching records:  48%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ      | 29000/60031 [00:57<01:22, 374.51it/s]
-Fetching records:  50%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°     | 30000/60031 [01:00<01:24, 356.69it/s]
-Fetching records:  52%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd    | 31000/60031 [01:03<01:23, 347.64it/s]
-Fetching records:  53%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½    | 32000/60031 [01:06<01:18, 355.81it/s]
-Fetching records:  55%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd    | 33000/60031 [01:09<01:17, 350.47it/s]
-Fetching records:  57%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹    | 34000/60031 [01:12<01:16, 338.81it/s]
-Fetching records:  58%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ     | 35000/60031 [01:16<01:18, 317.57it/s]
-Fetching records:  60%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°    | 36000/60031 [01:19<01:18, 306.85it/s]
-Fetching records:  62%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd   | 37000/60031 [01:23<01:15, 304.03it/s]
-Fetching records:  63%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½   | 38000/60031 [01:26<01:13, 300.39it/s]
-Fetching records:  65%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd   | 39000/60031 [01:30<01:11, 292.99it/s]
-Fetching records:  67%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹   | 40000/60031 [01:33<01:08, 291.56it/s]
-Fetching records:  68%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ    | 41000/60031 [01:37<01:07, 280.26it/s]
-Fetching records:  70%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°   | 42000/60031 [01:41<01:06, 272.17it/s]
-Fetching records:  72%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd  | 43000/60031 [01:45<01:04, 265.90it/s]
-Fetching records:  73%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½  | 44000/60031 [01:49<01:01, 262.20it/s]
-Fetching records:  75%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd  | 45000/60031 [01:53<00:59, 253.20it/s]
-Fetching records:  77%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹  | 46000/60031 [01:57<00:55, 253.40it/s]
-Fetching records:  78%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ   | 47000/60031 [02:01<00:51, 253.18it/s]
-Fetching records:  80%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°  | 48000/60031 [02:06<00:49, 241.37it/s]
-Fetching records:  82%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd | 49000/60031 [02:10<00:46, 238.18it/s]
-Fetching records:  83%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½ | 50000/60031 [02:14<00:40, 246.56it/s]
-Fetching records:  85%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd | 51000/60031 [02:18<00:37, 244.06it/s]
-Fetching records:  87%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹ | 52000/60031 [02:22<00:33, 236.81it/s]
-Fetching records:  88%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ  | 53000/60031 [02:27<00:30, 232.24it/s]
-Fetching records:  90%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ° | 54000/60031 [02:32<00:26, 224.08it/s]
-Fetching records:  92%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd| 55000/60031 [02:36<00:22, 225.65it/s]
-Fetching records:  93%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½| 56000/60031 [02:40<00:17, 233.46it/s]
-Fetching records:  95%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd| 57000/60031 [02:45<00:13, 220.24it/s]
-Fetching records:  97%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹| 58000/60031 [02:50<00:09, 215.86it/s]
-Fetching records:  98%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ | 59000/60031 [02:55<00:04, 207.30it/s]
-Fetching records: 100%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°| 60000/60031 [03:00<00:00, 207.11it/s]
-Fetching records: 100%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË| 60031/60031 [03:05<00:00, 147.70it/s]
-Fetching records: 100%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË| 60031/60031 [03:05<00:00, 324.05it/s]
+Fetching records:   0%|          | 0/60198 [00:00<?, ?it/s]
+Fetching records:   2%|Ã¢â\ufffd         | 1000/60198 [00:05<05:05, 193.77it/s]
+Fetching records:   3%|Ã¢âÅ½         | 2000/60198 [00:06<03:00, 321.71it/s]
+Fetching records:   5%|Ã¢â\ufffd         | 3000/60198 [00:07<02:04, 459.94it/s]
+Fetching records:   7%|Ã¢ââ¹         | 4000/60198 [00:09<01:43, 543.42it/s]
+Fetching records:   8%|Ã¢âÅ          | 5000/60198 [00:10<01:30, 606.96it/s]
+Fetching records:  10%|Ã¢ââ°         | 6000/60198 [00:11<01:22, 658.38it/s]
+Fetching records:  12%|Ã¢âËÃ¢â\ufffd        | 7000/60198 [00:13<01:19, 665.56it/s]
+Fetching records:  13%|Ã¢âËÃ¢âÅ½        | 8000/60198 [00:14<01:18, 665.91it/s]
+Fetching records:  15%|Ã¢âËÃ¢â\ufffd        | 9000/60198 [00:16<01:17, 663.99it/s]
+Fetching records:  17%|Ã¢âËÃ¢ââ¹        | 10000/60198 [00:17<01:16, 652.26it/s]
+Fetching records:  18%|Ã¢âËÃ¢âÅ         | 11000/60198 [00:19<01:18, 625.19it/s]
+Fetching records:  20%|Ã¢âËÃ¢ââ°        | 12000/60198 [00:21<01:21, 590.73it/s]
+Fetching records:  22%|Ã¢âËÃ¢âËÃ¢â\ufffd       | 13000/60198 [00:23<01:20, 586.37it/s]
+Fetching records:  23%|Ã¢âËÃ¢âËÃ¢âÅ½       | 14000/60198 [00:24<01:16, 603.31it/s]
+Fetching records:  25%|Ã¢âËÃ¢âËÃ¢â\ufffd       | 15000/60198 [00:26<01:14, 603.45it/s]
+Fetching records:  27%|Ã¢âËÃ¢âËÃ¢ââ¹       | 16000/60198 [00:28<01:18, 562.04it/s]
+Fetching records:  28%|Ã¢âËÃ¢âËÃ¢âÅ        | 17000/60198 [00:30<01:21, 532.34it/s]
+Fetching records:  30%|Ã¢âËÃ¢âËÃ¢ââ°       | 18000/60198 [00:32<01:22, 510.00it/s]
+Fetching records:  32%|Ã¢âËÃ¢âËÃ¢âËÃ¢â\ufffd      | 19000/60198 [00:34<01:23, 496.33it/s]
+Fetching records:  33%|Ã¢âËÃ¢âËÃ¢âËÃ¢âÅ½      | 20000/60198 [00:37<01:26, 466.91it/s]
+Fetching records:  35%|Ã¢âËÃ¢âËÃ¢âËÃ¢â\ufffd      | 21000/60198 [00:39<01:29, 440.00it/s]
+Fetching records:  37%|Ã¢âËÃ¢âËÃ¢âËÃ¢ââ¹      | 22000/60198 [00:41<01:20, 475.79it/s]
+Fetching records:  38%|Ã¢âËÃ¢âËÃ¢âËÃ¢âÅ       | 23000/60198 [00:43<01:17, 479.55it/s]
+Fetching records:  40%|Ã¢âËÃ¢âËÃ¢âËÃ¢ââ°      | 24000/60198 [00:45<01:14, 483.31it/s]
+Fetching records:  42%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd     | 25000/60198 [00:48<01:20, 438.06it/s]
+Fetching records:  43%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½     | 26000/60198 [00:51<01:23, 411.92it/s]
+Fetching records:  45%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd     | 27000/60198 [00:54<01:24, 394.67it/s]
+Fetching records:  47%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹     | 28000/60198 [00:57<01:25, 376.00it/s]
+Fetching records:  48%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ      | 29000/60198 [00:59<01:23, 374.82it/s]
+Fetching records:  50%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°     | 30000/60198 [01:02<01:24, 357.69it/s]
+Fetching records:  51%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd    | 31000/60198 [01:06<01:28, 331.01it/s]
+Fetching records:  53%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½    | 32000/60198 [01:09<01:25, 330.16it/s]
+Fetching records:  55%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd    | 33000/60198 [01:12<01:23, 325.55it/s]
+Fetching records:  56%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹    | 34000/60198 [01:16<01:24, 310.66it/s]
+Fetching records:  58%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ     | 35000/60198 [01:19<01:24, 298.49it/s]
+Fetching records:  60%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°    | 36000/60198 [01:23<01:23, 288.96it/s]
+Fetching records:  61%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd   | 37000/60198 [01:26<01:20, 288.76it/s]
+Fetching records:  63%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½   | 38000/60198 [01:29<01:09, 319.80it/s]
+Fetching records:  65%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd   | 39000/60198 [01:32<01:09, 306.53it/s]
+Fetching records:  66%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹   | 40000/60198 [01:36<01:10, 285.14it/s]
+Fetching records:  68%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ    | 41000/60198 [01:40<01:06, 287.33it/s]
+Fetching records:  70%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°   | 42000/60198 [01:44<01:06, 273.95it/s]
+Fetching records:  71%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd  | 43000/60198 [01:48<01:04, 265.96it/s]
+Fetching records:  73%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½  | 44000/60198 [01:52<01:01, 264.85it/s]
+Fetching records:  75%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd  | 45000/60198 [01:56<00:59, 254.32it/s]
+Fetching records:  76%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹  | 46000/60198 [02:00<00:57, 245.11it/s]
+Fetching records:  78%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ   | 47000/60198 [02:05<00:55, 238.80it/s]
+Fetching records:  80%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°  | 48000/60198 [02:09<00:50, 242.88it/s]
+Fetching records:  81%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd | 49000/60198 [02:14<00:48, 231.92it/s]
+Fetching records:  83%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½ | 50000/60198 [02:18<00:45, 224.59it/s]
+Fetching records:  85%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd | 51000/60198 [02:23<00:41, 220.89it/s]
+Fetching records:  86%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹ | 52000/60198 [02:28<00:37, 217.01it/s]
+Fetching records:  88%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ  | 53000/60198 [02:33<00:33, 214.38it/s]
+Fetching records:  90%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ° | 54000/60198 [02:37<00:28, 216.90it/s]
+Fetching records:  91%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd| 55000/60198 [02:42<00:24, 211.89it/s]
+Fetching records:  93%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ½| 56000/60198 [02:47<00:20, 204.78it/s]
+Fetching records:  95%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢â\ufffd| 57000/60198 [02:51<00:14, 215.87it/s]
+Fetching records:  96%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ¹| 58000/60198 [02:57<00:10, 207.97it/s]
+Fetching records:  98%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âÅ | 59000/60198 [03:02<00:05, 205.51it/s]
+Fetching records: 100%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢ââ°| 60000/60198 [03:07<00:00, 198.72it/s]
+Fetching records: 100%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË| 60198/60198 [03:13<00:00, 147.85it/s]
+Fetching records: 100%|Ã¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âËÃ¢âË| 60198/60198 [03:13<00:00, 311.90it/s]
 D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:79: DtypeWarning: Columns (8) have mixed types. Specify dtype option on import or set low_memory=False.
   df = pd.read_csv(BytesIO(response.content))
 
