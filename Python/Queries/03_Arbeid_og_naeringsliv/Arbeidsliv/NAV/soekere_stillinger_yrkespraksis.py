@@ -642,6 +642,34 @@ if not df_merged.empty:
 else:
     print("No data to transform - df_merged is empty")
 
+# Combine with existing data if we have both existing and new data
+if not df_merged.empty and existing_data is not None and len(existing_data) > 0:
+    print(f"\n=== Combining New Data with Existing Data ===")
+    print(f"Existing data: {len(existing_data)} rows")
+    print(f"New data: {len(df_merged)} rows")
+    
+    # Combine existing and new data
+    df_combined = pd.concat([existing_data, df_merged], ignore_index=True)
+    
+    # Remove duplicates based on all key columns (keep the most recent version)
+    df_combined = df_combined.drop_duplicates(
+        subset=['Nivå', 'Geografisk enhet', 'Yrke', 'Dato'], 
+        keep='last'
+    ).reset_index(drop=True)
+    
+    print(f"Combined data: {len(df_combined)} rows after deduplication")
+    
+    # Update df_merged to the combined dataset
+    df_merged = df_combined
+    
+elif existing_data is not None and len(existing_data) > 0 and df_merged.empty:
+    print(f"\n=== No New Data - Using Existing Data ===")
+    print(f"Using existing data: {len(existing_data)} rows")
+    df_merged = existing_data
+elif not df_merged.empty:
+    print(f"\n=== No Existing Data - Using New Data Only ===")
+    print(f"Using new data: {len(df_merged)} rows")
+
 # Sort the final dataset for consistent ordering if we have data
 if not df_merged.empty:
     df_merged = df_merged.sort_values(
