@@ -95,6 +95,7 @@ def load_and_combine_luftforurensing_files():
                 elif not file.startswith('Luftforurensning Grenland PM10 og NO2 Døgn'):
                     excluded_files.append(f"{file} (doesn't match naming convention)")
                 else:
+                    # Include files that match the naming convention (including those with "dummy")
                     csv_files.append(os.path.join(data_folder, file))
     
     print(f"All CSV files found in GitHub folder: {len(all_csv_files)}")
