@@ -80,20 +80,39 @@ def load_and_combine_luftforurensing_files():
     
     print(f"Looking for CSV files in: {data_folder}")
     
-    # Find all CSV files in the folder (excluding the combined output file)
+    # First, list all CSV files found in the folder
+    all_csv_files = []
+    excluded_files = []
     csv_files = []
+    
     if os.path.exists(data_folder):
         for file in os.listdir(data_folder):
-            if (file.endswith('.csv') and 
-                file != 'luftforurensing_grenland.csv' and  # Exclude the output file
-                not file.endswith('_randomized.csv')):  # Exclude randomized test files
-                csv_files.append(os.path.join(data_folder, file))
+            if file.endswith('.csv'):
+                all_csv_files.append(file)
+                
+                if file == 'luftforurensing_grenland.csv':
+                    excluded_files.append(f"{file} (output file)")
+                elif file.endswith('_randomized.csv'):
+                    excluded_files.append(f"{file} (randomized test file)")
+                elif file.endswith('.py'):
+                    excluded_files.append(f"{file} (Python script)")
+                else:
+                    csv_files.append(os.path.join(data_folder, file))
+    
+    print(f"All CSV files found in GitHub folder: {len(all_csv_files)}")
+    for file in all_csv_files:
+        print(f"  - {file}")
+    
+    if excluded_files:
+        print(f"\nExcluded files: {len(excluded_files)}")
+        for file in excluded_files:
+            print(f"  - {file}")
     
     if not csv_files:
-        print("No CSV files found to process.")
+        print("\nNo CSV files found to process after filtering.")
         return pd.DataFrame()
     
-    print(f"Found {len(csv_files)} CSV files to process:")
+    print(f"\nCSV files to process: {len(csv_files)}")
     for file in csv_files:
         print(f"  - {os.path.basename(file)}")
     
