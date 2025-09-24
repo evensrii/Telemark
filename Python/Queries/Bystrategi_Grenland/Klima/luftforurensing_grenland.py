@@ -165,15 +165,51 @@ def load_and_combine_luftforurensing_files():
     print(f"Final sorted data shape: {df_combined.shape}")
     print(f"Date range: {df_combined['Fra-tid'].iloc[0]} to {df_combined['Fra-tid'].iloc[-1]}")
     
-    # Convert numeric columns back to comma format for output
-    numeric_columns = []
+    print("\n=== Applying final transformations ===")
+    
+    # 1. Delete the "Til-tid" column
+    if 'Til-tid' in df_combined.columns:
+        df_combined = df_combined.drop('Til-tid', axis=1)
+        print("✓ Removed 'Til-tid' column")
+    
+    # 2. Transform "Fra-tid" to "Dato" (remove time part, keep DD.MM.YYYY format)
+    if 'Fra-tid' in df_combined.columns:
+        # Extract just the date part (DD.MM.YYYY) from "DD.MM.YYYY HH:MM"
+        df_combined['Dato'] = df_combined['Fra-tid'].str.split(' ').str[0]
+        df_combined = df_combined.drop('Fra-tid', axis=1)
+        print("✓ Converted 'Fra-tid' to 'Dato' (removed time part)")
+        
+        # Move 'Dato' to first column
+        cols = ['Dato'] + [col for col in df_combined.columns if col != 'Dato']
+        df_combined = df_combined[cols]
+    
+    # 3. Convert all "Datadekning" columns: divide by 100 to get decimal values
+    datadekning_cols = [col for col in df_combined.columns if 'Datadekning' in col]
+    for col in datadekning_cols:
+        if df_combined[col].dtype in ['int64', 'float64']:
+            df_combined[col] = df_combined[col] / 100
+        else:
+            # Convert to numeric first if it's still string
+            df_combined[col] = pd.to_numeric(df_combined[col], errors='coerce') / 100
+        df_combined[col] = df_combined[col].astype('float64')
+    print(f"✓ Converted {len(datadekning_cols)} 'Datadekning' columns to decimal (divided by 100)")
+    
+    # 4. Ensure all measurement columns (PM10, NO2) are float64 (already done in earlier processing)
+    measurement_cols = []
     for col in df_combined.columns:
         if any(keyword in col for keyword in ['PM10', 'NO2']) and 'µg/m³' in col:
-            numeric_columns.append(col)
+            measurement_cols.append(col)
+            if df_combined[col].dtype != 'float64':
+                df_combined[col] = df_combined[col].astype('float64')
+    print(f"✓ Ensured {len(measurement_cols)} measurement columns are decimal numbers")
     
-    df_final = convert_float_to_comma_format(df_combined, numeric_columns)
+    print(f"Final data shape: {df_combined.shape}")
+    print("Final column types:")
+    for col in df_combined.columns[:5]:  # Show first 5 columns to avoid too much output
+        print(f"  {col}: {df_combined[col].dtype}")
     
-    return df_final
+    # Note: No need to convert back to comma format since we want decimal numbers in the CSV
+    return df_combined
 
 def main():
     """
