@@ -92,10 +92,8 @@ def load_and_combine_luftforurensing_files():
                 
                 if file == 'luftforurensing_grenland.csv':
                     excluded_files.append(f"{file} (output file)")
-                elif file.endswith('_randomized.csv'):
-                    excluded_files.append(f"{file} (randomized test file)")
-                elif file.endswith('.py'):
-                    excluded_files.append(f"{file} (Python script)")
+                elif not file.startswith('Luftforurensning Grenland PM10 og NO2 Døgn'):
+                    excluded_files.append(f"{file} (doesn't match naming convention)")
                 else:
                     csv_files.append(os.path.join(data_folder, file))
     
