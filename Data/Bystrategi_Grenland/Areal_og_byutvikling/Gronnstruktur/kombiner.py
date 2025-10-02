@@ -42,6 +42,9 @@ def main():
             # Read the CSV file with semicolon separator
             df = pd.read_csv(file_path, sep=';')
             
+            # Standardize column names - handle SUM_Tre_area/SUM_Tre_Area inconsistency
+            df.columns = df.columns.str.replace('SUM_Tre_Area', 'SUM_Tre_area')
+            
             # Add the 'Område' column
             df['Område'] = location
             
