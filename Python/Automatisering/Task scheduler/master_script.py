@@ -86,6 +86,7 @@ SCRIPTS = [
 
     ## Bystrategi Grenland
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py"), "Bystrategi Grenland - Utslipp fra vei"),
+    (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py"), "Bystrategi Grenland - Luftforurensing"),
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.py"), "Bystrategi Grenland - Arealprofiler"),
 ]
 
