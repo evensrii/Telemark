@@ -1,0 +1,18 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Data successfully loaded. Shape: (73043, 6)
+Columns: ['statistikkvariabel', 'kommunenr', 'kommune', 'ÃÂ¥r', 'verdi', 'klasse']
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arealprofiler.csv
+[2025-10-03 08:17:31] Changes detected in the dataset.
+
+[2025-10-03 08:17:31] Dataset is large. Showing detailed changes from the last 200 rows only.
+
+No changes found in the last 200 rows, but changes exist elsewhere in the dataset.
+Email notifications disabled. Updates for arealprofiler.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\arealprofiler.csv
+New data detected in arealprofiler.csv and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bystrategi_Grenland_-_Arealprofiler.log
+All tasks completed successfully.
+

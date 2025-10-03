@@ -2,11 +2,16 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-No new data found for 2025-07
-No new data found for 2025-07
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arbeidsledighet.csv
-[2025-09-05 08:08:12] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\arbeidsledighet.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_NAV_-_Arbeidsledighet.log
+Existing data range: 2011-01-01 to 2025-08-01
+Missing months in dataset: ['2025-09', '2025-10', '2025-11', '2025-12']
+(These may not be available yet.)
+Total files found to process: 0
 
+
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py", line 234, in <module>
+    print(f"No new data found after {month_year}")
+NameError: name 'month_year' is not defined
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py` failed. (See above for error)
