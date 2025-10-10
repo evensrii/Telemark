@@ -4,8 +4,23 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Anmodninger og faktisk bosetting CSV data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-[2025-10-09 08:15:06] No new data to upload. Skipping GitHub update.
+[2025-10-10 08:14:27] Row count changed: 67 -> 1580
+
+Added rows (showing up to 10):
+Antall: 20.0, Kategori: Anmodning om bosetting, Kommune: Bamble, r: 1995-01-01
+Antall: 0.0, Kategori: Faktisk bosetting, Kommune: Bamble, r: 1995-01-01
+Antall: 7.0, Kategori: Vedtak om bosetting, Kommune: Bamble, r: 1995-01-01
+Antall: 0.0, Kategori: Anmodning om bosetting, Kommune: Bamble, r: 1996-01-01
+Antall: 0.0, Kategori: Faktisk bosetting, Kommune: Bamble, r: 1996-01-01
+Antall: 0.0, Kategori: Vedtak om bosetting, Kommune: Bamble, r: 1996-01-01
+Antall: 0.0, Kategori: Anmodning om bosetting, Kommune: Bamble, r: 1997-01-01
+Antall: 0.0, Kategori: Faktisk bosetting, Kommune: Bamble, r: 1997-01-01
+Antall: 0.0, Kategori: Vedtak om bosetting, Kommune: Bamble, r: 1997-01-01
+Antall: 15.0, Kategori: Anmodning om bosetting, Kommune: Bamble, r: 1998-01-01
+... and 1503 more rows
+File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/anmodninger_og_faktisk_bosetting.csv
+Email notifications disabled. Updates for anmodninger_og_faktisk_bosetting.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Anmodninger_og_faktisk_bosetting.log
 
