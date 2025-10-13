@@ -87,7 +87,8 @@ df = df.rename(columns={
 ## Round to prevent floating-point precision issues, then convert to string to match GitHub format
 df["Verdi"] = df["Verdi"].astype('float64').round(10).astype(str)
 
-## Handle NaN values in "Type" column - use empty strings for clean output
+## Handle NaN values - convert 'nan' strings to empty strings for clean output
+df["Verdi"] = df["Verdi"].replace('nan', '')
 df["Type"] = df["Type"].fillna('').astype(str)
 
 ## Filter the kommuner "Skien", "Porsgrunn" and "Siljan"
