@@ -3,7 +3,7 @@ trigger: always_on
 description: General workflow
 ---
 
-# General info
+### General info
 - My programming language is Python
 - I am a data engineer with medium experience in Python
 - I use Conda for environment and package management
@@ -24,4 +24,3 @@ description: General workflow
 - Helper scripts: Telemark/Python/Helper_scripts
 - Master script: Telemark/Python/Automatisering/Task scheduler/master_script.py
 - Output folder: Telemark/Data/[Different folders for different scripts]
-
