@@ -87,9 +87,8 @@ df = df.rename(columns={
 ## Round to prevent floating-point precision issues, then convert to string to match GitHub format
 df["Verdi"] = df["Verdi"].astype('float64').round(10).astype(str)
 
-## Handle NaN values in "Type" column to prevent comparison issues  
-## The GitHub data stores NaN as string 'nan', so we need to match that format
-df["Type"] = df["Type"].fillna('nan').astype(str)
+## Handle NaN values in "Type" column - use empty strings for clean output
+df["Type"] = df["Type"].fillna('').astype(str)
 
 ## Filter the kommuner "Skien", "Porsgrunn" and "Siljan"
 df = df[df["Kommune"].isin(["Skien", "Porsgrunn", "Siljan"])]

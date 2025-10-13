@@ -81,13 +81,17 @@ def download_github_file(file_path):
         # Clean up the data
         for col in df.columns:
             df[col] = df[col].astype(str).str.strip()
+            
+            # Convert 'nan' strings to empty strings for ALL columns (before numeric conversion)
+            df[col] = df[col].replace('nan', '')
+            
             # Skip numeric conversion for NACE columns
             if 'nace' not in col.lower():
                 try:
-                    # Try converting to float if it's not a NACE column
+                    # Try converting to numeric if it's not a NACE column
                     df[col] = pd.to_numeric(df[col], errors='raise')
                 except (ValueError, TypeError):
-                    # If conversion fails, keep as string
+                    # If conversion fails, keep as string (already cleaned above)
                     pass
         
         return df
