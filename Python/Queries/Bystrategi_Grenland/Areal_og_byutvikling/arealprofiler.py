@@ -70,17 +70,33 @@ except Exception as e:
 ## Drop column "kommunenr"
 df = df.drop(columns=["kommunenr"])
 
-## Rename the columns to "Kategori", "Kommune", "År", "Verdi" og "Type"
-df.columns = ["Kategori", "Kommune", "År", "Verdi", "Type"]
+## Convert "år" to integer BEFORE renaming to prevent float/int comparison issues
+df["år"] = df["år"].astype('int64')
 
-## Remove the ".0" from column "År"
-df["År"] = df["År"].astype(int)
+## Rename columns using explicit mapping to avoid position errors
+## Original columns after drop: ['statistikkvariabel', 'kommune', 'år', 'verdi', 'klasse']
+df = df.rename(columns={
+    'statistikkvariabel': 'Kategori',
+    'kommune': 'Kommune', 
+    'år': 'År',
+    'verdi': 'Verdi',
+    'klasse': 'Type'
+})
 
-## Convert colum "År" to datetime
-df["År"] = pd.to_datetime(df["År"], format="%Y")
+## Ensure "Verdi" is consistent with GitHub storage format (string)
+## Round to prevent floating-point precision issues, then convert to string to match GitHub format
+df["Verdi"] = df["Verdi"].astype('float64').round(10).astype(str)
+
+## Handle NaN values in "Type" column to prevent comparison issues  
+## The GitHub data stores NaN as string 'nan', so we need to match that format
+df["Type"] = df["Type"].fillna('nan').astype(str)
 
 ## Filter the kommuner "Skien", "Porsgrunn" and "Siljan"
 df = df[df["Kommune"].isin(["Skien", "Porsgrunn", "Siljan"])]
+
+## Sort data for consistent ordering and reset index to prevent comparison issues
+df = df.sort_values(['Kategori', 'Kommune', 'År', 'Type']).reset_index(drop=True)
+
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
