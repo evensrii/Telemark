@@ -3,29 +3,10 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
-Found missing date ranges: [(Timestamp('2025-10-10 00:00:00'), Timestamp('2025-10-12 00:00:00'))]
-Fetching data for missing periods...
--- Processing gap: 2025-10-10 to 2025-10-12 --
-Fetching energy prices from 2025-10-10 to 2025-10-12...
-  Fetching chunk from 2025-10-10 to 2025-10-12...
-Total price data points collected: 375
-Fetching exchange rates...
-Successfully fetched 1 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2025-10-13 08:12:06] Row count changed: 1744 -> 1751
-
-Added rows (showing up to 10):
-EUR/MWh: 46.568000000000005, NOK/KWh: 0.54379782, NOK/MWh: 543.79782, kurs: 11.6775, time: 2025-10-10
-EUR/MWh: 61.234693877551024, NOK/KWh: 0.715068137755102, NOK/MWh: 715.068137755102, kurs: 11.6775, time: 2025-10-11
-EUR/MWh: 63.079436619718315, NOK/KWh: 0.7366101211267605, NOK/MWh: 736.6101211267605, kurs: 11.6775, time: 2025-10-12
-EUR/MWh: 65.56387096774193, NOK/KWh: 0.7656221032258064, NOK/MWh: 765.6221032258064, kurs: 11.677499999999998, time: 2025-10-13
-EUR/MWh: 72.11867647058823, NOK/KWh: 0.8421658444852941, NOK/MWh: 842.1658444852941, kurs: 11.6775, time: 2025-10-14
-EUR/MWh: 74.1341304347826, NOK/KWh: 0.8657013081521739, NOK/MWh: 865.701308152174, kurs: 11.677499999999998, time: 2025-10-15
-EUR/MWh: 76.61619047619048, NOK/KWh: 0.8946855642857143, NOK/MWh: 894.6855642857143, kurs: 11.6775, time: 2025-10-16
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
-Email notifications disabled. Updates for strompriser.csv were not sent.
+[2025-10-14 08:11:59] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 Script completed successfully!
 
