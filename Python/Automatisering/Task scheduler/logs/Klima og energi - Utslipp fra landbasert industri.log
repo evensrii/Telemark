@@ -7,9 +7,9 @@ All tasks completed successfully.
 Unique NACE codes in the dataset:
 
 NACE Kode:
-['20.130' '24.102' '46.739' '24.510' '17.120' '38.220' '10.510' '46.693'
- '24.421' '23.510' '20.160' '20.150' '23.410' '21.200' '30.113' '11.070'
- '20.140']
+['46.693' '20.130' '17.120' '24.421' '23.510' '20.160' '20.150' '46.739'
+ '23.410' '21.200' '30.113' '11.070' '20.140' '24.102' '24.510' '38.220'
+ '10.510']
 
 Column names in DataFrame:
 ['Ã…r', 'Utslipp fra landbasert industri (norskeutslipp.no)', 'Totale utslipp fra industrien (Mdir)', 'Mdir enkeltÃ¥r']
@@ -24,10 +24,10 @@ Sample data:
 
 [5 rows x 4 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-[2025-09-19 08:10:29] No value columns found to compare. Skipping GitHub update.
+[2025-10-14 08:10:51] No value columns found to compare. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-[2025-09-19 08:10:29] No changes found in value columns. Skipping GitHub update.
+[2025-10-14 08:10:52] No changes found in value columns. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
 No new data detected in norskeutslipp_detaljert_telemark.csv.
 No new data detected in norskeutslipp_everviz.csv.
