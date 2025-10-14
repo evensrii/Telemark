@@ -5,11 +5,30 @@ GITHUB_TOKEN loaded successfully.
 Data successfully loaded. Shape: (73043, 6)
 Columns: ['statistikkvariabel', 'kommunenr', 'kommune', 'ÃÂ¥r', 'verdi', 'klasse']
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arealprofiler.csv
-[2025-10-13 08:19:10] Changes detected in the dataset.
+[2025-10-14 09:14:55] Changes detected in the dataset.
 
-[2025-10-13 08:19:10] Dataset is large. Showing detailed changes from the last 200 rows only.
+[2025-10-14 09:14:55] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.csv
 
-No changes found in the last 200 rows, but changes exist elsewhere in the dataset.
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: Kommune: Siljan
+  Kategori: Boliger, igangs. siste 4 ÃÂ¥r, gj.avst. sentrumssone. Km -> Flyttinger innen kommunen per 1 000 innbyggere
+
+Row: Kommune: Siljan
+  Verdi: 1.292418979277809 -> 29.0
+
+Row: Kommune: Siljan
+  r: 2019-01-01 -> 2016
+
+Row: Kommune: Siljan
+  Kategori: Boliger, igangs. siste 4 ÃÂ¥r, gj.avst. sentrumssone. Km -> Flyttinger innen kommunen per 1 000 innbyggere
+
+Row: Kommune: Siljan
+  Verdi: 1.272890426820313 -> 36.0
+
+Total changes found in examined rows: 600
+(Showing first 5 changes only)
 Email notifications disabled. Updates for arealprofiler.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\arealprofiler.csv
 New data detected in arealprofiler.csv and pushed to GitHub.
