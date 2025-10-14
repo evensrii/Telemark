@@ -5,10 +5,10 @@ GITHUB_TOKEN loaded successfully.
 Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
 Selected data from year 2024-01-01 00:00:00
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_arbeidsinnvandrere.csv
-[2025-10-14 08:14:03] No new data to upload. Skipping GitHub update.
+[2025-10-14 09:09:42] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_arbeidsinnvandrere.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_flyktninger.csv
-[2025-10-14 08:14:03] No new data to upload. Skipping GitHub update.
+[2025-10-14 09:09:43] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_flyktninger.csv
 No new data detected in andel_arbeidsinnvandrere.csv.
 No new data detected in andel_flyktninger.csv.
@@ -28,16 +28,4 @@ Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   df_pivot_flyktninger["Label"] = df_pivot_flyktninger["Kommune"]
-D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:204: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  input_df[col] = input_df[col].astype('int64')
-D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:204: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  input_df[col] = input_df[col].astype('int64')
 
