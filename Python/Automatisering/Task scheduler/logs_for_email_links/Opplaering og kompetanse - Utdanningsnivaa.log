@@ -53,14 +53,46 @@ Kommune           object
 UtdanningsnivÃÂ¥    object
 KjÃÂ¸nn             object
 Variabel          object
-Ãâ¦r                 int64
+Ãâ¦r                object
 Verdi             object
 dtype: object
-DataFrames equal: True
+DataFrames equal: False
+Column 'Kommune' equal: True
+Column 'UtdanningsnivÃÂ¥' equal: True
+Column 'KjÃÂ¸nn' equal: True
+Column 'Variabel' equal: True
+Column 'Ãâ¦r' equal: False
+  First difference at index 0: '2024' vs '2024'
+Column 'Verdi' equal: False
+  First difference at index 25: 'nan' vs ''
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\utdanningsnivaa.csv
-[2025-10-14 08:06:05] No new data to upload. Skipping GitHub update.
+[2025-10-16 08:05:58] Changes detected in the dataset.
+
+[2025-10-16 08:05:58] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/02_OpplÃÂ¦ring og kompetanse/UtdanningsnivÃÂ¥/utdanningsnivaa.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: Kommune: Vinje (2020-2023)
+  Verdi:  -> nan
+
+Row: Kommune: Vinje (2020-2023)
+  Verdi:  -> nan
+
+Row: Kommune: Vinje (2020-2023)
+  Verdi:  -> nan
+
+Row: Kommune: Vinje (2020-2023)
+  Verdi:  -> nan
+
+Row: Kommune: Vinje (2020-2023)
+  Verdi:  -> nan
+
+Total changes found in examined rows: 12
+(Showing first 5 changes only)
+Email notifications disabled. Updates for utdanningsnivaa.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\utdanningsnivaa.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Utdanningsnivaa.log
 Antall alle fylker siste ÃÂ¥r JSON-stat data loaded successfully.
 
