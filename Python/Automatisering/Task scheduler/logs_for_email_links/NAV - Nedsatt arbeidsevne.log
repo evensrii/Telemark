@@ -5,16 +5,34 @@ GITHUB_TOKEN loaded successfully.
 Existing data range: 2011-01-01 to 2025-08-01
 Missing months in dataset: ['2025-09', '2025-10', '2025-11', '2025-12', '2026-01']
 (These may not be available yet.)
-Found 8 Excel files in GitHub directory
+Found 9 Excel files in GitHub directory
 Found file to process: 2025-09-16.xlsx (contains data for 2025-09)
-Total files found to process: 1
+Found file to process: 2025-10-16.xlsx (contains data for 2025-10)
+Total files found to process: 2
 
 Files to be processed:
   - 2025-09-16.xlsx: Contains September 2025 data (published 2025-09-16)
+  - 2025-10-16.xlsx: Contains October 2025 data (published 2025-10-16)
 Data from 2025-09-16.xlsx already exists in dataset - skipping
+Successfully processed 2025-10-16.xlsx - Added data for dates: ['2025-09-01']
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\nedsatt_arbeidsevne.csv
-[2025-10-16 08:08:21] No new data to upload. Skipping GitHub update.
+[2025-10-17 08:08:15] Row count changed: 34843 -> 35041
+
+Added rows (showing up to 10):
+Alder: 18 - 29 ÃÂ¥r, Andel av befolkningen: 7.8, Antall personer: 3798.0, Dato: 2025-09-01, Geografisk enhet: Agder, Kjnn: Begge kjÃÂ¸nn, Niv: Fylker
+Alder: 18 - 66 ÃÂ¥r, Andel av befolkningen: 8.3, Antall personer: 16587.0, Dato: 2025-09-01, Geografisk enhet: Agder, Kjnn: Begge kjÃÂ¸nn, Niv: Fylker
+Alder: 18 - 29 ÃÂ¥r, Andel av befolkningen: 8.3, Antall personer: 1975.0, Dato: 2025-09-01, Geografisk enhet: Agder, Kjnn: Kvinner, Niv: Fylker
+Alder: 18 - 66 ÃÂ¥r, Andel av befolkningen: 9.3, Antall personer: 9218.0, Dato: 2025-09-01, Geografisk enhet: Agder, Kjnn: Kvinner, Niv: Fylker
+Alder: 18 - 29 ÃÂ¥r, Andel av befolkningen: 7.3, Antall personer: 1823.0, Dato: 2025-09-01, Geografisk enhet: Agder, Kjnn: Menn, Niv: Fylker
+Alder: 18 - 66 ÃÂ¥r, Andel av befolkningen: 7.3, Antall personer: 7369.0, Dato: 2025-09-01, Geografisk enhet: Agder, Kjnn: Menn, Niv: Fylker
+Alder: 18 - 29 ÃÂ¥r, Andel av befolkningen: 5.6, Antall personer: 5494.0, Dato: 2025-09-01, Geografisk enhet: Akershus, Kjnn: Begge kjÃÂ¸nn, Niv: Fylker
+Alder: 18 - 66 ÃÂ¥r, Andel av befolkningen: 6.4, Antall personer: 30334.0, Dato: 2025-09-01, Geografisk enhet: Akershus, Kjnn: Begge kjÃÂ¸nn, Niv: Fylker
+Alder: 18 - 29 ÃÂ¥r, Andel av befolkningen: 6.0, Antall personer: 2852.0, Dato: 2025-09-01, Geografisk enhet: Akershus, Kjnn: Kvinner, Niv: Fylker
+Alder: 18 - 66 ÃÂ¥r, Andel av befolkningen: 7.4, Antall personer: 17162.0, Dato: 2025-09-01, Geografisk enhet: Akershus, Kjnn: Kvinner, Niv: Fylker
+... and 188 more rows
+File uploaded successfully: Data/03_Arbeid og nÃÂ¦ringsliv/01_Arbeidsliv/NAV/Nedsatt arbeidsevne/nedsatt_arbeidsevne.csv
+Email notifications disabled. Updates for nedsatt_arbeidsevne.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\nedsatt_arbeidsevne.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_NAV_-_Nedsatt_arbeidsevne.log
 
