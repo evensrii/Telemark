@@ -415,7 +415,7 @@ if 'df_final' in locals() and not df_final.empty:
     ).reset_index(drop=True)
 
     file_name = "soekere_stillinger_yrkespraksis.csv"
-    task_name = "Opplaering og kompetanse - Søkere og stillinger etter yrkespraksis"
+    task_name = "Opplaering og kompetanse - Sokere og stillinger etter yrkespraksis"
     github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/NAV/Arbeidsledighet"
     temp_folder = os.environ.get("TEMP_FOLDER")
 

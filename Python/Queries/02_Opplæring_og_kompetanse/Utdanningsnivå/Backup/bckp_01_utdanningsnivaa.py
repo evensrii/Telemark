@@ -791,15 +791,13 @@ df_combined = pd.concat([df_antall, df_andel], ignore_index=True)
 #Rename the columnss to "Kommune", "Utdanningsnivå", "Kjønn", "Variabel", "År" and "Verdi"
 df_combined.columns = ["Kommune", "Utdanningsnivå", "Kjønn", "Variabel", "År", "Verdi"]
 
-# Standardize data types to match what github_functions.py expects
-# Convert 'År' to string to match GitHub format (github_functions.py keeps all columns as strings)
-df_combined['År'] = df_combined['År'].astype(str)
+# Standardize data types to match what pandas reads from CSV
+# Convert 'År' to int64 (pandas infers this when reading CSV)
+df_combined['År'] = df_combined['År'].astype('int64')
 
-# Keep 'Verdi' as string and handle NaN properly
-# Convert numeric values to strings, and NaN/empty values to empty strings to match github_functions.py
-df_combined['Verdi'] = df_combined['Verdi'].apply(lambda x: str(float(x)) if pd.notna(x) and str(x).strip() != '' else '')
-# Clean up any 'nan' strings that might have been created
-df_combined['Verdi'] = df_combined['Verdi'].replace('nan', '')
+# Keep 'Verdi' as string to match what github_functions.py expects
+# Convert numeric values to strings, and empty values to 'nan' to match GitHub format
+df_combined['Verdi'] = df_combined['Verdi'].apply(lambda x: str(float(x)) if pd.notna(x) and str(x).strip() != '' else 'nan')
 
 # Ensure other columns are strings
 for col in ['Kommune', 'Utdanningsnivå', 'Kjønn', 'Variabel']:
