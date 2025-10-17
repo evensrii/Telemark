@@ -839,16 +839,22 @@ if github_df is not None:
     print(f"DataFrames equal: {are_equal}")
     
     if not are_equal:
-        # Check each column
-        for col in df_combined.columns:
-            if col in github_df.columns:
-                col_equal = df_combined[col].equals(github_df[col])
-                print(f"Column '{col}' equal: {col_equal}")
-                if not col_equal:
-                    # Show first few differences
-                    diff_mask = df_combined[col] != github_df[col]
-                    if diff_mask.any():
-                        print(f"  First difference at index {diff_mask.idxmax()}: '{df_combined[col].iloc[diff_mask.idxmax()]}' vs '{github_df[col].iloc[diff_mask.idxmax()]}'")
+        # Check if shapes are different first
+        if df_combined.shape != github_df.shape:
+            print(f"Different shapes detected - this indicates new data has been added.")
+            print(f"Difference: {df_combined.shape[0] - github_df.shape[0]} rows")
+        else:
+            # Only do detailed comparison if shapes are the same
+            # Check each column
+            for col in df_combined.columns:
+                if col in github_df.columns:
+                    col_equal = df_combined[col].equals(github_df[col])
+                    print(f"Column '{col}' equal: {col_equal}")
+                    if not col_equal:
+                        # Show first few differences
+                        diff_mask = df_combined[col] != github_df[col]
+                        if diff_mask.any():
+                            print(f"  First difference at index {diff_mask.idxmax()}: '{df_combined[col].iloc[diff_mask.idxmax()]}' vs '{github_df[col].iloc[diff_mask.idxmax()]}'")
 
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df_combined, file_name, github_folder, temp_folder, keepcsv=True)
