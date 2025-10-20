@@ -3,10 +3,29 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
+Found missing date ranges: [(Timestamp('2025-10-17 00:00:00'), Timestamp('2025-10-19 00:00:00'))]
+Fetching data for missing periods...
+-- Processing gap: 2025-10-17 to 2025-10-19 --
+Fetching energy prices from 2025-10-17 to 2025-10-19...
+  Fetching chunk from 2025-10-17 to 2025-10-19...
+Total price data points collected: 378
+Fetching exchange rates...
+Successfully fetched 1 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2025-10-17 08:11:38] No new data to upload. Skipping GitHub update.
+[2025-10-20 08:11:59] Row count changed: 1751 -> 1758
+
+Added rows (showing up to 10):
+EUR/MWh: 69.03653846153847, NOK/KWh: 0.8097502705769231, NOK/MWh: 809.7502705769231, kurs: 11.729299999999999, time: 2025-10-17
+EUR/MWh: 72.28520833333333, NOK/KWh: 0.8478548941041667, NOK/MWh: 847.8548941041666, kurs: 11.7293, time: 2025-10-18
+EUR/MWh: 71.30027777777778, NOK/KWh: 0.8363023481388889, NOK/MWh: 836.3023481388889, kurs: 11.7293, time: 2025-10-19
+EUR/MWh: 65.61064516129032, NOK/KWh: 0.7695669402903226, NOK/MWh: 769.5669402903226, kurs: 11.7293, time: 2025-10-20
+EUR/MWh: 66.06405797101449, NOK/KWh: 0.7748851551594204, NOK/MWh: 774.8851551594204, kurs: 11.7293, time: 2025-10-21
+EUR/MWh: 65.345, NOK/KWh: 0.7664511085, NOK/MWh: 766.4511085, kurs: 11.7293, time: 2025-10-22
+EUR/MWh: 62.357272727272736, NOK/KWh: 0.731407159, NOK/MWh: 731.407159, kurs: 11.7293, time: 2025-10-23
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
+Email notifications disabled. Updates for strompriser.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 Script completed successfully!
 
