@@ -1,0 +1,113 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+=== Luftforurensning Grenland (Excel) ===
+Script started: 2025-10-20 08:17:49
+=== Listing Excel files from GitHub ===
+Found 14 Excel files:
+  - PM10 og NO2 dÃ¸gn 2014 (KM og FM, mangler).xlsx
+  - PM10 og NO2 dÃ¸gn 2015 (KM og FM mangler).xlsx
+  - PM10 og NO2 dÃ¸gn 2016 (KM mangler).xlsx
+  - PM10 og NO2 dÃ¸gn 2017.xlsx
+  - PM10 og NO2 dÃ¸gn 2018.xlsx
+  - PM10 og NO2 dÃ¸gn 2019.xlsx
+  - PM10 og NO2 dÃ¸gn 2020.xlsx
+  - PM10 og NO2 dÃ¸gn 2021.xlsx
+  - PM10 og NO2 dÃ¸gn 2022.xlsx
+  - PM10 og NO2 dÃ¸gn 2023.xlsx
+  - PM10 og NO2 dÃ¸gn 2024.xlsx
+  - PM10 og NO2 DÃ¸gn August 2025.xlsx
+  - PM10 og NO2 dÃ¸gn Juli 2025.xlsx
+  - PM10 og NO2 dÃ¸gn jan-jun 2025.xlsx
+
+Downloading: PM10 og NO2 dÃ¸gn 2014 (KM og FM, mangler).xlsx
+  Loaded 365 rows, 12 cols
+
+Downloading: PM10 og NO2 dÃ¸gn 2015 (KM og FM mangler).xlsx
+  Loaded 365 rows, 12 cols
+
+Downloading: PM10 og NO2 dÃ¸gn 2016 (KM mangler).xlsx
+  Loaded 366 rows, 16 cols
+
+Downloading: PM10 og NO2 dÃ¸gn 2017.xlsx
+  Loaded 335 rows, 20 cols
+
+Downloading: PM10 og NO2 dÃ¸gn 2018.xlsx
+  Loaded 365 rows, 20 cols
+
+Downloading: PM10 og NO2 dÃ¸gn 2019.xlsx
+  Loaded 365 rows, 20 cols
+
+Downloading: PM10 og NO2 dÃ¸gn 2020.xlsx
+  Loaded 366 rows, 20 cols
+
+Downloading: PM10 og NO2 dÃ¸gn 2021.xlsx
+  Loaded 365 rows, 20 cols
+
+Downloading: PM10 og NO2 dÃ¸gn 2022.xlsx
+  Loaded 365 rows, 20 cols
+
+Downloading: PM10 og NO2 dÃ¸gn 2023.xlsx
+  Loaded 365 rows, 20 cols
+
+Downloading: PM10 og NO2 dÃ¸gn 2024.xlsx
+  Loaded 366 rows, 20 cols
+
+Downloading: PM10 og NO2 DÃ¸gn August 2025.xlsx
+  Loaded 31 rows, 20 cols
+
+Downloading: PM10 og NO2 dÃ¸gn Juli 2025.xlsx
+  Loaded 31 rows, 20 cols
+
+Downloading: PM10 og NO2 dÃ¸gn jan-jun 2025.xlsx
+  Loaded 181 rows, 20 cols
+
+Combining 14 DataFrames...
+  Standardized DataFrame 1: (365, 20)
+  Standardized DataFrame 2: (365, 20)
+  Standardized DataFrame 3: (366, 20)
+  Standardized DataFrame 4: (335, 20)
+  Standardized DataFrame 5: (365, 20)
+  Standardized DataFrame 6: (365, 20)
+  Standardized DataFrame 7: (366, 20)
+  Standardized DataFrame 8: (365, 20)
+  Standardized DataFrame 9: (365, 20)
+  Standardized DataFrame 10: (365, 20)
+  Standardized DataFrame 11: (366, 20)
+  Standardized DataFrame 12: (31, 20)
+  Standardized DataFrame 13: (31, 20)
+  Standardized DataFrame 14: (181, 20)
+
+=== Final transformations ===
+âœ“ Removed 'Til-tid'
+âœ“ Converted 'Fra-tid' to 'Dato'
+âœ“ Reordered columns: Dato + 9 measurement + 9 datadekning
+âœ“ Converted 9 'Datadekning' columns to fraction
+âœ“ Ensured 9 measurement columns are float64
+âœ“ Rounded 18 numeric columns to 8 decimal places
+âœ“ Ensured proper data types for CSV consistency
+Final shape: (4231, 19)
+
+Processed total rows: 4231
+Preview:
+         Dato  Furulund NO2 Âµg/mÂ³  ...  Datadekning (%).7  Datadekning (%).8
+0  2014-01-01                 NaN  ...                NaN                NaN
+1  2014-01-02                 NaN  ...                NaN                NaN
+2  2014-01-03                 NaN  ...                NaN                NaN
+
+[3 rows x 19 columns]
+
+Date range: 2014-01-01 to 2025-08-31
+Data types: {dtype('float64'): 18, dtype('O'): 1}
+Column order: ['Dato', 'Furulund NO2 Âµg/mÂ³', 'Furulund PM10 Âµg/mÂ³', 'Haukenes NO2 Âµg/mÂ³', 'Knarrdalstranda NO2 Âµg/mÂ³']...['Datadekning (%).6', 'Datadekning (%).7', 'Datadekning (%).8']
+
+NaN counts per column: {'Furulund NO2 Âµg/mÂ³': 939, 'Furulund PM10 Âµg/mÂ³': 1323, 'Haukenes NO2 Âµg/mÂ³': 119, 'Knarrdalstranda NO2 Âµg/mÂ³': 1187, 'Knarrdalstranda PM10 Âµg/mÂ³': 1233, 'Lensmannsdalen NO2 Âµg/mÂ³': 74, 'Lensmannsdalen PM10 Âµg/mÂ³': 79, 'Sverresgate NO2 Âµg/mÂ³': 98, 'Sverresgate PM10 Âµg/mÂ³': 57, 'Datadekning (%)': 79, 'Datadekning (%).1': 76, 'Datadekning (%).2': 117, 'Datadekning (%).3': 98, 'Datadekning (%).4': 57, 'Datadekning (%).5': 939, 'Datadekning (%).6': 1323, 'Datadekning (%).7': 1233, 'Datadekning (%).8': 1187}
+
+=== Comparing with existing GitHub data ===
+Downloaded existing CSV: 4231 rows, 19 columns
+âœ… No changes detected - data is identical
+
+ðŸŽ¯ RESULT: No new data - Excel files match existing CSV
+Status log: D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bystrategi_Grenland_-_Luftforurensing.log
+

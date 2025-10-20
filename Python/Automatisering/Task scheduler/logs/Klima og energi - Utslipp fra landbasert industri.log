@@ -7,9 +7,9 @@ All tasks completed successfully.
 Unique NACE codes in the dataset:
 
 NACE Kode:
-['46.693' '20.130' '17.120' '24.421' '23.510' '20.160' '20.150' '46.739'
- '23.410' '21.200' '30.113' '11.070' '20.140' '24.102' '24.510' '38.220'
- '10.510']
+['17.120' '20.130' '24.421' '23.510' '20.160' '20.150' '46.739' '23.410'
+ '21.200' '30.113' '11.070' '20.140' '24.102' '24.510' '38.220' '10.510'
+ '46.693']
 
 Column names in DataFrame:
 ['Ã…r', 'Utslipp fra landbasert industri (norskeutslipp.no)', 'Totale utslipp fra industrien (Mdir)', 'Mdir enkeltÃ¥r']
@@ -24,12 +24,15 @@ Sample data:
 
 [5 rows x 4 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-[2025-10-14 08:10:51] No value columns found to compare. Skipping GitHub update.
+File not found on GitHub: Data/Klima_og_energi/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv
+[2025-10-20 08:10:37] Uploading new file: norskeutslipp_detaljert_telemark.csv
+File uploaded successfully: Data/Klima_og_energi/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv
+Email notifications disabled. Updates for norskeutslipp_detaljert_telemark.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-[2025-10-14 08:10:52] No changes found in value columns. Skipping GitHub update.
+[2025-10-20 08:10:39] No changes found in value columns. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-No new data detected in norskeutslipp_detaljert_telemark.csv.
+New data detected in norskeutslipp_detaljert_telemark.csv and pushed to GitHub.
 No new data detected in norskeutslipp_everviz.csv.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Utslipp_fra_landbasert_industri.log
 
