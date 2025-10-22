@@ -791,13 +791,15 @@ df_combined = pd.concat([df_antall, df_andel], ignore_index=True)
 #Rename the columnss to "Kommune", "Utdanningsnivå", "Kjønn", "Variabel", "År" and "Verdi"
 df_combined.columns = ["Kommune", "Utdanningsnivå", "Kjønn", "Variabel", "År", "Verdi"]
 
-# Standardize data types to match what pandas reads from CSV
-# Convert 'År' to int64 (pandas infers this when reading CSV)
-df_combined['År'] = df_combined['År'].astype('int64')
+# Standardize data types to match what github_functions.py expects
+# Convert 'År' to string to match GitHub format (github_functions.py keeps all columns as strings)
+df_combined['År'] = df_combined['År'].astype(str)
 
-# Keep 'Verdi' as string to match what github_functions.py expects
-# Convert numeric values to strings, and empty values to 'nan' to match GitHub format
-df_combined['Verdi'] = df_combined['Verdi'].apply(lambda x: str(float(x)) if pd.notna(x) and str(x).strip() != '' else 'nan')
+# Keep 'Verdi' as string and handle NaN properly
+# Convert numeric values to strings, and NaN/empty values to empty strings to match github_functions.py
+df_combined['Verdi'] = df_combined['Verdi'].apply(lambda x: str(float(x)) if pd.notna(x) and str(x).strip() != '' else '')
+# Clean up any 'nan' strings that might have been created
+df_combined['Verdi'] = df_combined['Verdi'].replace('nan', '')
 
 # Ensure other columns are strings
 for col in ['Kommune', 'Utdanningsnivå', 'Kjønn', 'Variabel']:
@@ -837,16 +839,22 @@ if github_df is not None:
     print(f"DataFrames equal: {are_equal}")
     
     if not are_equal:
-        # Check each column
-        for col in df_combined.columns:
-            if col in github_df.columns:
-                col_equal = df_combined[col].equals(github_df[col])
-                print(f"Column '{col}' equal: {col_equal}")
-                if not col_equal:
-                    # Show first few differences
-                    diff_mask = df_combined[col] != github_df[col]
-                    if diff_mask.any():
-                        print(f"  First difference at index {diff_mask.idxmax()}: '{df_combined[col].iloc[diff_mask.idxmax()]}' vs '{github_df[col].iloc[diff_mask.idxmax()]}'")
+        # Check if shapes are different first
+        if df_combined.shape != github_df.shape:
+            print(f"Different shapes detected - this indicates new data has been added.")
+            print(f"Difference: {df_combined.shape[0] - github_df.shape[0]} rows")
+        else:
+            # Only do detailed comparison if shapes are the same
+            # Check each column
+            for col in df_combined.columns:
+                if col in github_df.columns:
+                    col_equal = df_combined[col].equals(github_df[col])
+                    print(f"Column '{col}' equal: {col_equal}")
+                    if not col_equal:
+                        # Show first few differences
+                        diff_mask = df_combined[col] != github_df[col]
+                        if diff_mask.any():
+                            print(f"  First difference at index {diff_mask.idxmax()}: '{df_combined[col].iloc[diff_mask.idxmax()]}' vs '{github_df[col].iloc[diff_mask.idxmax()]}'")
 
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df_combined, file_name, github_folder, temp_folder, keepcsv=True)
