@@ -34,7 +34,6 @@ SCRIPTS = [
     ## Opplæring og kompetanse
     (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa.py"), "Opplaering og kompetanse - Utdanningsnivaa"),
     (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa_telemark_og_landet.py"), "Opplaering og kompetanse - Utdanningsnivaa Telemark og landet"),
-    (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/soekere_stillinger_yrkespraksis.py"), "Opplaering og kompetanse - Sokere og stillinger etter yrkespraksis"),
 
     ## Arbeid og næringsliv
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning.py"), "Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune"),
@@ -45,10 +44,11 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_fliser.py"), "Arbeid og naeringsliv - Sysselsatte (fliser)"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/endring_arbeidsplasser_over_tid.py"), "Arbeid og naeringsliv - Endring arbeidsplasser over tid"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/virksomheter.py"), "Arbeid og naeringsliv - Virksomheter"),
-
+ 
     ## Arbeid og næringsliv - NAV
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py"), "NAV - Arbeidsledighet"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/nedsatt_arbeidsevne.py"), "NAV - Nedsatt arbeidsevne"),
+    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py"), "Opplaering og kompetanse - Sokere og stillinger etter yrkespraksis"),
 
     ## Klima og energi
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Klimagassutslipp/klimagassutslipp.py"), "Klima og energi - Sektorvise utslipp"),
