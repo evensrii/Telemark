@@ -3,29 +3,10 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
-Found missing date ranges: [(Timestamp('2025-10-24 00:00:00'), Timestamp('2025-10-26 00:00:00'))]
-Fetching data for missing periods...
--- Processing gap: 2025-10-24 to 2025-10-26 --
-Fetching energy prices from 2025-10-24 to 2025-10-26...
-  Fetching chunk from 2025-10-24 to 2025-10-26...
-Total price data points collected: 292
-Fetching exchange rates...
-Successfully fetched 1 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2025-10-27 08:12:11] Row count changed: 1758 -> 1765
-
-Added rows (showing up to 10):
-EUR/MWh: 9.008076923076924, NOK/KWh: 0.10466034173076923, NOK/MWh: 104.66034173076923, kurs: 11.6185, time: 2025-10-24
-EUR/MWh: 31.132800000000003, NOK/KWh: 0.3617164368, NOK/MWh: 361.7164368, kurs: 11.6185, time: 2025-10-25
-EUR/MWh: 20.8075, NOK/KWh: 0.24175193875, NOK/MWh: 241.75193875, kurs: 11.6185, time: 2025-10-26
-EUR/MWh: 25.849714285714285, NOK/KWh: 0.3003349054285714, NOK/MWh: 300.3349054285714, kurs: 11.6185, time: 2025-10-27
-EUR/MWh: 32.827173913043474, NOK/KWh: 0.38140252010869563, NOK/MWh: 381.4025201086956, kurs: 11.618499999999997, time: 2025-10-28
-EUR/MWh: 40.299166666666665, NOK/KWh: 0.46821586791666664, NOK/MWh: 468.21586791666664, kurs: 11.6185, time: 2025-10-29
-EUR/MWh: 23.195, NOK/KWh: 0.2694911075, NOK/MWh: 269.4911075, kurs: 11.6185, time: 2025-10-30
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
-Email notifications disabled. Updates for strompriser.csv were not sent.
+[2025-10-28 08:11:53] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 Script completed successfully!
 
