@@ -125,7 +125,10 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
         sha = None
     else:
         # Log an error if the status check fails
-        print(f"Failed to check file on GitHub: {response.json()}")
+        try:
+            print(f"Failed to check file on GitHub: {response.status_code} {response.json()}")
+        except Exception:
+            print(f"Failed to check file on GitHub: {response.status_code} {response.text}")
         return
 
     # Prepare the payload
@@ -143,7 +146,10 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
     if response.status_code in [201, 200]:
         print(f"File uploaded successfully: {github_file_path}")
     else:
-        print(f"Failed to upload file: {response.json()}")
+        try:
+            print(f"Failed to upload file ({response.status_code}): {response.json()}")
+        except Exception:
+            print(f"Failed to upload file ({response.status_code}): {response.text}")
 
 
 ## Function to compare file to GitHub
