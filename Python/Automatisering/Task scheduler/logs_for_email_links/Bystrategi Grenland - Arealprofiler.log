@@ -5,9 +5,12 @@ GITHUB_TOKEN loaded successfully.
 Data successfully loaded. Shape: (73043, 6)
 Columns: ['statistikkvariabel', 'kommunenr', 'kommune', 'ÃÂ¥r', 'verdi', 'klasse']
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arealprofiler.csv
-[2025-11-03 08:19:13] No new data to upload. Skipping GitHub update.
+File not found on GitHub: Data/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.csv
+[2025-11-04 08:18:33] Uploading new file: arealprofiler.csv
+File uploaded successfully: Data/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.csv
+Email notifications disabled. Updates for arealprofiler.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\arealprofiler.csv
-No new data detected in arealprofiler.csv.
+New data detected in arealprofiler.csv and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bystrategi_Grenland_-_Arealprofiler.log
 All tasks completed successfully.
 

@@ -3,29 +3,10 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
-Found missing date ranges: [(Timestamp('2025-10-31 00:00:00'), Timestamp('2025-11-02 00:00:00'))]
-Fetching data for missing periods...
--- Processing gap: 2025-10-31 to 2025-11-02 --
-Fetching energy prices from 2025-10-31 to 2025-11-02...
-  Fetching chunk from 2025-10-31 to 2025-10-31...
-  Fetching chunk from 2025-11-01 to 2025-11-02...
-Total price data points collected: 287
-Fetching exchange rates...
-Successfully fetched 1 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2025-11-03 08:12:08] Row count changed: 1765 -> 1771
-
-Added rows (showing up to 10):
-EUR/MWh: 62.15520000000001, NOK/KWh: 0.7240148472000001, NOK/MWh: 724.0148472000001, kurs: 11.648500000000002, time: 2025-10-31
-EUR/MWh: 45.816122448979584, NOK/KWh: 0.5336891023469389, NOK/MWh: 533.6891023469389, kurs: 11.6485, time: 2025-11-01
-EUR/MWh: 47.168055555555554, NOK/KWh: 0.5494370951388888, NOK/MWh: 549.4370951388888, kurs: 11.6485, time: 2025-11-02
-EUR/MWh: 58.4612676056338, NOK/KWh: 0.6809860757042254, NOK/MWh: 680.9860757042254, kurs: 11.6485, time: 2025-11-03
-EUR/MWh: 65.26173913043478, NOK/KWh: 0.7602013682608696, NOK/MWh: 760.2013682608696, kurs: 11.6485, time: 2025-11-04
-EUR/MWh: 65.57608695652173, NOK/KWh: 0.7638630489130435, NOK/MWh: 763.8630489130435, kurs: 11.6485, time: 2025-11-05
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
-Email notifications disabled. Updates for strompriser.csv were not sent.
+[2025-11-04 08:11:47] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 Script completed successfully!
 
