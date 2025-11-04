@@ -16,7 +16,9 @@ from Helper_scripts.github_functions import get_github_token, upload_github_file
 
 # Script configuration
 GITHUB_FOLDER = "Data/Bystrategi_Grenland/Areal_og_byutvikling/Sentrumssoner/250x250/Befolkning_250"
-OUTPUT_FILENAME = "befolkning_rutenett_250.csv"
+OUTPUT_FOLDER = "Data/Bystrategi_Grenland/Areal_og_byutvikling/Sentrumssoner/250x250"
+FILTER_FILE = "Data/Bystrategi_Grenland/Areal_og_byutvikling/Sentrumssoner/250x250/grenland_250_ruter.csv"
+OUTPUT_FILENAME = "befolkning_grenland_250.csv"
 SCRIPT_NAME = os.path.basename(__file__)
 
 def list_github_folder_contents(folder_path, token):
@@ -77,12 +79,36 @@ def combine_annual_datasets():
     """
     Main function to combine annual population grid datasets.
     Downloads files from GitHub, combines them, and uploads the result.
+    Only includes grid cells that are in the Grenland filter file.
     """
     print(f"Starting script: {SCRIPT_NAME}")
     print(f"Looking for CSV files in GitHub folder: {GITHUB_FOLDER}\n")
     
     # Get GitHub token
     github_token = get_github_token()
+    
+    # Load filter file with valid Grenland grid IDs
+    print(f"Loading filter file: {FILTER_FILE}")
+    filter_df = download_csv_from_github(FILTER_FILE, github_token)
+    
+    if filter_df is None:
+        print("Failed to load filter file. Exiting.")
+        return
+    
+    # Get the set of valid grid IDs (case-insensitive)
+    # The filter file should have a column named 'ssbid' or similar
+    filter_col = None
+    for col in filter_df.columns:
+        if 'ssbid' in col.lower():
+            filter_col = col
+            break
+    
+    if filter_col is None:
+        print(f"Could not find ssbid column in filter file. Available columns: {list(filter_df.columns)}")
+        return
+    
+    valid_grid_ids = set(filter_df[filter_col].astype(str).str.strip())
+    print(f"Loaded {len(valid_grid_ids)} valid Grenland grid IDs from filter file\n")
     
     # List all files in the GitHub folder
     files = list_github_folder_contents(GITHUB_FOLDER, github_token)
@@ -118,6 +144,7 @@ def combine_annual_datasets():
     
     # Download and combine all files
     combined_data = []
+    filter_stats = []  # Track filtering statistics per year
     
     for file_info in csv_files:
         print(f"Downloading and processing: {file_info['name']}")
@@ -132,38 +159,51 @@ def combine_annual_datasets():
         # Debug: Print actual columns
         print(f"  - Columns found: {list(df.columns)}")
         
-        # Rename columns to match output format
-        # Expected input columns: ogc_fid, SSBID0250M, pop_tot
-        df = df.rename(columns={
-            'SSBID0250M': 'grid_id',
-            'pop_tot': 'population'
+        # Identify the grid ID column
+        grid_col = None
+        for col in df.columns:
+            if 'ssbid' in col.lower():
+                grid_col = col
+                break
+        
+        if grid_col is None:
+            print(f"  - Warning: Could not find SSBID column, skipping file")
+            continue
+        
+        # Filter to only include Grenland grid IDs
+        df[grid_col] = df[grid_col].astype(str).str.strip()
+        rows_before = len(df)
+        df = df[df[grid_col].isin(valid_grid_ids)]
+        rows_after = len(df)
+        print(f"  - Filtered from {rows_before} to {rows_after} rows (Grenland only)")
+        
+        # Store filtering stats
+        filter_stats.append({
+            'Year': file_info['year'],
+            'Total rows': rows_before,
+            'Grenland rows': rows_after,
+            'Filtered out': rows_before - rows_after
         })
         
-        # Check if rename worked, otherwise try alternative column names
-        if 'grid_id' not in df.columns:
-            # Try finding the grid ID column by looking for common patterns
-            for col in df.columns:
-                if 'ssbid' in col.lower() or 'grid' in col.lower():
-                    df = df.rename(columns={col: 'grid_id'})
-                    break
+        if len(df) == 0:
+            print(f"  - No matching grid IDs found, skipping file")
+            continue
         
-        if 'population' not in df.columns:
-            # Try finding the population column
-            for col in df.columns:
-                if 'pop' in col.lower() or 'befolkning' in col.lower():
-                    df = df.rename(columns={col: 'population'})
-                    break
+        # Rename columns to final format
+        df = df.rename(columns={
+            grid_col: 'ssbid_250',
+            'pop_tot': 'Populasjon'
+        })
         
-        # Add year column
-        df['year'] = file_info['year']
+        # Add year column as datetime (YYYY-MM-DD format, using January 1st)
+        df['År'] = pd.to_datetime(file_info['year'] + '-01-01')
         
-        # Select and reorder columns: grid_id, year, population
-        df = df[['grid_id', 'year', 'population']]
+        # Select and reorder columns: ssbid_250, År, Populasjon
+        df = df[['ssbid_250', 'År', 'Populasjon']]
         
         # Ensure correct data types
-        df['grid_id'] = df['grid_id'].astype(str)
-        df['year'] = df['year'].astype(str)
-        df['population'] = df['population'].astype('float64')
+        df['ssbid_250'] = df['ssbid_250'].astype(str)
+        df['Populasjon'] = df['Populasjon'].fillna(0).astype('int64')  # Convert to integer
         
         combined_data.append(df)
         print(f"  - Added {len(df)} rows for year {file_info['year']}")
@@ -175,10 +215,19 @@ def combine_annual_datasets():
     # Concatenate all dataframes
     final_df = pd.concat(combined_data, ignore_index=True)
     
+    # Print filtering statistics table
+    if filter_stats:
+        print("\n" + "="*80)
+        print("FILTERING STATISTICS BY YEAR")
+        print("="*80)
+        stats_df = pd.DataFrame(filter_stats)
+        print(stats_df.to_string(index=False))
+        print("="*80)
+    
     print(f"\nCombined dataset summary:")
     print(f"Total rows: {len(final_df)}")
     print(f"Columns: {list(final_df.columns)}")
-    print(f"Years covered: {sorted(final_df['year'].unique())}")
+    print(f"Years covered: {sorted(final_df['År'].dt.year.unique())}")
     print(f"Data types:\n{final_df.dtypes}")
     print(f"\nFirst few rows:")
     print(final_df.head(10))
@@ -187,12 +236,16 @@ def combine_annual_datasets():
     # Construct path to local GitHub folder
     output_folder = os.path.join(
         r'c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark',
-        GITHUB_FOLDER.replace('/', os.sep)
+        OUTPUT_FOLDER.replace('/', os.sep)
     )
     os.makedirs(output_folder, exist_ok=True)
     output_file_path = os.path.join(output_folder, OUTPUT_FILENAME)
     
-    final_df.to_csv(output_file_path, index=False, encoding='utf-8')
+    # Convert datetime to string format for CSV output (YYYY-MM-DD)
+    final_df_output = final_df.copy()
+    final_df_output['År'] = final_df_output['År'].dt.strftime('%Y-%m-%d')
+    
+    final_df_output.to_csv(output_file_path, index=False, encoding='utf-8')
     print(f"\nSaved file to: {output_file_path}")
     
     # Check file size
@@ -202,12 +255,12 @@ def combine_annual_datasets():
     if file_size_mb > 50:
         print("\n⚠️  File is too large for GitHub API upload (>50MB)")
         print("Please commit and push manually using Git:")
-        print(f"  git add \"{GITHUB_FOLDER}/{OUTPUT_FILENAME}\"")
+        print(f"  git add \"{OUTPUT_FOLDER}/{OUTPUT_FILENAME}\"")
         print(f"  git commit -m \"Updated {OUTPUT_FILENAME} - Combined {len(csv_files)} annual datasets\"")
         print("  git push")
     else:
         # Upload to GitHub via API (only for smaller files)
-        github_file_path = f"{GITHUB_FOLDER}/{OUTPUT_FILENAME}"
+        github_file_path = f"{OUTPUT_FOLDER}/{OUTPUT_FILENAME}"
         print(f"\nUploading to GitHub: {github_file_path}")
         
         upload_github_file(
