@@ -183,30 +183,38 @@ def combine_annual_datasets():
     print(f"\nFirst few rows:")
     print(final_df.head(10))
     
-    # Save to temporary file
-    temp_folder = os.path.join(os.path.dirname(__file__), 'temp')
-    os.makedirs(temp_folder, exist_ok=True)
-    temp_file_path = os.path.join(temp_folder, OUTPUT_FILENAME)
-    
-    final_df.to_csv(temp_file_path, index=False, encoding='utf-8')
-    print(f"\nSaved temporary file: {temp_file_path}")
-    
-    # Upload to GitHub
-    github_file_path = f"{GITHUB_FOLDER}/{OUTPUT_FILENAME}"
-    print(f"\nUploading to GitHub: {github_file_path}")
-    
-    upload_github_file(
-        local_file_path=temp_file_path,
-        github_file_path=github_file_path,
-        message=f"Updated {OUTPUT_FILENAME} - Combined {len(csv_files)} annual datasets"
+    # Save to final destination in local GitHub repo
+    # Construct path to local GitHub folder
+    output_folder = os.path.join(
+        r'c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark',
+        GITHUB_FOLDER.replace('/', os.sep)
     )
+    os.makedirs(output_folder, exist_ok=True)
+    output_file_path = os.path.join(output_folder, OUTPUT_FILENAME)
     
-    # Clean up temporary file
-    try:
-        os.remove(temp_file_path)
-        print(f"Deleted temporary file: {temp_file_path}")
-    except Exception as e:
-        print(f"Error deleting temporary file: {e}")
+    final_df.to_csv(output_file_path, index=False, encoding='utf-8')
+    print(f"\nSaved file to: {output_file_path}")
+    
+    # Check file size
+    file_size_mb = os.path.getsize(output_file_path) / (1024 * 1024)
+    print(f"File size: {file_size_mb:.2f} MB")
+    
+    if file_size_mb > 50:
+        print("\n⚠️  File is too large for GitHub API upload (>50MB)")
+        print("Please commit and push manually using Git:")
+        print(f"  git add \"{GITHUB_FOLDER}/{OUTPUT_FILENAME}\"")
+        print(f"  git commit -m \"Updated {OUTPUT_FILENAME} - Combined {len(csv_files)} annual datasets\"")
+        print("  git push")
+    else:
+        # Upload to GitHub via API (only for smaller files)
+        github_file_path = f"{GITHUB_FOLDER}/{OUTPUT_FILENAME}"
+        print(f"\nUploading to GitHub: {github_file_path}")
+        
+        upload_github_file(
+            local_file_path=output_file_path,
+            github_file_path=github_file_path,
+            message=f"Updated {OUTPUT_FILENAME} - Combined {len(csv_files)} annual datasets"
+        )
     
     print("\nScript completed successfully!")
     return final_df
