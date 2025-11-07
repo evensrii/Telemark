@@ -5,21 +5,13 @@ GITHUB_TOKEN loaded successfully.
 Flyktninger og arbeidsinnvandrere CSV data loaded successfully.
 Selected data from year 2025-01-01 00:00:00
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_arbeidsinnvandrere.csv
-[2025-11-06 08:14:05] Header structure changed in andel_arbeidsinnvandrere.csv:
-Removed headers: andel arbeidsinnvandrere 2024
-Added headers: andel arbeidsinnvandrere 2025
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_arbeidsinnvandrere.csv
-Email notifications disabled. Updates for andel_arbeidsinnvandrere.csv were not sent.
+[2025-11-07 08:20:18] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_arbeidsinnvandrere.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_flyktninger.csv
-[2025-11-06 08:14:06] Header structure changed in andel_flyktninger.csv:
-Removed headers: andel flyktninger 2024
-Added headers: andel flyktninger 2025
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/andel_flyktninger.csv
-Email notifications disabled. Updates for andel_flyktninger.csv were not sent.
+[2025-11-07 08:20:19] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_flyktninger.csv
-New data detected in andel_arbeidsinnvandrere.csv and pushed to GitHub.
-New data detected in andel_flyktninger.csv and pushed to GitHub.
+No new data detected in andel_arbeidsinnvandrere.csv.
+No new data detected in andel_flyktninger.csv.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Flyktninger_og_arbeidsinnvandrere.log
 
 
