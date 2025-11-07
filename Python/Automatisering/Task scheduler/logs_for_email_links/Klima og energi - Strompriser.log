@@ -3,10 +3,26 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
+Found missing date ranges: [(Timestamp('2025-11-06 00:00:00'), Timestamp('2025-11-06 00:00:00'))]
+Fetching data for missing periods...
+-- Processing gap: 2025-11-06 to 2025-11-06 --
+Fetching energy prices from 2025-11-06 to 2025-11-06...
+  Fetching chunk from 2025-11-06 to 2025-11-06...
+Total price data points collected: 85
+Fetching exchange rates...
+Successfully fetched 1 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2025-11-06 08:12:06] No new data to upload. Skipping GitHub update.
+[2025-11-07 08:13:19] Row count changed: 1771 -> 1775
+
+Added rows (showing up to 10):
+EUR/MWh: 68.57199999999999, NOK/KWh: 0.804109558, NOK/MWh: 804.109558, kurs: 11.7265, time: 2025-11-06
+EUR/MWh: 68.86416666666666, NOK/KWh: 0.8075356504166666, NOK/MWh: 807.5356504166666, kurs: 11.7265, time: 2025-11-07
+EUR/MWh: 70.32304347826087, NOK/KWh: 0.8246431693478261, NOK/MWh: 824.6431693478261, kurs: 11.7265, time: 2025-11-08
+EUR/MWh: 71.90954545454545, NOK/KWh: 0.8432472847727273, NOK/MWh: 843.2472847727273, kurs: 11.7265, time: 2025-11-09
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
+Email notifications disabled. Updates for strompriser.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 Script completed successfully!
 
