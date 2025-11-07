@@ -4,23 +4,8 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Innvandringsgrunn CSV data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\innvandringsgrunn_telemark.csv
-[2025-11-06 08:14:32] Row count changed: 12132 -> 12744
-
-Added rows (showing up to 10):
-Antall: 4471.0, Enhet: Personer, Innvandringsgrunn: Alle, Kjnn: Menn, Kommune: Skien, Kommunenummer: 4003, r: 2025
-Antall: 0.9, Enhet: Prosent, Innvandringsgrunn: Utdanning (inkl. au pair) eller andre grunner, Kjnn: Menn, Kommune: Notodden, Kommunenummer: 4005, r: 2025
-Antall: 3.8, Enhet: Prosent, Innvandringsgrunn: Utdanning (inkl. au pair) eller andre grunner, Kjnn: Kvinner, Kommune: Vinje, Kommunenummer: 4036, r: 2025
-Antall: 151.0, Enhet: Personer, Innvandringsgrunn: Arbeidsinnvandrere, Kjnn: Menn, Kommune: KragerÃÂ¸, Kommunenummer: 4014, r: 2025
-Antall: 2.2, Enhet: Prosent, Innvandringsgrunn: Utdanning (inkl. au pair) eller andre grunner, Kjnn: Kvinner, Kommune: Tinn, Kommunenummer: 4026, r: 2025
-Antall: 14.5, Enhet: Prosent, Innvandringsgrunn: Familieinnvandrede, Kjnn: Kvinner, Kommune: Tinn, Kommunenummer: 4026, r: 2025
-Antall: 50.4, Enhet: Prosent, Innvandringsgrunn: Alle, Kjnn: Kvinner, Kommune: KragerÃÂ¸, Kommunenummer: 4014, r: 2025
-Antall: 9.5, Enhet: Prosent, Innvandringsgrunn: Familieinnvandrede, Kjnn: Kvinner, Kommune: Vinje, Kommunenummer: 4036, r: 2025
-Antall: 157.0, Enhet: Personer, Innvandringsgrunn: Familieinnvandrede, Kjnn: Kvinner, Kommune: Nome, Kommunenummer: 4018, r: 2025
-Antall: 13.1, Enhet: Prosent, Innvandringsgrunn: Uoppgitt, Kjnn: Alle, Kommune: Kviteseid, Kommunenummer: 4028, r: 2025
-... and 9674 more rows
-File uploaded successfully: Data/09_Innvandrere og inkludering/Innvandrerbefolkningen/innvandringsgrunn_telemark.csv
-Email notifications disabled. Updates for innvandringsgrunn_telemark.csv were not sent.
+[2025-11-07 08:20:44] No changes found in value columns. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\innvandringsgrunn_telemark.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Innvandringsgrunn.log
 
