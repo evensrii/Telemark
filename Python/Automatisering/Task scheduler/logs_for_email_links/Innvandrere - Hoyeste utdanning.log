@@ -4,30 +4,8 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 HÃÂ¸yeste utdanning fylker CSV data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\hÃÂ¸yeste_utdanning_innv.csv
-[2025-11-07 08:22:23] Changes detected in the dataset.
-File uploaded successfully: Data/09_Innvandrere og inkludering/UtdanningsnivÃÂ¥ Telemark/hÃÂ¸yeste_utdanning_innv.csv
-
-Showing up to 5 examples of changes:
-
-Row: 
-  Grunnskole: 19.1 -> 18.8
-
-Row: 
-  Universitet og hgskole: 35.1 -> 35.9
-
-Row: 
-  Videregende skole: 45.4 -> 44.8
-
-Row: 
-  Grunnskole: 28.4 -> 28.0
-
-Row: 
-  Ingen utdanning: 1.1 -> 1.0
-
-Total changes found in examined rows: 8
-(Showing first 5 changes only)
-Email notifications disabled. Updates for hÃÂ¸yeste_utdanning_innv.csv were not sent.
+[2025-11-10 08:20:46] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\hÃÂ¸yeste_utdanning_innv.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Hoyeste_utdanning.log
 
