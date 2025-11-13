@@ -3,10 +3,36 @@ import requests
 import pandas as pd
 from datetime import datetime, timedelta
 
+# Explanation:
+# 1) Initial Data Collection:
+
+# If this is the first run (i.e., the CSV file does not exist), the script will query the Elhub API starting from 2021-01-01 and store the data in the CSV after performing necessary transformations (renaming columns, filtering, etc.).
+
+# 2) Subsequent Data Appending:
+
+# On subsequent runs, the script will load the existing CSV, clean any rows where Tid and Gruppe are empty, and determine the latest date in the CSV file.
+# It will then query new data starting from one day after the latest date in the CSV, perform the same transformations, and append the new data to the existing CSV.
+
+# 3) Data Cleaning:
+
+# Before appending new data, the script will ensure that rows with empty values in Tid and Gruppe columns are removed from both the new and existing data.
+
+# 4) End Date Handling:
+
+# The script will stop querying two days before today to avoid querying empty data (since Elhub's data may not be updated immediately for today or yesterday).
+
+# Key Functions:
+# query_elhub(date): Queries the Elhub API for a given date.
+# clean_existing_data(df): Removes rows where Tid or Gruppe is empty from the existing data.
+# process_data(df): Renames columns and processes the queried data to prepare it for saving.
+# query_and_append_new_data(df_existing): Handles the logic for appending new data from Elhub to the existing CSV file.
+
+# Output:
+# The script will either create a new CSV file or update the existing one with the latest available data.
+
 # Define the path for the existing CSV file
 temp_folder = os.environ.get("TEMP_FOLDER")
 csv_file = os.path.join(temp_folder, "elhub_telemark.csv")
-
 
 # Function to query the Elhub API for a specific date
 def query_elhub(date):
@@ -171,30 +197,3 @@ if __name__ == "__main__":
 
     # To run with default date logic (from last date in file to two days ago), use this:
     # main()
-
-# Explanation:
-# 1) Initial Data Collection:
-
-# If this is the first run (i.e., the CSV file does not exist), the script will query the Elhub API starting from 2021-01-01 and store the data in the CSV after performing necessary transformations (renaming columns, filtering, etc.).
-
-# 2) Subsequent Data Appending:
-
-# On subsequent runs, the script will load the existing CSV, clean any rows where Tid and Gruppe are empty, and determine the latest date in the CSV file.
-# It will then query new data starting from one day after the latest date in the CSV, perform the same transformations, and append the new data to the existing CSV.
-
-# 3) Data Cleaning:
-
-# Before appending new data, the script will ensure that rows with empty values in Tid and Gruppe columns are removed from both the new and existing data.
-
-# 4) End Date Handling:
-
-# The script will stop querying two days before today to avoid querying empty data (since Elhub's data may not be updated immediately for today or yesterday).
-
-# Key Functions:
-# query_elhub(date): Queries the Elhub API for a given date.
-# clean_existing_data(df): Removes rows where Tid or Gruppe is empty from the existing data.
-# process_data(df): Renames columns and processes the queried data to prepare it for saving.
-# query_and_append_new_data(df_existing): Handles the logic for appending new data from Elhub to the existing CSV file.
-
-# Output:
-# The script will either create a new CSV file or update the existing one with the latest available data.
