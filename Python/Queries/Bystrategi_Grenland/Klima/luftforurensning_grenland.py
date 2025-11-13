@@ -407,9 +407,21 @@ def main():
     else:
         print("\nNo NaN values found")
 
-    ##################### Custom comparison and upload to GitHub #####################
+    ##################### Save to temp folder #####################
     
     file_name = "luftforurensing_grenland.csv"
+    temp_folder = os.environ.get("TEMP_FOLDER", os.path.join(os.getcwd(), "Temp"))
+    temp_file_path = os.path.join(temp_folder, file_name)
+    
+    # Ensure temp folder exists
+    os.makedirs(temp_folder, exist_ok=True)
+    
+    # Save to temp folder
+    df.to_csv(temp_file_path, index=False, encoding='utf-8')
+    print(f"\n✅ Saved copy to temp folder: {temp_file_path}")
+    
+    ##################### Custom comparison and upload to GitHub #####################
+    
     task_name = "Bystrategi Grenland - Luftforurensing"
     github_folder = "Data/Bystrategi_Grenland/Klima/Luftforurensing"
     github_file_path = f"{github_folder}/{file_name}"
