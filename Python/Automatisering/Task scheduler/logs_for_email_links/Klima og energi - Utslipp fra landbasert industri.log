@@ -24,15 +24,17 @@ Sample data:
 
 [5 rows x 4 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-File not found on GitHub: Data/Klima_og_energi/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv
-[2025-11-13 14:07:49] Uploading new file: norskeutslipp_detaljert_telemark.csv
-File uploaded successfully: Data/Klima_og_energi/Klimagassutslipp/norskeutslipp_detaljert_telemark.csv
-Email notifications disabled. Updates for norskeutslipp_detaljert_telemark.csv were not sent.
+[2025-11-14 08:11:11] No value columns found to compare. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-[2025-11-13 14:07:50] No changes found in value columns. Skipping GitHub update.
+[2025-11-14 08:11:12] No changes found in value columns. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-New data detected in norskeutslipp_detaljert_telemark.csv and pushed to GitHub.
+No new data detected in norskeutslipp_detaljert_telemark.csv.
 No new data detected in norskeutslipp_everviz.csv.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Utslipp_fra_landbasert_industri.log
+
+
+Errors/Warnings:
+D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:270: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  input_df[col] = input_df[col].fillna('')
 
