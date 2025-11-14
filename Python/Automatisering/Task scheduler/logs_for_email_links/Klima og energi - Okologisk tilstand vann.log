@@ -2,30 +2,29 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Ingen driftsmeldinger dukket opp, continuing...
-An unexpected error occurred during setup: Message: 
+An unexpected error occurred during setup: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
 Stacktrace:
-	GetHandleVerifier [0x0x7ff60cdae8e5+80021]
-	GetHandleVerifier [0x0x7ff60cdae940+80112]
-	(No symbol) [0x0x7ff60cb3060f]
-	(No symbol) [0x0x7ff60cb88854]
-	(No symbol) [0x0x7ff60cb88b1c]
-	(No symbol) [0x0x7ff60cbdc927]
-	(No symbol) [0x0x7ff60cbb126f]
-	(No symbol) [0x0x7ff60cbd968a]
-	(No symbol) [0x0x7ff60cbb1003]
-	(No symbol) [0x0x7ff60cb795d1]
-	(No symbol) [0x0x7ff60cb7a3f3]
-	GetHandleVerifier [0x0x7ff60d06dc7d+2960429]
-	GetHandleVerifier [0x0x7ff60d067f3a+2936554]
-	GetHandleVerifier [0x0x7ff60d088977+3070247]
-	GetHandleVerifier [0x0x7ff60cdc83ce+185214]
-	GetHandleVerifier [0x0x7ff60cdcfe1f+216527]
-	GetHandleVerifier [0x0x7ff60cdb7b24+117460]
-	GetHandleVerifier [0x0x7ff60cdb7cdf+117903]
-	GetHandleVerifier [0x0x7ff60cd9dbb8+11112]
-	BaseThreadInitThunk [0x0x7fffbf197ac4+20]
-	RtlUserThreadStart [0x0x7fffbfc8a8c1+33]
+	GetHandleVerifier [0x0x7ff6f556e8e5+80021]
+	GetHandleVerifier [0x0x7ff6f556e940+80112]
+	(No symbol) [0x0x7ff6f52f060f]
+	(No symbol) [0x0x7ff6f53302d4]
+	(No symbol) [0x0x7ff6f532a2d7]
+	(No symbol) [0x0x7ff6f537f040]
+	(No symbol) [0x0x7ff6f537e7b0]
+	(No symbol) [0x0x7ff6f5371003]
+	(No symbol) [0x0x7ff6f53395d1]
+	(No symbol) [0x0x7ff6f533a3f3]
+	GetHandleVerifier [0x0x7ff6f582dc7d+2960429]
+	GetHandleVerifier [0x0x7ff6f5827f3a+2936554]
+	GetHandleVerifier [0x0x7ff6f5848977+3070247]
+	GetHandleVerifier [0x0x7ff6f55883ce+185214]
+	GetHandleVerifier [0x0x7ff6f558fe1f+216527]
+	GetHandleVerifier [0x0x7ff6f5577b24+117460]
+	GetHandleVerifier [0x0x7ff6f5577cdf+117903]
+	GetHandleVerifier [0x0x7ff6f555dbb8+11112]
+	BaseThreadInitThunk [0x0x7ff922e97ac4+20]
+	RtlUserThreadStart [0x0x7ff9234fa8c1+33]
 
+Failed to quit driver, it may have already been closed
 Email notifications disabled. Errors in Vannkvalitet were not sent.
 
