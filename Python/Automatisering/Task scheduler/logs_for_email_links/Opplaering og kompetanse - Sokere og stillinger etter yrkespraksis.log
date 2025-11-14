@@ -218,24 +218,9 @@ Final dataset: 2419 rows, 6 columns
 Saving as: soekere_stillinger_yrkespraksis.csv
 Value columns for comparison: ['Antall sÃÂ¸kere', 'Antall utlyste stillinger']
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\soekere_stillinger_yrkespraksis.csv
-[2025-11-13 14:05:10] Row count changed: 1981 -> 2419
-
-Added rows (showing up to 10):
-Antall skere: 76.0, Antall utlyste stillinger: 33.0, Dato: 2025-10-01, Geografisk enhet: Agder, Niv: Fylker, Yrke: Akademiske yrker
-Antall skere: 322.0, Antall utlyste stillinger: 174.0, Dato: 2025-10-01, Geografisk enhet: Agder, Niv: Fylker, Yrke: Barne- og ungdomsarbeid
-Antall skere: 563.0, Antall utlyste stillinger: 171.0, Dato: 2025-10-01, Geografisk enhet: Agder, Niv: Fylker, Yrke: Butikk- og salgsarbeid
-Antall skere: 470.0, Antall utlyste stillinger: 42.0, Dato: 2025-10-01, Geografisk enhet: Agder, Niv: Fylker, Yrke: Bygg og anlegg
-Antall skere: 408.0, Antall utlyste stillinger: 379.0, Dato: 2025-10-01, Geografisk enhet: Agder, Niv: Fylker, Yrke: Helse, pleie og omsorg
-Antall skere: 549.0, Antall utlyste stillinger: 96.0, Dato: 2025-10-01, Geografisk enhet: Agder, Niv: Fylker, Yrke: Industriarbeid
-Antall skere: 774.0, Antall utlyste stillinger: , Dato: 2025-10-01, Geografisk enhet: Agder, Niv: Fylker, Yrke: Ingen yrkesbakgrunn eller uoppgitt
-Antall skere: 286.0, Antall utlyste stillinger: 63.0, Dato: 2025-10-01, Geografisk enhet: Agder, Niv: Fylker, Yrke: IngeniÃÂ¸r- og ikt-fag
-Antall skere: 73.0, Antall utlyste stillinger: 1.0, Dato: 2025-10-01, Geografisk enhet: Agder, Niv: Fylker, Yrke: Jordbruk, skogbruk og fiske
-Antall skere: 310.0, Antall utlyste stillinger: 58.0, Dato: 2025-10-01, Geografisk enhet: Agder, Niv: Fylker, Yrke: Kontorarbeid
-... and 428 more rows
-File uploaded successfully: Data/03_Arbeid og nÃÂ¦ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/soekere_stillinger_yrkespraksis.csv
-Email notifications disabled. Updates for soekere_stillinger_yrkespraksis.csv were not sent.
+[2025-11-14 08:08:45] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\soekere_stillinger_yrkespraksis.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Sokere_og_stillinger_etter_yrkespraksis.log
 
 Script completed successfully!
