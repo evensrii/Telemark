@@ -2,29 +2,29 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-An unexpected error occurred during setup: Message: session not created: probably user data directory is already in use, please specify a unique value for --user-data-dir argument, or don't use --user-data-dir; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Ingen driftsmeldinger dukket opp, continuing...
+An unexpected error occurred during setup: Message: 
 Stacktrace:
-	GetHandleVerifier [0x0x7ff6f556e8e5+80021]
-	GetHandleVerifier [0x0x7ff6f556e940+80112]
-	(No symbol) [0x0x7ff6f52f060f]
-	(No symbol) [0x0x7ff6f53302d4]
-	(No symbol) [0x0x7ff6f532a2d7]
-	(No symbol) [0x0x7ff6f537f040]
-	(No symbol) [0x0x7ff6f537e7b0]
-	(No symbol) [0x0x7ff6f5371003]
-	(No symbol) [0x0x7ff6f53395d1]
-	(No symbol) [0x0x7ff6f533a3f3]
-	GetHandleVerifier [0x0x7ff6f582dc7d+2960429]
-	GetHandleVerifier [0x0x7ff6f5827f3a+2936554]
-	GetHandleVerifier [0x0x7ff6f5848977+3070247]
-	GetHandleVerifier [0x0x7ff6f55883ce+185214]
-	GetHandleVerifier [0x0x7ff6f558fe1f+216527]
-	GetHandleVerifier [0x0x7ff6f5577b24+117460]
-	GetHandleVerifier [0x0x7ff6f5577cdf+117903]
-	GetHandleVerifier [0x0x7ff6f555dbb8+11112]
-	BaseThreadInitThunk [0x0x7ff922e97ac4+20]
-	RtlUserThreadStart [0x0x7ff9234fa8c1+33]
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff60f2fa235
+	0x7ff60f052650
+	0x7ff60ede16dd
+	0x7ff60ee3a27e
+	0x7ff60ee3a58c
+	0x7ff60ee8ed77
+	0x7ff60ee8baba
+	0x7ff60ee2b0ed
+	0x7ff60ee2bf63
+	0x7ff60f325d60
+	0x7ff60f31fe8a
+	0x7ff60f341005
+	0x7ff60f06d73e
+	0x7ff60f074e3f
+	0x7ff60f05b7e4
+	0x7ff60f05b99f
+	0x7ff60f041908
+	0x7ff922e97ac4
+	0x7ff9234fa8c1
 
-Failed to quit driver, it may have already been closed
 Email notifications disabled. Errors in Vannkvalitet were not sent.
 
