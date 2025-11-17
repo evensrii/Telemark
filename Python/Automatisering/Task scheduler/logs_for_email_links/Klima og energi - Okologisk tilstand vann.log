@@ -5,27 +5,26 @@ GITHUB_TOKEN loaded successfully.
 Ingen driftsmeldinger dukket opp, continuing...
 An unexpected error occurred during setup: Message: 
 Stacktrace:
-	GetHandleVerifier [0x0x7ff60cdae8e5+80021]
-	GetHandleVerifier [0x0x7ff60cdae940+80112]
-	(No symbol) [0x0x7ff60cb3060f]
-	(No symbol) [0x0x7ff60cb88854]
-	(No symbol) [0x0x7ff60cb88b1c]
-	(No symbol) [0x0x7ff60cbdc927]
-	(No symbol) [0x0x7ff60cbb126f]
-	(No symbol) [0x0x7ff60cbd968a]
-	(No symbol) [0x0x7ff60cbb1003]
-	(No symbol) [0x0x7ff60cb795d1]
-	(No symbol) [0x0x7ff60cb7a3f3]
-	GetHandleVerifier [0x0x7ff60d06dc7d+2960429]
-	GetHandleVerifier [0x0x7ff60d067f3a+2936554]
-	GetHandleVerifier [0x0x7ff60d088977+3070247]
-	GetHandleVerifier [0x0x7ff60cdc83ce+185214]
-	GetHandleVerifier [0x0x7ff60cdcfe1f+216527]
-	GetHandleVerifier [0x0x7ff60cdb7b24+117460]
-	GetHandleVerifier [0x0x7ff60cdb7cdf+117903]
-	GetHandleVerifier [0x0x7ff60cd9dbb8+11112]
-	BaseThreadInitThunk [0x0x7fffbf197ac4+20]
-	RtlUserThreadStart [0x0x7fffbfc8a8c1+33]
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff60f2fa235
+	0x7ff60f052650
+	0x7ff60ede16dd
+	0x7ff60ee3a27e
+	0x7ff60ee3a58c
+	0x7ff60ee8ed77
+	0x7ff60ee8baba
+	0x7ff60ee2b0ed
+	0x7ff60ee2bf63
+	0x7ff60f325d60
+	0x7ff60f31fe8a
+	0x7ff60f341005
+	0x7ff60f06d73e
+	0x7ff60f074e3f
+	0x7ff60f05b7e4
+	0x7ff60f05b99f
+	0x7ff60f041908
+	0x7ff922e97ac4
+	0x7ff9234fa8c1
 
 Email notifications disabled. Errors in Vannkvalitet were not sent.
 

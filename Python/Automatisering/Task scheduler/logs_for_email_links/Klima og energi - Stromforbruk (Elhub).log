@@ -2,29 +2,33 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2025-11-13 08:13:15] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
-[2025-11-13 08:13:15] GITHUB_TOKEN loaded successfully.
-[2025-11-13 08:13:32] Latest date in GitHub files: 2025-11-10
-[2025-11-13 08:13:32] Querying data for 2025-11-11
-[2025-11-13 08:13:33] API Response status code: 200
+[2025-11-17 08:12:39] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+[2025-11-17 08:12:39] GITHUB_TOKEN loaded successfully.
+[2025-11-17 08:12:52] Latest date in GitHub files: 2025-11-12
+[2025-11-17 08:12:52] Querying data for 2025-11-13
+[2025-11-17 08:12:53] API Response status code: 200
+[2025-11-17 08:12:53] Querying data for 2025-11-14
+[2025-11-17 08:12:54] API Response status code: 200
+[2025-11-17 08:12:54] Querying data for 2025-11-15
+[2025-11-17 08:12:55] API Response status code: 200
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\2025.csv
-[2025-11-13 08:13:41] Row count changed: 384285 -> 385509
+[2025-11-17 08:13:04] Row count changed: 386733 -> 390405
 
 Added rows (showing up to 10):
-Antall mlere: 295.0, Forbruk (kWh): 1617.27, Gruppe: NÃÂ¦ring (unntatt industri), Knr: 4022, Kommunenavn: Seljord, Tid: 2025-11-10 23:00:00+00:00
-Antall mlere: 82.0, Forbruk (kWh): 227.206, Gruppe: Industri, Knr: 4022, Kommunenavn: Seljord, Tid: 2025-11-10 23:00:00+00:00
-Antall mlere: 2153.0, Forbruk (kWh): 2922.708, Gruppe: Husholdninger, Knr: 4022, Kommunenavn: Seljord, Tid: 2025-11-10 23:00:00+00:00
-Antall mlere: 1664.0, Forbruk (kWh): 12882.6, Gruppe: NÃÂ¦ring (unntatt industri), Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2025-11-10 23:00:00+00:00
-Antall mlere: 7211.0, Forbruk (kWh): 12432.892, Gruppe: Husholdninger, Knr: 4005, Kommunenavn: Notodden, Tid: 2025-11-10 23:00:00+00:00
-Antall mlere: 19521.0, Forbruk (kWh): 30025.293, Gruppe: Husholdninger, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2025-11-10 23:00:00+00:00
-Antall mlere: 843.0, Forbruk (kWh): 4958.902, Gruppe: NÃÂ¦ring (unntatt industri), Knr: 4005, Kommunenavn: Notodden, Tid: 2025-11-10 23:00:00+00:00
-Antall mlere: 191.0, Forbruk (kWh): 2789.406, Gruppe: Industri, Knr: 4005, Kommunenavn: Notodden, Tid: 2025-11-10 23:00:00+00:00
-Antall mlere: 1276.0, Forbruk (kWh): 2122.198, Gruppe: Husholdninger, Knr: 4010, Kommunenavn: Siljan, Tid: 2025-11-10 23:00:00+00:00
-Antall mlere: 540.0, Forbruk (kWh): 173013.72, Gruppe: Industri, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2025-11-10 23:00:00+00:00
-... and 1214 more rows
-Failed to upload file: {'message': 'Bad credentials', 'documentation_url': 'https://docs.github.com/rest', 'status': '401'}
+Antall mlere: 1276.0, Forbruk (kWh): 1987.568, Gruppe: Husholdninger, Knr: 4010, Kommunenavn: Siljan, Tid: 2025-11-12 23:00:00+00:00
+Antall mlere: 7210.0, Forbruk (kWh): 11649.201, Gruppe: Husholdninger, Knr: 4005, Kommunenavn: Notodden, Tid: 2025-11-12 23:00:00+00:00
+Antall mlere: 191.0, Forbruk (kWh): 2693.289, Gruppe: Industri, Knr: 4005, Kommunenavn: Notodden, Tid: 2025-11-12 23:00:00+00:00
+Antall mlere: 841.0, Forbruk (kWh): 4454.312, Gruppe: NÃÂ¦ring (unntatt industri), Knr: 4005, Kommunenavn: Notodden, Tid: 2025-11-12 23:00:00+00:00
+Antall mlere: 19518.0, Forbruk (kWh): 29270.38, Gruppe: Husholdninger, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2025-11-12 23:00:00+00:00
+Antall mlere: 539.0, Forbruk (kWh): 203778.58, Gruppe: Industri, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2025-11-12 23:00:00+00:00
+Antall mlere: 1666.0, Forbruk (kWh): 12197.364, Gruppe: NÃÂ¦ring (unntatt industri), Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2025-11-12 23:00:00+00:00
+Antall mlere: 2153.0, Forbruk (kWh): 2861.803, Gruppe: Husholdninger, Knr: 4022, Kommunenavn: Seljord, Tid: 2025-11-12 23:00:00+00:00
+Antall mlere: 82.0, Forbruk (kWh): 196.607, Gruppe: Industri, Knr: 4022, Kommunenavn: Seljord, Tid: 2025-11-12 23:00:00+00:00
+Antall mlere: 295.0, Forbruk (kWh): 1514.432, Gruppe: NÃÂ¦ring (unntatt industri), Knr: 4022, Kommunenavn: Seljord, Tid: 2025-11-12 23:00:00+00:00
+... and 3662 more rows
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/2025.csv
 Email notifications disabled. Updates for 2025.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\2025.csv
-[2025-11-13 08:18:59] New data detected in 2025.csv and pushed to GitHub.
-[2025-11-13 08:18:59] New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Stromforbruk_(Elhub).log
+[2025-11-17 08:13:28] New data detected in 2025.csv and pushed to GitHub.
+[2025-11-17 08:13:28] New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Stromforbruk_(Elhub).log
 
