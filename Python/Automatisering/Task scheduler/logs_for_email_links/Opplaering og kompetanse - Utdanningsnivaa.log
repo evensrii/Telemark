@@ -5,75 +5,27 @@ GITHUB_TOKEN loaded successfully.
 Request error in Antall 2024 - NÃâ¦: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/09429/
 Query failed for years up to 2025. Retrying with years up to 2024.
 NOTE: This error is perfectly normal - data for 2025 is not yet available in SSB. The script will continue with data up to 2024.
-Antall 2024 - NÃâ¦ JSON-stat data loaded successfully.
-Successfully fetched data for years: ['2024']
-Antall 2020 - 2023 JSON-stat data loaded successfully.
-Antall 2004 - 2019 JSON-stat data loaded successfully.
-Request error in Andel 2024 - NÃâ¦: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/09429/
-Query failed for years up to 2025. Retrying with years up to 2024.
-NOTE: This error is perfectly normal - data for 2025 is not yet available in SSB. The script will continue with data up to 2024.
-Andel 2024 - NÃâ¦ JSON-stat data loaded successfully.
-Successfully fetched data for years: ['2024']
+Request error in Antall 2024 - NÃâ¦: 502 Server Error: Bad Gateway for url: https://data.ssb.no/api/v0/no/table/09429/
+An unrecoverable error occurred: 502 Server Error: Bad Gateway for url: https://data.ssb.no/api/v0/no/table/09429/
+Email notifications disabled. Errors in utdanningsnivaa.py were not sent.
 
-HÃÂ¸yere utdanning (kort eller lang) per region for 2024:
-      Kommune  HÃÂ¸yere utdanning, kort eller lang
-Midt-Telemark                               35.3
-    Porsgrunn                               32.9
-        Skien                               32.3
-    Kviteseid                               31.3
-        Vinje                               30.6
-     Fyresdal                               30.1
-     Notodden                               30.1
-      KragerÃÂ¸                               28.8
-      Seljord                               28.7
-        Tokke                               28.6
-       Siljan                               27.7
-         Nome                               27.3
-     Nissedal                               27.1
-       Bamble                               26.4
-     Hjartdal                               24.6
-         Tinn                               24.6
-    Drangedal                               21.7
-Andel 2020 - 2023 JSON-stat data loaded successfully.
-Andel 2004 - 2019 JSON-stat data loaded successfully.
 
-Direct comparison:
-Local df shape: (13428, 6)
-GitHub df shape: (13428, 6)
-Local df dtypes:
-Kommune           object
-UtdanningsnivÃÂ¥    object
-KjÃÂ¸nn             object
-Variabel          object
-Ãâ¦r                object
-Verdi             object
-dtype: object
-GitHub df dtypes:
-Kommune           object
-UtdanningsnivÃÂ¥    object
-KjÃÂ¸nn             object
-Variabel          object
-Ãâ¦r                object
-Verdi             object
-dtype: object
-DataFrames equal: True
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\utdanningsnivaa.csv
-[2025-11-21 08:06:02] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\utdanningsnivaa.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Utdanningsnivaa.log
-Antall alle fylker siste ÃÂ¥r JSON-stat data loaded successfully.
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃÂ¦ring_og_kompetanse/UtdanningsnivÃÂ¥/utdanningsnivaa.py", line 127, in <module>
+    df_antall_2024_naa = fetch_data(
+                         ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://data.ssb.no/api/v0/no/table/09429/
 
-UtdanningsnivÃÂ¥ fordeling for 2024:
-Total antall personer: 4,019,835
+During handling of the above exception, another exception occurred:
 
-Fordeling per utdanningsnivÃÂ¥:
-                                   nivÃÂ¥  antall  prosent
-                 VideregÃÂ¥ende skolenivÃÂ¥ 1498705    37.28
-    Universitets- og hÃÂ¸gskolenivÃÂ¥, kort  981389    24.41
-                         GrunnskolenivÃÂ¥  954215    23.74
-    Universitets- og hÃÂ¸gskolenivÃÂ¥, lang  427698    10.64
-                           FagskolenivÃÂ¥  139573     3.47
-Uoppgitt eller ingen fullfÃÂ¸rt utdanning   18255     0.45
-Andel personer i landet utenom Oslo som har hÃÂ¸yere utdanning (kort eller lang) er 35.0 %
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃÂ¦ring_og_kompetanse/UtdanningsnivÃÂ¥/utdanningsnivaa.py", line 147, in <module>
+    raise RuntimeError("A critical error occurred during data fetching, stopping execution.")
+RuntimeError: A critical error occurred during data fetching, stopping execution.
 
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃ¦ring_og_kompetanse/UtdanningsnivÃ¥/utdanningsnivaa.py` failed. (See above for error)
