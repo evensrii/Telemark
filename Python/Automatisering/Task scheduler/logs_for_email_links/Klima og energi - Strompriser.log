@@ -3,31 +3,10 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
-Found missing date ranges: [(Timestamp('2025-11-24 00:00:00'), Timestamp('2025-11-24 00:00:00'))]
-Fetching data for missing periods...
--- Processing gap: 2025-11-24 to 2025-11-24 --
-Fetching energy prices from 2025-11-24 to 2025-11-24...
-  Fetching chunk from 2025-11-24 to 2025-11-24...
-Total price data points collected: 96
-Fetching exchange rates...
-Successfully fetched 1 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2025-11-25 08:12:08] Row count changed: 1789 -> 1793
-
-Added rows (showing up to 10):
-EUR/MWh: 69.98375, NOK/KWh: 0.825423339375, NOK/MWh: 825.423339375, kurs: 11.7945, time: 2025-11-24
-EUR/MWh: 100.65541666666667, NOK/KWh: 1.187180311875, NOK/MWh: 1187.180311875, kurs: 11.7945, time: 2025-11-25
-EUR/MWh: 145.62291666666667, NOK/KWh: 1.717549490625, NOK/MWh: 1717.5494906249999, kurs: 11.7945, time: 2025-11-26
-EUR/MWh: 96.03695652173913, NOK/KWh: 1.1327078836956521, NOK/MWh: 1132.707883695652, kurs: 11.794500000000001, time: 2025-11-27
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
-Email notifications disabled. Updates for strompriser.csv were not sent.
+[2025-11-26 08:12:05] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 Script completed successfully!
-
-
-Errors/Warnings:
-D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py:211: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
-  df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
 
