@@ -28,8 +28,48 @@ error_messages = []
 url = "https://services.geodataonline.no/arcgis/rest/services/Geomap_UTM33_EUREF89/GeomapBedrifter/FeatureServer/0/query"
 token = "alm9T3FRLOXU7oEELqWZyp8uDqK8Tr_lPYeEssbtcFg."
 
-# Define the fields to retrieve
-fields = "objectid,stfstatusfirmaid,orfkode,firorgnr,konsernopporgnr,konsernoppnavn,firorgnrknytning,firfirmanavn1,fylfylkenavn,fylkesnavn,kommune_id,firkommnr,kommunenavn,knrkommnavn,firantansatt,ansatt_kd,firoms,firdriftres,etablertdato,sektorkode,status_po,nakkategori1,naktittel1,nakgruppetekst1,nakkategori2,nakkategori3,nakkategori4,nakkategori5,koordinat_y,koordinat_x,load_date"
+# Column name mappings: API field name → Output column name
+# The KEYS define which fields to fetch from the API
+# The VALUES define what to name them in the output
+# The ORDER of entries dictates the column order in the final CSV
+
+custom_column_names = {
+    'firfirmaid': 'firfirmaid',
+    'stfstatusfirmaid': 'Bedriftsstatus',
+    'orfkode': 'Organisasjonsform',
+    'firorgnr': 'firorgnr',
+    'firorgnrknytning': 'firorgnrknytning',
+    'konsernopporgnr': 'konsernopporgnr',
+    'konsernoppnavn': 'Navn på overliggende enhet',
+    'konserntopporgnr': 'Orgnr til toppenhet',
+    'firfirmanavn1': 'Bedriftsnavn',
+    'fylfylkenavn': 'Fylkesnavn',
+    'fylkesnavn': 'fylkesnavn',
+    'kommune_id': 'kommune_id',
+    'firkommnr': 'Kommunenummer',
+    'kommunenavn': 'kommunenavn',
+    'knrkommnavn': 'Kommunenavn',
+    'firantansatt': 'Antall ansatte',
+    'ansatt_kd': 'Intervallkode antall ansatte',
+    'firoms': 'Omsetning i hele tusen',
+    'firdriftres': 'Driftsresultat i hele tusen',
+    'etablertdato': 'Dato for etablering',
+    'sektorkode': 'Sektorkode fra SSB',
+    'status_po': 'Privat eller offentlig',
+    'nakkategori1': 'NACE-kategori (Første siffer)',
+    'naktittel1': 'Nacetittel1',
+    'nakgruppetekst1': 'Bransjegruppe 1',
+    'nakkategori2': 'NACE-kategori (To første siffer)',
+    'nakkategori3': 'NACE-kategori (Tre første siffer)',
+    'nakkategori4': 'NACE-kategori (Fire første siffer)',
+    'nakkategori5': 'NACE-kode (numerisk)',
+    'koordinat_y': 'Y (UTM33)',
+    'koordinat_x': 'X (UTM33)',
+    'load_date': 'load_date'
+}
+
+# Generate the fields string from the dictionary keys
+fields = ",".join(custom_column_names.keys())
 
 # First, get the total count of records
 count_params = {
@@ -53,7 +93,7 @@ with tqdm(total=total_records, desc="Fetching records") as pbar:
         params = {
             "where": "fylfylkenavn='Telemark'",
             "outFields": fields,
-            "orderByFields": "firantansatt DESC",
+            "orderByFields": "firfirmaid DESC",  # Sort by firfirmaid descending
             "returnGeometry": "true",
             "f": "json",
             "resultOffset": str(offset),
@@ -76,30 +116,38 @@ with tqdm(total=total_records, desc="Fetching records") as pbar:
 
 # Process the collected features
 if all_features:
-    # Create name to alias mapping from the first response
-    name_to_alias = {field['name']: field['alias'] for field in data['fields']}
-    
     # Extract features data (attributes and geometry)
     features_data = []
     for feature in all_features:
         # Combine attributes and geometry into one dictionary
         feature_dict = feature['attributes'].copy()
         if 'geometry' in feature:
-            feature_dict['geometry_x'] = feature['geometry']['x']
-            feature_dict['geometry_y'] = feature['geometry']['y']
+            feature_dict['koordinat_y'] = feature['geometry']['y']  # Note: koordinat_y is Y in UTM33
+            feature_dict['koordinat_x'] = feature['geometry']['x']  # Note: koordinat_x is X in UTM33
         features_data.append(feature_dict)
     
     # Create DataFrame
     df = pd.DataFrame(features_data)
     
-    # Rename columns using the name_to_alias mapping
-    # Add geometry columns to the mapping if they exist
-    if 'geometry_x' in df.columns:
-        name_to_alias['geometry_x'] = 'X (UTM33)'
-        name_to_alias['geometry_y'] = 'Y (UTM33)'
-
+    # Build the final column rename mapping
+    # Start with API's default aliases
+    name_to_alias = {field['name']: field['alias'] for field in data['fields']}
+    
+    # Override with custom names from our dictionary
+    for raw_name, custom_name in custom_column_names.items():
+        if raw_name in df.columns:
+            name_to_alias[raw_name] = custom_name
+    
     # Rename the columns
     df = df.rename(columns=name_to_alias)
+    
+    # Reorder columns based on custom_column_names dictionary order
+    # Get the renamed column names in the order they appear in the dictionary
+    ordered_columns = [custom_column_names[key] for key in custom_column_names.keys() if key in name_to_alias.keys()]
+    # Add any remaining columns not in the dictionary
+    remaining_columns = [col for col in df.columns if col not in ordered_columns]
+    final_column_order = ordered_columns + remaining_columns
+    df = df[final_column_order]
 
     # Ensure that the correct column names exist
     if 'X (UTM33)' in df.columns and 'Y (UTM33)' in df.columns:
@@ -185,48 +233,12 @@ org_form_dict = {
 # Replace organization form codes with their full names
 df['Organisasjonsform'] = df['Organisasjonsform'].map(org_form_dict)
 
-# Rename columns
-#df = df.rename(columns={"Bedriftsnavn": "Company_name",})
-
-# Print column names
-# print(df.columns)
-
-# Change order of columns
-column_list = [
-    'objectid',
-    'Bedriftsnavn',
-    'Organisasjonsnummer',
-    'Bedriftsstatus',
-    'Organisasjonsform',
-    'Antall ansatte',
-    'Intervallkode antall ansatte',
-    'Orgnr til overliggende enhet',
-    'Orgnr overliggende enhet',
-    'Navn på overliggende enhet',
-    'Fylkesnavn',
-    'fylkesnavn',
-    'kommune_id',
-    'Kommunenummer',
-    'kommunenavn',
-    'Kommunenavn',
-    'Omsetning i hele tusen',
-    'Driftsresultat i hele tusen',
-    'Dato for etablering',
-    'Privat eller offentlig',
-    'Sektorkode fra SSB',
-    'Nacetittel1',
-    'Bransjegruppe 1',
-    'NACE-kategori (Første siffer)',
-    'NACE-kategori (To første siffer)',
-    'NACE-kategori (Tre første siffer)',
-    'NACE-kategori (Fire første siffer)',
-    'NACE-kode (numerisk)',
-    'load_date',
-    'Lon',
-    'Lat'
-]
-
-df = df[column_list]
+# Remove duplicates
+initial_count = len(df)
+df = df.drop_duplicates()
+duplicates_removed = initial_count - len(df)
+print(f"✓ Removed {duplicates_removed:,} duplicate rows")
+print(f"  Final dataset: {len(df):,} unique records")
 
 # In column "NACE-kategori (To første siffer)", ensure all numbers are two digits
 df['NACE-kategori (To første siffer)'] = df['NACE-kategori (To første siffer)'].astype(str).str.zfill(2)
@@ -276,8 +288,6 @@ df[nace_columns] = df[nace_columns].astype(str)
 # Replace decimal points with commas in Lon and Lat columns
 df['Lon'] = df['Lon'].astype(str).str.replace('.', ',')
 df['Lat'] = df['Lat'].astype(str).str.replace('.', ',')
-
-
 
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
