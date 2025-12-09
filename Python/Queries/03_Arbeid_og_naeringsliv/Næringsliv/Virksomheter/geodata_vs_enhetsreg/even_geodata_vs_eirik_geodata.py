@@ -14,9 +14,10 @@ import os
 
 # %%
 # Define file paths
-data_folder = r"c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Data\03_Arbeid og næringsliv\02_Næringsliv\Virksomheter\geodata_vs_enhetsregisteret"
+data_folder = r"c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Data\03_Arbeid og næringsliv\02_Næringsliv\Virksomheter"
+data_subfolder = os.path.join(data_folder, "geodata_vs_enhetsregisteret")
 even_file = os.path.join(data_folder, "geodata_bedrifter_api.csv")
-eirik_file = os.path.join(data_folder, "Bedrifter_Telemark_Eirik.csv")
+eirik_file = os.path.join(data_subfolder, "Bedrifter_Telemark_Eirik.csv")
 
 # Load datasets
 print("Loading datasets...")

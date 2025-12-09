@@ -19,7 +19,7 @@ output_path = os.path.join(data_base_path, "enhetsregisteret_laveste_nivaa")
 hovedenheter_path = os.path.join(data_base_path, "enhetsregisteret_hovedenheter.csv")
 underenheter_path = os.path.join(data_base_path, "enhetsregisteret_underenheter.csv")
 validation_path = os.path.join(output_path, "validering_resultater.csv")
-geodata_path = os.path.join(data_base_path, "geodata_vs_enhetsregisteret", "geodata_bedrifter_api.csv")
+geodata_path = os.path.join(data_base_path, "geodata_bedrifter_api.csv")
 
 # Output files
 temp_output_file = os.path.join(output_path, "enhetsregisteret_laveste_nivaa_temp.csv")

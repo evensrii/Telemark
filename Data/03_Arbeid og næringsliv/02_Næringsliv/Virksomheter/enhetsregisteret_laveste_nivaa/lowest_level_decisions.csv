@@ -186,7 +186,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 976304217,Telemarksporten dagligvare AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 925793701,Tipp frakt AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 970314083,Svein harry bakke transport,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
-926818317,Spedify AS,1,False,False,,,No children -> Use level 1
+926818317,Spedify AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 983155324,Hotel bryggeparken AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 883168232,Urdarbrønnen sa,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 999256813,Vafos pulp AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
@@ -743,7 +743,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 917315531,Bestpizza AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 922737002,Follow AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 927494310,Mocktail AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
-933042332,Gastrokjell AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 933371778,Lille ludvig AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 995464063,The bull inn AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 921891806,Cemit digital AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
@@ -1047,7 +1046,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 998060338,Telemark næringshage AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 927809141,Generoc AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 963175094,Strukturas AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
-980254364,Midtechnology AS,1,False,True,45.45454545454545,45.45454545454545,"1 vs 3 diff = 45.5% > 20%, no level 2 -> Use level 1"
 985987483,Ranold AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 991282084,Arken Kragerø dyreklinikk AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 921724314,Drift h91 AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
@@ -1997,7 +1995,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 996293912,Peking house AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 998680387,Dong fang restaurant AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 925851779,Soften AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
-931461419,Onkl sam drift AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
+931461419,Onklsam AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 931698591,Nedenom AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 919134216,Crystallize AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
 922140251,Kaukus AS,3,False,True,0.0,0.0,1 vs 3 diff = 0.0% ≤ 20% -> Use level 3
@@ -2218,7 +2216,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 914208947,Åmot eigendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 914221420,Halvorsen elektro invest,1,False,False,,,No children -> Use level 1
 914354625,Arne olav tveit AS,1,False,False,,,No children -> Use level 1
-914573548,Fristad invest AS,1,False,False,,,No children -> Use level 1
+914573548,Fristad invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 914605059,Kranringen holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 914619483,Sira holding AS,1,False,False,,,No children -> Use level 1
 914739977,Strømtangveien eiendom AS,1,False,False,,,No children -> Use level 1
@@ -2459,10 +2457,10 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 926398393,Moltemyr invest AS,1,False,False,,,No children -> Use level 1
 926440829,Folsland AS,1,False,False,,,No children -> Use level 1
 926447718,Matuva AS,1,False,False,,,No children -> Use level 1
-926448021,Pmathisen AS,1,False,False,,,No children -> Use level 1
+926448021,Pmathisen AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 926453432,Hæhre holding AS,1,False,False,,,No children -> Use level 1
 926453874,Ingar kaasa invest AS,1,False,False,,,No children -> Use level 1
-926505254,Pureinvest AS,1,False,False,,,No children -> Use level 1
+926505254,Pureinvest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 926515543,Amundsen holding AS,1,False,False,,,No children -> Use level 1
 926535315,B.g holding AS,1,False,False,,,No children -> Use level 1
 926543350,T&s audio AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -2690,7 +2688,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 931036599,Haraldseth holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 931040200,Returbukk holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 931052233,Agency moore investment limited,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-931094491,Forsbom holding AS,1,False,False,,,No children -> Use level 1
 931097768,Visdom holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 931098101,Heimon holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 931114557,Jan ivar øygarden holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -3005,7 +3002,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936166172,K rønningen invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936176607,Heibø holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936176836,G/f holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936177352,Weholt holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936177352,Gwl invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936186734,Thorv holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936214096,Brillane AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936226264,Bamble rør holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -3014,6 +3011,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936278078,Rosk invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936285872,Eikelia holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936300782,Dobe holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936317219,Tenn sauna AS,1,False,False,,,No children -> Use level 1
 936317952,Global solution investment limited nuf,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936326625,Cingo holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936331416,C. riise invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -3025,20 +3023,28 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936445055,Rudskjær AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936449816,Erem invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936463606,Ballestad holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936469612,Viljys AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936493173,Håvards holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936494080,Baldrian holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936495567,Temel holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936504906,Mytech holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936521134,Islandwind holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936529879,Richvest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936530923,Sortedal holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936538657,Ajn AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936566782,Ja nesland holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936566847,Christoffer vatle holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936575501,Nestangen holding AS,1,False,False,,,No children -> Use level 1
-936576001,Nisevic holding AS,1,False,False,,,No children -> Use level 1
+936575501,Nestangen holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936576001,Nisevic holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936587380,Ndoka holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936606733,Skrea holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936606768,Team saga invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936609074,Tvemo invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936609090,Spirdal holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936618391,Hrhartveit invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 944951393,Sg utleie AS,1,False,False,,,No children -> Use level 1
 945907916,Jan stenersen holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-945911107,Per håkonsen a/s,1,False,False,,,No children -> Use level 1
+945911107,Per håkonsen a/s,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 950783079,Zoo miljø engros vidar andersen,1,False,False,,,No children -> Use level 1
 954585662,Kragerø elektro service dagfinn haslund,1,False,False,,,No children -> Use level 1
 964723001,Salgsbodene bente blyseth,1,False,False,,,No children -> Use level 1
@@ -3098,7 +3104,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 989589164,Tall holding AS,1,False,False,,,No children -> Use level 1
 989878204,Bli holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 989966502,Gh consulting AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-989994573,Trell invest AS,1,False,False,,,No children -> Use level 1
 990424403,Kjeldal holding AS,1,False,False,,,No children -> Use level 1
 990666962,Marniko holding AS,1,False,False,,,No children -> Use level 1
 991276807,Tomtegubben AS,1,False,False,,,No children -> Use level 1
@@ -3788,8 +3793,9 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935433541,Stian bergland,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935614589,Reinskås drift as tvangsavviklingsbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935620511,Skafså gartneri og hageland as tvangsavviklingsbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936172547,Vollen gard haugetuft,1,False,False,,,No children -> Use level 1
+936172547,Vollen gard haugetuft,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936565719,Jørn magnus tveit,1,False,False,,,No children -> Use level 1
+936588034,Poppes multiservice,1,False,False,,,No children -> Use level 1
 954325482,Byggmester helge olav hellstad,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 955678591,Høydahl hundefor og utstyr,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 961173833,Knut midtbø,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -4031,6 +4037,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935217369,Apalnes gården v helvig og gøtzsche,1,False,False,,,No children -> Use level 1
 935775744,Dagalid fjøllmat,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936330371,Rinde gård - schia,1,False,False,,,No children -> Use level 1
+936544932,Erik myrene,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969101246,Gunnar hagen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969280078,Reidun grønskei ødegård,1,False,False,,,No children -> Use level 1
 969368536,Kjell torbjørn steinhaug,1,False,False,,,No children -> Use level 1
@@ -4404,7 +4411,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 934608313,Stall steen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935612683,Madelen brustuen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935879337,Ida marie øie sporthorses,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-969782588,Øyvind solli,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+969782588,Øyvind solli,1,False,False,,,No children -> Use level 1
 970499555,Brog stine og nina ans,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970904727,Kjetil hynne,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 981686861,Hyni stall og stutteri m i sørensen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -4515,7 +4522,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935516986,Skogsrød - moland gård,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935875056,Velo tradisjonshåndverk,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936235778,Nils olav w jensen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936298826,Lysa gård ole robin vige,1,False,False,,,No children -> Use level 1
+936298826,Lysa gård ole robin vige,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 943368406,Mimose AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 955340442,Kristen olav valen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 956876087,Dagfinn lien,1,False,False,,,No children -> Use level 1
@@ -4920,6 +4927,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935678110,Lill leerstang,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935724457,Volgin i bandaksli,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935999774,Busy bee dubowski,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936333931,Sortedal haugstuen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969249820,David w parkinson,1,False,False,,,No children -> Use level 1
 969328658,Nykås per,1,False,False,,,No children -> Use level 1
 969471167,Norli olav,1,False,False,,,No children -> Use level 1
@@ -4972,7 +4980,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 914308135,Anne haugerud,1,False,False,,,No children -> Use level 1
 920193579,Eirik idland knatterud,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 945240059,Thorstein buer,1,False,False,,,No children -> Use level 1
-967821799,David roe,1,False,False,,,No children -> Use level 1
+967821799,David roe,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969101416,Tjønntveit ivar t,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969151421,Haugo olav t,1,False,False,,,No children -> Use level 1
 969188163,Oterkiil dag anders,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -5240,6 +5248,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 928295583,Østerholt - kleppe jaktlag,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929852001,Øyfjell jeger og fisk,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930022969,Vinje jaktlag,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+930028657,Skogshorn jaktlag,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930042994,Lauvikfjell jaktlag,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930486973,Knutsen oppsyn og natur forvaltning,1,False,False,,,No children -> Use level 1
 930597570,Brattefjell-vindeggen villrein- og utmarksutval,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -5927,10 +5936,12 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936088988,Lars vegar valen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936127797,Sti gård da,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936256309,Askedalen gård AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936322107,Selstad gard dyrland,1,False,False,,,No children -> Use level 1
+936275532,Villjord da,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936322107,Selstad gard dyrland,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936375286,Gerd ellen lundgreen haukvik,1,False,False,,,No children -> Use level 1
 936399894,Ellen aure skogedal,1,False,False,,,No children -> Use level 1
 936532381,Jan roger valbø,1,False,False,,,No children -> Use level 1
+936627641,Ingar tjønnås,1,False,False,,,No children -> Use level 1
 952374621,Inger lise franck bakke,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 952385003,Gunnar holtan,1,False,False,,,No children -> Use level 1
 958228430,Gunnar reinslo skogsdrift,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -5986,7 +5997,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 969102382,Rolf t sundgot,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969102412,Arne midtgarden,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969102471,Groven jon,1,False,False,,,No children -> Use level 1
-969102501,Nedre helleberg sam v/o helleberg,1,False,False,,,No children -> Use level 1
 969102544,Røra hans erik,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969102625,Gautefald hans jørgen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969102897,Halvor solberg,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -6011,7 +6021,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 969151502,Johnsen kjell arne,1,False,False,,,No children -> Use level 1
 969151596,Midtbø tore,1,False,False,,,No children -> Use level 1
 969151677,Grimstvedt kristian,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-969151723,Arve levang,1,False,False,,,No children -> Use level 1
 969151804,Flogstad olav,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969151847,Harald oddnes,1,False,False,,,No children -> Use level 1
 969162393,Knut krossbakken,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -6274,7 +6283,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 970158146,Ole einar amlie,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970175628,Bergland torkil maskin,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970175652,Sivert graasvoll,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-970175725,Klosterskogen v/marianne tinnes,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+970175725,Klosterskogen v/marianne tinnes,1,False,False,,,No children -> Use level 1
 970176128,Lundeberg turid,1,False,False,,,No children -> Use level 1
 970213651,Arvid straume,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970213775,Høidalen traktorlag,1,False,False,,,No children -> Use level 1
@@ -6333,7 +6342,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 970557563,Tore lohne,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970559922,Aase aslak,1,False,False,,,No children -> Use level 1
 970559973,Gjærum leif,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-970560564,Torjus o haukvik inngår i dødsbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+970560564,Torjus o haukvik inngår i dødsbo,1,False,False,,,No children -> Use level 1
 970560874,Ingebjørg jamgrav,1,False,False,,,No children -> Use level 1
 970564020,Øyvind slåen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970566015,Olav st ramberg,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -7249,7 +7258,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 989629204,Midt-Telemark steinproduksjon arne verpe,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 992221240,Ryntveit eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 992614412,Norsk pukkservice AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-997700392,F h pukk AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929240073,Rørvik the green-pipes mining company Norway,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 918687629,Gulliksen engineering AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 927385457,Gullheim holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -7282,7 +7290,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 931012207,Hagvoll gård AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 824756902,Candis AS,1,False,False,,,No children -> Use level 1
 913701143,Hjartdal bygdemylle sa,1,False,False,,,No children -> Use level 1
-814012352,Arntzens bakeri AS,1,False,False,,,No children -> Use level 1
 823142412,Sigrun nyvold,1,False,False,,,No children -> Use level 1
 825870652,Barkauskiené Kragerø sakotis,1,False,False,,,No children -> Use level 1
 826693762,Vindfjells,1,False,False,,,No children -> Use level 1
@@ -7647,6 +7654,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 980427692,Nordic image rue,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 981307623,Grenland web design pedersen,1,False,False,,,No children -> Use level 1
 981682513,Endless rain da,1,False,False,,,No children -> Use level 1
+986386432,Maxprint AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 989253689,Frium holding AS,1,False,False,,,No children -> Use level 1
 946883026,Asbjørn j. hansen a/s,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 990560331,Mari haugerud,1,False,False,,,No children -> Use level 1
@@ -7777,7 +7785,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 920259979,Erik næss sveis og vedlikehold,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 920439942,Johanssons mek,1,False,False,,,No children -> Use level 1
 921508115,Telesveis folkert van der ploeg,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-922173311,Erlend henne,1,False,False,,,No children -> Use level 1
+922173311,Erlend henne,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 922371725,Nival stian nilsen,1,False,False,,,No children -> Use level 1
 922599955,Bjørn vaa sveisetjenester,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 922641625,Bertils verktøysliperi AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -7903,6 +7911,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935181666,Frito AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935650984,Skarweld AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 987316039,Agility group AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+825288252,Myra plast AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 918147632,Gozzi boats AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 922215952,Rl marine AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969964643,Ronny andresen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -7923,7 +7932,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 919929871,Voldum's replank håkon voldum simonsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 920868940,Pål halvorsen møbeltrekker,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 920915493,Glød holding Kragerø AS,1,False,False,,,No children -> Use level 1
-923198199,Not møbelsnekkeri AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 925569941,Skårdal skap & snekker tjenester,1,False,False,,,No children -> Use level 1
 926773836,Not møbelsnekkeri as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 926788558,Skien kjøkken og møbellakkering AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -7998,6 +8006,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 917325391,Monica lorentsen caspara smykker,1,False,False,,,No children -> Use level 1
 917458197,Anette skaugen guldager smykker,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 924326123,Kvilelaus smykker kristin dalen,1,False,False,,,No children -> Use level 1
+927659174,Kristin skjerven eggesvik,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 931027514,By aga,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932327864,Svensdalen handel,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932492121,Harrisdesign nuf,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -8777,7 +8786,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 923768386,Valen invest AS,1,False,False,,,No children -> Use level 1
 923790594,Jvz kvalitet AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 923795316,Stensrud byggrestaurering,1,False,False,,,No children -> Use level 1
-923801111,Skagerak-entreprise eiendom as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 923855165,Prisme bygg AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 923958118,Clausen bygg,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 924188588,Byggservice larsen,1,False,False,,,No children -> Use level 1
@@ -8788,7 +8796,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 924483547,Homme håndverkstjenester,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 924516453,Bjørn inge johansen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 924548339,Christian pallesen bygg AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-924558660,Brubakken multiservice,1,False,False,,,No children -> Use level 1
+924558660,Brubakken multiservice,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 924617454,Daniel pedersen bygg,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 924636637,T-tr AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 924669128,"Sr vedlikehold, sondre ramtoft",1,False,False,,,No children -> Use level 1
@@ -8916,7 +8924,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 929623096,Findal utbygging AS,1,False,False,,,No children -> Use level 1
 929684621,Kristiansen multiservice,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929762630,Wojtas snekker service,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-929861205,Telemarks bygg as tvangsavviklingsbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929879333,Notbygg AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929977955,Johnny wedde,1,False,False,,,No children -> Use level 1
 930007277,Røsæg flisespikkeri,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -8929,7 +8936,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 930240869,Tømrar kåre hagen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930267260,Tømrer/gartner bjørn dagsrud,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930295752,Bjørn andreas olsen - blank fasade,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-930350001,Tt byggservice AS,1,False,False,,,No children -> Use level 1
 930381276,Wolckmar holding AS,1,False,False,,,No children -> Use level 1
 930488259,Ho bernard tømrerfirma,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930605964,Pedersen totalbygg,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -9084,6 +9090,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936380948,Dockys service,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936403565,Evensen bygg og vedlikehold,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936526896,Grenland bygg service figlon,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936603424,Sl entreprenør as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 943740461,Follaug og eriksrød ans,1,False,False,,,No children -> Use level 1
 947192701,Kiil AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 953186020,Byggmesterfirmaet finseth og ramsdalen ans,1,False,False,,,No children -> Use level 1
@@ -9738,7 +9745,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 928650995,A.hauen holding AS,1,False,False,,,No children -> Use level 1
 928670740,Emil lia,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928776875,Even ødegård auråen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-928778592,Arild fossheim,1,False,False,,,No children -> Use level 1
+928778592,Arild fossheim,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928934683,Nilsen,1,False,False,,,No children -> Use level 1
 928980057,William thingstad service,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928995119,Feam holding AS,1,False,False,,,No children -> Use level 1
@@ -9897,6 +9904,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936415849,Hans trygve nilsen maskin,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936455476,Moen anlegg,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936551300,Midt-Telemark graveservice as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+939292799,Viking laks AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 942958900,Tinn betongvarefabrikk AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 944053212,Kaljord maskin,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 946302309,Mtv-prosjekt v/tveiten,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -10000,7 +10008,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 980382125,Steinsrud maskin AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 980443817,Entreprenør hans-øyvind sisjord,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 980696294,Jon asbjørn hegna,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-980801179,Knut jacob rød,1,False,False,,,No children -> Use level 1
+980801179,Knut jacob rød,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 981294513,Jo arthur andersen,1,False,False,,,No children -> Use level 1
 981521692,Helge momrak,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 982010535,Øverdal maskin AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -10367,7 +10375,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 927764105,Cazo holding AS,1,False,False,,,No children -> Use level 1
 928023680,Pedersen rørservice AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928101517,Eivindshaug invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-928211347,Haugen rør og søk,1,False,False,,,No children -> Use level 1
+928211347,Haugen rør og søk,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928327477,Frier vvs AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928522172,Rørlegger helleberg AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928643026,Rørlegger bergan AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -10375,7 +10383,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 928765601,Timland industri & anlegg,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929051637,Peeters energiservice,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929208269,Bringa holding AS,1,False,False,,,No children -> Use level 1
-929223632,Nour barazi,1,False,False,,,No children -> Use level 1
 929358384,Samhold rørmontasje AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929386507,Kremer rørlegger maskin service,1,False,False,,,No children -> Use level 1
 929610377,R&n holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -10434,6 +10441,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935983851,Vest Telemark varmepumpe AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936235352,Hermansen vvs & vedlikehold AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936374638,Rakkestad rørservice,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936618715,Gisholt rør,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 943091900,Kjell dahlsrud vvs-senter AS,1,False,False,,,No children -> Use level 1
 948907887,Bjørn valles ventilasjonsservice,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 952874985,Rørlegger john haugerud innehaver bjørg haugerud,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -10473,7 +10481,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 997023757,Trulssen vvs AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 997342801,Jan henning hørte,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 997710355,Rørleggermester nærum AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-998030854,Varmepumpemontøren AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 998083249,Frodes montasje & vedlikehold AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 998151724,Jansen freriksen vvs teknikk AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 998545862,Stabil holding AS,1,False,False,,,No children -> Use level 1
@@ -10517,7 +10524,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 833877232,Jvg jarle gulliksen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 835259552,Tre babas enderud,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 835272362,Amber bygg valaitis,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-836322592,Corecraft musial,1,False,False,,,No children -> Use level 1
+836322592,Corecraft musial,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 844631642,Tømrer magnar larsen AS,1,False,False,,,No children -> Use level 1
 856514552,Tor egil tangvald,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 869249092,Traen olav dale,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -10739,7 +10746,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 932492814,Cello håndverk AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932707403,K o tvedt,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932743485,Andreas woxen holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-932807165,Abelvik bygg og montering,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932872439,J.o. brubakken,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933111075,Hemo bygg AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933112195,A woxen eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -11158,7 +11164,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935540798,Vestmar blikkenslager AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935814995,Nye takfornying Telemark AS,1,False,False,,,No children -> Use level 1
 936118712,Neverdal blikk,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-946513598,Mem-tek AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+946513598,Mem-tek AS,1,False,False,,,No children -> Use level 1
 954426491,Egil engravslia,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 955459946,Ventilasjonsmontasje einar therkelsen,1,False,False,,,No children -> Use level 1
 963442017,H pettersen eft ans,1,False,False,,,No children -> Use level 1
@@ -11404,7 +11410,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 927582171,Haakonsen polymers,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928235246,E-no AS,1,False,False,,,No children -> Use level 1
 932474298,Ytreland holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936103464,Konsultasjon selstø,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 971596724,Arvid mattson agenturer arvid mattson,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 981797825,Kirknes svetlana ivanovna,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 982187486,Bengt- arne tangen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -11448,6 +11453,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 931127187,Vindruen AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933101320,Karaffelen AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933556913,Hallvardsson AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936554229,Sommelier thorsteinsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 979371810,Neon da,1,False,False,,,No children -> Use level 1
 922690294,Bakeverket international AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 987932066,Bakelink AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -11526,7 +11532,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 926942107,Luminix AS,1,False,False,,,No children -> Use level 1
 932180596,Dm møbler AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932926709,Søvik lys,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-934371313,Grenland kjøkken & bad as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 957167330,Sweetheart ans,1,False,False,,,No children -> Use level 1
 967785032,Illuminor AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 977060842,Diving & shipping melvin kvamme,1,False,False,,,No children -> Use level 1
@@ -11535,7 +11540,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 997459822,Gold AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 818458312,Obscura AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 823615272,Varmslåtta gård AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-825288252,Myra plast AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 834290472,Pantero games ltd nuf,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 870313632,Tor pettersen elektronikk,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 889008822,Mi holding AS,1,False,False,,,No children -> Use level 1
@@ -11696,7 +11700,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 930960063,Flexpro szymanski,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 931346962,Proffin AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932576430,Ø brødsjø fiskeutstyr,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-934630831,Weatherprotect as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934856511,Jk energy AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935430194,Pmk plastweld haugstad,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 954096068,Mase strømaggregater AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -11757,7 +11760,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 929000757,Lakkspesialisten Skien AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929228685,Ekholt agentur,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930666386,Nilsen export,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-934850114,Batteri olsen Skien as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935269938,Igl coatings Norway AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 965930124,Veros bilutstyr robert kolberg,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 977314593,Bil & dekkimport AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -11813,7 +11815,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 932745143,Handelskompaniet AS,1,False,False,,,No children -> Use level 1
 933148173,Stein & va grossisten AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934998553,Keser walnut blanks,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-935211328,Norsk timbur as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935815975,Nordrox as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 940545129,Gransherad skogeierlag,1,False,False,,,No children -> Use level 1
 948559587,Lino trading AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -12131,6 +12132,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 934059964,Holte gårdsmat AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935602645,Lien gård AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935896002,Prabhakar ayurveda,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936632785,Bø asiamat as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 955661168,Anne k gundersen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 956319633,Revitek ans,1,False,False,,,No children -> Use level 1
 964159181,Bø solsenter anne-kari stigen stenstad,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -12235,6 +12237,8 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935243165,Vinjebue as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935968771,Oda mariell tønnesland,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936022545,Stine strand moen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936287824,Seworganized marte harling nilsen enk,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936580246,Mahboubihajiagha persi enk,1,False,False,,,No children -> Use level 1
 961815622,Madame bolette patch og gave AS,1,False,False,,,No children -> Use level 1
 971582413,Blått til lyst AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 976047826,Bernina søm og strikk AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -12361,7 +12365,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935895901,Thommesen interiør,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935980364,Nordstil AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936165427,Blomsterslottet AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936314007,Kolstad consulting,1,False,False,,,No children -> Use level 1
+936314007,Kolstad consulting,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936504663,Boulogne & co,1,False,False,,,No children -> Use level 1
 962964125,Kragerø kjøkkensenter roar sundkvist,1,False,False,,,No children -> Use level 1
 968144871,Setalid interiør,1,False,False,,,No children -> Use level 1
@@ -12514,6 +12518,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 933714136,Elliva creation vågen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934873971,Galleri valen Kragerø AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935751888,Color design as tvangsavviklingsbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936505333,Rock n roll heaven mats sundbø,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 951920576,Inge kaafjeld hobbyservice,1,False,False,,,No children -> Use level 1
 956548233,E-76 musikk ans,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 966914211,Helland musikksenter AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -12522,7 +12527,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 979896468,New 4 you lena may,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 980675327,Kunstinvestering sjur ajer,1,False,False,,,No children -> Use level 1
 982490006,Gøran grini,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-985658269,Galleri kleppe,1,False,False,,,No children -> Use level 1
+985658269,Galleri kleppe,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 986225366,Popmerk da,1,False,False,,,No children -> Use level 1
 989231693,Ljos holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 990146764,Havgap tone sunde sanchez,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -12542,7 +12547,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 834830272,Protekstil innehaver knut olsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 834994402,Habitus clothing AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 835636232,Lykkesøm hornsletten,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-836336992,Gulliksrud urbanwear,1,False,False,,,No children -> Use level 1
+836336992,Gulliksrud urbanwear,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 887632502,Mettes brudedesign mette v. hem,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 911576805,Pimpyourkid da,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 911873893,Victoria & henrik AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -12631,6 +12636,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935512719,Chn.smykker nilsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936038476,Vallera amundsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936105289,Solstad bunadsverksted AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936314562,Dresss of Norway v/ nguyen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936335187,Vesle adde AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936336817,Stilk drift AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936573096,Khaworn thai style,1,False,False,,,No children -> Use level 1
@@ -12831,7 +12837,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 932934949,Vinici mehlum,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933469476,Tkk service AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934153553,Ellefsen luxurystore,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-934166191,Mohammed,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934365585,Medieval den stangeland,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935230152,Telemark gull senter as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 939199497,Ø saastad ur-optikk AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -12901,6 +12906,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 934342860,Garasjeved grindalen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935672139,Foss /of. int,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935902975,Lunde vedservice,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936286267,Retroruss AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 944956719,Graceland AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 954226328,Trendor import anlaug helene johnsen,1,False,False,,,No children -> Use level 1
 965848037,Inter fish da,1,False,False,,,No children -> Use level 1
@@ -12925,6 +12931,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 826624302,Grønn sirkel w darrud,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 829160552,Antikk duestien AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 835871142,Loppo 5 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+836556542,Kråkegull,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 874472522,Barnas antikvariat og bokhandel da,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 885514812,Skrot tor hylland,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 914185521,Store mæla gård antik da,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -13131,7 +13138,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 934023587,Auto lx AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934042514,Bruktbil 24-7 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934061314,Rasch bil og utleie,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-934205308,Turbogrossisten as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934360605,Brystlomma AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934491378,Kaasa bruktbil AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934522796,Autoforum AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -13141,7 +13147,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 934927052,Nielsen auto,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934997603,Outletsenteret AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935040833,Bruktbilxpress as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-935177928,Fremtidbil rezaei,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935190304,Motormarche AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935214521,Ms bil AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935243297,Lk autoinvest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -13162,7 +13167,9 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936034470,Signature auto AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936051936,Norvei bil AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936232221,Auto vision shabanhaxhaj,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936327648,Hansens bruktbilhjelp- bruktbilhjelpen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936482821,Cw auto AS,1,False,False,,,No children -> Use level 1
+936592597,Heistad bilforum alnoeimi,1,False,False,,,No children -> Use level 1
 937823673,Bilkjøp støhlmacher & co ans,1,False,False,,,No children -> Use level 1
 940025400,Robertsen & solberg bilsenter AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 950593792,S & v automobilprodukter AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -13444,7 +13451,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 930590371,Jakobsen taxi,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930598739,Negusse yosief transport,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930682500,Nuur trans,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-930727814,Al-jashammy,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930768464,Tangen basar,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930784532,Ahmadshah samim,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 931880225,Burale transport,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -13543,6 +13549,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 814286142,Thor e. grotle transport AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 818898762,M&t transport AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 821472652,Mb transport milosevic,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+822747302,Viking transport AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 823834152,Vf transport v/vidar færstaul,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 823985002,Rønningen transport,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 825263322,Ole dagfinn ytterbø,1,False,False,,,No children -> Use level 1
@@ -13693,6 +13700,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936385486,Eirik kaasa,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936389007,Yam as tvangsavviklingsbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936392148,Gauksrud service og utleie,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936612180,Teigen miljøservice,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936847293,Skårnes transport AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 948327872,Solstad transport AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 951429090,Svensrud transport AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -13945,6 +13953,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 927941058,Anona AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929592735,J o velure,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930894117,Notodden lufthavn eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936269184,Marius kvalmo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 920349285,Sagstad stevedore & port consulting,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 967766550,Taklift AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 987212535,Arne thunes,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -14054,7 +14063,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 912861694,Svai-gruppen AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 913724054,Haukeli turistheim AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 917216754,Dalen bed & breakfast AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-917778663,Helge solberg holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+917778663,Helge solberg holding AS,1,False,False,,,No children -> Use level 1
 917826978,Bø hotell eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 918035079,Bø lagerhotell AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 918129650,Morgedal hotell drift AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -14241,6 +14250,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 834997762,Ramen huset AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 835264122,Pa sytten as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 836141202,Viva napoli Notodden ismail,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+836285492,Skogmo grill ahmed,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 836463552,Skjelsvik thaifood takeaway AS,1,False,False,,,No children -> Use level 1
 880252852,Napoli mcnoreg jamshid omrani,1,False,False,,,No children -> Use level 1
 881567792,Grillkafen hege maabø,1,False,False,,,No children -> Use level 1
@@ -14421,6 +14431,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936415318,Merze AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936480713,Nielsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936566987,Brian boru Skien as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936620655,Ruchi Notodden AS,1,False,False,,,No children -> Use level 1
 942684509,Aarnesgruppen holding AS,1,False,False,,,No children -> Use level 1
 950011092,Bb hjørnet bente halvorsen,1,False,False,,,No children -> Use level 1
 950396733,Tele restaurantsenter ans,1,False,False,,,No children -> Use level 1
@@ -14514,7 +14525,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 916051549,Baba sushi ba van duong,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 916234074,Sambuza bakeri bishar a abdullahi,1,False,False,,,No children -> Use level 1
 917578931,Betten lundgrens tjenester,1,False,False,,,No children -> Use level 1
-918430741,Borgen kokkeservice AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 919428341,Gurella danielsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 919546174,Flatgårds grill,1,False,False,,,No children -> Use level 1
 920028934,Remen fjeldahl,1,False,False,,,No children -> Use level 1
@@ -14552,7 +14562,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935938309,Tullas catering AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935944112,Elin k kristiansen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935975212,Pp catering as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936283896,Goli mat,1,False,False,,,No children -> Use level 1
+936283896,Goli mat,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 961245028,Oasen reiduns kjøkken reidun svennes,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 981499298,Hilde kokk hilde johannessen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 982321719,Mariannes kjøkken marianne løberg larsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -14631,7 +14641,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 931714910,Oluf rasmussen AS,1,False,False,,,No children -> Use level 1
 931997289,Northowl education da,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935507863,Solaastunet as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-935509211,Skolenøttene normann,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 958353472,Apparatus apelseth,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 965972196,Solaastunet AS,1,False,False,,,No children -> Use level 1
 970552219,Kragerø og skåtøy historielag,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -14744,7 +14753,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936177328,Mika nybu,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936224717,Floen content studio enk,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936306683,Av-team v/bjørn bremdal,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936329918,Debora sandersen,1,False,False,,,No children -> Use level 1
+936329918,Debora sandersen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936382657,Mysil/ abrahamsen media,1,False,False,,,No children -> Use level 1
 980360245,Kerysso film mona hylton produksjoner,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 984370326,Tormod sunde Vinje,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -14916,6 +14925,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 982763622,Tele support paul ernst inngår i dødsbo,1,False,False,,,No children -> Use level 1
 991768602,Radiolink Telemark AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 992361158,Brevik kabelnett,1,False,False,,,No children -> Use level 1
+936103464,Konsultasjon selstø,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936186807,Konsulent thorsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 994812688,Unmo ikt AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 995165724,Atb-nett AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -14951,7 +14961,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 913017757,Madsen it,1,False,False,,,No children -> Use level 1
 913598393,Uniwise Norge,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 913859871,Illeris AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-914458102,Drysep AS,1,False,False,,,No children -> Use level 1
 914581478,Lean maintenance service AS,1,False,False,,,No children -> Use level 1
 914961017,Fjone gard,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 915430031,Paramount decisions AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -15037,7 +15046,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 927650991,Touch soft technology AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 927758547,Coded AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 927759497,Moonhost.eu buraks,1,False,False,,,No children -> Use level 1
-927851067,Jan verhulst,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928307085,E. karlsen automasjon,1,False,False,,,No children -> Use level 1
 928654435,Antili AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928660222,Hamre it solutions,1,False,False,,,No children -> Use level 1
@@ -15111,7 +15119,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 934376331,Teigen development,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934386388,Project nxt AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934821289,Khatuev skyline interface,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-934829964,Jynge setchell mods,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934988175,Betten invent AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935130573,Todg AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935234123,Geo go AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -15169,7 +15176,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 988774979,Dat's it! dag andretraaholt,1,False,False,,,No children -> Use level 1
 989251546,Utskauen AS,1,False,False,,,No children -> Use level 1
 989690523,Konsulent øystein nilsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-990269718,Tokke teknologi - aleksander davidsen,1,False,False,,,No children -> Use level 1
+990269718,Tokke teknologi - aleksander davidsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 990941939,Destinasjon skinnarbu AS,1,False,False,,,No children -> Use level 1
 991095322,Paks consulting da,1,False,False,,,No children -> Use level 1
 991316477,Kjetilv it kjetil valen,1,False,False,,,No children -> Use level 1
@@ -15211,7 +15218,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 834820242,Utvikling & invest bårdseng,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 835296172,Reiten logic,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 835643832,Gi_raad atle nygaard,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-836295862,Bak ventures,1,False,False,,,No children -> Use level 1
+836295862,Bak ventures,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 879543002,Nettex sandbeck,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 887944652,Apiteq AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 887951292,Anders nygaard consulting,1,False,False,,,No children -> Use level 1
@@ -15248,7 +15255,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 918278176,Quality nest AS,1,False,False,,,No children -> Use level 1
 918741607,Angell nilsen,1,False,False,,,No children -> Use level 1
 918973796,Marcus kulbeck,1,False,False,,,No children -> Use level 1
-919000201,Lars ellingsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+919000201,Lars ellingsen,1,False,False,,,No children -> Use level 1
 919353287,Celtuno christian mikkelsen,1,False,False,,,No children -> Use level 1
 919378840,Bluesteel holding AS,1,False,False,,,No children -> Use level 1
 919811986,Bitit AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -15383,11 +15390,13 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935849500,Sigint // barland,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935912938,Ingerøyen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935956978,Kabi ai bikic,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+935964059,Utviklingsløsninger Norge AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936004865,Giesen it drift,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936177212,Kodern AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936364233,Nakhla,1,False,False,,,No children -> Use level 1
 936466265,Garsjø consulting,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936533493,Addo-antwi group,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936597483,Niltech AS,1,False,False,,,No children -> Use level 1
 946070513,Rolf n. terkelsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 946070602,Data kompetanse da,1,False,False,,,No children -> Use level 1
 960447948,Datalent AS,1,False,False,,,No children -> Use level 1
@@ -15481,7 +15490,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 929149343,Eipo AS,1,False,False,,,No children -> Use level 1
 934929748,Nordavind group AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935819547,Unlimit as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936547435,Clearnord AS,1,False,False,,,No children -> Use level 1
+936547435,Clearnord AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936109640,Nilsen creative,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 980211959,Kunnskap og kompetanseutvikling randi kroken,1,False,False,,,No children -> Use level 1
 986069860,Trygdemedisinsk senter Telemark svein eirik skåle,1,False,False,,,No children -> Use level 1
@@ -15756,7 +15765,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 997850262,Rosland invest ii AS,1,False,False,,,No children -> Use level 1
 997850319,Nilsve invest AS,1,False,False,,,No children -> Use level 1
 998049148,Ibenor AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-998255864,Fredrik lervik invest AS,1,False,False,,,No children -> Use level 1
+998255864,Feev AS,1,False,False,,,No children -> Use level 1
 998515858,Jeg venture AS,1,False,False,,,No children -> Use level 1
 998906717,Pbj holding AS,1,False,False,,,No children -> Use level 1
 998906733,Tckc holding AS,1,False,False,,,No children -> Use level 1
@@ -15778,7 +15787,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 976304322,Telemark forsikring AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 813598272,Jaka eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 813820552,Pancom property AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-816810442,Vml holding AS,1,False,False,,,No children -> Use level 1
 816861012,Kbv holding AS,1,False,False,,,No children -> Use level 1
 817083072,Gulliksen-eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 817731562,Triar invest ara nuf,1,False,False,,,No children -> Use level 1
@@ -15945,7 +15953,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 924868597,Maskinkontroll holding AS,1,False,False,,,No children -> Use level 1
 924910968,G.a eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 924949457,Evensen og sønner AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-925028983,Sagamoen eiendom AS,1,False,False,,,No children -> Use level 1
 925129275,Knutsen og halvorsen invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 925175137,Lulzime eiendom AS,1,False,False,,,No children -> Use level 1
 925195588,Strandsletta AS,1,False,False,,,No children -> Use level 1
@@ -16064,7 +16071,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936558070,Limi utvikling AS,1,False,False,,,No children -> Use level 1
 936558356,Strømdal utvikling AS,1,False,False,,,No children -> Use level 1
 936562825,Rugtvedt lagerseksjon AS,1,False,False,,,No children -> Use level 1
-936571298,Vinje kro eiendom AS,1,False,False,,,No children -> Use level 1
+936571298,Vinje kro eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936792804,Tor eiendom AS,1,False,False,,,No children -> Use level 1
 944783059,Bryns eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 945915293,Ans lacolina,1,False,False,,,No children -> Use level 1
@@ -16132,7 +16139,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 991367519,Brødrene mylius eiendom AS,1,False,False,,,No children -> Use level 1
 991655670,Sønderland holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 992048239,Tokke invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-992106565,Tge AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+992106565,Eskilt AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 992842482,Campane AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 993356107,B holding AS,1,False,False,,,No children -> Use level 1
 993507423,Kamagra holding AS,1,False,False,,,No children -> Use level 1
@@ -16192,7 +16199,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 825369112,Fornebuveien 1-3 invest AS,1,False,False,,,No children -> Use level 1
 825511962,Trosvik eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 825590862,Lensebakken holding AS,1,False,False,,,No children -> Use level 1
-825717072,Finnroi AS,1,False,False,,,No children -> Use level 1
 826007362,Holtarstaulen AS,1,False,False,,,No children -> Use level 1
 826109742,Frier vest holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 826335882,Grenlandsporten AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -16376,7 +16382,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 923797343,Nedre lunde utbygging AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 923857389,Salen utvikling AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 923980857,Kjelingnuten AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-923997512,Pans veg tomt AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+923997512,Pans veg tomt AS,1,False,False,,,No children -> Use level 1
 924000007,Heimgard AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 924548916,Ahp holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 924605278,Bk utvikling AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -16387,7 +16393,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 924783672,Gkv23 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 924879157,Uvdal apartments AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 924927224,Halvarpåsen AS,1,False,False,,,No children -> Use level 1
-925034290,Aaltvedt bru AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+925034290,Aaltvedt bru AS,1,False,False,,,No children -> Use level 1
 925060348,Menstad utbygging AS,1,False,False,,,No children -> Use level 1
 925108030,B14-15 Kragerø AS,1,False,False,,,No children -> Use level 1
 925146110,Åfoss utvikling AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -16407,11 +16413,11 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 925803286,Lomodden utvikling AS,1,False,False,,,No children -> Use level 1
 925814245,Propertymill AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 925897744,Hasseleidet gård AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-925924679,Nielve AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+925924679,Nielve AS,1,False,False,,,No children -> Use level 1
 925928658,Langmyra holding AS,1,False,False,,,No children -> Use level 1
 925993530,Birtedalen utvikling AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 926015745,Da vinskiåsen næring AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-926019856,Øyekast bolig AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+926019856,Øyekast bolig AS,1,False,False,,,No children -> Use level 1
 926039318,Bjørkøya hytter AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 926311700,Silva maskin & eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 926371754,Hallingporten properties AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -16656,14 +16662,14 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 991412743,Bergo AS,1,False,False,,,No children -> Use level 1
 991426353,Bitumark bygg og eigedomsutvikling AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 991437991,Mur og tømmer bygg AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-991569979,Solliheia hyttegrend AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+991569979,Solliheia hyttegrend AS,1,False,False,,,No children -> Use level 1
 991700307,Rjukan næringspark AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 991812067,Foundation AS,1,False,False,,,No children -> Use level 1
 991961380,Mh utvikling AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 992192046,Fmb utvikling AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 992212330,Fløtningen park AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 992252308,Fjellstrand senter AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-992253371,Solaas utvikling AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+992253371,Solaas utvikling AS,1,False,False,,,No children -> Use level 1
 992258330,Næring og hytteservice AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 992445920,Furuheim hyttegrend AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 992496517,Japan invest AS,1,False,False,,,No children -> Use level 1
@@ -16693,7 +16699,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 996651142,Schia holding AS,1,False,False,,,No children -> Use level 1
 996785173,A til å utvikling AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 996877620,Buerhaven trinn 4 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-996992454,To prosjekt AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 997391454,Gautefalltomter AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 997393309,Acb eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 997447247,Seder AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -16702,14 +16707,14 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 997721284,Måsafjell utvikling AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 997878019,Ødegården panorama AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 998001358,Blika eigedom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-998057051,Kaki international trading corporation AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+998057051,Kaki international trading corporation AS,1,False,False,,,No children -> Use level 1
 998304679,Vestfjorden eiendom AS,1,False,False,,,No children -> Use level 1
 998360943,Team Telemark eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 998531187,Varden utvikling AS,1,False,False,,,No children -> Use level 1
 998565057,Bjarnasonbygget AS,1,False,False,,,No children -> Use level 1
 998588022,Nobo utbygging AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 998924316,Rypelia AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-999069924,Thh eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+999069924,Thh eiendom AS,1,False,False,,,No children -> Use level 1
 999229743,Versvikvegen 10 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 999250351,Klostergata 30 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 999312888,Lønnebakke eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -17605,7 +17610,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 925240400,All in preflop AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 925262412,Asset 17 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 925262439,Asset 21 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-925273325,Slenta eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 925281565,Investart AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 925331724,Kan-eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 925348066,Buers eiendom,1,False,False,,,No children -> Use level 1
@@ -17715,7 +17719,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 926768409,Bjørkelund utvikling AS,1,False,False,,,No children -> Use level 1
 926769170,Samfosa AS,1,False,False,,,No children -> Use level 1
 926794310,Klarahuset arneberg,1,False,False,,,No children -> Use level 1
-926797816,Bjørnegården 1 AS,1,False,False,,,No children -> Use level 1
+926797816,Bjørnegården 1 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 926798685,Holberg holding AS,1,False,False,,,No children -> Use level 1
 926836706,Fjellstø bolig AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 926907816,Eikja holding AS,1,False,False,,,No children -> Use level 1
@@ -17886,8 +17890,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 929096002,Tivers holding AS,1,False,False,,,No children -> Use level 1
 929110420,Investia AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929129385,Selma utvikling AS,1,False,False,,,No children -> Use level 1
-929157168,B5 næringspark AS,1,False,False,,,No children -> Use level 1
-929158164,B2 næringspark AS,1,False,False,,,No children -> Use level 1
 929161211,Lårdal grendehus,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929165284,Stiftelsen holbergs gate 7a,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929169522,Amundsen fane eiendom,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -17962,7 +17964,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 930061573,Sanssoucivegen 18 AS,1,False,False,,,No children -> Use level 1
 930065161,Forberg eiendomsselskap AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930065625,Te service AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-930068969,Lemon agency AS,1,False,False,,,No children -> Use level 1
+930068969,Lemon agency AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930081809,Gullbringvegen 10 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930081981,Tfh eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930084190,Mmb eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -18197,7 +18199,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 934112628,Døvikveien 22 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934128745,Bellman eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934138171,Buers boligutleie AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-934144570,Lede ringdalskogen AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934155114,Ferjegata 1 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934192168,Myldr estate 2 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934195841,Bjåland eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -18239,7 +18240,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935316383,Løvstad utleie,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935329604,Heddalsvegen 24 AS,1,False,False,,,No children -> Use level 1
 935373190,Kfm service AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-935375673,Storvand scandinavia AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935392500,God start bolig AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935425697,Holberg-eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935428289,Semsvegen 41d AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -18275,11 +18275,13 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936164390,Lager 167 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936176453,Skagerak property AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936225594,Fristad eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936311237,Rødmyrjordet 16 s13 AS,1,False,False,,,No children -> Use level 1
+936305520,Lot eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936311237,Rødmyrjordet 16 s13 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936386865,Agv AS,1,False,False,,,No children -> Use level 1
 936391273,Ekstrand g v eiendom AS,1,False,False,,,No children -> Use level 1
 936482090,Lundekroken eiendom bjørnstad,1,False,False,,,No children -> Use level 1
 936539718,Grasmyrhallen AS,1,False,False,,,No children -> Use level 1
+936547478,Fikkjebakke lager AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936595944,Leirvollen 1 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 937110375,Falkum matsenter AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 937226675,Eon 85 AS,1,False,False,,,No children -> Use level 1
@@ -19120,7 +19122,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 995899795,G & c eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 995934426,Graasvoll fastigheter,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 995950634,Borgar kittilsen eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-995955822,Holbergs gate 5 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 995955997,Fjellstø drift AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 995971933,Jønholtdalen garasjelag sa,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 995975645,Porsgrunn næringspark AS,1,False,False,,,No children -> Use level 1
@@ -19542,6 +19543,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936404928,Steinslandsveien veilag,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936405711,Apalhaugen felleslag,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936493068,Telemark takst & konsultasjon AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936556248,Sameiet nystulvatn veilag,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 956674891,Bratsberg landmandsforretning AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 965142045,Real bygg AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 966527331,Hermansen eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -19841,7 +19843,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 998469864,Omlids regnskap,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 998537045,Grenland regnskap AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 944524207,Chanette AS,1,False,False,,,No children -> Use level 1
-812277812,Anders aks consulting,1,False,False,,,No children -> Use level 1
+812277812,Anders aks consulting,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 813300362,Galtung kompetanseutvikling AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 814529452,Gap consulting AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 816642612,Holte og lia holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -19849,7 +19851,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 819277672,Maxmin AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 819954712,Telemark consulting AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 820180372,Butterfly`s AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-820246012,Innovasjon360 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+820246012,Tfo AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 822689442,Enhancher AS,1,False,False,,,No children -> Use level 1
 823736762,Growthiogen invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 824919992,Think & grow rich nordics hajdari,1,False,False,,,No children -> Use level 1
@@ -20284,6 +20286,8 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936441394,Nova nexus AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936474993,Wilhelmsen rådgivning,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936555365,Led effektivt svendsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936597459,Salus consult AS,1,False,False,,,No children -> Use level 1
+936598498,Reframe lab AS,1,False,False,,,No children -> Use level 1
 936766749,Revisorteam AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 939589937,Metacom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 940352193,Tele-mat lunde AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -20348,7 +20352,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 984818920,Ellen m lyngstad consult,1,False,False,,,No children -> Use level 1
 985211396,Per a svenkesen rådgivningsfirma,1,False,False,,,No children -> Use level 1
 985228221,Plan v AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-985602719,In fidem consulting jan helge østensen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+985602719,In fidem consulting jan helge østensen,1,False,False,,,No children -> Use level 1
 985767327,Bjørn bilberg,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 986236759,Bedriftsagenten AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 986330348,Smb consult AS,1,False,False,,,No children -> Use level 1
@@ -20386,7 +20390,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 989419641,Km invest kristoffer moen,1,False,False,,,No children -> Use level 1
 989557947,Frk condrup,1,False,False,,,No children -> Use level 1
 989629603,Tinn salabim,1,False,False,,,No children -> Use level 1
-989966480,Gambetta AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 989998277,Torhild naustvik,1,False,False,,,No children -> Use level 1
 990205531,Bella futuro oddvar bråthen,1,False,False,,,No children -> Use level 1
 990633029,Portahead AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -20542,6 +20545,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 835417662,Varde rådgivning AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 835602362,Balchen elektrocad,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 836237072,Paunan AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+836274652,Rallar myrvold consulting,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 879843952,Agnar AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 884228212,Torstein tveito inngår i dødsbo,1,False,False,,,No children -> Use level 1
 890281702,K-firma vetle tollefsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -20674,7 +20678,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935185947,Byggmesteren din bulai,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935241162,Ppm prosjekt Porsgrunn AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935407788,Løvsjø AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-935412196,Jan stian bjåen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935722799,Jsb anlegg og konsulenttjenestar AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935816297,Morten moen konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936007422,Nerdlab solutions - nenseth,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -20856,7 +20859,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 917841918,Bolstad engineering,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 917845832,Sanna im,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 917877904,Bergsund invest AS,1,False,False,,,No children -> Use level 1
-917977941,Kvervel AS,1,False,False,,,No children -> Use level 1
 917996628,Ef click systems da,1,False,False,,,No children -> Use level 1
 918034382,Kelda automation technology AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 918045775,Batec AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -20966,7 +20968,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 927306638,Amh industriservice AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 927434172,Upcycle technologies AS,1,False,False,,,No children -> Use level 1
 927440709,Norenergi gruppen AS,1,False,False,,,No children -> Use level 1
-927505479,Anne sætre kaasa,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 927612887,Hms AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 927690357,Isdahl engineering,1,False,False,,,No children -> Use level 1
 927810131,Telemark tekniske AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -21093,7 +21094,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935622611,Lekman konsulenttjenester,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935630800,Klev1 as tvangsavviklingsbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935644348,Tangen varde konsult,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-935879140,Ventogrip pedersen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935893453,Kuciak solutions AS,1,False,False,,,No children -> Use level 1
 935927293,Ammonia operations by hansen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936094511,Target by beck AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -21457,7 +21457,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 933761398,Peak lift solutions nilsen-rosenborg,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933802493,Gunnhild gaastjønn,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933906477,Merethe hansen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-933924351,Bundl AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933930173,Bergius-tveit marketing,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933998495,Marius fodnes,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934057147,Helena wyller,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -21497,16 +21496,17 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936136141,Wetterloew,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936195008,Bloom collective AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936270190,Bergland media & sound,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936283713,Damsgaard gymglow,1,False,False,,,No children -> Use level 1
+936283713,Damsgaard gymglow,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936284701,Adele isaksen marketing,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936300278,Nexify crm systems AS,1,False,False,,,No children -> Use level 1
+936300278,Nexify crm systems AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936326641,Imeo AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936345735,Larsen & atienza media content,1,False,False,,,No children -> Use level 1
+936345735,Larsen & atienza media content,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936399770,Innholdsprodusent nora øygarden,1,False,False,,,No children -> Use level 1
 936454720,Karlsen production,1,False,False,,,No children -> Use level 1
 936489184,Dmytro sukach lokal up,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936562701,Markedspraten kristin myrstrand,1,False,False,,,No children -> Use level 1
 936573371,Rl motors luay abbas,1,False,False,,,No children -> Use level 1
+936619037,Mahad abdulle salman,1,False,False,,,No children -> Use level 1
 950769823,Spekter AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 952054155,Lundgreens eiendomsselskap AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 953246694,Karlsen rød reklameservice ans,1,False,False,,,No children -> Use level 1
@@ -21740,14 +21740,13 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 927305356,Tone lise bergheim,1,False,False,,,No children -> Use level 1
 927433540,Jacobsson design,1,False,False,,,No children -> Use level 1
 927640252,Smedsrud visuals,1,False,False,,,No children -> Use level 1
-927763060,Kaos åsulfsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+927763060,Kaos åsulfsen,1,False,False,,,No children -> Use level 1
 927957140,Milos josifovic monumentart,1,False,False,,,No children -> Use level 1
 928594076,Mette heines AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928704297,Smedsrud custom,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929064143,Antje siggelkow,1,False,False,,,No children -> Use level 1
 929113209,Prestvik profilering,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929114140,Sh square AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-929134826,Szama studio rabas,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929207440,Nygård productions,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929409574,Fjellheim medieproduksjon,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929611942,Bjørka kreativt verksted AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -21835,7 +21834,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 927588420,Innholdsprodusent anette jørgensen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928500640,Drømmebolig beate kaupang,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928625710,Lux design vrana,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-928851664,Grenland boligstyling AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929379497,Anstensen oppussing og interiørdesign,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930723363,4dsign interiørarkitekt & lysdesign tjønneng-haukås,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933065529,Bolig design AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -21919,7 +21917,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 922989419,Ormadphoto madsen,1,False,False,,,No children -> Use level 1
 923121811,Øienwphoto simon furuvald øien,1,False,False,,,No children -> Use level 1
 923153659,Petter vetne,1,False,False,,,No children -> Use level 1
-923188800,Semb pedersen service og foto,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 923221956,Wesløy foto marius gravesen,1,False,False,,,No children -> Use level 1
 923256601,Fotograf nadia kukankova,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 923711961,Lia styling,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -21979,7 +21976,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 931028154,Eline nesje,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 931214896,Ian cox wallkandy,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 931434616,Jo bergersen holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-931495844,Kristian kigen (enk),1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 931631462,Odd arvid dalen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932205726,Hans petter eliassen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932341255,Alida rudjord,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -22111,7 +22107,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 930056138,Krarup nilsen consult,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930879371,Jehan misho consulting,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 931533037,Translator kristin svela,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-931764217,Ingunn wolline,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932353318,Gatete consulting,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932501694,Oversetter madeleine karlskås andersen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933031454,Andersen språktjenester,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -22457,12 +22452,13 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935284236,A-b-l holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935366437,A-b-l AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935633443,Bekkhus utleie og handel AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+935757037,Grenland truckservice AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935776244,Skei m&u,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935950112,Larsen maskintjenester holding AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936093221,Seljord bygg & maskinutleige AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936295177,Steinrove AS,1,False,False,,,No children -> Use level 1
-936295185,Bekkefaret heistad AS,1,False,False,,,No children -> Use level 1
-936295207,Myra Bamble AS,1,False,False,,,No children -> Use level 1
+936295177,Steinrove AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936295185,Bekkefaret heistad AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936295207,Myra Bamble AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936378757,Andersen maskinutleie,1,False,False,,,No children -> Use level 1
 936512518,Strukturas equipment AS,1,False,False,,,No children -> Use level 1
 936730299,Bakaas byggutleie AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -22485,7 +22481,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 997029119,Ghl-utleie AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 998726409,Torsbukt AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 999232582,Kvikk utleie AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-915852254,Merdeveien invest AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+915852254,Merdeveien invest AS,1,False,False,,,No children -> Use level 1
 921392028,Frank eriksen holding AS,1,False,False,,,No children -> Use level 1
 921686110,Takbarge AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 983653294,Kragerø event v/roger sten klausen,1,False,False,,,No children -> Use level 1
@@ -22605,6 +22601,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935755565,Pec as tvangsavviklingsbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935829011,Nemas AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936219756,Morten fjelldalen as tvangsavviklingsbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936562329,Heddal bemanningsbyrå nystad,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 980577244,Hans aarbakk,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 988765570,Kongshem AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 988895490,Pe - holding AS,1,False,False,,,No children -> Use level 1
@@ -22747,7 +22744,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 931665111,Jessen guide selskab,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932115190,Elements ahlfors,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932961687,Rauland adventure AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-932978636,Djernæs friluftsvejledning,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933224082,Adventure time janovskis,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933289796,Madsen adventures,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 933520277,Guide sofie sonne mølck,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -22858,7 +22854,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 921477163,Schages vedlikehold,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 922357625,Anders høgli,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 922671826,Solvik malerservice per edvin solvik-ahlgren,1,False,False,,,No children -> Use level 1
-922699801,Bo-partner drift AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+922699801,Ingeniørtakst AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 922702381,Andreas vågslid,1,False,False,,,No children -> Use level 1
 922782296,Karlsen vedlikeholdsservice,1,False,False,,,No children -> Use level 1
 922809372,Ressursteam AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -23013,7 +23009,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936364616,Kristiansen drift og vedlikehold,1,False,False,,,No children -> Use level 1
 936374980,Støen service og utleie AS,1,False,False,,,No children -> Use level 1
 936507328,Halvorsen service,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936573339,Frez AS,1,False,False,,,No children -> Use level 1
+936573339,Frez AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 958669569,Eivind haugan,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969203421,Håkon birkeland,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969782073,Myrhaug olav,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -23180,7 +23176,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 934159543,"Odette blohm, renholdsoperateur odette blohm",1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934179293,Hajbas renhold,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934261623,Meyer vask og service,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-934272536,Buer sr-enhold,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934275098,Antczak brendemo renholdsservice,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934450701,Ans r stoa & sønner renhold,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934830121,Krasnovskyi service,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -23195,6 +23190,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935774721,Danylov renfjord,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935790824,Renhold gosia markielewicz,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935842697,Gjesteklar renhold v/ iversen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+935879140,Ventogrip pedersen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935910919,Gjesteklar renhold v/ sølverød,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935952980,Rønningen renhold,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935961416,Aspenes rydd&rent,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -23343,7 +23339,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 929916107,Eldar hansen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930121347,Ivaniuk moliar,1,False,False,,,No children -> Use level 1
 930262897,Dolynska faino,1,False,False,,,No children -> Use level 1
-930308625,Sybr holding AS,1,False,False,,,No children -> Use level 1
 930541273,Afifa alahmad,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930673722,Hsh - paulsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 930734098,E engvoldsen gartner og vaktmestertjenester,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -23839,6 +23834,8 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936065694,Pt hanne bø,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936286445,Dalen coaching,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936524303,Yoga med bakkerud,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936606946,Sævik yoga,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936610803,Loftsgarden,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969249901,Gottling per,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 971479973,Arken activities hans flaaten,1,False,False,,,No children -> Use level 1
 980459241,Lene wendelborg hørte,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -24060,7 +24057,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 828635492,Fredriksen førstehjelp,1,False,False,,,No children -> Use level 1
 832176842,Årseth brann og førstehjelp,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 832776912,Merethe pisani,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-832915742,Bergans coaching,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+832915742,Bergan mentaltrening,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 833090542,Svendsens helt hjemmelaga,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 833590812,Kursholder hunnestad AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 833758632,Klörudottir,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -24204,6 +24201,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 928992241,Norsk hundesenter AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929005406,Nikolaisen coach og consulting,1,False,False,,,No children -> Use level 1
 929195302,Am hansen-krone consulting,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+929227239,Spillpedagog anine schevig ludviksen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929240987,Helmundsen marine,1,False,False,,,No children -> Use level 1
 929368924,Norsk førstehjelps undervisning AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 929377621,Malmgren - helse og førstehjelp,1,False,False,,,No children -> Use level 1
@@ -24328,6 +24326,8 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936052215,"Gruppeanalytiker vegar nilsen - terapi, kurs og veiledning",1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936070620,Winther hele året,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936257720,Varden ung AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936267904,Gabby kindberg,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936294308,Jakobsen kompetanse,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 953350467,Flere strenger audun farstad,1,False,False,,,No children -> Use level 1
 962333710,Industri & sikkerhetsskolen a b ulve,1,False,False,,,No children -> Use level 1
 964839301,Kjell robertsen,1,False,False,,,No children -> Use level 1
@@ -24535,7 +24535,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 917852847,Divya gupta,1,False,False,,,No children -> Use level 1
 918166785,Margit åkre reite,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 918170804,Eirik helvig,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-918270965,Anette strandlie knai,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 918454101,Lege hilde salen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 918551956,Ommuruca AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 918568786,Lege kine furuheim,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -24713,6 +24712,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935262704,Silje skaara,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935273358,Lege marte valle,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935295157,Lege marcikic,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+935375673,Storvand scandinavia AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935552907,Bakstad legetjenester,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935614856,Oask legetjenester limited nuf,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935798256,Pulsmed dr. farooq,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -24879,6 +24879,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935216966,Isfoss cellular pathology,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935268451,Sonstad mediconsult,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935667658,Telemark spesialistsenter AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936597858,Arbor helse AS,1,False,False,,,No children -> Use level 1
 971322756,Dr kai kise,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 971442840,Bjørn pedersen brauti legekontor,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 971462914,Øyelege bjørn e ellingsen,1,False,False,,,No children -> Use level 1
@@ -25006,6 +25007,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935945852,Tannlege hawer wahab,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936166083,Skien tannhelse 1 AS,1,False,False,,,No children -> Use level 1
 936197280,Skien tannhelse 2 AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936610706,Tannlege knut jore AS,1,False,False,,,No children -> Use level 1
 953150670,Tannlege odd hein aase,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 959541736,Smia AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 966936819,Mehlum eiendom AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -25142,7 +25144,8 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936062261,Psykolog aarhus høglid,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936137393,Psykolog martine furnes,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936203515,Psykologspesialist simen reigstad,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936314805,Psykologspesialist imset,1,False,False,,,No children -> Use level 1
+936314805,Psykologspesialist imset,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936581889,Kverme incrementum psykolog klinikk,1,False,False,,,No children -> Use level 1
 979452551,Psykolog kjell m håkonsen,1,False,False,,,No children -> Use level 1
 979620705,Psykolog karl petter ørvik,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 980554139,Lise antonsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -25406,6 +25409,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 933923150,Osteopat hafskolt,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934829484,Hansen helhetlig helse,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935993997,Aina slåstuen olsen akupunktur,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936115683,Indre kraft hypnoterapi lawniczak,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936196527,Nemus Kviteseid AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936497888,Kiropraktor mikkel kjellemyr kostveit,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 954986861,Bø naturmedisinske institutt jarle botnen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -25703,7 +25707,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 927429527,Silje louise selmer,1,False,False,,,No children -> Use level 1
 927568934,Granheim skjønnhetspleie,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 927600099,Logoped camilla halvorsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-927649357,Laser og velvære AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+927649357,Laser og velvære AS,1,False,False,,,No children -> Use level 1
 927651904,Livsspeilet - robberstad,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 927703300,Flatland førstehjelp,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 928020118,Psykisk helse terapi buer,1,False,False,,,No children -> Use level 1
@@ -25769,7 +25773,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935174996,Patrizio carratta,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935470870,Røsvik helse,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935748720,Fleek as tvangsavviklingsbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936115683,Indre kraft hypnoterapi lawniczak,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936126987,Advitam AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936473350,Betanien hospital Skien AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 945542659,Urd AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -26034,7 +26037,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 986160663,Funksjonshemmedes aktivitetssenter,1,False,False,,,No children -> Use level 1
 986269797,Vinje/haukeli røde kors hjelpekorps,1,False,False,,,No children -> Use level 1
 986508872,Tuzla røde kors,1,False,False,,,No children -> Use level 1
-986730508,Hlf Skien,1,False,False,,,No children -> Use level 1
+986730508,Hørselsforbundet Skien,1,False,False,,,No children -> Use level 1
 987426500,Porsgrunn seilskibs forening,1,False,False,,,No children -> Use level 1
 988423505,Telemark privatomsorg wenche skjelbred,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 988678244,Nissedal røde kors,1,False,False,,,No children -> Use level 1
@@ -26102,7 +26105,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 919294272,Heidi stavrum,1,False,False,,,No children -> Use level 1
 919773243,Eileen stulen thorstensen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 919915765,Sigmund aas,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-919940182,Verdiskaper rune s. alexandersen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+919940182,Ruben peru / rune s. alexandersen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 920406661,Theil inwewin,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 920477895,Peikgjøsund per eirik nagel gjøsund,1,False,False,,,No children -> Use level 1
 920478212,Huseby assistanse,1,False,False,,,No children -> Use level 1
@@ -26202,7 +26205,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 934969847,Dokumentarist jonas dyvik nilsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935312183,Ellen hageman,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935641284,Danielle schönfeldt creative,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936282563,Carea bekk,1,False,False,,,No children -> Use level 1
+936282563,Carea bekk,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 964532397,Tusenkunst hallbjørg strøm,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969367823,Hostvedt ole john,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 969471582,Anne rasch-halvorsen,1,False,False,,,No children -> Use level 1
@@ -26515,6 +26518,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935978165,Vaars samatar digital,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936032664,Just flowers AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936069193,A c starr roligheten,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936302092,Nelissen art,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 955337778,Jorunn marie kvam,1,False,False,,,No children -> Use level 1
 955973089,Visuell reklame johnny winterthun,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 959893942,Sputniks trafikk og musikk AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -27027,6 +27031,8 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936114172,Magnhild klakegg valthorn,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936154719,Vocals,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936231179,Orgelklubben i bø,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936275761,Engangsgrill ans,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936276547,Jovotekst AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936288367,Heimklang,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936296580,Consult - arild weholt,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936392253,Plan b,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -27671,6 +27677,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936055273,Caspersen entertainment,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936146236,Artenes stemme,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936194664,Synken scene,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936303307,Isnes freelance,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 963776713,Viva art music europe morten skjævestad,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 968005065,Tangen media & event geir ståle tangen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 974208563,Lyd og lyssystemer Notodden jørn øystein johansen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -28276,7 +28283,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 999606369,Kragerø og omegn sykkelklubb,1,False,False,,,No children -> Use level 1
 821409632,Flex Siljan AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 827077232,Drangedal treningssenter fredrik monsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-829262932,Tjemsland mind-and body-work,1,False,False,,,No children -> Use level 1
 830041052,Iform Skien AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 899535472,Flex trim & mosjon AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 913202198,Turbo dalen,1,False,False,,,No children -> Use level 1
@@ -28778,6 +28784,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935928346,Mei Skien,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935958164,Aci theology center,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936431283,Skien felleskirkelige forum,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936602800,Den ortodokse misjonen til den hellige kong olav,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970213422,Fjelltun leirsted gautefall,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970343296,Maran ata Norge,1,False,False,,,No children -> Use level 1
 971245379,Foursquare Norge,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -28892,7 +28899,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 989362275,Skotfoss normisjon,1,False,False,,,No children -> Use level 1
 989372416,Skien baptistbarn,1,False,False,,,No children -> Use level 1
 989372882,Skien baptist ungdom,1,False,False,,,No children -> Use level 1
-989404113,Sneltvedt gospelkids,1,False,False,,,No children -> Use level 1
+989404113,Sneltvedt acta,1,False,False,,,No children -> Use level 1
 989541293,Lunde bedehus,1,False,False,,,No children -> Use level 1
 990535639,Porsgrunn kristne råd,1,False,False,,,No children -> Use level 1
 990538557,The way,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -30638,6 +30645,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 983902529,Skiensfjordens trekkspillorkester,1,False,False,,,No children -> Use level 1
 983907547,Brattås ungdomssjakklubb,1,False,False,,,No children -> Use level 1
 983913083,Bjørkedal velforening,1,False,False,,,No children -> Use level 1
+983940846,Lions club Notodden,1,False,False,,,No children -> Use level 1
 983941524,Skiens kunstforening,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 983978924,Skien sjømandsforening,1,False,False,,,No children -> Use level 1
 983982654,Bamble handikaplag,1,False,False,,,No children -> Use level 1
@@ -30915,6 +30923,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 992485493,Menneskerettigheter i Norge,1,False,False,,,No children -> Use level 1
 992497300,Telemark harehundklubb,1,False,False,,,No children -> Use level 1
 992528443,Bølebåtens venner,1,False,False,,,No children -> Use level 1
+992532351,Lauvåsen hytteforening,1,False,False,,,No children -> Use level 1
 992544961,Circle k forhandler forening Telemark,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 992553804,Loge nr 24 baugeid dagsdatter,1,False,False,,,No children -> Use level 1
 992588780,Den indiske kulturforeningen i Telemark,1,False,False,,,No children -> Use level 1
@@ -31120,7 +31129,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 995629941,Brevik og omegn sjømandsforening,1,False,False,,,No children -> Use level 1
 995638517,Rømerverven båtforening,1,False,False,,,No children -> Use level 1
 995672251,Vestkanten grendelag,1,False,False,,,No children -> Use level 1
-995683369,Sauli hyttegrend velforening,1,False,False,,,No children -> Use level 1
+995683369,Sauli hyttegrend velforening,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 995683601,Nhf vest Telemark,1,False,False,,,No children -> Use level 1
 995703343,Hauane vel,1,False,False,,,No children -> Use level 1
 995740125,Isola hytteforening,1,False,False,,,No children -> Use level 1
@@ -31666,7 +31675,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935455693,Service & mekanikk rønningen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935517877,Thomter servicesenter AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935590329,Sandersen motorsenter as tvangsavviklingsbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-935757037,Grenland truckservice AS,1,False,False,,,No children -> Use level 1
 935843502,Privet transport og bilverksted,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935854601,Foliegutta AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935948541,Kbk v/k. berge,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -31674,7 +31682,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936017746,Super bilvask almoghrabi,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936099432,Klyve bilpleie abduxomidov,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936110010,Alfa bilpleie AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936329535,Hammer bilpleie,1,False,False,,,No children -> Use level 1
+936329535,Hammer bilpleie,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936367798,Bilinnredern as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936546625,Gnikk & gnu hansen,1,False,False,,,No children -> Use level 1
 939905596,Slåtta transport,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -31711,7 +31719,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 980577031,Gbb grenland bilbehandeling ans,1,False,False,,,No children -> Use level 1
 980672719,Eek bilpleie og transport,1,False,False,,,No children -> Use level 1
 980940381,Pit lane autoshine da,1,False,False,,,No children -> Use level 1
-981227417,Grenland truckservice AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 981472659,Bø auto humlebrekke,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 981539095,Notodden bilskade ans,1,False,False,,,No children -> Use level 1
 981567544,Autopartner Seljord AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -31797,6 +31804,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 833701932,Spire salong AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 835407802,Lett frisør AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 835670082,M. bakaas,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+836625382,Bøle frisørsalong abdulqadir,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 858709482,Hår kjellern heidi beate haugland,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 869965812,Orawan dame- og herrefrisør,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 878653432,Britt merethe amundsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -31911,7 +31919,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 931951289,Beauty art by jeddipour,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932021676,Anastasiia yuklianiuk,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932095157,Kverndalen frisør pettersen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-932116154,Bøle dame og herrefrisør ahmed,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932204746,Sheila frisør sulaiman,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932271982,Anderson klipp,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 932358174,Mällo hairdressing,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -31953,9 +31960,10 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935891434,"Dema, sauciuniene",1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935917999,Salong bergestig,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936253318,Barclay frisør AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-936300308,Irene dåvøy,1,False,False,,,No children -> Use level 1
+936300308,Irene dåvøy,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936570267,Cao salong 2 AS,1,False,False,,,No children -> Use level 1
 936572707,Frisør johanne nordheim,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936590373,Lun beauty AS,1,False,False,,,No children -> Use level 1
 943016844,Gunns salong gunhild kaasa,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 945011726,Randis hud & fotpleieklinikk dale,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 953666197,Frisørmester knut slaattedahl,1,False,False,,,No children -> Use level 1
@@ -31989,7 +31997,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 970284400,Ella marie nerbø,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970314180,Trine's klipperi trine berg-nilsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970358641,Anne's frisør anne kristin kronborg,1,False,False,,,No children -> Use level 1
-970376143,Bøe tone lonar,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970384316,Treungen dame- og herrefrisør,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970438173,Rosa luxemburg ans,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 970438556,Elis v/eli kvendbø,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -32198,7 +32205,6 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 934790014,Kvålen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 934997778,Dk beauty AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935027837,Blues byen frisør ahmad abdoul wahed alibrahim,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
-935209722,Frøken botoks as konkursbo,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935214424,Beautycenter liapina,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935217938,Beauty advisor aina bakken,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 935349214,Panchenko nail,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -32509,6 +32515,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 935996651,Viskjer multiservice,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936142508,Rexten hundeskole,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936235484,Hovden service,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936274781,Opsahl servicetjenester,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 936438768,Klangwerk AS,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 953927896,Erik svendsen,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
 964112894,Vigeland consulting roy opseth,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
@@ -33612,9 +33619,7 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 835551172,Skogsbilveglaget grytstøylvegen sa,1,False,False,,,No children -> Use level 1
 835995852,Skui takst AS,1,False,False,,,No children -> Use level 1
 836265432,Sætreveien veilag,1,False,False,,,No children -> Use level 1
-836274652,Rallar myrvold consulting,1,False,False,,,No children -> Use level 1
 836284852,Smartley charge studentbedrift,1,False,False,,,No children -> Use level 1
-836285492,Skogmo grill ahmed,1,False,False,,,No children -> Use level 1
 836290992,Skogmo auto 2025 - 2026 ungdomsbedrift,1,False,False,,,No children -> Use level 1
 836304462,Grave elektro,1,False,False,,,No children -> Use level 1
 836416902,Niels de ruijter,1,False,False,,,No children -> Use level 1
@@ -33884,23 +33889,8 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936219519,Lunde mekanikk og sveis ungdomsbedrift,1,False,False,,,No children -> Use level 1
 936235379,Cleanview studentbedrift,1,False,False,,,No children -> Use level 1
 936247040,Wam-tk-studentbedrift,1,False,False,,,No children -> Use level 1
-936267904,Gabby kindberg,1,False,False,,,No children -> Use level 1
-936269184,Marius kvalmo,1,False,False,,,No children -> Use level 1
-936274781,Opsahl servicetjenester,1,False,False,,,No children -> Use level 1
-936275532,Villjord da,1,False,False,,,No children -> Use level 1
-936275761,Engangsgrill ans,1,False,False,,,No children -> Use level 1
-936276547,Jovotekst AS,1,False,False,,,No children -> Use level 1
 936280528,Bumpy ride studentbedrift,1,False,False,,,No children -> Use level 1
-936286267,Retroruss AS,1,False,False,,,No children -> Use level 1
-936287824,Seworganized marte harling nilsen enk,1,False,False,,,No children -> Use level 1
-936294308,Jakobsen kompetanse,1,False,False,,,No children -> Use level 1
 936296424,Nordiquewater studentbedrift,1,False,False,,,No children -> Use level 1
-936302092,Nelissen art,1,False,False,,,No children -> Use level 1
-936303307,Isnes freelance,1,False,False,,,No children -> Use level 1
-936305520,Lot eiendom AS,1,False,False,,,No children -> Use level 1
-936314562,Dresss of Norway v/ nguyen,1,False,False,,,No children -> Use level 1
-936327648,Hansens bruktbilhjelp- bruktbilhjelpen,1,False,False,,,No children -> Use level 1
-936333931,Sortedal haugstuen,1,False,False,,,No children -> Use level 1
 936349684,Fasit ungdomsbedrift,1,False,False,,,No children -> Use level 1
 936365205,Enter studentbedrift,1,False,False,,,No children -> Use level 1
 936367259,Christensen omni elektro,1,False,False,,,No children -> Use level 1
@@ -33929,11 +33919,11 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936469973,Nordic nersund,1,False,False,,,No children -> Use level 1
 936472222,Iversen nummer 8,1,False,False,,,No children -> Use level 1
 936473385,Vegar sundby,1,False,False,,,No children -> Use level 1
+936478220,Fiber catch ungdomsbedrift,1,False,False,,,No children -> Use level 1
 936478611,Shopstop ungdomsbedrift,1,False,False,,,No children -> Use level 1
 936483321,Mille emilie thorsen,1,False,False,,,No children -> Use level 1
 936502687,Balac capital,1,False,False,,,No children -> Use level 1
 936503063,Hurtado giner communication strategist,1,False,False,,,No children -> Use level 1
-936505333,Rock n roll heaven mats sundbø,1,False,False,,,No children -> Use level 1
 936507190,Hundefrisør lena teplytska,1,False,False,,,No children -> Use level 1
 936508561,Jobbmatch hm mina,1,False,False,,,No children -> Use level 1
 936514162,Tone turnbull,1,False,False,,,No children -> Use level 1
@@ -33948,16 +33938,24 @@ Org. nr.,Navn,Level Used,Has Level 2,Has Level 3,Pct Diff 1v2,Pct Diff 1v3,Decis
 936540775,Ugly bites ungdomsbedrift,1,False,False,,,No children -> Use level 1
 936541437,Ekornveien holding AS,1,False,False,,,No children -> Use level 1
 936543731,Johannsen og nansen ungdomsbedrift,1,False,False,,,No children -> Use level 1
-936544932,Erik myrene,1,False,False,,,No children -> Use level 1
 936546005,Budeia juvskås eigedom,1,False,False,,,No children -> Use level 1
-936547478,Fikkjebakke lager AS,1,False,False,,,No children -> Use level 1
-936554229,Sommelier thorsteinsen,1,False,False,,,No children -> Use level 1
 936556582,Sud hjeljord da,1,False,False,,,No children -> Use level 1
 936557066,Vexta media da,1,False,False,,,No children -> Use level 1
 936560695,Graver møvig,1,False,False,,,No children -> Use level 1
-936562329,Heddal bemanningsbyrå nystad,1,False,False,,,No children -> Use level 1
+936561055,Egerdahl talentverkstedet,1,False,False,,,No children -> Use level 1
+936561624,Fra z. waseem,1,False,False,,,No children -> Use level 1
+936563112,Henning nygaard,1,False,False,,,No children -> Use level 1
+936570879,Jegerhjelpen av nystein,1,False,False,,,No children -> Use level 1
 936571328,Alula naturformidling AS,1,False,False,,,No children -> Use level 1
 936572103,Safeguard ungdomsbedrift,1,False,False,,,No children -> Use level 1
+936574564,Rama bil,1,False,False,,,No children -> Use level 1
+936578241,Jores lastebildesign AS,1,False,False,,,No children -> Use level 1
+936585647,Linne tangen,1,False,False,,,No children -> Use level 1
+936602835,Karlsen bygg og takst AS,1,False,False,,,No children -> Use level 1
+936625541,Folkebevegelsen mot metanhemmer,1,False,True,,,"1 vs 3 diff = N/A > 20%, no level 2 -> Use level 1"
+936629016,Vivia nordic AS,1,False,False,,,No children -> Use level 1
+936629040,Trontveit gard AS,1,False,False,,,No children -> Use level 1
+936629741,Sjøglo AS,1,False,False,,,No children -> Use level 1
 937256450,Erco AS,1,False,False,,,No children -> Use level 1
 940224780,Spotlight ans,1,False,False,,,No children -> Use level 1
 948340968,Helgetveit import ans,1,False,False,,,No children -> Use level 1
