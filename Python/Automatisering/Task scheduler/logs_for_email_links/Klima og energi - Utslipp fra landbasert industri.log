@@ -12,10 +12,10 @@ NACE Kode:
  '46.693']
 
 Column names in DataFrame:
-['Ãâ¦r', 'Utslipp fra landbasert industri (norskeutslipp.no)', 'Totale utslipp fra industrien (Mdir)', 'Mdir enkeltÃÂ¥r']
+['Ãr', 'Utslipp fra landbasert industri (norskeutslipp.no)', 'Totale utslipp fra industrien (Mdir)', 'Mdir enkeltÃ¥r']
 
 Sample data:
-     Ãâ¦r  ...  Mdir enkeltÃÂ¥r
+     Ãr  ...  Mdir enkeltÃ¥r
 0  2001  ...            NaN
 1  2002  ...            NaN
 2  2003  ...            NaN
@@ -24,10 +24,10 @@ Sample data:
 
 [5 rows x 4 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-[2025-11-28 08:10:58] No value columns found to compare. Skipping GitHub update.
+[2025-12-11 09:43:59] No value columns found to compare. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-[2025-11-28 08:10:59] No changes found in value columns. Skipping GitHub update.
+[2025-12-11 09:44:00] No changes found in value columns. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
 No new data detected in norskeutslipp_detaljert_telemark.csv.
 No new data detected in norskeutslipp_everviz.csv.
