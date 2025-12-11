@@ -4,23 +4,8 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Anmodninger og faktisk bosetting CSV data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-[2025-12-11 09:55:19] Changes detected in the dataset.
-
-[2025-12-11 09:55:19] Dataset is large. Showing detailed changes from the last 200 rows only.
-File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/anmodninger_og_faktisk_bosetting.csv
-
-Showing up to 5 examples of changes from the last 200 rows:
-
-Row: Kommune: Tinn | r: 2025-01-01
-  Antall: 23.0 -> 28.0
-
-Row: Kommune: Tokke | r: 2025-01-01
-  Antall: 7.0 -> 12.0
-
-Row: Kommune: Vinje | r: 2025-01-01
-  Antall: 19.0 -> 20.0
-Email notifications disabled. Updates for anmodninger_og_faktisk_bosetting.csv were not sent.
+[2025-12-11 12:31:10] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Anmodninger_og_faktisk_bosetting.log
 
