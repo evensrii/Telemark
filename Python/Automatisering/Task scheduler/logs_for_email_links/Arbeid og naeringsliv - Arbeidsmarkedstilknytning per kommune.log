@@ -6,12 +6,12 @@ Arbeidsmarkedstilknytning, kommuner JSON-stat data loaded successfully.
 Arbeidsmarkedstilknytning, Telemark JSON-stat data loaded successfully.
 
 Arbeidsmarkedstilknytning i Telemark:
-     region                     prioritert arbeidsstyrkestatus  ...    Ã¥r  value
+     region                     prioritert arbeidsstyrkestatus  ...    ÃÂ¥r  value
 0  Telemark                                        Sysselsatte  ...  2024  85929
 1  Telemark                          Registrerte arbeidsledige  ...  2024   1612
-2  Telemark                  Deltakere pÃ¥ arbeidsmarkedstiltak  ...  2024   1869
-3  Telemark                            Under ordinÃ¦r utdanning  ...  2024   8753
-4  Telemark  Mottakere av arbeidsavklaringspenger / ufÃ¸retrygd  ...  2024  13708
+2  Telemark                  Deltakere pÃÂ¥ arbeidsmarkedstiltak  ...  2024   1869
+3  Telemark                            Under ordinÃÂ¦r utdanning  ...  2024   8753
+4  Telemark  Mottakere av arbeidsavklaringspenger / ufÃÂ¸retrygd  ...  2024  13708
 5  Telemark                     Mottakere av AFP/alderspensjon  ...  2024  32472
 6  Telemark                                              Andre  ...  2024   6495
 
@@ -25,13 +25,13 @@ Pensjonister per fylke:
 47                           Telemark  ...  21.5
 89                           Nordland  ...  21.3
 40                           Vestfold  ...  20.5
-75                    MÃ¸re og Romsdal  ...  20.3
-5                             Ãstfold  ...  20.1
+75                    MÃÂ¸re og Romsdal  ...  20.3
+5                             ÃËstfold  ...  20.1
 33                           Buskerud  ...  19.0
 96            Troms - Romsa - Tromssa  ...  18.7
-103  Finnmark - FinnmÃ¡rku - Finmarkku  ...  18.5
+103  Finnmark - FinnmÃÂ¡rku - Finmarkku  ...  18.5
 54                              Agder  ...  18.4
-82                          TrÃ¸ndelag  ...  18.3
+82                          TrÃÂ¸ndelag  ...  18.3
 68                           Vestland  ...  18.2
 12                           Akershus  ...  16.6
 61                           Rogaland  ...  16.3
@@ -39,20 +39,20 @@ Pensjonister per fylke:
 
 [15 rows x 5 columns]
 
-UfÃ¸re per fylke:
+UfÃÂ¸re per fylke:
                                region  ... Andel
-4                             Ãstfold  ...  10.4
+4                             ÃËstfold  ...  10.4
 53                              Agder  ...   9.7
 46                           Telemark  ...   9.0
 25                          Innlandet  ...   8.9
 39                           Vestfold  ...   8.6
 88                           Nordland  ...   8.4
-102  Finnmark - FinnmÃ¡rku - Finmarkku  ...   8.2
+102  Finnmark - FinnmÃÂ¡rku - Finmarkku  ...   8.2
 32                           Buskerud  ...   7.9
 95            Troms - Romsa - Tromssa  ...   7.5
-81                          TrÃ¸ndelag  ...   7.3
+81                          TrÃÂ¸ndelag  ...   7.3
 60                           Rogaland  ...   6.8
-74                    MÃ¸re og Romsdal  ...   6.8
+74                    MÃÂ¸re og Romsdal  ...   6.8
 67                           Vestland  ...   6.4
 11                           Akershus  ...   6.0
 18                               Oslo  ...   5.7
@@ -61,7 +61,7 @@ UfÃ¸re per fylke:
 Sysselsatte med arbeidssted i Telemark JSON-stat data loaded successfully.
 Sysselsatte med arbeidssted i Telemark i 2024: 78849
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arbeidsmarkedstilknytning_per_kommune.csv
-[2025-12-11 09:35:38] No new data to upload. Skipping GitHub update.
+[2025-12-11 12:22:53] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\arbeidsmarkedstilknytning_per_kommune.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Arbeidsmarkedstilknytning_per_kommune.log
