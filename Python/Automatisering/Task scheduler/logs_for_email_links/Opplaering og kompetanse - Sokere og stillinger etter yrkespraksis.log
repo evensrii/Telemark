@@ -2,6 +2,7 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
+Found file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2025-12-05.xlsx
 Found file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2025-11-05.xlsx
 Found file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2025-10-05.xlsx
 Found file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2025-09-05.xlsx
@@ -12,7 +13,7 @@ Found file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/
 Found file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2025-04-05.xlsx
 Found file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2025-03-05.xlsx
 Found file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2025-02-05.xlsx
-Found 10 Excel files to process
+Found 11 Excel files to process
 
 Processing file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2025-02-05.xlsx
 Available sheets: ['Fylker', 'Landet', 'Telemark']
@@ -164,14 +165,33 @@ Successfully imported 234 rows from Telemark stilling
 Merged job seeker data for this file: 506 rows
 Merged job vacancy data for this file: 563 rows
 
+Processing file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2025-12-05.xlsx
+Available sheets: ['Landet', 'Fylker', 'Telemark', 'Landet yrkesbakgrunn arbeidssÃÂ¸k', 'Fylker yrkesbakgrunn arbeidssÃÂ¸k', 'Telemark yrkesbakgrunn arbeidss', 'Landet stilling', 'Fylker stilling', 'Telemark stilling']
+=== Processing Job Seeker Sheets ===
+Processing sheet: Landet yrkesbakgrunn arbeidssÃÂ¸k
+Successfully imported 15 rows from Landet yrkesbakgrunn arbeidssÃÂ¸k
+Processing sheet: Fylker yrkesbakgrunn arbeidssÃÂ¸k
+Successfully imported 254 rows from Fylker yrkesbakgrunn arbeidssÃÂ¸k
+Processing sheet: Telemark yrkesbakgrunn arbeidss
+Successfully imported 239 rows from Telemark yrkesbakgrunn arbeidss
+=== Processing Job Vacancy Sheets ===
+Processing sheet: Landet stilling
+Successfully imported 15 rows from Landet stilling
+Processing sheet: Fylker stilling
+Successfully imported 270 rows from Fylker stilling
+Processing sheet: Telemark stilling
+Successfully imported 235 rows from Telemark stilling
+Merged job seeker data for this file: 508 rows
+Merged job vacancy data for this file: 520 rows
+
 === Combining Data from All Files ===
-Combined job seeker data: 2506 total rows from 5 files
-Combined job vacancy data: 2667 total rows from 5 files
+Combined job seeker data: 3014 total rows from 6 files
+Combined job vacancy data: 3187 total rows from 6 files
 
 === Creating Final Dataset with Single Occupation Column ===
 Processing job seekers data...
 Processing job vacancies data...
-Created final dataset with 2419 rows
+Created final dataset with 2873 rows
 Columns: ['Dato', 'NivÃÂ¥', 'Geografisk enhet', 'Yrke', 'Antall sÃÂ¸kere', 'Antall utlyste stillinger']
 Sample data:
         Dato    NivÃÂ¥  ... Antall sÃÂ¸kere Antall utlyste stillinger
@@ -188,37 +208,37 @@ Sample data:
 
 [10 rows x 6 columns]
 Unique occupation categories: 15
-Date range: 2025-06-01 00:00:00 to 2025-10-01 00:00:00
+Date range: 2025-06-01 00:00:00 to 2025-11-01 00:00:00
 
 Data distribution by geographic level:
 NivÃÂ¥
-Fylker               1349
-Telemark kommuner     995
-Landet                 75
+Fylker               1618
+Telemark kommuner    1165
+Landet                 90
 Name: count, dtype: int64
 
 Sample occupation categories:
 Yrke
-Serviceyrker og annet arbeid          176
-Bygg og anlegg                        175
-Helse, pleie og omsorg                173
-Reiseliv og transport                 171
-Kontorarbeid                          170
-Butikk- og salgsarbeid                170
-Ingen yrkesbakgrunn eller uoppgitt    169
-Undervisning                          166
-Industriarbeid                        165
-IngeniÃÂ¸r- og ikt-fag                  162
+Bygg og anlegg                        212
+Serviceyrker og annet arbeid          209
+Helse, pleie og omsorg                206
+Butikk- og salgsarbeid                203
+Ingen yrkesbakgrunn eller uoppgitt    202
+Reiseliv og transport                 202
+Kontorarbeid                          201
+Industriarbeid                        198
+Undervisning                          196
+IngeniÃÂ¸r- og ikt-fag                  194
 Name: count, dtype: int64
 
 === Processing completed for all files ===
 
 === Saving Final Dataset ===
-Final dataset: 2419 rows, 6 columns
+Final dataset: 2873 rows, 6 columns
 Saving as: soekere_stillinger_yrkespraksis.csv
 Value columns for comparison: ['Antall sÃÂ¸kere', 'Antall utlyste stillinger']
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\soekere_stillinger_yrkespraksis.csv
-[2025-11-28 08:08:37] No new data to upload. Skipping GitHub update.
+[2025-12-12 08:08:34] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\soekere_stillinger_yrkespraksis.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Sokere_og_stillinger_etter_yrkespraksis.log
@@ -241,6 +261,20 @@ C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyx
   warn("Workbook contains no default style, apply openpyxl's default")
 D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:48: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   df['Sum helt ledige, delvis ledige og arbeidssÃÂ¸kere pÃÂ¥ tiltak'] = df['Sum helt ledige, delvis ledige og arbeidssÃÂ¸kere pÃÂ¥ tiltak'].replace('*', np.nan)
+C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:48: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  df['Sum helt ledige, delvis ledige og arbeidssÃÂ¸kere pÃÂ¥ tiltak'] = df['Sum helt ledige, delvis ledige og arbeidssÃÂ¸kere pÃÂ¥ tiltak'].replace('*', np.nan)
+C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
 C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
   warn("Workbook contains no default style, apply openpyxl's default")
 C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
