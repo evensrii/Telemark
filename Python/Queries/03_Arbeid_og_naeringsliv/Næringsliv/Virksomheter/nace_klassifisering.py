@@ -109,7 +109,7 @@ df_raw = download_standard_for_naeringsgruppering()
 df_standard_for_naeringsgruppering = restructure_nace_data(df_raw)
 
 file_name = "standard_for_naeringsgruppering.csv"
-task_name = "NACE - Standard for naeringsgruppering"
+task_name = "Arbeid og naeringsliv - Standard for naeringsgruppering"
 github_folder = "Data/03_Arbeid og næringsliv/02_Næringsliv/Virksomheter/Nace-tabell"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
