@@ -39,7 +39,74 @@ def download_standard_for_naeringsgruppering(
     return df
 
 
-df_standard_for_naeringsgruppering = download_standard_for_naeringsgruppering()
+def restructure_nace_data(df: pd.DataFrame) -> pd.DataFrame:
+    df_5digit = df[df["level"] == "5"].copy()
+    
+    code_to_info = {}
+    for _, row in df.iterrows():
+        code_to_info[row["code"]] = row.to_dict()
+    
+    result_rows = []
+    
+    for _, row in df_5digit.iterrows():
+        new_row = {}
+        
+        new_row["Nace_5_nr"] = row["code"]
+        
+        current_code = row["code"]
+        parent_code = row["parentCode"]
+        
+        if parent_code in code_to_info:
+            new_row["Nace_4_nr"] = parent_code
+            parent_code = code_to_info[parent_code]["parentCode"]
+        else:
+            new_row["Nace_4_nr"] = ""
+        
+        if parent_code in code_to_info:
+            new_row["Nace_3_nr"] = parent_code
+            parent_code = code_to_info[parent_code]["parentCode"]
+        else:
+            new_row["Nace_3_nr"] = ""
+        
+        if parent_code in code_to_info:
+            new_row["Nace_2_nr"] = parent_code
+            parent_code = code_to_info[parent_code]["parentCode"]
+        else:
+            new_row["Nace_2_nr"] = ""
+        
+        if parent_code in code_to_info:
+            new_row["Nace_1_nr"] = parent_code
+        else:
+            new_row["Nace_1_nr"] = ""
+        
+        for col in row.index:
+            if col not in ["code", "parentCode", "level"]:
+                new_row[col] = row[col]
+        
+        result_rows.append(new_row)
+    
+    df_result = pd.DataFrame(result_rows)
+    
+    df_result = df_result.rename(columns={
+        "name": "Nace_5_navn",
+        "notes": "Kommentar"
+    })
+    
+    columns_to_drop = ["shortName", "presentationName"]
+    df_result = df_result.drop(columns=[col for col in columns_to_drop if col in df_result.columns])
+    
+    column_order = ["Nace_1_nr", "Nace_2_nr", "Nace_3_nr", "Nace_4_nr", "Nace_5_nr"]
+    other_cols = [col for col in df_result.columns if col not in column_order]
+    df_result = df_result[column_order + other_cols]
+    
+    for col in df_result.columns:
+        df_result[col] = df_result[col].astype(str).str.strip().replace("nan", "")
+    
+    return df_result
+
+
+df_raw = download_standard_for_naeringsgruppering()
+df_standard_for_naeringsgruppering = restructure_nace_data(df_raw)
 
 file_name = "standard_for_naeringsgruppering.csv"
 task_name = "NACE - Standard for naeringsgruppering"
