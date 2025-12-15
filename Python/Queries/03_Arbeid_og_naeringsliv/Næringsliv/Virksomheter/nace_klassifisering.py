@@ -92,7 +92,7 @@ def restructure_nace_data(df: pd.DataFrame) -> pd.DataFrame:
         "notes": "Kommentar"
     })
     
-    columns_to_drop = ["shortName", "presentationName"]
+    columns_to_drop = ["shortName", "presentationName", "validFrom", "validTo"]
     df_result = df_result.drop(columns=[col for col in columns_to_drop if col in df_result.columns])
     
     column_order = ["Nace_1_nr", "Nace_2_nr", "Nace_3_nr", "Nace_4_nr", "Nace_5_nr"]
