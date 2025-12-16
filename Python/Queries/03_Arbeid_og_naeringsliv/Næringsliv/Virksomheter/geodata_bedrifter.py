@@ -60,13 +60,16 @@ custom_column_names = {
     'etablertdato': 'Dato for etablering',
     'sektorkode': 'Sektorkode fra SSB',
     'status_po': 'Privat eller offentlig',
-    'nakkategori1': 'NACE-kategori (Første siffer)',
-    'naktittel1': 'Nacetittel1',
-    'nakgruppetekst1': 'Bransjegruppe 1',
-    'nakkategori2': 'NACE-kategori (To første siffer)',
-    'nakkategori3': 'NACE-kategori (Tre første siffer)',
-    'nakkategori4': 'NACE-kategori (Fire første siffer)',
-    'nakkategori5': 'NACE-kode (numerisk)',
+    'naktittel1': 'Nace_5_navn',
+    'nakgruppetekst1': 'Nace_1_navn',
+    'nakkategori1': 'NACE-kategori 1',
+    'nakkategori2': 'NACE-kategori 2',
+    'nakkategori3': 'NACE-kategori 3',
+    'nakkategori4': 'NACE-kategori 4',
+    'nakkategori5': 'NACE-kategori 5',
+    'nakkategori6': 'NACE-kategori 6',
+    'nakgruppekode1': 'NACE-kode 1',
+    'nakgruppekode5': 'NACE-kode 5',
     'koordinat_y': 'Y (UTM33)',
     'koordinat_x': 'X (UTM33)',
     'load_date': 'load_date'
@@ -244,50 +247,55 @@ duplicates_removed = initial_count - len(df)
 print(f"✓ Removed {duplicates_removed:,} duplicate rows")
 print(f"  Final dataset: {len(df):,} unique records")
 
-# In column "NACE-kategori (To første siffer)", ensure all numbers are two digits
-df['NACE-kategori (To første siffer)'] = df['NACE-kategori (To første siffer)'].astype(str).str.zfill(2)
+# Format NACE codes to match standardized format: 01, 01.1, 01.11, 01.110
+# The new columns from the API are:
+# - NACE-kategori 1: Single letter (A, B, C, etc.)
+# - NACE-kategori 2: Two digits (01, 02, etc.)
+# - NACE-kategori 3: Three digits (011, 012, etc.)
+# - NACE-kategori 4: Four digits (0111, 0112, etc.)
+# - NACE-kategori 5: Five digits (01110, 01120, etc.)
+# - NACE-kode 1: Single letter code
+# - NACE-kode 5: Five digit code
 
-# Format "NACE-kategori (Tre første siffer)" to XX.X format
-def format_nace_three(value):
-    # Convert to string and pad with leading zeros to ensure 3 digits
-    str_val = str(value).zfill(3)
-    # Format as XX.X
-    return f"{str_val[0:2]}.{str_val[2]}"
+# Format Level 1 (single letter) - keep as is
+if 'NACE-kategori 1' in df.columns:
+    df['NACE-kategori 1'] = df['NACE-kategori 1'].astype(str)
 
-df['NACE-kategori (Tre første siffer)'] = df['NACE-kategori (Tre første siffer)'].apply(format_nace_three)
+# Format Level 2: Two digits (e.g., "01")
+if 'NACE-kategori 2' in df.columns:
+    df['NACE-kategori 2'] = df['NACE-kategori 2'].astype(str).str.zfill(2)
 
-# Format "NACE-kategori (Fire første siffer)" to XX.XX format
-def format_nace_four(value):
-    # Convert to string and pad with leading zeros to ensure 4 digits
-    str_val = str(value).zfill(4)
-    # Format as XX.XX
-    return f"{str_val[0:2]}.{str_val[2:4]}"
+# Format Level 3: XX.X format (e.g., "01.1")
+if 'NACE-kategori 3' in df.columns:
+    def format_nace_three(value):
+        str_val = str(value).zfill(3)
+        return f"{str_val[0:2]}.{str_val[2]}"
+    df['NACE-kategori 3'] = df['NACE-kategori 3'].apply(format_nace_three)
 
-df['NACE-kategori (Fire første siffer)'] = df['NACE-kategori (Fire første siffer)'].apply(format_nace_four)
+# Format Level 4: XX.XX format (e.g., "01.11")
+if 'NACE-kategori 4' in df.columns:
+    def format_nace_four(value):
+        str_val = str(value).zfill(4)
+        return f"{str_val[0:2]}.{str_val[2:4]}"
+    df['NACE-kategori 4'] = df['NACE-kategori 4'].apply(format_nace_four)
 
-# Format "NACE-kode (numerisk)" to XX.XXX format
-def format_nace_numeric(value):
-    # Convert to string and pad with leading zeros to ensure 5 digits
-    str_val = str(value).zfill(5)
-    # Format as XX.XXX
-    return f"{str_val[0:2]}.{str_val[2:5]}"
+# Format Level 5: XX.XXX format (e.g., "01.110")
+if 'NACE-kategori 5' in df.columns:
+    def format_nace_five(value):
+        str_val = str(value).zfill(5)
+        return f"{str_val[0:2]}.{str_val[2:5]}"
+    df['NACE-kategori 5'] = df['NACE-kategori 5'].apply(format_nace_five)
 
-df['NACE-kode (numerisk)'] = df['NACE-kode (numerisk)'].apply(format_nace_numeric)
-
-# Create Kode column with the five digits without period
-df['Kode'] = df['NACE-kode (numerisk)'].str.replace('.', '')
+# Format NACE-kode 5 to match NACE-kategori 5 format
+if 'NACE-kode 5' in df.columns:
+    df['NACE-kode 5'] = df['NACE-kode 5'].astype(str).str.zfill(5)
+    # Create formatted version with decimal
+    df['NACE-kode 5'] = df['NACE-kode 5'].apply(lambda x: f"{x[0:2]}.{x[2:5]}" if len(x) == 5 else x)
 
 # Ensure all NACE-related columns are strings
-nace_columns = [
-    'NACE-kategori (Første siffer)',
-    'NACE-kategori (To første siffer)',
-    'NACE-kategori (Tre første siffer)',
-    'NACE-kategori (Fire første siffer)',
-    'NACE-kode (numerisk)',
-    'Kode'
-]
-
-df[nace_columns] = df[nace_columns].astype(str)
+nace_columns = [col for col in df.columns if 'NACE' in col or 'Nace' in col]
+for col in nace_columns:
+    df[col] = df[col].astype(str)
 
 # Replace decimal points with commas in Lon and Lat columns
 df['Lon'] = df['Lon'].astype(str).str.replace('.', ',')
@@ -387,47 +395,14 @@ print(f"✓ Reordered columns and cleaned 'Overordnet enhet'")
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 print("\n" + "="*80)
-print("SAVING DATASETS")
+print("SAVING FILTERED DATASET")
 print("="*80)
 
 github_folder = "Data/03_Arbeid og næringsliv/02_Næringsliv/Virksomheter"
 temp_folder = os.environ.get("TEMP_FOLDER")
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
 
-# Save original unfiltered dataset
-print("\n1. Saving original unfiltered dataset...")
-file_name = "geodata_bedrifter_api.csv"
-task_name = "Arbeid og naeringsliv - Geodata bedrifter"
-
-# Only track changes in objectid
-value_columns = ['objectid']
-ignore_patterns = [col for col in df.columns if col != 'objectid']
-
-is_new_data = handle_output_data(
-    df, 
-    file_name, 
-    github_folder, 
-    temp_folder, 
-    keepcsv=True,
-    value_columns=value_columns,
-    ignore_patterns=ignore_patterns
-)
-
-task_name_safe = task_name.replace(".", "_").replace(" ", "_")
-new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
-
-with open(new_data_status_file, "w", encoding="utf-8") as log_file:
-    log_file.write(f"{task_name_safe},{file_name},{'Yes' if is_new_data else 'No'}\n")
-
-if is_new_data:
-    print("  ✓ New data detected and pushed to GitHub.")
-else:
-    print("  ✓ No new data detected.")
-
-print(f"  ✓ Status log: {new_data_status_file}")
-
 # Save filtered dataset
-print("\n2. Saving filtered dataset...")
 file_name_filtered = "geodata_sql_filtrerte_virksomheter.csv"
 task_name_filtered = "Arbeid og naeringsliv - Geodata bedrifter filtrert"
 
@@ -456,6 +431,4 @@ print(f"  ✓ Status log: {new_data_status_file_filtered}")
 print("\n" + "="*80)
 print("PROCESSING COMPLETE")
 print("="*80)
-print(f"\nFiles saved:")
-print(f"  1. {file_name} ({len(df):,} records)")
-print(f"  2. {file_name_filtered} ({len(df_filtered_output):,} records)")
+print(f"Filtered dataset saved: {file_name_filtered} ({len(df_filtered_output):,} records)")
