@@ -3,59 +3,32 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
-Found missing date ranges: [(Timestamp('2025-12-14 00:00:00'), Timestamp('2025-12-14 00:00:00'))]
+Found missing date ranges: [(Timestamp('2025-12-14 00:00:00'), Timestamp('2025-12-15 00:00:00'))]
 Fetching data for missing periods...
--- Processing gap: 2025-12-14 to 2025-12-14 --
-Fetching energy prices from 2025-12-14 to 2025-12-14...
-  Fetching chunk from 2025-12-14 to 2025-12-14...
-Total price data points collected: 96
+-- Processing gap: 2025-12-14 to 2025-12-15 --
+Fetching energy prices from 2025-12-14 to 2025-12-15...
+  Fetching chunk from 2025-12-14 to 2025-12-15...
+Total price data points collected: 190
 Fetching exchange rates...
-Could not fetch new exchange rates: 404 Client Error:  for url: https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP?startPeriod=2025-12-14&endPeriod=2025-12-14&format=csv&bom=include&locale=no, trying fallback...
-Using latest available rate from existing data: 11.809
+Successfully fetched 1 exchange rate records
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
+[2025-12-16 08:12:18] Row count changed: 1809 -> 1814
+
+Added rows (showing up to 10):
+EUR/MWh: 43.002399999999994, NOK/KWh: 0.51130805, NOK/MWh: 511.30805, kurs: 11.9075, time: 2025-12-14
+EUR/MWh: 40.771458333333335, NOK/KWh: 0.4854861401041667, NOK/MWh: 485.4861401041667, kurs: 11.9075, time: 2025-12-15
+EUR/MWh: 55.57, NOK/KWh: 0.661699775, NOK/MWh: 661.699775, kurs: 11.9075, time: 2025-12-16
+EUR/MWh: 58.58673913043478, NOK/KWh: 0.6976215961956522, NOK/MWh: 697.6215961956523, kurs: 11.9075, time: 2025-12-17
+EUR/MWh: 65.72434782608696, NOK/KWh: 0.7826126717391304, NOK/MWh: 782.6126717391304, kurs: 11.9075, time: 2025-12-18
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
+Email notifications disabled. Updates for strompriser.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
+Script completed successfully!
 
 
-Errors:
+Errors/Warnings:
 D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py:211: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
   df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\ops\array_ops.py", line 218, in _na_arithmetic_op
-    result = func(left, right)
-             ^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\computation\expressions.py", line 242, in evaluate
-    return _evaluate(op, op_str, a, b)  # type: ignore[misc]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\computation\expressions.py", line 73, in _evaluate_standard
-    return op(a, b)
-           ^^^^^^^^
-TypeError: can't multiply sequence by non-int of type 'float'
 
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py", line 212, in <module>
-    df["price_nok"] = df["price_eur"] * df["eur_nok_rate"]
-                      ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\ops\common.py", line 76, in new_method
-    return method(self, other)
-           ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\arraylike.py", line 202, in __mul__
-    return self._arith_method(other, operator.mul)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\series.py", line 6154, in _arith_method
-    return base.IndexOpsMixin._arith_method(self, other, op)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\base.py", line 1391, in _arith_method
-    result = ops.arithmetic_op(lvalues, rvalues, op)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\ops\array_ops.py", line 283, in arithmetic_op
-    res_values = _na_arithmetic_op(left, right, op)  # type: ignore[arg-type]
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\ops\array_ops.py", line 227, in _na_arithmetic_op
-    result = _masked_arith_op(left, right, op)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\ops\array_ops.py", line 163, in _masked_arith_op
-    result[mask] = op(xrav[mask], yrav[mask])
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: can't multiply sequence by non-int of type 'float'
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py` failed. (See above for error)
