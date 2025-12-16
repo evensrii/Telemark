@@ -15,7 +15,11 @@ from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import upload_github_file, download_github_file, compare_to_github, handle_output_data
 
 # Capture the name of the current script
-script_name = os.path.basename(__file__)
+try:
+    script_name = os.path.basename(__file__)
+except NameError:
+    # __file__ is not defined in Jupyter interactive window
+    script_name = "geodata_bedrifter.py"
 
 # Example list of error messages to collect errors during execution
 error_messages = []
@@ -290,20 +294,115 @@ df['Lon'] = df['Lon'].astype(str).str.replace('.', ',')
 df['Lat'] = df['Lat'].astype(str).str.replace('.', ',')
 
 
+##################### SQL Filtering for Filtered Dataset #####################
+
+print("\n" + "="*80)
+print("APPLYING SQL FILTERS FOR FILTERED DATASET")
+print("="*80)
+
+# Store original count for reporting
+original_count = len(df)
+original_employees = pd.to_numeric(df['Antall ansatte'], errors='coerce').sum()
+
+# Filter 1: Remove enterprises with exactly 1 employee
+print("\nFilter 1: Removing enterprises with exactly 1 employee")
+print("(Matching Enhetsregisteret scope: keeping null, 0, 2, 3, 4, 5+ employees)")
+
+employees_numeric = pd.to_numeric(df['Antall ansatte'], errors='coerce')
+exactly_one = (employees_numeric == 1).sum()
+
+df_filtered = df[employees_numeric != 1].copy()
+
+print(f"  Records before filter: {original_count:,}")
+print(f"  Records after filter: {len(df_filtered):,}")
+print(f"  Records removed (exactly 1 employee): {exactly_one:,}")
+
+# Filter 2: Apply SQL filter (firorgnr NOT IN firorgnrknytning)
+print("\nFilter 2: Applying SQL filter (firorgnr NOT IN firorgnrknytning)")
+print("(Removes parent organizations, keeping only lowest level entities)")
+
+# Create set of parent organization numbers
+parent_orgnr = set(df_filtered['firorgnrknytning'].dropna().astype(int).astype(str))
+print(f"  Unique parent organization numbers: {len(parent_orgnr):,}")
+
+# Apply filter: Keep only organizations whose firorgnr is NOT in the parent set
+orgnr_set = set(df_filtered['firorgnr'].dropna().astype(str))
+overlap = orgnr_set & parent_orgnr
+print(f"  Organizations to be removed (parents): {len(overlap):,}")
+
+records_before_sql = len(df_filtered)
+df_filtered = df_filtered[~df_filtered['firorgnr'].astype(str).isin(parent_orgnr)].copy()
+
+print(f"  Records before SQL filter: {records_before_sql:,}")
+print(f"  Records after SQL filter: {len(df_filtered):,}")
+print(f"  Records removed: {records_before_sql - len(df_filtered):,}")
+
+# Summary statistics
+print("\n" + "="*80)
+print("FILTERED DATA SUMMARY")
+print("="*80)
+
+employees_filtered = pd.to_numeric(df_filtered['Antall ansatte'], errors='coerce')
+total_employees_filtered = employees_filtered.sum()
+
+print(f"\nOriginal dataset:")
+print(f"  Total records: {original_count:,}")
+print(f"  Total employees: {original_employees:,.0f}")
+
+print(f"\nFiltered dataset:")
+print(f"  Total records: {len(df_filtered):,}")
+print(f"  Total employees: {total_employees_filtered:,.0f}")
+print(f"  Records removed: {original_count - len(df_filtered):,} ({((original_count - len(df_filtered))/original_count*100):.1f}%)")
+
+# Rename and reorder columns for filtered output
+print("\n" + "="*80)
+print("PREPARING FILTERED OUTPUT")
+print("="*80)
+
+df_filtered_output = df_filtered.rename(columns={
+    'Bedriftsnavn': 'Navn',
+    'firorgnr': 'Org. nr.',
+    'firorgnrknytning': 'Overordnet enhet'
+})
+
+print("✓ Renamed columns for filtered output:")
+print("  'Bedriftsnavn' → 'Navn'")
+print("  'firorgnr' → 'Org. nr.'")
+print("  'firorgnrknytning' → 'Overordnet enhet'")
+
+# Reorder columns: key columns first
+key_columns = ['Navn', 'Org. nr.', 'Overordnet enhet', 'Antall ansatte']
+other_columns = [col for col in df_filtered_output.columns if col not in key_columns]
+new_column_order = key_columns + other_columns
+df_filtered_output = df_filtered_output[new_column_order]
+
+# Clean up 'Overordnet enhet' column - remove trailing .0
+df_filtered_output['Overordnet enhet'] = pd.to_numeric(df_filtered_output['Overordnet enhet'], errors='coerce').apply(
+    lambda x: str(int(x)) if pd.notna(x) else ''
+)
+
+print(f"✓ Reordered columns and cleaned 'Overordnet enhet'")
+
+
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "geodata_bedrifter_api.csv"
-task_name = "Arbeid og naeringsliv - Geodata bedrifter"
+print("\n" + "="*80)
+print("SAVING DATASETS")
+print("="*80)
+
 github_folder = "Data/03_Arbeid og næringsliv/02_Næringsliv/Virksomheter"
 temp_folder = os.environ.get("TEMP_FOLDER")
+log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
+
+# Save original unfiltered dataset
+print("\n1. Saving original unfiltered dataset...")
+file_name = "geodata_bedrifter_api.csv"
+task_name = "Arbeid og naeringsliv - Geodata bedrifter"
 
 # Only track changes in objectid
 value_columns = ['objectid']
-
-# Ignore all other columns
 ignore_patterns = [col for col in df.columns if col != 'objectid']
 
-# Call the function and get the "New Data" status
 is_new_data = handle_output_data(
     df, 
     file_name, 
@@ -314,19 +413,49 @@ is_new_data = handle_output_data(
     ignore_patterns=ignore_patterns
 )
 
-# Write the "New Data" status to a unique log file
-log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory
-task_name_safe = task_name.replace(".", "_").replace(" ", "_")  # Ensure the task name is file-system safe
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")
 new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
 
-# Write the result in a detailed format
 with open(new_data_status_file, "w", encoding="utf-8") as log_file:
     log_file.write(f"{task_name_safe},{file_name},{'Yes' if is_new_data else 'No'}\n")
 
-# Output results for debugging/testing
 if is_new_data:
-    print("New data detected and pushed to GitHub.")
+    print("  ✓ New data detected and pushed to GitHub.")
 else:
-    print("No new data detected.")
+    print("  ✓ No new data detected.")
 
-print(f"New data status log written to {new_data_status_file}")
+print(f"  ✓ Status log: {new_data_status_file}")
+
+# Save filtered dataset
+print("\n2. Saving filtered dataset...")
+file_name_filtered = "geodata_sql_filtrerte_virksomheter.csv"
+task_name_filtered = "Arbeid og naeringsliv - Geodata bedrifter filtrert"
+
+# For filtered dataset, track all columns normally
+is_new_data_filtered = handle_output_data(
+    df_filtered_output, 
+    file_name_filtered, 
+    github_folder, 
+    temp_folder, 
+    keepcsv=True
+)
+
+task_name_filtered_safe = task_name_filtered.replace(".", "_").replace(" ", "_")
+new_data_status_file_filtered = os.path.join(log_dir, f"new_data_status_{task_name_filtered_safe}.log")
+
+with open(new_data_status_file_filtered, "w", encoding="utf-8") as log_file:
+    log_file.write(f"{task_name_filtered_safe},{file_name_filtered},{'Yes' if is_new_data_filtered else 'No'}\n")
+
+if is_new_data_filtered:
+    print("  ✓ New filtered data detected and pushed to GitHub.")
+else:
+    print("  ✓ No new filtered data detected.")
+
+print(f"  ✓ Status log: {new_data_status_file_filtered}")
+
+print("\n" + "="*80)
+print("PROCESSING COMPLETE")
+print("="*80)
+print(f"\nFiles saved:")
+print(f"  1. {file_name} ({len(df):,} records)")
+print(f"  2. {file_name_filtered} ({len(df_filtered_output):,} records)")
