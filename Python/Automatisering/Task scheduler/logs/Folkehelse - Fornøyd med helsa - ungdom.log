@@ -1,33 +1,65 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
 
+
+
 ======================================================================
-FHI Query: FornÃ¸yd med helsa - ungdom.txt
+
+FHI Query: Fornøyd med helsa - ungdom.txt
+
 ======================================================================
+
+
 
 Loading query from file...
-  âœ“ Query loaded
+
+  ✓ Query loaded
+
   URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/349/data
 
+
+
 Fetching data from FHI API...
+
 FHI Query JSON-stat data loaded successfully.
-  âœ“ Fetched 741 rows and 8 columns
-  Columns: Geografi, Ã…r, KjÃ¸nn, Alder vises ikke, FornÃ¸ydhet med helsa, SOES, MÃ¥ltall, value
+
+  ✓ Fetched 741 rows and 8 columns
+
+  Columns: Geografi, År, Kjønn, Alder vises ikke, Fornøydhet med helsa, SOES, Måltall, value
+
+
 
 After processing: 741 rows and 8 columns
 
+
+
 Comparing with GitHub...
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\fornoeyd_med_helsa_ungdom.csv
-[2025-12-19 15:22:14] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\fornoeyd_med_helsa_ungdom.csv
-  âœ“ No changes detected
 
-  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃ¥r\Helsetilstand\fornoeyd_med_helsa_ungdom.csv
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\fornoeyd_med_helsa_ungdom.csv
+
+[2025-12-19 15:33:27] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\fornoeyd_med_helsa_ungdom.csv
+
+  ✓ No changes detected
+
+
+
+  ✓ Saved to: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Data\08_Folkehelse og levekår\Helsetilstand\fornoeyd_med_helsa_ungdom.csv
+
+
 
 ======================================================================
+
 Processing complete
+
 ======================================================================
+
+
 
 

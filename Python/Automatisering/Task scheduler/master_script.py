@@ -115,7 +115,8 @@ def run_script(script_path, task_name):
                 
             # Extract github_folder and potential file names
             github_folder_match = re.search(r'github_folder\s*=\s*["\']([^"\']+)["\']', script_content)
-            file_name_matches = re.findall(r'file_name\d*\s*=\s*["\']([^"\']+)["\']', script_content)
+            # Match both file_name and output_filename patterns
+            file_name_matches = re.findall(r'(?:file_name|output_filename)\d*\s*=\s*["\']([^"\']+)["\']', script_content)
             
             github_folder = github_folder_match.group(1) if github_folder_match else None
 

@@ -69,7 +69,7 @@ def push_logs_to_github():
 
             # Read local log file content
             try:
-                with open(local_file_path, "r", encoding="ISO-8859-1") as file:
+                with open(local_file_path, "r", encoding="utf-8") as file:
                     local_content = file.read()
             except Exception as e:
                 print(f"Error reading {filename}: {e}")
@@ -140,7 +140,7 @@ if not os.path.exists(log_file_path):
 
 # Read the log file
 try:
-    with open(log_file_path, 'r', encoding='ISO-8859-1') as file:
+    with open(log_file_path, 'r', encoding='utf-8') as file:
         log_content = file.read()
     print(f"Successfully read the master run log file: {log_file_path}")
 except Exception as e:
