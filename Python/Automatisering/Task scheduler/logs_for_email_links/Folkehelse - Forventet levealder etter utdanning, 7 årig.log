@@ -1,0 +1,37 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+
+======================================================================
+FHI Query: Forventet levealder etter utdanning, 7 ÃÂ¥rig.txt
+======================================================================
+
+Loading query from file...
+  Ã¢Åâ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/507/data
+
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  Ã¢Åâ Fetched 5130 rows and 7 columns
+  Columns: Geografi, Ãâ¦r, KjÃÂ¸nn, Alder, UtdanningsnivÃÂ¥, MÃÂ¥ltall, value
+
+After processing: 5130 rows and 7 columns
+
+Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanning_7_aarig.csv
+File not found on GitHub: Data/08_Folkehelse og levekÃÂ¥r/Helsetilstand/forventet_levealder_etter_utdanning_7_aarig.csv
+[2025-12-19 15:18:15] Uploading new file: forventet_levealder_etter_utdanning_7_aarig.csv
+File uploaded successfully: Data/08_Folkehelse og levekÃÂ¥r/Helsetilstand/forventet_levealder_etter_utdanning_7_aarig.csv
+Email notifications disabled. Updates for forventet_levealder_etter_utdanning_7_aarig.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanning_7_aarig.csv
+  Ã¢Åâ New data detected and uploaded to GitHub
+New data detected
+
+  Ã¢Åâ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃÂ¥r\Helsetilstand\forventet_levealder_etter_utdanning_7_aarig.csv
+
+======================================================================
+Processing complete
+======================================================================
+
+
