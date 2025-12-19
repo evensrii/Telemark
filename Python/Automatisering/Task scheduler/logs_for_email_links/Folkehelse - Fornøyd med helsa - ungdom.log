@@ -19,13 +19,15 @@ FHI Query JSON-stat data loaded successfully.
 After processing: 741 rows and 8 columns
 
 Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\fornoeyd_med_helsa_ungdom.csv
+[2025-12-19 15:22:14] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\fornoeyd_med_helsa_ungdom.csv
+  Ã¢Åâ No changes detected
+
+  Ã¢Åâ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃÂ¥r\Helsetilstand\fornoeyd_med_helsa_ungdom.csv
+
+======================================================================
+Processing complete
+======================================================================
 
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/08_Folkehelse_og_levekÃÂ¥r/FHI/scripts/Helsetilstand/fornoeyd_med_helsa_ungdom.py", line 132, in <module>
-    file_name=output_filename,
-              ^^^^^^^^^^^^^^^
-NameError: name 'output_filename' is not defined. Did you mean: 'putput_filename'?
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/08_Folkehelse_og_levekÃ¥r/FHI/scripts/Helsetilstand/fornoeyd_med_helsa_ungdom.py` failed. (See above for error)
