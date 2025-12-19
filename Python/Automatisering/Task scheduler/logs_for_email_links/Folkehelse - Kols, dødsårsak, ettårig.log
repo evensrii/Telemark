@@ -1,0 +1,37 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+
+======================================================================
+FHI Query: Kols, dÃÂ¸dsÃÂ¥rsak, ettÃÂ¥rig.txt
+======================================================================
+
+Loading query from file...
+  Ã¢Åâ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/343/data
+
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  Ã¢Åâ Fetched 5130 rows and 7 columns
+  Columns: Geografi, Ãâ¦r, KjÃÂ¸nn, Alder, DÃÂ¸dsÃÂ¥rsaker, MÃÂ¥ltall, value
+
+After processing: 5130 rows and 7 columns
+
+Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\kols_doedsaarsak_ettaarig.csv
+File not found on GitHub: Data/08_Folkehelse og levekÃÂ¥r/Helsetilstand/kols_doedsaarsak_ettaarig.csv
+[2025-12-19 15:22:43] Uploading new file: kols_doedsaarsak_ettaarig.csv
+File uploaded successfully: Data/08_Folkehelse og levekÃÂ¥r/Helsetilstand/kols_doedsaarsak_ettaarig.csv
+Email notifications disabled. Updates for kols_doedsaarsak_ettaarig.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\kols_doedsaarsak_ettaarig.csv
+  Ã¢Åâ New data detected and uploaded to GitHub
+New data detected
+
+  Ã¢Åâ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃÂ¥r\Helsetilstand\kols_doedsaarsak_ettaarig.csv
+
+======================================================================
+Processing complete
+======================================================================
+
+

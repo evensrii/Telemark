@@ -1,0 +1,33 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+
+======================================================================
+FHI Query: FornÃÂ¸yd med helsa - ungdom.txt
+======================================================================
+
+Loading query from file...
+  Ã¢Åâ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/349/data
+
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  Ã¢Åâ Fetched 741 rows and 8 columns
+  Columns: Geografi, Ãâ¦r, KjÃÂ¸nn, Alder vises ikke, FornÃÂ¸ydhet med helsa, SOES, MÃÂ¥ltall, value
+
+After processing: 741 rows and 8 columns
+
+Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\fornoeyd_med_helsa_ungdom.csv
+[2025-12-19 15:22:14] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\fornoeyd_med_helsa_ungdom.csv
+  Ã¢Åâ No changes detected
+
+  Ã¢Åâ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃÂ¥r\Helsetilstand\fornoeyd_med_helsa_ungdom.csv
+
+======================================================================
+Processing complete
+======================================================================
+
+
