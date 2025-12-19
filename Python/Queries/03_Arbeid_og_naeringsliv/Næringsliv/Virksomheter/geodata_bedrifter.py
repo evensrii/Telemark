@@ -60,16 +60,9 @@ custom_column_names = {
     'etablertdato': 'Dato for etablering',
     'sektorkode': 'Sektorkode fra SSB',
     'status_po': 'Privat eller offentlig',
-    'naktittel1': 'Nace_5_navn',
     'nakgruppetekst1': 'Nace_1_navn',
-    'nakkategori1': 'NACE-kategori 1',
-    'nakkategori2': 'NACE-kategori 2',
-    'nakkategori3': 'NACE-kategori 3',
-    'nakkategori4': 'NACE-kategori 4',
-    'nakkategori5': 'NACE-kategori 5',
-    'nakkategori6': 'NACE-kategori 6',
-    'nakgruppekode1': 'NACE-kode 1',
-    'nakgruppekode5': 'NACE-kode 5',
+    'naktittel1': 'Nace_5_navn',
+    'nakkategori5': 'Nace_5_nr',
     'koordinat_y': 'Y (UTM33)',
     'koordinat_x': 'X (UTM33)',
     'load_date': 'load_date'
@@ -77,6 +70,9 @@ custom_column_names = {
 
 # Generate the fields string from the dictionary keys
 fields = ",".join(custom_column_names.keys())
+
+print(f"\nRequesting {len(custom_column_names)} fields from API...")
+print(f"Fields: {fields[:200]}...")  # Show first 200 chars
 
 # First, get the total count of records
 count_params = {
@@ -86,8 +82,14 @@ count_params = {
     "token": token
 }
 
-count_response = requests.get(url, params=count_params)
-total_records = count_response.json()['count']
+try:
+    count_response = requests.get(url, params=count_params, timeout=10)
+    count_response.raise_for_status()
+    total_records = count_response.json()['count']
+    print(f"Total records to fetch: {total_records:,}")
+except Exception as e:
+    print(f"Error getting record count: {e}")
+    raise
 
 # Define the batch size for pagination
 batch_size = 1000
@@ -109,17 +111,52 @@ with tqdm(total=total_records, desc="Fetching records") as pbar:
             "token": token,
         }
 
-        # Make the request
-        response = requests.get(url, params=params)
-
-        if response.status_code == 200:
-            data = response.json()
-            features = data.get('features', [])
-            all_features.extend(features)
-            pbar.update(len(features))
-        else:
-            print(f"Error: {response.status_code}")
+        # Make the request with timeout
+        try:
+            response = requests.get(url, params=params, timeout=30)
+            
+            if response.status_code == 200:
+                response_data = response.json()
+                
+                # Check for API errors in the response
+                if 'error' in response_data:
+                    print(f"\nAPI Error: {response_data['error']}")
+                    print(f"Full response: {response_data}")
+                    break
+                
+                features = response_data.get('features', [])
+                all_features.extend(features)
+                pbar.update(len(features))
+                
+                # Store data for later use (field definitions)
+                if offset == 0:
+                    data = response_data
+            else:
+                print(f"\nError: HTTP {response.status_code}")
+                print(f"Response: {response.text[:500]}")
+                break
+        except requests.exceptions.Timeout:
+            print(f"\nTimeout error at offset {offset}. Retrying once...")
+            try:
+                response = requests.get(url, params=params, timeout=60)
+                if response.status_code == 200:
+                    data = response.json()
+                    features = data.get('features', [])
+                    all_features.extend(features)
+                    pbar.update(len(features))
+                else:
+                    print(f"Retry failed with status {response.status_code}")
+                    break
+            except Exception as e:
+                print(f"Retry failed with error: {e}")
+                break
+        except Exception as e:
+            print(f"\nError fetching data at offset {offset}: {e}")
             break
+
+# Check if we actually fetched data
+if not all_features:
+    raise ValueError("No data was fetched from the API. Check token validity and network connection.")
 
 # Process the collected features
 if all_features:
@@ -136,14 +173,9 @@ if all_features:
     # Create DataFrame
     df = pd.DataFrame(features_data)
     
-    # Build the final column rename mapping
-    # Start with API's default aliases
-    name_to_alias = {field['name']: field['alias'] for field in data['fields']}
-    
-    # Override with custom names from our dictionary
-    for raw_name, custom_name in custom_column_names.items():
-        if raw_name in df.columns:
-            name_to_alias[raw_name] = custom_name
+    # Build the final column rename mapping using only our custom names
+    # Only rename columns that exist in the DataFrame
+    name_to_alias = {raw_name: custom_name for raw_name, custom_name in custom_column_names.items() if raw_name in df.columns}
     
     # Rename the columns
     df = df.rename(columns=name_to_alias)
@@ -247,53 +279,15 @@ duplicates_removed = initial_count - len(df)
 print(f"✓ Removed {duplicates_removed:,} duplicate rows")
 print(f"  Final dataset: {len(df):,} unique records")
 
-# Format NACE codes to match standardized format: 01, 01.1, 01.11, 01.110
-# The new columns from the API are:
-# - NACE-kategori 1: Single letter (A, B, C, etc.)
-# - NACE-kategori 2: Two digits (01, 02, etc.)
-# - NACE-kategori 3: Three digits (011, 012, etc.)
-# - NACE-kategori 4: Four digits (0111, 0112, etc.)
-# - NACE-kategori 5: Five digits (01110, 01120, etc.)
-# - NACE-kode 1: Single letter code
-# - NACE-kode 5: Five digit code
-
-# Format Level 1 (single letter) - keep as is
-if 'NACE-kategori 1' in df.columns:
-    df['NACE-kategori 1'] = df['NACE-kategori 1'].astype(str)
-
-# Format Level 2: Two digits (e.g., "01")
-if 'NACE-kategori 2' in df.columns:
-    df['NACE-kategori 2'] = df['NACE-kategori 2'].astype(str).str.zfill(2)
-
-# Format Level 3: XX.X format (e.g., "01.1")
-if 'NACE-kategori 3' in df.columns:
-    def format_nace_three(value):
-        str_val = str(value).zfill(3)
-        return f"{str_val[0:2]}.{str_val[2]}"
-    df['NACE-kategori 3'] = df['NACE-kategori 3'].apply(format_nace_three)
-
-# Format Level 4: XX.XX format (e.g., "01.11")
-if 'NACE-kategori 4' in df.columns:
-    def format_nace_four(value):
-        str_val = str(value).zfill(4)
-        return f"{str_val[0:2]}.{str_val[2:4]}"
-    df['NACE-kategori 4'] = df['NACE-kategori 4'].apply(format_nace_four)
-
-# Format Level 5: XX.XXX format (e.g., "01.110")
-if 'NACE-kategori 5' in df.columns:
+# Format NACE code to match standardized format: XX.XXX (e.g., "01.110")
+if 'Nace_5_nr' in df.columns:
     def format_nace_five(value):
         str_val = str(value).zfill(5)
         return f"{str_val[0:2]}.{str_val[2:5]}"
-    df['NACE-kategori 5'] = df['NACE-kategori 5'].apply(format_nace_five)
-
-# Format NACE-kode 5 to match NACE-kategori 5 format
-if 'NACE-kode 5' in df.columns:
-    df['NACE-kode 5'] = df['NACE-kode 5'].astype(str).str.zfill(5)
-    # Create formatted version with decimal
-    df['NACE-kode 5'] = df['NACE-kode 5'].apply(lambda x: f"{x[0:2]}.{x[2:5]}" if len(x) == 5 else x)
+    df['Nace_5_nr'] = df['Nace_5_nr'].apply(format_nace_five)
 
 # Ensure all NACE-related columns are strings
-nace_columns = [col for col in df.columns if 'NACE' in col or 'Nace' in col]
+nace_columns = [col for col in df.columns if 'Nace' in col]
 for col in nace_columns:
     df[col] = df[col].astype(str)
 
@@ -312,21 +306,11 @@ print("="*80)
 original_count = len(df)
 original_employees = pd.to_numeric(df['Antall ansatte'], errors='coerce').sum()
 
-# Filter 1: Remove enterprises with exactly 1 employee
-print("\nFilter 1: Removing enterprises with exactly 1 employee")
-print("(Matching Enhetsregisteret scope: keeping null, 0, 2, 3, 4, 5+ employees)")
+# Start with all data (no employee filter)
+df_filtered = df.copy()
 
-employees_numeric = pd.to_numeric(df['Antall ansatte'], errors='coerce')
-exactly_one = (employees_numeric == 1).sum()
-
-df_filtered = df[employees_numeric != 1].copy()
-
-print(f"  Records before filter: {original_count:,}")
-print(f"  Records after filter: {len(df_filtered):,}")
-print(f"  Records removed (exactly 1 employee): {exactly_one:,}")
-
-# Filter 2: Apply SQL filter (firorgnr NOT IN firorgnrknytning)
-print("\nFilter 2: Applying SQL filter (firorgnr NOT IN firorgnrknytning)")
+# Apply SQL filter (firorgnr NOT IN firorgnrknytning)
+print("\nApplying SQL filter (firorgnr NOT IN firorgnrknytning)")
 print("(Removes parent organizations, keeping only lowest level entities)")
 
 # Create set of parent organization numbers
@@ -345,22 +329,44 @@ print(f"  Records before SQL filter: {records_before_sql:,}")
 print(f"  Records after SQL filter: {len(df_filtered):,}")
 print(f"  Records removed: {records_before_sql - len(df_filtered):,}")
 
-# Summary statistics
+# Detailed statistics after SQL filtering
 print("\n" + "="*80)
 print("FILTERED DATA SUMMARY")
 print("="*80)
 
 employees_filtered = pd.to_numeric(df_filtered['Antall ansatte'], errors='coerce')
-total_employees_filtered = employees_filtered.sum()
+
+# Enterprise counts by employee size
+zero_or_missing = ((employees_filtered == 0) | employees_filtered.isna()).sum()
+one_employee = (employees_filtered == 1).sum()
+two_to_four = ((employees_filtered >= 2) & (employees_filtered <= 4)).sum()
+five_or_more = (employees_filtered >= 5).sum()
+one_or_more = (employees_filtered >= 1).sum()
+
+# Employee counts
+total_employees = employees_filtered.sum()
+employees_in_enterprises_with_employees = employees_filtered[employees_filtered > 0].sum()
+employees_in_5plus = employees_filtered[employees_filtered >= 5].sum()
 
 print(f"\nOriginal dataset:")
 print(f"  Total records: {original_count:,}")
 print(f"  Total employees: {original_employees:,.0f}")
 
-print(f"\nFiltered dataset:")
-print(f"  Total records: {len(df_filtered):,}")
-print(f"  Total employees: {total_employees_filtered:,.0f}")
+print(f"\nFiltered dataset (after SQL filtering):")
+print(f"  Total enterprises: {len(df_filtered):,}")
 print(f"  Records removed: {original_count - len(df_filtered):,} ({((original_count - len(df_filtered))/original_count*100):.1f}%)")
+
+print(f"\nEnterprises by employee count:")
+print(f"  Enterprises with 0 or missing employees: {zero_or_missing:,}")
+print(f"  Enterprises with 1 employee: {one_employee:,}")
+print(f"  Enterprises with 2-4 employees: {two_to_four:,}")
+print(f"  Enterprises with 5 or more employees: {five_or_more:,}")
+print(f"  Enterprises with 1 or more employees: {one_or_more:,}")
+
+print(f"\nEmployee statistics:")
+print(f"  Total employees: {total_employees:,.0f}")
+print(f"  Employees in enterprises with employees: {employees_in_enterprises_with_employees:,.0f}")
+print(f"  Employees in enterprises with 5+ employees: {employees_in_5plus:,.0f}")
 
 # Rename and reorder columns for filtered output
 print("\n" + "="*80)
