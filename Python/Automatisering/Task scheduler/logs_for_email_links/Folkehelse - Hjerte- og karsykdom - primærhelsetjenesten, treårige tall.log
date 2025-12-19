@@ -1,65 +1,33 @@
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
-
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
-
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 
-
-
 ======================================================================
-
-FHI Query: Hjerte- og karsykdom - primærhelsetjenesten, treårige tall.txt
-
+FHI Query: Hjerte- og karsykdom - primÃ¦rhelsetjenesten, treÃ¥rige tall.txt
 ======================================================================
-
-
 
 Loading query from file...
-
-  ✓ Query loaded
-
+  âœ“ Query loaded
   URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/369/data
 
-
-
 Fetching data from FHI API...
-
 FHI Query JSON-stat data loaded successfully.
-
-  ✓ Fetched 1368 rows and 7 columns
-
-  Columns: Geografi, År, Kjønn, Alder, Sykdomsgruppe, Måltall, value
-
-
+  âœ“ Fetched 1368 rows and 7 columns
+  Columns: Geografi, Ã…r, KjÃ¸nn, Alder, Sykdomsgruppe, MÃ¥ltall, value
 
 After processing: 1368 rows and 7 columns
 
-
-
 Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
+[2025-12-19 15:38:29] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
+  âœ“ No changes detected
 
-Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
-
-[2025-12-19 15:33:40] No new data to upload. Skipping GitHub update.
-
-Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
-
-  ✓ No changes detected
-
-
-
-  ✓ Saved to: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Data\08_Folkehelse og levekår\Helsetilstand\hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
-
-
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃ¥r\Helsetilstand\hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
 
 ======================================================================
-
 Processing complete
-
 ======================================================================
-
-
 
 
