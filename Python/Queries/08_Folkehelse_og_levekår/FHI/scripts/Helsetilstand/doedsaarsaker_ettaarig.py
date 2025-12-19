@@ -112,6 +112,9 @@ print(f"  Columns: {', '.join(df.columns.tolist())}")
 ### Add your data transformations and processing here            ###
 ####################################################################
 
+# Rename column "value" to "Verdi"
+df = df.rename(columns={'value': 'Verdi'})
+
 # Example transformations (uncomment and modify as needed):
 # df = df[df['value'] > 0]  # Filter rows
 # df['new_column'] = df['old_column'] * 2  # Create new column
