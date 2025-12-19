@@ -1,37 +1,65 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
 
+
+
 ======================================================================
-FHI Query: Sykehusinnlagte, somatikk, ettÃÂ¥rige. inkl. skader.txt
+
+FHI Query: Sykehusinnlagte, somatikk, ettårige. inkl. skader.txt
+
 ======================================================================
+
+
 
 Loading query from file...
-  Ã¢Åâ Query loaded
+
+  ✓ Query loaded
+
   URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/699/data
 
+
+
 Fetching data from FHI API...
+
 FHI Query JSON-stat data loaded successfully.
-  Ã¢Åâ Fetched 41496 rows and 7 columns
-  Columns: Geografi, Ãâ¦r, KjÃÂ¸nn, Alder, Sykdomsgruppe, MÃÂ¥ltall, value
+
+  ✓ Fetched 41496 rows and 7 columns
+
+  Columns: Geografi, År, Kjønn, Alder, Sykdomsgruppe, Måltall, value
+
+
 
 After processing: 41496 rows and 7 columns
 
+
+
 Comparing with GitHub...
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sykehusinnlagte_somatikk_ettaarige_inkl_skader.csv
-File not found on GitHub: Data/08_Folkehelse og levekÃÂ¥r/Helsetilstand/sykehusinnlagte_somatikk_ettaarige_inkl_skader.csv
-[2025-12-19 15:23:44] Uploading new file: sykehusinnlagte_somatikk_ettaarige_inkl_skader.csv
-File uploaded successfully: Data/08_Folkehelse og levekÃÂ¥r/Helsetilstand/sykehusinnlagte_somatikk_ettaarige_inkl_skader.csv
-Email notifications disabled. Updates for sykehusinnlagte_somatikk_ettaarige_inkl_skader.csv were not sent.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sykehusinnlagte_somatikk_ettaarige_inkl_skader.csv
-  Ã¢Åâ New data detected and uploaded to GitHub
-New data detected
 
-  Ã¢Åâ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃÂ¥r\Helsetilstand\sykehusinnlagte_somatikk_ettaarige_inkl_skader.csv
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\sykehusinnlagte_somatikk_ettaarige_inkl_skader.csv
+
+[2025-12-19 15:34:14] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\sykehusinnlagte_somatikk_ettaarige_inkl_skader.csv
+
+  ✓ No changes detected
+
+
+
+  ✓ Saved to: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Data\08_Folkehelse og levekår\Helsetilstand\sykehusinnlagte_somatikk_ettaarige_inkl_skader.csv
+
+
 
 ======================================================================
+
 Processing complete
+
 ======================================================================
+
+
 
 
