@@ -1,65 +1,33 @@
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
-
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
-
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 
-
-
 ======================================================================
-
-FHI Query: Skader, kontakt med primærhelsetjeneste, ettårige tall.txt
-
+FHI Query: Skader, kontakt med primÃ¦rhelsetjeneste, ettÃ¥rige tall.txt
 ======================================================================
-
-
 
 Loading query from file...
-
-  ✓ Query loaded
-
+  âœ“ Query loaded
   URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/370/data
 
-
-
 Fetching data from FHI API...
-
 FHI Query JSON-stat data loaded successfully.
-
-  ✓ Fetched 4560 rows and 7 columns
-
-  Columns: Geografi, År, Kjønn, Alder, Sykdomsgruppe, Måltall, value
-
-
+  âœ“ Fetched 4560 rows and 7 columns
+  Columns: Geografi, Ã…r, KjÃ¸nn, Alder, Sykdomsgruppe, MÃ¥ltall, value
 
 After processing: 4560 rows and 7 columns
 
-
-
 Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.csv
+[2025-12-19 15:39:50] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.csv
+  âœ“ No changes detected
 
-Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.csv
-
-[2025-12-19 15:34:22] No new data to upload. Skipping GitHub update.
-
-Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.csv
-
-  ✓ No changes detected
-
-
-
-  ✓ Saved to: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Data\08_Folkehelse og levekår\Skader og ulykker\skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.csv
-
-
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃ¥r\Skader og ulykker\skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.csv
 
 ======================================================================
-
 Processing complete
-
 ======================================================================
-
-
 
 
