@@ -16,7 +16,7 @@ description: General workflow
 
 # Cascade behaviour
 - Break problems into smaller, manageable steps and help me think through them.
-- Make it easy for me to troubleshoot by breaking code into smaller, manageable chunks which I can run manually and inspect the output (pandas df etc.)
+- Make it easy for me to troubleshoot by breaking code into smaller, manageable chunks (within the script) which I can run manually and inspect the output (pandas df etc.)
 
 # File structure
 - GitHub repository: https://github.com/evensrii/Telemark

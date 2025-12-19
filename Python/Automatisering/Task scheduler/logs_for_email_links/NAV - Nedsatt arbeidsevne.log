@@ -2,19 +2,24 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Existing data range: 2011-01-01 to 2025-09-01
-Missing months in dataset: ['2025-10', '2025-11', '2025-12', '2026-01']
+Existing data range: 2011-01-01 to 2025-10-01
+Missing months in dataset: ['2025-11', '2025-12', '2026-01', '2026-02', '2026-03']
 (These may not be available yet.)
-Found 9 Excel files in GitHub directory
-Found file to process: 2025-10-16.xlsx (contains data for 2025-10)
+Found 10 Excel files in GitHub directory
+Found file to process: 2025-11-16.xlsx (contains data for 2025-11)
 Total files found to process: 1
 
 Files to be processed:
-  - 2025-10-16.xlsx: Contains October 2025 data (published 2025-10-16)
-Data from 2025-10-16.xlsx already exists in dataset - skipping
+  - 2025-11-16.xlsx: Contains November 2025 data (published 2025-11-16)
+Data from 2025-11-16.xlsx already exists in dataset - skipping
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\nedsatt_arbeidsevne.csv
-[2025-10-23 08:08:07] No new data to upload. Skipping GitHub update.
+[2025-12-19 08:08:16] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\nedsatt_arbeidsevne.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_NAV_-_Nedsatt_arbeidsevne.log
+
+
+Errors/Warnings:
+D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/nedsatt_arbeidsevne.py:45: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  df_combined['Antall personer'] = df_combined['Antall personer'].replace('*', np.nan)
 
