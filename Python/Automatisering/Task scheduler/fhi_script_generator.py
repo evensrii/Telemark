@@ -253,8 +253,7 @@ has_changes = handle_output_data(
     file_name=output_filename,
     github_folder=github_folder,
     temp_folder=temp_folder,
-    keepcsv=True,
-    value_columns=['value']
+    keepcsv=True
 )
 
 if has_changes:
