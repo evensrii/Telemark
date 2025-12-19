@@ -1,65 +1,33 @@
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
-
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
-
-Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
-
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 
-
-
 ======================================================================
-
 FHI Query: Tilfredshet med livet, ungdom.txt
-
 ======================================================================
-
-
 
 Loading query from file...
-
-  ✓ Query loaded
-
+  âœ“ Query loaded
   URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/373/data
 
-
-
 Fetching data from FHI API...
-
 FHI Query JSON-stat data loaded successfully.
-
-  ✓ Fetched 114 rows and 8 columns
-
-  Columns: Geografi, År, Kjønn, Alder, Skala 0-10, tilfredshet, Sosial status, Måltall, value
-
-
+  âœ“ Fetched 114 rows and 8 columns
+  Columns: Geografi, Ã…r, KjÃ¸nn, Alder, Skala 0-10, tilfredshet, Sosial status, MÃ¥ltall, value
 
 After processing: 114 rows and 8 columns
 
-
-
 Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\tilfredshet_med_livet_ungdom.csv
+[2025-12-19 15:39:42] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\tilfredshet_med_livet_ungdom.csv
+  âœ“ No changes detected
 
-Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\tilfredshet_med_livet_ungdom.csv
-
-[2025-12-19 15:34:19] No new data to upload. Skipping GitHub update.
-
-Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\tilfredshet_med_livet_ungdom.csv
-
-  ✓ No changes detected
-
-
-
-  ✓ Saved to: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Data\08_Folkehelse og levekår\Helsetilstand\tilfredshet_med_livet_ungdom.csv
-
-
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃ¥r\Helsetilstand\tilfredshet_med_livet_ungdom.csv
 
 ======================================================================
-
 Processing complete
-
 ======================================================================
-
-
 
 
