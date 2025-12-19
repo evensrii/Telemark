@@ -1,0 +1,37 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+
+======================================================================
+FHI Query: Reseptfrie smertestillende legemidler, ungdom.txt
+======================================================================
+
+Loading query from file...
+  âœ“ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/390/data
+
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  âœ“ Fetched 399 rows and 8 columns
+  Columns: Geografi, Ã…r, KjÃ¸nn, Alder, Svarkategori, sosial status, MÃ¥ltall, value
+
+After processing: 399 rows and 8 columns
+
+Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\reseptfrie_smertestillende_legemidler_ungdom.csv
+File not found on GitHub: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/reseptfrie_smertestillende_legemidler_ungdom.csv
+[2025-12-19 15:23:27] Uploading new file: reseptfrie_smertestillende_legemidler_ungdom.csv
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/reseptfrie_smertestillende_legemidler_ungdom.csv
+Email notifications disabled. Updates for reseptfrie_smertestillende_legemidler_ungdom.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\reseptfrie_smertestillende_legemidler_ungdom.csv
+  âœ“ New data detected and uploaded to GitHub
+New data detected
+
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃ¥r\Helsetilstand\reseptfrie_smertestillende_legemidler_ungdom.csv
+
+======================================================================
+Processing complete
+======================================================================
+
+

@@ -1,0 +1,37 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+
+======================================================================
+FHI Query: Kreft, nye tilfeller, tiÃ¥rige tall.txt
+======================================================================
+
+Loading query from file...
+  âœ“ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/368/data
+
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  âœ“ Fetched 13680 rows and 7 columns
+  Columns: Geografi, Ã…r, KjÃ¸nn, Alder, Krefttyper, MÃ¥ltall, value
+
+After processing: 13680 rows and 7 columns
+
+Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\kreft_nye_tilfeller_tiaarige_tall.csv
+File not found on GitHub: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/kreft_nye_tilfeller_tiaarige_tall.csv
+[2025-12-19 15:22:52] Uploading new file: kreft_nye_tilfeller_tiaarige_tall.csv
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/kreft_nye_tilfeller_tiaarige_tall.csv
+Email notifications disabled. Updates for kreft_nye_tilfeller_tiaarige_tall.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\kreft_nye_tilfeller_tiaarige_tall.csv
+  âœ“ New data detected and uploaded to GitHub
+New data detected
+
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃ¥r\Helsetilstand\kreft_nye_tilfeller_tiaarige_tall.csv
+
+======================================================================
+Processing complete
+======================================================================
+
+

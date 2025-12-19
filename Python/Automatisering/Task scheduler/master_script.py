@@ -27,43 +27,43 @@ if TEMP_FOLDER is None:
 
 SCRIPTS = [
     ## Befolkning
-    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske.py"), "Befolkning - Befolkningsframskrivinger historiske"),
-    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/flytting_til_og_fra_telemark.py"), "Flytting - Til og fra Telemark"),
-    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/folketall.py"), "Befolkning - Folketall"),
+    #(os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske.py"), "Befolkning - Befolkningsframskrivinger historiske"),
+    #(os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/flytting_til_og_fra_telemark.py"), "Flytting - Til og fra Telemark"),
+    #(os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/folketall.py"), "Befolkning - Folketall"),
     
     ## Opplæring og kompetanse
-    (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa.py"), "Opplaering og kompetanse - Utdanningsnivaa"),
-    (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa_telemark_og_landet.py"), "Opplaering og kompetanse - Utdanningsnivaa Telemark og landet"),
+    #(os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa.py"), "Opplaering og kompetanse - Utdanningsnivaa"),
+    #(os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa_telemark_og_landet.py"), "Opplaering og kompetanse - Utdanningsnivaa Telemark og landet"),
 
     ## Arbeid og næringsliv
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning.py"), "Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune"),
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_alder.py"), "Arbeid og naeringsliv - Sysselsatte etter aldersgruppe"),
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py"), "Arbeid og naeringsliv - Sysselsatte i kommunene"),
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/offentlig_vs_privat_sysselsetting.py"), "Arbeid og naeringsliv - Offentlig vs. privat naeringsliv"),
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_i_naringer.py"), "Arbeid og naeringsliv - Sysselsatte i naeringer"),
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_fliser.py"), "Arbeid og naeringsliv - Sysselsatte (fliser)"),
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/endring_arbeidsplasser_over_tid.py"), "Arbeid og naeringsliv - Endring arbeidsplasser over tid"),
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/virksomheter.py"), "Arbeid og naeringsliv - Virksomheter"),
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/nace_klassifisering.py"), "Arbeid og naeringsliv - Standard for naeringsgruppering"),
+    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning.py"), "Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune"),
+    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_alder.py"), "Arbeid og naeringsliv - Sysselsatte etter aldersgruppe"),
+    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py"), "Arbeid og naeringsliv - Sysselsatte i kommunene"),
+    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/offentlig_vs_privat_sysselsetting.py"), "Arbeid og naeringsliv - Offentlig vs. privat naeringsliv"),
+    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_i_naringer.py"), "Arbeid og naeringsliv - Sysselsatte i naeringer"),
+    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_fliser.py"), "Arbeid og naeringsliv - Sysselsatte (fliser)"),
+    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/endring_arbeidsplasser_over_tid.py"), "Arbeid og naeringsliv - Endring arbeidsplasser over tid"),
+    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/virksomheter.py"), "Arbeid og naeringsliv - Virksomheter"),
+    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/nace_klassifisering.py"), "Arbeid og naeringsliv - Standard for naeringsgruppering"),
  
     ## Arbeid og næringsliv - NAV
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py"), "NAV - Arbeidsledighet"),
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/nedsatt_arbeidsevne.py"), "NAV - Nedsatt arbeidsevne"),
-    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py"), "Opplaering og kompetanse - Sokere og stillinger etter yrkespraksis"),
+    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py"), "NAV - Arbeidsledighet"),
+    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/nedsatt_arbeidsevne.py"), "NAV - Nedsatt arbeidsevne"),
+    #(os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py"), "Opplaering og kompetanse - Sokere og stillinger etter yrkespraksis"),
 
     ## Klima og energi
-    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Klimagassutslipp/klimagassutslipp.py"), "Klima og energi - Sektorvise utslipp"),
-    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Klimagassutslipp/norskeutslipp.py"), "Klima og energi - Utslipp fra landbasert industri"),
-    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Ressursforvaltning/okologisk_tilstand.py"), "Klima og energi - Okologisk tilstand vann"),
-    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py"), "Klima og energi - Felte hjortedyr"),
-    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/NVE/vannkraft.py"), "Klima og energi - Vannkraft Telemark"),
-    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/SSB/kraftproduksjon_ssb.py"), "Klima og energi - Kraftproduksjon Telemark (SSB)"),
-    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py"), "Klima og energi - Strompriser"),
-    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Forbruk/Elhub/elhub.py"), "Klima og energi - Stromforbruk (Elhub)"),
-    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/Elhub/installert_effekt.py"), "Klima og energi - Installert_effekt (Elhub)"),
+    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Klimagassutslipp/klimagassutslipp.py"), "Klima og energi - Sektorvise utslipp"),
+    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Klimagassutslipp/norskeutslipp.py"), "Klima og energi - Utslipp fra landbasert industri"),
+    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Ressursforvaltning/okologisk_tilstand.py"), "Klima og energi - Okologisk tilstand vann"),
+    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py"), "Klima og energi - Felte hjortedyr"),
+    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/NVE/vannkraft.py"), "Klima og energi - Vannkraft Telemark"),
+    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/SSB/kraftproduksjon_ssb.py"), "Klima og energi - Kraftproduksjon Telemark (SSB)"),
+    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py"), "Klima og energi - Strompriser"),
+    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Forbruk/Elhub/elhub.py"), "Klima og energi - Stromforbruk (Elhub)"),
+    #(os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/Elhub/installert_effekt.py"), "Klima og energi - Installert_effekt (Elhub)"),
 
     ## Idrett, friluftsliv og frivillighet (husk, ingen komma i oppgavenavn)
-    (os.path.join(PYTHON_PATH, "Queries/07_Idrett_friluftsliv_og_frivillighet/Friluftsliv/andel_jegere.py"), "Idrett friluftsliv og frivillighet - Jegere"),
+    #(os.path.join(PYTHON_PATH, "Queries/07_Idrett_friluftsliv_og_frivillighet/Friluftsliv/andel_jegere.py"), "Idrett friluftsliv og frivillighet - Jegere"),
 
     ## Folkehelse og levekår - FHI
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/doedsaarsaker_ettaarig.py"), "Folkehelse - Dødsårsaker, ettårig"),
@@ -82,30 +82,14 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/tilfredshet_med_livet_ungdom.py"), "Folkehelse - Tilfredshet med livet, ungdom"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Skader og ulykker/skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.py"), "Folkehelse - Skader, kontakt med primærhelsetjeneste, ettårige tall"),
 
-    ## Innvandrere og inkludering
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py"), "Innvandrere - Flyktninger og arbeidsinnvandrere"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/botid.py"), "Innvandrere - Botid"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandrere_bosatt.py"), "Innvandrere - Bosatt"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandringsgrunn.py"), "Innvandrere - Innvandringsgrunn"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt_fhi.py"), "Innvandrere - Lavinntekt"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_innvandrere.py"), "Innvandrere - Sysselsatte"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_botid_og_landbakgrunn.py"), "Innvandrere - Sysselsatte etter botid og bakgrunn"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/deltakere_introduksjonsprogram.py"), "Innvandrere - Deltakere introduksjonsprogrammet"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.py"), "Innvandrere - Etter introduksjonsprogrammet"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/enslige_mindreaarige.py"), "Innvandrere - Enslige mindreaarige"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/anmodninger_og_faktisk_bosetting.py"), "Innvandrere - Anmodninger og faktisk bosetting"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/sekundaerflytting.py"), "Innvandrere - Sekundaerflytting"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_fullfort_vgo.py"), "Innvandrere - Fullfort VGO"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py"), "Innvandrere - Hoyeste utdanning"),
-    
     ## Areal og stedsutvikling
-    (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py"), "Areal - Jordbruksareal per kommune"),
-    (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/fulldyrka_vs_ikke-fulldyrka.py"), "Areal - Fulldyrka vs ikke-fulldyrka"),
+    #(os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py"), "Areal - Jordbruksareal per kommune"),
+    #(os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/fulldyrka_vs_ikke-fulldyrka.py"), "Areal - Fulldyrka vs ikke-fulldyrka"),
 
     ## Bystrategi Grenland
-    (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py"), "Bystrategi Grenland - Utslipp fra vei"),
-    (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py"), "Bystrategi Grenland - Luftforurensing"),
-    (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.py"), "Bystrategi Grenland - Arealprofiler"),
+    #(os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py"), "Bystrategi Grenland - Utslipp fra vei"),
+    #(os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py"), "Bystrategi Grenland - Luftforurensing"),
+    #(os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.py"), "Bystrategi Grenland - Arealprofiler"),
 ]
 
 # Initialize master log
