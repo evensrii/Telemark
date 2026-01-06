@@ -44,6 +44,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_fliser.py"), "Arbeid og naeringsliv - Sysselsatte (fliser)"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/endring_arbeidsplasser_over_tid.py"), "Arbeid og naeringsliv - Endring arbeidsplasser over tid"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/virksomheter.py"), "Arbeid og naeringsliv - Virksomheter"),
+    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/nace_klassifisering.py"), "Arbeid og naeringsliv - Standard for naeringsgruppering"),
  
     ## Arbeid og næringsliv - NAV
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py"), "NAV - Arbeidsledighet"),
@@ -64,22 +65,23 @@ SCRIPTS = [
     ## Idrett, friluftsliv og frivillighet (husk, ingen komma i oppgavenavn)
     (os.path.join(PYTHON_PATH, "Queries/07_Idrett_friluftsliv_og_frivillighet/Friluftsliv/andel_jegere.py"), "Idrett friluftsliv og frivillighet - Jegere"),
 
-    ## Innvandrere og inkludering
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py"), "Innvandrere - Flyktninger og arbeidsinnvandrere"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/botid.py"), "Innvandrere - Botid"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandrere_bosatt.py"), "Innvandrere - Bosatt"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/innvandringsgrunn.py"), "Innvandrere - Innvandringsgrunn"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt_fhi.py"), "Innvandrere - Lavinntekt"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_innvandrere.py"), "Innvandrere - Sysselsatte"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_botid_og_landbakgrunn.py"), "Innvandrere - Sysselsatte etter botid og bakgrunn"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/deltakere_introduksjonsprogram.py"), "Innvandrere - Deltakere introduksjonsprogrammet"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.py"), "Innvandrere - Etter introduksjonsprogrammet"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/enslige_mindreaarige.py"), "Innvandrere - Enslige mindreaarige"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/anmodninger_og_faktisk_bosetting.py"), "Innvandrere - Anmodninger og faktisk bosetting"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/sekundaerflytting.py"), "Innvandrere - Sekundaerflytting"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_fullfort_vgo.py"), "Innvandrere - Fullfort VGO"),
-    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py"), "Innvandrere - Hoyeste utdanning"),
-    
+    ## Folkehelse og levekår - FHI
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/doedsaarsaker_ettaarig.py"), "Folkehelse - Dødsårsaker, ettårig"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/fornoeyd_med_helsa_ungdom.py"), "Folkehelse - Fornøyd med helsa - ungdom"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/forventet_levealder_etter_utdanning_7_aarig.py"), "Folkehelse - Forventet levealder etter utdanning, 7 årig"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/hjerte_og_karsykdom_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, ettårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.py"), "Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/kols_doedsaarsak_ettaarig.py"), "Folkehelse - Kols, dødsårsak, ettårig"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/kreft_nye_tilfeller_tiaarige_tall.py"), "Folkehelse - Kreft, nye tilfeller, tiårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/psykiske_plager_ungdom.py"), "Folkehelse - Psykiske plager, ungdom"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/psykiske_symptomer_og_lidelser_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Psykiske symptomer og lidelser - primærhelsetjenesten, ettårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/reseptfrie_smertestillende_legemidler_ungdom.py"), "Folkehelse - Reseptfrie smertestillende legemidler, ungdom"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/selvmord_femaarig.py"), "Folkehelse - Selvmord, femårig"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/sykehusinnlagte_somatikk_ettaarige_inkl_skader.py"), "Folkehelse - Sykehusinnlagte, somatikk, ettårige. inkl. skader"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/tilfredshet_med_livet_ungdom.py"), "Folkehelse - Tilfredshet med livet, ungdom"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Skader og ulykker/skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.py"), "Folkehelse - Skader, kontakt med primærhelsetjeneste, ettårige tall"),
+
     ## Areal og stedsutvikling
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py"), "Areal - Jordbruksareal per kommune"),
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/fulldyrka_vs_ikke-fulldyrka.py"), "Areal - Fulldyrka vs ikke-fulldyrka"),
@@ -113,7 +115,8 @@ def run_script(script_path, task_name):
                 
             # Extract github_folder and potential file names
             github_folder_match = re.search(r'github_folder\s*=\s*["\']([^"\']+)["\']', script_content)
-            file_name_matches = re.findall(r'file_name\d*\s*=\s*["\']([^"\']+)["\']', script_content)
+            # Match both file_name and output_filename patterns
+            file_name_matches = re.findall(r'(?:file_name|output_filename)\d*\s*=\s*["\']([^"\']+)["\']', script_content)
             
             github_folder = github_folder_match.group(1) if github_folder_match else None
 

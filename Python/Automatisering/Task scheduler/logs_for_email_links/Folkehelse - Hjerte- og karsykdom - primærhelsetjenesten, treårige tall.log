@@ -1,0 +1,33 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+
+======================================================================
+FHI Query: Hjerte- og karsykdom - primÃ¦rhelsetjenesten, treÃ¥rige tall.txt
+======================================================================
+
+Loading query from file...
+  âœ“ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/369/data
+
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  âœ“ Fetched 1368 rows and 7 columns
+  Columns: Geografi, Ã…r, KjÃ¸nn, Alder, Sykdomsgruppe, MÃ¥ltall, value
+
+After processing: 1368 rows and 7 columns
+
+Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
+[2026-01-06 08:15:27] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
+  âœ“ No changes detected
+
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃ¥r\Helsetilstand\hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
+
+======================================================================
+Processing complete
+======================================================================
+
+

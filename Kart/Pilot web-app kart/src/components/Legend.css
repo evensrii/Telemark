@@ -1,0 +1,144 @@
+.legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 220px;
+  max-width: 300px;
+  transition: all 0.3s ease;
+}
+
+.legend.collapsed {
+  min-width: auto;
+}
+
+.legend-header {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  background: #005260;
+  color: white;
+  border-radius: 8px 8px 0 0;
+  user-select: none;
+}
+
+.legend.collapsed .legend-header {
+  border-radius: 8px;
+  border-bottom: none;
+}
+
+.legend-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.legend-content {
+  padding: 1.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.legend-section {
+  margin-bottom: 1.5rem;
+}
+
+.legend-section:last-child {
+  margin-bottom: 0;
+}
+
+.legend-section h4 {
+  margin: 0 0 0.8rem 0;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 600;
+  border-bottom: 2px solid #005260;
+  padding-bottom: 0.3rem;
+}
+
+.legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.3rem 0;
+}
+
+.legend-color {
+  width: 24px;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.legend-label {
+  font-size: 0.9rem;
+  color: #555;
+  flex: 1;
+}
+
+.legend-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.legend-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.legend-content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.legend-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (max-width: 768px) {
+  .legend {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+    max-width: none;
+  }
+
+  .legend-header {
+    padding: 0.8rem 1rem;
+  }
+
+  .legend-header h3 {
+    font-size: 1rem;
+  }
+
+  .legend-content {
+    padding: 1rem;
+    max-height: 300px;
+  }
+}

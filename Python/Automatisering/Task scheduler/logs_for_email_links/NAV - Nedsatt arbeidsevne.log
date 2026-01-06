@@ -3,23 +3,43 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Existing data range: 2011-01-01 to 2025-10-01
-Missing months in dataset: ['2025-11', '2025-12', '2026-01', '2026-02']
+Missing months in dataset: ['2025-11', '2025-12', '2026-01', '2026-02', '2026-03', '2026-04']
 (These may not be available yet.)
-Found 10 Excel files in GitHub directory
+Found 11 Excel files in GitHub directory
+Found file to process: 2025-12-16.xlsx (contains data for 2025-12)
 Found file to process: 2025-11-16.xlsx (contains data for 2025-11)
-Total files found to process: 1
+Total files found to process: 2
 
 Files to be processed:
   - 2025-11-16.xlsx: Contains November 2025 data (published 2025-11-16)
+  - 2025-12-16.xlsx: Contains December 2025 data (published 2025-12-16)
 Data from 2025-11-16.xlsx already exists in dataset - skipping
+Successfully processed 2025-12-16.xlsx - Added data for dates: ['2025-11-01']
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\nedsatt_arbeidsevne.csv
-[2025-11-28 08:08:18] No new data to upload. Skipping GitHub update.
+[2026-01-06 08:08:29] Row count changed: 35239 -> 35437
+
+Added rows (showing up to 10):
+Alder: 18 - 29 Ã¥r, Andel av befolkningen: 7.8, Antall personer: 3819.0, Dato: 2025-11-01, Geografisk enhet: Agder, Kjnn: Begge kjÃ¸nn, Niv: Fylker
+Alder: 18 - 66 Ã¥r, Andel av befolkningen: 8.3, Antall personer: 16654.0, Dato: 2025-11-01, Geografisk enhet: Agder, Kjnn: Begge kjÃ¸nn, Niv: Fylker
+Alder: 18 - 29 Ã¥r, Andel av befolkningen: 8.4, Antall personer: 1984.0, Dato: 2025-11-01, Geografisk enhet: Agder, Kjnn: Kvinner, Niv: Fylker
+Alder: 18 - 66 Ã¥r, Andel av befolkningen: 9.4, Antall personer: 9284.0, Dato: 2025-11-01, Geografisk enhet: Agder, Kjnn: Kvinner, Niv: Fylker
+Alder: 18 - 29 Ã¥r, Andel av befolkningen: 7.3, Antall personer: 1835.0, Dato: 2025-11-01, Geografisk enhet: Agder, Kjnn: Menn, Niv: Fylker
+Alder: 18 - 66 Ã¥r, Andel av befolkningen: 7.2, Antall personer: 7370.0, Dato: 2025-11-01, Geografisk enhet: Agder, Kjnn: Menn, Niv: Fylker
+Alder: 18 - 29 Ã¥r, Andel av befolkningen: 5.6, Antall personer: 5537.0, Dato: 2025-11-01, Geografisk enhet: Akershus, Kjnn: Begge kjÃ¸nn, Niv: Fylker
+Alder: 18 - 66 Ã¥r, Andel av befolkningen: 6.5, Antall personer: 30845.0, Dato: 2025-11-01, Geografisk enhet: Akershus, Kjnn: Begge kjÃ¸nn, Niv: Fylker
+Alder: 18 - 29 Ã¥r, Andel av befolkningen: 6.0, Antall personer: 2870.0, Dato: 2025-11-01, Geografisk enhet: Akershus, Kjnn: Kvinner, Niv: Fylker
+Alder: 18 - 66 Ã¥r, Andel av befolkningen: 7.5, Antall personer: 17420.0, Dato: 2025-11-01, Geografisk enhet: Akershus, Kjnn: Kvinner, Niv: Fylker
+... and 188 more rows
+File uploaded successfully: Data/03_Arbeid og nÃ¦ringsliv/01_Arbeidsliv/NAV/Nedsatt arbeidsevne/nedsatt_arbeidsevne.csv
+Email notifications disabled. Updates for nedsatt_arbeidsevne.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\nedsatt_arbeidsevne.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_NAV_-_Nedsatt_arbeidsevne.log
 
 
 Errors/Warnings:
+D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/nedsatt_arbeidsevne.py:45: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  df_combined['Antall personer'] = df_combined['Antall personer'].replace('*', np.nan)
 D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/nedsatt_arbeidsevne.py:45: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   df_combined['Antall personer'] = df_combined['Antall personer'].replace('*', np.nan)
 
