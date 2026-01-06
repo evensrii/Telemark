@@ -1,0 +1,55 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+SSB Klass - Standard for nÃ¦ringsgruppering CSV data loaded successfully.
+No exact duplicate rows found.
+Found 191 near-duplicate rows with same Nace_5_nr but different Nace_5_navn.
+
+Top 10 near-duplicate rows being removed:
+--------------------------------------------------------------------------------
+Nace_5_nr: 01.110
+Nace_5_navn: Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster
+--------------------------------------------------------------------------------
+Nace_5_nr: 01.410
+Nace_5_navn: Melkeproduksjon pÃ¥ storfe og oppdrett av melkekyr
+--------------------------------------------------------------------------------
+Nace_5_nr: 01.420
+Nace_5_navn: Oppdrett av annet storfe til kjÃ¸ttproduksjon og sÃ¦dproduksjon
+--------------------------------------------------------------------------------
+Nace_5_nr: 01.430
+Nace_5_navn: Hestehold
+--------------------------------------------------------------------------------
+Nace_5_nr: 01.630
+Nace_5_navn: Etterbehandling av vekster etter innhÃ¸sting og behandling av sÃ¥frÃ¸
+--------------------------------------------------------------------------------
+Nace_5_nr: 01.700
+Nace_5_navn: Jakt, fangst, viltstell og tilknyttede tjenester
+--------------------------------------------------------------------------------
+Nace_5_nr: 03.120
+Nace_5_navn: Ferskvannsfiske
+--------------------------------------------------------------------------------
+Nace_5_nr: 03.211
+Nace_5_navn: Produksjon av matfisk, blÃ¸tdyr, krepsdyr og pigghuder i hav- og kystbasert akvakultur
+--------------------------------------------------------------------------------
+Nace_5_nr: 03.212
+Nace_5_navn: Produksjon av yngel og settefisk i sjÃ¸ og brakkvann
+--------------------------------------------------------------------------------
+Nace_5_nr: 03.221
+Nace_5_navn: Produksjon av matfisk, blÃ¸tdyr og krepsdyr i ferskvannsbasert akvakultur
+--------------------------------------------------------------------------------
+
+Kept first instance of each Nace_5_nr, removed 191 near-duplicates.
+Final dataset: 1065 rows with 1065 unique Nace_5_nr values.
+âœ“ Verification passed: All Nace_5_nr values are unique.
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\standard_for_naeringsgruppering.csv
+[2026-01-06 08:08:07] Changes detected in the dataset.
+
+[2026-01-06 08:08:07] Dataset is large. Showing detailed changes from the last 200 rows only.
+
+No changes found in the last 200 rows, but changes exist elsewhere in the dataset.
+Email notifications disabled. Updates for standard_for_naeringsgruppering.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\standard_for_naeringsgruppering.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Standard_for_naeringsgruppering.log
+
