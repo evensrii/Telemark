@@ -3,8 +3,30 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\vannkraft_telemark.csv
-[2026-01-09 08:11:59] No new data to upload. Skipping GitHub update.
+[2026-01-12 08:11:54] Changes detected in the dataset.
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftproduksjon/NVE/vannkraft_telemark.csv
+
+Showing up to 5 examples of changes:
+
+Row: Kommune: Nome
+  Kraftverk: BergesÃ¥i -> Aall-Ulefoss
+
+Row: Kommune: Nome
+  Produksjon oppstart: 2022 -> 1948
+
+Row: Kommune: Nome
+  rlig produksjon (1991-2020): 10.541 -> 30.286
+
+Row: Kommune: Hjartdal
+  Kraftverk: Bestul -> Bjordalen
+
+Row: Kommune: Hjartdal
+  Produksjon oppstart: 2015 -> 1960
+
+Total changes found in examined rows: 374
+(Showing first 5 changes only)
+Email notifications disabled. Updates for vannkraft_telemark.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\vannkraft_telemark.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Vannkraft_Telemark.log
 
