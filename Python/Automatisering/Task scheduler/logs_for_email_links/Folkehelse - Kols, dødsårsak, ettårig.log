@@ -20,9 +20,34 @@ After processing: 5130 rows and 7 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\kols_doedsaarsak_ettaarig.csv
-[2026-01-12 08:14:02] No new data to upload. Skipping GitHub update.
+[2026-01-13 08:14:10] Changes detected in the dataset.
+
+[2026-01-13 08:14:10] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/kols_doedsaarsak_ettaarig.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: 
+  Alder: 75 Ã¥r + -> 75+ Ã¥r
+
+Row: 
+  Alder: 75 Ã¥r + -> 75+ Ã¥r
+
+Row: 
+  Alder: 75 Ã¥r + -> 75+ Ã¥r
+
+Row: 
+  Alder: 75 Ã¥r + -> 75+ Ã¥r
+
+Row: 
+  Alder: 75 Ã¥r + -> 75+ Ã¥r
+
+Total changes found in examined rows: 42
+(Showing first 5 changes only)
+Email notifications disabled. Updates for kols_doedsaarsak_ettaarig.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\kols_doedsaarsak_ettaarig.csv
-  âœ“ No changes detected
+  âœ“ New data detected and uploaded to GitHub
+New data detected
 
   âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃ¥r\Helsetilstand\kols_doedsaarsak_ettaarig.csv
 
