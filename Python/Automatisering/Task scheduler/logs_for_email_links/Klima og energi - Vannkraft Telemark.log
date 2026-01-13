@@ -3,25 +3,25 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\vannkraft_telemark.csv
-[2026-01-12 08:11:54] Changes detected in the dataset.
+[2026-01-13 08:12:05] Changes detected in the dataset.
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftproduksjon/NVE/vannkraft_telemark.csv
 
 Showing up to 5 examples of changes:
 
-Row: Kommune: Nome
-  Kraftverk: BergesÃ¥i -> Aall-Ulefoss
+Row: Kommune: Fyresdal
+  Kraftverk: Aall-Ulefoss -> BergesÃ¥i
 
-Row: Kommune: Nome
-  Produksjon oppstart: 2022 -> 1948
+Row: Kommune: Fyresdal
+  Produksjon oppstart: 1948 -> 2022
 
-Row: Kommune: Nome
-  rlig produksjon (1991-2020): 10.541 -> 30.286
+Row: Kommune: Fyresdal
+  rlig produksjon (1991-2020): 30.286 -> 10.541
 
-Row: Kommune: Hjartdal
-  Kraftverk: Bestul -> Bjordalen
+Row: Kommune: Skien
+  Kraftverk: Bjordalen -> Bestul
 
-Row: Kommune: Hjartdal
-  Produksjon oppstart: 2015 -> 1960
+Row: Kommune: Skien
+  Produksjon oppstart: 1960 -> 2015
 
 Total changes found in examined rows: 374
 (Showing first 5 changes only)
