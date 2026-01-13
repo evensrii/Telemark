@@ -5,12 +5,26 @@ GITHUB_TOKEN loaded successfully.
 Flytting til Telemark JSON-stat data loaded successfully.
 Flytting fra Telemark JSON-stat data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\tilflytting.csv
-[2026-01-12 08:05:35] No new data to upload. Skipping GitHub update.
+[2026-01-13 08:05:36] Changes detected in the dataset.
+File uploaded successfully: Data/01_Befolkning/Flytting/tilflytting.csv
+
+Showing up to 5 examples of changes:
+
+Row: 
+  Fra fylke: Oslo -> Oslo - Oslove
+Email notifications disabled. Updates for tilflytting.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\tilflytting.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\fraflytting.csv
-[2026-01-12 08:05:35] No new data to upload. Skipping GitHub update.
+[2026-01-13 08:05:38] Changes detected in the dataset.
+File uploaded successfully: Data/01_Befolkning/Flytting/fraflytting.csv
+
+Showing up to 5 examples of changes:
+
+Row: 
+  Til fylke: Oslo -> Oslo - Oslove
+Email notifications disabled. Updates for fraflytting.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\fraflytting.csv
-No new data detected in tilflytting.csv.
-No new data detected in fraflytting.csv.
+New data detected in tilflytting.csv and pushed to GitHub.
+New data detected in fraflytting.csv and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Flytting_-_Til_og_fra_Telemark.log
 
