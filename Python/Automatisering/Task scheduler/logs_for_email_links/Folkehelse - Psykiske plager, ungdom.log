@@ -20,9 +20,34 @@ After processing: 399 rows and 8 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\psykiske_plager_ungdom.csv
-[2026-01-20 08:14:47] No new data to upload. Skipping GitHub update.
+[2026-01-21 08:14:58] Changes detected in the dataset.
+
+[2026-01-21 08:14:58] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/psykiske_plager_ungdom.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: 
+  value: 13.4521643917834 -> 13.449101931015
+
+Row: 
+  value: 6.96750938546594 -> 6.96786422223084
+
+Row: 
+  value: 19.9024616452969 -> 19.9009368362695
+
+Row: 
+  value: 14.8772914956732 -> 14.8702435549557
+
+Row: 
+  value: 5.53224198122815 -> 5.53076294584591
+
+Total changes found in examined rows: 23
+(Showing first 5 changes only)
+Email notifications disabled. Updates for psykiske_plager_ungdom.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\psykiske_plager_ungdom.csv
-  âœ“ No changes detected
+  âœ“ New data detected and uploaded to GitHub
+New data detected
 
   âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃ¥r\Helsetilstand\psykiske_plager_ungdom.csv
 
