@@ -20,9 +20,34 @@ After processing: 741 rows and 8 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\fornoeyd_med_helsa_ungdom.csv
-[2026-01-06 08:15:06] No new data to upload. Skipping GitHub update.
+[2026-01-21 08:14:04] Changes detected in the dataset.
+
+[2026-01-21 08:14:04] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/fornoeyd_med_helsa_ungdom.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: 
+  value: 64.9123396430748 -> 64.9079222329842
+
+Row: 
+  value: 69.2257634623569 -> 69.2141186061333
+
+Row: 
+  value: 60.209325845496 -> 60.2129275461817
+
+Row: 
+  value: 70.7365157968683 -> 70.723255262873
+
+Row: 
+  value: 73.0955386972223 -> 73.092511277783
+
+Total changes found in examined rows: 21
+(Showing first 5 changes only)
+Email notifications disabled. Updates for fornoeyd_med_helsa_ungdom.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\fornoeyd_med_helsa_ungdom.csv
-  âœ“ No changes detected
+  âœ“ New data detected and uploaded to GitHub
+New data detected
 
   âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃ¥r\Helsetilstand\fornoeyd_med_helsa_ungdom.csv
 
