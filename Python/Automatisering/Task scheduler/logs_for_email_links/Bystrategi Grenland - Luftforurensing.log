@@ -3,7 +3,7 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 === Luftforurensning Grenland (Excel) ===
-Script started: 2026-01-26 08:18:45
+Script started: 2026-01-27 08:18:27
 === Listing Excel files from GitHub ===
 Found 16 Excel files:
   - PM10 og NO2 dÃ¸gn 2014 (KM og FM, mangler).xlsx
@@ -117,13 +117,10 @@ NaN counts per column: {'Furulund NO2 Âµg/mÂ³': np.int64(939), 'Furulund PM1
 âœ… Saved copy to temp folder: D:\Scripts\analyse\Telemark\Python\Temp\luftforurensing_grenland.csv
 
 === Comparing with existing GitHub data ===
-Downloaded existing CSV: 4292 rows, 19 columns
-ðŸ”„ Changes detected:
-  â€¢ Shape changed: (4292, 19) -> (4322, 19)
-Successfully uploaded Data/Bystrategi_Grenland/Klima/Luftforurensing/luftforurensing_grenland.csv
-âœ… Successfully uploaded luftforurensing_grenland.csv to GitHub
+Downloaded existing CSV: 4322 rows, 19 columns
+âœ… No changes detected - data is identical
 
-ðŸŽ¯ RESULT: New data detected and uploaded to GitHub
+ðŸŽ¯ RESULT: No new data - Excel files match existing CSV
 Status log: D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bystrategi_Grenland_-_Luftforurensing.log
 
 
