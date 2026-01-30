@@ -3,24 +3,22 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
-Found missing date ranges: [(Timestamp('2026-01-23 00:00:00'), Timestamp('2026-01-25 00:00:00'))]
+Found missing date ranges: [(Timestamp('2026-01-29 00:00:00'), Timestamp('2026-01-29 00:00:00'))]
 Fetching data for missing periods...
--- Processing gap: 2026-01-23 to 2026-01-25 --
-Fetching energy prices from 2026-01-23 to 2026-01-25...
-  Fetching chunk from 2026-01-23 to 2026-01-25...
-Total price data points collected: 285
+-- Processing gap: 2026-01-29 to 2026-01-29 --
+Fetching energy prices from 2026-01-29 to 2026-01-29...
+  Fetching chunk from 2026-01-29 to 2026-01-29...
+Total price data points collected: 96
 Fetching exchange rates...
 Successfully fetched 1 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2026-01-26 08:12:55] Row count changed: 1849 -> 1855
+[2026-01-30 08:12:37] Row count changed: 1855 -> 1859
 
 Added rows (showing up to 10):
-EUR/MWh: 93.16000000000001, NOK/KWh: 1.07525272, NOK/MWh: 1075.25272, kurs: 11.542, time: 2026-01-23
-EUR/MWh: 105.97183673469388, NOK/KWh: 1.223126939591837, NOK/MWh: 1223.1269395918368, kurs: 11.542, time: 2026-01-24
-EUR/MWh: 105.48152777777779, NOK/KWh: 1.2174677936111111, NOK/MWh: 1217.4677936111111, kurs: 11.542, time: 2026-01-25
-EUR/MWh: 108.36536231884058, NOK/KWh: 1.250753011884058, NOK/MWh: 1250.753011884058, kurs: 11.542, time: 2026-01-26
-EUR/MWh: 114.50553191489362, NOK/KWh: 1.321622849361702, NOK/MWh: 1321.622849361702, kurs: 11.542000000000002, time: 2026-01-27
-EUR/MWh: 116.36782608695653, NOK/KWh: 1.3431174486956523, NOK/MWh: 1343.1174486956522, kurs: 11.542, time: 2026-01-28
+EUR/MWh: 101.64999999999999, NOK/KWh: 1.1606397, NOK/MWh: 1160.6397, kurs: 11.418, time: 2026-01-29
+EUR/MWh: 138.52458333333334, NOK/KWh: 1.5816736925, NOK/MWh: 1581.6736924999998, kurs: 11.418, time: 2026-01-30
+EUR/MWh: 131.425, NOK/KWh: 1.5006106499999998, NOK/MWh: 1500.6106499999999, kurs: 11.418, time: 2026-01-31
+EUR/MWh: 115.69478260869565, NOK/KWh: 1.321003027826087, NOK/MWh: 1321.003027826087, kurs: 11.418, time: 2026-02-01
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
 Email notifications disabled. Updates for strompriser.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
