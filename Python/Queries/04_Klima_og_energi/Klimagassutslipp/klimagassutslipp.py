@@ -22,7 +22,9 @@ error_messages = []
 
 ## Mdir gir ingen direkte url til .xlsx-fil, så jeg bruker requests for å simulere nedlasting av filen
 
-url = "https://www.miljodirektoratet.no/globalassets/netttjenester/klimagassutslipp-kommuner/utslippsstatistikk_alle_kommuner.xlsx"
+# url = "https://www.miljodirektoratet.no/globalassets/netttjenester/klimagassutslipp-kommuner/utslippsstatistikk_alle_kommuner.xlsx"
+
+url = "https://www.miljodirektoratet.no/sharepoint/downloaditem/?id=01FM3LD2WOT7QL4D6Y5FC3JYADXGI6A3FA"
 
 try:
     # Make a GET request to the URL to simulate downloading the file
