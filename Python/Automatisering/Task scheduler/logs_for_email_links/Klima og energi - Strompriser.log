@@ -3,31 +3,10 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
-Found missing date ranges: [(Timestamp('2026-01-29 00:00:00'), Timestamp('2026-01-29 00:00:00'))]
-Fetching data for missing periods...
--- Processing gap: 2026-01-29 to 2026-01-29 --
-Fetching energy prices from 2026-01-29 to 2026-01-29...
-  Fetching chunk from 2026-01-29 to 2026-01-29...
-Total price data points collected: 96
-Fetching exchange rates...
-Successfully fetched 1 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2026-01-30 08:12:37] Row count changed: 1855 -> 1859
-
-Added rows (showing up to 10):
-EUR/MWh: 101.64999999999999, NOK/KWh: 1.1606397, NOK/MWh: 1160.6397, kurs: 11.418, time: 2026-01-29
-EUR/MWh: 138.52458333333334, NOK/KWh: 1.5816736925, NOK/MWh: 1581.6736924999998, kurs: 11.418, time: 2026-01-30
-EUR/MWh: 131.425, NOK/KWh: 1.5006106499999998, NOK/MWh: 1500.6106499999999, kurs: 11.418, time: 2026-01-31
-EUR/MWh: 115.69478260869565, NOK/KWh: 1.321003027826087, NOK/MWh: 1321.003027826087, kurs: 11.418, time: 2026-02-01
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
-Email notifications disabled. Updates for strompriser.csv were not sent.
+[2026-02-02 08:12:54] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 Script completed successfully!
-
-
-Errors/Warnings:
-D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py:211: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
-  df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
 
