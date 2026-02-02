@@ -4,16 +4,39 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 All tasks completed successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_telemark.csv
-[2025-12-19 08:10:38] No new data to upload. Skipping GitHub update.
+[2026-02-02 08:11:16] Row count changed: 22099 -> 20090
+
+Removed rows (showing up to 10):
+Kommune: Porsgrunn, Sektor: Avfall og avlÃ¸p, Utslipp: 1544.09, Utslippskilde: AvlÃ¸p, r: 2009
+Kommune: Porsgrunn, Sektor: Bruk av produkter med fluorgasser, Utslipp: 413.87, Utslippskilde: Bruk av SF6, r: 2009
+Kommune: Porsgrunn, Sektor: Industri, olje og gass, Utslipp: 374252.77, Utslippskilde: Industri, olje og gass, r: 2009
+Kommune: Porsgrunn, Sektor: Jordbruk, Utslipp: 1757.12, Utslippskilde: FordÃ¸yelsesprosesser husdyr, r: 2009
+Kommune: Porsgrunn, Sektor: Jordbruk, Utslipp: 552.42, Utslippskilde: Jordbruksarealer, r: 2009
+Kommune: Porsgrunn, Sektor: Avfall og avlÃ¸p, Utslipp: 1955.53, Utslippskilde: AvlÃ¸p, r: 2011
+Kommune: Porsgrunn, Sektor: Oppvarming, Utslipp: 3407.23, Utslippskilde: Vedfyring, r: 2011
+Kommune: Porsgrunn, Sektor: Avfall og avlÃ¸p, Utslipp: 9683.87, Utslippskilde: Avfallsdeponigass, r: 2013
+Kommune: Porsgrunn, Sektor: SjÃ¸fart, Utslipp: 31350.28, Utslippskilde: *Estimat sjÃ¸fart, r: 2013
+Kommune: Porsgrunn, Sektor: Bruk av produkter med fluorgasser, Utslipp: 8840.18, Utslippskilde: Bruk av HFK, r: 2015
+... and 5922 more rows
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_telemark.csv
+Email notifications disabled. Updates for klimagassutslipp_telemark.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_donut.csv
-[2025-12-19 08:10:39] No new data to upload. Skipping GitHub update.
+[2026-02-02 08:11:20] Header structure changed in klimagassutslipp_donut.csv:
+Removed headers: utslipp (2024)
+Added headers: utslipp (2023)
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_donut.csv
+Email notifications disabled. Updates for klimagassutslipp_donut.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_donut.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_endring.csv
-[2025-12-19 08:10:39] No new data to upload. Skipping GitHub update.
+[2026-02-02 08:11:21] Header structure changed in klimagassutslipp_endring.csv:
+Removed headers: pst_endring_2023_2024
+Added headers: pst_endring_2022_2023
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_endring.csv
+Email notifications disabled. Updates for klimagassutslipp_endring.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_endring.csv
-No new data detected in klimagassutslipp_telemark.csv.
-No new data detected in klimagassutslipp_donut.csv.
-No new data detected in klimagassutslipp_endring.csv.
+New data detected in klimagassutslipp_telemark.csv and pushed to GitHub.
+New data detected in klimagassutslipp_donut.csv and pushed to GitHub.
+New data detected in klimagassutslipp_endring.csv and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Sektorvise_utslipp.log
 
