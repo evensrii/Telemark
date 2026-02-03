@@ -24,13 +24,28 @@ Sample data:
 
 [5 rows x 4 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-[2026-02-02 08:11:34] No value columns found to compare. Skipping GitHub update.
+[2026-02-03 08:12:29] No value columns found to compare. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-[2026-02-02 08:11:34] No changes found in value columns. Skipping GitHub update.
+[2026-02-03 08:12:29] Row count changed: 23 -> 24
+
+Added rows (showing up to 10):
+Mdir enkeltr: , Totale utslipp fra industrien (Mdir): , Utslipp fra landbasert industri (norskeutslipp.no): 3667127.3200000003, r: 2003
+Mdir enkeltr: 2676782.81, Totale utslipp fra industrien (Mdir): , Utslipp fra landbasert industri (norskeutslipp.no): 2553990.97, r: 2009
+Mdir enkeltr: 2468225.07, Totale utslipp fra industrien (Mdir): , Utslipp fra landbasert industri (norskeutslipp.no): 2436277.88, r: 2011
+Mdir enkeltr: 2715408.35, Totale utslipp fra industrien (Mdir): , Utslipp fra landbasert industri (norskeutslipp.no): 2536668.68, r: 2013
+Mdir enkeltr: , Totale utslipp fra industrien (Mdir): 2865368.58, Utslipp fra landbasert industri (norskeutslipp.no): 2670816.5, r: 2015
+Mdir enkeltr: , Totale utslipp fra industrien (Mdir): 2550590.87, Utslipp fra landbasert industri (norskeutslipp.no): 2390338.13, r: 2016
+Mdir enkeltr: , Totale utslipp fra industrien (Mdir): 2312821.83, Utslipp fra landbasert industri (norskeutslipp.no): 2223563.3200000003, r: 2017
+Mdir enkeltr: , Totale utslipp fra industrien (Mdir): 2571837.21, Utslipp fra landbasert industri (norskeutslipp.no): 2392127.33, r: 2018
+Mdir enkeltr: , Totale utslipp fra industrien (Mdir): 2600430.4099999997, Utslipp fra landbasert industri (norskeutslipp.no): 2397428.87, r: 2019
+Mdir enkeltr: , Totale utslipp fra industrien (Mdir): 2575515.92, Utslipp fra landbasert industri (norskeutslipp.no): 2359357.96, r: 2020
+... and 4 more rows
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/norskeutslipp_everviz.csv
+Email notifications disabled. Updates for norskeutslipp_everviz.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
 No new data detected in norskeutslipp_detaljert_telemark.csv.
-No new data detected in norskeutslipp_everviz.csv.
+New data detected in norskeutslipp_everviz.csv and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Utslipp_fra_landbasert_industri.log
 
 
