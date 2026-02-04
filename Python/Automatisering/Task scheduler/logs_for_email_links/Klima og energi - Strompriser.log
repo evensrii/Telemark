@@ -3,31 +3,10 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
-Found missing date ranges: [(Timestamp('2026-02-02 00:00:00'), Timestamp('2026-02-02 00:00:00'))]
-Fetching data for missing periods...
--- Processing gap: 2026-02-02 to 2026-02-02 --
-Fetching energy prices from 2026-02-02 to 2026-02-02...
-  Fetching chunk from 2026-02-02 to 2026-02-02...
-Total price data points collected: 96
-Fetching exchange rates...
-Successfully fetched 1 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2026-02-03 08:13:50] Row count changed: 1859 -> 1863
-
-Added rows (showing up to 10):
-EUR/MWh: 99.00541666666668, NOK/KWh: 1.1351466047916667, NOK/MWh: 1135.1466047916667, kurs: 11.4655, time: 2026-02-02
-EUR/MWh: 120.68916666666667, NOK/KWh: 1.3837616404166668, NOK/MWh: 1383.7616404166668, kurs: 11.4655, time: 2026-02-03
-EUR/MWh: 110.10416666666667, NOK/KWh: 1.2623993229166668, NOK/MWh: 1262.3993229166667, kurs: 11.4655, time: 2026-02-04
-EUR/MWh: 105.67478260869565, NOK/KWh: 1.21161422, NOK/MWh: 1211.61422, kurs: 11.4655, time: 2026-02-05
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
-Email notifications disabled. Updates for strompriser.csv were not sent.
+[2026-02-04 08:12:58] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 Script completed successfully!
-
-
-Errors/Warnings:
-D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py:211: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
-  df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
 
