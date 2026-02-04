@@ -4,36 +4,16 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 All tasks completed successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_telemark.csv
-[2026-02-03 08:12:11] Changes detected in the dataset.
-
-[2026-02-03 08:12:11] Dataset is large. Showing detailed changes from the last 200 rows only.
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_telemark.csv
-
-No changes found in the last 200 rows, but changes exist elsewhere in the dataset.
-Email notifications disabled. Updates for klimagassutslipp_telemark.csv were not sent.
+[2026-02-04 08:11:24] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_donut.csv
-[2026-02-03 08:12:14] Changes detected in the dataset.
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_donut.csv
-
-Showing up to 5 examples of changes:
-
-Row: 
-  Utslipp (2024): 2585292.0 -> 2336079.0
-Email notifications disabled. Updates for klimagassutslipp_donut.csv were not sent.
+[2026-02-04 08:11:25] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_donut.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_endring.csv
-[2026-02-03 08:12:15] Changes detected in the dataset.
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_endring.csv
-
-Showing up to 5 examples of changes:
-
-Row: 
-  Pst_endring_2023_2024: 9.3 -> -1.2
-Email notifications disabled. Updates for klimagassutslipp_endring.csv were not sent.
+[2026-02-04 08:11:26] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_endring.csv
-New data detected in klimagassutslipp_telemark.csv and pushed to GitHub.
-New data detected in klimagassutslipp_donut.csv and pushed to GitHub.
-New data detected in klimagassutslipp_endring.csv and pushed to GitHub.
+No new data detected in klimagassutslipp_telemark.csv.
+No new data detected in klimagassutslipp_donut.csv.
+No new data detected in klimagassutslipp_endring.csv.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Sektorvise_utslipp.log
 
