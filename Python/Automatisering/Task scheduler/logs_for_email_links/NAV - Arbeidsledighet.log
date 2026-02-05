@@ -2,70 +2,14 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Existing data range: 2011-01-01 to 2025-11-01
-Missing months in dataset: ['2025-12', '2026-01', '2026-02', '2026-03', '2026-04', '2026-05']
+Existing data range: 2011-01-01 to 2026-01-01
+Missing months in dataset: ['2026-02', '2026-03', '2026-04', '2026-05']
 (These may not be available yet.)
-Found file for missing month 2025-12: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2026-01-05.xlsx
-Found file for missing month 2025-12: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2026-02-05.xlsx
-Total files found to process: 2
-Found 2 file(s) to process
-Processing file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2026-01-05.xlsx
-Successfully processed data from https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2026-01-05.xlsx - Added data for dates: ['2025-12-01']
-Processing file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2026-02-05.xlsx
-Successfully processed data from https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2026-02-05.xlsx - Added data for dates: ['2026-01-01']
+Total files found to process: 0
+No new data found after 2026-01
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arbeidsledighet.csv
-[2026-02-04 08:08:31] Row count changed: 53061 -> 53685
-
-Added rows (showing up to 10):
-Andel av arbeidsstyrken: 0.006, Antall personer: 470, Arbeidsmarkedsstatus: ArbeidssÃ¸kere pÃ¥ tiltak, Dato: 2025-12-01, Geografisk enhet: Agder, Kjnn: Kvinner, Niv: Fylker
-Andel av arbeidsstyrken: 0.006, Antall personer: 478, Arbeidsmarkedsstatus: ArbeidssÃ¸kere pÃ¥ tiltak, Dato: 2025-12-01, Geografisk enhet: Agder, Kjnn: Menn, Niv: Fylker
-Andel av arbeidsstyrken: 0.006, Antall personer: 948, Arbeidsmarkedsstatus: ArbeidssÃ¸kere pÃ¥ tiltak, Dato: 2025-12-01, Geografisk enhet: Agder, Kjnn: Begge kjÃ¸nn, Niv: Fylker
-Andel av arbeidsstyrken: 0.009000000000000001, Antall personer: 666, Arbeidsmarkedsstatus: Delvis ledige, Dato: 2025-12-01, Geografisk enhet: Agder, Kjnn: Kvinner, Niv: Fylker
-Andel av arbeidsstyrken: 0.008, Antall personer: 675, Arbeidsmarkedsstatus: Delvis ledige, Dato: 2025-12-01, Geografisk enhet: Agder, Kjnn: Menn, Niv: Fylker
-Andel av arbeidsstyrken: 0.008, Antall personer: 1341, Arbeidsmarkedsstatus: Delvis ledige, Dato: 2025-12-01, Geografisk enhet: Agder, Kjnn: Begge kjÃ¸nn, Niv: Fylker
-Andel av arbeidsstyrken: 0.016, Antall personer: 1170, Arbeidsmarkedsstatus: Helt ledige, Dato: 2025-12-01, Geografisk enhet: Agder, Kjnn: Kvinner, Niv: Fylker
-Andel av arbeidsstyrken: 0.024, Antall personer: 2049, Arbeidsmarkedsstatus: Helt ledige, Dato: 2025-12-01, Geografisk enhet: Agder, Kjnn: Menn, Niv: Fylker
-Andel av arbeidsstyrken: 0.02, Antall personer: 3219, Arbeidsmarkedsstatus: Helt ledige, Dato: 2025-12-01, Geografisk enhet: Agder, Kjnn: Begge kjÃ¸nn, Niv: Fylker
-Andel av arbeidsstyrken: 0.003, Antall personer: 638, Arbeidsmarkedsstatus: ArbeidssÃ¸kere pÃ¥ tiltak, Dato: 2025-12-01, Geografisk enhet: Akershus, Kjnn: Kvinner, Niv: Fylker
-... and 614 more rows
-File uploaded successfully: Data/03_Arbeid og nÃ¦ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/arbeidsledighet.csv
-Email notifications disabled. Updates for arbeidsledighet.csv were not sent.
+[2026-02-05 08:08:30] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\arbeidsledighet.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_NAV_-_Arbeidsledighet.log
-
-
-Errors/Warnings:
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py:40: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
-  df_combined['Antall personer'] = df_combined['Antall personer'].replace('*', np.nan)
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py:40: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
-  df_combined['Antall personer'] = df_combined['Antall personer'].replace('*', np.nan)
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py:40: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
-  df_combined['Antall personer'] = df_combined['Antall personer'].replace('*', np.nan)
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py:40: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
-  df_combined['Antall personer'] = df_combined['Antall personer'].replace('*', np.nan)
 
