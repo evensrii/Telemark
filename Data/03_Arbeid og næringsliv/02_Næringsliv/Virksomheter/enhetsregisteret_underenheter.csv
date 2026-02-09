@@ -35,7 +35,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 973347527,Blå kors borgestadklinikken sa avd borgestad,971450231,194.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.103,Spesialisert rusbehandling,Skien,Skien
 974798220,Universitetet i sørøst-norge campus Notodden,911770709,193.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.401,Undervisning ved universiteter,Notodden,Notodden
 976825063,Notodden kommune by/heddal hjemmetjeneste,876821052,193.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.941,Sykepleietjenester og andre helsetjenester i hjemmet,Notodden,
-991689982,Bakkane bo- og behandlingssenter,986433007,191.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.102,Sykehjemstjenester,Skien,Skien
+991689982,Bakkane sykehjem,986433007,191.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.102,Sykehjemstjenester,Skien,Skien
 980837076,Millba AS,980786706,189.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,10.710,Produksjon av brød og ferske konditorvarer,Skien,
 975269965,Bø sjukeheim,920297293,189.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.102,Sykehjemstjenester,Midt-Telemark,
 913284410,Lyngbakken sykehjem,986433007,183.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.102,Sykehjemstjenester,Skien,Skien
@@ -734,7 +734,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 974730197,Telemark fengsel Kragerø avdeling,911830868,30.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,84.230,Aktiviteter i rettsvesen og kriminalomsorg,Kragerø,Sandnes
 975307069,Rønningen barnehage,939991034,30.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.100,Førskoleundervisning og drift av barnehager,Porsgrunn,Porsgrunn
 985773017,Eidanger barnehage,984746628,30.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.100,Førskoleundervisning og drift av barnehager,Porsgrunn,
-986618066,Yli barnehage AS,931045520,30.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.100,Førskoleundervisning og drift av barnehager,Notodden,Notodden
+986618066,Yli barnehage,931045520,30.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.100,Førskoleundervisning og drift av barnehager,Notodden,Notodden
 875278622,Flatdal oppvekstsenter skole 1-7,974636352,30.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.201,Ordinær grunnskoleundervisning,Seljord,Seljord
 974633302,Høydalsmo skule,974636395,30.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.201,Ordinær grunnskoleundervisning,Tokke,Tokke
 975278298,Rønholt skole,974636271,30.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.201,Ordinær grunnskoleundervisning,Bamble,Bamble
@@ -1011,7 +1011,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 974179660,Rjukan hytteby AS,940109981,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,55.200,Drift av vandrerhjem og ferieleiligheter,Tinn,
 911764512,Strøm mat & bar AS,911722267,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Skien,
 919934468,Dattebayo Skien AS,919915722,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Skien,
-927627418,Burger king avd 5526 langrønningen,914852625,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Bamble,Bærum
+927627418,Burger king avd 5526 langrønningen,836184602,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Bamble,
 913926889,Fersk og ferdig selskapsmat AS,927189275,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.210,Catering for arrangementer,Skien,
 922357366,Old irish pub Norway as avd Skien,918864776,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.300,Drift av barer,Skien,Oslo
 914540046,Procano as avd Porsgrunn,989997149,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Porsgrunn,
@@ -1030,7 +1030,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 974117924,Sagavoll folkehøgskole,971547103,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.591,Undervisning ved folkehøgskoler,Midt-Telemark,
 921766076,Talenthuset,929882989,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.699,Andre tjenester tilknyttet undervisning ikke nevnt annet sted,Skien,Skien
 974568209,Sykehuset Telemark hf habiliteringsseksjonen,983975267,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.101,Somatiske sykehustjenester,Skien,Skien
-929025806,Skien kommune forsterket hjemmetjenester,986433007,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.941,Sykepleietjenester og andre helsetjenester i hjemmet,Skien,Skien
+929025806,Skien kommune sykepleieteam,986433007,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.941,Sykepleietjenester og andre helsetjenester i hjemmet,Skien,Skien
 934246160,Vaksinasjonskontor Skien kommune,974636247,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.992,Forebyggende helsearbeid,Skien,Skien
 919299762,Porsgrunn kommunes kjøkkentjeneste,939991034,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.102,Sykehjemstjenester,Porsgrunn,Porsgrunn
 916530501,Notodden kommune bolig grosvollveien,876821052,23.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.106,"Helse- og omsorgstjenester i bofelleskap, samlokaliserte omsorgsboliger og lignende",Notodden,
@@ -1163,7 +1163,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 990361177,Teleklima AS,990330255,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Porsgrunn,
 928955729,Yt montasje AS,928847020,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Skien,Skien
 971685050,Evensen bjarne malermester AS,966908165,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.340,Maler- og glassarbeid,Notodden,
-974079259,Felleskjøpet bø 8559 butikk og kornmottak,911608103,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.610,Engroshandel med maskiner og utstyr til jordbruk og skogbruk,Midt-Telemark,
+974079259,Felleskjøpet bø 8559 butikk,911608103,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.610,Engroshandel med maskiner og utstyr til jordbruk og skogbruk,Midt-Telemark,
 973142925,Tess sør as avd Porsgrunn,916940157,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.630,"Engroshandel med maskiner og utstyr til bergverksdrift, olje- og gassutvinning og bygge- og anleggsvirksomhet",Porsgrunn,Porsgrunn
 991352910,Camp supply international AS,882722252,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.640,Engroshandel med maskiner og utstyr ellers,Porsgrunn,
 916623100,Ng kiwi Vestfold Telemark as avd 567 kjørbekkdalen,984981384,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.110,Detaljhandel med bredt vareutvalg med hovedvekt på nærings- og nytelsesmidler,Skien,
@@ -1174,7 +1174,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 830390782,Elkjøp Bamble,947054600,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.540,Detaljhandel med elektriske husholdningsapparater,Bamble,Oslo
 922920591,Vy buss as avd Tinn,976948394,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,49.310,Passasjertransport med rutebil,Tinn,
 972110485,E aarhus AS,926979140,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,49.410,Godstransport på vei,Nome,
-928590879,Fonnafly helifly as avd Skien,983783813,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,51.210,Lufttransport med gods,Skien,
+928590879,Arctic aviation as avd Skien,983783813,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,51.210,Lufttransport med gods,Skien,
 889848022,Brattrein hotell AS,984580029,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,55.100,Drift av hoteller,Notodden,
 928262766,Olavsberget camping og badeplass AS,926781316,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,55.300,Drift av campingplasser,Porsgrunn,
 912032566,Sjøterassen restaurant,913212266,20.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Bamble,
@@ -1416,7 +1416,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 976781732,Cbp AS,976779975,17.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.830,Detaljhandel med motorsykler og tilhørende deler og utstyr,Skien,
 930746487,Slg logistikk as avd Skien,830713492,17.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,52.100,Lagring,Skien,Vestby
 974732416,Kystverket brevik vts,874783242,17.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,52.220,Andre tjenester tilknyttet sjøtransport,Porsgrunn,Ålesund
-819070172,Burger king avd 5509 stathelle,914852625,17.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Bamble,
+819070172,Burger king avd 5509 stathelle,836184602,17.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Bamble,
 914857848,Øya spiseri AS,914405173,17.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Porsgrunn,
 926825208,Solsiden drift AS,926714031,17.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Bamble,Skien
 972228184,Pizzanet AS,984746520,17.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Skien,Skien
@@ -1757,7 +1757,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 971934956,Ts site services as avd Porsgrunn,823164912,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,33.120,Reparasjon og vedlikehold av maskiner,Porsgrunn,
 974631261,Å energi vannkraft as avd høgefoss,882973972,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.121,Produksjon av elektrisitet fra vannkraft,Nissedal,
 929388100,Skagerak energitjenester AS,929369491,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.150,Handel med elektrisitet,Porsgrunn,Porsgrunn
-995652463,Norsk spesialolje as avd Bamble,983716245,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,38.320,Drift av deponi og permanent lagring av avfall,Bamble,
+995652463,Norsk spesialolje as avd Bamble,983716245,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,38.220,Energigjenvinning,Bamble,
 985639639,Midt-Telemark bygg AS,985625506,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Midt-Telemark,Midt-Telemark
 987506717,Birk bygg AS,990568995,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Skien,
 917739153,Nye veier as avd e18 landgangen - dørdal,915488099,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,42.110,Bygging av veier og motorveier,Bamble,
@@ -1858,7 +1858,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 928207579,Delecto arbeidsinkludering AS,928154890,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,88.993,Arbeidstrening og varig tilrettelagt arbeid,Kragerø,
 974610175,Nav vest-telemark,974643952,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,88.995,Sosialkontortjenester,Tokke,Tokke
 976768922,Haukelifjell skisenter AS,988453404,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.110,Drift av idrettsanlegg,Vinje,
-914894468,Skarphedin il,931674188,13.0,AAFY,Underenhet til ikke-næringsdrivende,93.120,Aktiviteter i idrettslag og -klubber,Midt-Telemark,
+914894468,Skarphedin il,931674188,13.0,AAFY,Underenhet til ikke-næringsdrivende,93.120,Aktiviteter i idrettslag og -klubber,Midt-Telemark,Midt-Telemark
 977008026,Siljan sokn,976991346,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,94.910,Aktiviteter i religiøse organisasjoner,Siljan,Siljan
 977008212,Nome kyrkjelege fellesråd,976991532,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,94.910,Aktiviteter i religiøse organisasjoner,Nome,
 977008581,Tokke kyrkjelege fellesråd,976991907,13.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,94.910,Aktiviteter i religiøse organisasjoner,Tokke,
@@ -2374,7 +2374,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 925403571,Tinn energi eier AS,924879769,9.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.121,Produksjon av elektrisitet fra vannkraft,Tinn,
 925028118,Rk nett AS,925017809,9.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.140,Distribusjon av elektrisitet,Vinje,
 925676292,Vest-telemark kraftlag holding as avd høydalsmo,925604313,9.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.140,Distribusjon av elektrisitet,Tokke,
-999274536,Notodden energi holding AS,999266371,9.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.140,Distribusjon av elektrisitet,Notodden,Notodden
+999274536,Notodden energi holding AS,999266371,9.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.140,Distribusjon av elektrisitet,Notodden,
 874568902,Bamble kommune vannverk,974640775,9.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,36.000,"Uttak fra kilde, rensing og distribusjon av vann",Bamble,Bamble
 976825012,Ramsflog renseanlegg,974640716,9.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,37.000,Oppsamling og behandling av avløpsvann,Notodden,Notodden
 986904905,Tokke kommune kloakkreinseanlegg,932890100,9.0,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,37.000,Oppsamling og behandling av avløpsvann,Tokke,
@@ -3779,7 +3779,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 836871332,Richter holding AS,936869742,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Notodden,
 836973712,Expansion AS,936971679,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Porsgrunn,
 837017602,Dyrendahl AS,937015879,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
-912951057,Dolce AS,989063278,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
 913489004,G. j. h. å. investment AS,913359135,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
 916397895,Telemark energy AS,896917552,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Notodden,
 916449380,Sim-x,916361149,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
@@ -3831,7 +3830,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 928640213,Røsvik invest AS,928083608,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Drangedal,
 928646564,Via2 AS,921252331,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Kragerø,
 928805069,Olai brønsten invest AS,928575519,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Bamble,
-928827151,Alan eiendomsinvest AS,928644839,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
 929115805,Bananita AS,928951847,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
 929661753,Just living AS,929637380,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Porsgrunn,
 929712080,Jfe holding AS,929401328,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Bamble,
@@ -3865,7 +3863,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 932503492,Stordalen invest AS,916635117,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Porsgrunn,
 932554542,Invezt AS,932552876,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
 932578816,Nordiscovery AS,932573059,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Porsgrunn,
-932628082,Åmot eigendom AS,914208947,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Vinje,
 932707586,Bedriftsagenten invest AS,932608596,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
 932727420,M follaug holding AS,932725886,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Porsgrunn,
 932752433,T. aspheim holding AS,932749564,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Siljan,
@@ -4187,6 +4184,12 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 937047622,Hjørnekontor AS,937045875,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
 937053061,Brodahl invest AS,937051751,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
 937061153,Nordic group invest as tvangsavviklingsbo,937061145,,AAFY,Underenhet til ikke-næringsdrivende,00.000,Uoppgitt,Skien,Kragerø
+937080875,Murre holding AS,937079303,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
+937093632,Mjølten holding AS,937091672,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
+937093764,Displaced vfx AS,937091885,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
+937096623,Karoma AS,937095236,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Tinn,
+937106181,Vekstpartner invest AS,937087063,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
+937106602,Werff veen holding AS,937105703,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Nissedal,
 971726253,Stenersen jan transport AS,945907916,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
 973230298,Tecta invest AS,914605059,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Skien,
 976307860,Fjellstad AS,976304322,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,00.000,Uoppgitt,Kviteseid,Kviteseid
@@ -4464,7 +4467,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 978558755,Lars vassend,970587632,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.110,"Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster",Porsgrunn,
 978580335,Jensen frank,971205504,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.110,"Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster",Skien,
 978580556,Hallvard christenson,971205784,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.110,"Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster",Midt-Telemark,
-978727123,Olav a våle,858612942,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.110,"Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster",Hjartdal,
 978747205,Sveinung vegheim,931115723,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.110,"Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster",Midt-Telemark,
 978965210,Arild norheim,969187833,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.110,"Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster",Siljan,
 978984983,Evju bygdetun sti avd korn,969414805,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.110,"Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster",Midt-Telemark,Midt-Telemark
@@ -4853,6 +4855,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 935220009,Rugtveit frukthagedrift AS,935115221,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.250,Dyrking av annen frukt som vokser på trær eller busker samt nøtter,Midt-Telemark,
 936178987,Dagalid fjøllmat,935775744,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.250,Dyrking av annen frukt som vokser på trær eller busker samt nøtter,Vinje,
 936610293,Erik myrene,936544932,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.250,Dyrking av annen frukt som vokser på trær eller busker samt nøtter,Midt-Telemark,
+937099495,Apalnes gården v helvig og gøtzsche,935217369,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.250,Dyrking av annen frukt som vokser på trær eller busker samt nøtter,Nome,
 973787748,Eriksen svein tore,969779633,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.250,Dyrking av annen frukt som vokser på trær eller busker samt nøtter,Notodden,
 978011063,Gunnar hagen,969101246,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.250,Dyrking av annen frukt som vokser på trær eller busker samt nøtter,Nome,
 978123120,Erik grønskei,913939751,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.250,Dyrking av annen frukt som vokser på trær eller busker samt nøtter,Tinn,
@@ -5078,6 +5081,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 978102514,Arne lid,992371773,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.420,Oppdrett av annet storfe til kjøttproduksjon og sædproduksjon,Hjartdal,
 978102875,Hørtha helge,969249766,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.420,Oppdrett av annet storfe til kjøttproduksjon og sædproduksjon,Skien,
 978102956,Marius øverland,916478666,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.420,Oppdrett av annet storfe til kjøttproduksjon og sædproduksjon,Skien,
+978103030,Knut dale nevestveit,836975782,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.420,Oppdrett av annet storfe til kjøttproduksjon og sædproduksjon,Vinje,
 978103138,"Nordhov, agroservice",969250179,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.420,Oppdrett av annet storfe til kjøttproduksjon og sædproduksjon,Skien,
 978121942,Tor jørgen røra ødegaard,912575853,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.420,Oppdrett av annet storfe til kjøttproduksjon og sædproduksjon,Skien,
 978122531,Kim robert kåsa,925186120,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.420,Oppdrett av annet storfe til kjøttproduksjon og sædproduksjon,Hjartdal,
@@ -5298,7 +5302,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 978102409,Steinar klonteig,969249049,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.451,Sauehold,Tinn,
 978102441,Ragnhild sem,969249081,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.451,Sauehold,Notodden,
 978102905,Noraberg olav dag,969249790,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.451,Sauehold,Nissedal,
-978103030,Kjell helge nevestveit,969250047,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.451,Sauehold,Vinje,
 978103057,Erlend fundli,918165711,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.451,Sauehold,Vinje,
 978122302,Jørn tjøstolv gjersund,996393364,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.451,Sauehold,Tokke,
 978122612,Knut øystein nymoen,985279810,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.451,Sauehold,Tinn,
@@ -5727,7 +5730,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 826884142,Vebjørn vrålstad traktortjenester,926709763,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.620,Tjenester tilknyttet husdyrhold,Drangedal,
 828953222,Kiste sem stall og småbruk,928783235,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.620,Tjenester tilknyttet husdyrhold,Skien,
 836171292,Tinna skuladottir,936171281,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.620,Tjenester tilknyttet husdyrhold,Porsgrunn,
-874070262,Hoseid gård,979457472,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.620,Tjenester tilknyttet husdyrhold,Porsgrunn,
 877337642,Melfald gård ove hansen,977330769,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.620,Tjenester tilknyttet husdyrhold,Kragerø,
 912390217,Gare gård AS,992550899,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.620,Tjenester tilknyttet husdyrhold,Drangedal,
 912983862,Vågslid beitelag sa,970569979,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,01.620,Tjenester tilknyttet husdyrhold,Vinje,Etne
@@ -5918,6 +5920,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 873549122,Håkon li,969151499,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Midt-Telemark,
 873632852,Hegglid jan kåre,969925729,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Fyresdal,
 873804432,Wraa per,989298712,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Kviteseid,
+874070262,Hoseid gård reiersdal karlsen,935190444,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Drangedal,
 875223232,Thomas christopher tinne,920194990,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Notodden,
 876267772,Telemark taksering,975262928,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Hjartdal,
 876420732,Tom olav hegna,976049047,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Notodden,
@@ -5958,7 +5961,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 899377222,Framgarden johan angre,969248980,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Seljord,
 899380002,Thorsberg einar,969566591,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Bamble,
 899426932,Agnes heldal,982814294,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Drangedal,
-911686961,Hans peter larsen svalheim,983433863,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Hjartdal,
 911748894,Trond h strandskogen,911726904,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Drangedal,
 911807513,Bård svartangen,911583143,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Siljan,
 911977931,Ian parry-jones,911565714,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Nissedal,
@@ -6245,7 +6247,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 930413836,Høydalen AS,919908416,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Drangedal,
 930416495,Polldalen gård. anita sørensen,920812236,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Skien,
 930424005,Turid anita løite,969964678,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Drangedal,
-930424323,Jore jon helge,970376410,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Hjartdal,
+930424323,Jore jon helge,970376410,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Notodden,
 930424692,Eikhom signe grethe,971206063,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Nissedal,
 930425311,Gunlaug aalandslid,975524892,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Tokke,
 930427527,Barthold vonen,980535444,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Skien,
@@ -6396,6 +6398,8 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936928986,Ingar tjønnås,936627641,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Vinje,
 936966551,Heimdal skog,935914337,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Drangedal,
 936980481,Stordale gard v/ georg vik,936567711,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Fyresdal,
+937096062,Smøkkerød og storkås gård,935128528,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Porsgrunn,
+937097026,Kirsti anette høen kristensen,935162912,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Bamble,
 971838787,Cyril tor fjågesund,818811292,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Kviteseid,
 971839058,C7 anne solbraa,993879371,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Drangedal,
 971852364,Bergland einar torkil,970175628,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Nome,
@@ -6578,7 +6582,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 978310206,Torjus folsland bolkesjø,996788687,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Notodden,
 978310494,Flathus ole harald,969567229,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Midt-Telemark,
 978310621,Brødrene wefald da,989671324,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Drangedal,
-978311172,Jørgensen herdis nordbø,969568268,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Kviteseid,
+978311172,Hallvard nordbø jørgensen,935257476,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Kviteseid,
 978442447,Rune ripel,981933494,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Porsgrunn,
 978442625,Ole einar amlie,970158146,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Skien,
 978443362,Stein thorsrud,993205583,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,02.200,Avvirkning,Notodden,
@@ -7663,6 +7667,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 935673321,Kim søndbø,935315859,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,33.120,Reparasjon og vedlikehold av maskiner,Kragerø,
 935763517,Bjørntvedt industri,935440025,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,33.120,Reparasjon og vedlikehold av maskiner,Porsgrunn,
 935769345,Lindgren service og vedlikehold,935450659,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,33.120,Reparasjon og vedlikehold av maskiner,Skien,
+936008860,Moland tekniske tjenester,935982618,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,33.120,Reparasjon og vedlikehold av maskiner,Skien,
 936045715,Jostein kile mekaniske,935612993,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,33.120,Reparasjon og vedlikehold av maskiner,Fyresdal,
 936076645,Vetle jøntvedt,935644585,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,33.120,Reparasjon og vedlikehold av maskiner,Skien,
 936076807,Tor halvor lien kittelsaa,935645131,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,33.120,Reparasjon og vedlikehold av maskiner,Seljord,
@@ -7839,7 +7844,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 999051014,Smart energi as avd Kragerø,995287889,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.150,Handel med elektrisitet,Kragerø,Fredrikstad
 999651976,Konsesjonskraftstyret i Telemark kommunalt oppgåvefellesskap,983145566,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.150,Handel med elektrisitet,Skien,Skien
 925236624,Ghl fjernvarme AS,925145653,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.300,Vannbåren og luftbåren varme- og kjøleforsyning,Skien,
-981589653,Thermokraft AS,981339622,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.300,Vannbåren og luftbåren varme- og kjøleforsyning,Notodden,Notodden
+981589653,Thermokraft AS,981339622,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.300,Vannbåren og luftbåren varme- og kjøleforsyning,Notodden,
 991140964,Skogenergi varme AS,991020551,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,35.300,Vannbåren og luftbåren varme- og kjøleforsyning,Skien,
 820143892,Øvre griddalen vann- og avløpslag sa,919326662,,AAFY,Underenhet til ikke-næringsdrivende,36.000,"Uttak fra kilde, rensing og distribusjon av vann",Fyresdal,Arendal
 823718462,Trollstigen vannverk sa,923252533,,AAFY,Underenhet til ikke-næringsdrivende,36.000,"Uttak fra kilde, rensing og distribusjon av vann",Vinje,Porsgrunn
@@ -8243,7 +8248,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 928853381,Cosmin bygg AS,928832546,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Kviteseid,
 928863360,Tømrer marius skyer,928674444,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Porsgrunn,
 928882535,Vitalijus judzentis,828695592,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Kviteseid,
-928941809,Tømrar bendik momrak,928821196,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Fyresdal,
+928941809,Bendik momrak,928821196,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Fyresdal,
 929039874,Holte bygg og betong,928869911,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Drangedal,
 929069781,J-j bygg AS,929045459,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Skien,
 929216784,Øverdal AS,929179455,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Tinn,
@@ -8254,7 +8259,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 929695615,Daniel rogn,929373723,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Bamble,
 929716272,"M bygg, spiridovicius",929410165,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Skien,
 929760379,Sommerfryd byggtjenester,929460138,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Skien,
-929780825,Tømrer morten andersen,929483618,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Kviteseid,
 929865561,Tømrar ånund berge,929613198,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Kviteseid,
 929938488,Croft AS,929673468,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Bamble,
 929944690,Kristiansen multiservice,929684621,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Kragerø,
@@ -8279,7 +8283,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 931200194,Snekker marian jozef wojtyto,930895938,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Porsgrunn,
 931206214,M33 andersen AS,931182870,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Skien,
 931251198,Telemark snekker tjenester AS,930984914,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Bamble,
-931256920,Hogstad bygg & betong,931234803,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Siljan,
 931282654,Tka AS,912646459,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Notodden,
 931286412,Staurheim stokk og sag,920959725,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Midt-Telemark,
 931287982,Tømrer tommy sørby,922947767,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,41.000,Oppføring av bygninger,Porsgrunn,
@@ -9271,6 +9274,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 924905654,Geir fles,989331418,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.210,Elektrisk installasjonsarbeid,Tokke,
 925340987,Ace elektro AS,925287482,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.210,Elektrisk installasjonsarbeid,Skien,
 925453668,Rs elektro Telemark AS,925438596,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.210,Elektrisk installasjonsarbeid,Skien,
+925845426,Paulsen telecom AS,925816922,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.210,Elektrisk installasjonsarbeid,Porsgrunn,
 926396145,Varli invest AS,926115936,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.210,Elektrisk installasjonsarbeid,Skien,
 926405055,Nautomation AS,926382101,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.210,Elektrisk installasjonsarbeid,Skien,
 927016745,Grenland installasjon AS,826979682,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.210,Elektrisk installasjonsarbeid,Skien,
@@ -9404,6 +9408,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 925297240,Midt-Telemark maskinutleie AS,925251739,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Nome,
 925642681,Ebk industriservice erlend bringsvær karlsen,898317722,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Tokke,
 925849952,Telemark-klima AS,925822930,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Nome,
+926266993,Trollsås knut harald semb,997703499,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Skien,
 926790188,Varme & bad as avd entreprenør Skien,991603344,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Skien,
 927021927,Teknisk sprinkler AS,926980866,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Notodden,
 927334895,Rørleggermester filip olsen AS,927173522,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Porsgrunn,
@@ -9463,12 +9468,13 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 935767342,Telemark varmepumpe service AS,935441676,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Skien,
 935900867,Jd elektroservice van,935900840,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Porsgrunn,
 936009840,Vest Telemark varmepumpe AS,935983851,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Seljord,
-936028837,Ahx service anders hesmyr,936028799,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Porsgrunn,
+936028837,Rørlegger anders hesmyr,936028799,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Porsgrunn,
 936270832,Bakkan sveinung,984253362,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Kragerø,
 936290264,Varmeteknikk Norge AS,935920442,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Skien,
 936300510,Hermansen vvs & vedlikehold AS,936235352,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Bamble,
 936374654,Rakkestad rørservice,936374638,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Siljan,
 936618731,Gisholt rør,936618715,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Skien,
+937072066,Sollid varmepumpeservice,837072042,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Vinje,
 971702680,Haugerud john,952874985,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Bamble,
 971778733,Sør & sør AS,916577354,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Skien,
 971825626,Vest-telemark rørleggerforretning,919880902,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.220,VVS-arbeid,Vinje,Vinje
@@ -9644,7 +9650,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 926303775,Nilsen godt og blanda service,926058622,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Bamble,
 926443534,Sørbøe montasje,926163841,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Skien,
 926568604,Sigbjørn tjønnås,926375229,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Midt-Telemark,
-926687980,Rome Norge andrzej jakubek,926496085,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Tinn,
 926815954,Ro montør & service,814636682,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Skien,
 927141671,Marek beno innvendig og utvendig maling,927122790,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Nome,
 927183617,Jonas gjernes,927041871,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Kragerø,
@@ -9656,7 +9661,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 928063364,"Minde bygg, gerulaitis",927884623,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Porsgrunn,
 928370895,Khang invest AS,916804555,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Porsgrunn,
 928460800,Montering AS,928289885,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Midt-Telemark,
-928476596,Norge snekker service jakubek robert,917330441,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Tinn,
 928481301,Hans olaf rue,984852983,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Hjartdal,
 928481840,Knut bråstøyl,989539701,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Vinje,
 928497291,Høydalsmo rammeverksted v/k. l. jensen,928259056,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.320,Snekkerarbeid,Tokke,
@@ -9946,6 +9950,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 935437539,Nils gunnar jørgensen,935437512,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.340,Maler- og glassarbeid,Porsgrunn,
 935480043,Haugen malerservice,935480027,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.340,Maler- og glassarbeid,Siljan,
 935510058,Måling og vedlikehald odin åland,935510031,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.340,Maler- og glassarbeid,Vinje,
+935553997,Viking maler vural,935494257,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.340,Maler- og glassarbeid,Skien,
 935565650,Maler gottling,935565480,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.340,Maler- og glassarbeid,Porsgrunn,
 935696550,Bermeo valdiviezo service,935696445,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.340,Maler- og glassarbeid,Skien,
 935732328,Nordic takfornying fredriksen,935366186,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,43.340,Maler- og glassarbeid,Skien,Skien
@@ -10278,6 +10283,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 916454503,Biotek academy scandinavia AS,916368542,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.450,Engroshandel med parfyme og kosmetikk,Kragerø,Drammen
 925284319,Rikkes mk kristiansen,925181218,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.450,Engroshandel med parfyme og kosmetikk,Nome,
 934811232,Abw international bergstuen-wennerød,981106563,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.450,Engroshandel med parfyme og kosmetikk,Porsgrunn,
+937044658,Clean tide Norway daniel kimerud,936648428,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.450,Engroshandel med parfyme og kosmetikk,Notodden,
 996202658,Klg cosmetics limited nuf,996166600,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.450,Engroshandel med parfyme og kosmetikk,Porsgrunn,
 818828632,Protesekompaniet AS,918745793,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.460,Engroshandel med apotekvarer og medisinske varer,Porsgrunn,
 872176632,Velocitas AS,947151800,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.460,Engroshandel med apotekvarer og medisinske varer,Bamble,
@@ -10489,7 +10495,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 916285884,Stållageret Telemark,816235502,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.820,Engroshandel med metaller og metallholdig malm,Skien,
 919636335,Grn exp AS,919525916,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.820,Engroshandel med metaller og metallholdig malm,Kragerø,
 920150543,Oscarsgate 2b AS,920023738,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.820,Engroshandel med metaller og metallholdig malm,Skien,
-936088546,Metall leiulfsrud,935625521,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.820,Engroshandel med metaller og metallholdig malm,Porsgrunn,
 987440317,Norway steel solutions AS,987429119,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.820,Engroshandel med metaller og metallholdig malm,Skien,
 992336315,Cont1t AS,892281572,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.820,Engroshandel med metaller og metallholdig malm,Porsgrunn,
 992982454,Astrup as avd Skien,947274139,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.820,Engroshandel med metaller og metallholdig malm,Skien,Skien
@@ -10557,7 +10562,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 974184702,Seljord bilopphuggeri AS,916907176,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.870,Engroshandel med avfall og skrap,Seljord,
 993942367,Araz bilopphugging da,893905642,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.870,Engroshandel med avfall og skrap,Skien,
 936880088,Lionfill AS,936862993,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.890,Engroshandel med spesialisert vareutvalg ikke nevnt annet sted,Skien,
-937044658,Clean tide Norway daniel kimerud,936648428,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.890,Engroshandel med spesialisert vareutvalg ikke nevnt annet sted,Notodden,
 812113402,Expo print AS,911927160,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.900,Uspesifisert engroshandel,Kragerø,
 823808402,Skien batteri & energiservice AS,923778071,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,46.900,Uspesifisert engroshandel,Skien,
 836434862,Soraytec scandinavia as konkursbo,936434843,,AAFY,Underenhet til ikke-næringsdrivende,46.900,Uspesifisert engroshandel,Skien,Skien
@@ -11035,6 +11039,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 933264793,Ec carlsen,933240967,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.640,Detaljhandel med spill og leker,Bamble,
 936360106,Nortaku,935988926,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.640,Detaljhandel med spill og leker,Skien,
 936417906,Papp nguyen,936060439,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.640,Detaljhandel med spill og leker,Porsgrunn,
+937105665,Sprell butikk as avd herkules,914595010,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.640,Detaljhandel med spill og leker,Skien,Bærum
 997032845,Stubban,997014790,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.640,Detaljhandel med spill og leker,Porsgrunn,Porsgrunn
 997841301,Zoo comics AS,922038899,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.640,Detaljhandel med spill og leker,Porsgrunn,
 890165192,Havgap tone sunde sanchez,990146764,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.690,Detaljhandel med kulturvarer ikke nevnt annet sted,Kragerø,
@@ -11046,6 +11051,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 933897257,Elliva creative vågen,933714136,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.690,Detaljhandel med kulturvarer ikke nevnt annet sted,Tinn,
 934910583,Galleri valen Kragerø AS,934873971,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.690,Detaljhandel med kulturvarer ikke nevnt annet sted,Skien,
 936578454,Rock n roll heaven mats sundbø,936505333,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.690,Detaljhandel med kulturvarer ikke nevnt annet sted,Skien,
+936783473,Rock n'roll heaven - Skien record store AS,936709567,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.690,Detaljhandel med kulturvarer ikke nevnt annet sted,Skien,
 936927335,Vargann AS,915062563,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.690,Detaljhandel med kulturvarer ikke nevnt annet sted,Skien,
 971850612,Ljosland musikk AS,979366817,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.690,Detaljhandel med kulturvarer ikke nevnt annet sted,Notodden,
 972263834,Gjermundsen kunst og rammer,994102850,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.690,Detaljhandel med kulturvarer ikke nevnt annet sted,Skien,
@@ -11300,7 +11306,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 925498661,Ceevink AS,925440310,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Porsgrunn,
 925673293,Newprobe AS,925659053,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Midt-Telemark,
 926114301,Tm & hene sa,925970476,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Notodden,
-926266993,Trollsås knut harald semb,997703499,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Skien,
 926992066,Skateosaurus jon harald aspheim,998200717,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Skien,
 928450708,G. klepp,828208322,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Bamble,
 928510212,Lakselvnes lyser opp Skien,928280217,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Skien,
@@ -11320,6 +11325,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 935683904,Glitter Porsgrunn down town,971579412,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Porsgrunn,
 936103189,Mikkelsen media,835645282,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Skien,
 936124100,Foss /of. int,935672139,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Skien,
+936210996,Elkim AS,835826872,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Kviteseid,Asker
 936265170,Cg collection AS,835909832,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Skien,
 936307035,Lunde vedservice,935902975,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Porsgrunn,
 936406033,Luraas tredesign,836035682,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.780,Annen detaljhandel med andre nye varer,Kragerø,
@@ -11369,6 +11375,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936588719,Kråkegull,836556542,,AAFY,Underenhet til ikke-næringsdrivende,47.790,Detaljhandel med brukte varer,Nome,
 936670350,Abdulamir og sally agatsteiner,936382487,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.790,Detaljhandel med brukte varer,Skien,
 936732801,Nummer 8,936472222,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.790,Detaljhandel med brukte varer,Skien,
+937108451,Rulnes mynt og brukt,936720137,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.790,Detaljhandel med brukte varer,Notodden,
 972540102,Strånd dag helge,970294953,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.790,Detaljhandel med brukte varer,Fyresdal,
 972650668,Musikkboden,952922262,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.790,Detaljhandel med brukte varer,Porsgrunn,
 981483081,Låven antikk og auksjon AS,920717896,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,47.790,Detaljhandel med brukte varer,Porsgrunn,Porsgrunn
@@ -12322,6 +12329,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936464610,Wrights gaard AS,936447228,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,55.200,Drift av vandrerhjem og ferieleiligheter,Porsgrunn,
 936779964,Budeia juvskås eigedom,936546005,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,55.200,Drift av vandrerhjem og ferieleiligheter,Vinje,
 937061986,Fransen gamle fagerstrand hotel,936351859,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,55.200,Drift av vandrerhjem og ferieleiligheter,Tinn,
+937099282,Guro lilløy - malenes hotell enk,936736327,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,55.200,Drift av vandrerhjem og ferieleiligheter,Nissedal,Skien
 971912375,Jønnbu fjellkyrkje og ungdomssenter,970273387,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,55.200,Drift av vandrerhjem og ferieleiligheter,Midt-Telemark,
 972089478,Lifjell skisenter as avd utleie leiligheter,965292888,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,55.200,Drift av vandrerhjem og ferieleiligheter,Midt-Telemark,Oslo
 972443417,Mårbu turisthytte,826435232,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,55.200,Drift av vandrerhjem og ferieleiligheter,Tinn,
@@ -12424,6 +12432,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 834757702,Di napoli AS,834742942,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Skien,
 834984032,Stolar frantisek,915254268,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Notodden,
 835418472,Cafe lea AS,935368383,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Porsgrunn,
+837080002,Sj thaimat AS,936751784,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Skien,
 897539942,Isabella,998414032,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Kragerø,
 911548143,Baan thai takeaway AS,899644182,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Skien,
 911705338,Oda sofies isbar AS,911688999,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Porsgrunn,
@@ -12559,6 +12568,8 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936717330,Skjelsvik thaifood takeaway AS,836463552,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Porsgrunn,
 937064012,Follow merci AS,936711758,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Skien,
 937064284,Park pizza grillen AS,936713076,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Skien,
+937098375,Kirkens bymisjon kafe og bruktbutikk brevik,944384448,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Porsgrunn,
+937098383,Kirkens bymisjon kafe og bruktbutikk Porsgrunn,944384448,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Porsgrunn,
 971675845,Confekthjørnet da,995589877,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Skien,Porsgrunn
 972030767,Tasty Kragerø AS,995693062,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Kragerø,
 972212601,Nye admiralen AS,996886565,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Kragerø,
@@ -12579,7 +12590,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 993202568,Subb-inn subin's gatekjøkken,970525505,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Nissedal,
 993997498,Bessesen AS,993955132,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Kragerø,
 994050230,Cafè slusa AS,913795679,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Nome,Nome
-994981471,Kjøkken & kaffe down town avd 1376,924413611,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Porsgrunn,Porsgrunn
+994981471,Kjøkken & kaffe avd 1376 down town,884388732,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Porsgrunn,Porsgrunn
 995486504,Adele pizzeria italiana hihn,995238128,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Kragerø,
 996887782,Regie wagner,914484197,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Kviteseid,
 998060060,Nordbygdi pub- og bardrift AS,897998882,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.110,Drift av restauranter,Seljord,Seljord
@@ -12674,6 +12685,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 934791827,2 glass,934777786,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.300,Drift av barer,Nome,Nome
 935529204,Roxy kaffebar sa,926842110,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.300,Drift av barer,Midt-Telemark,
 936547893,Vikinghjørne AS,936249507,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.300,Drift av barer,Skien,
+937081952,Vinje pub AS,837041902,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.300,Drift av barer,Vinje,
 991840125,Stockmand AS,912178021,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.300,Drift av barer,Porsgrunn,
 929524756,Bransjetjenester Notodden AS,929243439,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,56.400,Formidlingstjenester tilknyttet serveringsvirksomhet,Notodden,
 831516712,Telemark stories AS,931495534,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,58.110,Utgivelse av bøker,Tinn,
@@ -12815,7 +12827,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 934332873,Berrian text,934180968,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,59.120,"Etterarbeid knyttet til produksjon av film, video og fjernsynsprogrammer",Skien,
 873791462,Kragerø kino,987965428,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,59.140,Filmfremvisning,Kragerø,Kragerø
 924480351,Bø filmklubb,923669922,,AAFY,Underenhet til ikke-næringsdrivende,59.140,Filmfremvisning,Midt-Telemark,Midt-Telemark
-927621967,Bygdekino langesund,927621843,,AAFY,Underenhet til ikke-næringsdrivende,59.140,Filmfremvisning,Bamble,
+927621967,Bygdekino langesund,927621843,,AAFY,Underenhet til ikke-næringsdrivende,59.140,Filmfremvisning,Bamble,Porsgrunn
 973794957,Nome kino,974640864,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,59.140,Filmfremvisning,Nome,Nome
 829819112,Hundekilen olsen music,829539772,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,59.200,Produksjon og utgivelse av musikk- og lydopptak,Porsgrunn,
 831598522,Lysne musikk AS,931596101,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,59.200,Produksjon og utgivelse av musikk- og lydopptak,Midt-Telemark,
@@ -12847,7 +12859,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 935792177,Oredalen musikk,935792169,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,59.200,Produksjon og utgivelse av musikk- og lydopptak,Porsgrunn,
 936036937,Omnes musikk,936036899,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,59.200,Produksjon og utgivelse av musikk- og lydopptak,Midt-Telemark,
 936664520,Breizaas knutsen,936391591,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,59.200,Produksjon og utgivelse av musikk- og lydopptak,Midt-Telemark,
-936783473,Afas 251125-04 AS,936709567,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,59.200,Produksjon og utgivelse av musikk- og lydopptak,Skien,
 972604712,Klyve lydstudio,970384057,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,59.200,Produksjon og utgivelse av musikk- og lydopptak,Skien,
 972802514,Busk lydstudio ans,933803317,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,59.200,Produksjon og utgivelse av musikk- og lydopptak,Bamble,
 988275840,Grammofon AS,972414522,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,59.200,Produksjon og utgivelse av musikk- og lydopptak,Notodden,Notodden
@@ -12891,7 +12902,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 933179036,Lyse tele as avd Porsgrunn,912672808,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,61.100,"Kabelbasert, satellittbasert og trådløs telekommunikasjon",Porsgrunn,
 977271347,Telenor real estate as eiendom sør,814344282,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,61.100,"Kabelbasert, satellittbasert og trådløs telekommunikasjon",Skien,Skien
 981993047,Midt-Telemark breiband AS,881972042,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,61.100,"Kabelbasert, satellittbasert og trådløs telekommunikasjon",Midt-Telemark,Midt-Telemark
-982312396,Go link AS,982006856,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,61.100,"Kabelbasert, satellittbasert og trådløs telekommunikasjon",Notodden,Notodden
+982312396,Go link AS,982006856,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,61.100,"Kabelbasert, satellittbasert og trådløs telekommunikasjon",Notodden,
 991885471,Radiolink Telemark AS,991768602,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,61.100,"Kabelbasert, satellittbasert og trådløs telekommunikasjon",Seljord,Seljord
 994149725,Medianett AS,942464436,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,61.100,"Kabelbasert, satellittbasert og trådløs telekommunikasjon",Seljord,
 999350429,Notodden bredbånd AS,883902432,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,61.100,"Kabelbasert, satellittbasert og trådløs telekommunikasjon",Notodden,
@@ -12911,6 +12922,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 835657752,Tangen apps,935297516,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Kragerø,
 836247922,Frisk digital,935877318,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Porsgrunn,
 836318722,Rett-ferdig AS,936287379,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Bamble,
+837068592,Strangetek studio AS,837037832,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Midt-Telemark,
 890003532,Mediaspark ltd,988185183,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Porsgrunn,
 891469772,Oma consulting AS,992360984,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Porsgrunn,
 895206792,Meet AS,995173794,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Skien,
@@ -12985,7 +12997,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 929783956,Owen systemutvikling,929487761,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Porsgrunn,
 930016179,Ezbench solutions AS,929819160,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Notodden,
 930171409,Haig AS,930162590,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Skien,
-930515973,Sciigo kompetanse AS,930088587,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Bamble,
+930515973,Sciigo AS,930088587,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Bamble,
 930719005,Bytelab AS,933031861,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Bamble,
 930984736,Akkodis edge Norway as avd lunde næringshage,940456584,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Nome,
 931054341,Prajan chapagain,931052365,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Skien,
@@ -13032,10 +13044,12 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 934503899,Teigen development,934376331,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Porsgrunn,
 934516869,Project nxt AS,934386388,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Porsgrunn,
 934704843,For nature AS,923875840,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Skien,
+934816668,Osmans stratify,934645189,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Skien,
 934822722,Khatuev skyline interface,934821289,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Skien,
 935123437,Betten invent AS,934988175,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Nome,
 935322537,Todg AS,935130573,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Skien,
 935332087,Groth software solutions,935332060,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Porsgrunn,
+935475791,Fixano AS,935190355,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Skien,
 935478154,Prochect AS,935394457,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Porsgrunn,
 935523842,Skapatek ameri,935523834,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Midt-Telemark,
 935555965,Nova mentis AS,935511380,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Skien,
@@ -13073,6 +13087,8 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936969852,Prenet AS,936656498,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Notodden,
 937041942,Swallet AS,936964176,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Bamble,
 937051093,Nettvekst kulouschek,937050917,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Skien,
+937099835,Bartera AS,936736920,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Bamble,
+937106971,Mimre AS,936745792,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Skien,
 980425576,Axezz data,979842376,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Porsgrunn,
 981371925,Stone computing AS,980875628,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Porsgrunn,
 986560416,Systemhuset episteme AS,958447175,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.100,Dataprogrammeringstjenester,Bamble,
@@ -13134,6 +13150,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 924338415,Torben andersen media,996208427,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Skien,
 924402253,Webtakk sehested,924370319,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Bamble,
 924535008,Eib consulting AS,824503222,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Skien,
+924770899,G7 consulting AS,924696745,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Bamble,Bamble
 925526258,Dotno trustee domains,925524751,,AAFY,Underenhet til ikke-næringsdrivende,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Porsgrunn,
 925646474,Westli consulting AS,923129677,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Porsgrunn,
 925844411,Mortensen consulting,988228656,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Skien,
@@ -13178,6 +13195,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 932759179,Atle nilssen,932755351,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Bamble,
 932975173,Straume trygg mobil,932911426,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Porsgrunn,
 933264718,Keepsmiling AS,933238806,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Skien,
+933272923,Kingsford miller systems,933187500,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Tinn,
 933348989,Lepus semantisk web AS,933328007,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Notodden,
 933460991,Quixotic AS,933309401,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Drangedal,
 933471403,Buggy solutions,933441539,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,62.200,Konsulentvirksomhet tilknyttet informasjonsteknologi og forvaltning og drift av it-systemer,Skien,
@@ -13276,6 +13294,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 934964683,Nordavind group AS,934929748,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,63.910,Drift av søkemotorer,Porsgrunn,
 936574882,Clearnord AS,936547435,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,63.910,Drift av søkemotorer,Skien,
 936913288,Jegerhjelpen av nystein,936570879,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,63.910,Drift av søkemotorer,Skien,
+937111916,Eipo as konkursbo,937111908,,AAFY,Underenhet til ikke-næringsdrivende,63.910,Drift av søkemotorer,Porsgrunn,Skien
 936436358,Nilsen creative,936109640,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,63.920,Andre informasjonstjenester,Porsgrunn,
 932134055,Skue sparebank avd bø,837889812,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,64.190,Banker og kredittforetak,Midt-Telemark,
 932727668,Sparebanken din Telemark avd Notodden,937891512,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,64.190,Banker og kredittforetak,Notodden,
@@ -13514,6 +13533,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936802478,Strømdal utvikling AS,936558356,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.110,Kjøp og salg av egen fast eiendom,Skien,
 936935745,Bane eiendom holding AS,936709486,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.110,Kjøp og salg av egen fast eiendom,Skien,
 937019149,Krohn eiendom AS,936677436,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.110,Kjøp og salg av egen fast eiendom,Midt-Telemark,Midt-Telemark
+937067739,Skrindebakke eiendom AS,928883426,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.110,Kjøp og salg av egen fast eiendom,Tinn,
 971929162,Omk eiendom AS,921794134,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.110,Kjøp og salg av egen fast eiendom,Bamble,
 972228842,Stulen AS,958573456,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.110,Kjøp og salg av egen fast eiendom,Bamble,
 973391267,Bryns eiendom AS,944783059,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.110,Kjøp og salg av egen fast eiendom,Porsgrunn,
@@ -13622,7 +13642,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 919774908,Tuddal hyttegrend AS,919562080,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Hjartdal,
 920104606,Lifjell hyttetomter AS,990481334,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Midt-Telemark,
 920117708,Rypelia AS,998924316,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Nissedal,
-920120253,Fjellsteggen rauland AS,919974095,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Skien,
 920130100,Mesto utvikling AS,919999632,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Skien,
 920227775,Løvenskiold-fossum tomteselskap AS,920124690,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Skien,
 920476953,Foyn forvaltning AS,920363091,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Porsgrunn,
@@ -13809,6 +13828,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936979947,T&l eiendom AS,936917550,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Drangedal,
 937006942,Skien brygge utvikling AS,924751991,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Porsgrunn,
 937073127,Linneavegen utvikling as konkursbo,937073100,,AAFY,Underenhet til ikke-næringsdrivende,68.120,Utvikling og salg av byggeprosjekter,Skien,Skien
+937101260,Hovdestaul eiendom AS,936737927,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Tinn,
 971691697,Backe prosjekt as avd Skien,994171658,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Skien,
 972216143,Foldsæ AS,957632483,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Fyresdal,Lier
 973612980,Majorbygg AS,912077020,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.120,Utvikling og salg av byggeprosjekter,Skien,Skien
@@ -13890,6 +13910,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 816409152,Open systems international AS,979495544,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Tokke,
 816922232,Bedriftsvegen 92 AS,816909392,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
 817346022,Fitness bø eiendom AS,917287910,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Midt-Telemark,
+817560482,Holding holding AS,890610552,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
 817629202,Ørvella næringspark AS,917548617,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Hjartdal,
 817928072,Solberg eiendom og utleie AS,917863806,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
 818361742,Storeble eiendom AS,966951591,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Notodden,Drammen
@@ -14112,6 +14133,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 912849856,Fikkjebakke AS,912844781,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Drangedal,Kragerø
 912863913,Grivimoen AS,912857743,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Midt-Telemark,
 912899462,Sagamoen eiendom AS,912889688,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Nome,Tønsberg
+912951057,Dolce AS,989063278,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
 912952142,Handlekraft holding AS,989192558,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
 912952681,Kvitå eiendom AS,989244094,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Tinn,Tønsberg
 912952797,Nordre venstøp AS,989257684,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
@@ -14769,6 +14791,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 928738310,Morten nystad,928568776,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Siljan,
 928804798,Ajt eigedom AS,928624641,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Tokke,
 928819469,Krt AS,928636747,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Bamble,
+928827151,Alan eiendomsinvest AS,928644839,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
 928895858,Kragerø resort eiendom 2 AS,928711714,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Kragerø,Oslo
 928896196,Kikut utbygging AS,928711781,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Kragerø,Oslo
 928896331,Kragerø resort heia AS,928711846,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Kragerø,Oslo
@@ -14927,6 +14950,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 932604906,Raulandsfjell eiendom AS,932530201,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Vinje,
 932609576,Anne kathrine rogn,932608685,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Bamble,
 932619660,Blå skyer eiendom AS,815008782,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
+932628082,Åmot eigendom AS,914208947,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Vinje,
 932629275,Tveito nordre da,915058078,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Vinje,Bergen
 932633477,Va eiendom AS,917573743,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,Skien
 932648695,Forberg boligutvikling AS,923366466,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Midt-Telemark,
@@ -14957,7 +14981,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 933087867,Nah4 AS,932919834,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Porsgrunn,
 933092127,Agato utleie AS,933018245,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
 933109976,Jan tore berve,986338608,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Fyresdal,
-933144674,Grenland eiendomsselskap AS,933088464,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Porsgrunn,
+933144674,Bjørndalsjordet 1 AS,933088464,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Porsgrunn,Porsgrunn
 933166368,Jrm- AS,933113337,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Kragerø,
 933171744,Rødmyrsvingen 76 AS,997799143,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
 933199525,Lys opp AS,933111229,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Notodden,
@@ -15057,7 +15081,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 935370655,Nybnæring 2a AS,935167752,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Porsgrunn,
 935370698,Nybnæring 2c AS,935167914,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Porsgrunn,
 935472504,Asbjørnsens gate 11 AS,935160375,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
-935475791,Fixano AS,935190355,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
 935514045,Treungen eigedom AS,935481686,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Nissedal,Åmli
 935525268,Gb eiendom Kragerø AS,824430292,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Kragerø,
 935532302,As hotel dalen,957569323,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Tokke,Tokke
@@ -15102,6 +15125,10 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936970680,Rugtvedt lagerseksjon 101 AS,936658555,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Nome,
 936973558,Triple20 AS,936661726,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
 936993125,Mk property management AS,936953239,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
+937067887,Mercury invest AS,928195961,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
+937079079,Strømdalsjordet 1 bygg AS,936743455,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Porsgrunn,
+937087527,Olavsberget eiendom ny AS,936867715,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Porsgrunn,
+937103905,Fixhub svartdal,837103762,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Notodden,
 971663081,Heddalsveien 44 AS,880800892,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Notodden,
 971689625,T.t. fosli AS,913858344,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Tokke,
 971697458,Ulefossveien 42 AS,912194795,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
@@ -15309,7 +15336,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 982159652,Levo eiendom AS,977338506,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Tinn,
 982171229,O.t. løvstad AS,990027692,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Kragerø,
 982217806,Solvang eiendom AS,929028961,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Porsgrunn,
-982257956,Svadde eiendom AS,982253284,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Tinn,Tinn
+982257956,Svadde eiendom AS,982253284,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Tinn,
 982274192,Berepf ii Norway bankplassen AS,981952545,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
 982284783,Mælagt 1 AS,981976746,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Skien,
 982319234,Skjærgårdshallen AS,882210782,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,68.200,Utleie av egen eller leid fast eiendom,Bamble,
@@ -16277,7 +16304,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 832133922,Riktig utvikling AS,932092638,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,70.200,Bedriftsrådgivning og annen administrativ rådgivning,Skien,
 832149292,Findal & mørch AS,932110393,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,70.200,Bedriftsrådgivning og annen administrativ rådgivning,Porsgrunn,
 832522422,Lena faye-lund sandvik,932469928,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,70.200,Bedriftsrådgivning og annen administrativ rådgivning,Kragerø,
-832999822,J krahulcova,932932296,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,70.200,Bedriftsrådgivning og annen administrativ rådgivning,Porsgrunn,
 833462822,Selvskapet AS,933350886,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,70.200,Bedriftsrådgivning og annen administrativ rådgivning,Skien,
 833636022,Stian svolsbru,933634221,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,70.200,Bedriftsrådgivning og annen administrativ rådgivning,Porsgrunn,
 833881582,Bon jour coaching & marketing lundseng,833880012,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,70.200,Bedriftsrådgivning og annen administrativ rådgivning,Midt-Telemark,
@@ -16672,7 +16698,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 836221192,Bråthen arkitektur,936221173,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.110,Arkitektvirksomhet,Skien,
 881382792,Arkitektkontoret morten jahren AS,996283992,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.110,Arkitektvirksomhet,Skien,Skien
 898957772,Anders nordby arkitekt,977527074,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.110,Arkitektvirksomhet,Midt-Telemark,
-913373235,Per eugen garnås,913328965,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.110,Arkitektvirksomhet,Midt-Telemark,
 914656370,Arkitekt ludvig hoddø,895612642,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.110,Arkitektvirksomhet,Porsgrunn,
 917761841,Fyresdal plan og oppmåling kristin libjå,917524726,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.110,Arkitektvirksomhet,Fyresdal,
 918334645,Strandskog landskap og arkitektur,818198302,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.110,Arkitektvirksomhet,Kragerø,
@@ -16772,6 +16797,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 922007128,Bankers AS,970895086,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.121,Byggeteknisk konsulentvirksomhet,Skien,
 922529728,Olav grave AS,920553877,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.121,Byggeteknisk konsulentvirksomhet,Drangedal,
 922683581,Tømrar eystein haugen,986500502,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.121,Byggeteknisk konsulentvirksomhet,Seljord,
+922742006,Ingeniørtakst AS,922699801,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.121,Byggeteknisk konsulentvirksomhet,Porsgrunn,
 922901902,Svanberg byggteknikk AS,922867801,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.121,Byggeteknisk konsulentvirksomhet,Skien,
 923043314,P.g.n. never david cuellar rosales,915764134,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.121,Byggeteknisk konsulentvirksomhet,Skien,
 923354379,Namlos entreprenør,923181318,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.121,Byggeteknisk konsulentvirksomhet,Skien,
@@ -17038,7 +17064,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 924891467,Trosvik oceantech AS,924862939,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Porsgrunn,
 924905638,Qingtor AS,989143166,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Porsgrunn,
 925076236,Jensen consult,925056677,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Porsgrunn,
-925298433,Jb airservice AS,925273252,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Skien,Sandefjord
+925298433,Fagplassen,925273252,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Skien,Sandefjord
 925649619,Aase consulting,997794478,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Notodden,
 925728578,Andreas sæbø engineering,925602760,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Porsgrunn,
 925790060,Sivilingeniør geir moe AS,925637793,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Porsgrunn,Porsgrunn
@@ -17115,7 +17141,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 933310701,Stressman vaultron AS,933296881,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Porsgrunn,
 933346420,Bluegreen investments AS,925159514,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Bamble,
 933425932,Norwegian dynamics AS,833303392,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Skien,
-933483207,Rasmussen maritime,933360717,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Bamble,
 933528766,Båtteknisk konsulent runar gautefald,933395782,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Kragerø,
 933592723,Viridi AS,976014200,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Porsgrunn,
 933661687,Jørn lundgren,833640712,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Skien,
@@ -17156,7 +17181,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 935029759,Kaldråstøyl steering gear consultancy,935029740,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Vinje,
 935041325,Scalar AS,935015006,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Bamble,
 935072530,Tim johnstone,935072522,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Porsgrunn,
-935075521,Gelsomini environmental consulting AS,935032253,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Skien,
 935118492,Helweg nexus AS,934981685,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Nome,
 935185440,Tengs project management,935185416,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Porsgrunn,
 935205212,Gba prosjekt- og anleggsledelse AS,935073502,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Skien,
@@ -17181,6 +17205,8 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936800483,Brænna acs consult,936530613,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Kragerø,
 936884814,Andreassen clarke vannkraft konsult,936884733,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Kragerø,
 936953484,Stensrød takst og byggvurdering AS,936923550,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Skien,
+937089503,Christian bommen solutions,936977502,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Skien,
+937093039,Long shot holding AS,937073801,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Skien,
 972189456,Teknoplan AS,952162926,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Fyresdal,
 972275565,Mithra AS,961182638,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Hjartdal,Hjartdal
 972690392,Hl engineering dr.ing. helge larsen,946549592,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,71.129,Annen teknisk konsulentvirksomhet,Skien,
@@ -17402,7 +17428,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 934595319,Plogen AS,934480317,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.110,Reklamebyråvirksomhet,Skien,
 934771001,Dyrbeck consulting,934624211,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.110,Reklamebyråvirksomhet,Skien,
 934801326,Nokto agency,929345029,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.110,Reklamebyråvirksomhet,Porsgrunn,
-934816668,Osmans stratify,934645189,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.110,Reklamebyråvirksomhet,Skien,
 934880315,Ce-marketing hvale-thorsnes,934848446,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.110,Reklamebyråvirksomhet,Skien,
 934884574,Hellum technova creations by iti & gaia,934776917,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.110,Reklamebyråvirksomhet,Porsgrunn,
 934889746,Gebremeskel affiliate marketing,934652045,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.110,Reklamebyråvirksomhet,Porsgrunn,
@@ -17478,6 +17503,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 921322100,Konkret kommunikasjon thor øistein eriksen,921250363,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.300,Pr og kommunikasjonstjenester,Skien,
 923925724,Chinotek consulting axel petterson,996740676,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.300,Pr og kommunikasjonstjenester,Skien,
 924055707,Svindal consulting AS,923940006,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.300,Pr og kommunikasjonstjenester,Skien,
+926785389,Telltale AS,926660160,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.300,Pr og kommunikasjonstjenester,Skien,
 928065022,Frøy skjeldal,927887800,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.300,Pr og kommunikasjonstjenester,Midt-Telemark,
 928988163,Køhn consulting,928829944,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.300,Pr og kommunikasjonstjenester,Porsgrunn,
 932061570,Victor skretteberg,932031132,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,73.300,Pr og kommunikasjonstjenester,Skien,
@@ -17639,7 +17665,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 927792893,Innholdsprodusent anette jørgensen,927588420,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.130,Interiørdesignvirksomhet,Skien,
 928665895,Drømmebolig beate kaupang,928500640,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.130,Interiørdesignvirksomhet,Skien,
 928803899,Lux design vrana,928625710,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.130,Interiørdesignvirksomhet,Skien,
-929697197,Anstensen oppussing og interiørdesign,929379497,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.130,Interiørdesignvirksomhet,Midt-Telemark,
 930980021,4dsign interiørarkitekt & lysdesign tjønneng-haukås,930723363,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.130,Interiørdesignvirksomhet,Porsgrunn,
 932783509,Innredningshjelpen AS,832721522,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.130,Interiørdesignvirksomhet,Skien,Porsgrunn
 933129004,Bolig design AS,933065529,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.130,Interiørdesignvirksomhet,Skien,
@@ -17840,6 +17865,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 925745391,Movation AS,925583952,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.990,"All annen faglig, vitenskapelig og teknisk virksomhet ikke nevnt annet sted",Skien,
 926032194,Tom trulsen takstmannsforetning,925812692,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.990,"All annen faglig, vitenskapelig og teknisk virksomhet ikke nevnt annet sted",Notodden,
 926058401,Gullik agri AS,925846945,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.990,"All annen faglig, vitenskapelig og teknisk virksomhet ikke nevnt annet sted",Skien,
+927195399,Tariq consultancy,927051834,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.990,"All annen faglig, vitenskapelig og teknisk virksomhet ikke nevnt annet sted",Drangedal,
 928531767,Takstmann olav øyen AS,928287963,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.990,"All annen faglig, vitenskapelig og teknisk virksomhet ikke nevnt annet sted",Notodden,
 928917460,Naturforvalting - bjørn bjørnsen,928739945,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.990,"All annen faglig, vitenskapelig og teknisk virksomhet ikke nevnt annet sted",Tinn,
 929735609,Faber argentarius AS,929426886,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,74.990,"All annen faglig, vitenskapelig og teknisk virksomhet ikke nevnt annet sted",Porsgrunn,
@@ -18318,6 +18344,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 835137252,Fyr forvaltning AS,935019028,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Skien,
 836062272,Stamland servicepartner,924808209,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Skien,
 836125142,Håkon bråthen fikser,936125123,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Skien,
+837107202,Holtermann nicolay,937107196,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Skien,
 873795042,Nome kommune eiendommen dagsrud,974640864,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Nome,
 883952502,Morgedal drift og vedlikehald AS,887735042,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Notodden,
 898062252,Knut juvland,998042380,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Skien,
@@ -18353,7 +18380,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 921562918,Vrådal camping og hytteutleie,821545552,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Kviteseid,
 921944640,Torgeir luraas,993336076,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Tinn,
 922563268,Anders høgli,922357625,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Porsgrunn,
-922742006,Ingeniørtakst AS,922699801,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Porsgrunn,
 922827664,Ressursteam AS,922809372,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Bamble,
 922831246,Iss facility services as eiendomsdivisjonen Porsgrunn,914791723,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Porsgrunn,
 923407138,Fredrick kaasa,897263122,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Notodden,
@@ -18411,7 +18437,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 931634895,Berge vedlikehold AS,931602454,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Seljord,
 931896490,Bendik & co AS,931760289,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Skien,
 931940880,Lars olav kåsa hytteservice,931838202,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Skien,
-931997246,Garden vedlikehold,931994204,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Tinn,
 931997556,L. m. battin,931946374,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Tokke,
 932357267,Slåtta anlegg AS,932323907,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Notodden,
 932539993,Odel AS,932481170,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Notodden,
@@ -18465,6 +18490,8 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936634435,Espen bakka,936634397,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Midt-Telemark,
 936653537,Støen service og utleie AS,936374980,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Midt-Telemark,
 937054602,Sørlie service og drift,937054599,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Skien,
+937077610,Jb tjenester jan bye,937077602,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Tinn,
+937081901,Komplett hjemmefiksing AS,937053207,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Bamble,
 977495741,Hyttevaktmester'n knut hafsund,977492785,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Bamble,
 978444954,Myrhaug olav,969782073,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Notodden,
 981272927,Morks vaktmestertjeneste,980805379,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,81.100,Kombinerte tjenester tilknyttet eiendomsdrift,Notodden,
@@ -18751,7 +18778,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 984212348,Eckholdt kontorservice,939705511,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.100,Kontortjenester,Kragerø,
 993249009,Viaoss AS,993226807,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.100,Kontortjenester,Notodden,Oslo
 998701767,Vas AS,998624754,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.100,Kontortjenester,Skien,
-830798102,Patricia cossette,930724718,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.200,Telefonvakttjenester og telefonsalg,Skien,
 926080172,Lt partnertjenester AS,926056573,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.200,Telefonvakttjenester og telefonsalg,Skien,
 928575152,Callservice fredriksen,928350061,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.200,Telefonvakttjenester og telefonsalg,Skien,
 930233897,Agent chehab,930212652,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.200,Telefonvakttjenester og telefonsalg,Skien,
@@ -18759,7 +18785,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 931930222,Salesgarden as avd Porsgrunn,990115206,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.200,Telefonvakttjenester og telefonsalg,Porsgrunn,Kristiansand
 933059960,Agent jaradat,932987341,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.200,Telefonvakttjenester og telefonsalg,Skien,
 933319725,Agent emma larsen,933215075,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.200,Telefonvakttjenester og telefonsalg,Skien,
-933334759,Fritzon sales,933199053,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.200,Telefonvakttjenester og telefonsalg,Porsgrunn,
 933404099,Agent gulli,933277844,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.200,Telefonvakttjenester og telefonsalg,Notodden,
 933446182,Agent rambekk,833322052,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.200,Telefonvakttjenester og telefonsalg,Porsgrunn,
 935064740,Tula akseth,986521682,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.200,Telefonvakttjenester og telefonsalg,Porsgrunn,
@@ -18787,7 +18812,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 913420918,Visum consulting AS,913377737,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.990,Annen forretningsmessig tjenesteyting ikke nevnt annet sted,Tinn,
 914680433,Laga kunstbyrå catrine danielsen,987637544,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.990,Annen forretningsmessig tjenesteyting ikke nevnt annet sted,Porsgrunn,
 916969910,P r johansen makroøkonomi,916944233,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.990,Annen forretningsmessig tjenesteyting ikke nevnt annet sted,Nome,
-917159084,Gjærum kontroll,917035822,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.990,Annen forretningsmessig tjenesteyting ikke nevnt annet sted,Kragerø,
 917589143,Notodden håndballag,971537612,,AAFY,Underenhet til ikke-næringsdrivende,82.990,Annen forretningsmessig tjenesteyting ikke nevnt annet sted,Notodden,Notodden
 917913188,Jan arild lauvland,917840490,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.990,Annen forretningsmessig tjenesteyting ikke nevnt annet sted,Nissedal,
 919066024,Inovyn europe limited norwegian branch nuf,918837094,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,82.990,Annen forretningsmessig tjenesteyting ikke nevnt annet sted,Bamble,
@@ -18819,10 +18843,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936938779,Kongsbergregionen dokumentsenter Hjartdal,974643596,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,84.110,Generell offentlig administrasjon,Hjartdal,Sigdal
 936938876,Kongsbergregionen dokumentsenter Notodden,974643596,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,84.110,Generell offentlig administrasjon,Notodden,Sigdal
 974730529,Tolletaten grenland,974761343,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,84.110,Generell offentlig administrasjon,Porsgrunn,Oslo
-986144005,Vestfold og Telemark revisjon iks avd bamle,923822410,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,84.110,Generell offentlig administrasjon,Bamble,
-986144218,Vestfold og Telemark revisjon iks avd Kragerø,923822410,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,84.110,Generell offentlig administrasjon,Kragerø,Kragerø
-986144404,Vestfold og Telemark revisjon iks avd Kviteseid,923822410,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,84.110,Generell offentlig administrasjon,Kviteseid,
-986144412,Vestfold og Telemark revisjon iks avd Seljord,923822410,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,84.110,Generell offentlig administrasjon,Seljord,
 987724625,Siljan kommune servicekontor,974643995,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,84.110,Generell offentlig administrasjon,Siljan,
 987924780,Drangedal kommune post/arkiv og servicekontor,994971247,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,84.110,Generell offentlig administrasjon,Drangedal,
 988440094,Hjartdal kommune servicekontoret,974644010,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,84.110,Generell offentlig administrasjon,Hjartdal,
@@ -18914,7 +18934,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 989491024,Bratsberghavna familiebarnehage,989454552,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.100,Førskoleundervisning og drift av barnehager,Skien,
 989536338,Klyve åpen barnehage,976991249,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.100,Førskoleundervisning og drift av barnehager,Skien,
 990157782,Min barnehage eiendom AS,890078672,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.100,Førskoleundervisning og drift av barnehager,Porsgrunn,
-991418784,Sætrebo barnehage AS,931045512,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.100,Førskoleundervisning og drift av barnehager,Notodden,Notodden
+991418784,Sætrebo barnehage,931045520,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.100,Førskoleundervisning og drift av barnehager,Notodden,Notodden
 912403696,Bamble kommune paletten innføringsavd.,974636271,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.201,Ordinær grunnskoleundervisning,Bamble,Bamble
 930733881,Skien steinerskole AS,930706361,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.201,Ordinær grunnskoleundervisning,Skien,
 931430947,Ole kigen undervisning,931234021,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.201,Ordinær grunnskoleundervisning,Porsgrunn,
@@ -18939,6 +18959,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 833289292,Lilova,933102726,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.510,Undervisning innenfor idrett og rekreasjon,Bamble,
 834468042,Fotball for alle,934467876,,AAFY,Underenhet til ikke-næringsdrivende,85.510,Undervisning innenfor idrett og rekreasjon,Drangedal,
 835001172,Nerhus trening,934872487,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.510,Undervisning innenfor idrett og rekreasjon,Nome,
+836327152,Keeperkingz v solås,936327141,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.510,Undervisning innenfor idrett og rekreasjon,Notodden,
 836610822,Loftsgarden,936610803,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.510,Undervisning innenfor idrett og rekreasjon,Kragerø,
 836751752,Coach adenbrant,936720013,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.510,Undervisning innenfor idrett og rekreasjon,Porsgrunn,
 837057612,Yoga med tone syftestad,936680763,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,85.510,Undervisning innenfor idrett og rekreasjon,Kviteseid,
@@ -19866,7 +19887,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 920365027,Tannlege halvor solheim,920223850,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.230,Tannlegetjenester,Bamble,
 920728030,Fyresdal tannklinikk,929882989,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.230,Tannlegetjenester,Fyresdal,Skien
 921447795,Tannlege anne sæland,921359225,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.230,Tannlegetjenester,Nome,
-921466080,Spesialist i oral protetikk christian berntsen,921376979,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.230,Tannlegetjenester,Skien,
+921466080,Spesialist i oral protetikk christian berntsen,921376979,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.230,Tannlegetjenester,Skien,Porsgrunn
 921491158,Tannlege jon torstein høye svendsen,921402457,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.230,Tannlegetjenester,Porsgrunn,
 921501188,Tannlege emil kalve aarstad,921417608,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.230,Tannlegetjenester,Skien,Oslo
 921932138,Regine leidal,983843042,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.230,Tannlegetjenester,Tinn,
@@ -20139,7 +20160,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 932933411,Rehus - kozlowski,932857715,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.950,Fysioterapi- og ergoterapitjenester,Skien,
 933132773,Fysio for deg - linn c. øygarden,933073424,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.950,Fysioterapi- og ergoterapitjenester,Skien,
 933287262,Jochen blohm / physiotherapist jochen blohm,933102521,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.950,Fysioterapi- og ergoterapitjenester,Skien,
-933951359,Selma sandsdalen-mytting,933771849,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.950,Fysioterapi- og ergoterapitjenester,Bamble,
 934028449,Telemarksklinikken AS,833812572,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.950,Fysioterapi- og ergoterapitjenester,Notodden,
 934476050,Arnesen fysioterapi,934316754,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.950,Fysioterapi- og ergoterapitjenester,Vinje,
 934680952,Fysioterapeut bendikte bruvik,893047352,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.950,Fysioterapi- og ergoterapitjenester,Skien,
@@ -20516,7 +20536,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 934811658,Anne lise storkaas forberg - kognitiv terapeut,934629906,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.993,Andre helsetjenester ellers,Midt-Telemark,
 934849639,Liv og lyst med edwards,934674480,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.993,Andre helsetjenester ellers,Bamble,
 935041430,Løkås-jensen helhetlig sykepleiertjenester,935041414,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.993,Andre helsetjenester ellers,Porsgrunn,
-935141052,Dhv lønnestad,935011957,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.993,Andre helsetjenester ellers,Seljord,
+935141052,Helseveileder lønnestad,935011957,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.993,Andre helsetjenester ellers,Seljord,
 935198917,Ib skottheim rusten,928562603,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.993,Andre helsetjenester ellers,Kragerø,
 935470889,Røsvik helse,935470870,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.993,Andre helsetjenester ellers,Porsgrunn,
 935473586,Sidsel d bjørbæk,935165881,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,86.993,Andre helsetjenester ellers,Skien,
@@ -20578,6 +20598,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 813655322,Rauland omsorgssenter,964964610,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.300,Omsorgstjenester i botilbud for eldre eller personer med fysisk funksjonsnedsettelse,Vinje,Vinje
 913655192,Norheimstunet omsorgssenter,964964610,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.300,Omsorgstjenester i botilbud for eldre eller personer med fysisk funksjonsnedsettelse,Vinje,Vinje
 930867187,Porsgrunn kommune avd boenheter,939991034,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.300,Omsorgstjenester i botilbud for eldre eller personer med fysisk funksjonsnedsettelse,Porsgrunn,
+937077351,Bakkane bokollektiv,986433007,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.300,Omsorgstjenester i botilbud for eldre eller personer med fysisk funksjonsnedsettelse,Skien,Skien
 974608936,Ringsevja bo- og servicesenter,974640848,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.300,Omsorgstjenester i botilbud for eldre eller personer med fysisk funksjonsnedsettelse,Nome,Nome
 829468972,Human care ung as avd moltekroken,925036226,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.991,Tjenester i barneverninstitusjoner,Skien,Kristiansand
 897540932,Stendi as region sør bv skogplassen,985194653,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,87.991,Tjenester i barneverninstitusjoner,Skien,Bærum
@@ -20669,7 +20690,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 972335673,Fyresdal vekst AS,966337877,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,88.993,Arbeidstrening og varig tilrettelagt arbeid,Fyresdal,
 976003977,Delecto kompetanse AS,985161690,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,88.993,Arbeidstrening og varig tilrettelagt arbeid,Kragerø,
 976825098,Notodden kommune talenthuset,876821052,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,88.993,Arbeidstrening og varig tilrettelagt arbeid,Notodden,Notodden
-994840665,Grep arbeid as avd sitt ned kunst & kafe,928214311,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,88.993,Arbeidstrening og varig tilrettelagt arbeid,Skien,Porsgrunn
 927647346,Blå kors steg for steg grenland,962323855,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,88.994,Velferdstjenester til sårbare grupper,Skien,Oslo
 934462645,Nicolaysen & hogstad,926275097,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,88.994,Velferdstjenester til sårbare grupper,Skien,
 874562602,Fyresdal sosialkontor,987914386,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,88.995,Sosialkontortjenester,Fyresdal,
@@ -20735,7 +20755,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 933711781,Nasjonalforeningen for folkehelsen tuddal helselag,933710645,,AAFY,Underenhet til ikke-næringsdrivende,88.996,Andre sosialtjenester uten botilbud ellers,Hjartdal,
 933715019,"Aratun hovedgård, bent thorkildsen",933527697,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,88.996,Andre sosialtjenester uten botilbud ellers,Vinje,
 934356004,Nasjonalforeningen for folkehelsen Porsgrunn demensforening,934355172,,AAFY,Underenhet til ikke-næringsdrivende,88.996,Andre sosialtjenester uten botilbud ellers,Porsgrunn,
-934407288,Ekstrahjelpen hilde borchgrevink-lund,934404769,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,88.996,Andre sosialtjenester uten botilbud ellers,Porsgrunn,
 935226759,Himmelblå bpa as avd Porsgrunn,932077531,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,88.996,Andre sosialtjenester uten botilbud ellers,Porsgrunn,
 935538610,Haglelufternes landsforening,935536863,,AAFY,Underenhet til ikke-næringsdrivende,88.996,Andre sosialtjenester uten botilbud ellers,Vinje,
 935950465,Livet videre,935948991,,AAFY,Underenhet til ikke-næringsdrivende,88.996,Andre sosialtjenester uten botilbud ellers,Notodden,
@@ -20763,8 +20782,10 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 829293552,Røseth formidling,929026489,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Porsgrunn,
 829905582,Lønn forlag birgitte wærstad,994550659,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Skien,
 831897562,Apex vega nyiri,931797654,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Tinn,
+837102162,M. solaas dramatiker,937102100,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Midt-Telemark,
 880081292,Lars vik produksjoner,979534043,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Porsgrunn,
 894131322,Redturbine,983581099,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Skien,
+911686961,Hans peter larsen svalheim,983433863,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Hjartdal,
 913817516,Tekstforfatter traaholt,913750012,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Porsgrunn,
 914266076,Veganmisjonen jane helen johansen,814240622,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Porsgrunn,
 914703522,Anne lene tangen,993754889,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Bamble,
@@ -20821,7 +20842,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 932671670,Anne haugen wagn,991645780,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Notodden,
 932737213,Flokkpress friesl,932735709,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Porsgrunn,
 933062317,Kathrine kinn,932991772,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Kviteseid,
-933272923,Kingsford saga rpg - miller,933187500,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Tinn,
 933280772,The literary oak AS,933191087,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Seljord,
 933301370,Veronica westhrin,933300595,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Kragerø,
 933657582,Hanne christensen,985833052,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Porsgrunn,
@@ -20838,10 +20858,12 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 935326680,Ellen hageman,935312183,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Midt-Telemark,
 935448492,Sigmund aas,919915765,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Skien,
 935704138,Anne på landet anne t romtveit,981240960,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Vinje,
-936130658,Danielle schönfeldt creative,935641284,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Porsgrunn,
+936130658,Danielle schönfeldt creative,935641284,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Drangedal,
 936581188,Carea bekk,936282563,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Tokke,
 936971482,Ghadimfallah -masoud,836971442,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Skien,
 937053223,Bak døra da,936556833,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Skien,
+937071868,Js amundsen bøker,936695973,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Bamble,
+937076010,Lille stjerne verigaite-zuzzalkiniene,937075707,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Midt-Telemark,
 976098234,Øystein køhn,976096878,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Skien,Skien
 977386780,Tine thomassen - tekst,977070198,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Skien,
 978181015,Hostvedt ole john,969367823,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.111,Skapende kunstnerisk virksomhet innenfor litteratur,Tinn,
@@ -21001,6 +21023,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936800645,Skids illustrations - hedda lindheim,936533582,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.120,Skapende kunstnerisk virksomhet innenfor visuell kunst,Nome,
 936881793,Fra z. waseem,936561624,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.120,Skapende kunstnerisk virksomhet innenfor visuell kunst,Porsgrunn,
 936939317,Vinje art AS,936637485,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.120,Skapende kunstnerisk virksomhet innenfor visuell kunst,Skien,
+937077211,Hanne thorsdalen styhr,937077181,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.120,Skapende kunstnerisk virksomhet innenfor visuell kunst,Notodden,
 971851465,Sputnik trafikk og musikk AS,959893942,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.120,Skapende kunstnerisk virksomhet innenfor visuell kunst,Drangedal,
 973778943,Telemark kunstsenter,871322252,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.120,Skapende kunstnerisk virksomhet innenfor visuell kunst,Skien,
 979098502,Jonny andvik,971590483,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.120,Skapende kunstnerisk virksomhet innenfor visuell kunst,Kragerø,
@@ -21025,7 +21048,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 825366032,Sokkelesten toraderklubb,925364924,,AAFY,Underenhet til ikke-næringsdrivende,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Drangedal,
 826730382,Bluestown voices,826728892,,AAFY,Underenhet til ikke-næringsdrivende,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Notodden,
 829229722,Halvard tveitan,829131242,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Midt-Telemark,
-829370522,Sivert svendsen stette,929191358,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Porsgrunn,
 829785722,Lars øen millett,929491580,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Porsgrunn,
 829843552,Trond gausnes strengetjenester,929576136,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Bamble,
 830430202,Per anders buen garnås,982597358,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Midt-Telemark,
@@ -21043,6 +21065,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 834737582,Ingvild homme musikk,997581741,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Skien,
 836580532,Jovotekst AS,936276547,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Tinn,
 836695712,Kantoriets menn,936694063,,AAFY,Underenhet til ikke-næringsdrivende,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Kragerø,
+837085802,Aslak grøseth pedersen,937085788,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Skien,
 886738242,Musikk musikk trond ytterbø,986645675,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Notodden,
 899355792,Magnus soltvedt wiik,890599982,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Vinje,
 899637542,Pål bredrup,899619722,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Notodden,
@@ -21314,6 +21337,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936891950,Musiker hans marius graasvold,836856082,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Skien,
 937035691,Kinik musikk,936987907,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Porsgrunn,
 937038577,"Ensemble scheen, finn kikut",992247088,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Skien,
+937071647,Jonas l pedersen booking & event,937071639,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Skien,
 972844128,Diakonos,859143822,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Porsgrunn,
 973844741,Kragerø skolemusikkorps,944232672,,AAFY,Underenhet til ikke-næringsdrivende,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Kragerø,
 976777549,Nordic booking,976657381,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,90.201,Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk,Skien,
@@ -21853,7 +21877,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 923186212,Mova Skien storsenter,994588117,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Skien,Bergen
 924033797,Flex nenset AS,923992103,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Skien,Porsgrunn
 924304464,Happy yogi AS,924028459,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Porsgrunn,
-926234161,Kirstis helseterapi anne kirsti kaasa,968519360,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Skien,
+926234161,Kirstis helseterapi anne kirsti kaasa,968519360,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Bamble,
 926632787,The room Porsgrunn AS,926433547,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Porsgrunn,
 927290839,Vd trening as avd menstadbrua,936185002,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Skien,Skien
 927332507,Groven fitness AS,999025013,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Midt-Telemark,
@@ -21865,6 +21889,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 931567411,Flex vallermyrene AS,931553046,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Porsgrunn,Porsgrunn
 931575708,Sky fitness gråtenmoen,931451707,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Skien,Skien
 932573024,Flex langesund AS,932558726,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Bamble,Porsgrunn
+933951359,Selma sandsdalen-mytting,933771849,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Bamble,
 934332555,Rui fitness AS,934179234,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Nome,
 935570425,Hårviks treningspotpurri,927405466,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Skien,
 935951518,Flex Skien AS,935927943,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,93.130,Treningssentervirksomhet,Skien,Porsgrunn
@@ -22084,7 +22109,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 920301673,Kviteseid misjonskyrkje,971326808,,AAFY,Underenhet til ikke-næringsdrivende,94.910,Aktiviteter i religiøse organisasjoner,Kviteseid,Kviteseid
 920302130,Sion pinsemenighet,971438894,,AAFY,Underenhet til ikke-næringsdrivende,94.910,Aktiviteter i religiøse organisasjoner,Bamble,Bamble
 920302718,Pinsemenigheten saron langesund,975442667,,AAFY,Underenhet til ikke-næringsdrivende,94.910,Aktiviteter i religiøse organisasjoner,Bamble,
-920303242,Eben ezer lårdal pinsemenighet,975623602,,AAFY,Underenhet til ikke-næringsdrivende,94.910,Aktiviteter i religiøse organisasjoner,Tokke,
 920304516,Solum kirkestue sti,977184312,,AAFY,Underenhet til ikke-næringsdrivende,94.910,Aktiviteter i religiøse organisasjoner,Skien,
 920304885,Kristent fellesskap,979307861,,AAFY,Underenhet til ikke-næringsdrivende,94.910,Aktiviteter i religiøse organisasjoner,Skien,Skien
 922216533,Telemark chin baptist church,997363817,,AAFY,Underenhet til ikke-næringsdrivende,94.910,Aktiviteter i religiøse organisasjoner,Skien,
@@ -22998,7 +23022,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 930191515,Klyve fau,930187461,,AAFY,Underenhet til ikke-næringsdrivende,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Skien,Skien
 930236977,Midt-Telemark husflidslag,930234788,,AAFY,Underenhet til ikke-næringsdrivende,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Midt-Telemark,
 930283916,Museumsnettverket soga,930133744,,AAFY,Underenhet til ikke-næringsdrivende,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Drangedal,
-930299383,Sannidal polentur høsten 2025,930296465,,AAFY,Underenhet til ikke-næringsdrivende,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Kragerø,
 930316865,Herreselskabet,930315850,,AAFY,Underenhet til ikke-næringsdrivende,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Skien,
 930327018,Skotfoss matutdeling,929287908,,AAFY,Underenhet til ikke-næringsdrivende,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Skien,Skien
 930351571,Flerkulturell ungdomsorganisasjon i agder,930351431,,AAFY,Underenhet til ikke-næringsdrivende,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Skien,
@@ -23283,6 +23306,8 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 937007035,Breisås akebakkelag,937005776,,AAFY,Underenhet til ikke-næringsdrivende,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Midt-Telemark,
 937044909,Alpakkaglede - natur & mestring,937042876,,AAFY,Underenhet til ikke-næringsdrivende,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Siljan,
 937055951,Vaa mekkeklubb,937054262,,AAFY,Underenhet til ikke-næringsdrivende,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Notodden,
+937088868,Fau ved åmot skule,937086881,,AAFY,Underenhet til ikke-næringsdrivende,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Vinje,
+937097182,Telemark rc klubb,936651771,,AAFY,Underenhet til ikke-næringsdrivende,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Bamble,
 973549111,Vestfold og Telemark kulturnettverk,971325704,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Midt-Telemark,
 973567519,Studentsamfunnet grenland,971321822,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Porsgrunn,
 973618075,Human-etisk forbund Telemark,943762236,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,94.992,Aktiviteter i andre medlemsorganisasjoner ellers,Skien,Oslo
@@ -23494,7 +23519,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 935673429,Eckholdt bilpleie,935316316,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,95.310,Reparasjon og vedlikehold av motorvogner,Kragerø,
 935752205,Lutek by amundsen,935386683,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,95.310,Reparasjon og vedlikehold av motorvogner,Skien,
 935772532,W bilpleie winger,935441196,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,95.310,Reparasjon og vedlikehold av motorvogner,Midt-Telemark,Notodden
-936008860,Moland tekniske tjenester,935982618,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,95.310,Reparasjon og vedlikehold av motorvogner,Skien,
 936127622,Alfa bilpleie AS,936110010,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,95.310,Reparasjon og vedlikehold av motorvogner,Porsgrunn,
 936207731,Robin privet,935843502,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,95.310,Reparasjon og vedlikehold av motorvogner,Skien,
 936261000,Lindberg bil & pleie,835892042,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,95.310,Reparasjon og vedlikehold av motorvogner,Porsgrunn,
@@ -23940,7 +23964,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 996598780,Claudias hudpleie v/claudia næs,996565726,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.220,Skjønnhetspleie,Nome,
 997193431,Yln negldesign,984751117,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.220,Skjønnhetspleie,Tinn,
 999303757,Adele,999286356,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.220,Skjønnhetspleie,Notodden,
-999343929,Lietorvet fotpleiesalong lena larsson,858611792,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.220,Skjønnhetspleie,Porsgrunn,
+999343929,Fotterapeut lena larsson,858611792,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.220,Skjønnhetspleie,Porsgrunn,
 999418228,Steinstad ruth bodil,981769813,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.220,Skjønnhetspleie,Midt-Telemark,
 815077482,Suthida samanya norin,914877458,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.230,"Aktiviteter i dagspa, badstue og dampbad",Kragerø,Kragerø
 831659092,Almankaas velvære,931657879,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.230,"Aktiviteter i dagspa, badstue og dampbad",Skien,Skien
@@ -24130,6 +24154,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 936792367,Hundefrisør lena teplytska,936507190,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.990,Andre personlige tjenester ikke nevnt annet sted,Porsgrunn,Porsgrunn
 937008708,Studio23 govasli,937008686,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.990,Andre personlige tjenester ikke nevnt annet sted,Porsgrunn,
 937032307,Zatorska tattoo&permanent dz,937032277,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.990,Andre personlige tjenester ikke nevnt annet sted,Bamble,
+937104154,Ville bær sagvolden,936713580,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.990,Andre personlige tjenester ikke nevnt annet sted,Skien,
 976180526,Nils arne folkestad,874457892,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.990,Andre personlige tjenester ikke nevnt annet sted,Midt-Telemark,
 982567947,Myrene maskin og service,982528593,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.990,Andre personlige tjenester ikke nevnt annet sted,Notodden,
 994368974,Emperial tattoo studio mosaker,984169027,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,96.990,Andre personlige tjenester ikke nevnt annet sted,Notodden,Notodden
@@ -24301,7 +24326,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 918383832,Nedre anundskås borettslag,946978701,,AAFY,Underenhet til ikke-næringsdrivende,97.001,Aktiviteter i borettslag og boligsameier,Notodden,
 918383840,Solhaug borettslag,946981486,,AAFY,Underenhet til ikke-næringsdrivende,97.001,Aktiviteter i borettslag og boligsameier,Notodden,
 918386335,Liabygget borettslag,988354597,,AAFY,Underenhet til ikke-næringsdrivende,97.001,Aktiviteter i borettslag og boligsameier,Skien,
-919106794,Kvitåvatn hyttesameie,997713680,,AAFY,Underenhet til ikke-næringsdrivende,97.001,Aktiviteter i borettslag og boligsameier,Tinn,Sandefjord
+919106794,Kvitåvatn hyttesameie,997713680,,AAFY,Underenhet til ikke-næringsdrivende,97.001,Aktiviteter i borettslag og boligsameier,Tinn,Skien
 919549580,Vidsjåveien borettslag,988743852,,AAFY,Underenhet til ikke-næringsdrivende,97.001,Aktiviteter i borettslag og boligsameier,Kragerø,Kristiansand
 919603178,Nedre bøen borettslag,947429477,,AAFY,Underenhet til ikke-næringsdrivende,97.001,Aktiviteter i borettslag og boligsameier,Tinn,
 919675780,Frognerhagen borettslag,948821540,,AAFY,Underenhet til ikke-næringsdrivende,97.001,Aktiviteter i borettslag og boligsameier,Skien,Skien
@@ -25477,6 +25502,7 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 836842332,Pixelberntsen,983930913,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,,,Porsgrunn,
 836844572,Geir anders jensen,987554290,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,,,Kviteseid,
 836845102,Kjetil ova runningen,988347140,,BEDR,Underenhet til næringsdrivende og offentlig forvaltning,,,Nome,
+837114292,Barnas musikkteater,937112939,,AAFY,Underenhet til ikke-næringsdrivende,,,Tinn,
 917047448,Sameiet fortuna,913477103,,AAFY,Underenhet til ikke-næringsdrivende,,,Skien,
 917054169,Sameiet cappelensgt 15,979609078,,AAFY,Underenhet til ikke-næringsdrivende,,,Skien,
 917059454,Sameiet skutevollen 1,990875251,,AAFY,Underenhet til ikke-næringsdrivende,,,Seljord,
@@ -25579,7 +25605,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 934888669,Ce barneklær as konkursbo,934888650,,AAFY,Underenhet til ikke-næringsdrivende,,,Bamble,Skien
 934914708,Minde håndverktjenester as konkursbo,934914694,,AAFY,Underenhet til ikke-næringsdrivende,,,Midt-Telemark,Skien
 934955153,Berge vedlikehold as konkursbo,934955145,,AAFY,Underenhet til ikke-næringsdrivende,,,Seljord,Kviteseid
-934955986,Klubbkassa as konkursbo,934955978,,AAFY,Underenhet til ikke-næringsdrivende,,,Skien,Skien
 934956176,Mm4 consulting as konkursbo,934956168,,AAFY,Underenhet til ikke-næringsdrivende,,,Skien,Skien
 934964780,Yes vi leker brotorvet as konkursbo,934964772,,AAFY,Underenhet til ikke-næringsdrivende,,,Bamble,Skien
 934977203,Kilen drift tbg as konkursbo,934977181,,AAFY,Underenhet til ikke-næringsdrivende,,,Midt-Telemark,Notodden
@@ -25592,7 +25617,6 @@ Org. nr.,Navn,Overordnet enhet,Antall ansatte,Organisasjonsform - Kode,Organisas
 935155088,Epsn invest as konkursbo,835155072,,AAFY,Underenhet til ikke-næringsdrivende,,,Skien,Skien
 935158273,M.l.transport as tvangsavviklingsbo,935158257,,AAFY,Underenhet til ikke-næringsdrivende,,,Porsgrunn,Skien
 935162998,Glass & fasademontasje as konkursbo,935162971,,AAFY,Underenhet til ikke-næringsdrivende,,,Skien,Skien
-935168899,Anders sogn konkursbo,935168880,,AAFY,Underenhet til ikke-næringsdrivende,,,Bamble,Skien
 935186471,Clara transport as konkursbo,935186463,,AAFY,Underenhet til ikke-næringsdrivende,,,Bamble,Skien
 935209846,Lande brønnboring as konkursbo,935209838,,AAFY,Underenhet til ikke-næringsdrivende,,,Bamble,Skien
 935230160,Telemark gull senter as konkursbo,935230152,,AAFY,Underenhet til ikke-næringsdrivende,,,Porsgrunn,Kragerø
