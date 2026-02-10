@@ -20,9 +20,34 @@ After processing: 399 rows and 8 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\reseptfrie_smertestillende_legemidler_ungdom.csv
-[2026-02-09 08:15:05] No new data to upload. Skipping GitHub update.
+[2026-02-10 08:15:04] Changes detected in the dataset.
+
+[2026-02-10 08:15:04] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/reseptfrie_smertestillende_legemidler_ungdom.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: 
+  value: 19.7630211500764 -> 19.7618872873144
+
+Row: 
+  value: 8.04494033117093 -> 8.04535377327022
+
+Row: 
+  value: 31.8524201934163 -> 31.8500081036273
+
+Row: 
+  value: 14.532794234762 -> 14.5295143353344
+
+Row: 
+  value: 10.7086949808325 -> 10.7071486428701
+
+Total changes found in examined rows: 28
+(Showing first 5 changes only)
+Email notifications disabled. Updates for reseptfrie_smertestillende_legemidler_ungdom.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\reseptfrie_smertestillende_legemidler_ungdom.csv
-  âœ“ No changes detected
+  âœ“ New data detected and uploaded to GitHub
+New data detected
 
   âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃ¥r\Helsetilstand\reseptfrie_smertestillende_legemidler_ungdom.csv
 
