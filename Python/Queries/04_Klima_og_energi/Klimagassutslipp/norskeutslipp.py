@@ -186,7 +186,7 @@ temp_folder = os.environ.get("TEMP_FOLDER")
 is_new_data1 = handle_output_data(
     df_norske_detaljert,
     'norskeutslipp_detaljert_telemark.csv',
-    'Data/Klima_og_energi/Klimagassutslipp',
+    github_folder,
     temp_folder,
     keepcsv=True,
     value_columns=['Årlig utslipp til luft'],

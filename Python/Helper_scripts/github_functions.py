@@ -78,17 +78,15 @@ def download_github_file(file_path):
         
         df = pd.read_csv(BytesIO(response.content))
         
-        # Clean up the data
+        # Clean up the data - ensure consistent string format for comparison
         for col in df.columns:
             df[col] = df[col].astype(str).str.strip()
-            # Skip numeric conversion for NACE columns
-            if 'nace' not in col.lower():
-                try:
-                    # Try converting to float if it's not a NACE column
-                    df[col] = pd.to_numeric(df[col], errors='raise')
-                except (ValueError, TypeError):
-                    # If conversion fails, keep as string
-                    pass
+            
+            # Convert 'nan' strings to empty strings for ALL columns
+            df[col] = df[col].replace('nan', '')
+            
+            # Keep all columns as strings to match script output format
+            # This prevents data type and precision mismatches during comparison
         
         return df
     elif response.status_code == 404:
@@ -127,7 +125,10 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
         sha = None
     else:
         # Log an error if the status check fails
-        print(f"Failed to check file on GitHub: {response.json()}")
+        try:
+            print(f"Failed to check file on GitHub: {response.status_code} {response.json()}")
+        except Exception:
+            print(f"Failed to check file on GitHub: {response.status_code} {response.text}")
         return
 
     # Prepare the payload
@@ -145,7 +146,10 @@ def upload_github_file(local_file_path, github_file_path, message="Updating data
     if response.status_code in [201, 200]:
         print(f"File uploaded successfully: {github_file_path}")
     else:
-        print(f"Failed to upload file: {response.json()}")
+        try:
+            print(f"Failed to upload file ({response.status_code}): {response.json()}")
+        except Exception:
+            print(f"Failed to upload file ({response.status_code}): {response.text}")
 
 
 ## Function to compare file to GitHub
@@ -191,18 +195,8 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
         )
         return True
 
-    # Ensure consistent numeric types for comparison columns
-    if value_columns:
-        for col in value_columns:
-            if col in input_df.columns and col in existing_data.columns:
-                input_df[col] = pd.to_numeric(input_df[col], errors='coerce')
-                existing_data[col] = pd.to_numeric(existing_data[col], errors='coerce')
-    
-    # Convert all integer columns to int64 for consistent comparison
-    for col in input_df.columns:
-        if pd.api.types.is_integer_dtype(input_df[col]) and pd.api.types.is_integer_dtype(existing_data[col]):
-            input_df[col] = input_df[col].astype('int64')
-            existing_data[col] = existing_data[col].astype('int64')
+    # Skip numeric type conversions - keep consistent string format for reliable comparison
+    # This prevents data type mismatches and precision loss issues
 
     ####################################
     # STEP 1: Check for Header Changes #
@@ -212,12 +206,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
         """Normalize header for comparison by removing case and whitespace"""
         return str(col).strip().lower()
     
-    def extract_year(header):
-        """Extract year from header if present"""
-        import re
-        year_match = re.search(r'\b20\d{2}\b', header)
-        return year_match.group(0) if year_match else None
-
     # Check for structural changes in headers (ignoring case)
     existing_headers = [normalize_header(col) for col in existing_data.columns]
     new_headers = [normalize_header(col) for col in input_df.columns]
@@ -400,24 +388,12 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
             print(f"[{timestamp}] No value columns found to compare. Skipping GitHub update.")
             return False
             
-        # Check for any changes in the full dataset
+        # Check for any changes in the full dataset using string comparison only
         has_changes = False
         for col in columns_to_compare:
-            # Convert both columns to numeric if possible
-            try:
-                input_series = pd.to_numeric(input_df[col], errors='coerce')
-                existing_series = pd.to_numeric(existing_data[col], errors='coerce')
-            except:
-                input_series = input_df[col]
-                existing_series = existing_data[col]
-            
-            # Fill NaN values with empty string for string columns, 0 for numeric columns
-            if pd.api.types.is_numeric_dtype(input_series):
-                input_series = input_series.fillna(0)
-                existing_series = existing_series.fillna(0)
-            else:
-                input_series = input_series.fillna('')
-                existing_series = existing_series.fillna('')
+            # Keep as strings to avoid type/precision issues
+            input_series = input_df[col].fillna('').astype(str)
+            existing_series = existing_data[col].fillna('').astype(str)
             
             if not input_series.equals(existing_series):
                 has_changes = True
@@ -464,25 +440,9 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
             
         old_row = existing_df_subset.iloc[idx]
         for col in columns_to_compare:
-            # Try converting to numeric for comparison
-            try:
-                old_val = pd.to_numeric(old_row[col], errors='coerce')
-                new_val = pd.to_numeric(new_row[col], errors='coerce')
-                
-                # Fill NaN with 0 for numeric values
-                old_val = 0 if pd.isna(old_val) else old_val
-                new_val = 0 if pd.isna(new_val) else new_val
-                
-                # Compare numeric values with a small tolerance
-                if abs(old_val - new_val) > 1e-10:
-                    old_str = str(old_val) if not pd.isna(old_val) else ''
-                    new_str = str(new_val) if not pd.isna(new_val) else ''
-                else:
-                    continue
-            except:
-                # For non-numeric values, compare as strings
-                old_str = str(old_row[col]).strip() if pd.notna(old_row[col]) else ''
-                new_str = str(new_row[col]).strip() if pd.notna(new_row[col]) else ''
+            # Compare as strings only to avoid precision and type issues
+            old_str = str(old_row[col]).strip() if pd.notna(old_row[col]) else ''
+            new_str = str(new_row[col]).strip() if pd.notna(new_row[col]) else ''
             
             if old_str != new_str:
                 # Create identifier string from all key columns

@@ -98,9 +98,9 @@ df_pivot.columns.name = None  # Remove the multi-index name for columns
 df_pivot["Fulldyrka jord"] = df_pivot["Fulldyrka jord"] * 1000
 df_pivot["Ikke fulldyrka jord"] = df_pivot["Ikke fulldyrka jord"] * 1000
 
-# Show all values as integers/no decimals
-df_pivot["Fulldyrka jord"] = df_pivot["Fulldyrka jord"].astype(int)
-df_pivot["Ikke fulldyrka jord"] = df_pivot["Ikke fulldyrka jord"].astype(int)
+# Convert to float64 for consistent comparison
+df_pivot["Fulldyrka jord"] = df_pivot["Fulldyrka jord"].astype('float')
+df_pivot["Ikke fulldyrka jord"] = df_pivot["Ikke fulldyrka jord"].astype('float')
 
 # Remove column "Region"
 df_pivot = df_pivot.drop(columns=["region"])
@@ -110,14 +110,21 @@ total_fulldyrka = df_pivot["Fulldyrka jord"].sum()
 total_ikke_fulldyrka = df_pivot["Ikke fulldyrka jord"].sum()
 
 # Create a new dataframe with the total area per column
+# Create column name with current year from data
+value_col = f"Dekar ({siste_aar})"
+
 df_total = pd.DataFrame(
     {
         "Jordbruksareal": ["Fulldyrka jord", "Ikke fulldyrka jord"],
-        f"Dekar ({siste_aar})": [total_fulldyrka, total_ikke_fulldyrka],
+        value_col: [total_fulldyrka, total_ikke_fulldyrka],
     }
 )
 
 df_total.head()
+
+#print(df_total)
+#print("\nData types:")
+#print(df_total.dtypes)
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
