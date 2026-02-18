@@ -20,9 +20,34 @@ After processing: 5472 rows and 7 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.csv
-[2026-02-17 08:14:27] No new data to upload. Skipping GitHub update.
+[2026-02-18 08:14:21] Changes detected in the dataset.
+
+[2026-02-18 08:14:21] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: 
+  Sykdomsgruppe: Muskel- og skjelettsykdomsdiagnoser (ekskl. brudd og skader (L70-71 og L82-99)) -> Muskel- og skjelettsykdomsdiagnoser (ekskl. brudd og skader)
+
+Row: 
+  Sykdomsgruppe: Muskel og skjelett (ekskl. brudd og skader (L01-L29, L70-71 og L82-99))* -> Muskel og skjelett (ekskl. brudd og skader)
+
+Row: 
+  Sykdomsgruppe: Muskel- og skjelettsykdomsdiagnoser (ekskl. brudd og skader (L70-71 og L82-99)) -> Muskel- og skjelettsykdomsdiagnoser (ekskl. brudd og skader)
+
+Row: 
+  Sykdomsgruppe: Muskel og skjelett (ekskl. brudd og skader (L01-L29, L70-71 og L82-99))* -> Muskel og skjelett (ekskl. brudd og skader)
+
+Row: 
+  Sykdomsgruppe: Muskel- og skjelettsykdomsdiagnoser (ekskl. brudd og skader (L70-71 og L82-99)) -> Muskel- og skjelettsykdomsdiagnoser (ekskl. brudd og skader)
+
+Total changes found in examined rows: 133
+(Showing first 5 changes only)
+Email notifications disabled. Updates for muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.csv
-  âœ“ No changes detected
+  âœ“ New data detected and uploaded to GitHub
+New data detected
 
   âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Data\08_Folkehelse og levekÃ¥r\Helsetilstand\muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.csv
 
