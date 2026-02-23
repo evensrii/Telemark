@@ -30,7 +30,7 @@ error_messages = []
 
 # Define the feature service endpoint
 url = "https://services.geodataonline.no/arcgis/rest/services/Geomap_UTM33_EUREF89/GeomapBedrifter/FeatureServer/0/query"
-token = "alm9T3FRLOXU7oEELqWZyp8uDqK8Tr_lPYeEssbtcFg."
+token = "Ysy1TAbJsxbcD1bI7dOoTRdu_DYUTyCg37D8ELqHSYQ."
 
 # Column name mappings: API field name → Output column name
 # The KEYS define which fields to fetch from the API
@@ -85,7 +85,9 @@ count_params = {
 try:
     count_response = requests.get(url, params=count_params, timeout=10)
     count_response.raise_for_status()
-    total_records = count_response.json()['count']
+    count_json = count_response.json()
+    print(f"Count API response: {count_json}")
+    total_records = count_json['count']
     print(f"Total records to fetch: {total_records:,}")
 except Exception as e:
     print(f"Error getting record count: {e}")
