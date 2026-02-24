@@ -2,29 +2,29 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Ingen driftsmeldinger dukket opp, continuing...
-An unexpected error occurred during setup: Message: 
+An unexpected error occurred during setup: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
 Stacktrace:
 Symbols not available. Dumping unresolved backtrace:
-	0x7ff6c34f4435
-	0x7ff6c34f4490
-	0x7ff6c328d49d
-	0x7ff6c32e82fe
-	0x7ff6c32e860c
-	0x7ff6c3338b67
-	0x7ff6c3335728
-	0x7ff6c32d8e38
-	0x7ff6c32d9d23
-	0x7ff6c37c3b30
-	0x7ff6c37be3b8
-	0x7ff6c37de72a
-	0x7ff6c35107e5
-	0x7ff6c351978c
-	0x7ff6c34fd794
-	0x7ff6c34fd946
-	0x7ff6c34e3457
+	0x7ff78112aa55
+	0x7ff780e88630
+	0x7ff780c1d75d
+	0x7ff780c5e182
+	0x7ff780c595d9
+	0x7ff780cafc51
+	0x7ff780caf4b6
+	0x7ff780c69098
+	0x7ff780c69f83
+	0x7ff781157810
+	0x7ff781151afd
+	0x7ff781172c1a
+	0x7ff780ea3345
+	0x7ff780eab81c
+	0x7ff780e91924
+	0x7ff780e91ad6
+	0x7ff780e77e47
 	0x7ffbfb897ac4
 	0x7ffbfe6ba8c1
 
+Failed to quit driver, it may have already been closed
 Email notifications disabled. Errors in Vannkvalitet were not sent.
 
