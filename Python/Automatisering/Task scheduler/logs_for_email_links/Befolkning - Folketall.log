@@ -4,8 +4,32 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Folketall Telemark JSON-stat data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\folketall.csv
-[2026-02-24 08:05:43] No new data to upload. Skipping GitHub update.
+[2026-02-25 08:05:47] Changes detected in the dataset.
+
+[2026-02-25 08:05:47] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/01_Befolkning/Befolkningsutvikling/folketall.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: 
+  value: 6571 -> 6576
+
+Row: 
+  r: 2006 -> 2007
+
+Row: 
+  value: 6576 -> 6601
+
+Row: 
+  r: 2007 -> 2008
+
+Row: 
+  value: 6601 -> 6557
+
+Total changes found in examined rows: 395
+(Showing first 5 changes only)
+Email notifications disabled. Updates for folketall.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\folketall.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Folketall.log
 
