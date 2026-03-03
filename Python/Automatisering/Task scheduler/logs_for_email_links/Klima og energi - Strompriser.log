@@ -3,10 +3,31 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
+Found missing date ranges: [(Timestamp('2026-03-02 00:00:00'), Timestamp('2026-03-02 00:00:00'))]
+Fetching data for missing periods...
+-- Processing gap: 2026-03-02 to 2026-03-02 --
+Fetching energy prices from 2026-03-02 to 2026-03-02...
+  Fetching chunk from 2026-03-02 to 2026-03-02...
+Total price data points collected: 96
+Fetching exchange rates...
+Successfully fetched 1 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2026-03-02 08:12:03] No new data to upload. Skipping GitHub update.
+[2026-03-03 08:12:05] Row count changed: 1887 -> 1891
+
+Added rows (showing up to 10):
+EUR/MWh: 77.09791666666666, NOK/KWh: 0.8628027854166667, NOK/MWh: 862.8027854166667, kurs: 11.191, time: 2026-03-02
+EUR/MWh: 102.54, NOK/KWh: 1.14752514, NOK/MWh: 1147.52514, kurs: 11.191, time: 2026-03-03
+EUR/MWh: 106.97833333333334, NOK/KWh: 1.1971945283333334, NOK/MWh: 1197.1945283333334, kurs: 11.191, time: 2026-03-04
+EUR/MWh: 109.36043478260869, NOK/KWh: 1.223852625652174, NOK/MWh: 1223.852625652174, kurs: 11.191, time: 2026-03-05
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
+Email notifications disabled. Updates for strompriser.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 Script completed successfully!
+
+
+Errors/Warnings:
+D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py:211: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
 
