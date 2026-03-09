@@ -3,10 +3,33 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
+Found missing date ranges: [(Timestamp('2026-03-06 00:00:00'), Timestamp('2026-03-08 00:00:00'))]
+Fetching data for missing periods...
+-- Processing gap: 2026-03-06 to 2026-03-08 --
+Fetching energy prices from 2026-03-06 to 2026-03-08...
+  Fetching chunk from 2026-03-06 to 2026-03-08...
+Total price data points collected: 285
+Fetching exchange rates...
+Successfully fetched 1 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2026-03-06 08:12:50] No new data to upload. Skipping GitHub update.
+[2026-03-09 08:12:19] Row count changed: 1891 -> 1897
+
+Added rows (showing up to 10):
+EUR/MWh: 108.148, NOK/KWh: 1.2082835299999999, NOK/MWh: 1208.28353, kurs: 11.1725, time: 2026-03-06
+EUR/MWh: 117.13020408163266, NOK/KWh: 1.3086372051020407, NOK/MWh: 1308.6372051020408, kurs: 11.1725, time: 2026-03-07
+EUR/MWh: 112.10944444444445, NOK/KWh: 1.2525427680555556, NOK/MWh: 1252.5427680555556, kurs: 11.1725, time: 2026-03-08
+EUR/MWh: 115.02, NOK/KWh: 1.28506095, NOK/MWh: 1285.06095, kurs: 11.1725, time: 2026-03-09
+EUR/MWh: 116.636, NOK/KWh: 1.30311571, NOK/MWh: 1303.11571, kurs: 11.1725, time: 2026-03-10
+EUR/MWh: 121.85652173913043, NOK/KWh: 1.3614419891304346, NOK/MWh: 1361.4419891304346, kurs: 11.1725, time: 2026-03-11
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
+Email notifications disabled. Updates for strompriser.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 Script completed successfully!
+
+
+Errors/Warnings:
+D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py:211: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
 
