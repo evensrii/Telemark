@@ -164,11 +164,11 @@ print(df.columns.tolist())
 print("\nSample data:")
 print(df.head())
 
+# Round all float64 values to 2 decimals (must be done BEFORE fillna to preserve numeric dtype)
+df = df.round(2)
+
 # Fill NaN values with empty string for consistent comparison
 df = df.fillna('')
-
-# Round all float64 values to 2 decimals
-df = df.round(2)
 
 df_norskeutslipp_everviz = df.copy()
 
