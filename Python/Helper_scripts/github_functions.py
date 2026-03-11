@@ -76,7 +76,7 @@ def download_github_file(file_path):
         # Return the content as a Pandas DataFrame
         from io import StringIO
         
-        df = pd.read_csv(BytesIO(response.content))
+        df = pd.read_csv(BytesIO(response.content), dtype=str)
         
         # Clean up the data - ensure consistent string format for comparison
         for col in df.columns:
