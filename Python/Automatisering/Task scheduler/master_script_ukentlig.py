@@ -73,6 +73,11 @@ def run_script(script_path, task_name):
                 if commit_times:
                     # Use the most recent commit time
                     last_commit = max(commit_times)
+            elif github_folder and not file_name_matches:
+                # Fallback for scripts with dynamic file names
+                # Use the github_folder path to get the most recent commit to any file in it
+                from Helper_scripts.github_functions import get_last_commit_time
+                last_commit = get_last_commit_time(github_folder)
         except Exception as e:
             print(f"Warning: Could not extract file information from {script_path}: {e}")
             # Continue execution even if we can't get the commit time
