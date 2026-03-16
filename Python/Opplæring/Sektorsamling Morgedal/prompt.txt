@@ -1,0 +1,3 @@
+Jeg har en lenke "https://data.ssb.no/api/pxwebapi/v2/tables/09817/data?lang=no&outputFormat=json-stat2&valuecodes[Tid]=2026&valuecodes[Region]=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036&codelist[Region]=agg_KommGjeldende&valuecodes[Landbakgrunn]=999&valuecodes[ContentsCode]=AndelBefolkning&valuecodes[InnvandrKat]=B&heading=Region,ContentsCode,Tid&stub=InnvandrKat,Landbakgrunn" fra SSB sin API.
+
+Lag et script "andel_innvandrere.py" i mappen "Python\Opplæring\Sektorsamling Morgedal" som henter inn dataene og presenterer dem i tabellform, og lagrer resultatet som en csv-fil i samme mappe.
