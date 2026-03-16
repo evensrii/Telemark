@@ -35,7 +35,7 @@ description: This rule should be activated when asked to create or modify a scri
 
 import os
 import pandas as pd
-from pyjstat import pyjstat # <---- If the endpoint is "https://data.ssb.no/api"
+from pyjstat import pyjstat # <---- Used for both old and new SSB API (json-stat2 format)
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
@@ -54,16 +54,27 @@ error_messages = []
 3) The query
 
 - Run the query in a try-except block using "fetch_data()". This collects data and saves to a pandas dataframe.
+- There are two SSB API patterns:
+
+### Option A: Old SSB API (POST, v0) — used in older scripts
+
+POST_URL = "https://data.ssb.no/api/v0/no/table/XXXXX/"
+payload = {
+    "query": [
+        {"code": "Region", "selection": {"filter": "agg:KommSummer", "values": ["K-4001"]}},
+        {"code": "ContentsCode", "selection": {"filter": "item", "values": ["Personer1"]}},
+        {"code": "Tid", "selection": {"filter": "top", "values": ["1"]}},
+    ],
+    "response": {"format": "json-stat2"}
+}
 
 try:
     df = fetch_data(
         url=POST_URL,
-        payload=payload,  # The JSON payload for POST requests. If None, a GET request is used.
+        payload=payload,  # The JSON payload for POST requests.
         error_messages=error_messages,
         query_name="Tittel spørring",
         response_type="json",
-        # delimiter=";", # The delimiter for CSV data (default: ';').
-        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
     )
 except Exception as e:
     print(f"Error occurred: {e}")
@@ -72,8 +83,37 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-- If the query is against "https://data.ssb.no/api", use response_type="json", and comment the "delimiter" and "encoding" lines. 
-- For other endpoints, its also possible to use "response_type="csv""
+### Option B: New SSB API (GET, v2) — preferred for new scripts
+
+GET_URL = (
+    "https://data.ssb.no/api/pxwebapi/v2/tables/XXXXX/data?lang=no"
+    "&outputFormat=json-stat2"
+    "&valuecodes[ContentsCode]=*"
+    "&valuecodes[Tid]=top(1)"
+    "&valuecodes[Region]=4001,4003,..."
+    "&codelist[Region]=agg_KommGjeldende"
+)
+
+try:
+    df = fetch_data(
+        url=GET_URL,
+        payload=None,  # None = GET request (new SSB API v2)
+        error_messages=error_messages,
+        query_name="Tittel spørring",
+        response_type="json",
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+
+### Notes on SSB API choice
+- Both return json-stat2 and are parsed by pyjstat via fetch_data().
+- New API (v2 GET): All query parameters are in the URL. Set payload=None.
+- Old API (v0 POST): Query parameters are in a JSON payload dict.
+- For non-SSB endpoints, use response_type="csv" with delimiter and encoding parameters.
 
 
 4) Manual refinement of the dataset
