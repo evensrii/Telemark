@@ -291,6 +291,11 @@ def load_and_combine_luftforurensing_from_github_excel() -> pd.DataFrame:
     # Sort by Fra-tid assuming format 'DD.MM.YYYY HH:MM'
     if 'Fra-tid' in df_all.columns:
         df_all['Fra-tid_datetime'] = pd.to_datetime(df_all['Fra-tid'], format='%d.%m.%Y %H:%M', errors='coerce')
+        # Drop rows where Fra-tid could not be parsed (NaT) - these are blank/invalid rows
+        invalid_rows = df_all['Fra-tid_datetime'].isna().sum()
+        if invalid_rows > 0:
+            print(f"  Dropping {invalid_rows} rows with invalid/missing 'Fra-tid'")
+            df_all = df_all.dropna(subset=['Fra-tid_datetime'])
         df_all = df_all.sort_values('Fra-tid_datetime').drop(columns=['Fra-tid_datetime'])
         df_all = df_all.reset_index(drop=True)
 
