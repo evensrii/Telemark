@@ -47,7 +47,10 @@ except Exception as e:
 df.head()
 
 # Add first capital letter in the "Innvandringkategori" column values
-df["Innvandringskategori"] = df["Innvandringskategori"].str.capitalize()
+df["Innvandringsbakgrunn"] = df["Innvandringsbakgrunn"].str.capitalize()
+
+# Rename column "Innvandringsbakgrunn" to "Innvandringskategori"
+df = df.rename(columns={"Innvandringsbakgrunn": "Innvandringskategori"})
 
 #Remove column "Måltall"
 df = df.drop(columns=["Måltall"])
