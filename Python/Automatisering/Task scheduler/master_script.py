@@ -34,6 +34,8 @@ SCRIPTS = [
     ## Opplæring og kompetanse
     (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa.py"), "Opplaering og kompetanse - Utdanningsnivaa"),
     (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa_telemark_og_landet.py"), "Opplaering og kompetanse - Utdanningsnivaa Telemark og landet"),
+    (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utenforskap/andel_unge_utenfor_kommuner.py"), "Opplaering og kompetanse - Andel unge utenfor etter kommune"),
+    (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utenforskap/andel_utenfor_fylke_alder.py"), "Opplaering og kompetanse - Andel utenfor per fylke og alder"),
 
     ## Arbeid og næringsliv
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning.py"), "Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune"),

@@ -140,8 +140,8 @@ df.head()
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "andel_unge_utenfor.csv"
-task_name = "Opplaering - Andel unge utenfor"
+file_name = "andel_unge_utenfor_kommuner.csv"
+task_name = "Opplaering og kompetanse - Andel unge utenfor etter kommune"
 github_folder = "Data/02_Opplæring og kompetanse/Utenforskap"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
