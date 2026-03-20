@@ -145,13 +145,6 @@ if has_changes:
 else:
     print("  ✓ No changes detected")
 
-# Save to local output directory
-output_dir = os.path.join(pythonpath, "Data", "08_Folkehelse og levekår", "Helsetilstand")
-os.makedirs(output_dir, exist_ok=True)
-output_path = os.path.join(output_dir, output_filename)
-df.to_csv(output_path, index=False, encoding='utf-8')
-print(f"\n  ✓ Saved to: {output_path}")
-
 print(f"\n{'=' * 70}")
 print("Processing complete")
 print(f"{'=' * 70}\n")
