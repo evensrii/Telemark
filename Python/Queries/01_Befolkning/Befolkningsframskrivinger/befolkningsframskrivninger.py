@@ -95,12 +95,35 @@ print(df_tables.to_string(index=False))
 # explicitly define them. For older tables, we use direct region codes instead.
 
 
-def get_telemark_info(table_id):
+# Region code prefixes by era for Telemark municipalities.
+# The v2 metadata returns codes from ALL eras, so we must filter to the correct one.
+ERA_PREFIXES = {
+    "pre2020": ["08"],       # Telemark fylke 08, kommuner 08xx
+    "2020-2023": ["38"],     # Vestfold og Telemark fylke 38, kommuner 38xx
+    "2024+": ["40"],         # Telemark fylke 40, kommuner 40xx
+}
+
+
+def get_era(first_period):
+    """Determine which era a table belongs to based on its first year."""
+    year = int(first_period)
+    if year >= 2024:
+        return "2024+"
+    elif year >= 2020:
+        return "2020-2023"
+    else:
+        return "pre2020"
+
+
+def get_telemark_info(table_id, first_period):
     """Fetch metadata and extract Telemark-relevant region codes and codelist."""
     meta_url = f"https://data.ssb.no/api/pxwebapi/v2/tables/{table_id}/metadata?lang=no"
     r = requests.get(meta_url)
     r.raise_for_status()
     meta = r.json()
+
+    era = get_era(first_period)
+    valid_prefixes = ERA_PREFIXES[era]
 
     region_dim = meta["dimension"]["Region"]
     region_labels = region_dim["category"]["label"]
@@ -113,9 +136,13 @@ def get_telemark_info(table_id):
                 kommune_codelist = cl["id"]
                 break
 
-    # Find Telemark municipality codes by matching names
+    # Find Telemark municipality codes by matching names,
+    # filtered to only the correct era's code prefix.
     telemark_codes = []
     for code, label in region_labels.items():
+        # Only consider codes that start with the correct era prefix
+        if not any(code.startswith(p) for p in valid_prefixes):
+            continue
         # Strip year suffixes like "(-2019)" or "(2020-2023)" from label
         clean_label = re.sub(r"\s*\(.*?\)\s*$", "", label).strip()
         if clean_label in TELEMARK_NAMES:
@@ -124,6 +151,8 @@ def get_telemark_info(table_id):
     # Also find the Telemark fylke code
     telemark_fylke = None
     for code, label in region_labels.items():
+        if not any(code.startswith(p) for p in valid_prefixes):
+            continue
         clean_label = re.sub(r"\s*\(.*?\)\s*$", "", label).strip()
         if clean_label in ["Telemark", "Vestfold og Telemark"]:
             telemark_fylke = code
@@ -136,17 +165,19 @@ def get_telemark_info(table_id):
     time_dim = meta["dimension"]["Tid"]
     time_codes = list(time_dim["category"]["index"].keys())
 
-    # Check if vs_AlleAldre00B codelist is available for Alder
+    # Find best available age codelist: prefer agg_Funksjonell4, fallback to agg_Funksjonell3
     alder_codelist = None
     alder_dim = meta["dimension"].get("Alder", {})
     if "extension" in alder_dim and "codelists" in alder_dim["extension"]:
-        for cl in alder_dim["extension"]["codelists"]:
-            if cl.get("id") == "vs_AlleAldre00B":
-                alder_codelist = "vs_AlleAldre00B"
-                break
+        available_ids = [cl["id"] for cl in alder_dim["extension"]["codelists"]]
+        if "agg_Funksjonell4" in available_ids:
+            alder_codelist = "agg_Funksjonell4"
+        elif "agg_Funksjonell3" in available_ids:
+            alder_codelist = "agg_Funksjonell3"
 
     return {
         "table_id": table_id,
+        "era": era,
         "telemark_codes": telemark_codes,
         "telemark_fylke": telemark_fylke,
         "kommune_codelist": kommune_codelist,
@@ -162,12 +193,13 @@ table_info = {}
 for t in regional_tables:
     tid = t["id"]
     print(f"Fetching metadata for table {tid}...")
-    info = get_telemark_info(tid)
+    info = get_telemark_info(tid, t["firstPeriod"])
     table_info[tid] = info
     print(
-        f"  -> Found {len(info['telemark_codes'])} Telemark municipalities, "
-        f"codelist: {info['kommune_codelist']}, "
-        f"alder_codelist: {info['alder_codelist']}, "
+        f"  -> Era: {info['era']}, "
+        f"found {len(info['telemark_codes'])} Telemark municipalities, "
+        f"region codelist: {info['kommune_codelist']}, "
+        f"alder codelist: {info['alder_codelist']}, "
         f"period: {info['first_period']}-{info['last_period']}"
     )
     time.sleep(0.3)  # Be polite to the API
@@ -180,7 +212,7 @@ for t in regional_tables:
 # - If a kommune codelist exists -> use codelist[Region]=...
 # - If not -> use direct region codes in valuecodes[Region]=...
 # - Kjønn is eliminated by not specifying it (default behavior in v2)
-# - Alder codelist is used if available, otherwise Alder is also eliminated
+# - Alder is broken down by functional age groups (agg_Funksjonell4 or agg_Funksjonell3)
 
 all_dfs = []
 
@@ -202,15 +234,15 @@ for t in regional_tables:
         f"&valuecodes[ContentsCode]={contents_values}",
         f"&valuecodes[Region]={region_values}",
         "&valuecodes[Tid]=*",
+        "&valuecodes[Alder]=*",
+        f"&codelist[Alder]={info['alder_codelist']}",
+        "&heading=ContentsCode,Tid,Alder",
+        "&stub=Region",
     ]
 
     # Add kommune codelist if available (only works for tables that define it)
     if info["kommune_codelist"]:
         url_parts.append(f"&codelist[Region]={info['kommune_codelist']}")
-
-    # Add age codelist if available
-    if info["alder_codelist"]:
-        url_parts.append(f"&codelist[Alder]={info['alder_codelist']}")
 
     GET_URL = "".join(url_parts)
 
