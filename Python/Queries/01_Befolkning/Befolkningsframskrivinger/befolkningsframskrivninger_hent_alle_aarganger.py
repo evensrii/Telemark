@@ -308,7 +308,7 @@ for i, df in enumerate(all_dfs):
     first_year = info["first_period"]
     last_year = info["last_period"]
 
-    file_name = f"Framskrevet_folkemengde_MMMM_{first_year}-{last_year}.csv"
+    file_name = f"Framskrevet_folkemengde_{first_year}-{last_year}.csv"
     task_name = f"Befolkningsframskrivinger {first_year}-{last_year}"
 
     print(f"\nSaving {file_name}...")

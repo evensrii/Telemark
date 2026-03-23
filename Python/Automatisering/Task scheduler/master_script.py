@@ -27,7 +27,8 @@ if TEMP_FOLDER is None:
 
 SCRIPTS = [
     ## Befolkning
-    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske.py"), "Befolkning - Befolkningsframskrivinger historiske"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske_07459.py"), "Befolkning - Befolkningsframskrivinger historiske_07459"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell.py"), "Befolkning - Befolkningsframskrivinger siste tabell"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/flytting_til_og_fra_telemark.py"), "Flytting - Til og fra Telemark"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/folketall.py"), "Befolkning - Folketall"),
     

@@ -179,7 +179,7 @@ except Exception as e:
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "befolkningsframskrivinger_historiske.csv"
-task_name = "Befolkning - Befolkningsframskrivinger historiske"
+task_name = "Befolkning - Befolkningsframskrivinger historiske_07459"
 github_folder = "Data/01_Befolkning/Befolkningsframskrivinger"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
