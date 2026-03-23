@@ -185,6 +185,15 @@ print(f"  -> Got {len(df)} rows")
 print(f"  Columns: {list(df.columns)}")
 print(df.head())
 
+# Add Framskriving and Tabell columns to match Framskrevet_folkemengde_... file structure
+df["Framskriving"] = first_period
+df["Tabell"] = table_id
+
+# TEMPORARY TEST: Uncomment the 2 lines below to simulate a new framskriving (shift years +1).
+# Remember to comment them back out after testing!
+# df["år"] = (df["år"].astype(int) + 1).astype(str)
+# df["Framskriving"] = str(int(first_period) + 1)
+
 # ============================================================
 # Step 4: Check if a new framskriving has been published.
 #         If so, archive the old file before saving the new one.
