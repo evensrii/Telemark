@@ -19,7 +19,7 @@ GET_URL = (
     "https://data.ssb.no/api/pxwebapi/v2/tables/06070/data?lang=no"
     "&outputFormat=json-stat2"
     "&valuecodes[ContentsCode]=*"
-    "&valuecodes[Tid]=*"
+    "&valuecodes[Tid]=from(2014)"
     "&valuecodes[Region]=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036"
     "&codelist[Region]=agg_KommSummer"
     "&valuecodes[HushType]=*"
@@ -46,6 +46,68 @@ except Exception as e:
 
 print(df.head())
 print(df.columns.tolist())
+
+################# Data cleaning #################
+
+# Drop statistikkvariabel column
+df = df.drop(columns=["statistikkvariabel"])
+
+# Aggregate husholdningstype categories
+husholdningstype_map = {
+    "Aleneboende": "Aleneboende",
+    "Par uten hjemmeboende barn": "Par uten hjemmeboende barn",
+    "Par med små barn (yngste barn 0-5 år)": "Par med små barn",
+    "Par med store barn (yngste barn 6-17 år)": "Par med store barn",
+    "Mor/Far med små barn (yngste barn 0-5 år)": "Aleneforsørger med små barn",
+    "Mor/Far med store barn (yngste barn 6-17 år)": "Aleneforsørger med store barn",
+    "Enfamiliehusholdninger med voksne barn (yngste barn 18 år og over)": "Par eller aleneforsørger med voksne barn",
+    "Flerfamiliehusholdning uten barn 0-17 år": "Flerfamiliehusholdninger",
+    "Flerfamiliehusholdning med små barn (yngste barn 0-5 år)": "Flerfamiliehusholdninger",
+    "Flerfamiliehusholdning med store barn (yngste barn 6-17 år)": "Flerfamiliehusholdninger",
+    "Andre husholdninger": "Andre husholdninger",
+}
+df["husholdningstype"] = df["husholdningstype"].map(husholdningstype_map)
+
+# Sum values for categories that were merged (Flerfamiliehusholdninger)
+df = df.groupby(["region", "år", "husholdningstype"], as_index=False)["value"].sum()
+
+# Add Kommunenummer based on kommune name
+kommunenummer_map = {
+    "Porsgrunn": "4001",
+    "Skien": "4003",
+    "Notodden": "4005",
+    "Siljan": "4010",
+    "Bamble": "4012",
+    "Kragerø": "4014",
+    "Drangedal": "4016",
+    "Nome": "4018",
+    "Midt-Telemark": "4020",
+    "Seljord": "4022",
+    "Hjartdal": "4024",
+    "Tinn": "4026",
+    "Kviteseid": "4028",
+    "Nissedal": "4030",
+    "Fyresdal": "4032",
+    "Tokke": "4034",
+    "Vinje": "4036",
+}
+df["Kommunenummer"] = df["region"].map(kommunenummer_map)
+
+# Transform year to DD-MM-YYYY (1st of January)
+df["år"] = "01.01." + df["år"].astype(str)
+
+# Rename columns
+df = df.rename(columns={
+    "region": "Kommune",
+    "år": "År",
+    "husholdningstype": "Husholdningstype",
+    "value": "Antall",
+})
+
+# Reorder columns with Kommunenummer first
+df = df[["Kommunenummer", "Kommune", "År", "Husholdningstype", "Antall"]]
+
+print(df.head())
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 

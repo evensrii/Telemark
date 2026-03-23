@@ -19,7 +19,7 @@ GET_URL = (
     "https://data.ssb.no/api/pxwebapi/v2/tables/11031/data?lang=no"
     "&outputFormat=json-stat2"
     "&valuecodes[ContentsCode]=*"
-    "&valuecodes[Tid]=2024"
+    "&valuecodes[Tid]=from(2024)"
     "&valuecodes[Region]=4001,4003,4005,4012,4014,4020"
     "&codelist[Region]=vs_KommunStore"
     "&valuecodes[Byggeareal]=*"
@@ -47,6 +47,37 @@ except Exception as e:
 
 print(df.head())
 print(df.columns.tolist())
+
+################# Data cleaning #################
+
+# Add Kommunenummer based on kommune name
+kommunenummer_map = {
+    "Porsgrunn": "4001",
+    "Skien": "4003",
+    "Notodden": "4005",
+    "Bamble": "4012",
+    "Kragerø": "4014",
+    "Midt-Telemark": "4020",
+}
+df["Kommunenummer"] = df["region"].map(kommunenummer_map)
+
+# Transform year to DD-MM-YYYY (1st of January)
+df["år"] = "01.01." + df["år"].astype(str)
+
+# Rename columns
+df = df.rename(columns={
+    "region": "Kommune",
+    "alder": "Alder",
+    "statistikkvariabel": "Statistikkvariabel",
+    "år": "År",
+    "bygningstype": "Bygningstype",
+    "value": "Verdi",
+})
+
+# Reorder columns with Kommunenummer first
+df = df[["Kommunenummer", "Kommune", "Alder", "Statistikkvariabel", "År", "Bygningstype", "Verdi"]]
+
+print(df.head())
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
