@@ -1,178 +1,104 @@
-import requests
-import sys
 import os
-import glob
-from io import BytesIO
-from io import StringIO
 import pandas as pd
-from pyjstat import pyjstat
 
-# Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.utility_functions import delete_files_in_temp_folder
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file
-from Helper_scripts.github_functions import download_github_file
-from Helper_scripts.github_functions import compare_to_github
 from Helper_scripts.github_functions import handle_output_data
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
 
-# Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
+# List to collect errors during execution
 error_messages = []
 
-######### Kjøre spørring første gang, for å finne siste år (top 1)
+# ============================================================
+# Step 1: Query historical population data (table 07459)
+#         using v2 GET API for three regions:
+#         1) Telemark kommuner (from 2000)
+#         2) Telemark fylke (from 2020)
+#         3) Norge / Landet (from 2020)
+# ============================================================
 
-# Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/table/07459/"
-
-# Spørring for å hente ut data fra SSB
-payload_most_recent_year = {
-  "query": [
+queries = [
     {
-      "code": "Region",
-      "selection": {
-        "filter": "agg:KommSummer",
-        "values": [
-          "K-4003"
-        ]
-      }
+        "name": "Telemark kommuner",
+        "url": (
+            "https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no"
+            "&outputFormat=json-stat2"
+            "&valuecodes[ContentsCode]=*"
+            "&valuecodes[Tid]=from(2000)"
+            "&valuecodes[Region]=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036"
+            "&codelist[Region]=agg_KommSummer"
+            "&valuecodes[Alder]=*"
+            "&codelist[Alder]=agg_Funksjonell4"
+            "&heading=ContentsCode,Tid"
+            "&stub=Region,Alder"
+        ),
     },
     {
-      "code": "Alder",
-      "selection": {
-        "filter": "vs:AlleAldre00B",
-        "values": []
-      }
+        "name": "Telemark fylke",
+        "url": (
+            "https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no"
+            "&outputFormat=json-stat2"
+            "&valuecodes[ContentsCode]=*"
+            "&valuecodes[Tid]=from(2020)"
+            "&valuecodes[Region]=F-40"
+            "&codelist[Region]=agg_KommFylker"
+            "&valuecodes[Alder]=*"
+            "&codelist[Alder]=agg_Funksjonell4"
+            "&heading=ContentsCode,Tid"
+            "&stub=Region,Alder"
+        ),
     },
     {
-      "code": "Tid",
-      "selection": {
-        "filter": "top",
-        "values": [
-          "1"
-        ]
-      }
-    }
-  ],
-  "response": {
-    "format": "json-stat2"
-  }
-}
-
-## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
-
-try:
-    df_last_year = fetch_data(
-        url=POST_URL,
-        payload=payload_most_recent_year,  # The JSON payload for POST requests. If None, a GET request is used.
-        error_messages=error_messages,
-        query_name="Tittel spørring - første år",
-        response_type="json",  # The expected response type, either 'json' or 'csv'.
-        # delimiter=";", # The delimiter for CSV data (default: ';').
-        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
-    )
-except Exception as e:
-    print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
-    raise RuntimeError(
-        "A critical error occurred during data fetching, stopping execution."
-    )
-
-# Get most recent year
-most_recent_year = df_last_year['år'].iloc[0]
-
-# Create a list of years from XXXX until most_recent_year, years as strings enclosed in ""
-years = [str(year) for year in range(2010, int(most_recent_year) + 1)]
-
-# Kjøre spørring på nytt, fra første til siste år
-
-## Bruke "years" (uten anførselstegn) sammen med "item" for år!!!!!!!!
-
-################# Spørring #################
-
-# Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/table/07459/"
-
-# Spørring for å hente ut data fra SSB
-payload = {
-  "query": [
-    {
-      "code": "Region",
-      "selection": {
-        "filter": "agg:KommSummer",
-        "values": [
-          "K-4001",
-          "K-4003",
-          "K-4005",
-          "K-4010",
-          "K-4012",
-          "K-4014",
-          "K-4016",
-          "K-4018",
-          "K-4020",
-          "K-4022",
-          "K-4024",
-          "K-4026",
-          "K-4028",
-          "K-4030",
-          "K-4032",
-          "K-4034",
-          "K-4036"
-        ]
-      }
+        "name": "Norge",
+        "url": (
+            "https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no"
+            "&outputFormat=json-stat2"
+            "&valuecodes[ContentsCode]=*"
+            "&valuecodes[Tid]=from(2020)"
+            "&valuecodes[Region]=*"
+            "&codelist[Region]=vs_Landet"
+            "&valuecodes[Alder]=*"
+            "&codelist[Alder]=agg_Funksjonell4"
+            "&heading=ContentsCode,Tid"
+            "&stub=Alder,Region"
+        ),
     },
-    {
-      "code": "Alder",
-      "selection": {
-        "filter": "agg:Funksjonell4",
-        "values": [
-          "F311",
-          "F312",
-          "F313",
-          "F314",
-          "F315",
-          "F316",
-          "F317",
-          "F318",
-          "F319",
-          "F320"
-        ]
-      }
-    },
-    {
-      "code": "Tid",
-      "selection": {
-        "filter": "item",
-        "values": years
-      }
-    }
-  ],
-  "response": {
-    "format": "json-stat2"
-  }
-}
+]
 
+all_dfs = []
 
-## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
+for q in queries:
+    print(f"\nQuerying {q['name']}...")
+    print(f"  URL: {q['url'][:120]}...")
 
-try:
-    df = fetch_data(
-        url=POST_URL,
-        payload=payload,  # The JSON payload for POST requests. If None, a GET request is used.
-        error_messages=error_messages,
-        query_name="Befolkningsframskrivinger historiske",
-        response_type="json",  # The expected response type, either 'json' or 'csv'.
-        # delimiter=";", # The delimiter for CSV data (default: ';').
-        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
-    )
-except Exception as e:
-    print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
-    raise RuntimeError(
-        "A critical error occurred during data fetching, stopping execution."
-    )
+    try:
+        df_q = fetch_data(
+            url=q["url"],
+            payload=None,
+            error_messages=error_messages,
+            query_name=f"Historiske 07459 - {q['name']}",
+            response_type="json",
+        )
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        notify_errors(error_messages, script_name=script_name)
+        raise RuntimeError(
+            "A critical error occurred during data fetching, stopping execution."
+        )
+
+    if df_q is not None and not df_q.empty:
+        print(f"  -> Got {len(df_q)} rows")
+        all_dfs.append(df_q)
+    else:
+        print(f"  -> No data returned for {q['name']}")
+
+df = pd.concat(all_dfs, ignore_index=True)
+print(f"\nCombined data: {df.shape[0]} rows")
+print(f"  Columns: {list(df.columns)}")
+print(f"  Regions: {sorted(df['region'].unique())}")
+print(df.head())
 
 ### DATA CLEANING
 

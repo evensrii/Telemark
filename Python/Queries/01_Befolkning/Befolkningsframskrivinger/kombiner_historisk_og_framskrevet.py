@@ -1,4 +1,5 @@
 import os
+import re
 import pandas as pd
 
 from Helper_scripts.github_functions import download_github_file
@@ -79,6 +80,14 @@ print(df_fram_clean.head())
 
 df_combined = pd.concat([df_hist_clean, df_fram_clean], ignore_index=True)
 
+# Clean region names: strip era suffixes like "(-2019)", "(2020-2023)", "(1960-2019)" etc.
+df_combined["Kommune"] = df_combined["Kommune"].apply(
+    lambda x: re.sub(r"\s*\(.*?\)\s*$", "", x).strip()
+)
+
+# Map "Vestfold og Telemark" to "Telemark" (2020-2023 era fylke name)
+df_combined["Kommune"] = df_combined["Kommune"].replace("Vestfold og Telemark", "Telemark")
+
 # Add Kommunenummer based on kommune name
 kommunenummer_map = {
     "Porsgrunn": "4001",
@@ -90,6 +99,7 @@ kommunenummer_map = {
     "Drangedal": "4016",
     "Nome": "4018",
     "Midt-Telemark": "4020",
+    "Sauherad": "4020",
     "Seljord": "4022",
     "Hjartdal": "4024",
     "Tinn": "4026",
@@ -98,6 +108,9 @@ kommunenummer_map = {
     "Fyresdal": "4032",
     "Tokke": "4034",
     "Vinje": "4036",
+    "Telemark": "40",
+    "Norge": "00",
+    "Hele landet": "00",
 }
 df_combined["Kommunenummer"] = df_combined["Kommune"].map(kommunenummer_map)
 
@@ -118,10 +131,15 @@ age_sort_order = {
 df_combined["SortColumn"] = df_combined["Alder"].map(age_sort_order)
 
 # Sort by Kommune, Alder (via SortColumn), År, Type
+# Put "Telemark" and "Hele landet" at the bottom
+df_combined["KommuneSort"] = df_combined["Kommune"].apply(
+    lambda x: 2 if x == "Hele landet" else (1 if x == "Telemark" else 0)
+)
 df_combined = df_combined.sort_values(
-    by=["Kommune", "SortColumn", "År", "Type"],
+    by=["KommuneSort", "Kommune", "SortColumn", "År", "Type"],
     ignore_index=True,
 )
+df_combined = df_combined.drop(columns=["KommuneSort"])
 
 # Convert År to datetime format (YYYY-01-01)
 df_combined["År"] = pd.to_datetime(df_combined["År"], format="%Y").dt.strftime("%Y-%m-%d")
@@ -131,7 +149,7 @@ df_combined = df_combined[["Kommunenummer", "Kommune", "Alder", "År", "Type", "
 
 # Ensure numeric columns are float64 for GitHub comparison compatibility
 df_combined["Personer"] = pd.to_numeric(df_combined["Personer"], errors="coerce")
-df_combined["SortColumn"] = df_combined["SortColumn"].astype(float)
+df_combined["SortColumn"] = df_combined["SortColumn"].astype(int)
 
 print(f"\nCombined data: {df_combined.shape[0]} rows")
 print(f"  Years: {df_combined['År'].min()}-{df_combined['År'].max()}")

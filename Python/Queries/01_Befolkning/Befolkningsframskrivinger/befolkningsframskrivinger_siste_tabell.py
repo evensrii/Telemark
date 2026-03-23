@@ -136,15 +136,20 @@ print(f"  Period: {first_year_data}-{last_year_data}")
 
 # ============================================================
 # Step 3: Query data from the most recent table
+#         Three queries: kommuner, Telemark fylke, Norge
 # ============================================================
 
 region_values = ",".join(telemark_codes)
 contents_values = ",".join(contents_codes)
 
-url_parts = [
+# Build query URLs
+queries = []
+
+# Query 1: Telemark kommuner
+url_parts_kommun = [
     f"https://data.ssb.no/api/pxwebapi/v2/tables/{table_id}/data?lang=no",
     "&outputFormat=json-stat2",
-    f"&valuecodes[ContentsCode]={contents_values}",
+    "&valuecodes[ContentsCode]=Personer,Personer1,Personer2",
     f"&valuecodes[Region]={region_values}",
     "&valuecodes[Tid]=*",
     "&valuecodes[Alder]=*",
@@ -152,37 +157,77 @@ url_parts = [
     "&heading=ContentsCode,Tid,Alder",
     "&stub=Region",
 ]
-
 if kommune_codelist:
-    url_parts.append(f"&codelist[Region]={kommune_codelist}")
+    url_parts_kommun.append(f"&codelist[Region]={kommune_codelist}")
+queries.append({"name": "Telemark kommuner", "url": "".join(url_parts_kommun)})
 
-GET_URL = "".join(url_parts)
+# Query 2: Telemark fylke
+url_telemark = (
+    f"https://data.ssb.no/api/pxwebapi/v2/tables/{table_id}/data?lang=no"
+    "&outputFormat=json-stat2"
+    f"&valuecodes[ContentsCode]=Personer,Personer1,Personer2"
+    "&valuecodes[Region]=40"
+    "&codelist[Region]=vs_FylkerFram2024"
+    "&valuecodes[Alder]=*"
+    f"&codelist[Alder]={alder_codelist}"
+    "&valuecodes[Tid]=*"
+    "&heading=ContentsCode,Tid,Alder"
+    "&stub=Region"
+)
+queries.append({"name": "Telemark fylke", "url": url_telemark})
 
-print(f"\nQuerying table {table_id}...")
-print(f"  URL: {GET_URL[:120]}...")
+# Query 3: Norge / Landet
+url_norge = (
+    f"https://data.ssb.no/api/pxwebapi/v2/tables/{table_id}/data?lang=no"
+    "&outputFormat=json-stat2"
+    f"&valuecodes[ContentsCode]=Personer,Personer1,Personer2"
+    "&valuecodes[Region]=*"
+    "&codelist[Region]=vs_Landet"
+    "&valuecodes[Alder]=*"
+    f"&codelist[Alder]={alder_codelist}"
+    "&valuecodes[Tid]=*"
+    "&heading=ContentsCode,Tid,Alder"
+    "&stub=Region"
+)
+queries.append({"name": "Norge", "url": url_norge})
 
-try:
-    df = fetch_data(
-        url=GET_URL,
-        payload=None,
-        error_messages=error_messages,
-        query_name=f"Siste framskriving {table_id}",
-        response_type="json",
-    )
-except Exception as e:
-    print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
-    raise RuntimeError(
-        "A critical error occurred during data fetching, stopping execution."
-    )
+all_dfs = []
 
-if df is None or df.empty:
-    print("No data returned from query.")
+for q in queries:
+    print(f"\nQuerying {q['name']} from table {table_id}...")
+    print(f"  URL: {q['url'][:120]}...")
+
+    try:
+        df_q = fetch_data(
+            url=q["url"],
+            payload=None,
+            error_messages=error_messages,
+            query_name=f"Siste framskriving {table_id} - {q['name']}",
+            response_type="json",
+        )
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        notify_errors(error_messages, script_name=script_name)
+        raise RuntimeError(
+            "A critical error occurred during data fetching, stopping execution."
+        )
+
+    if df_q is not None and not df_q.empty:
+        print(f"  -> Got {len(df_q)} rows")
+        all_dfs.append(df_q)
+    else:
+        print(f"  -> No data returned for {q['name']}")
+
+if not all_dfs:
+    print("No data returned from any query.")
     notify_errors(["No data returned from most recent framskriving table."], script_name=script_name)
     raise RuntimeError("No data returned.")
 
-print(f"  -> Got {len(df)} rows")
+df = pd.concat(all_dfs, ignore_index=True)
+
+print(f"\nCombined data: {len(df)} rows")
 print(f"  Columns: {list(df.columns)}")
+print(f"  Regions: {sorted(df['region'].unique())}")
 print(df.head())
 
 # Add Framskriving and Tabell columns to match Framskrevet_folkemengde_... file structure

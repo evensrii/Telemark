@@ -103,6 +103,12 @@ ERA_PREFIXES = {
     "2024+": ["40"],         # Telemark fylke 40, kommuner 40xx
 }
 
+# Telemark municipality codes (2024 numbering) for use with agg_KommSummer (K-prefix)
+TELEMARK_KOMM_2024 = [
+    "4001", "4003", "4005", "4010", "4012", "4014", "4016", "4018",
+    "4020", "4022", "4024", "4026", "4028", "4030", "4032", "4034", "4036",
+]
+
 
 def get_era(first_period):
     """Determine which era a table belongs to based on its first year."""
@@ -128,38 +134,111 @@ def get_telemark_info(table_id, first_period):
     region_dim = meta["dimension"]["Region"]
     region_labels = region_dim["category"]["label"]
 
-    # Find the kommune codelist (vs_KommunFram*) if available
+    # Find relevant region codelists
     kommune_codelist = None
+    fylke_codelist = None
+    all_region_codelists = []
     if "extension" in region_dim and "codelists" in region_dim["extension"]:
         for cl in region_dim["extension"]["codelists"]:
-            if "KommunFram" in cl.get("id", ""):
-                kommune_codelist = cl["id"]
-                break
+            cl_id = cl.get("id", "")
+            all_region_codelists.append(cl_id)
+            if "KommunFram" in cl_id and kommune_codelist is None:
+                kommune_codelist = cl_id
+            if cl_id == "agg_KommSummer" and kommune_codelist is None:
+                kommune_codelist = cl_id
+            # Fylke codelist priority: FylkerFram > vs_Fylker* > agg_KommFylker
+            if "FylkerFram" in cl_id and fylke_codelist is None:
+                fylke_codelist = cl_id
 
-    # Find Telemark municipality codes by matching names,
-    # filtered to only the correct era's code prefix.
+        # If no FylkerFram found, look for vs_Fylker* (e.g. vs_Fylker, vs_Fylker2018)
+        if fylke_codelist is None:
+            for cl in region_dim["extension"]["codelists"]:
+                cl_id = cl.get("id", "")
+                if cl_id.startswith("vs_Fylker") and cl_id != "vs_Fylker" and fylke_codelist is None:
+                    fylke_codelist = cl_id
+            # Try plain vs_Fylker as last vs_Fylker option
+            if fylke_codelist is None:
+                for cl in region_dim["extension"]["codelists"]:
+                    if cl.get("id", "") == "vs_Fylker":
+                        fylke_codelist = "vs_Fylker"
+                        break
+
+        # Final fallback: agg_KommFylker
+        if fylke_codelist is None:
+            for cl in region_dim["extension"]["codelists"]:
+                if cl.get("id", "") == "agg_KommFylker":
+                    fylke_codelist = "agg_KommFylker"
+                    break
+
+    # Find Telemark municipality codes.
+    # For agg_KommSummer: use K-prefixed 2024 codes (aggregates across all eras)
+    # For other codelists: filter raw metadata labels by era prefix
     telemark_codes = []
-    for code, label in region_labels.items():
-        # Only consider codes that start with the correct era prefix
-        if not any(code.startswith(p) for p in valid_prefixes):
-            continue
-        # Strip year suffixes like "(-2019)" or "(2020-2023)" from label
-        clean_label = re.sub(r"\s*\(.*?\)\s*$", "", label).strip()
-        if clean_label in TELEMARK_NAMES:
-            telemark_codes.append(code)
+    if kommune_codelist == "agg_KommSummer":
+        telemark_codes = [f"K-{c}" for c in TELEMARK_KOMM_2024]
+    else:
+        for code, label in region_labels.items():
+            # Only consider codes that start with the correct era prefix
+            if not any(code.startswith(p) for p in valid_prefixes):
+                continue
+            # Strip year suffixes like "(-2019)" or "(2020-2023)" from label
+            clean_label = re.sub(r"\s*\(.*?\)\s*$", "", label).strip()
+            if clean_label in TELEMARK_NAMES:
+                telemark_codes.append(code)
 
-    # Also find the Telemark fylke code
+    # Determine Telemark fylke code based on era and codelist
+    # agg_KommFylker needs F-prefix: F-08 (pre2020), F-38 (2020-2023), F-40 (2024+)
+    # vs_Fylker/vs_Fylker2018 use plain codes: 08, 38, 40
+    # FylkerFram codelists use their own codes from metadata
+    fylke_code_map = {
+        "pre2020": {"f_prefix": "F-08", "plain": "08"},
+        "2020-2023": {"f_prefix": "F-38", "plain": "38"},
+        "2024+": {"f_prefix": "F-40", "plain": "40"},
+    }
+
     telemark_fylke = None
-    for code, label in region_labels.items():
-        if not any(code.startswith(p) for p in valid_prefixes):
-            continue
-        clean_label = re.sub(r"\s*\(.*?\)\s*$", "", label).strip()
-        if clean_label in ["Telemark", "Vestfold og Telemark"]:
-            telemark_fylke = code
+    if fylke_codelist:
+        if fylke_codelist == "agg_KommFylker":
+            telemark_fylke = fylke_code_map[era]["f_prefix"]
+        elif "FylkerFram" in fylke_codelist:
+            # Search metadata labels for the actual code
+            for code, label in region_labels.items():
+                clean_label = re.sub(r"\s*\(.*?\)\s*$", "", label).strip()
+                if clean_label in ["Telemark", "Vestfold og Telemark"]:
+                    telemark_fylke = code
+                    break
+            # Fallback to plain code if not found in labels
+            if telemark_fylke is None:
+                telemark_fylke = fylke_code_map[era]["plain"]
+        else:
+            # vs_Fylker, vs_Fylker2018, etc. use plain codes 
+            telemark_fylke = fylke_code_map[era]["plain"]
 
-    # Get available ContentsCode values
+    # Check if table has a separate Framskriv dimension (e.g. table 08825)
+    has_framskriv = "Framskriv" in meta["dimension"]
+    framskriv_codes = []
+    if has_framskriv:
+        framskriv_dim = meta["dimension"]["Framskriv"]
+        framskriv_labels = framskriv_dim["category"]["label"]
+        wanted_patterns = ["MMMM", "HHMH", "LLML"]
+        framskriv_codes = [
+            code for code, label in framskriv_labels.items()
+            if any(p in label for p in wanted_patterns)
+        ]
+
+    # Get ContentsCode values
     contents_dim = meta["dimension"]["ContentsCode"]
-    contents_codes = list(contents_dim["category"]["index"].keys())
+    contents_labels = contents_dim["category"]["label"]
+    if has_framskriv:
+        # Alternatives are in Framskriv, so use all ContentsCode values
+        contents_codes = list(contents_labels.keys())
+    else:
+        # Alternatives are encoded in ContentsCode (MMMM, HHMH, LLML)
+        wanted_patterns = ["MMMM", "HHMH", "LLML"]
+        contents_codes = [
+            code for code, label in contents_labels.items()
+            if any(p in label for p in wanted_patterns)
+        ]
 
     # Get available time periods
     time_dim = meta["dimension"]["Tid"]
@@ -181,8 +260,12 @@ def get_telemark_info(table_id, first_period):
         "telemark_codes": telemark_codes,
         "telemark_fylke": telemark_fylke,
         "kommune_codelist": kommune_codelist,
+        "fylke_codelist": fylke_codelist,
+        "all_region_codelists": all_region_codelists,
         "alder_codelist": alder_codelist,
         "contents_codes": contents_codes,
+        "has_framskriv": has_framskriv,
+        "framskriv_codes": framskriv_codes,
         "time_codes": time_codes,
         "first_period": time_codes[0] if time_codes else None,
         "last_period": time_codes[-1] if time_codes else None,
@@ -199,13 +282,22 @@ for t in regional_tables:
         f"  -> Era: {info['era']}, "
         f"found {len(info['telemark_codes'])} Telemark municipalities, "
         f"region codelist: {info['kommune_codelist']}, "
+        f"fylke codelist: {info['fylke_codelist']}, "
+        f"telemark_fylke code: {info['telemark_fylke']}, "
         f"alder codelist: {info['alder_codelist']}, "
         f"period: {info['first_period']}-{info['last_period']}"
     )
+    print(f"  -> All region codelists: {info['all_region_codelists']}")
+    if info["has_framskriv"]:
+        print(f"  -> Has Framskriv dimension, codes: {info['framskriv_codes']}")
+    print(f"  -> ContentsCode: {info['contents_codes']}")
     time.sleep(0.3)  # Be polite to the API
 
 # ============================================================
-# Step 4: Query data from each table for Telemark municipalities
+# Step 4: Query data from each table for:
+#         - Telemark municipalities
+#         - Telemark fylke
+#         - Norge / Landet
 # ============================================================
 
 # The v2 GET API is used for all tables (old and new).
@@ -226,8 +318,29 @@ for t in regional_tables:
 
     region_values = ",".join(info["telemark_codes"])
     contents_values = ",".join(info["contents_codes"])
+    alder_codelist = info["alder_codelist"]
+    has_framskriv = info["has_framskriv"]
+    framskriv_values = ",".join(info["framskriv_codes"]) if has_framskriv else ""
 
-    # Build GET URL
+    # Build list of queries for this table
+    table_queries = []
+
+    # Common parameters for Framskriv-style tables (e.g. 08825)
+    # vs normal tables where alternatives are in ContentsCode
+    if has_framskriv:
+        framskriv_part = f"&valuecodes[Framskriv]={framskriv_values}"
+        heading = "ContentsCode,Tid,Alder"
+        stub_kommun = "Framskriv,Region"
+        stub_fylke = "Framskriv,Region"
+        stub_norge = "Framskriv,Region"
+    else:
+        framskriv_part = ""
+        heading = "ContentsCode,Tid,Alder"
+        stub_kommun = "Region"
+        stub_fylke = "Region"
+        stub_norge = "Region"
+
+    # Query 1: Telemark kommuner
     url_parts = [
         f"https://data.ssb.no/api/pxwebapi/v2/tables/{tid}/data?lang=no",
         "&outputFormat=json-stat2",
@@ -235,43 +348,88 @@ for t in regional_tables:
         f"&valuecodes[Region]={region_values}",
         "&valuecodes[Tid]=*",
         "&valuecodes[Alder]=*",
-        f"&codelist[Alder]={info['alder_codelist']}",
-        "&heading=ContentsCode,Tid,Alder",
-        "&stub=Region",
+        f"&codelist[Alder]={alder_codelist}",
+        framskriv_part,
+        f"&heading={heading}",
+        f"&stub={stub_kommun}",
     ]
-
-    # Add kommune codelist if available (only works for tables that define it)
     if info["kommune_codelist"]:
         url_parts.append(f"&codelist[Region]={info['kommune_codelist']}")
+    table_queries.append({"name": "kommuner", "url": "".join(url_parts)})
 
-    GET_URL = "".join(url_parts)
+    # Query 2: Telemark fylke (if fylke codelist found)
+    if info["fylke_codelist"] and info["telemark_fylke"]:
+        fylke_code = info["telemark_fylke"]
+        url_fylke = (
+            f"https://data.ssb.no/api/pxwebapi/v2/tables/{tid}/data?lang=no"
+            "&outputFormat=json-stat2"
+            f"&valuecodes[ContentsCode]={contents_values}"
+            f"&valuecodes[Region]={fylke_code}"
+            f"&codelist[Region]={info['fylke_codelist']}"
+            "&valuecodes[Alder]=*"
+            f"&codelist[Alder]={alder_codelist}"
+            "&valuecodes[Tid]=*"
+            f"{framskriv_part}"
+            f"&heading={heading}"
+            f"&stub={stub_fylke}"
+        )
+        table_queries.append({"name": "Telemark fylke", "url": url_fylke})
+
+    # Query 3: Norge / Landet
+    url_norge = (
+        f"https://data.ssb.no/api/pxwebapi/v2/tables/{tid}/data?lang=no"
+        "&outputFormat=json-stat2"
+        f"&valuecodes[ContentsCode]={contents_values}"
+        "&valuecodes[Region]=*"
+        "&codelist[Region]=vs_Landet"
+        "&valuecodes[Alder]=*"
+        f"&codelist[Alder]={alder_codelist}"
+        "&valuecodes[Tid]=*"
+        f"{framskriv_part}"
+        f"&heading={heading}"
+        f"&stub={stub_norge}"
+    )
+    table_queries.append({"name": "Norge", "url": url_norge})
 
     print(f"\nQuerying table {tid} ({t['firstPeriod']}-framskrivingen)...")
-    print(f"  URL: {GET_URL[:120]}...")
 
-    try:
-        df = fetch_data(
-            url=GET_URL,
-            payload=None,
-            error_messages=error_messages,
-            query_name=f"Framskriving {tid}",
-            response_type="json",
-        )
+    table_dfs = []
+    for q in table_queries:
+        print(f"  {q['name']}: {q['url'][:100]}...")
 
-        if df is not None and not df.empty:
-            # Add columns to identify which framskriving this data comes from
-            df["Framskriving"] = t["firstPeriod"]
-            df["Tabell"] = tid
-            all_dfs.append(df)
-            print(f"  -> Got {len(df)} rows")
-        else:
-            print(f"  -> No data returned")
+        try:
+            df = fetch_data(
+                url=q["url"],
+                payload=None,
+                error_messages=error_messages,
+                query_name=f"Framskriving {tid} - {q['name']}",
+                response_type="json",
+            )
 
-    except Exception as e:
-        print(f"  -> Error: {e}")
-        error_messages.append(f"Table {tid}: {e}")
+            if df is not None and not df.empty:
+                # For Framskriv-style tables, move 'alternativ' into 'statistikkvariabel'
+                if has_framskriv and "alternativ" in df.columns:
+                    df["statistikkvariabel"] = df["alternativ"]
+                    df = df.drop(columns=["alternativ"])
+                table_dfs.append(df)
+                print(f"    -> Got {len(df)} rows")
+            else:
+                print(f"    -> No data returned")
 
-    time.sleep(0.5)  # Be polite to the API
+        except Exception as e:
+            print(f"    -> Error: {e}")
+            error_messages.append(f"Table {tid} ({q['name']}): {e}")
+
+        time.sleep(1.5)  # Avoid 429 rate limiting
+
+    if table_dfs:
+        df_table = pd.concat(table_dfs, ignore_index=True)
+        df_table["Framskriving"] = t["firstPeriod"]
+        df_table["Tabell"] = tid
+        all_dfs.append(df_table)
+        print(f"  -> Combined: {len(df_table)} rows")
+
+    time.sleep(1.0)  # Be polite to the API
 
 print(f"\n--- Errors during fetching ---")
 if error_messages:
