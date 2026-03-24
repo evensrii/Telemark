@@ -51,7 +51,7 @@ print(df_filtered)
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "bolyst_og_attraktivitet.csv"
-github_folder = "Data/Boligbehovsanalyse_2026/Bolyst_og_attraktivitet"
+github_folder = "Data/Boligbehovsanalyse_2026/Bolyst_og_attraktivitet/FHUS"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
