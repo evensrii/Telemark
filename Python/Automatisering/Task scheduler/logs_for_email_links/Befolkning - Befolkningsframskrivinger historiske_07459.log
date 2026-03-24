@@ -1,0 +1,35 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+
+Querying Telemark kommuner...
+  URL: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=*&valueco...
+Historiske 07459 - Telemark kommuner JSON-stat data loaded successfully.
+  -> Got 4590 rows
+
+Querying Telemark fylke...
+  URL: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=*&valueco...
+Historiske 07459 - Telemark fylke JSON-stat data loaded successfully.
+  -> Got 70 rows
+
+Querying Norge...
+  URL: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=*&valueco...
+Historiske 07459 - Norge JSON-stat data loaded successfully.
+  -> Got 70 rows
+
+Combined data: 4730 rows
+  Columns: ['region', 'alder', 'statistikkvariabel', 'Ã¥r', 'value']
+  Regions: ['Bamble', 'Drangedal', 'Fyresdal', 'Hele landet', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Telemark', 'Tinn', 'Tokke', 'Vinje']
+      region alder statistikkvariabel    Ã¥r  value
+0  Porsgrunn  0 Ã¥r           Personer  2000    413
+1  Porsgrunn  0 Ã¥r           Personer  2001    413
+2  Porsgrunn  0 Ã¥r           Personer  2002    365
+3  Porsgrunn  0 Ã¥r           Personer  2003    335
+4  Porsgrunn  0 Ã¥r           Personer  2004    364
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_historiske.csv
+[2026-03-24 08:48:38] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_historiske.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_historiske_07459.log
+
