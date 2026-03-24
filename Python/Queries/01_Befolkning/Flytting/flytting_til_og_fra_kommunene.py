@@ -77,6 +77,9 @@ df = df.rename(columns={
     "value": "Antall",
 })
 
+# Transform year to YYYY-MM-DD (1st of January)
+df["År"] = df["År"].astype(str) + "-01-01"
+
 # Drop statistikkvariabel if only one value
 if df["Statistikkvariabel"].nunique() == 1:
     df = df.drop(columns=["Statistikkvariabel"])
