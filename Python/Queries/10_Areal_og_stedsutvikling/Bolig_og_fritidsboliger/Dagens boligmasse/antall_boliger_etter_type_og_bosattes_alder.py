@@ -14,17 +14,18 @@ error_messages = []
 
 ################# Spørring #################
 
-# SSB API v2 GET URL (tabell 06265 - Boliger etter boligtype)
+# SSB API v2 GET URL (tabell 11031 - Antall boliger etter type og bosattes alder)
 GET_URL = (
-    "https://data.ssb.no/api/pxwebapi/v2/tables/06265/data?lang=no"
+    "https://data.ssb.no/api/pxwebapi/v2/tables/11031/data?lang=no"
     "&outputFormat=json-stat2"
     "&valuecodes[ContentsCode]=*"
-    "&valuecodes[Tid]=from(2013)"
-    "&valuecodes[Region]=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036"
-    "&codelist[Region]=agg_KommSummer"
-    "&valuecodes[BygnType]=*"
-    "&heading=ContentsCode,Tid,BygnType"
-    "&stub=Region"
+    "&valuecodes[Tid]=from(2024)"
+    "&valuecodes[Region]=4001,4003,4005,4012,4014,4020"
+    "&codelist[Region]=vs_KommunStore"
+    "&valuecodes[Byggeareal]=*"
+    "&valuecodes[Alder]=*"
+    "&heading=ContentsCode,Tid,Byggeareal"
+    "&stub=Region,Alder"
 )
 
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
@@ -34,7 +35,7 @@ try:
         url=GET_URL,
         payload=None,  # None = GET request (new SSB API v2)
         error_messages=error_messages,
-        query_name="Boliger etter boligtype (06265)",
+        query_name="Antall boliger etter type og bosattes alder (11031)",
         response_type="json",
     )
 except Exception as e:
@@ -49,28 +50,14 @@ print(df.columns.tolist())
 
 ################# Data cleaning #################
 
-# Drop statistikkvariabel column
-df = df.drop(columns=["statistikkvariabel"])
-
 # Add Kommunenummer based on kommune name
 kommunenummer_map = {
     "Porsgrunn": "4001",
     "Skien": "4003",
     "Notodden": "4005",
-    "Siljan": "4010",
     "Bamble": "4012",
     "Kragerø": "4014",
-    "Drangedal": "4016",
-    "Nome": "4018",
     "Midt-Telemark": "4020",
-    "Seljord": "4022",
-    "Hjartdal": "4024",
-    "Tinn": "4026",
-    "Kviteseid": "4028",
-    "Nissedal": "4030",
-    "Fyresdal": "4032",
-    "Tokke": "4034",
-    "Vinje": "4036",
 }
 df["Kommunenummer"] = df["region"].map(kommunenummer_map)
 
@@ -80,27 +67,39 @@ df["år"] = "01.01." + df["år"].astype(str)
 # Rename columns
 df = df.rename(columns={
     "region": "Kommune",
+    "alder": "Alder",
+    "statistikkvariabel": "Statistikkvariabel",
     "år": "År",
     "bygningstype": "Bygningstype",
-    "value": "Antall",
+    "value": "Verdi",
 })
 
 # Reorder columns with Kommunenummer first
-df = df[["Kommunenummer", "Kommune", "År", "Bygningstype", "Antall"]]
+df = df[["Kommunenummer", "Kommune", "Alder", "Statistikkvariabel", "År", "Bygningstype", "Verdi"]]
 
 print(df.head())
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "boliger_etter_boligtype.csv"
-github_folder = "Data/Boligbehovsanalyse_2026/Dagens boligmasse"
+file_name = "antall_boliger_etter_type_og_bosattes_alder.csv"
+task_name = "Bolig - Antall boliger etter type og bosattes alder"
+github_folder = "Data/10_Areal- og stedsutvikling/Bolig/Dagens boligmasse"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
 
-# Output results for debugging/testing
+# Write the "New Data" status to a unique log file
+log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")
+new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
+
+with open(new_data_status_file, "w", encoding="utf-8") as log_file:
+    log_file.write(f"{task_name_safe},{file_name},{'Yes' if is_new_data else 'No'}\n")
+
 if is_new_data:
     print("New data detected and pushed to GitHub.")
 else:
     print("No new data detected.")
+
+print(f"New data status log written to {new_data_status_file}")

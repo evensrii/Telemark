@@ -14,16 +14,16 @@ error_messages = []
 
 ################# Spørring #################
 
-# SSB API v2 GET URL (tabell 06070 - Husholdninger etter boligtype)
+# SSB API v2 GET URL (tabell 05940 - Fullførte boliger etter boligtype)
 GET_URL = (
-    "https://data.ssb.no/api/pxwebapi/v2/tables/06070/data?lang=no"
+    "https://data.ssb.no/api/pxwebapi/v2/tables/05940/data?lang=no"
     "&outputFormat=json-stat2"
-    "&valuecodes[ContentsCode]=*"
-    "&valuecodes[Tid]=from(2014)"
+    "&valuecodes[ContentsCode]=Fullforte,BruksarealFullfort"
+    "&valuecodes[Tid]=*"
     "&valuecodes[Region]=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036"
     "&codelist[Region]=agg_KommSummer"
-    "&valuecodes[HushType]=*"
-    "&heading=ContentsCode,Tid,HushType"
+    "&valuecodes[Byggeareal]=*"
+    "&heading=ContentsCode,Tid,Byggeareal"
     "&stub=Region"
 )
 
@@ -34,7 +34,7 @@ try:
         url=GET_URL,
         payload=None,  # None = GET request (new SSB API v2)
         error_messages=error_messages,
-        query_name="Husholdninger etter boligtype (06070)",
+        query_name="Fullførte boliger etter boligtype (05940)",
         response_type="json",
     )
 except Exception as e:
@@ -51,25 +51,6 @@ print(df.columns.tolist())
 
 # Drop statistikkvariabel column
 df = df.drop(columns=["statistikkvariabel"])
-
-# Aggregate husholdningstype categories
-husholdningstype_map = {
-    "Aleneboende": "Aleneboende",
-    "Par uten hjemmeboende barn": "Par uten hjemmeboende barn",
-    "Par med små barn (yngste barn 0-5 år)": "Par med små barn",
-    "Par med store barn (yngste barn 6-17 år)": "Par med store barn",
-    "Mor/Far med små barn (yngste barn 0-5 år)": "Aleneforsørger med små barn",
-    "Mor/Far med store barn (yngste barn 6-17 år)": "Aleneforsørger med store barn",
-    "Enfamiliehusholdninger med voksne barn (yngste barn 18 år og over)": "Par eller aleneforsørger med voksne barn",
-    "Flerfamiliehusholdning uten barn 0-17 år": "Flerfamiliehusholdninger",
-    "Flerfamiliehusholdning med små barn (yngste barn 0-5 år)": "Flerfamiliehusholdninger",
-    "Flerfamiliehusholdning med store barn (yngste barn 6-17 år)": "Flerfamiliehusholdninger",
-    "Andre husholdninger": "Andre husholdninger",
-}
-df["husholdningstype"] = df["husholdningstype"].map(husholdningstype_map)
-
-# Sum values for categories that were merged (Flerfamiliehusholdninger)
-df = df.groupby(["region", "år", "husholdningstype"], as_index=False)["value"].sum()
 
 # Add Kommunenummer based on kommune name
 kommunenummer_map = {
@@ -100,26 +81,36 @@ df["år"] = "01.01." + df["år"].astype(str)
 df = df.rename(columns={
     "region": "Kommune",
     "år": "År",
-    "husholdningstype": "Husholdningstype",
+    "bygningstype": "Bygningstype",
     "value": "Antall",
 })
 
 # Reorder columns with Kommunenummer first
-df = df[["Kommunenummer", "Kommune", "År", "Husholdningstype", "Antall"]]
+df = df[["Kommunenummer", "Kommune", "År", "Bygningstype", "Antall"]]
 
 print(df.head())
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "husholdninger_etter_boligtype.csv"
-github_folder = "Data/Boligbehovsanalyse_2026/Dagens boligmasse"
+file_name = "fullførte_boliger_etter_boligtype.csv"
+task_name = "Bolig - Fullforte boliger etter boligtype"
+github_folder = "Data/10_Areal- og stedsutvikling/Bolig/Dagens boligmasse"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
 
-# Output results for debugging/testing
+# Write the "New Data" status to a unique log file
+log_dir = os.environ.get("LOG_FOLDER", os.getcwd())
+task_name_safe = task_name.replace(".", "_").replace(" ", "_")
+new_data_status_file = os.path.join(log_dir, f"new_data_status_{task_name_safe}.log")
+
+with open(new_data_status_file, "w", encoding="utf-8") as log_file:
+    log_file.write(f"{task_name_safe},{file_name},{'Yes' if is_new_data else 'No'}\n")
+
 if is_new_data:
     print("New data detected and pushed to GitHub.")
 else:
     print("No new data detected.")
+
+print(f"New data status log written to {new_data_status_file}")
