@@ -5,8 +5,23 @@ GITHUB_TOKEN loaded successfully.
 Tittel spÃ¸rring - fÃ¸rste Ã¥r JSON-stat data loaded successfully.
 Befolkningsframskrivinger historiske JSON-stat data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_historiske.csv
-[2026-03-20 08:05:23] No new data to upload. Skipping GitHub update.
+[2026-03-24 08:05:23] Row count changed: 4730 -> 2890
+
+Removed rows (showing up to 10):
+alder: 0 Ã¥r, region: Porsgrunn, statistikkvariabel: Personer, value: 413, r: 2000
+alder: 0 Ã¥r, region: Porsgrunn, statistikkvariabel: Personer, value: 413, r: 2001
+alder: 0 Ã¥r, region: Porsgrunn, statistikkvariabel: Personer, value: 365, r: 2002
+alder: 0 Ã¥r, region: Porsgrunn, statistikkvariabel: Personer, value: 335, r: 2003
+alder: 0 Ã¥r, region: Porsgrunn, statistikkvariabel: Personer, value: 364, r: 2004
+alder: 0 Ã¥r, region: Porsgrunn, statistikkvariabel: Personer, value: 367, r: 2005
+alder: 0 Ã¥r, region: Porsgrunn, statistikkvariabel: Personer, value: 376, r: 2006
+alder: 0 Ã¥r, region: Porsgrunn, statistikkvariabel: Personer, value: 345, r: 2007
+alder: 0 Ã¥r, region: Porsgrunn, statistikkvariabel: Personer, value: 356, r: 2008
+alder: 0 Ã¥r, region: Porsgrunn, statistikkvariabel: Personer, value: 362, r: 2009
+... and 1830 more rows
+File uploaded successfully: Data/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske.csv
+Email notifications disabled. Updates for befolkningsframskrivinger_historiske.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_historiske.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_historiske.log
 
