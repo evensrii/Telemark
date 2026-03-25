@@ -12,7 +12,7 @@ script_name = os.path.basename(__file__)
 error_messages = []
 
 # ============================================================
-# Step 1: Query flytting mellom Telemark-kommuner (table 13864)
+# Step 1: Query flytting til og fra Telemark-kommuner (table 13864)
 #         Fraflyttingsregion x TilflyttRegion for all
 #         Telemark municipalities, latest year.
 # ============================================================
@@ -41,7 +41,7 @@ try:
         url=GET_URL,
         payload=None,
         error_messages=error_messages,
-        query_name="Flytting mellom Telemark-kommuner",
+        query_name="Flytting til og fra Telemark-kommuner",
         response_type="json",
     )
 except Exception as e:
@@ -69,11 +69,63 @@ metadata_path = os.path.join(
 )
 df_komm = pd.read_csv(metadata_path, sep=";", dtype=str, encoding="latin-1")
 
-# The 'name' column may contain extra text after ' - ' (e.g. "Oslo - Oslove"), extract first part
-df_komm["name_clean"] = df_komm["name"].str.split(" - ").str[0].str.strip()
+# Mapping to standardize multi-part SSB/Sami kommune names to Norwegian names
+name_replacements = {
+    # Remove last part (keep first)
+    "Oslo - Oslove": "Oslo",
+    "Trondheim - Tråante": "Trondheim",
+    "Sortland - Suortá": "Sortland",
+    "Nordreisa - Ráisa - Raisi": "Nordreisa",
+    "Hammerfest - Hámmerfeasta": "Hammerfest",
+    "Steinkjer - Stïentje": "Steinkjer",
+    "Namsos - Nåavmesjenjaelmie": "Namsos",
+    "Rana - Raane": "Rana",
+    "Fauske - Fuossko": "Fauske",
+    "Evenes - Evenássi": "Evenes",
+    "Harstad - Hárstták": "Harstad",
+    "Levanger - Levangke": "Levanger",
+    "Porsanger - Porsángu - Porsanki": "Porsanger",
+    "Gratangen - Rivtták": "Gratangen",
+    "Røros - Rosse": "Røros",
+    "Sørfold - Fuolldá": "Sørfold",
+    "Lyngen - Ivgu - Yykeä": "Lyngen",
+    "Storfjord - Omasvuotna - Omasvuono": "Storfjord",
+    # Remove first part (keep last)
+    "Dielddanuorri - Tjeldsund": "Tjeldsund",
+    "Deatnu - Tana": "Tana",
+    "Guovdageaidnu - Kautokeino": "Kautokeino",
+    "Aarborte - Hattfjelldal": "Hattfjelldal",
+    "Hábmer - Hamarøy": "Hamarøy",
+    "Kárásjohka - Karasjok": "Karasjok",
+    "Kárá?johka - Karasjok": "Karasjok",
+    "Loabák - Lavangen": "Lavangen",
+    "Raarvihke - Røyrvik": "Røyrvik",
+    "Snåase - Snåsa": "Snåsa",
+    "Unjárga - Nesseby": "Nesseby",
+    # Remove first and last part (keep middle)
+    "Gáivuotna - Kåfjord - Kaivuono": "Kåfjord",
+}
+
+# Clean metadata names: apply replacements, then fall back to first part before ' - '
+df_komm["name_clean"] = df_komm["name"].replace(name_replacements)
+still_multipart = df_komm["name_clean"].str.contains(" - ", na=False)
+df_komm.loc[still_multipart, "name_clean"] = (
+    df_komm.loc[still_multipart, "name_clean"].str.split(" - ").str[0].str.strip()
+)
 
 # Create a mapping from kommune name to kommunenummer (code)
 komm_map = dict(zip(df_komm["name_clean"], df_komm["code"]))
+
+# Read fylkesinndeling metadata to map kommunenummer prefix to county name
+fylke_path = os.path.join(
+    os.environ["PYTHONPATH"],
+    "..",
+    "Python",
+    "Metadata",
+    "ssb_klass_fylkesinndeling_2026.csv",
+)
+df_fylke = pd.read_csv(fylke_path, sep=";", dtype=str, encoding="utf-8-sig")
+fylke_map = dict(zip(df_fylke["code"], df_fylke["name"]))
 
 # Read coordinates for each kommune (mean centroid)
 coord_path = os.path.join(
@@ -108,23 +160,43 @@ df = df.rename(columns={
     "value": "Antall",
 })
 
+# Clean kommune names using the name_replacements dict defined in Step 2
+df["Fra kommune"] = df["Fra kommune"].replace(name_replacements)
+df["Til kommune"] = df["Til kommune"].replace(name_replacements)
+
 # Add kommunenummer for Fra and Til kommune
 df["Fra kommunenummer"] = df["Fra kommune"].map(komm_map)
 df["Til kommunenummer"] = df["Til kommune"].map(komm_map)
 
+# Add county columns based on first 2 digits of kommunenummer
+df["Fra fylke"] = df["Fra kommunenummer"].str[:2].map(fylke_map)
+df["Til fylke"] = df["Til kommunenummer"].str[:2].map(fylke_map)
+
 # Merge coordinates for Fra kommune
 df = df.merge(
-    df_coord.rename(columns={"kommunenummer": "Fra kommunenummer", "MEAN_Y": "from lat", "MEAN_X": "from lon"}),
+    df_coord.rename(columns={"kommunenummer": "Fra kommunenummer", "MEAN_Y": "Fra lat", "MEAN_X": "Fra lon"}),
     on="Fra kommunenummer",
     how="left",
 )
 
 # Merge coordinates for Til kommune
 df = df.merge(
-    df_coord.rename(columns={"kommunenummer": "Til kommunenummer", "MEAN_Y": "to lat", "MEAN_X": "to lon"}),
+    df_coord.rename(columns={"kommunenummer": "Til kommunenummer", "MEAN_Y": "Til lat", "MEAN_X": "Til lon"}),
     on="Til kommunenummer",
     how="left",
 )
+
+# Report kommuner missing coordinates (no matching kommunenummer in coordinates file)
+missing_from = df[df["Fra lat"].isna()]["Fra kommune"].unique()
+missing_to = df[df["Til lat"].isna()]["Til kommune"].unique()
+missing_all = sorted(set(missing_from) | set(missing_to))
+if missing_all:
+    print(f"\nWARNING: {len(missing_all)} kommuner missing coordinates:")
+    for name in missing_all:
+        knr = komm_map.get(name, "unknown")
+        print(f"  {name} (kommunenummer: {knr})")
+else:
+    print("\nAll kommuner matched to coordinates.")
 
 # Drop statistikkvariabel if only one value
 if df["Statistikkvariabel"].nunique() == 1:
@@ -147,13 +219,9 @@ print(df_fra.head(10))
 print(f"\nTilflytting til Telemark-kommuner: {len(df_til)} rows")
 print(df_til.head(10))
 
-# Rename to match desired output format
-df_fra = df_fra.rename(columns={"Fra kommune": "from", "Til kommune": "to", "Antall": "count"})
-df_til = df_til.rename(columns={"Fra kommune": "from", "Til kommune": "to", "Antall": "count"})
-
 # Reorder columns
-df_fra = df_fra[["from", "to", "count", "from lat", "from lon", "to lat", "to lon"]]
-df_til = df_til[["from", "to", "count", "from lat", "from lon", "to lat", "to lon"]]
+df_fra = df_fra[["Fra kommune", "Fra fylke", "Til kommune", "Til fylke", "Antall", "Fra lat", "Fra lon", "Til lat", "Til lon"]]
+df_til = df_til[["Fra kommune", "Fra fylke", "Til kommune", "Til fylke", "Antall", "Fra lat", "Fra lon", "Til lat", "Til lon"]]
 
 # ============================================================
 # Step 4: Save to CSV, compare and upload to GitHub
