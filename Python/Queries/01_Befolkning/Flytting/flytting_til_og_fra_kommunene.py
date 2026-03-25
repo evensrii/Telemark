@@ -56,7 +56,38 @@ print(f"  Columns: {list(df.columns)}")
 print(df.head(10))
 
 # ============================================================
-# Step 2: Clean and reshape the data
+# Step 2: Load kommunenummer mapping
+# ============================================================
+
+# Read kommuneinndeling metadata to get kommunenummer for each kommune name
+metadata_path = os.path.join(
+    os.environ["PYTHONPATH"],
+    "..",
+    "Python",
+    "Metadata",
+    "ssb_klass_kommuneinndeling_2026.csv",
+)
+df_komm = pd.read_csv(metadata_path, sep=";", dtype=str, encoding="latin-1")
+
+# The 'name' column may contain extra text after ' - ' (e.g. "Oslo - Oslove"), extract first part
+df_komm["name_clean"] = df_komm["name"].str.split(" - ").str[0].str.strip()
+
+# Create a mapping from kommune name to kommunenummer (code)
+komm_map = dict(zip(df_komm["name_clean"], df_komm["code"]))
+
+# Read coordinates for each kommune (mean centroid)
+coord_path = os.path.join(
+    os.environ["PYTHONPATH"],
+    "..",
+    "Data",
+    "01_Befolkning",
+    "Flytting",
+    "koordinater_gjennomsnitt_kommuner_2026.csv",
+)
+df_coord = pd.read_csv(coord_path, sep=",", dtype={"kommunenummer": str})
+
+# ============================================================
+# Step 3: Clean and reshape the data
 # ============================================================
 
 # Filter: keep only rows where fra OR til is a Telemark kommune
@@ -77,8 +108,23 @@ df = df.rename(columns={
     "value": "Antall",
 })
 
-# Transform year to YYYY-MM-DD (1st of January)
-df["År"] = df["År"].astype(str) + "-01-01"
+# Add kommunenummer for Fra and Til kommune
+df["Fra kommunenummer"] = df["Fra kommune"].map(komm_map)
+df["Til kommunenummer"] = df["Til kommune"].map(komm_map)
+
+# Merge coordinates for Fra kommune
+df = df.merge(
+    df_coord.rename(columns={"kommunenummer": "Fra kommunenummer", "MEAN_Y": "from lat", "MEAN_X": "from lon"}),
+    on="Fra kommunenummer",
+    how="left",
+)
+
+# Merge coordinates for Til kommune
+df = df.merge(
+    df_coord.rename(columns={"kommunenummer": "Til kommunenummer", "MEAN_Y": "to lat", "MEAN_X": "to lon"}),
+    on="Til kommunenummer",
+    how="left",
+)
 
 # Drop statistikkvariabel if only one value
 if df["Statistikkvariabel"].nunique() == 1:
@@ -101,8 +147,16 @@ print(df_fra.head(10))
 print(f"\nTilflytting til Telemark-kommuner: {len(df_til)} rows")
 print(df_til.head(10))
 
+# Rename to match desired output format
+df_fra = df_fra.rename(columns={"Fra kommune": "from", "Til kommune": "to", "Antall": "count"})
+df_til = df_til.rename(columns={"Fra kommune": "from", "Til kommune": "to", "Antall": "count"})
+
+# Reorder columns
+df_fra = df_fra[["from", "to", "count", "from lat", "from lon", "to lat", "to lon"]]
+df_til = df_til[["from", "to", "count", "from lat", "from lon", "to lat", "to lon"]]
+
 # ============================================================
-# Step 3: Save to CSV, compare and upload to GitHub
+# Step 4: Save to CSV, compare and upload to GitHub
 # ============================================================
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
