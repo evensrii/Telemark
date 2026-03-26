@@ -31,6 +31,24 @@ FYLKE_COORDS = {
     "Finnmark": (70.20, 25.50),
 }
 
+# Telemark fylke color palette (for Sankey node coloring)
+TELEMARK_PALETTE = [
+    "#1C6C6C",  # Hav
+    "#14828C",  # Fjord
+    "#009BC2",  # Himmel
+    "#1F9562",  # Gress
+    "#2F7542",  # Gran
+    "#A5983A",  # Korn
+    "#7B7B7A",  # Stein
+    "#727062",  # Berg
+    "#8A6C3E",  # Strand
+    "#BC7726",  # Siv
+    "#996954",  # Bark
+    "#B7173D",  # Nype
+    "#5A2E61",  # Plomme
+    "#414681",  # Blåveis
+]
+
 # Colors
 COLOR_TILFLYTTING = "#2166ac"   # Blue for inflow
 COLOR_FRAFLYTTING = "#d6604d"   # Red/orange for outflow
@@ -101,20 +119,7 @@ print(f"\nCounty-level fraflytting: {len(df_fra_fylke)} counties")
 print(f"County-level tilflytting: {len(df_til_fylke)} counties")
 
 # ============================================================
-# Step 5: Load Telemark kommune GeoJSON for borders
-# ============================================================
-
-geojson_path = os.path.join(
-    repo_root, "Kart", "Kartfiler", "Telemark_kommuner_WGS1984.geojson"
-)
-with open(geojson_path, "r", encoding="utf-8") as f:
-    telemark_geojson = json.load(f)
-
-telemark_geojson_json = json.dumps(telemark_geojson, ensure_ascii=False)
-print(f"Loaded Telemark GeoJSON: {len(telemark_geojson['features'])} features")
-
-# ============================================================
-# Step 6: Prepare data as JSON for embedding in HTML
+# Step 5: Prepare data as JSON for embedding in HTML
 # ============================================================
 
 def df_to_records(df):
@@ -127,9 +132,10 @@ data_fra_fylke_json = json.dumps(df_to_records(df_fra_fylke), ensure_ascii=False
 data_til_fylke_json = json.dumps(df_to_records(df_til_fylke), ensure_ascii=False)
 telemark_list_json = json.dumps(TELEMARK_KOMMUNER, ensure_ascii=False)
 fylke_coords_json = json.dumps(FYLKE_COORDS, ensure_ascii=False)
+palette_json = json.dumps(TELEMARK_PALETTE, ensure_ascii=False)
 
 # ============================================================
-# Step 7: Generate the full interactive HTML
+# Step 6: Generate the full interactive HTML
 # ============================================================
 
 full_html = f"""<!DOCTYPE html>
@@ -149,21 +155,22 @@ full_html = f"""<!DOCTYPE html>
         }}
         body {{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
             background: #f5f5f5;
             color: #333;
         }}
         .header {{
             background: {COLOR_TELEMARK};
             color: white;
-            padding: 14px 24px;
-            font-size: 18px;
+            padding: 12px 24px;
+            font-size: 20px;
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 12px;
         }}
         .header .subtitle {{
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 400;
             opacity: 0.85;
         }}
@@ -171,9 +178,10 @@ full_html = f"""<!DOCTYPE html>
             display: flex;
             height: calc(100vh - 50px);
         }}
+        /* LEFT SIDEBAR */
         .sidebar {{
-            width: 300px;
-            min-width: 300px;
+            width: 280px;
+            min-width: 280px;
             background: white;
             border-right: 1px solid #ddd;
             padding: 16px;
@@ -183,7 +191,7 @@ full_html = f"""<!DOCTYPE html>
             gap: 12px;
         }}
         .sidebar h3 {{
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             color: {COLOR_TELEMARK};
             margin-bottom: 3px;
@@ -196,16 +204,16 @@ full_html = f"""<!DOCTYPE html>
             gap: 4px;
         }}
         .control-group label {{
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 500;
             color: #555;
         }}
         .control-group select {{
             width: 100%;
-            padding: 5px 8px;
+            padding: 6px 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 12px;
+            font-size: 13px;
             background: white;
         }}
         .control-group input[type="range"] {{
@@ -216,11 +224,11 @@ full_html = f"""<!DOCTYPE html>
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 12px;
+            font-size: 13px;
         }}
         .checkbox-group input {{
-            width: 15px;
-            height: 15px;
+            width: 16px;
+            height: 16px;
             cursor: pointer;
         }}
         .radio-group {{
@@ -230,9 +238,9 @@ full_html = f"""<!DOCTYPE html>
         .radio-group label {{
             flex: 1;
             text-align: center;
-            padding: 6px 4px;
+            padding: 7px 4px;
             border: 1px solid #ccc;
-            font-size: 11px;
+            font-size: 13px;
             cursor: pointer;
             background: white;
             transition: all 0.15s;
@@ -254,7 +262,7 @@ full_html = f"""<!DOCTYPE html>
         .legend {{
             display: flex;
             gap: 14px;
-            font-size: 11px;
+            font-size: 12px;
             align-items: center;
         }}
         .legend-item {{
@@ -271,68 +279,47 @@ full_html = f"""<!DOCTYPE html>
             background: #f8f9fa;
             border-radius: 6px;
             padding: 10px;
-            font-size: 12px;
-            line-height: 1.6;
+            font-size: 13px;
+            line-height: 1.7;
         }}
         .stats-box .stat-value {{
             font-weight: 700;
             color: {COLOR_TELEMARK};
         }}
-        .right-panel {{
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+        .threshold-display {{
+            font-size: 12px;
+            color: #888;
+            text-align: right;
         }}
-        .map-container {{
+        /* CENTER MAP */
+        .center-panel {{
             flex: 1;
             position: relative;
-            min-height: 250px;
+            min-width: 300px;
         }}
         #map {{
             width: 100%;
             height: 100%;
         }}
-        .bottom-panels {{
-            display: flex;
-            border-top: 1px solid #ddd;
+        /* RIGHT PANEL: table + sankeys stacked */
+        .right-panel {{
+            width: 380px;
+            min-width: 380px;
             background: white;
-        }}
-        .sankey-container {{
-            flex: 1;
-            display: flex;
-            height: 260px;
-        }}
-        .sankey-panel {{
-            flex: 1;
-            padding: 4px;
+            border-left: 1px solid #ddd;
             display: flex;
             flex-direction: column;
-        }}
-        .sankey-panel h4 {{
-            text-align: center;
-            font-size: 12px;
-            color: #555;
-            padding: 2px 0;
-            flex-shrink: 0;
-        }}
-        .sankey-chart {{
-            flex: 1;
-        }}
-        .divider {{
-            width: 1px;
-            background: #ddd;
+            overflow: hidden;
         }}
         .table-container {{
-            width: 340px;
-            min-width: 340px;
-            border-left: 1px solid #ddd;
             overflow-y: auto;
-            padding: 8px;
-            height: 260px;
+            padding: 8px 10px;
+            flex: 0 0 auto;
+            max-height: 220px;
+            border-bottom: 1px solid #eee;
         }}
         .table-container h4 {{
-            font-size: 12px;
+            font-size: 13px;
             color: #555;
             margin-bottom: 6px;
             text-align: center;
@@ -340,11 +327,11 @@ full_html = f"""<!DOCTYPE html>
         .top-table {{
             width: 100%;
             border-collapse: collapse;
-            font-size: 11px;
+            font-size: 12px;
         }}
         .top-table th {{
             background: #f0f0f0;
-            padding: 4px 6px;
+            padding: 5px 6px;
             text-align: left;
             font-weight: 600;
             border-bottom: 1px solid #ddd;
@@ -352,7 +339,7 @@ full_html = f"""<!DOCTYPE html>
             top: 0;
         }}
         .top-table td {{
-            padding: 3px 6px;
+            padding: 4px 6px;
             border-bottom: 1px solid #f0f0f0;
         }}
         .top-table tr:hover {{
@@ -366,23 +353,51 @@ full_html = f"""<!DOCTYPE html>
             color: {COLOR_FRAFLYTTING};
             font-weight: 600;
         }}
+        .sankey-panel {{
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 4px 6px;
+            border-bottom: 1px solid #eee;
+        }}
+        .sankey-panel:last-child {{
+            border-bottom: none;
+        }}
+        .sankey-panel h4 {{
+            text-align: center;
+            font-size: 13px;
+            color: #555;
+            padding: 2px 0;
+            flex-shrink: 0;
+        }}
+        .sankey-chart {{
+            flex: 1;
+            min-height: 0;
+        }}
         .flow-tooltip {{
             background: white !important;
             border: 1px solid #ccc !important;
             border-radius: 4px !important;
             padding: 6px 10px !important;
             font-family: 'Segoe UI', sans-serif !important;
-            font-size: 12px !important;
+            font-size: 13px !important;
             box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
         }}
-        .threshold-display {{
+        .map-label {{
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
             font-size: 11px;
-            color: #888;
-            text-align: right;
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+            text-shadow: 1px 1px 2px white, -1px -1px 2px white, 1px -1px 2px white, -1px 1px 2px white;
         }}
         @media (max-width: 1100px) {{
-            .table-container {{
-                display: none;
+            .right-panel {{
+                width: 320px;
+                min-width: 320px;
             }}
         }}
         @media (max-width: 900px) {{
@@ -392,11 +407,14 @@ full_html = f"""<!DOCTYPE html>
             .sidebar {{
                 width: 100%;
                 min-width: unset;
-                flex-direction: row;
-                flex-wrap: wrap;
                 border-right: none;
                 border-bottom: 1px solid #ddd;
                 max-height: 200px;
+            }}
+            .right-panel {{
+                width: 100%;
+                min-width: unset;
+                height: 400px;
             }}
         }}
     </style>
@@ -407,6 +425,7 @@ full_html = f"""<!DOCTYPE html>
         <span class="subtitle" id="header-subtitle">Fylkesnivå</span>
     </div>
     <div class="main-container">
+        <!-- LEFT SIDEBAR -->
         <div class="sidebar">
             <div class="control-group">
                 <h3>Nivå</h3>
@@ -430,6 +449,13 @@ full_html = f"""<!DOCTYPE html>
                     <input type="checkbox" id="internal-checkbox">
                     <label for="internal-checkbox">Vis interne flyttinger</label>
                 </div>
+            </div>
+
+            <div class="control-group" id="cluster-group" style="display:none;">
+                <h3>Klyngeradius</h3>
+                <label>Slå sammen nærliggende:</label>
+                <input type="range" id="cluster-slider" min="0" max="100" value="30" step="5">
+                <div class="threshold-display"><span id="cluster-value">30</span> %</div>
             </div>
 
             <div class="control-group">
@@ -463,29 +489,27 @@ full_html = f"""<!DOCTYPE html>
             </div>
         </div>
 
+        <!-- CENTER MAP -->
+        <div class="center-panel" id="map-container">
+            <div id="map"></div>
+        </div>
+
+        <!-- RIGHT PANEL: table then sankeys -->
         <div class="right-panel">
-            <div class="map-container" id="map-container">
-                <div id="map"></div>
+            <div class="table-container" id="top-table-container">
+                <h4 id="table-title">Topp forbindelser</h4>
+                <table class="top-table" id="top-table">
+                    <thead><tr><th>Fra</th><th>Til</th><th>Antall</th></tr></thead>
+                    <tbody id="top-table-body"></tbody>
+                </table>
             </div>
-            <div class="bottom-panels">
-                <div class="sankey-container">
-                    <div class="sankey-panel">
-                        <h4 id="sankey-til-title">Tilflytting (inn til Telemark)</h4>
-                        <div id="sankey-tilflytting" class="sankey-chart"></div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="sankey-panel">
-                        <h4 id="sankey-fra-title">Fraflytting (ut fra Telemark)</h4>
-                        <div id="sankey-fraflytting" class="sankey-chart"></div>
-                    </div>
-                </div>
-                <div class="table-container" id="top-table-container">
-                    <h4 id="table-title">Topp forbindelser</h4>
-                    <table class="top-table" id="top-table">
-                        <thead><tr><th>Fra</th><th>Til</th><th>Antall</th></tr></thead>
-                        <tbody id="top-table-body"></tbody>
-                    </table>
-                </div>
+            <div class="sankey-panel">
+                <h4 id="sankey-til-title">Tilflytting (inn til Telemark)</h4>
+                <div id="sankey-tilflytting" class="sankey-chart"></div>
+            </div>
+            <div class="sankey-panel">
+                <h4 id="sankey-fra-title">Fraflytting (ut fra Telemark)</h4>
+                <div id="sankey-fraflytting" class="sankey-chart"></div>
             </div>
         </div>
     </div>
@@ -500,7 +524,7 @@ full_html = f"""<!DOCTYPE html>
     const dataTilFylke = {data_til_fylke_json};
     const telemarkKommuner = {telemark_list_json};
     const fylkeCoords = {fylke_coords_json};
-    const telemarkGeoJSON = {telemark_geojson_json};
+    const PALETTE = {palette_json};
 
     const COLOR_TILFLYTTING = "{COLOR_TILFLYTTING}";
     const COLOR_FRAFLYTTING = "{COLOR_FRAFLYTTING}";
@@ -523,59 +547,9 @@ full_html = f"""<!DOCTYPE html>
         maxZoom: 19,
     }}).addTo(map);
 
-    // Border layers
-    let kommuneBorderLayer = null;
-    let fylkeBorderLayer = null;
-
-    // Add Telemark kommune borders (always available, toggled by zoom/level)
-    kommuneBorderLayer = L.geoJSON(telemarkGeoJSON, {{
-        style: {{
-            color: '#666',
-            weight: 1,
-            fillColor: 'transparent',
-            fillOpacity: 0,
-        }},
-        onEachFeature: function(feature, layer) {{
-            if (feature.properties && feature.properties.kommuneNavn) {{
-                layer.bindTooltip(feature.properties.kommuneNavn, {{
-                    permanent: false,
-                    direction: 'center',
-                    className: 'flow-tooltip',
-                }});
-            }}
-        }}
-    }});
-
-    // Load county borders from Kartverket WFS
-    fetch('https://wfs.geonorge.no/skwms1/wfs.administrative_enheter?service=WFS&version=2.0.0&request=GetFeature&typeNames=fylker_gjeldende&outputFormat=application/json&srsName=EPSG:4326')
-        .then(r => r.json())
-        .then(data => {{
-            fylkeBorderLayer = L.geoJSON(data, {{
-                style: {{
-                    color: '#888',
-                    weight: 1.5,
-                    fillColor: 'transparent',
-                    fillOpacity: 0,
-                    dashArray: '4 3',
-                }},
-                onEachFeature: function(feature, layer) {{
-                    const name = feature.properties.fylkesnavn || feature.properties.navn || '';
-                    if (name) {{
-                        layer.bindTooltip(name, {{
-                            permanent: false,
-                            direction: 'center',
-                            className: 'flow-tooltip',
-                        }});
-                    }}
-                }}
-            }});
-            // Show county borders by default (fylke level)
-            if (currentLevel === 'fylke') fylkeBorderLayer.addTo(map);
-        }})
-        .catch(err => console.warn('Could not load county borders:', err));
-
     let flowLayer = L.layerGroup().addTo(map);
     let markerLayer = L.layerGroup().addTo(map);
+    let labelLayer = L.layerGroup().addTo(map);
 
     // ============================================================
     // Populate municipality dropdown
@@ -595,16 +569,6 @@ full_html = f"""<!DOCTYPE html>
     const levelLabels = document.querySelectorAll('#level-toggle label');
     let currentLevel = 'fylke';
 
-    function updateBorderLayers() {{
-        if (currentLevel === 'fylke') {{
-            if (kommuneBorderLayer) kommuneBorderLayer.remove();
-            if (fylkeBorderLayer) fylkeBorderLayer.addTo(map);
-        }} else {{
-            if (fylkeBorderLayer) fylkeBorderLayer.remove();
-            if (kommuneBorderLayer) kommuneBorderLayer.addTo(map);
-        }}
-    }}
-
     levelLabels.forEach(lbl => {{
         lbl.addEventListener('click', () => {{
             levelLabels.forEach(l => l.classList.remove('active'));
@@ -613,17 +577,19 @@ full_html = f"""<!DOCTYPE html>
 
             const kommuneGroup = document.getElementById('kommune-group');
             const kommuneOpts = document.getElementById('kommune-options');
+            const clusterGroup = document.getElementById('cluster-group');
             const subtitle = document.getElementById('header-subtitle');
             if (currentLevel === 'kommune') {{
                 kommuneGroup.style.display = '';
                 kommuneOpts.style.display = '';
+                clusterGroup.style.display = '';
                 subtitle.textContent = 'Kommunenivå – ' + kommuneSelect.value;
             }} else {{
                 kommuneGroup.style.display = 'none';
                 kommuneOpts.style.display = 'none';
+                clusterGroup.style.display = 'none';
                 subtitle.textContent = 'Fylkesnivå';
             }}
-            updateBorderLayers();
             updateAll();
         }});
     }});
@@ -655,6 +621,70 @@ full_html = f"""<!DOCTYPE html>
             ]);
         }}
         return points;
+    }}
+
+    // ============================================================
+    // Distance-based clustering for municipality flows
+    // ============================================================
+    function clusterFlows(flows, clusterPct) {{
+        // clusterPct: 0 = no clustering, 100 = max clustering
+        if (clusterPct === 0 || flows.length <= 1) return flows;
+
+        // Base radius in degrees; scale with distance from Telemark
+        const baseRadius = 0.1 + (clusterPct / 100) * 0.5;
+        const distFactor = 0.02 + (clusterPct / 100) * 0.08;
+
+        // Sort by count desc so largest is the cluster representative
+        const sorted = [...flows].sort((a, b) => b.count - a.count);
+        const used = new Array(sorted.length).fill(false);
+        const clustered = [];
+
+        for (let i = 0; i < sorted.length; i++) {{
+            if (used[i]) continue;
+            const anchor = sorted[i];
+
+            // Distance from this point to Telemark
+            const dLat = anchor.fromLat - TELEMARK_LAT;
+            const dLon = anchor.fromLon - TELEMARK_LON;
+            const distToTelemark = Math.sqrt(dLat * dLat + dLon * dLon);
+            const radius = baseRadius + distFactor * distToTelemark;
+
+            let totalCount = anchor.count;
+            let wLat = anchor.fromLat * anchor.count;
+            let wLon = anchor.fromLon * anchor.count;
+            const names = [anchor.name || ''];
+            used[i] = true;
+
+            for (let j = i + 1; j < sorted.length; j++) {{
+                if (used[j]) continue;
+                const other = sorted[j];
+                const dx = anchor.fromLat - other.fromLat;
+                const dy = anchor.fromLon - other.fromLon;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d <= radius) {{
+                    totalCount += other.count;
+                    wLat += other.fromLat * other.count;
+                    wLon += other.fromLon * other.count;
+                    names.push(other.name || '');
+                    used[j] = true;
+                }}
+            }}
+
+            const clusterLabel = names.length > 1
+                ? names[0] + ' m.fl. (' + names.length + ')'
+                : names[0];
+
+            clustered.push({{
+                fromLat: wLat / totalCount,
+                fromLon: wLon / totalCount,
+                toLat: anchor.toLat,
+                toLon: anchor.toLon,
+                count: totalCount,
+                name: names.length > 1 ? names[0] + ' m.fl.' : names[0],
+                label: `<strong>${{clusterLabel}}</strong><br>${{totalCount.toLocaleString('nb-NO')}} personer`,
+            }});
+        }}
+        return clustered;
     }}
 
     // ============================================================
@@ -694,9 +724,9 @@ full_html = f"""<!DOCTYPE html>
     }}
 
     // ============================================================
-    // Draw location markers
+    // Draw location markers with optional permanent label
     // ============================================================
-    function drawMarker(name, lat, lon, totalIn, totalOut) {{
+    function drawMarker(name, lat, lon, totalIn, totalOut, showLabel) {{
         const marker = L.circleMarker([lat, lon], {{
             radius: 5,
             fillColor: COLOR_TELEMARK,
@@ -709,24 +739,59 @@ full_html = f"""<!DOCTYPE html>
             {{ direction: 'top', offset: [0, -6] }}
         );
         markerLayer.addLayer(marker);
+
+        if (showLabel) {{
+            const label = L.tooltip({{
+                permanent: true,
+                direction: 'right',
+                offset: [8, 0],
+                className: 'map-label',
+            }});
+            label.setContent(name);
+            label.setLatLng([lat, lon]);
+            labelLayer.addLayer(label);
+        }}
     }}
+
+    // ============================================================
+    // Add data labels based on zoom level (for kommune view)
+    // ============================================================
+    let currentFlowLabels = []; // store {{ name, lat, lon, count }}
+    function updateLabelsForZoom() {{
+        labelLayer.clearLayers();
+        if (currentLevel !== 'kommune' || currentFlowLabels.length === 0) return;
+        const zoom = map.getZoom();
+        // More labels as we zoom in: base 5 labels at zoom 7, up to all at zoom 12
+        const maxLabels = Math.min(currentFlowLabels.length, Math.max(3, Math.floor(5 + (zoom - 7) * 4)));
+        const sorted = [...currentFlowLabels].sort((a, b) => b.count - a.count);
+        const toShow = sorted.slice(0, maxLabels);
+        toShow.forEach(f => {{
+            const label = L.tooltip({{
+                permanent: true,
+                direction: 'right',
+                offset: [8, 0],
+                className: 'map-label',
+            }});
+            label.setContent(f.name);
+            label.setLatLng([f.lat, f.lon]);
+            labelLayer.addLayer(label);
+        }});
+    }}
+    map.on('zoomend', updateLabelsForZoom);
 
     // ============================================================
     // Top table builder
     // ============================================================
-    function buildTopTable(tilRows, fraRows, labelField) {{
-        // tilRows/fraRows: arrays of {{ from, to, count }} sorted desc
+    function buildTopTable(tilRows, fraRows) {{
         const tbody = document.getElementById('top-table-body');
         tbody.innerHTML = '';
-
-        const maxRows = 15;
-        // Interleave: show top tilflytting then top fraflytting
+        const maxRows = 12;
         const topTil = tilRows.slice(0, maxRows);
         const topFra = fraRows.slice(0, maxRows);
 
         if (topTil.length > 0) {{
             const headerRow = document.createElement('tr');
-            headerRow.innerHTML = '<td colspan="3" style="background:#e8f0fe;font-weight:600;color:{COLOR_TILFLYTTING};padding:4px 6px;">▶ Tilflytting (inn)</td>';
+            headerRow.innerHTML = '<td colspan="3" style="background:#e8f0fe;font-weight:600;color:{COLOR_TILFLYTTING};padding:5px 6px;">▶ Tilflytting (inn)</td>';
             tbody.appendChild(headerRow);
             topTil.forEach(r => {{
                 const tr = document.createElement('tr');
@@ -736,7 +801,7 @@ full_html = f"""<!DOCTYPE html>
         }}
         if (topFra.length > 0) {{
             const headerRow = document.createElement('tr');
-            headerRow.innerHTML = '<td colspan="3" style="background:#fce8e4;font-weight:600;color:{COLOR_FRAFLYTTING};padding:4px 6px;">▶ Fraflytting (ut)</td>';
+            headerRow.innerHTML = '<td colspan="3" style="background:#fce8e4;font-weight:600;color:{COLOR_FRAFLYTTING};padding:5px 6px;">▶ Fraflytting (ut)</td>';
             tbody.appendChild(headerRow);
             topFra.forEach(r => {{
                 const tr = document.createElement('tr');
@@ -747,11 +812,27 @@ full_html = f"""<!DOCTYPE html>
     }}
 
     // ============================================================
+    // Assign Telemark palette colors to sorted entries
+    // ============================================================
+    function getPaletteColor(index) {{
+        return PALETTE[index % PALETTE.length];
+    }}
+
+    function hexToRgba(hex, alpha) {{
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${{r}}, ${{g}}, ${{b}}, ${{alpha}})`;
+    }}
+
+    // ============================================================
     // County-level update
     // ============================================================
     function updateFylke(direction) {{
         flowLayer.clearLayers();
         markerLayer.clearLayers();
+        labelLayer.clearLayers();
+        currentFlowLabels = [];
 
         const tilFlows = [];
         const fraFlows = [];
@@ -763,6 +844,7 @@ full_html = f"""<!DOCTYPE html>
                     fromLat: d.lat, fromLon: d.lon,
                     toLat: TELEMARK_LAT, toLon: TELEMARK_LON,
                     count: d.Antall,
+                    name: d.Fylke,
                     label: `<strong>${{d.Fylke}} → Telemark</strong><br>${{d.Antall.toLocaleString('nb-NO')}} personer`,
                 }});
             }});
@@ -775,6 +857,7 @@ full_html = f"""<!DOCTYPE html>
                     fromLat: TELEMARK_LAT, fromLon: TELEMARK_LON,
                     toLat: d.lat, toLon: d.lon,
                     count: d.Antall,
+                    name: d.Fylke,
                     label: `<strong>Telemark → ${{d.Fylke}}</strong><br>${{d.Antall.toLocaleString('nb-NO')}} personer`,
                 }});
             }});
@@ -783,12 +866,12 @@ full_html = f"""<!DOCTYPE html>
         drawFlows(tilFlows, COLOR_TILFLYTTING);
         drawFlows(fraFlows, COLOR_FRAFLYTTING);
 
-        // Draw Telemark marker
+        // Draw Telemark marker (always labeled)
         const totalIn = dataTilFylke.reduce((s, d) => s + d.Antall, 0);
         const totalOut = dataFraFylke.reduce((s, d) => s + d.Antall, 0);
-        drawMarker('Telemark', TELEMARK_LAT, TELEMARK_LON, totalIn, totalOut);
+        drawMarker('Telemark', TELEMARK_LAT, TELEMARK_LON, totalIn, totalOut, true);
 
-        // Draw other county markers
+        // Draw other county markers (all labeled in fylke view)
         const allFylker = new Set([...dataTilFylke.map(d => d.Fylke), ...dataFraFylke.map(d => d.Fylke)]);
         allFylker.forEach(f => {{
             if (f === 'Telemark') return;
@@ -796,11 +879,11 @@ full_html = f"""<!DOCTYPE html>
             if (!coords) return;
             const inn = dataTilFylke.find(d => d.Fylke === f);
             const ut = dataFraFylke.find(d => d.Fylke === f);
-            drawMarker(f, coords[0], coords[1], inn ? inn.Antall : 0, ut ? ut.Antall : 0);
+            drawMarker(f, coords[0], coords[1], inn ? inn.Antall : 0, ut ? ut.Antall : 0, true);
         }});
 
         // Stats
-        updateStatsFylke(totalIn, totalOut);
+        updateStats('Telemark (ekskl. intern flytting)', totalIn, totalOut);
 
         // Sankey
         buildSankeyFylke('sankey-tilflytting', dataTilFylke, 'tilflytting');
@@ -826,29 +909,32 @@ full_html = f"""<!DOCTYPE html>
     function updateKommune(kommune, direction) {{
         flowLayer.clearLayers();
         markerLayer.clearLayers();
+        labelLayer.clearLayers();
+        currentFlowLabels = [];
 
         document.getElementById('header-subtitle').textContent = 'Kommunenivå – ' + kommune;
 
         const threshold = parseInt(document.getElementById('threshold-slider').value);
         const showInternal = document.getElementById('internal-checkbox').checked;
+        const clusterPct = parseInt(document.getElementById('cluster-slider').value);
         document.getElementById('threshold-value').textContent = threshold;
+        document.getElementById('cluster-value').textContent = clusterPct;
 
         // Filter data for this kommune
         let tilData = dataTil.filter(d => d["Til kommune"] === kommune);
         let fraData = dataFra.filter(d => d["Fra kommune"] === kommune);
 
-        // Internal filter
         if (!showInternal) {{
             tilData = tilData.filter(d => !d.internal);
             fraData = fraData.filter(d => !d.internal);
         }}
 
-        // Threshold filter
         tilData = tilData.filter(d => d["Antall"] >= threshold);
         fraData = fraData.filter(d => d["Antall"] >= threshold);
 
-        const tilFlows = [];
-        const fraFlows = [];
+        // Build raw flow arrays with names
+        let tilFlows = [];
+        let fraFlows = [];
 
         if (direction === 'both' || direction === 'tilflytting') {{
             tilData.forEach(d => {{
@@ -856,6 +942,7 @@ full_html = f"""<!DOCTYPE html>
                     fromLat: d["Fra lat"], fromLon: d["Fra lon"],
                     toLat: d["Til lat"], toLon: d["Til lon"],
                     count: d["Antall"],
+                    name: d["Fra kommune"],
                     label: `<strong>${{d["Fra kommune"]}} → ${{d["Til kommune"]}}</strong><br>${{d["Antall"]}} personer`,
                 }});
             }});
@@ -864,16 +951,25 @@ full_html = f"""<!DOCTYPE html>
         if (direction === 'both' || direction === 'fraflytting') {{
             fraData.forEach(d => {{
                 fraFlows.push({{
-                    fromLat: d["Fra lat"], fromLon: d["Fra lon"],
-                    toLat: d["Til lat"], toLon: d["Til lon"],
+                    fromLat: d["Til lat"], fromLon: d["Til lon"],
+                    toLat: d["Fra lat"], toLon: d["Fra lon"],
                     count: d["Antall"],
+                    name: d["Til kommune"],
                     label: `<strong>${{d["Fra kommune"]}} → ${{d["Til kommune"]}}</strong><br>${{d["Antall"]}} personer`,
                 }});
             }});
         }}
 
+        // Apply clustering
+        tilFlows = clusterFlows(tilFlows, clusterPct);
+        fraFlows = clusterFlows(fraFlows, clusterPct);
+
         drawFlows(tilFlows, COLOR_TILFLYTTING);
         drawFlows(fraFlows, COLOR_FRAFLYTTING);
+
+        // Collect labels for zoom-responsive display
+        tilFlows.forEach(f => currentFlowLabels.push({{ name: f.name, lat: f.fromLat, lon: f.fromLon, count: f.count }}));
+        fraFlows.forEach(f => currentFlowLabels.push({{ name: f.name, lat: f.fromLat, lon: f.fromLon, count: f.count }}));
 
         // Draw marker for selected kommune
         const allKomm = [...dataTil.filter(d => d["Til kommune"] === kommune), ...dataFra.filter(d => d["Fra kommune"] === kommune)];
@@ -883,22 +979,23 @@ full_html = f"""<!DOCTYPE html>
             const kLon = sample["Til kommune"] === kommune ? sample["Til lon"] : sample["Fra lon"];
             const totalIn = tilData.reduce((s, d) => s + d["Antall"], 0);
             const totalOut = fraData.reduce((s, d) => s + d["Antall"], 0);
-            drawMarker(kommune, kLat, kLon, totalIn, totalOut);
+            drawMarker(kommune, kLat, kLon, totalIn, totalOut, true);
 
-            // Stats
             const label = showInternal ? kommune : kommune + ' (ekskl. intern)';
-            updateStatsKommune(label, totalIn, totalOut);
+            updateStats(label, totalIn, totalOut);
         }}
 
-        // Sankey at kommune level (uses unfiltered internal setting)
-        const sankeyShowInternal = showInternal;
-        buildSankeyKommune('sankey-tilflytting', dataTil, 'tilflytting', kommune, sankeyShowInternal);
-        buildSankeyKommune('sankey-fraflytting', dataFra, 'fraflytting', kommune, sankeyShowInternal);
+        // Update zoom-based labels
+        updateLabelsForZoom();
+
+        // Sankey at kommune level
+        buildSankeyKommune('sankey-tilflytting', dataTil, 'tilflytting', kommune, showInternal);
+        buildSankeyKommune('sankey-fraflytting', dataFra, 'fraflytting', kommune, showInternal);
 
         document.getElementById('sankey-til-title').textContent = `Tilflytting (inn til ${{kommune}})`;
         document.getElementById('sankey-fra-title').textContent = `Fraflytting (ut fra ${{kommune}})`;
 
-        // Top table
+        // Top table (use unclustered data for accuracy)
         const tilSorted = [...tilData].sort((a,b) => b["Antall"] - a["Antall"]);
         const fraSorted = [...fraData].sort((a,b) => b["Antall"] - a["Antall"]);
         const tilTableRows = tilSorted.map(d => ({{ from: d["Fra kommune"], to: d["Til kommune"], count: d["Antall"] }}));
@@ -910,20 +1007,9 @@ full_html = f"""<!DOCTYPE html>
     }}
 
     // ============================================================
-    // Stats updates
+    // Stats update (shared)
     // ============================================================
-    function updateStatsFylke(totalIn, totalOut) {{
-        const netto = totalIn - totalOut;
-        const box = document.getElementById('stats-box');
-        box.innerHTML = `
-            <strong>Telemark (ekskl. intern flytting)</strong><br>
-            Tilflytting: <span class="stat-value">${{totalIn.toLocaleString('nb-NO')}}</span><br>
-            Fraflytting: <span class="stat-value">${{totalOut.toLocaleString('nb-NO')}}</span><br>
-            Netto: <span class="stat-value" style="color:${{netto >= 0 ? '#2a9d2a' : '#d63333'}}">${{netto >= 0 ? '+' : ''}}${{netto.toLocaleString('nb-NO')}}</span>
-        `;
-    }}
-
-    function updateStatsKommune(label, totalIn, totalOut) {{
+    function updateStats(label, totalIn, totalOut) {{
         const netto = totalIn - totalOut;
         const box = document.getElementById('stats-box');
         box.innerHTML = `
@@ -935,7 +1021,7 @@ full_html = f"""<!DOCTYPE html>
     }}
 
     // ============================================================
-    // Sankey diagram – County level
+    // Sankey diagram – County level (with palette colors)
     // ============================================================
     function buildSankeyFylke(divId, data, direction) {{
         const filtered = data.filter(d => d.Fylke !== 'Telemark' && d.Antall > 0);
@@ -943,28 +1029,27 @@ full_html = f"""<!DOCTYPE html>
 
         const sorted = [...filtered].sort((a, b) => b.Antall - a.Antall);
 
-        let labels, sources, targets, values, linkColors;
+        let labels, sources, targets, values, linkColors, nodeColors;
         const target = 'Telemark';
 
         if (direction === 'tilflytting') {{
+            // Sources on left get palette colors, Telemark on right
             labels = [...sorted.map(d => d.Fylke), target];
             const tIdx = labels.length - 1;
             sources = sorted.map((_, i) => i);
             targets = sorted.map(() => tIdx);
             values = sorted.map(d => d.Antall);
-            linkColors = sorted.map(() => 'rgba(33, 102, 172, 0.35)');
+            nodeColors = [...sorted.map((_, i) => getPaletteColor(i)), COLOR_TELEMARK];
+            linkColors = sorted.map((_, i) => hexToRgba(getPaletteColor(i), 0.35));
         }} else {{
+            // Telemark on left, destinations on right get palette colors
             labels = [target, ...sorted.map(d => d.Fylke)];
             sources = sorted.map(() => 0);
             targets = sorted.map((_, i) => i + 1);
             values = sorted.map(d => d.Antall);
-            linkColors = sorted.map(() => 'rgba(214, 96, 77, 0.35)');
+            nodeColors = [COLOR_TELEMARK, ...sorted.map((_, i) => getPaletteColor(i))];
+            linkColors = sorted.map((_, i) => hexToRgba(getPaletteColor(i), 0.35));
         }}
-
-        const nodeColors = labels.map(l =>
-            l === target ? COLOR_TELEMARK :
-            direction === 'tilflytting' ? COLOR_TILFLYTTING : COLOR_FRAFLYTTING
-        );
 
         Plotly.newPlot(divId, [{{
             type: 'sankey', orientation: 'h',
@@ -974,13 +1059,13 @@ full_html = f"""<!DOCTYPE html>
                      hovertemplate: '%{{source.label}} → %{{target.label}}: %{{value}}<extra></extra>' }},
         }}], {{
             margin: {{ l: 5, r: 5, t: 5, b: 5 }},
-            font: {{ family: 'Segoe UI, sans-serif', size: 11 }},
+            font: {{ family: 'Segoe UI, sans-serif', size: 12 }},
             paper_bgcolor: 'transparent',
         }}, {{ responsive: true, displayModeBar: false }});
     }}
 
     // ============================================================
-    // Sankey diagram – Municipality level
+    // Sankey diagram – Municipality level (with palette colors)
     // ============================================================
     function buildSankeyKommune(divId, rawData, direction, kommune, showInternal) {{
         let filtered;
@@ -1004,7 +1089,7 @@ full_html = f"""<!DOCTYPE html>
         let entries = Object.entries(agg).filter(([k, v]) => v > 0);
         entries.sort((a, b) => b[1] - a[1]);
 
-        let labels, sources, targets, values, linkColors;
+        let labels, sources, targets, values, linkColors, nodeColors;
 
         if (direction === 'tilflytting') {{
             labels = [...entries.map(([k]) => k), kommune];
@@ -1012,20 +1097,16 @@ full_html = f"""<!DOCTYPE html>
             sources = entries.map((_, i) => i);
             targets = entries.map(() => tIdx);
             values = entries.map(([, v]) => v);
-            linkColors = entries.map(() => 'rgba(33, 102, 172, 0.35)');
+            nodeColors = [...entries.map((_, i) => getPaletteColor(i)), COLOR_TELEMARK];
+            linkColors = entries.map((_, i) => hexToRgba(getPaletteColor(i), 0.35));
         }} else {{
             labels = [kommune, ...entries.map(([k]) => k)];
             sources = entries.map(() => 0);
             targets = entries.map((_, i) => i + 1);
             values = entries.map(([, v]) => v);
-            linkColors = entries.map(() => 'rgba(214, 96, 77, 0.35)');
+            nodeColors = [COLOR_TELEMARK, ...entries.map((_, i) => getPaletteColor(i))];
+            linkColors = entries.map((_, i) => hexToRgba(getPaletteColor(i), 0.35));
         }}
-
-        const nodeColors = labels.map(l =>
-            l === kommune ? COLOR_TELEMARK :
-            telemarkKommuner.includes(l) ? COLOR_TELEMARK :
-            direction === 'tilflytting' ? COLOR_TILFLYTTING : COLOR_FRAFLYTTING
-        );
 
         Plotly.newPlot(divId, [{{
             type: 'sankey', orientation: 'h',
@@ -1035,7 +1116,7 @@ full_html = f"""<!DOCTYPE html>
                      hovertemplate: '%{{source.label}} → %{{target.label}}: %{{value}}<extra></extra>' }},
         }}], {{
             margin: {{ l: 5, r: 5, t: 5, b: 5 }},
-            font: {{ family: 'Segoe UI, sans-serif', size: 11 }},
+            font: {{ family: 'Segoe UI, sans-serif', size: 12 }},
             paper_bgcolor: 'transparent',
         }}, {{ responsive: true, displayModeBar: false }});
     }}
@@ -1063,6 +1144,7 @@ full_html = f"""<!DOCTYPE html>
     document.getElementById('direction-select').addEventListener('change', updateAll);
     document.getElementById('threshold-slider').addEventListener('input', updateAll);
     document.getElementById('internal-checkbox').addEventListener('change', updateAll);
+    document.getElementById('cluster-slider').addEventListener('input', updateAll);
 
     // ============================================================
     // Initial render
@@ -1075,7 +1157,7 @@ full_html = f"""<!DOCTYPE html>
 """
 
 # ============================================================
-# Step 8: Save the HTML file
+# Step 7: Save the HTML file
 # ============================================================
 
 output_path = os.path.join(script_dir, "flyttestroemmer.html")
