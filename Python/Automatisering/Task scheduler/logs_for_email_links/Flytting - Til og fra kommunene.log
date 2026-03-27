@@ -47,20 +47,12 @@ Tilflytting til Telemark-kommuner: 957 rows
 466        Moss  2025         Bamble       1
 467        Moss  2025        KragerÃ¸       2
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\fraflytting_fra_telemarkskommuner.csv
-[2026-03-26 08:06:25] Header structure changed in fraflytting_fra_telemarkskommuner.csv:
-Removed headers: til lat, fra lon, fra fylke, fra lat, til fylke, til lon
-Added headers: Ã¥r
-File uploaded successfully: Data/01_Befolkning/Flytting/fraflytting_fra_telemarkskommuner.csv
-Email notifications disabled. Updates for fraflytting_fra_telemarkskommuner.csv were not sent.
+[2026-03-27 08:06:17] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\fraflytting_fra_telemarkskommuner.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\tilflytting_til_telemarkskommuner.csv
-[2026-03-26 08:06:27] Header structure changed in tilflytting_til_telemarkskommuner.csv:
-Removed headers: til lat, fra lon, fra fylke, fra lat, til fylke, til lon
-Added headers: Ã¥r
-File uploaded successfully: Data/01_Befolkning/Flytting/tilflytting_til_telemarkskommuner.csv
-Email notifications disabled. Updates for tilflytting_til_telemarkskommuner.csv were not sent.
+[2026-03-27 08:06:17] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\tilflytting_til_telemarkskommuner.csv
-New data detected in fraflytting_fra_telemarkskommuner.csv and pushed to GitHub.
-New data detected in tilflytting_til_telemarkskommuner.csv and pushed to GitHub.
+No new data detected in fraflytting_fra_telemarkskommuner.csv.
+No new data detected in tilflytting_til_telemarkskommuner.csv.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Flytting_-_Til_og_fra_kommunene.log
 
