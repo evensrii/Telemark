@@ -19,15 +19,28 @@ input_path = os.path.join(
 
 df = pd.read_csv(input_path, sep=";", encoding="utf-8")
 
-df.head()
+print(df.head())
 
-# Filter to only "butikk" rows, exclude Telemark county row
-df_filtered = df[(df["Variabel"] == "butikk") & (df["Kommune"] != "Telemark")].copy()
+# Mapping from Variabel codes to readable Kategori labels
+variabel_to_kategori = {
+    "gang": "Gang- og sykkelvei",
+    "transport": "Offentlig transport",
+    "butikk": "Servicetilbud",
+    "tilhoerighet": "Tilhørighet",
+    "trivsel": "Trivsel i nærmiljøet",
+    "trygg": "Trygghet",
+}
 
-df_filtered.head()
+# Filter to the relevant variables, exclude Telemark county row
+df_filtered = df[
+    (df["Variabel"].isin(variabel_to_kategori.keys())) & (df["Kommune"] != "Telemark")
+].copy()
+
+# Map variable codes to readable category labels
+df_filtered["Kategori"] = df_filtered["Variabel"].map(variabel_to_kategori)
 
 # Keep only the relevant columns and rename
-df_filtered = df_filtered[["Kommunenummer", "Kommune", "Andel_vektet"]].copy()
+df_filtered = df_filtered[["Kommunenummer", "Kommune", "Kategori", "Andel_vektet"]].copy()
 df_filtered = df_filtered.rename(columns={"Andel_vektet": "Andel"})
 
 # Reset index
@@ -37,8 +50,8 @@ print(df_filtered)
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "servicetilbud.csv"
-github_folder = "Data/Boligbehovsanalyse_2026/Bolyst_og_attraktivitet"
+file_name = "bolyst_og_attraktivitet.csv"
+github_folder = "Data/Boligbehovsanalyse_2026/Bolyst_og_attraktivitet/FHUS"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status

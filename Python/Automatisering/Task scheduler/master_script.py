@@ -103,10 +103,16 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/sykehusinnlagte_somatikk_ettaarige_inkl_skader.py"), "Folkehelse - Sykehusinnlagte, somatikk, ettårige. inkl. skader"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/tilfredshet_med_livet_ungdom.py"), "Folkehelse - Tilfredshet med livet, ungdom"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Skader og ulykker/skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.py"), "Folkehelse - Skader, kontakt med primærhelsetjeneste, ettårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/trangboddhet.py"), "Folkehelse - Trangboddhet"),
 
     ## Areal og stedsutvikling
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py"), "Areal - Jordbruksareal per kommune"),
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/fulldyrka_vs_ikke-fulldyrka.py"), "Areal - Fulldyrka vs ikke-fulldyrka"),
+    (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/antall_boliger_etter_type_og_bosattes_alder.py"), "Bolig - Antall boliger etter type og bosattes alder"),
+    (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/boliger_etter_boligtype.py"), "Bolig - Boliger etter boligtype"),
+    (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/fullførte_boliger_etter_boligtype.py"), "Bolig - Fullforte boliger etter boligtype"),
+    (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/husholdninger_etter_boligtype.py"), "Bolig - Husholdninger etter boligtype"),
+    (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/igangsettelser_etter_boligtype.py"), "Bolig - Igangsettelser etter boligtype"),
 
     ## Bystrategi Grenland
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py"), "Bystrategi Grenland - Utslipp fra vei"),

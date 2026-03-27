@@ -1,0 +1,75 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Found 57 tables matching 'Framskrevet folkemengde'
+
+Most recent regional (K) table:
+  Table ID: 14288
+  Label: 14288: Framskrevet folkemengde 1. januar, etter kjÃ¸nn og alder, i 9 alternativer (K) 2024-2050
+  Period: 2024-2050
+  Updated: 2024-09-13
+
+Metadata for table 14288:
+  Telemark municipalities: 17 found
+  Municipality codes: ['4001', '4003', '4005', '4010', '4012', '4014', '4016', '4018', '4020', '4022', '4024', '4026', '4028', '4030', '4032', '4034', '4036']
+  Region codelist: vs_KommunFram2024Agg
+
+Querying Telemark kommuner from table 14288...
+  URL: https://data.ssb.no/api/pxwebapi/v2/tables/14288/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=Personer&...
+Framskriving egne intervaller - Telemark kommuner JSON-stat data loaded successfully.
+
+Raw data: 48654 rows
+  Columns: ['region', 'alder', 'statistikkvariabel', 'Ã¥r', 'value']
+  Regions: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+      region alder        statistikkvariabel    Ã¥r  value
+0  Porsgrunn  0 Ã¥r  Hovedalternativet (MMMM)  2024    303
+1  Porsgrunn  0 Ã¥r  Hovedalternativet (MMMM)  2025    319
+2  Porsgrunn  0 Ã¥r  Hovedalternativet (MMMM)  2026    327
+3  Porsgrunn  0 Ã¥r  Hovedalternativet (MMMM)  2027    332
+4  Porsgrunn  0 Ã¥r  Hovedalternativet (MMMM)  2028    336
+
+Aggregated data: 2295 rows
+  Columns: ['Kommune', 'Ã…r', 'Aldersgruppe', 'Personer']
+  Age groups: ['0-19 Ã¥r', '20-39 Ã¥r', '40-66 Ã¥r', '67-79 Ã¥r', '80+ Ã¥r']
+  Kommune    Ã…r Aldersgruppe  Personer
+0  Bamble  2024      0-19 Ã¥r      3061
+1  Bamble  2024     20-39 Ã¥r      3199
+2  Bamble  2024     40-66 Ã¥r      5012
+3  Bamble  2024     67-79 Ã¥r      2254
+4  Bamble  2024       80+ Ã¥r       743
+5  Bamble  2025      0-19 Ã¥r      3043
+6  Bamble  2025     20-39 Ã¥r      3168
+7  Bamble  2025     40-66 Ã¥r      5046
+8  Bamble  2025     67-79 Ã¥r      2239
+9  Bamble  2025       80+ Ã¥r       832
+
+Final data: 2295 rows
+  Columns: ['Kommunenummer', 'Kommune', 'Aldersgruppe', 'Ã…r', 'Personer', 'SortColumn']
+   Kommunenummer Kommune Aldersgruppe          Ã…r  Personer  SortColumn
+0           4012  Bamble      0-19 Ã¥r  2024-01-01      3061           1
+1           4012  Bamble      0-19 Ã¥r  2025-01-01      3043           1
+2           4012  Bamble      0-19 Ã¥r  2026-01-01      3021           1
+3           4012  Bamble      0-19 Ã¥r  2027-01-01      2963           1
+4           4012  Bamble      0-19 Ã¥r  2028-01-01      2917           1
+5           4012  Bamble      0-19 Ã¥r  2029-01-01      2877           1
+6           4012  Bamble      0-19 Ã¥r  2030-01-01      2849           1
+7           4012  Bamble      0-19 Ã¥r  2031-01-01      2829           1
+8           4012  Bamble      0-19 Ã¥r  2032-01-01      2795           1
+9           4012  Bamble      0-19 Ã¥r  2033-01-01      2778           1
+10          4012  Bamble      0-19 Ã¥r  2034-01-01      2766           1
+11          4012  Bamble      0-19 Ã¥r  2035-01-01      2762           1
+12          4012  Bamble      0-19 Ã¥r  2036-01-01      2758           1
+13          4012  Bamble      0-19 Ã¥r  2037-01-01      2741           1
+14          4012  Bamble      0-19 Ã¥r  2038-01-01      2734           1
+15          4012  Bamble      0-19 Ã¥r  2039-01-01      2726           1
+16          4012  Bamble      0-19 Ã¥r  2040-01-01      2716           1
+17          4012  Bamble      0-19 Ã¥r  2041-01-01      2715           1
+18          4012  Bamble      0-19 Ã¥r  2042-01-01      2718           1
+19          4012  Bamble      0-19 Ã¥r  2043-01-01      2722           1
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell_egendef_alder.csv
+[2026-03-27 08:05:55] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell_egendef_alder.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_egne_intervaller.log
+
