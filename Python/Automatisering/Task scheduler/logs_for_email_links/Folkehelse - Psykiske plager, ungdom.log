@@ -13,16 +13,32 @@ Loading query from file...
 
 Fetching data from FHI API...
 FHI Query JSON-stat data loaded successfully.
-  âœ“ Fetched 399 rows and 8 columns
+  âœ“ Fetched 570 rows and 8 columns
   Columns: Geografi, Ã…r, KjÃ¸nn, Alder, Plagegrad, SosioÃ¸konomiske ressurser (SÃ˜R), MÃ¥ltall, value
 
-After processing: 399 rows and 8 columns
+After processing: 570 rows and 8 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\psykiske_plager_ungdom.csv
-[2026-03-27 08:17:52] No new data to upload. Skipping GitHub update.
+[2026-03-30 08:18:11] Row count changed: 399 -> 570
+
+Added rows (showing up to 10):
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: kjÃ¸nn samlet, Mltall: andel (prosent, standardisert), Plagegrad: plaget, Sosiokonomiske ressurser (SR): Total SÃ˜R, value: 11.5154042054495, r: 2016
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: gutter, Mltall: andel (prosent, standardisert), Plagegrad: plaget, Sosiokonomiske ressurser (SR): Total SÃ˜R, value: 5.08093116304447, r: 2016
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: jenter, Mltall: andel (prosent, standardisert), Plagegrad: plaget, Sosiokonomiske ressurser (SR): Total SÃ˜R, value: 17.8397461679403, r: 2016
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: kjÃ¸nn samlet, Mltall: andel (prosent, standardisert), Plagegrad: plaget, Sosiokonomiske ressurser (SR): Total SÃ˜R, value: 12.8640734942454, r: 2017
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: gutter, Mltall: andel (prosent, standardisert), Plagegrad: plaget, Sosiokonomiske ressurser (SR): Total SÃ˜R, value: 5.90967964769882, r: 2017
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: jenter, Mltall: andel (prosent, standardisert), Plagegrad: plaget, Sosiokonomiske ressurser (SR): Total SÃ˜R, value: 19.7655486812113, r: 2017
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: kjÃ¸nn samlet, Mltall: andel (prosent, standardisert), Plagegrad: plaget, Sosiokonomiske ressurser (SR): Total SÃ˜R, value: 14.6867098320642, r: 2025
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: gutter, Mltall: andel (prosent, standardisert), Plagegrad: plaget, Sosiokonomiske ressurser (SR): Total SÃ˜R, value: 7.93318492090404, r: 2025
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: jenter, Mltall: andel (prosent, standardisert), Plagegrad: plaget, Sosiokonomiske ressurser (SR): Total SÃ˜R, value: 21.3247547421351, r: 2025
+Alder: 8-10.trinn, Geografi: Telemark, Kjnn: kjÃ¸nn samlet, Mltall: andel (prosent, standardisert), Plagegrad: plaget, Sosiokonomiske ressurser (SR): Total SÃ˜R, value: 11.0832609447117, r: 2016
+... and 161 more rows
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/psykiske_plager_ungdom.csv
+Email notifications disabled. Updates for psykiske_plager_ungdom.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\psykiske_plager_ungdom.csv
-  âœ“ No changes detected
+  âœ“ New data detected and uploaded to GitHub
+New data detected
 
 ======================================================================
 Processing complete
