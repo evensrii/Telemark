@@ -13,16 +13,32 @@ Loading query from file...
 
 Fetching data from FHI API...
 FHI Query JSON-stat data loaded successfully.
-  âœ“ Fetched 950 rows and 7 columns
+  âœ“ Fetched 1900 rows and 7 columns
   Columns: Geografi, Ã…r, KjÃ¸nn, Alder, DÃ¸dsÃ¥rsak, MÃ¥ltall, value
 
-After processing: 950 rows and 7 columns
+After processing: 1900 rows and 7 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\selvmord_femaarig.csv
-[2026-03-27 08:18:14] No new data to upload. Skipping GitHub update.
+[2026-03-30 08:18:38] Row count changed: 950 -> 1900
+
+Added rows (showing up to 10):
+Alder: alle aldre, Ddsrsak: Selvmord (X60-84,Y87.0), Geografi: Hele landet, Kjnn: menn, Mltall: dÃ¸de per 100 000, standardisert, value: 16.0025929731389, r: 2011-2015
+Alder: 0-74 Ã¥r, Ddsrsak: Selvmord (X60-84,Y87.0), Geografi: Hele landet, Kjnn: menn, Mltall: dÃ¸de per 100 000, standardisert, value: 15.4865722494048, r: 2011-2015
+Alder: 0-44 Ã¥r, Ddsrsak: Selvmord (X60-84,Y87.0), Geografi: Hele landet, Kjnn: menn, Mltall: dÃ¸de per 100 000, standardisert, value: 12.4706505584345, r: 2011-2015
+Alder: 45-74 Ã¥r, Ddsrsak: Selvmord (X60-84,Y87.0), Geografi: Hele landet, Kjnn: menn, Mltall: dÃ¸de per 100 000, standardisert, value: 20.3145099552453, r: 2011-2015
+Alder: 75+ Ã¥r, Ddsrsak: Selvmord (X60-84,Y87.0), Geografi: Hele landet, Kjnn: menn, Mltall: dÃ¸de per 100 000, standardisert, value: 22.8372844634892, r: 2011-2015
+Alder: alle aldre, Ddsrsak: Selvmord (X60-84,Y87.0), Geografi: Hele landet, Kjnn: kvinner, Mltall: dÃ¸de per 100 000, standardisert, value: 6.63833592667489, r: 2011-2015
+Alder: 0-74 Ã¥r, Ddsrsak: Selvmord (X60-84,Y87.0), Geografi: Hele landet, Kjnn: kvinner, Mltall: dÃ¸de per 100 000, standardisert, value: 6.83205763235073, r: 2011-2015
+Alder: 0-44 Ã¥r, Ddsrsak: Selvmord (X60-84,Y87.0), Geografi: Hele landet, Kjnn: kvinner, Mltall: dÃ¸de per 100 000, standardisert, value: 4.91793109481962, r: 2011-2015
+Alder: 45-74 Ã¥r, Ddsrsak: Selvmord (X60-84,Y87.0), Geografi: Hele landet, Kjnn: kvinner, Mltall: dÃ¸de per 100 000, standardisert, value: 9.83169786970419, r: 2011-2015
+Alder: 75+ Ã¥r, Ddsrsak: Selvmord (X60-84,Y87.0), Geografi: Hele landet, Kjnn: kvinner, Mltall: dÃ¸de per 100 000, standardisert, value: 4.60450431130686, r: 2011-2015
+... and 940 more rows
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/selvmord_femaarig.csv
+Email notifications disabled. Updates for selvmord_femaarig.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\selvmord_femaarig.csv
-  âœ“ No changes detected
+  âœ“ New data detected and uploaded to GitHub
+New data detected
 
 ======================================================================
 Processing complete
