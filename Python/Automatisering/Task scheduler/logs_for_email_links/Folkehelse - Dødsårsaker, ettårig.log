@@ -13,14 +13,14 @@ Loading query from file...
 
 Fetching data from FHI API...
 FHI Query JSON-stat data loaded successfully.
-  âœ“ Fetched 22610 rows and 7 columns
+  âœ“ Fetched 32300 rows and 7 columns
   Columns: Geografi, Ã…r, KjÃ¸nn, Alder, DÃ¸dsÃ¥rsaker, MÃ¥ltall, value
 
-After processing: 22610 rows and 7 columns
+After processing: 32300 rows and 7 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\doedsaarsaker_ettaarig.csv
-[2026-03-27 08:16:52] No value columns found to compare. Skipping GitHub update.
+[2026-03-30 08:17:02] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\doedsaarsaker_ettaarig.csv
   âœ“ No changes detected
 
