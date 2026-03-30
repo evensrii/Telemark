@@ -3,17 +3,35 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
-Found missing date ranges: [(Timestamp('2026-03-26 00:00:00'), Timestamp('2026-03-26 00:00:00'))]
+Found missing date ranges: [(Timestamp('2026-03-26 00:00:00'), Timestamp('2026-03-29 00:00:00'))]
 Fetching data for missing periods...
--- Processing gap: 2026-03-26 to 2026-03-26 --
-Fetching energy prices from 2026-03-26 to 2026-03-26...
-  Fetching chunk from 2026-03-26 to 2026-03-26...
-Error connecting to ENTSO-E API for chunk 2026-03-26-2026-03-26: 503 Server Error: Service Unavailable for url: https://web-api.tp.entsoe.eu/api?documentType=A44&in_Domain=10YNO-2--------T&out_Domain=10YNO-2--------T&periodStart=202603260000&periodEnd=202603262300&securityToken=5cf92fdd-a882-4158-a5a9-9b0b8e202786
-No price data found in the API response for the entire period.
+-- Processing gap: 2026-03-26 to 2026-03-29 --
+Fetching energy prices from 2026-03-26 to 2026-03-29...
+  Fetching chunk from 2026-03-26 to 2026-03-29...
+Total price data points collected: 469
+Fetching exchange rates...
+Successfully fetched 2 exchange rate records
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2026-03-27 08:13:34] No new data to upload. Skipping GitHub update.
+[2026-03-30 08:13:46] Row count changed: 1911 -> 1919
+
+Added rows (showing up to 10):
+EUR/MWh: 98.1208, NOK/KWh: 1.0917410812000001, NOK/MWh: 1091.7410812, kurs: 11.1265, time: 2026-03-26
+EUR/MWh: 109.30979166666667, NOK/KWh: 1.2230126040624998, NOK/MWh: 1223.0126040624998, kurs: 11.1885, time: 2026-03-27
+EUR/MWh: 93.37794520547945, NOK/KWh: 1.0447591399315068, NOK/MWh: 1044.7591399315068, kurs: 11.1885, time: 2026-03-28
+EUR/MWh: 101.47762886597938, NOK/KWh: 1.1353824505670103, NOK/MWh: 1135.3824505670102, kurs: 11.1885, time: 2026-03-29
+EUR/MWh: 88.052, NOK/KWh: 0.9851698019999999, NOK/MWh: 985.1698019999999, kurs: 11.1885, time: 2026-03-30
+EUR/MWh: 91.14309859154929, NOK/KWh: 1.0197545585915493, NOK/MWh: 1019.7545585915492, kurs: 11.1885, time: 2026-03-31
+EUR/MWh: 87.45476190476191, NOK/KWh: 0.9784876035714286, NOK/MWh: 978.4876035714286, kurs: 11.1885, time: 2026-04-01
+EUR/MWh: 116.7609090909091, NOK/KWh: 1.3063794313636363, NOK/MWh: 1306.3794313636363, kurs: 11.1885, time: 2026-04-02
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e/strompriser.csv
+Email notifications disabled. Updates for strompriser.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
 Script completed successfully!
+
+
+Errors/Warnings:
+D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py:211: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
 
