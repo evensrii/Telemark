@@ -13,16 +13,32 @@ Loading query from file...
 
 Fetching data from FHI API...
 FHI Query JSON-stat data loaded successfully.
-  âœ“ Fetched 399 rows and 8 columns
+  âœ“ Fetched 570 rows and 8 columns
   Columns: Geografi, Ã…r, KjÃ¸nn, Alder, Svarkategori, sosial status, MÃ¥ltall, value
 
-After processing: 399 rows and 8 columns
+After processing: 570 rows and 8 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\reseptfrie_smertestillende_legemidler_ungdom.csv
-[2026-03-27 08:18:07] No new data to upload. Skipping GitHub update.
+[2026-03-30 08:18:30] Row count changed: 399 -> 570
+
+Added rows (showing up to 10):
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: kjÃ¸nn samlet, Mltall: andel (prosent, standardisert), Svarkategori: minst ukentlig, sosial status: samlet, value: 17.2544763971785, r: 2016
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: gutter, Mltall: andel (prosent, standardisert), Svarkategori: minst ukentlig, sosial status: samlet, value: 11.9784482758621, r: 2016
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: jenter, Mltall: andel (prosent, standardisert), Svarkategori: minst ukentlig, sosial status: samlet, value: 22.3982518437585, r: 2016
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: kjÃ¸nn samlet, Mltall: andel (prosent, standardisert), Svarkategori: minst ukentlig, sosial status: samlet, value: 16.6185303094949, r: 2017
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: gutter, Mltall: andel (prosent, standardisert), Svarkategori: minst ukentlig, sosial status: samlet, value: 11.3292028087567, r: 2017
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: jenter, Mltall: andel (prosent, standardisert), Svarkategori: minst ukentlig, sosial status: samlet, value: 21.8366448794641, r: 2017
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: kjÃ¸nn samlet, Mltall: andel (prosent, standardisert), Svarkategori: minst ukentlig, sosial status: samlet, value: 20.2107957755039, r: 2025
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: gutter, Mltall: andel (prosent, standardisert), Svarkategori: minst ukentlig, sosial status: samlet, value: 12.235825576544, r: 2025
+Alder: 8-10.trinn, Geografi: Hele landet, Kjnn: jenter, Mltall: andel (prosent, standardisert), Svarkategori: minst ukentlig, sosial status: samlet, value: 28.0913252395439, r: 2025
+Alder: 8-10.trinn, Geografi: Telemark, Kjnn: kjÃ¸nn samlet, Mltall: andel (prosent, standardisert), Svarkategori: minst ukentlig, sosial status: samlet, value: 17.7249845004761, r: 2016
+... and 161 more rows
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/reseptfrie_smertestillende_legemidler_ungdom.csv
+Email notifications disabled. Updates for reseptfrie_smertestillende_legemidler_ungdom.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\reseptfrie_smertestillende_legemidler_ungdom.csv
-  âœ“ No changes detected
+  âœ“ New data detected and uploaded to GitHub
+New data detected
 
 ======================================================================
 Processing complete
