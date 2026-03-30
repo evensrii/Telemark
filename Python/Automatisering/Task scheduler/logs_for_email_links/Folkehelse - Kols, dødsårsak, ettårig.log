@@ -13,16 +13,32 @@ Loading query from file...
 
 Fetching data from FHI API...
 FHI Query JSON-stat data loaded successfully.
-  âœ“ Fetched 5130 rows and 7 columns
+  âœ“ Fetched 5700 rows and 7 columns
   Columns: Geografi, Ã…r, KjÃ¸nn, Alder, DÃ¸dsÃ¥rsaker, MÃ¥ltall, value
 
-After processing: 5130 rows and 7 columns
+After processing: 5700 rows and 7 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\kols_doedsaarsak_ettaarig.csv
-[2026-03-27 08:17:30] No new data to upload. Skipping GitHub update.
+[2026-03-30 08:17:45] Row count changed: 5130 -> 5700
+
+Added rows (showing up to 10):
+Alder: alle aldre, Ddsrsaker: Lungekreft, Geografi: Hele landet, Kjnn: menn, Mltall: per 100.000, standardisert, value: 40.8554715432023, r: 2024
+Alder: alle aldre, Ddsrsaker: KOLS, Geografi: Hele landet, Kjnn: menn, Mltall: per 100.000, standardisert, value: 35.7975142989698, r: 2024
+Alder: alle aldre, Ddsrsaker: KOLS og lungekreft (rÃ¸ykerelaterte dÃ¸dsfall), Geografi: Hele landet, Kjnn: menn, Mltall: per 100.000, standardisert, value: 76.6529858421721, r: 2024
+Alder: 0-74 Ã¥r, Ddsrsaker: Lungekreft, Geografi: Hele landet, Kjnn: menn, Mltall: per 100.000, standardisert, value: 20.5665213243319, r: 2024
+Alder: 0-74 Ã¥r, Ddsrsaker: KOLS, Geografi: Hele landet, Kjnn: menn, Mltall: per 100.000, standardisert, value: 11.3657091529203, r: 2024
+Alder: 0-74 Ã¥r, Ddsrsaker: KOLS og lungekreft (rÃ¸ykerelaterte dÃ¸dsfall), Geografi: Hele landet, Kjnn: menn, Mltall: per 100.000, standardisert, value: 31.9322304772522, r: 2024
+Alder: 0-44 Ã¥r, Ddsrsaker: Lungekreft, Geografi: Hele landet, Kjnn: menn, Mltall: per 100.000, standardisert, value: :, r: 2024
+Alder: 0-44 Ã¥r, Ddsrsaker: KOLS, Geografi: Hele landet, Kjnn: menn, Mltall: per 100.000, standardisert, value: :, r: 2024
+Alder: 0-44 Ã¥r, Ddsrsaker: KOLS og lungekreft (rÃ¸ykerelaterte dÃ¸dsfall), Geografi: Hele landet, Kjnn: menn, Mltall: per 100.000, standardisert, value: :, r: 2024
+Alder: 45-74 Ã¥r, Ddsrsaker: Lungekreft, Geografi: Hele landet, Kjnn: menn, Mltall: per 100.000, standardisert, value: :, r: 2024
+... and 560 more rows
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/kols_doedsaarsak_ettaarig.csv
+Email notifications disabled. Updates for kols_doedsaarsak_ettaarig.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\kols_doedsaarsak_ettaarig.csv
-  âœ“ No changes detected
+  âœ“ New data detected and uploaded to GitHub
+New data detected
 
 ======================================================================
 Processing complete
