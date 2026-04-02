@@ -4,16 +4,54 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 All tasks completed successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_telemark.csv
-[2026-04-01 08:11:56] No new data to upload. Skipping GitHub update.
+[2026-04-02 08:11:53] Changes detected in the dataset.
+
+[2026-04-02 08:11:53] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_telemark.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: Kommune: Vinje
+  Sektor: SjÃ¸fart -> produkter med fluorgasser
+
+Row: Kommune: Vinje
+  Utslipp: 0.0 -> 1340.17
+
+Row: Kommune: Vinje
+  Utslippskilde: Andre aktiviteter -> Bruk av HFK
+
+Row: Kommune: Vinje
+  Utslippskilde: Andre offshorefartÃ¸y -> Andre aktiviteter
+
+Row: Kommune: Vinje
+  Utslippskilde: Container/RoRo -> Andre offshorefartÃ¸y
+
+Total changes found in examined rows: 240
+(Showing first 5 changes only)
+Email notifications disabled. Updates for klimagassutslipp_telemark.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_telemark.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_donut.csv
-[2026-04-01 08:11:57] No new data to upload. Skipping GitHub update.
+[2026-04-02 08:11:56] Changes detected in the dataset.
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_donut.csv
+
+Showing up to 5 examples of changes:
+
+Row: 
+  Sektor: Bruk av produkter med fluorgasser -> produkter med fluorgasser
+Email notifications disabled. Updates for klimagassutslipp_donut.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_donut.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_endring.csv
-[2026-04-01 08:11:57] No new data to upload. Skipping GitHub update.
+[2026-04-02 08:11:57] Changes detected in the dataset.
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Klimagassutslipp/klimagassutslipp_endring.csv
+
+Showing up to 5 examples of changes:
+
+Row: 
+  Sektor: Bruk av produkter med fluorgasser -> produkter med fluorgasser
+Email notifications disabled. Updates for klimagassutslipp_endring.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_endring.csv
-No new data detected in klimagassutslipp_telemark.csv.
-No new data detected in klimagassutslipp_donut.csv.
-No new data detected in klimagassutslipp_endring.csv.
+New data detected in klimagassutslipp_telemark.csv and pushed to GitHub.
+New data detected in klimagassutslipp_donut.csv and pushed to GitHub.
+New data detected in klimagassutslipp_endring.csv and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Sektorvise_utslipp.log
 
