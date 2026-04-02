@@ -2,29 +2,29 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2026-04-01 08:13:36] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
-[2026-04-01 08:13:36] GITHUB_TOKEN loaded successfully.
-[2026-04-01 08:13:48] Latest date in GitHub files: 2026-03-29
-[2026-04-01 08:13:48] Querying data for 2026-03-30
-[2026-04-01 08:13:49] API Response status code: 200
+[2026-04-02 08:13:35] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+[2026-04-02 08:13:35] GITHUB_TOKEN loaded successfully.
+[2026-04-02 08:13:46] Latest date in GitHub files: 2026-03-30
+[2026-04-02 08:13:46] Querying data for 2026-03-31
+[2026-04-02 08:13:47] API Response status code: 200
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\2026.csv
-[2026-04-01 08:13:52] Row count changed: 107610 -> 108834
+[2026-04-02 08:13:49] Row count changed: 108834 -> 110058
 
 Added rows (showing up to 10):
-Antall mlere: 1274.0, Forbruk (kWh): 2462.527, Gruppe: Husholdninger, Knr: 4010, Kommunenavn: Siljan, Tid: 2026-03-29 22:00:00+00:00
-Antall mlere: 295.0, Forbruk (kWh): 1959.805, Gruppe: NÃ¦ring (unntatt industri), Knr: 4022, Kommunenavn: Seljord, Tid: 2026-03-29 22:00:00+00:00
-Antall mlere: 84.0, Forbruk (kWh): 251.316, Gruppe: Industri, Knr: 4022, Kommunenavn: Seljord, Tid: 2026-03-29 22:00:00+00:00
-Antall mlere: 2162.0, Forbruk (kWh): 4011.742, Gruppe: Husholdninger, Knr: 4022, Kommunenavn: Seljord, Tid: 2026-03-29 22:00:00+00:00
-Antall mlere: 197.0, Forbruk (kWh): 1786.648, Gruppe: Industri, Knr: 4005, Kommunenavn: Notodden, Tid: 2026-03-29 22:00:00+00:00
-Antall mlere: 520.0, Forbruk (kWh): 193673.61, Gruppe: Industri, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-03-29 22:00:00+00:00
-Antall mlere: 19547.0, Forbruk (kWh): 36302.78, Gruppe: Husholdninger, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-03-29 22:00:00+00:00
-Antall mlere: 848.0, Forbruk (kWh): 5681.472, Gruppe: NÃ¦ring (unntatt industri), Knr: 4005, Kommunenavn: Notodden, Tid: 2026-03-29 22:00:00+00:00
-Antall mlere: 48.0, Forbruk (kWh): 267.295, Gruppe: Industri, Knr: 4010, Kommunenavn: Siljan, Tid: 2026-03-29 22:00:00+00:00
-Antall mlere: 1668.0, Forbruk (kWh): 13842.647, Gruppe: NÃ¦ring (unntatt industri), Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-03-29 22:00:00+00:00
+Antall mlere: 1274.0, Forbruk (kWh): 2448.024, Gruppe: Husholdninger, Knr: 4010, Kommunenavn: Siljan, Tid: 2026-03-30 22:00:00+00:00
+Antall mlere: 295.0, Forbruk (kWh): 1888.956, Gruppe: NÃ¦ring (unntatt industri), Knr: 4022, Kommunenavn: Seljord, Tid: 2026-03-30 22:00:00+00:00
+Antall mlere: 84.0, Forbruk (kWh): 269.077, Gruppe: Industri, Knr: 4022, Kommunenavn: Seljord, Tid: 2026-03-30 22:00:00+00:00
+Antall mlere: 2162.0, Forbruk (kWh): 3875.766, Gruppe: Husholdninger, Knr: 4022, Kommunenavn: Seljord, Tid: 2026-03-30 22:00:00+00:00
+Antall mlere: 197.0, Forbruk (kWh): 1725.326, Gruppe: Industri, Knr: 4005, Kommunenavn: Notodden, Tid: 2026-03-30 22:00:00+00:00
+Antall mlere: 521.0, Forbruk (kWh): 193644.28, Gruppe: Industri, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-03-30 22:00:00+00:00
+Antall mlere: 19547.0, Forbruk (kWh): 33443.18, Gruppe: Husholdninger, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-03-30 22:00:00+00:00
+Antall mlere: 848.0, Forbruk (kWh): 5381.978, Gruppe: NÃ¦ring (unntatt industri), Knr: 4005, Kommunenavn: Notodden, Tid: 2026-03-30 22:00:00+00:00
+Antall mlere: 48.0, Forbruk (kWh): 240.684, Gruppe: Industri, Knr: 4010, Kommunenavn: Siljan, Tid: 2026-03-30 22:00:00+00:00
+Antall mlere: 1668.0, Forbruk (kWh): 13037.37, Gruppe: NÃ¦ring (unntatt industri), Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-03-30 22:00:00+00:00
 ... and 1214 more rows
 File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/2026.csv
 Email notifications disabled. Updates for 2026.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\2026.csv
-[2026-04-01 08:14:00] New data detected in 2026.csv and pushed to GitHub.
-[2026-04-01 08:14:00] New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Stromforbruk_(Elhub).log
+[2026-04-02 08:13:57] New data detected in 2026.csv and pushed to GitHub.
+[2026-04-02 08:13:58] New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Stromforbruk_(Elhub).log
 
