@@ -20,34 +20,9 @@ After processing: 10944 rows and 7 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\psykiske_symptomer_og_lidelser_primaerhelsetjenesten_ettaarige_tall.csv
-[2026-04-16 08:17:53] Changes detected in the dataset.
-
-[2026-04-16 08:17:53] Dataset is large. Showing detailed changes from the last 200 rows only.
-File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/psykiske_symptomer_og_lidelser_primaerhelsetjenesten_ettaarige_tall.csv
-
-Showing up to 5 examples of changes from the last 200 rows:
-
-Row: 
-  Sykdomsgruppe: Psykiske symptomer (P01-29) -> Psykiske symptomer
-
-Row: 
-  Sykdomsgruppe: Psykiske lidelser (P70-99) -> Psykiske lidelser
-
-Row: 
-  Sykdomsgruppe: Psykiske symptomer og lidelser (P01-29 og P70-99) -> Psykiske symptomer og lidelser
-
-Row: 
-  Sykdomsgruppe: Psykiske symptomer (P01-29) -> Psykiske symptomer
-
-Row: 
-  Sykdomsgruppe: Psykiske lidelser (P70-99) -> Psykiske lidelser
-
-Total changes found in examined rows: 200
-(Showing first 5 changes only)
-Email notifications disabled. Updates for psykiske_symptomer_og_lidelser_primaerhelsetjenesten_ettaarige_tall.csv were not sent.
+[2026-04-17 08:18:03] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\psykiske_symptomer_og_lidelser_primaerhelsetjenesten_ettaarige_tall.csv
-  âœ“ New data detected and uploaded to GitHub
-New data detected
+  âœ“ No changes detected
 
 ======================================================================
 Processing complete
