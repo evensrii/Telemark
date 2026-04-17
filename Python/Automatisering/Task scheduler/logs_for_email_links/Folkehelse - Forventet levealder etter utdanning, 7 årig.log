@@ -20,9 +20,34 @@ After processing: 8550 rows and 7 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanning_7_aarig.csv
-[2026-04-16 08:16:53] No new data to upload. Skipping GitHub update.
+[2026-04-17 08:17:09] Changes detected in the dataset.
+
+[2026-04-17 08:17:09] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/forventet_levealder_etter_utdanning_7_aarig.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: 
+  Utdanningsniv: universitet eller hÃ¸gskole -> universitet/ hÃ¸gskole
+
+Row: 
+  Utdanningsniv: universitet eller hÃ¸gskole -> universitet/ hÃ¸gskole
+
+Row: 
+  Utdanningsniv: universitet eller hÃ¸gskole -> universitet/ hÃ¸gskole
+
+Row: 
+  Utdanningsniv: universitet eller hÃ¸gskole -> universitet/ hÃ¸gskole
+
+Row: 
+  Utdanningsniv: universitet eller hÃ¸gskole -> universitet/ hÃ¸gskole
+
+Total changes found in examined rows: 40
+(Showing first 5 changes only)
+Email notifications disabled. Updates for forventet_levealder_etter_utdanning_7_aarig.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanning_7_aarig.csv
-  âœ“ No changes detected
+  âœ“ New data detected and uploaded to GitHub
+New data detected
 
 ======================================================================
 Processing complete
