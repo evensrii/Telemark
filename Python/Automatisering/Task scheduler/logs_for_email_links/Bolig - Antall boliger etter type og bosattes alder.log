@@ -2,27 +2,27 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Antall boliger etter type og bosattes alder (11031) JSON-stat data loaded successfully.
-      region        alder  ...                      bygningstype    value
-0  Porsgrunn  Alder i alt  ...                     Boliger i alt  36621.0
-1  Porsgrunn  Alder i alt  ...                          Enebolig  22082.0
-2  Porsgrunn  Alder i alt  ...                      Tomannsbolig   2834.0
-3  Porsgrunn  Alder i alt  ...  Rekkehus, kjedehus, andre smÃ¥hus   5234.0
-4  Porsgrunn  Alder i alt  ...                        Boligblokk   5108.0
+Request error in Antall boliger etter type og bosattes alder (11031): 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/11031/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2024)&valuecodes%5BRegion%5D=4001,4003,4005,4012,4014,4020&codelist%5BRegion%5D=vs_KommunStore&valuecodes%5BByggeareal%5D=*&valuecodes%5BAlder%5D=*&heading=ContentsCode,Tid,Byggeareal&stub=Region,Alder
+Error occurred: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/11031/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2024)&valuecodes%5BRegion%5D=4001,4003,4005,4012,4014,4020&codelist%5BRegion%5D=vs_KommunStore&valuecodes%5BByggeareal%5D=*&valuecodes%5BAlder%5D=*&heading=ContentsCode,Tid,Byggeareal&stub=Region,Alder
+Email notifications disabled. Errors in antall_boliger_etter_type_og_bosattes_alder.py were not sent.
 
-[5 rows x 6 columns]
-['region', 'alder', 'statistikkvariabel', 'Ã¥r', 'bygningstype', 'value']
-  Kommunenummer    Kommune  ...                      Bygningstype    Verdi
-0          4001  Porsgrunn  ...                     Boliger i alt  36621.0
-1          4001  Porsgrunn  ...                          Enebolig  22082.0
-2          4001  Porsgrunn  ...                      Tomannsbolig   2834.0
-3          4001  Porsgrunn  ...  Rekkehus, kjedehus, andre smÃ¥hus   5234.0
-4          4001  Porsgrunn  ...                        Boligblokk   5108.0
 
-[5 rows x 7 columns]
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\antall_boliger_etter_type_og_bosattes_alder.csv
-[2026-04-22 08:19:35] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\antall_boliger_etter_type_og_bosattes_alder.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Antall_boliger_etter_type_og_bosattes_alder.log
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/antall_boliger_etter_type_og_bosattes_alder.py", line 34, in <module>
+    df = fetch_data(
+         ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/11031/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2024)&valuecodes%5BRegion%5D=4001,4003,4005,4012,4014,4020&codelist%5BRegion%5D=vs_KommunStore&valuecodes%5BByggeareal%5D=*&valuecodes%5BAlder%5D=*&heading=ContentsCode,Tid,Byggeareal&stub=Region,Alder
 
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/antall_boliger_etter_type_og_bosattes_alder.py", line 44, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/antall_boliger_etter_type_og_bosattes_alder.py` failed. (See above for error)
