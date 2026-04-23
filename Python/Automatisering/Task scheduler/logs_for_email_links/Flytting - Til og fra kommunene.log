@@ -2,64 +2,27 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Flytting til og fra Telemark-kommuner JSON-stat data loaded successfully.
-Raw data: 128164 rows
-  Columns: ['fraflyttingsregion', 'statistikkvariabel', 'Ã¥r', 'tilflyttingsregion', 'value']
-  fraflyttingsregion       statistikkvariabel    Ã¥r tilflyttingsregion  value
-0             Halden  Innenlandske flyttinger  2025             Halden    0.0
-1             Halden  Innenlandske flyttinger  2025               Moss   46.0
-2             Halden  Innenlandske flyttinger  2025          Sarpsborg  131.0
-3             Halden  Innenlandske flyttinger  2025        Fredrikstad  186.0
-4             Halden  Innenlandske flyttinger  2025             Hvaler    8.0
-5             Halden  Innenlandske flyttinger  2025               RÃ¥de    8.0
-6             Halden  Innenlandske flyttinger  2025    VÃ¥ler (Ã˜stfold)    2.0
-7             Halden  Innenlandske flyttinger  2025           Skiptvet    6.0
-8             Halden  Innenlandske flyttinger  2025      Indre Ã˜stfold   14.0
-9             Halden  Innenlandske flyttinger  2025          Rakkestad   21.0
+Request error in Flytting til og fra Telemark-kommuner: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/13864/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=2025&valuecodes%5BFraflyttingsregion%5D=*&codelist%5BFraflyttingsregion%5D=agg_KommGjeldende&valuecodes%5BTilflyttRegion%5D=*&codelist%5BTilflyttRegion%5D=agg_KommGjeldende&heading=ContentsCode,Tid,TilflyttRegion&stub=Fraflyttingsregion
+Error occurred: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/13864/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=2025&valuecodes%5BFraflyttingsregion%5D=*&codelist%5BFraflyttingsregion%5D=agg_KommGjeldende&valuecodes%5BTilflyttRegion%5D=*&codelist%5BTilflyttRegion%5D=agg_KommGjeldende&heading=ContentsCode,Tid,TilflyttRegion&stub=Fraflyttingsregion
+Email notifications disabled. Errors in flytting_til_og_fra_kommunene.py were not sent.
 
-After filtering to Telemark: 11883 rows
-  Unique fraflyttingsregion: ['Aarborte - Hattfjelldal', 'Alstahaug', 'Alta', 'Alvdal', 'Alver', 'AndÃ¸y', 'Aremark', 'Arendal', 'Asker', 'Askvoll', 'AskÃ¸y', 'Aukra', 'Aure', 'Aurland', 'Aurskog-HÃ¸land', 'Austevoll', 'Austrheim', 'AverÃ¸y', 'Balsfjord', 'Bamble', 'Bardu', 'Beiarn', 'Bergen', 'BerlevÃ¥g', 'Bindal', 'Birkenes', 'Bjerkreim', 'BjÃ¸rnafjorden', 'BodÃ¸', 'Bokn', 'Bremanger', 'BrÃ¸nnÃ¸y', 'Bygland', 'Bykle', 'BÃ¥tsfjord', 'BÃ¦rum', 'BÃ¸', 'BÃ¸mlo', 'Deatnu - Tana', 'Dielddanuorri - Tjeldsund', 'Dovre', 'Drammen', 'Drangedal', 'DyrÃ¸y', 'DÃ¸nna', 'Eidfjord', 'Eidskog', 'Eidsvoll', 'Eigersund', 'Elverum', 'Enebakk', 'Engerdal', 'Etne', 'Etnedal', 'Evenes - EvenÃ¡ssi', 'Evje og Hornnes', 'Farsund', 'Fauske - Fuossko', 'Fedje', 'Fitjar', 'Fjaler', 'Fjord', 'Flakstad', 'Flatanger', 'Flekkefjord', 'Flesberg', 'FlÃ¥', 'Folldal', 'Fredrikstad', 'Frogn', 'Froland', 'Frosta', 'FrÃ¸ya', 'Fyresdal', 'FÃ¦rder', 'Gamvik', 'Gausdal', 'GildeskÃ¥l', 'Giske', 'Gjemnes', 'Gjerdrum', 'Gjerstad', 'Gjesdal', 'GjÃ¸vik', 'Gloppen', 'Gol', 'Gran', 'Grane', 'Gratangen - RivttÃ¡k', 'Grimstad', 'Grong', 'Grue', 'Gulen', 'Guovdageaidnu - Kautokeino', 'GÃ¡ivuotna - KÃ¥fjord - Kaivuono', 'Hadsel', 'Halden', 'Hamar', 'Hammerfest - HÃ¡mmerfeasta', 'Haram', 'Hareid', 'Harstad - HÃ¡rsttÃ¡k', 'Hasvik', 'Haugesund', 'Heim', 'Hemnes', 'Hemsedal', 'HerÃ¸y (MÃ¸re og Romsdal)', 'HerÃ¸y (Nordland)', 'Hitra', 'Hjartdal', 'Hjelmeland', 'Hol', 'Hole', 'Holmestrand', 'HoltÃ¥len', 'Horten', 'Hurdal', 'Hustadvika', 'Hvaler', 'Hyllestad', 'HÃ¡bmer - HamarÃ¸y', 'HÃ¥', 'HÃ¦gebostad', 'HÃ¸yanger', 'HÃ¸ylandet', 'Ibestad', 'InderÃ¸y', 'Indre Fosen', 'Indre Ã˜stfold', 'Iveland', 'Jevnaker', 'KarlsÃ¸y', 'KarmÃ¸y', 'Kinn', 'Klepp', 'Kongsberg', 'Kongsvinger', 'KragerÃ¸', 'Kristiansand', 'Kristiansund', 'KrÃ¸dsherad', 'Kvam', 'Kvinesdal', 'Kvinnherad', 'Kviteseid', 'KvitsÃ¸y', 'KvÃ¦fjord', 'KvÃ¦nangen', 'KÃ¡rÃ¡sjohka - Karasjok', 'Larvik', 'Lebesby', 'Leirfjord', 'Leka', 'Lesja', 'Levanger - Levangke', 'Lier', 'Lierne', 'Lillehammer', 'Lillesand', 'LillestrÃ¸m', 'Lindesnes', 'LoabÃ¡k - Lavangen', 'Lom', 'Loppa', 'Lund', 'Lunner', 'LurÃ¸y', 'Luster', 'Lyngdal', 'Lyngen - Ivgu - YykeÃ¤', 'LÃ¦rdal', 'LÃ¸dingen', 'LÃ¸renskog', 'LÃ¸ten', 'Malvik', 'Marker', 'Masfjorden', 'Melhus', 'MelÃ¸y', 'MerÃ¥ker', 'Midt-Telemark', 'Midtre Gauldal', 'Modalen', 'Modum', 'Molde', 'Moskenes', 'Moss', 'MÃ¥lselv', 'MÃ¥sÃ¸y', 'Namsos - NÃ¥avmesjenjaelmie', 'Namsskogan', 'Nannestad', 'Narvik', 'Nes', 'Nesbyen', 'Nesna', 'Nesodden', 'Nissedal', 'Nittedal', 'Nome', 'Nord-Aurdal', 'Nord-Fron', 'Nord-Odal', 'Nordkapp', 'Nordre Follo', 'Nordre Land', 'Nordreisa - RÃ¡isa - Raisi', 'Nore og Uvdal', 'Notodden', 'NÃ¦rÃ¸ysund', 'Oppdal', 'Orkland', 'Os', 'Osen', 'Oslo - Oslove', 'OsterÃ¸y', 'Overhalla', 'Porsanger - PorsÃ¡ngu - Porsanki', 'Porsgrunn', 'Raarvihke - RÃ¸yrvik', 'Rakkestad', 'Rana - Raane', 'Randaberg', 'Rauma', 'Rendalen', 'Rennebu', 'Rindal', 'Ringebu', 'Ringerike', 'Ringsaker', 'RisÃ¸r', 'Rollag', 'RÃ¥de', 'RÃ¦lingen', 'RÃ¸dÃ¸y', 'RÃ¸ros - Rosse', 'RÃ¸st', 'Salangen', 'Saltdal', 'Samnanger', 'Sande', 'Sandefjord', 'Sandnes', 'Sarpsborg', 'Sauda', 'Sel', 'Selbu', 'Seljord', 'Senja', 'Sigdal', 'Siljan', 'Sirdal', 'Skaun', 'Skien', 'Skiptvet', 'SkjervÃ¸y', 'SkjÃ¥k', 'SmÃ¸la', 'SnÃ¥ase - SnÃ¥sa', 'Sogndal', 'Sokndal', 'Sola', 'Solund', 'Sortland - SuortÃ¡', 'Stad', 'Stange', 'Stavanger', 'Steigen', 'Steinkjer - StÃ¯entje', 'StjÃ¸rdal', 'Stor-Elvdal', 'Stord', 'Storfjord - Omasvuotna - Omasvuono', 'Strand', 'Stranda', 'Stryn', 'Sula', 'Suldal', 'Sunndal', 'Sunnfjord', 'Surnadal', 'Sveio', 'Sykkylven', 'SÃ¸mna', 'SÃ¸ndre Land', 'SÃ¸r-Aurdal', 'SÃ¸r-Fron', 'SÃ¸r-Odal', 'SÃ¸r-Varanger', 'SÃ¸rfold - FuolldÃ¡', 'SÃ¸rreisa', 'Time', 'Tingvoll', 'Tinn', 'Tokke', 'Tolga', 'TromsÃ¸', 'Trondheim - TrÃ¥ante', 'Trysil', 'TrÃ¦na', 'Tvedestrand', 'Tydal', 'Tynset', 'Tysnes', 'TysvÃ¦r', 'TÃ¸nsberg', 'Ullensaker', 'Ullensvang', 'Ulstein', 'Ulvik', 'UnjÃ¡rga - Nesseby', 'Uoppgitt kommune', 'Utsira', 'VadsÃ¸', 'Vaksdal', 'Valle', 'Vang', 'Vanylven', 'VardÃ¸', 'Vefsn', 'Vega', 'VegÃ¥rshei', 'Vennesla', 'Verdal', 'Vestby', 'Vestnes', 'Vestre Slidre', 'Vestre Toten', 'VestvÃ¥gÃ¸y', 'Vevelstad', 'Vik', 'Vindafjord', 'Vinje', 'Volda', 'Voss', 'VÃ¥gan', 'VÃ¥gÃ¥', 'VÃ¥ler (Innlandet)', 'VÃ¥ler (Ã˜stfold)', 'VÃ¦rÃ¸y', 'Ã…fjord', 'Ã…l', 'Ã…lesund', 'Ã…mli', 'Ã…mot', 'Ã…rdal', 'Ã…s', 'Ã…seral', 'Ã…snes', 'Ã˜ksnes', 'Ã˜rland', 'Ã˜rsta', 'Ã˜stre Toten', 'Ã˜vre Eiker', 'Ã˜yer', 'Ã˜ygarden', 'Ã˜ystre Slidre']
-  Unique tilflyttingsregion: ['Aarborte - Hattfjelldal', 'Alstahaug', 'Alta', 'Alvdal', 'Alver', 'AndÃ¸y', 'Aremark', 'Arendal', 'Asker', 'Askvoll', 'AskÃ¸y', 'Aukra', 'Aure', 'Aurland', 'Aurskog-HÃ¸land', 'Austevoll', 'Austrheim', 'AverÃ¸y', 'Balsfjord', 'Bamble', 'Bardu', 'Beiarn', 'Bergen', 'BerlevÃ¥g', 'Bindal', 'Birkenes', 'Bjerkreim', 'BjÃ¸rnafjorden', 'BodÃ¸', 'Bokn', 'Bremanger', 'BrÃ¸nnÃ¸y', 'Bygland', 'Bykle', 'BÃ¥tsfjord', 'BÃ¦rum', 'BÃ¸', 'BÃ¸mlo', 'Deatnu - Tana', 'Dielddanuorri - Tjeldsund', 'Dovre', 'Drammen', 'Drangedal', 'DyrÃ¸y', 'DÃ¸nna', 'Eidfjord', 'Eidskog', 'Eidsvoll', 'Eigersund', 'Elverum', 'Enebakk', 'Engerdal', 'Etne', 'Etnedal', 'Evenes - EvenÃ¡ssi', 'Evje og Hornnes', 'Farsund', 'Fauske - Fuossko', 'Fedje', 'Fitjar', 'Fjaler', 'Fjord', 'Flakstad', 'Flatanger', 'Flekkefjord', 'Flesberg', 'FlÃ¥', 'Folldal', 'Fredrikstad', 'Frogn', 'Froland', 'Frosta', 'FrÃ¸ya', 'Fyresdal', 'FÃ¦rder', 'Gamvik', 'Gausdal', 'GildeskÃ¥l', 'Giske', 'Gjemnes', 'Gjerdrum', 'Gjerstad', 'Gjesdal', 'GjÃ¸vik', 'Gloppen', 'Gol', 'Gran', 'Grane', 'Gratangen - RivttÃ¡k', 'Grimstad', 'Grong', 'Grue', 'Gulen', 'Guovdageaidnu - Kautokeino', 'GÃ¡ivuotna - KÃ¥fjord - Kaivuono', 'Hadsel', 'Halden', 'Hamar', 'Hammerfest - HÃ¡mmerfeasta', 'Haram', 'Hareid', 'Harstad - HÃ¡rsttÃ¡k', 'Hasvik', 'Haugesund', 'Heim', 'Hemnes', 'Hemsedal', 'HerÃ¸y (MÃ¸re og Romsdal)', 'HerÃ¸y (Nordland)', 'Hitra', 'Hjartdal', 'Hjelmeland', 'Hol', 'Hole', 'Holmestrand', 'HoltÃ¥len', 'Horten', 'Hurdal', 'Hustadvika', 'Hvaler', 'Hyllestad', 'HÃ¡bmer - HamarÃ¸y', 'HÃ¥', 'HÃ¦gebostad', 'HÃ¸yanger', 'HÃ¸ylandet', 'Ibestad', 'InderÃ¸y', 'Indre Fosen', 'Indre Ã˜stfold', 'Iveland', 'Jevnaker', 'KarlsÃ¸y', 'KarmÃ¸y', 'Kinn', 'Klepp', 'Kongsberg', 'Kongsvinger', 'KragerÃ¸', 'Kristiansand', 'Kristiansund', 'KrÃ¸dsherad', 'Kvam', 'Kvinesdal', 'Kvinnherad', 'Kviteseid', 'KvitsÃ¸y', 'KvÃ¦fjord', 'KvÃ¦nangen', 'KÃ¡rÃ¡sjohka - Karasjok', 'Larvik', 'Lebesby', 'Leirfjord', 'Leka', 'Lesja', 'Levanger - Levangke', 'Lier', 'Lierne', 'Lillehammer', 'Lillesand', 'LillestrÃ¸m', 'Lindesnes', 'LoabÃ¡k - Lavangen', 'Lom', 'Loppa', 'Lund', 'Lunner', 'LurÃ¸y', 'Luster', 'Lyngdal', 'Lyngen - Ivgu - YykeÃ¤', 'LÃ¦rdal', 'LÃ¸dingen', 'LÃ¸renskog', 'LÃ¸ten', 'Malvik', 'Marker', 'Masfjorden', 'Melhus', 'MelÃ¸y', 'MerÃ¥ker', 'Midt-Telemark', 'Midtre Gauldal', 'Modalen', 'Modum', 'Molde', 'Moskenes', 'Moss', 'MÃ¥lselv', 'MÃ¥sÃ¸y', 'Namsos - NÃ¥avmesjenjaelmie', 'Namsskogan', 'Nannestad', 'Narvik', 'Nes', 'Nesbyen', 'Nesna', 'Nesodden', 'Nissedal', 'Nittedal', 'Nome', 'Nord-Aurdal', 'Nord-Fron', 'Nord-Odal', 'Nordkapp', 'Nordre Follo', 'Nordre Land', 'Nordreisa - RÃ¡isa - Raisi', 'Nore og Uvdal', 'Notodden', 'NÃ¦rÃ¸ysund', 'Oppdal', 'Orkland', 'Os', 'Osen', 'Oslo - Oslove', 'OsterÃ¸y', 'Overhalla', 'Porsanger - PorsÃ¡ngu - Porsanki', 'Porsgrunn', 'Raarvihke - RÃ¸yrvik', 'Rakkestad', 'Rana - Raane', 'Randaberg', 'Rauma', 'Rendalen', 'Rennebu', 'Rindal', 'Ringebu', 'Ringerike', 'Ringsaker', 'RisÃ¸r', 'Rollag', 'RÃ¥de', 'RÃ¦lingen', 'RÃ¸dÃ¸y', 'RÃ¸ros - Rosse', 'RÃ¸st', 'Salangen', 'Saltdal', 'Samnanger', 'Sande', 'Sandefjord', 'Sandnes', 'Sarpsborg', 'Sauda', 'Sel', 'Selbu', 'Seljord', 'Senja', 'Sigdal', 'Siljan', 'Sirdal', 'Skaun', 'Skien', 'Skiptvet', 'SkjervÃ¸y', 'SkjÃ¥k', 'SmÃ¸la', 'SnÃ¥ase - SnÃ¥sa', 'Sogndal', 'Sokndal', 'Sola', 'Solund', 'Sortland - SuortÃ¡', 'Stad', 'Stange', 'Stavanger', 'Steigen', 'Steinkjer - StÃ¯entje', 'StjÃ¸rdal', 'Stor-Elvdal', 'Stord', 'Storfjord - Omasvuotna - Omasvuono', 'Strand', 'Stranda', 'Stryn', 'Sula', 'Suldal', 'Sunndal', 'Sunnfjord', 'Surnadal', 'Sveio', 'Sykkylven', 'SÃ¸mna', 'SÃ¸ndre Land', 'SÃ¸r-Aurdal', 'SÃ¸r-Fron', 'SÃ¸r-Odal', 'SÃ¸r-Varanger', 'SÃ¸rfold - FuolldÃ¡', 'SÃ¸rreisa', 'Time', 'Tingvoll', 'Tinn', 'Tokke', 'Tolga', 'TromsÃ¸', 'Trondheim - TrÃ¥ante', 'Trysil', 'TrÃ¦na', 'Tvedestrand', 'Tydal', 'Tynset', 'Tysnes', 'TysvÃ¦r', 'TÃ¸nsberg', 'Ullensaker', 'Ullensvang', 'Ulstein', 'Ulvik', 'UnjÃ¡rga - Nesseby', 'Uoppgitt kommune', 'Utsira', 'VadsÃ¸', 'Vaksdal', 'Valle', 'Vang', 'Vanylven', 'VardÃ¸', 'Vefsn', 'Vega', 'VegÃ¥rshei', 'Vennesla', 'Verdal', 'Vestby', 'Vestnes', 'Vestre Slidre', 'Vestre Toten', 'VestvÃ¥gÃ¸y', 'Vevelstad', 'Vik', 'Vindafjord', 'Vinje', 'Volda', 'Voss', 'VÃ¥gan', 'VÃ¥gÃ¥', 'VÃ¥ler (Innlandet)', 'VÃ¥ler (Ã˜stfold)', 'VÃ¦rÃ¸y', 'Ã…fjord', 'Ã…l', 'Ã…lesund', 'Ã…mli', 'Ã…mot', 'Ã…rdal', 'Ã…s', 'Ã…seral', 'Ã…snes', 'Ã˜ksnes', 'Ã˜rland', 'Ã˜rsta', 'Ã˜stre Toten', 'Ã˜vre Eiker', 'Ã˜yer', 'Ã˜ygarden', 'Ã˜ystre Slidre']
 
-WARNING: 1 kommuner missing coordinates:
-  Uoppgitt kommune (kommunenummer: unknown)
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Flytting/flytting_til_og_fra_kommunene.py", line 40, in <module>
+    df = fetch_data(
+         ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/13864/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=2025&valuecodes%5BFraflyttingsregion%5D=*&codelist%5BFraflyttingsregion%5D=agg_KommGjeldende&valuecodes%5BTilflyttRegion%5D=*&codelist%5BTilflyttRegion%5D=agg_KommGjeldende&heading=ContentsCode,Tid,TilflyttRegion&stub=Fraflyttingsregion
 
-Fraflytting fra Telemark-kommuner: 1015 rows
-     Fra kommune    Ã…r    Til kommune  ...    Fra lat    Til lon    Til lat
-1768   Porsgrunn  2025         Halden  ...  59.128627  11.540067  59.119693
-1769   Porsgrunn  2025           Moss  ...  59.128627  10.757536  59.437986
-1770   Porsgrunn  2025      Sarpsborg  ...  59.128627  11.103603  59.330441
-1771   Porsgrunn  2025    Fredrikstad  ...  59.128627  10.921894  59.279517
-1776   Porsgrunn  2025  Indre Ã˜stfold  ...  59.128627  11.070075  59.593028
-1780   Porsgrunn  2025          BÃ¦rum  ...  59.128627  10.447244  59.926341
-1781   Porsgrunn  2025          Asker  ...  59.128627  10.367314  59.845273
-1782   Porsgrunn  2025     LillestrÃ¸m  ...  59.128627  11.211944  59.955020
-1783   Porsgrunn  2025   Nordre Follo  ...  59.128627  10.889534  59.708178
-1784   Porsgrunn  2025     Ullensaker  ...  59.128627  11.195032  60.156103
+During handling of the above exception, another exception occurred:
 
-[10 rows x 12 columns]
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Flytting/flytting_til_og_fra_kommunene.py", line 50, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
 
-Tilflytting til Telemark-kommuner: 957 rows
-   Fra kommune    Ã…r    Til kommune  ...    Fra lat   Til lon    Til lat
-0       Halden  2025      Porsgrunn  ...  59.119693  9.749579  59.128627
-1       Halden  2025          Skien  ...  59.119693  9.513377  59.248775
-6       Halden  2025      Drangedal  ...  59.119693  9.073635  59.128067
-8       Halden  2025  Midt-Telemark  ...  59.119693  9.099006  59.436604
-17        Moss  2025      Porsgrunn  ...  59.437986  9.749579  59.128627
-18        Moss  2025          Skien  ...  59.437986  9.513377  59.248775
-19        Moss  2025       Notodden  ...  59.437986  9.045503  59.638927
-20        Moss  2025         Siljan  ...  59.437986  9.706677  59.268424
-21        Moss  2025         Bamble  ...  59.437986  9.427091  59.007494
-22        Moss  2025        KragerÃ¸  ...  59.437986  9.297764  58.892936
-
-[10 rows x 12 columns]
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\fraflytting_fra_telemarkskommuner.csv
-[2026-04-22 08:06:17] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\fraflytting_fra_telemarkskommuner.csv
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\tilflytting_til_telemarkskommuner.csv
-[2026-04-22 08:06:17] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\tilflytting_til_telemarkskommuner.csv
-No new data detected in fraflytting_fra_telemarkskommuner.csv.
-No new data detected in tilflytting_til_telemarkskommuner.csv.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Flytting_-_Til_og_fra_kommunene.log
-
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Flytting/flytting_til_og_fra_kommunene.py` failed. (See above for error)
