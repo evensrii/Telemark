@@ -2,25 +2,27 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Husholdninger etter boligtype (06070) JSON-stat data loaded successfully.
-      region  ... value
-0  Porsgrunn  ...  6424
-1  Porsgrunn  ...  4134
-2  Porsgrunn  ...  1397
-3  Porsgrunn  ...  1802
-4  Porsgrunn  ...   221
+Request error in Husholdninger etter boligtype (06070): 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/06070/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2014)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BHushType%5D=*&heading=ContentsCode,Tid,HushType&stub=Region
+Error occurred: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/06070/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2014)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BHushType%5D=*&heading=ContentsCode,Tid,HushType&stub=Region
+Email notifications disabled. Errors in husholdninger_etter_boligtype.py were not sent.
 
-[5 rows x 5 columns]
-['region', 'statistikkvariabel', 'Ã¥r', 'husholdningstype', 'value']
-  Kommunenummer Kommune          Ã…r               Husholdningstype  Antall
-0          4012  Bamble  01.01.2014                    Aleneboende    1917
-1          4012  Bamble  01.01.2014    AleneforsÃ¸rger med smÃ¥ barn      85
-2          4012  Bamble  01.01.2014  AleneforsÃ¸rger med store barn     239
-3          4012  Bamble  01.01.2014            Andre husholdninger       0
-4          4012  Bamble  01.01.2014       Flerfamiliehusholdninger     272
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\husholdninger_etter_boligtype.csv
-[2026-04-22 08:20:00] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\husholdninger_etter_boligtype.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Husholdninger_etter_boligtype.log
 
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/husholdninger_etter_boligtype.py", line 33, in <module>
+    df = fetch_data(
+         ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/06070/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2014)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BHushType%5D=*&heading=ContentsCode,Tid,HushType&stub=Region
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/husholdninger_etter_boligtype.py", line 43, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/husholdninger_etter_boligtype.py` failed. (See above for error)
