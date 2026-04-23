@@ -2,85 +2,27 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Telemark JSON-stat data loaded successfully.
-     region                                 nivÃ¥  ...    Ã¥r value
-0  Telemark                       GrunnskolenivÃ¥  ...  2024  25.6
-1  Telemark               VideregÃ¥ende skolenivÃ¥  ...  2024  40.0
-2  Telemark                         FagskolenivÃ¥  ...  2024   3.7
-3  Telemark  Universitets- og hÃ¸gskolenivÃ¥, kort  ...  2024  23.1
-4  Telemark  Universitets- og hÃ¸gskolenivÃ¥, lang  ...  2024   7.6
+Request error in Telemark: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/v0/no/table/09429/
+Error occurred: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/v0/no/table/09429/
+Email notifications disabled. Errors in utdanningsnivaa_telemark_og_landet.py were not sent.
 
-[5 rows x 6 columns]
-Hele landet JSON-stat data loaded successfully.
-        region                                 nivÃ¥  ...    Ã¥r value
-0  Hele landet                       GrunnskolenivÃ¥  ...  2024  23.1
-1  Hele landet               VideregÃ¥ende skolenivÃ¥  ...  2024  35.6
-2  Hele landet                         FagskolenivÃ¥  ...  2024   3.3
-3  Hele landet  Universitets- og hÃ¸gskolenivÃ¥, kort  ...  2024  25.4
-4  Hele landet  Universitets- og hÃ¸gskolenivÃ¥, lang  ...  2024  12.5
 
-[5 rows x 6 columns]
-Hele landet uten Oslo JSON-stat data loaded successfully.
-                              region  ...   value
-0                            Ã˜stfold  ...   73454
-1                            Ã˜stfold  ...  100363
-2                            Ã˜stfold  ...    8167
-3                            Ã˜stfold  ...   59018
-4                            Ã˜stfold  ...   19281
-..                               ...  ...     ...
-65  Finnmark - FinnmÃ¡rku - Finmarkku  ...   18071
-66  Finnmark - FinnmÃ¡rku - Finmarkku  ...   22623
-67  Finnmark - FinnmÃ¡rku - Finmarkku  ...    2327
-68  Finnmark - FinnmÃ¡rku - Finmarkku  ...   14545
-69  Finnmark - FinnmÃ¡rku - Finmarkku  ...    4968
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃ¦ring_og_kompetanse/UtdanningsnivÃ¥/utdanningsnivaa_telemark_og_landet.py", line 90, in <module>
+    df_telemark = fetch_data(
+                  ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/v0/no/table/09429/
 
-[70 rows x 6 columns]
+During handling of the above exception, another exception occurred:
 
-Processed df_landet_uten_oslo:
-                    region                                 nivÃ¥  ...    Ã¥r value
-0  Hele landet utenom Oslo                         FagskolenivÃ¥  ...  2024   3.5
-1  Hele landet utenom Oslo                       GrunnskolenivÃ¥  ...  2024  23.8
-2  Hele landet utenom Oslo  Universitets- og hÃ¸gskolenivÃ¥, kort  ...  2024  24.5
-3  Hele landet utenom Oslo  Universitets- og hÃ¸gskolenivÃ¥, lang  ...  2024  10.7
-4  Hele landet utenom Oslo               VideregÃ¥ende skolenivÃ¥  ...  2024  37.5
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃ¦ring_og_kompetanse/UtdanningsnivÃ¥/utdanningsnivaa_telemark_og_landet.py", line 102, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
 
-[5 rows x 6 columns]
-
-Final processed dataframes:
-
-df_telemark_final:
-     region                                 nivÃ¥  Andel (2024)
-0  Telemark                       GrunnskolenivÃ¥          25.6
-1  Telemark               VideregÃ¥ende skolenivÃ¥          40.0
-2  Telemark                         FagskolenivÃ¥           3.7
-3  Telemark  Universitets- og hÃ¸gskolenivÃ¥, kort          23.1
-4  Telemark  Universitets- og hÃ¸gskolenivÃ¥, lang           7.6
-
-df_landet_final:
-        region                                 nivÃ¥  Andel (2024)
-0  Hele landet                       GrunnskolenivÃ¥          23.1
-1  Hele landet               VideregÃ¥ende skolenivÃ¥          35.6
-2  Hele landet                         FagskolenivÃ¥           3.3
-3  Hele landet  Universitets- og hÃ¸gskolenivÃ¥, kort          25.4
-4  Hele landet  Universitets- og hÃ¸gskolenivÃ¥, lang          12.5
-
-df_landet_uten_oslo_final:
-                    region                                 nivÃ¥  Andel (2024)
-0  Hele landet utenom Oslo                         FagskolenivÃ¥           3.5
-1  Hele landet utenom Oslo                       GrunnskolenivÃ¥          23.8
-2  Hele landet utenom Oslo  Universitets- og hÃ¸gskolenivÃ¥, kort          24.5
-3  Hele landet utenom Oslo  Universitets- og hÃ¸gskolenivÃ¥, lang          10.7
-4  Hele landet utenom Oslo               VideregÃ¥ende skolenivÃ¥          37.5
-
-Final transformed dataframe:
-       UtdanningsnivÃ¥  Telemark  Hele landet  Hele landet utenom Oslo
-0          Grunnskole      25.6         23.1                     23.8
-1  VideregÃ¥ende skole      40.0         35.6                     37.5
-2            Fagskole       3.7          3.3                      3.5
-3    HÃ¸yere utdanning      30.7         37.9                     35.2
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\utdanningsniva_telemark_og_landet.csv
-[2026-04-22 08:07:05] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\utdanningsniva_telemark_og_landet.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Utdanningsnivaa_Telemark_og_landet.log
-
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa_telemark_og_landet.py` failed. (See above for error)
