@@ -2,27 +2,27 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Boliger etter boligtype (06265): 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/06265/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2013)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BBygnType%5D=*&heading=ContentsCode,Tid,BygnType&stub=Region
-Error occurred: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/06265/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2013)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BBygnType%5D=*&heading=ContentsCode,Tid,BygnType&stub=Region
-Email notifications disabled. Errors in boliger_etter_boligtype.py were not sent.
+Boliger etter boligtype (06265) JSON-stat data loaded successfully.
+      region  ... value
+0  Porsgrunn  ...  8947
+1  Porsgrunn  ...  1199
+2  Porsgrunn  ...  2555
+3  Porsgrunn  ...  2902
+4  Porsgrunn  ...   598
 
+[5 rows x 5 columns]
+['region', 'statistikkvariabel', 'Ã¥r', 'bygningstype', 'value']
+  Kommunenummer    Kommune  ...                        Bygningstype Antall
+0          4001  Porsgrunn  ...                            Enebolig   8947
+1          4001  Porsgrunn  ...                        Tomannsbolig   1199
+2          4001  Porsgrunn  ...  Rekkehus, kjedehus og andre smÃ¥hus   2555
+3          4001  Porsgrunn  ...                          Boligblokk   2902
+4          4001  Porsgrunn  ...            Bygning for bofellesskap    598
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/boliger_etter_boligtype.py", line 33, in <module>
-    df = fetch_data(
-         ^^^^^^^^^^^
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/06265/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2013)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BBygnType%5D=*&heading=ContentsCode,Tid,BygnType&stub=Region
+[5 rows x 5 columns]
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\boliger_etter_boligtype.csv
+[2026-04-24 08:18:28] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\boliger_etter_boligtype.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Boliger_etter_boligtype.log
 
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/boliger_etter_boligtype.py", line 43, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/boliger_etter_boligtype.py` failed. (See above for error)
