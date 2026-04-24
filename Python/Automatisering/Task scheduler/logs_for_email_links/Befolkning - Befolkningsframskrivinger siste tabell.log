@@ -2,14 +2,53 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
+Found 2 tables matching 'Framskrevet folkemengde'
 
+Most recent regional (K) table:
+  Table ID: 14288
+  Label: 14288: Framskrevet folkemengde 1. januar, etter kjÃ¸nn og alder, i 9 alternativer (K) 2024-2050
+  Period: 2024-2050
+  Updated: 2024-09-13
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell.py", line 43, in <module>
-    r.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables?query=title%3AFramskrevet+folkemengde&lang=no&pagesize=50&pageNumber=1
+Metadata for table 14288:
+  Telemark municipalities: 17 found
+  Region codelist: vs_KommunFram2024Agg
+  Age codelist: agg_Funksjonell4
+  ContentsCode: ['Personer', 'Personer1', 'Personer2', 'Personer3', 'Personer4', 'Personer5', 'Personer6', 'Personer7', 'Personer8']
+  Period: 2024-2050
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell.py` failed. (See above for error)
+Querying Telemark kommuner from table 14288...
+  URL: https://data.ssb.no/api/pxwebapi/v2/tables/14288/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=Personer,...
+Siste framskriving 14288 - Telemark kommuner JSON-stat data loaded successfully.
+  -> Got 13770 rows
+
+Querying Telemark fylke from table 14288...
+  URL: https://data.ssb.no/api/pxwebapi/v2/tables/14288/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=Personer,...
+Siste framskriving 14288 - Telemark fylke JSON-stat data loaded successfully.
+  -> Got 810 rows
+
+Querying Norge from table 14288...
+  URL: https://data.ssb.no/api/pxwebapi/v2/tables/14288/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=Personer,...
+Siste framskriving 14288 - Norge JSON-stat data loaded successfully.
+  -> Got 810 rows
+
+Combined data: 15390 rows
+  Columns: ['region', 'statistikkvariabel', 'Ã¥r', 'alder', 'value']
+  Regions: ['Bamble', 'Drangedal', 'Fyresdal', 'Hele landet', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Telemark', 'Tinn', 'Tokke', 'Vinje']
+      region        statistikkvariabel    Ã¥r     alder  value
+0  Porsgrunn  Hovedalternativet (MMMM)  2024      0 Ã¥r    303
+1  Porsgrunn  Hovedalternativet (MMMM)  2024    1-5 Ã¥r   1733
+2  Porsgrunn  Hovedalternativet (MMMM)  2024   6-12 Ã¥r   2781
+3  Porsgrunn  Hovedalternativet (MMMM)  2024  13-15 Ã¥r   1351
+4  Porsgrunn  Hovedalternativet (MMMM)  2024  16-19 Ã¥r   1760
+
+Existing data year range: 2024-2050
+New data year range:      2024-2050
+
+Same framskriving year range â€” no archiving needed.
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell.csv
+[2026-04-24 08:05:39] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_siste_tabell.log
+
