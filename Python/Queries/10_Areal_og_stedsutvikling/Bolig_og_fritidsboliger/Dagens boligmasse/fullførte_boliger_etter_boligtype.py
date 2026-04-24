@@ -17,14 +17,14 @@ error_messages = []
 # SSB API v2 GET URL (tabell 05940 - Fullførte boliger etter boligtype)
 GET_URL = (
     "https://data.ssb.no/api/pxwebapi/v2/tables/05940/data?lang=no"
-    "&outputFormat=json-stat2"
-    "&valuecodes[ContentsCode]=Fullforte,BruksarealFullfort"
+    "&outputFormat=json-stat2"  
     "&valuecodes[Tid]=*"
     "&valuecodes[Region]=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036"
     "&codelist[Region]=agg_KommSummer"
     "&valuecodes[Byggeareal]=*"
-    "&heading=ContentsCode,Tid,Byggeareal"
-    "&stub=Region"
+    "&valuecodes[ContentsCode]=Fullforte"
+    "&heading=Region,ContentsCode,Tid"
+    "&stub=Byggeareal"
 )
 
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
@@ -85,8 +85,27 @@ df = df.rename(columns={
     "value": "Antall",
 })
 
+# Create "Største bygningstyper" column (top 9 by total county-wide Antall, rest = "Andre")
+top9 = (
+    df.groupby("Bygningstype")["Antall"]
+    .sum()
+    .nlargest(9)
+)
+top9_rank = {boligtype: rank for rank, boligtype in enumerate(top9.index, start=1)}
+df["Største bygningstyper"] = df["Bygningstype"].where(df["Bygningstype"].isin(top9.index), "Andre")
+df["SortStorsteBygningstype"] = df["Bygningstype"].map(top9_rank).fillna(10).astype(int)
+
+# Create "SortBygningstype" column (rank all bygningstyper by county-wide total)
+all_rank = (
+    df.groupby("Bygningstype")["Antall"]
+    .sum()
+    .rank(ascending=False, method="min")
+    .astype(int)
+)
+df["SortBygningstype"] = df["Bygningstype"].map(all_rank)
+
 # Reorder columns with Kommunenummer first
-df = df[["Kommunenummer", "Kommune", "År", "Bygningstype", "Antall"]]
+df = df[["Kommunenummer", "Kommune", "År", "Bygningstype", "SortBygningstype", "Største bygningstyper", "SortStorsteBygningstype", "Antall"]]
 
 print(df.head())
 

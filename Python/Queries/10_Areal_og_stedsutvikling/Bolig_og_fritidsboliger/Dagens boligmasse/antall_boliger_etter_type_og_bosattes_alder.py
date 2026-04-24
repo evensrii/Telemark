@@ -74,8 +74,17 @@ df = df.rename(columns={
     "value": "Verdi",
 })
 
-# Reorder columns with Kommunenummer first
-df = df[["Kommunenummer", "Kommune", "Alder", "Statistikkvariabel", "År", "Bygningstype", "Verdi"]]
+# Pivot Statistikkvariabel into separate columns
+index_cols = ["Kommunenummer", "Kommune", "Alder", "År", "Bygningstype"]
+df = df.pivot_table(index=index_cols, columns="Statistikkvariabel", values="Verdi", aggfunc="first").reset_index()
+df.columns.name = None
+
+# Rename and transform
+df = df.rename(columns={"Antall personer": "Antall", "Personer (prosent)": "Andel"})
+df["Andel"] = pd.to_numeric(df["Andel"], errors="coerce") / 100
+
+# Reorder columns
+df = df[["Kommunenummer", "Kommune", "Alder", "År", "Bygningstype", "Antall", "Andel"]]
 
 print(df.head())
 

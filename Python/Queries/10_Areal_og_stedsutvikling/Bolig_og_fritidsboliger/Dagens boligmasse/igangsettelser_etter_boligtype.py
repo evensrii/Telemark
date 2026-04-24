@@ -85,8 +85,27 @@ df = df.rename(columns={
     "value": "Antall",
 })
 
+# Create "Største bygningstyper" column (top 9 by total county-wide Antall, rest = "Andre")
+top9 = (
+    df.groupby("Bygningstype")["Antall"]
+    .sum()
+    .nlargest(9)
+)
+top9_rank = {boligtype: rank for rank, boligtype in enumerate(top9.index, start=1)}
+df["Største bygningstyper"] = df["Bygningstype"].where(df["Bygningstype"].isin(top9.index), "Andre")
+df["SortStorsteBygningstype"] = df["Bygningstype"].map(top9_rank).fillna(10).astype(int)
+
+# Create "SortBygningstype" column (rank all bygningstyper by county-wide total)
+all_rank = (
+    df.groupby("Bygningstype")["Antall"]
+    .sum()
+    .rank(ascending=False, method="min")
+    .astype(int)
+)
+df["SortBygningstype"] = df["Bygningstype"].map(all_rank)
+
 # Reorder columns with Kommunenummer first
-df = df[["Kommunenummer", "Kommune", "År", "Bygningstype", "Antall"]]
+df = df[["Kommunenummer", "Kommune", "År", "Bygningstype", "SortBygningstype", "Største bygningstyper", "SortStorsteBygningstype", "Antall"]]
 
 print(df.head())
 
