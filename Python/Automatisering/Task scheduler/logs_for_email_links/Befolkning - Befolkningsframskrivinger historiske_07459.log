@@ -5,27 +5,31 @@ GITHUB_TOKEN loaded successfully.
 
 Querying Telemark kommuner...
   URL: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=*&valueco...
-Request error in Historiske 07459 - Telemark kommuner: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2000)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BAlder%5D=*&codelist%5BAlder%5D=agg_Funksjonell4&heading=ContentsCode,Tid&stub=Region,Alder
-Error occurred: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2000)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BAlder%5D=*&codelist%5BAlder%5D=agg_Funksjonell4&heading=ContentsCode,Tid&stub=Region,Alder
-Email notifications disabled. Errors in befolkningsframskrivinger_historiske_07459.py were not sent.
+Historiske 07459 - Telemark kommuner JSON-stat data loaded successfully.
+  -> Got 4590 rows
 
+Querying Telemark fylke...
+  URL: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=*&valueco...
+Historiske 07459 - Telemark fylke JSON-stat data loaded successfully.
+  -> Got 70 rows
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske_07459.py", line 77, in <module>
-    df_q = fetch_data(
-           ^^^^^^^^^^^
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2000)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BAlder%5D=*&codelist%5BAlder%5D=agg_Funksjonell4&heading=ContentsCode,Tid&stub=Region,Alder
+Querying Norge...
+  URL: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=*&valueco...
+Historiske 07459 - Norge JSON-stat data loaded successfully.
+  -> Got 70 rows
 
-During handling of the above exception, another exception occurred:
+Combined data: 4730 rows
+  Columns: ['region', 'alder', 'statistikkvariabel', 'Ã¥r', 'value']
+  Regions: ['Bamble', 'Drangedal', 'Fyresdal', 'Hele landet', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Telemark', 'Tinn', 'Tokke', 'Vinje']
+      region alder statistikkvariabel    Ã¥r  value
+0  Porsgrunn  0 Ã¥r           Personer  2000    413
+1  Porsgrunn  0 Ã¥r           Personer  2001    413
+2  Porsgrunn  0 Ã¥r           Personer  2002    365
+3  Porsgrunn  0 Ã¥r           Personer  2003    335
+4  Porsgrunn  0 Ã¥r           Personer  2004    364
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_historiske.csv
+[2026-04-24 08:05:26] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_historiske.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_historiske_07459.log
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske_07459.py", line 87, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske_07459.py` failed. (See above for error)
