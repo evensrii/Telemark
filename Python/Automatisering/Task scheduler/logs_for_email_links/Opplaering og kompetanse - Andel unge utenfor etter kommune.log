@@ -2,27 +2,12 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Andel unge utenfor arbeid og utdanning (13556): 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/13556/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=BosatteProsent&valuecodes%5BTid%5D=top(1)&valuecodes%5BRegion%5D=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036&codelist%5BRegion%5D=agg_KommGjeldende&valuecodes%5BHovArbStyrkStatus%5D=NEET&codelist%5BHovArbStyrkStatus%5D=vs_ArbStatus2018niva4&valuecodes%5BAlder%5D=15-29&valuecodes%5BKjonn%5D=0&heading=Tid,ContentsCode,HovArbStyrkStatus&stub=Region,Alder,Kjonn
-Error occurred: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/13556/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=BosatteProsent&valuecodes%5BTid%5D=top(1)&valuecodes%5BRegion%5D=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036&codelist%5BRegion%5D=agg_KommGjeldende&valuecodes%5BHovArbStyrkStatus%5D=NEET&codelist%5BHovArbStyrkStatus%5D=vs_ArbStatus2018niva4&valuecodes%5BAlder%5D=15-29&valuecodes%5BKjonn%5D=0&heading=Tid,ContentsCode,HovArbStyrkStatus&stub=Region,Alder,Kjonn
-Email notifications disabled. Errors in andel_unge_utenfor_kommuner.py were not sent.
+Andel unge utenfor arbeid og utdanning (13556) JSON-stat data loaded successfully.
+Andel unge utenfor - Hele landet (13556) JSON-stat data loaded successfully.
+Andel unge utenfor - Telemark (13556) JSON-stat data loaded successfully.
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_unge_utenfor_kommuner.csv
+[2026-04-24 08:07:11] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_unge_utenfor_kommuner.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Andel_unge_utenfor_etter_kommune.log
 
-
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃ¦ring_og_kompetanse/Utenforskap/andel_unge_utenfor_kommuner.py", line 35, in <module>
-    df = fetch_data(
-         ^^^^^^^^^^^
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://data.ssb.no/api/pxwebapi/v2/tables/13556/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=BosatteProsent&valuecodes%5BTid%5D=top(1)&valuecodes%5BRegion%5D=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036&codelist%5BRegion%5D=agg_KommGjeldende&valuecodes%5BHovArbStyrkStatus%5D=NEET&codelist%5BHovArbStyrkStatus%5D=vs_ArbStatus2018niva4&valuecodes%5BAlder%5D=15-29&valuecodes%5BKjonn%5D=0&heading=Tid,ContentsCode,HovArbStyrkStatus&stub=Region,Alder,Kjonn
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃ¦ring_og_kompetanse/Utenforskap/andel_unge_utenfor_kommuner.py", line 45, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/02_Opplæring_og_kompetanse/Utenforskap/andel_unge_utenfor_kommuner.py` failed. (See above for error)
