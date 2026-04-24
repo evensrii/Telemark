@@ -4,7 +4,7 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 SSB Klass - Standard for nÃ¦ringsgruppering CSV data loaded successfully.
 No exact duplicate rows found.
-Found 191 near-duplicate rows with same Nace_5_nr but different Nace_5_navn.
+Found 192 near-duplicate rows with same Nace_5_nr but different Nace_5_navn.
 
 Top 10 near-duplicate rows being removed:
 --------------------------------------------------------------------------------
@@ -39,11 +39,11 @@ Nace_5_nr: 03.221
 Nace_5_navn: Produksjon av matfisk, blÃ¸tdyr og krepsdyr i ferskvannsbasert akvakultur
 --------------------------------------------------------------------------------
 
-Kept first instance of each Nace_5_nr, removed 191 near-duplicates.
-Final dataset: 1065 rows with 1065 unique Nace_5_nr values.
+Kept first instance of each Nace_5_nr, removed 192 near-duplicates.
+Final dataset: 1064 rows with 1064 unique Nace_5_nr values.
 âœ“ Verification passed: All Nace_5_nr values are unique.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\standard_for_naeringsgruppering.csv
-[2026-04-10 08:09:02] No new data to upload. Skipping GitHub update.
+[2026-04-24 08:09:04] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\standard_for_naeringsgruppering.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Standard_for_naeringsgruppering.log
