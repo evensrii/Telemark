@@ -88,6 +88,53 @@ df = df.rename(columns={
 # Reorder columns with Kommunenummer first
 df = df[["Kommunenummer", "Kommune", "År", "Bygningstype", "Antall"]]
 
+# --- Bygningstype grouped classification ---
+bygningstype_to_gr = {
+    "Enebolig": "Enebolig",
+    "Tomannsbolig": "Rekkehus, tomannsbolig og småhus",
+    "Rekkehus, kjedehus og andre småhus": "Rekkehus, tomannsbolig og småhus",
+    "Boligblokk": "Leilighet",
+    "Bygning for bofellesskap": "Annen boligbygging",
+    "Andre bygningstyper": "Annen boligbygging",
+    "Andre bygg enn boligbygg": "Andre bygg enn boligbygg",
+}
+df["Bygningstype_gr"] = df["Bygningstype"].map(bygningstype_to_gr)
+
+# Check for unmapped values
+unmapped = df[df["Bygningstype_gr"].isna()]["Bygningstype"].unique()
+if len(unmapped) > 0:
+    print(f"WARNING: Unmapped Bygningstype values: {unmapped}")
+    for val in sorted(df["Bygningstype"].unique()):
+        mapped = "OK" if val in bygningstype_to_gr else "MISSING"
+        print(f"  [{mapped}] '{val}'")
+
+# Dynamic column name based on actual number of unique groups
+n_gr = df["Bygningstype_gr"].nunique()
+col_gr = f"Bygningstype_{n_gr}_gr"
+sort_col_gr = f"Sort_{col_gr}"
+df = df.rename(columns={"Bygningstype_gr": col_gr})
+
+# Sort column: rank groups by summed Antall
+rank_gr = (
+    df.groupby(col_gr)["Antall"]
+    .sum()
+    .rank(ascending=False, method="min")
+    .astype(int)
+)
+df[sort_col_gr] = df[col_gr].map(rank_gr).fillna(0).astype(int)
+
+# Sort column: rank detailed bygningstyper by summed Antall
+all_rank = (
+    df.groupby("Bygningstype")["Antall"]
+    .sum()
+    .rank(ascending=False, method="min")
+    .astype(int)
+)
+df["Sort_Bygningstype"] = df["Bygningstype"].map(all_rank).fillna(0).astype(int)
+
+# Final column order
+df = df[["Kommunenummer", "Kommune", "År", "Bygningstype", "Sort_Bygningstype", col_gr, sort_col_gr, "Antall"]]
+
 print(df.head())
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
