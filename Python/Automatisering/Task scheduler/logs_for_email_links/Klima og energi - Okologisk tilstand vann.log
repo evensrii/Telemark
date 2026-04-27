@@ -2,29 +2,28 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-An unexpected error occurred during setup: Message: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Ingen driftsmeldinger dukket opp, continuing...
+An unexpected error occurred during setup: Message: 
 Stacktrace:
-Symbols not available. Dumping unresolved backtrace:
-	0x7ff7277eaa55
-	0x7ff727548630
-	0x7ff7272dd75d
-	0x7ff72731e182
-	0x7ff7273195d9
-	0x7ff72736fc51
-	0x7ff72736f4b6
-	0x7ff727329098
-	0x7ff727329f83
-	0x7ff727817810
-	0x7ff727811afd
-	0x7ff727832c1a
-	0x7ff727563345
-	0x7ff72756b81c
-	0x7ff727551924
-	0x7ff727551ad6
-	0x7ff727537e47
-	0x7ff9ae9a7ac4
-	0x7ff9aed2a8c1
+	chromedriver!GetHandleVerifier [0x7ff6b07aa8e5+14e45]
+	chromedriver!GetHandleVerifier [0x7ff6b07aa950+14eb0]
+	chromedriver!(No symbol) [0x7ff6b051d6ed]
+	chromedriver!(No symbol) [0x7ff6b0576cfe]
+	chromedriver!(No symbol) [0x7ff6b057700c]
+	chromedriver!(No symbol) [0x7ff6b05c7cb7]
+	chromedriver!(No symbol) [0x7ff6b05c483b]
+	chromedriver!(No symbol) [0x7ff6b05690e8]
+	chromedriver!(No symbol) [0x7ff6b0569fc3]
+	chromedriver!GetHandleVerifier [0x7ff6b0ac0149+32a6a9]
+	chromedriver!GetHandleVerifier [0x7ff6b0aba715+324c75]
+	chromedriver!GetHandleVerifier [0x7ff6b0adc012+346572]
+	chromedriver!GetHandleVerifier [0x7ff6b07c7cb5+32215]
+	chromedriver!GetHandleVerifier [0x7ff6b07d087c+3addc]
+	chromedriver!GetHandleVerifier [0x7ff6b07b40e4+1e644]
+	chromedriver!GetHandleVerifier [0x7ff6b07b4296+1e7f6]
+	chromedriver!GetHandleVerifier [0x7ff6b0798737+2c97]
+	KERNEL32!BaseThreadInitThunk [0x7ff9ae9a7ac4+14]
+	ntdll!RtlUserThreadStart [0x7ff9aed2a8c1+21]
 
-Failed to quit driver, it may have already been closed
 Email notifications disabled. Errors in Vannkvalitet were not sent.
 
