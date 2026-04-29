@@ -191,8 +191,8 @@ df_flytting_fra.insert(0, "series", "Series 1")
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name1 = "tilflytting.csv"
-file_name2 = "fraflytting.csv"
+file_name1 = "tilflytting_til_telemark.csv"
+file_name2 = "fraflytting_fra_telemark.csv"
 task_name = "Flytting - Til og fra Telemark"
 github_folder = "Data/01_Befolkning/Flytting"
 temp_folder = os.environ.get("TEMP_FOLDER")

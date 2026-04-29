@@ -27,7 +27,7 @@ GET_URL = (
     "https://data.ssb.no/api/pxwebapi/v2/tables/13864/data?lang=no"
     "&outputFormat=json-stat2"
     "&valuecodes[ContentsCode]=*"
-    "&valuecodes[Tid]=2025"
+    "&valuecodes[Tid]=top(1)"
     "&valuecodes[Fraflyttingsregion]=*"
     "&codelist[Fraflyttingsregion]=agg_KommGjeldende"
     "&valuecodes[TilflyttRegion]=*"
@@ -220,8 +220,8 @@ print(f"\nTilflytting til Telemark-kommuner: {len(df_til)} rows")
 print(df_til.head(10))
 
 # Reorder columns
-df_fra = df_fra[["Fra kommune", "Fra fylke", "Til kommune", "Til fylke", "Antall", "Fra lat", "Fra lon", "Til lat", "Til lon"]]
-df_til = df_til[["Fra kommune", "Fra fylke", "Til kommune", "Til fylke", "Antall", "Fra lat", "Fra lon", "Til lat", "Til lon"]]
+df_fra = df_fra[["År", "Fra kommune", "Fra fylke", "Til kommune", "Til fylke", "Antall", "Fra lat", "Fra lon", "Til lat", "Til lon"]]
+df_til = df_til[["År", "Fra kommune", "Fra fylke", "Til kommune", "Til fylke", "Antall", "Fra lat", "Fra lon", "Til lat", "Til lon"]]
 
 # ============================================================
 # Step 4: Save to CSV, compare and upload to GitHub

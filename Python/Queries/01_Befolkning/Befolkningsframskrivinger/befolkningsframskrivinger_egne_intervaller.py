@@ -229,12 +229,13 @@ kommunenummer_map = {
 }
 df_agg["Kommunenummer"] = df_agg["Kommune"].map(kommunenummer_map)
 
+# Gir sorteringsrekkefølge som passer best til tilhørende graf.
 age_sort_order = {
     "0-19 år": 1,
     "20-39 år": 2,
-    "40-66 år": 3,
+    "40-66 år": 5,
     "67-79 år": 4,
-    "80+ år": 5,
+    "80+ år": 3,
 }
 df_agg["SortColumn"] = df_agg["Aldersgruppe"].map(age_sort_order).astype(int)
 

@@ -17,14 +17,14 @@ error_messages = []
 # SSB API v2 GET URL (tabell 05940 - Fullførte boliger etter boligtype)
 GET_URL = (
     "https://data.ssb.no/api/pxwebapi/v2/tables/05940/data?lang=no"
-    "&outputFormat=json-stat2"
-    "&valuecodes[ContentsCode]=Fullforte,BruksarealFullfort"
+    "&outputFormat=json-stat2"  
     "&valuecodes[Tid]=*"
     "&valuecodes[Region]=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036"
     "&codelist[Region]=agg_KommSummer"
     "&valuecodes[Byggeareal]=*"
-    "&heading=ContentsCode,Tid,Byggeareal"
-    "&stub=Region"
+    "&valuecodes[ContentsCode]=Fullforte"
+    "&heading=Region,ContentsCode,Tid"
+    "&stub=Byggeareal"
 )
 
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
@@ -85,8 +85,148 @@ df = df.rename(columns={
     "value": "Antall",
 })
 
+# Fix subtle mismatches between the SSB API data and the SSB Klass classification system
+replacements = {
+    "Kjedehus inkl.atriumhus": "Kjedehus inkl. atriumhus",
+    "Våningshus tomannsbolig, horisontaltdelt": "Våningshus, tomannsbolig, horisontaldelt",
+    "Del av våninghus  tomannsbustad, vertikaltdelt": "Våningshus, tomannsbolig, vertikaldelt",
+    "Del av tomannsbolig, vertikaldelt": "Tomannsbolig, vertikaldelt",
+}
+df["Bygningstype"] = df["Bygningstype"].replace(replacements)
+
+# Use regex to catch all "Stort sammenbygd boligbygg ..." variants (with and without suffix)
+df["Bygningstype"] = df["Bygningstype"].str.replace(
+    r"^Stort sammenbygd boligbygg", "Store sammenbygde boligbygg", regex=True
+)
+
+# Fix "eller over" → "og over" (must run after the regex rename above)
+df["Bygningstype"] = df["Bygningstype"].replace(
+    {"Store sammenbygde boligbygg på 5 etasjer eller over": "Store sammenbygde boligbygg på 5 etasjer og over"}
+)
+
+# --- Bygningstype_9_gr: Two-digit level classification (SSB Klass) ---
+# Map each detailed bygningstype to its two-digit parent group
+bygningstype_to_9gr = {
+    # 11 - Enebolig
+    "Enebolig": "Enebolig",
+    "Enebolig med hybelleilighet, sokkelleilighet o.l.": "Enebolig",
+    "Våningshus": "Enebolig",
+    # 12 - Tomannsbolig
+    "Tomannsbolig, vertikaldelt": "Tomannsbolig",
+    "Tomannsbolig, horisontaldelt": "Tomannsbolig",
+    "Våningshus, tomannsbolig, vertikaldelt": "Tomannsbolig",
+    "Våningshus, tomannsbolig, horisontaldelt": "Tomannsbolig",
+    # 13 - Rekkehus, kjedehus, andre småhus
+    "Rekkehus": "Rekkehus, kjedehus, andre småhus",
+    "Kjedehus inkl. atriumhus": "Rekkehus, kjedehus, andre småhus",
+    "Terrassehus": "Rekkehus, kjedehus, andre småhus",
+    "Andre småhus med 3 boliger eller flere": "Rekkehus, kjedehus, andre småhus",
+    # 14 - Store boligbygg
+    "Store frittliggende boligbygg på 2 etasjer": "Store boligbygg",
+    "Store frittliggende boligbygg på 3 og 4 etasjer": "Store boligbygg",
+    "Store frittliggende boligbygg på 5 etasjer eller over": "Store boligbygg",
+    "Store sammenbygde boligbygg på 2 etasjer": "Store boligbygg",
+    "Store sammenbygde boligbygg på 3 og 4 etasjer": "Store boligbygg",
+    "Store sammenbygde boligbygg på 5 etasjer og over": "Store boligbygg",
+    "Store sammenbygde boligbygg": "Store boligbygg",
+    # 15 - Bygning for bofellesskap
+    "Bo- og servicesenter": "Bygning for bofellesskap",
+    "Studenthjem/studentboliger": "Bygning for bofellesskap",
+    "Annen bygning for bofellesskap": "Bygning for bofellesskap",
+    # 16 - Fritidsbolig
+    "Fritidsbygning (hytter, sommerhus o.l.)": "Fritidsbolig",
+    "Helårsbolig benyttet som fritidsbolig": "Fritidsbolig",
+    "Våningshus benyttet som fritidsbolig": "Fritidsbolig",
+    # 17 - Koie, seterhus og lignende
+    "Seterhus, sel, rorbu o.l.": "Koie, seterhus og lignende",
+    "Skogs- og utmarkskoie, gamme": "Koie, seterhus og lignende",
+    # 18 - Garasje og uthus til bolig
+    "Garasje, uthus, anneks knyttet til bolig": "Garasje og uthus til bolig",
+    "Garasje, uthus, anneks knyttet til fritidsbolig": "Garasje og uthus til bolig",
+    "Naust, båthus, sjøbu": "Garasje og uthus til bolig",
+    # 19 - Annen boligbygning
+    "Boligbrakker": "Annen boligbygning",
+    "Annen boligbygning (f.eks. sekundærbolig reindrift)": "Annen boligbygning",
+    # Not in SSB Klass bolig classification — kept as own category
+    "Andre bygg enn boligbygg": "Andre bygg enn boligbygg",
+}
+df["Bygningstype_9_gr"] = df["Bygningstype"].map(bygningstype_to_9gr)
+
+# Check for unmapped values and print diagnostics
+unmapped_9gr = df[df["Bygningstype_9_gr"].isna()]["Bygningstype"].unique()
+if len(unmapped_9gr) > 0:
+    print(f"WARNING: Unmapped Bygningstype values for 9-group: {unmapped_9gr}")
+    print("These will need to be added to the bygningstype_to_9gr mapping dict.")
+    print("All unique Bygningstype values in data:")
+    for val in sorted(df["Bygningstype"].unique()):
+        mapped = "OK" if val in bygningstype_to_9gr else "MISSING"
+        print(f"  [{mapped}] '{val}'")
+
+# --- Bygningstype_4_gr: Four-group classification (from Excel screenshot) ---
+# Enebolig = 11, Leilighet = 14, Rekkehus tomannsbolig og småhus = 12+13, Annen boligbygging = 15+16+17+18+19
+ninegr_to_4gr = {
+    "Enebolig": "Enebolig",
+    "Tomannsbolig": "Rekkehus, tomannsbolig og småhus",
+    "Rekkehus, kjedehus, andre småhus": "Rekkehus, tomannsbolig og småhus",
+    "Store boligbygg": "Leilighet",
+    "Bygning for bofellesskap": "Annen boligbygging",
+    "Fritidsbolig": "Annen boligbygging",
+    "Koie, seterhus og lignende": "Annen boligbygging",
+    "Garasje og uthus til bolig": "Annen boligbygging",
+    "Annen boligbygning": "Annen boligbygging",
+    "Andre bygg enn boligbygg": "Andre bygg enn boligbygg",
+}
+df["Bygningstype_4_gr"] = df["Bygningstype_9_gr"].map(ninegr_to_4gr)
+
+# Determine actual number of unique groups for dynamic column naming
+n_9gr = df["Bygningstype_9_gr"].nunique()
+n_4gr = df["Bygningstype_4_gr"].nunique()
+col_9gr = f"Bygningstype_{n_9gr}_gr"
+col_4gr = f"Bygningstype_{n_4gr}_gr"
+df = df.rename(columns={
+    "Bygningstype_9_gr": col_9gr,
+    "Bygningstype_4_gr": col_4gr,
+})
+
+# --- Sort columns: rank categories by summed Antall across all rows ---
+
+# Sort_Bygningstype: rank all detailed bygningstyper
+all_rank = (
+    df.groupby("Bygningstype")["Antall"]
+    .sum()
+    .rank(ascending=False, method="min")
+    .astype(int)
+)
+df["Sort_Bygningstype"] = df["Bygningstype"].map(all_rank).fillna(0).astype(int)
+
+# Sort for the 9/10-group column
+sort_col_9gr = f"Sort_{col_9gr}"
+rank_9gr = (
+    df.groupby(col_9gr)["Antall"]
+    .sum()
+    .rank(ascending=False, method="min")
+    .astype(int)
+)
+df[sort_col_9gr] = df[col_9gr].map(rank_9gr).fillna(0).astype(int)
+
+# Sort for the 4/5-group column
+sort_col_4gr = f"Sort_{col_4gr}"
+rank_4gr = (
+    df.groupby(col_4gr)["Antall"]
+    .sum()
+    .rank(ascending=False, method="min")
+    .astype(int)
+)
+df[sort_col_4gr] = df[col_4gr].map(rank_4gr).fillna(0).astype(int)
+
 # Reorder columns with Kommunenummer first
-df = df[["Kommunenummer", "Kommune", "År", "Bygningstype", "Antall"]]
+df = df[[
+    "Kommunenummer", "Kommune", "År",
+    "Bygningstype", "Sort_Bygningstype",
+    col_9gr, sort_col_9gr,
+    col_4gr, sort_col_4gr,
+    "Antall",
+]]
 
 print(df.head())
 
