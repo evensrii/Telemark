@@ -83,8 +83,67 @@ df.columns.name = None
 df = df.rename(columns={"Antall personer": "Antall", "Personer (prosent)": "Andel"})
 df["Andel"] = pd.to_numeric(df["Andel"], errors="coerce") / 100
 
+# Rename bygningstyper
+df["Bygningstype"] = df["Bygningstype"].replace({
+    "Boligblokk": "Leilighet",
+    "Annen boligbygging": "Andre boligbygg",
+    "Rekkehus, kjedehus, andre småhus": "Rekkehus, tomannsbolig og småhus",
+    "Tomannsbolig": "Rekkehus, tomannsbolig og småhus",
+})
+
+# Rename "Alder i alt" to "Alle aldre"
+df["Alder"] = df["Alder"].replace({"Alder i alt": "Alle aldre"})
+
+# Aggregate age groups to 5 broader groups
+alder_aggregering = {
+    "0-19 år": "0-19 år",
+    "20-29 år": "20-39 år",
+    "30-39 år": "20-39 år",
+    "40-49 år": "40-66 år",
+    "50-66 år": "40-66 år",
+    "67-79 år": "67-79 år",
+    "80 år eller eldre": "80+",
+    "Alle aldre": "Alle aldre",
+}
+df["Alder"] = df["Alder"].map(alder_aggregering)
+
+# Aggregate numeric values after grouping
+# Sum "Antall", recalculate "Andel" as share within each Kommune/År/Bygningstype
+group_cols = ["Kommunenummer", "Kommune", "Alder", "År", "Bygningstype"]
+df = df.groupby(group_cols, as_index=False).agg({"Antall": "sum"})
+
+# Recalculate Andel: share of each age group within Kommune/År/Bygningstype
+total_cols = ["Kommunenummer", "Kommune", "År", "Bygningstype"]
+df["Andel"] = df["Antall"] / df.groupby(total_cols)["Antall"].transform("sum")
+
+# Sort column: rank age groups by ascending age, with "Alle aldre" last
+alder_rank = {
+    "0-19 år": 1,
+    "20-39 år": 2,
+    "40-66 år": 3,
+    "67-79 år": 4,
+    "80+": 5,
+    "Alle aldre": 6,
+}
+df["SortAlder"] = df["Alder"].map(alder_rank).fillna(0).astype(int)
+
+# Check for unmapped age groups
+unmapped_alder = df[df["SortAlder"] == 0]["Alder"].unique()
+if len(unmapped_alder) > 0:
+    print(f"WARNING: Unmapped Alder values: {unmapped_alder}")
+
+# Sort column: rank bygningstyper by summed Antall for "Alle aldre" only
+rank_bygningstype = (
+    df[df["Alder"] == "Alle aldre"]
+    .groupby("Bygningstype")["Antall"]
+    .sum()
+    .rank(ascending=False, method="min")
+    .astype(int)
+)
+df["SortBygningstype"] = df["Bygningstype"].map(rank_bygningstype).fillna(0).astype(int)
+
 # Reorder columns
-df = df[["Kommunenummer", "Kommune", "Alder", "År", "Bygningstype", "Antall", "Andel"]]
+df = df[["Kommunenummer", "Kommune", "Alder", "SortAlder", "År", "Bygningstype", "SortBygningstype", "Antall", "Andel"]]
 
 print(df.head())
 
