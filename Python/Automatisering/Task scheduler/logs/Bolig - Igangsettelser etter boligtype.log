@@ -1,0 +1,31 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Igangsettelser etter boligtype (05940) JSON-stat data loaded successfully.
+      region  ... value
+0  Porsgrunn  ...    29
+1  Porsgrunn  ...     9
+2  Porsgrunn  ...     1
+3  Porsgrunn  ...     2
+4  Porsgrunn  ...     0
+
+[5 rows x 5 columns]
+['region', 'statistikkvariabel', 'Ã¥r', 'bygningstype', 'value']
+  Kommunenummer  ... Antall
+0          4001  ...     29
+1          4001  ...      9
+2          4001  ...      1
+3          4001  ...      2
+4          4001  ...      0
+
+[5 rows x 5 columns]
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\igangsettelser_etter_boligtype.csv
+[2026-04-29 08:20:20] Header structure changed in igangsettelser_etter_boligtype.csv:
+Removed headers: sort_bygningstype_6_gr, bygningstype_5_gr, bygningstype_6_gr, sort_bygningstype_5_gr, sort_bygningstype
+File uploaded successfully: Data/10_Areal- og stedsutvikling/Bolig/Dagens boligmasse/igangsettelser_etter_boligtype.csv
+Email notifications disabled. Updates for igangsettelser_etter_boligtype.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\igangsettelser_etter_boligtype.csv
+New data detected and pushed to GitHub.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Igangsettelser_etter_boligtype.log
+

@@ -5,26 +5,25 @@ GITHUB_TOKEN loaded successfully.
 Ingen driftsmeldinger dukket opp, continuing...
 An unexpected error occurred during setup: Message: 
 Stacktrace:
-Symbols not available. Dumping unresolved backtrace:
-	0x7ff61da5aa55
-	0x7ff61d7b8630
-	0x7ff61d54d75d
-	0x7ff61d5a862e
-	0x7ff61d5a893c
-	0x7ff61d5f8d87
-	0x7ff61d5f591c
-	0x7ff61d599098
-	0x7ff61d599f83
-	0x7ff61da87810
-	0x7ff61da81afd
-	0x7ff61daa2c1a
-	0x7ff61d7d3345
-	0x7ff61d7db81c
-	0x7ff61d7c1924
-	0x7ff61d7c1ad6
-	0x7ff61d7a7e47
-	0x7ffee69e7ac4
-	0x7ffee961a8c1
+	chromedriver!GetHandleVerifier [0x7ff6b07aa8e5+14e45]
+	chromedriver!GetHandleVerifier [0x7ff6b07aa950+14eb0]
+	chromedriver!(No symbol) [0x7ff6b051d6ed]
+	chromedriver!(No symbol) [0x7ff6b0576cfe]
+	chromedriver!(No symbol) [0x7ff6b057700c]
+	chromedriver!(No symbol) [0x7ff6b05c7cb7]
+	chromedriver!(No symbol) [0x7ff6b05c483b]
+	chromedriver!(No symbol) [0x7ff6b05690e8]
+	chromedriver!(No symbol) [0x7ff6b0569fc3]
+	chromedriver!GetHandleVerifier [0x7ff6b0ac0149+32a6a9]
+	chromedriver!GetHandleVerifier [0x7ff6b0aba715+324c75]
+	chromedriver!GetHandleVerifier [0x7ff6b0adc012+346572]
+	chromedriver!GetHandleVerifier [0x7ff6b07c7cb5+32215]
+	chromedriver!GetHandleVerifier [0x7ff6b07d087c+3addc]
+	chromedriver!GetHandleVerifier [0x7ff6b07b40e4+1e644]
+	chromedriver!GetHandleVerifier [0x7ff6b07b4296+1e7f6]
+	chromedriver!GetHandleVerifier [0x7ff6b0798737+2c97]
+	KERNEL32!BaseThreadInitThunk [0x7ff9ae9a7ac4+14]
+	ntdll!RtlUserThreadStart [0x7ff9aed2a8c1+21]
 
 Email notifications disabled. Errors in Vannkvalitet were not sent.
 
