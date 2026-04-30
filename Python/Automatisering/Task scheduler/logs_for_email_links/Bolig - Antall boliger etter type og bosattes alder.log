@@ -12,21 +12,17 @@ Antall boliger etter type og bosattes alder (11031) JSON-stat data loaded succes
 
 [5 rows x 6 columns]
 ['region', 'alder', 'statistikkvariabel', 'Ã¥r', 'bygningstype', 'value']
-  Kommunenummer    Kommune  ...                      Bygningstype    Verdi
-0          4001  Porsgrunn  ...                     Boliger i alt  36621.0
-1          4001  Porsgrunn  ...                          Enebolig  22082.0
-2          4001  Porsgrunn  ...                      Tomannsbolig   2834.0
-3          4001  Porsgrunn  ...  Rekkehus, kjedehus, andre smÃ¥hus   5234.0
-4          4001  Porsgrunn  ...                        Boligblokk   5108.0
+  Kommunenummer    Kommune    Alder  ...  SortBygningstype  Antall     Andel
+0          4001  Porsgrunn  0-19 Ã¥r  ...                 5   113.0  0.041453
+1          4001  Porsgrunn  0-19 Ã¥r  ...                 1  7844.0  0.107097
+2          4001  Porsgrunn  0-19 Ã¥r  ...                 2  5608.0  0.126981
+3          4001  Porsgrunn  0-19 Ã¥r  ...                 4   475.0  0.046496
+4          4001  Porsgrunn  0-19 Ã¥r  ...                 3  1648.0  0.102132
 
-[5 rows x 7 columns]
+[5 rows x 9 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\antall_boliger_etter_type_og_bosattes_alder.csv
-[2026-04-29 08:19:39] Header structure changed in antall_boliger_etter_type_og_bosattes_alder.csv:
-Removed headers: andel, antall
-Added headers: statistikkvariabel, verdi
-File uploaded successfully: Data/10_Areal- og stedsutvikling/Bolig/Dagens boligmasse/antall_boliger_etter_type_og_bosattes_alder.csv
-Email notifications disabled. Updates for antall_boliger_etter_type_og_bosattes_alder.csv were not sent.
+[2026-04-30 08:19:16] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\antall_boliger_etter_type_og_bosattes_alder.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Antall_boliger_etter_type_og_bosattes_alder.log
 

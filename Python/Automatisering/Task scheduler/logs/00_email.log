@@ -17,6 +17,11 @@ Successfully uploaded log file Befolkning - Befolkningsframskrivinger historiske
 Successfully uploaded log file Befolkning - Befolkningsframskrivinger siste tabell.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Befolkning - Befolkningsframskrivinger siste tabell.log
 Successfully uploaded log file Befolkning - Folketall.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Befolkning - Folketall.log
 Successfully uploaded log file Befolkning - Historisk og framskrevet.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Befolkning - Historisk og framskrevet.log
+Successfully uploaded log file Bolig - Antall boliger etter type og bosattes alder.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bolig - Antall boliger etter type og bosattes alder.log
+Successfully uploaded log file Bolig - Boliger etter boligtype.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bolig - Boliger etter boligtype.log
+Successfully uploaded log file Bolig - Fullforte boliger etter boligtype.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bolig - Fullforte boliger etter boligtype.log
+Successfully uploaded log file Bolig - Husholdninger etter boligtype.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bolig - Husholdninger etter boligtype.log
+Successfully uploaded log file Bolig - Igangsettelser etter boligtype.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bolig - Igangsettelser etter boligtype.log
 Successfully uploaded log file Bystrategi Grenland - Arealprofiler.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Arealprofiler.log
 Successfully uploaded log file Bystrategi Grenland - Luftforurensing.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Luftforurensing.log
 Successfully uploaded log file Bystrategi Grenland - Utslipp fra vei.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Utslipp fra vei.log
@@ -69,29 +74,101 @@ Successfully uploaded log file Opplaering og kompetanse - Sokere og stillinger e
 Successfully uploaded log file Opplaering og kompetanse - Utdanningsnivaa Telemark og landet.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Opplaering og kompetanse - Utdanningsnivaa Telemark og landet.log
 Successfully uploaded log file Opplaering og kompetanse - Utdanningsnivaa.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Opplaering og kompetanse - Utdanningsnivaa.log
 
+DEBUG - Task: Bolig - Antall boliger etter type og bosattes alder
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bolig%20-%20Antall%20boliger%20etter%20type%20og%20bosattes%20alder.log
+
+DEBUG - Task: Bolig - Igangsettelser etter boligtype
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bolig%20-%20Igangsettelser%20etter%20boligtype.log
+
+DEBUG - Task: Bolig - Boliger etter boligtype
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bolig%20-%20Boliger%20etter%20boligtype.log
+
+DEBUG - Task: Bolig - Fullforte boliger etter boligtype
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bolig%20-%20Fullforte%20boliger%20etter%20boligtype.log
+
 DEBUG - Task: Klima og energi - Stromforbruk (Elhub)
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Stromforbruk%20(Elhub).log
 
 DEBUG - Task: Klima og energi - Installert_effekt (Elhub)
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Installert_effekt%20(Elhub).log
 
+DEBUG - Task: Klima og energi - Strompriser
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Strompriser.log
+
+DEBUG - Task: Klima og energi - Sektorvise utslipp
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Sektorvise%20utslipp.log
+
+DEBUG - Task: Folkehelse - Forventet levealder etter utdanning, 7 årig
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Forventet%20levealder%20etter%20utdanning,%207%20årig.log
+
+DEBUG - Task: Folkehelse - Psykiske symptomer og lidelser - primærhelsetjenesten, ettårige tall
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Psykiske%20symptomer%20og%20lidelser%20-%20primærhelsetjenesten,%20ettårige%20tall.log
+
+DEBUG - Task: Folkehelse - Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Muskel-%20og%20skjelettplager%20lidelser,%20kontakt%20med%20primærhelsetjenesten,%20ettårige%20tall.log
+
+DEBUG - Task: Folkehelse - Kreft, nye tilfeller, tiårige tall
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Kreft,%20nye%20tilfeller,%20tiårige%20tall.log
+
+DEBUG - Task: Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Hjerte-%20og%20karsykdom%20-%20primærhelsetjenesten,%20treårige%20tall.log
+
+DEBUG - Task: Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, ettårige tall
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Hjerte-%20og%20karsykdom%20-%20primærhelsetjenesten,%20ettårige%20tall.log
+
+DEBUG - Task: Arbeid og naeringsliv - Standard for naeringsgruppering
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Arbeid%20og%20naeringsliv%20-%20Standard%20for%20naeringsgruppering.log
+
 DEBUG - Task: Flytting - Til og fra kommunene
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Flytting%20-%20Til%20og%20fra%20kommunene.log
 
-DEBUG - Task: Befolkning - Befolkningsframskrivinger historiske_07459
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Befolkningsframskrivinger%20historiske_07459.log
-
 DEBUG - Task: Befolkning - Befolkningsframskrivinger egne intervaller
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Befolkningsframskrivinger%20egne%20intervaller.log
+
+DEBUG - Task: Idrett friluftsliv og frivillighet - Jegere
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Idrett%20friluftsliv%20og%20frivillighet%20-%20Jegere.log
+
+DEBUG - Task: Flytting - Til og fra Telemark
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Flytting%20-%20Til%20og%20fra%20Telemark.log
+
+DEBUG - Task: Innvandrere - Anmodninger og faktisk bosetting
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Anmodninger%20og%20faktisk%20bosetting.log
+
+DEBUG - Task: Folkehelse - Tilfredshet med livet, ungdom
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Tilfredshet%20med%20livet,%20ungdom.log
+
+DEBUG - Task: Folkehelse - Sykehusinnlagte, somatikk, ettårige. inkl. skader
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Sykehusinnlagte,%20somatikk,%20ettårige.%20inkl.%20skader.log
+
+DEBUG - Task: Folkehelse - Selvmord, femårig
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Selvmord,%20femårig.log
+
+DEBUG - Task: Folkehelse - Reseptfrie smertestillende legemidler, ungdom
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Reseptfrie%20smertestillende%20legemidler,%20ungdom.log
+
+DEBUG - Task: Folkehelse - Psykiske plager, ungdom
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Psykiske%20plager,%20ungdom.log
+
+DEBUG - Task: Folkehelse - Kols, dødsårsak, ettårig
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Kols,%20dødsårsak,%20ettårig.log
+
+DEBUG - Task: Folkehelse - Fornøyd med helsa - ungdom
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Fornøyd%20med%20helsa%20-%20ungdom.log
+
+DEBUG - Task: Folkehelse - Dødsårsaker, ettårig
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Dødsårsaker,%20ettårig.log
+
+DEBUG - Task: Bolig - Husholdninger etter boligtype
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bolig%20-%20Husholdninger%20etter%20boligtype.log
+
+DEBUG - Task: Befolkning - Befolkningsframskrivinger historiske_07459
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Befolkningsframskrivinger%20historiske_07459.log
 
 DEBUG - Task: Befolkning - Historisk og framskrevet
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Historisk%20og%20framskrevet.log
 
 DEBUG - Task: Befolkning - Befolkningsframskrivinger siste tabell
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Befolkningsframskrivinger%20siste%20tabell.log
-
-DEBUG - Task: Klima og energi - Strompriser
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Strompriser.log
 
 DEBUG - Task: Opplaering og kompetanse - Andel utenfor per fylke og alder
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Opplaering%20og%20kompetanse%20-%20Andel%20utenfor%20per%20fylke%20og%20alder.log
@@ -114,17 +191,11 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 DEBUG - Task: Innvandrere - Etter introduksjonsprogrammet
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Etter%20introduksjonsprogrammet.log
 
-DEBUG - Task: Innvandrere - Anmodninger og faktisk bosetting
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Anmodninger%20og%20faktisk%20bosetting.log
-
 DEBUG - Task: Innvandrere - Sysselsatte
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Sysselsatte.log
 
 DEBUG - Task: Innvandrere - Bosatt
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Bosatt.log
-
-DEBUG - Task: Flytting - Til og fra Telemark
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Flytting%20-%20Til%20og%20fra%20Telemark.log
 
 DEBUG - Task: NAV - Arbeidsledighet
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/NAV%20-%20Arbeidsledighet.log
@@ -153,41 +224,11 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 DEBUG - Task: Befolkning - Folketall
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Folketall.log
 
-DEBUG - Task: Folkehelse - Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Muskel-%20og%20skjelettplager%20lidelser,%20kontakt%20med%20primærhelsetjenesten,%20ettårige%20tall.log
-
-DEBUG - Task: Arbeid og naeringsliv - Standard for naeringsgruppering
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Arbeid%20og%20naeringsliv%20-%20Standard%20for%20naeringsgruppering.log
-
-DEBUG - Task: Folkehelse - Reseptfrie smertestillende legemidler, ungdom
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Reseptfrie%20smertestillende%20legemidler,%20ungdom.log
-
-DEBUG - Task: Folkehelse - Tilfredshet med livet, ungdom
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Tilfredshet%20med%20livet,%20ungdom.log
-
 DEBUG - Task: Opplaering og kompetanse - Sokere og stillinger etter yrkespraksis
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Opplaering%20og%20kompetanse%20-%20Sokere%20og%20stillinger%20etter%20yrkespraksis.log
 
-DEBUG - Task: Klima og energi - Sektorvise utslipp
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Sektorvise%20utslipp.log
-
 DEBUG - Task: Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Arbeid%20og%20naeringsliv%20-%20Arbeidsmarkedstilknytning%20per%20kommune.log
-
-DEBUG - Task: Folkehelse - Psykiske plager, ungdom
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Psykiske%20plager,%20ungdom.log
-
-DEBUG - Task: Folkehelse - Fornøyd med helsa - ungdom
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Fornøyd%20med%20helsa%20-%20ungdom.log
-
-DEBUG - Task: Folkehelse - Kreft, nye tilfeller, tiårige tall
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Kreft,%20nye%20tilfeller,%20tiårige%20tall.log
-
-DEBUG - Task: Folkehelse - Selvmord, femårig
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Selvmord,%20femårig.log
-
-DEBUG - Task: Folkehelse - Kols, dødsårsak, ettårig
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Kols,%20dødsårsak,%20ettårig.log
 
 DEBUG - Task: Arbeid og naeringsliv - Virksomheter
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Arbeid%20og%20naeringsliv%20-%20Virksomheter.log
@@ -195,26 +236,8 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 DEBUG - Task: NAV - Nedsatt arbeidsevne
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/NAV%20-%20Nedsatt%20arbeidsevne.log
 
-DEBUG - Task: Folkehelse - Sykehusinnlagte, somatikk, ettårige. inkl. skader
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Sykehusinnlagte,%20somatikk,%20ettårige.%20inkl.%20skader.log
-
-DEBUG - Task: Folkehelse - Psykiske symptomer og lidelser - primærhelsetjenesten, ettårige tall
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Psykiske%20symptomer%20og%20lidelser%20-%20primærhelsetjenesten,%20ettårige%20tall.log
-
-DEBUG - Task: Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Hjerte-%20og%20karsykdom%20-%20primærhelsetjenesten,%20treårige%20tall.log
-
 DEBUG - Task: Folkehelse - Skader, kontakt med primærhelsetjeneste, ettårige tall
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Skader,%20kontakt%20med%20primærhelsetjeneste,%20ettårige%20tall.log
-
-DEBUG - Task: Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, ettårige tall
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Hjerte-%20og%20karsykdom%20-%20primærhelsetjenesten,%20ettårige%20tall.log
-
-DEBUG - Task: Folkehelse - Forventet levealder etter utdanning, 7 årig
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Forventet%20levealder%20etter%20utdanning,%207%20årig.log
-
-DEBUG - Task: Folkehelse - Dødsårsaker, ettårig
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Dødsårsaker,%20ettårig.log
 
 DEBUG - Task: Innvandrere - Hoyeste utdanning
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Hoyeste%20utdanning.log
@@ -263,9 +286,6 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 
 DEBUG - Task: Innvandrere - Sysselsatte etter botid og bakgrunn
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Sysselsatte%20etter%20botid%20og%20bakgrunn.log
-
-DEBUG - Task: Idrett friluftsliv og frivillighet - Jegere
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Idrett%20friluftsliv%20og%20frivillighet%20-%20Jegere.log
 
 DEBUG - Task: Innvandrere - Sekundaerflytting
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Sekundaerflytting.log

@@ -54,12 +54,18 @@ Tilflytting til Telemark-kommuner: 957 rows
 
 [10 rows x 12 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\fraflytting_fra_telemarkskommuner.csv
-[2026-04-29 08:06:17] No new data to upload. Skipping GitHub update.
+[2026-04-30 08:06:22] Header structure changed in fraflytting_fra_telemarkskommuner.csv:
+Added headers: Ã¥r
+File uploaded successfully: Data/01_Befolkning/Flytting/fraflytting_fra_telemarkskommuner.csv
+Email notifications disabled. Updates for fraflytting_fra_telemarkskommuner.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\fraflytting_fra_telemarkskommuner.csv
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\tilflytting_til_telemarkskommuner.csv
-[2026-04-29 08:06:18] No new data to upload. Skipping GitHub update.
+[2026-04-30 08:06:24] Header structure changed in tilflytting_til_telemarkskommuner.csv:
+Added headers: Ã¥r
+File uploaded successfully: Data/01_Befolkning/Flytting/tilflytting_til_telemarkskommuner.csv
+Email notifications disabled. Updates for tilflytting_til_telemarkskommuner.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\tilflytting_til_telemarkskommuner.csv
-No new data detected in fraflytting_fra_telemarkskommuner.csv.
-No new data detected in tilflytting_til_telemarkskommuner.csv.
+New data detected in fraflytting_fra_telemarkskommuner.csv and pushed to GitHub.
+New data detected in tilflytting_til_telemarkskommuner.csv and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Flytting_-_Til_og_fra_kommunene.log
 

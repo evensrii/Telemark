@@ -1,0 +1,26 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Husholdninger etter boligtype (06070) JSON-stat data loaded successfully.
+      region  ... value
+0  Porsgrunn  ...  6424
+1  Porsgrunn  ...  4134
+2  Porsgrunn  ...  1397
+3  Porsgrunn  ...  1802
+4  Porsgrunn  ...   221
+
+[5 rows x 5 columns]
+['region', 'statistikkvariabel', 'Ã¥r', 'husholdningstype', 'value']
+  Kommunenummer Kommune          Ã…r               Husholdningstype  Antall
+0          4012  Bamble  01.01.2014                    Aleneboende    1917
+1          4012  Bamble  01.01.2014    AleneforsÃ¸rger med smÃ¥ barn      85
+2          4012  Bamble  01.01.2014  AleneforsÃ¸rger med store barn     239
+3          4012  Bamble  01.01.2014            Andre husholdninger       0
+4          4012  Bamble  01.01.2014       Flerfamiliehusholdninger     272
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\husholdninger_etter_boligtype.csv
+[2026-04-29 08:20:11] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\husholdninger_etter_boligtype.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Husholdninger_etter_boligtype.log
+

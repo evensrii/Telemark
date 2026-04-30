@@ -68,8 +68,32 @@ Final data: 2295 rows
 18          4012  Bamble      0-19 Ã¥r  2042-01-01      2718           1
 19          4012  Bamble      0-19 Ã¥r  2043-01-01      2722           1
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell_egendef_alder.csv
-[2026-04-29 08:05:56] No new data to upload. Skipping GitHub update.
+[2026-04-30 08:05:59] Changes detected in the dataset.
+
+[2026-04-30 08:05:59] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell_egendef_alder.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: r: 2040-01-01 | Kommunenummer: 4034 | Kommune: Tokke
+  Aldersgruppe: 40-66 Ã¥r -> 80+ Ã¥r
+
+Row: r: 2040-01-01 | Kommunenummer: 4034 | Kommune: Tokke
+  Personer: 773 -> 251
+
+Row: r: 2041-01-01 | Kommunenummer: 4034 | Kommune: Tokke
+  Aldersgruppe: 40-66 Ã¥r -> 80+ Ã¥r
+
+Row: r: 2041-01-01 | Kommunenummer: 4034 | Kommune: Tokke
+  Personer: 766 -> 254
+
+Row: r: 2042-01-01 | Kommunenummer: 4034 | Kommune: Tokke
+  Aldersgruppe: 40-66 Ã¥r -> 80+ Ã¥r
+
+Total changes found in examined rows: 184
+(Showing first 5 changes only)
+Email notifications disabled. Updates for befolkningsframskrivinger_siste_tabell_egendef_alder.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell_egendef_alder.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_egne_intervaller.log
 
