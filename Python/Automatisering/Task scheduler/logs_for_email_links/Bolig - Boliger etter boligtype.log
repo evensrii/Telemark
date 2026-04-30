@@ -2,7 +2,8 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Boliger etter boligtype (06265) JSON-stat data loaded successfully.
+Boliger etter boligtype (06265) - kommunedata JSON-stat data loaded successfully.
+Boliger etter boligtype (06265) - nasjonale data JSON-stat data loaded successfully.
       region  ... value
 0  Porsgrunn  ...  8947
 1  Porsgrunn  ...  1199
@@ -12,20 +13,17 @@ Boliger etter boligtype (06265) JSON-stat data loaded successfully.
 
 [5 rows x 5 columns]
 ['region', 'statistikkvariabel', 'Ã¥r', 'bygningstype', 'value']
-  Kommunenummer    Kommune  ...                        Bygningstype Antall
-0          4001  Porsgrunn  ...                            Enebolig   8947
-1          4001  Porsgrunn  ...                        Tomannsbolig   1199
-2          4001  Porsgrunn  ...  Rekkehus, kjedehus og andre smÃ¥hus   2555
-3          4001  Porsgrunn  ...                          Boligblokk   2902
-4          4001  Porsgrunn  ...            Bygning for bofellesskap    598
+  Kommunenummer    Kommune  ... Sort_Bygningstype_4_gr Antall
+0          4001  Porsgrunn  ...                      1   8947
+1          4001  Porsgrunn  ...                      2   1199
+2          4001  Porsgrunn  ...                      2   2555
+3          4001  Porsgrunn  ...                      3   2902
+4          4001  Porsgrunn  ...                      4    598
 
-[5 rows x 5 columns]
+[5 rows x 8 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\boliger_etter_boligtype.csv
-[2026-04-29 08:19:49] Header structure changed in boliger_etter_boligtype.csv:
-Removed headers: sort_bygningstype, bygningstype_4_gr, sort_bygningstype_4_gr
-File uploaded successfully: Data/10_Areal- og stedsutvikling/Bolig/Dagens boligmasse/boliger_etter_boligtype.csv
-Email notifications disabled. Updates for boliger_etter_boligtype.csv were not sent.
+[2026-04-30 08:19:26] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\boliger_etter_boligtype.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Boliger_etter_boligtype.log
 
