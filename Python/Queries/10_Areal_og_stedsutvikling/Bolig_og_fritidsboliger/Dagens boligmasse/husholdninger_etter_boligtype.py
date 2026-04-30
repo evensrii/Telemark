@@ -56,11 +56,11 @@ df = df.drop(columns=["statistikkvariabel"])
 husholdningstype_map = {
     "Aleneboende": "Aleneboende",
     "Par uten hjemmeboende barn": "Par uten hjemmeboende barn",
-    "Par med små barn (yngste barn 0-5 år)": "Par med små barn",
-    "Par med store barn (yngste barn 6-17 år)": "Par med store barn",
-    "Mor/Far med små barn (yngste barn 0-5 år)": "Aleneforsørger med små barn",
-    "Mor/Far med store barn (yngste barn 6-17 år)": "Aleneforsørger med store barn",
-    "Enfamiliehusholdninger med voksne barn (yngste barn 18 år og over)": "Par eller aleneforsørger med voksne barn",
+    "Par med små barn (yngste barn 0-5 år)": "Par med barn under 18 år",
+    "Par med store barn (yngste barn 6-17 år)": "Par med barn under 18 år",
+    "Mor/Far med små barn (yngste barn 0-5 år)": "Aleneforsørger med barn under 18 år",
+    "Mor/Far med store barn (yngste barn 6-17 år)": "Aleneforsørger med barn under 18 år",
+    "Enfamiliehusholdninger med voksne barn (yngste barn 18 år og over)": "Par eller aleneforsørger med voksne barn (18+)",
     "Flerfamiliehusholdning uten barn 0-17 år": "Flerfamiliehusholdninger",
     "Flerfamiliehusholdning med små barn (yngste barn 0-5 år)": "Flerfamiliehusholdninger",
     "Flerfamiliehusholdning med store barn (yngste barn 6-17 år)": "Flerfamiliehusholdninger",
@@ -105,7 +105,16 @@ df = df.rename(columns={
 })
 
 # Reorder columns with Kommunenummer first
-df = df[["Kommunenummer", "Kommune", "År", "Husholdningstype", "Antall"]]
+# Sort column: rank husholdningstyper by summed Antall (1 = largest)
+rank_husholdningstype = (
+    df.groupby("Husholdningstype")["Antall"]
+    .sum()
+    .rank(ascending=False, method="min")
+    .astype(int)
+)
+df["SortHusholdningstype"] = df["Husholdningstype"].map(rank_husholdningstype).fillna(0).astype(int)
+
+df = df[["Kommunenummer", "Kommune", "År", "Husholdningstype", "SortHusholdningstype", "Antall"]]
 
 print(df.head())
 
