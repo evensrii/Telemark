@@ -1,0 +1,26 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Igangsettelser etter boligtype (05940) JSON-stat data loaded successfully.
+  bygningstype     region                statistikkvariabel    Ã¥r  value
+0     Enebolig  Porsgrunn  Igangsettingstillatelser boliger  2000     29
+1     Enebolig  Porsgrunn  Igangsettingstillatelser boliger  2001     34
+2     Enebolig  Porsgrunn  Igangsettingstillatelser boliger  2002     40
+3     Enebolig  Porsgrunn  Igangsettingstillatelser boliger  2003     24
+4     Enebolig  Porsgrunn  Igangsettingstillatelser boliger  2004     34
+['bygningstype', 'region', 'statistikkvariabel', 'Ã¥r', 'value']
+  Kommunenummer    Kommune  ... Sort_Bygningstype_5_gr Antall
+0          4001  Porsgrunn  ...                      1     29
+1          4001  Porsgrunn  ...                      1     34
+2          4001  Porsgrunn  ...                      1     40
+3          4001  Porsgrunn  ...                      1     24
+4          4001  Porsgrunn  ...                      1     34
+
+[5 rows x 10 columns]
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\igangsettelser_etter_boligtype.csv
+[2026-04-30 08:19:53] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\igangsettelser_etter_boligtype.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Igangsettelser_etter_boligtype.log
+

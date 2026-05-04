@@ -1,0 +1,292 @@
+// Mest relevante SSB-tabell å sammenlikne med mtp. arbeidsstatistikk er 13563. (13556 gir ikke så mye mer).
+// Se annen relevant statistikk her: https://www.ssb.no/statbank/?subject=al__al06__arbstatus
+// Kommentarer om forskjeller SSB og Microdata om dette: https://microdata.no/discovery/variable/no.ssb.fdb/52/ARBSTATUS_PERS_UTENFOR?searchString=ARBSTATUS_PERS_UTENFOR
+
+// Jon Olavs opprinnelige script her: https://github.com/JOSliper/Microdata-skript/blob/main/Neets/Vedvarende%20utenforskap%20i%20Tr%C3%B8ndelag%202019-2024
+
+require no.ssb.fdb:51 as fdb 
+create-dataset pop
+
+// Sett startår 
+let år0 = 2020
+let antall_år = 4 // Dvs. antall år inkludert startår. Hvis "år0 = 2020" tilsvarer "antall_år = 4" år 2024.
+let siste_år = $år0 + $antall_år
+
+// ===== ÅR 0 (Basisår) - Populasjonsoppsett =====
+
+let dato_år0 = date_fmt($år0, 11, 16)
+let dato2_år0 = date_fmt($år0, 11, 30)
+
+// Henter "prioritert arbeidsstyrkestatus" (NEET vs- ikke-NEET)
+import fdb/ARBSTATUS_PERS_UTENFOR $dato_år0 as ARBSTATUS ++ $år0
+tabulate ARBSTATUS ++ $år0, missing
+
+// Generere variabelen "Status" (fra "ARBSTATUS")
+generate Status ++ $år0 = "5 - Ukjent"
+replace Status ++ $år0 = "1 - Innenfor" if ARBSTATUS ++ $år0 == '0'
+replace Status ++ $år0 = "2 - Utenfor" if ARBSTATUS ++ $år0 == '1'
+
+tabulate Status ++ $år0
+
+// Legger på geografi (NB: Utvalget er jo uansett bare de vi starter med, dvs. de som var mellom 15-29 år i Telemarksdelen av V og T i 2020) <-- Trenger ikke fylke "40" selv om 2025 neste år.
+import fdb/ARBSTATUS_PERS_KOMM_NR $dato2_år0 as bosted ++ $år0
+generate fylkenr = substr(bosted ++ $år0, 1, 2)
+generate kommunenr = substr(bosted ++ $år0, 1, 4)
+keep if fylkenr == '38'
+generate fylke = 'Telemark'
+replace fylke = 'Vestfold' if kommunenr == '3801' | kommunenr == '3802' | kommunenr == '3803' | kommunenr == '3804' | kommunenr == '3805' | kommunenr == '3811'
+keep if fylke == 'Telemark'
+
+tabulate bosted ++ $år0 Status ++ $år0, missing
+
+// Kjønn
+import fdb/BEFOLKNING_KJOENN as kjønn
+
+// Aldersintervall (i startår)
+import fdb/ARBSTATUS_PERS_ALDER $dato_år0 as alder ++ $år0
+
+keep if alder ++ $år0 >= 15
+keep if alder ++ $år0 <= 29
+
+tabulate alder ++ $år0
+tabulate alder ++ $år0 Status ++ $år0, missing rowpct freq
+tabulate alder ++ $år0 Status ++ $år0
+tabulate kjønn Status ++ $år0, freq colpct rowpct
+tabulate bosted ++ $år0 Status ++ $år0, missing
+
+// ===== ÅR 1-4 (Oppfølgingsår) =====
+
+for i in 1 : $antall_år
+  let gjeldende_år = $år0 + $i
+  let neste_år = $gjeldende_år + 1
+  let dato_i = date_fmt($gjeldende_år, 11, 16)
+  let dato1_i = date_fmt($neste_år, 1, 1)
+
+  // Arbeidsstyrkestatus (NEET vs. ikke-NEET)
+  import fdb/ARBSTATUS_PERS_UTENFOR $dato_i as ARBSTATUS ++ $gjeldende_år // Eks: For 2020, hent arbeidsstyrkestatus for 2020-11-16, kall det "ARBSTATUS2020"
+
+  // Hva har skjedd fra forrige år til i år?
+  tabulate ARBSTATUS ++ $gjeldende_år Status ++ $år0, missing 
+  // Altså nåværende års "0 - I arbeid, under utdanning..." og "1 - Utenfor arbeid..." versus startårets "1 - Innenfor" og "2 - Utenfor"
+
+  // Hvor mange er døde eller utvandret siden året før? (Merk: 1,5  månders forskjell på telledato)
+  import fdb/BEFOLKNING_STATUSKODE $dato1_i as statuskode ++ $gjeldende_år // Bosatt, utvandret, død
+  tabulate ARBSTATUS ++ $gjeldende_år statuskode ++ $gjeldende_år, missing
+
+  // Generer variabel "Status" (fra "ARBSTATUS") - Nå også med de som har status som "Død", "Utvandret" eller "Ukjent" (dette var jo ikke aktuelt i startåret)
+  generate Status ++ $gjeldende_år = "5 - Ukjent"
+  replace Status ++ $gjeldende_år = "1 - Innenfor" if ARBSTATUS ++ $gjeldende_år == '0'
+  replace Status ++ $gjeldende_år = "2 - Utenfor" if ARBSTATUS ++ $gjeldende_år == '1'
+  replace Status ++ $gjeldende_år = "3 - Utvandret" if statuskode ++ $gjeldende_år == '3'
+  replace Status ++ $gjeldende_år = "4 - Død" if statuskode ++ $gjeldende_år == '5'
+end
+
+// ===== Tabulering og Sankey =====
+
+// Her sjekkes altså status (innenfor, utenfor, død, utvandret, ukjent) mellom de ulike årene.
+
+// Status år N vs. år N+1 (for hvert par av påfølgende år)
+for i in 0 : $antall_år - 1
+  let dette_år = $år0 + $i
+  let neste_år = $dette_år + 1
+  tabulate Status ++ $dette_år Status ++ $neste_år, missing
+end
+
+// Sankey: Hvert par av påfølgende år (år N -> år N+1)
+for i in 0 : $antall_år - 1
+  let dette_år = $år0 + $i
+  let neste_år = $dette_år + 1
+  sankey Status ++ $dette_år Status ++ $neste_år
+end
+
+// Sankey: Alle år samlet (kan ikke bygges dynamisk, må hardkodes)
+sankey Status ++ $år0 Status ++ $år0 + 1 Status ++ $år0 + 2 Status ++ $år0 + 3 Status ++ $år0 + 4
+
+tabulate alder ++ $år0 Status ++ $siste_år, missing rowpct freq
+tabulate alder ++ $år0 Status ++ $siste_år
+
+// ===== Vedvarende utenfor (etter kjønn, bosted, alder) =====
+
+// I STARTÅRET settes en person til ikke vedvarende utenfor hvis hen er innenfor i år 0.
+generate vedvarende = "1 - vedvarende utenfor"
+replace vedvarende = "2 - ikke vedvarende utenfor" if Status ++ $år0 == "1 - Innenfor" 
+
+// Her settes en person til "Ikke vedvarende utenfor" hvis hen ikke er utenfor minst ett av de PÅFØLGENDE årene (dvs. er innenfor minst ett år)
+for i in 1 : $antall_år
+  let gjeldende_år = $år0 + $i
+  replace vedvarende = "2 - ikke vedvarende utenfor" if Status ++ $gjeldende_år != '2 - Utenfor'
+end
+
+// Kontroller (se f. eks. på statusen til de som ikke er vedvarende utenfor i løpet av årene)
+for i in 0 : $antall_år
+  let gjeldende_år = $år0 + $i
+  tabulate vedvarende Status ++ $gjeldende_år
+end
+
+// Kjønn
+tabulate kjønn vedvarende Status ++ $år0, missing
+tabulate kjønn vedvarende if Status ++ $år0 == '2 - Utenfor', missing freq colpct rowpct // Kun for de som var utenfor i år 0.
+
+// Bosted
+tabulate bosted ++ $år0 vedvarende, missing
+tabulate bosted ++ $år0 Status ++ $år0, missing
+
+// Alder
+tabulate alder ++ $år0 vedvarende, missing rowpct freq
+
+// ---- Slutt egne kommentarer her, Jon Olavs under.
+
+// ===== Vedvarende innenfor =====
+
+generate vedvarende_I = "1 - vedvarende innenfor"
+replace vedvarende_I = "2 - ikke vedvarende innenfor" if Status ++ $år0 == "2 - Utenfor"
+
+for i in 1 : $antall_år
+  let gjeldende_år = $år0 + $i
+  replace vedvarende_I = "2 - ikke vedvarende innenfor" if Status ++ $gjeldende_år != "1 - Innenfor"
+end
+
+//tester
+for i in 0 : $antall_år
+  let gjeldende_år = $år0 + $i
+  tabulate vedvarende_I Status ++ $gjeldende_år
+end
+
+tabulate kjønn vedvarende_I Status ++ $år0, missing
+tabulate kjønn vedvarende_I if Status ++ $år0 == '1 - Innenfor', missing freq colpct rowpct
+
+tabulate vedvarende_I vedvarende Status ++ $siste_år, missing
+
+// ===== Opptelling antall år utenfor =====
+
+for i in 0 : $antall_år
+  let gjeldende_år = $år0 + $i
+  generate count ++ $gjeldende_år = 0
+  replace count ++ $gjeldende_år = 1 if Status ++ $gjeldende_år == "2 - Utenfor"
+end
+
+generate antall_utenfor = (count ++ $år0) + (count ++ $år0 + 1) + (count ++ $år0 + 2) + (count ++ $år0 + 3) + (count ++ $år0 + 4)
+
+//test på om opptelling ble rett
+tabulate antall_utenfor vedvarende, missing
+
+tabulate alder ++ $år0 antall_utenfor
+
+// ===== Analyse =====
+
+//utdanningsnivå
+let dato_ut = date_fmt($siste_år, 8, 1)
+
+import fdb/NUDB_BU $dato_ut as utd
+generate utd1 = substr(utd, 1, 1)
+
+generate utdnivå ++ $siste_år = '9'
+replace utdnivå ++ $siste_år = '1' if utd1 == '1' | utd1 == '2'
+replace utdnivå ++ $siste_år = '2' if utd1 == '3' | utd1 == '4' | utd1 == '5'
+replace utdnivå ++ $siste_år = '3' if utd1 == '6'
+replace utdnivå ++ $siste_år = '4' if utd1 == '7' | utd1 == '8'
+define-labels utdnivtxt '1' 'Grunnskolenivå' '2' 'Videregående grunnopplæring' '3' 'Universitets og høgskolenivå kort' '4' 'Universitets og høgskolenivå lang' '9' 'Uoppgitt el ingen utdanning'
+assign-labels utdnivå ++ $siste_år utdnivtxt
+
+tabulate utdnivå ++ $siste_år Status ++ $siste_år, missing rowpct freq
+tabulate utdnivå ++ $siste_år Status ++ $siste_år, missing colpct freq
+
+tabulate utdnivå ++ $siste_år vedvarende, missing rowpct freq
+tabulate utdnivå ++ $siste_år vedvarende, missing colpct freq
+
+tabulate utdnivå ++ $siste_år vedvarende if Status ++ $år0 == '2 - Utenfor', missing rowpct freq
+tabulate utdnivå ++ $siste_år vedvarende if Status ++ $år0 == '2 - Utenfor', missing colpct freq
+
+tabulate utdnivå ++ $siste_år Status ++ $år0, missing
+tabulate utdnivå ++ $siste_år vedvarende if Status ++ $år0 == '2 - Utenfor', missing
+tabulate utdnivå ++ $siste_år antall_utenfor, missing
+
+// uføre
+let dato_ufør = date_fmt($siste_år, 12, 1)
+import fdb/UFOERP2011FDT_GRAD $dato_ufør as Ufør ++ $siste_år
+
+tabulate Ufør ++ $siste_år vedvarende, missing freq rowpct colpct
+tabulate antall_utenfor Ufør ++ $siste_år, missing
+
+//Innvandrere
+import fdb/BEFOLKNING_INVKAT as kat
+generate Innvandringskategori = '3'
+replace Innvandringskategori = '1' if kat == 'B'
+replace Innvandringskategori = '2' if kat == 'C'
+// replace Innvandringskategori = 'Ukjent ' if sysmiss(kat) <-- Tydeligvis ikke et stort problem uansett
+define-labels Innvandringskategoritxt '1' 'Innvandrere' '2' 'Norskfødt med innvandrerforeldre' '3' 'Øvrig befolkning'
+assign-labels Innvandringskategori Innvandringskategoritxt
+
+tabulate Innvandringskategori Status ++ $år0, missing rowpct colpct freq
+tabulate Innvandringskategori Status ++ $siste_år, missing rowpct colpct freq
+tabulate Innvandringskategori Status ++ $siste_år if Status ++ $år0 == '2 - Utenfor', missing rowpct colpct freq
+tabulate Innvandringskategori vedvarende, missing rowpct freq
+tabulate Innvandringskategori vedvarende if Status ++ $år0 == '2 - Utenfor', missing rowpct freq
+tabulate antall_utenfor Innvandringskategori, missing
+
+//Sosial bakgrunn
+import fdb/NUDB_SOSBAK as Sosial_bakgrunn
+
+tabulate Sosial_bakgrunn Innvandringskategori, missing
+tabulate Sosial_bakgrunn Status ++ $siste_år, missing rowpct freq
+tabulate Sosial_bakgrunn vedvarende if Status ++ $år0 == '2 - Utenfor', missing rowpct freq
+tabulate antall_utenfor Sosial_bakgrunn, missing
+
+// ===== Detaljert status (Nivå2) for år 0 og siste år =====
+
+for yr in $år0 $siste_år
+  let dato_yr = date_fmt($yr, 11, 16)
+  import fdb/ARBSTATUS_PERS_STATUS8 $dato_yr as detaljert ++ $yr
+  generate status4 ++ $yr = substr(detaljert ++ $yr, 1, 4)
+  tabulate status4 ++ $yr, missing
+
+  generate Nivå2_ ++ $yr = '0'
+  replace Nivå2_ ++ $yr = '1 - Sysselsatte' if status4 ++ $yr == '0808' | status4 ++ $yr == '0816' | status4 ++ $yr == '0824' | status4 ++ $yr == '0832' | status4 ++ $yr == '1608'
+  replace Nivå2_ ++ $yr = '4 - Registrerte arbeidsledige' if status4 ++ $yr == '2408'
+  replace Nivå2_ ++ $yr = '3 - Deltakere på arbeids-markedstiltak' if status4 ++ $yr == '3208' | status4 ++ $yr == '3216' | status4 ++ $yr == '3232' | status4 ++ $yr == '4816' | status4 ++ $yr == '3240'
+  replace Nivå2_ ++ $yr = '2 - Under ordinær utdanning' if status4 ++ $yr == '4008'
+  replace Nivå2_ ++ $yr = '5 - Mottakere av arbeidsavklarings-penger/uføretrygd' if status4 ++ $yr == '4848' | status4 ++ $yr == '4832' | status4 ++ $yr == '4856' | status4 ++ $yr == '4864'
+  replace Nivå2_ ++ $yr = '6 - Mottakere av AFP/alderspensjon' if status4 ++ $yr == '5616' | status4 ++ $yr == '5632'
+  replace Nivå2_ ++ $yr = '7 - Andre' if status4 ++ $yr == '3224' | status4 ++ $yr == '4808' | status4 ++ $yr == '5608' | status4 ++ $yr == '5624' | status4 ++ $yr == '5640' | status4 ++ $yr == '6408' | status4 ++ $yr == '6416' | status4 ++ $yr == '6424' | status4 ++ $yr == '6432'
+  replace Nivå2_ ++ $yr = '8 - Ukjent' if status4 ++ $yr == '7208'
+end
+
+tabulate Nivå2_ ++ $år0 Status ++ $år0
+tabulate antall_utenfor Nivå2_ ++ $år0
+
+tabulate Nivå2_ ++ $siste_år Status ++ $år0
+
+sankey Status ++ $år0 Nivå2_ ++ $siste_år if Status ++ $år0 == '2 - Utenfor'
+
+// Aggregert versjon av Nivå2 for forenklet sankey
+generate Nivå2_agg ++ $siste_år = "Annet"
+replace Nivå2_agg ++ $siste_år = "Arbeid, utdanning eller tiltak" if Nivå2_ ++ $siste_år == '1 - Sysselsatte'
+replace Nivå2_agg ++ $siste_år = "Arbeid, utdanning eller tiltak" if Nivå2_ ++ $siste_år == '2 - Under ordinær utdanning'
+replace Nivå2_agg ++ $siste_år = "Arbeid, utdanning eller tiltak" if Nivå2_ ++ $siste_år == '3 - Deltakere på arbeids-markedstiltak'
+replace Nivå2_agg ++ $siste_år = "Arbeidsledige" if Nivå2_ ++ $siste_år == '4 - Registrerte arbeidsledige'
+replace Nivå2_agg ++ $siste_år = "AAP/Uføre" if Nivå2_ ++ $siste_år == '5 - Mottakere av arbeidsavklarings-penger/uføretrygd'
+
+tabulate Nivå2_agg ++ $siste_år, missing
+sankey Status ++ $år0 Nivå2_agg ++ $siste_år if Status ++ $år0 == '2 - Utenfor'
+
+//legger på død og utvandret for siste år
+replace Nivå2_ ++ $siste_år = "0 - Utvandret" if statuskode ++ $siste_år == '3'
+replace Nivå2_ ++ $siste_år = "9 - Død" if statuskode ++ $siste_år == '5'
+
+tabulate Nivå2_ ++ $siste_år Status ++ $år0
+tabulate Nivå2_ ++ $siste_år Nivå2_ ++ $år0
+
+tabulate Nivå2_ ++ $siste_år vedvarende if Status ++ $år0 == '2 - Utenfor', missing rowpct freq
+
+tabulate Nivå2_ ++ $siste_år Innvandringskategori if vedvarende == '1 - vedvarende utenfor', missing rowpct colpct freq
+tabulate Nivå2_ ++ $siste_år Innvandringskategori if vedvarende == '1 - vedvarende utenfor', missing
+
+tabulate Nivå2_ ++ $siste_år Nivå2_ ++ $år0 if vedvarende == '1 - vedvarende utenfor', missing
+
+tabulate detaljert ++ $år0 vedvarende, missing
+tabulate detaljert ++ $siste_år vedvarende, missing
+
+tabulate detaljert ++ $år0 Status ++ $siste_år, missing
+tabulate detaljert ++ $år0 Status ++ $år0, missing
+tabulate detaljert ++ $siste_år Status ++ $siste_år, missing
+tabulate detaljert ++ $siste_år Status ++ $år0, missing

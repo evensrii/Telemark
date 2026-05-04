@@ -14,7 +14,7 @@ error_messages = []
 
 ################# Spørring #################
 
-# SSB API v2 GET URL (tabell 06265 - Boliger etter boligtype)
+# SSB API v2 GET URL (tabell 06265 - Boliger etter boligtype, kommunedata)
 GET_URL = (
     "https://data.ssb.no/api/pxwebapi/v2/tables/06265/data?lang=no"
     "&outputFormat=json-stat2"
@@ -27,6 +27,19 @@ GET_URL = (
     "&stub=Region"
 )
 
+# SSB API v2 GET URL (tabell 06265 - Boliger etter boligtype, nasjonale data)
+GET_URL_NASJONALT = (
+    "https://data.ssb.no/api/pxwebapi/v2/tables/06265/data?lang=no"
+    "&outputFormat=json-stat2"
+    "&valuecodes[ContentsCode]=*"
+    "&valuecodes[Tid]=2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026"
+    "&valuecodes[Region]=*"
+    "&codelist[Region]=vs_Landet"
+    "&valuecodes[BygnType]=*"
+    "&heading=BygnType,Region,ContentsCode"
+    "&stub=Tid"
+)
+
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
 try:
@@ -34,7 +47,7 @@ try:
         url=GET_URL,
         payload=None,  # None = GET request (new SSB API v2)
         error_messages=error_messages,
-        query_name="Boliger etter boligtype (06265)",
+        query_name="Boliger etter boligtype (06265) - kommunedata",
         response_type="json",
     )
 except Exception as e:
@@ -43,6 +56,24 @@ except Exception as e:
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )
+
+try:
+    df_nasjonalt = fetch_data(
+        url=GET_URL_NASJONALT,
+        payload=None,  # None = GET request (new SSB API v2)
+        error_messages=error_messages,
+        query_name="Boliger etter boligtype (06265) - nasjonale data",
+        response_type="json",
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+
+# Combine municipality and national data
+df = pd.concat([df, df_nasjonalt], ignore_index=True)
 
 print(df.head())
 print(df.columns.tolist())
@@ -71,6 +102,7 @@ kommunenummer_map = {
     "Fyresdal": "4032",
     "Tokke": "4034",
     "Vinje": "4036",
+    "Hele landet": "00",
 }
 df["Kommunenummer"] = df["region"].map(kommunenummer_map)
 
@@ -87,6 +119,56 @@ df = df.rename(columns={
 
 # Reorder columns with Kommunenummer first
 df = df[["Kommunenummer", "Kommune", "År", "Bygningstype", "Antall"]]
+
+# --- Bygningstype grouped classification ---
+bygningstype_to_gr = {
+    "Enebolig": "Enebolig",
+    "Tomannsbolig": "Rekkehus, tomannsbolig og småhus",
+    "Rekkehus, kjedehus og andre småhus": "Rekkehus, tomannsbolig og småhus",
+    "Boligblokk": "Leilighet",
+    "Bygning for bofellesskap": "Annen boligbygging",
+    "Andre bygningstyper": "Annen boligbygging",
+    "Andre bygg enn boligbygg": "Andre bygg enn boligbygg",
+}
+df["Bygningstype_gr"] = df["Bygningstype"].map(bygningstype_to_gr)
+
+# Check for unmapped values
+unmapped = df[df["Bygningstype_gr"].isna()]["Bygningstype"].unique()
+if len(unmapped) > 0:
+    print(f"WARNING: Unmapped Bygningstype values: {unmapped}")
+    for val in sorted(df["Bygningstype"].unique()):
+        mapped = "OK" if val in bygningstype_to_gr else "MISSING"
+        print(f"  [{mapped}] '{val}'")
+
+# Dynamic column name based on actual number of unique groups
+n_gr = df["Bygningstype_gr"].nunique()
+col_gr = f"Bygningstype_{n_gr}_gr"
+sort_col_gr = f"Sort_{col_gr}"
+df = df.rename(columns={"Bygningstype_gr": col_gr})
+
+# Sort columns: rank by summed Antall in Telemark only (excluding national data)
+df_telemark = df[df["Kommunenummer"] != "00"]
+
+# Sort column: rank groups by summed Antall in Telemark
+rank_gr = (
+    df_telemark.groupby(col_gr)["Antall"]
+    .sum()
+    .rank(ascending=False, method="min")
+    .astype(int)
+)
+df[sort_col_gr] = df[col_gr].map(rank_gr).fillna(0).astype(int)
+
+# Sort column: rank detailed bygningstyper by summed Antall in Telemark
+all_rank = (
+    df_telemark.groupby("Bygningstype")["Antall"]
+    .sum()
+    .rank(ascending=False, method="min")
+    .astype(int)
+)
+df["Sort_Bygningstype"] = df["Bygningstype"].map(all_rank).fillna(0).astype(int)
+
+# Final column order
+df = df[["Kommunenummer", "Kommune", "År", "Bygningstype", "Sort_Bygningstype", col_gr, sort_col_gr, "Antall"]]
 
 print(df.head())
 

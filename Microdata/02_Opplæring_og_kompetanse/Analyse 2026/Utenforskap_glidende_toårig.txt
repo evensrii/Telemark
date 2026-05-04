@@ -1,0 +1,98 @@
+// Glidende toårig analyse: Definerer ny populasjon hvert startår, sjekker status året etter.
+// Kjør scriptet én gang per startår (endre år0: 2020, 2021, 2022, 2023).
+//
+// Mest relevante SSB-tabell å sammenlikne med mtp. arbeidsstatistikk er 13563.
+// Se annen relevant statistikk her: https://www.ssb.no/statbank/?subject=al__al06__arbstatus
+
+require no.ssb.fdb:51 as fdb 
+create-dataset pop
+
+// Sett startår (endre denne for hver kjøring: 2020, 2021, 2022, 2023)
+let år0 = 2020
+let år1 = $år0 + 1
+
+// ===== ÅR 0 (Startår) - Populasjonsoppsett =====
+
+let dato_år0 = date_fmt($år0, 11, 16)
+let dato2_år0 = date_fmt($år0, 11, 30)
+
+// Henter "prioritert arbeidsstyrkestatus" (NEET vs. ikke-NEET)
+import fdb/ARBSTATUS_PERS_UTENFOR $dato_år0 as ARBSTATUS_år0
+tabulate ARBSTATUS_år0, missing
+
+// Generere variabelen "Status_år0"
+generate Status_år0 = "5 - Ukjent"
+replace Status_år0 = "1 - Innenfor" if ARBSTATUS_år0 == '0'
+replace Status_år0 = "2 - Utenfor" if ARBSTATUS_år0 == '1'
+
+tabulate Status_år0
+
+// Geografi - filtrer til Telemark
+import fdb/ARBSTATUS_PERS_KOMM_NR $dato2_år0 as bosted_år0
+generate fylkenr = substr(bosted_år0, 1, 2)
+generate kommunenr = substr(bosted_år0, 1, 4)
+keep if fylkenr == '38'
+generate fylke = 'Telemark'
+replace fylke = 'Vestfold' if kommunenr == '3801' | kommunenr == '3802' | kommunenr == '3803' | kommunenr == '3804' | kommunenr == '3805' | kommunenr == '3811'
+keep if fylke == 'Telemark'
+
+tabulate bosted_år0 Status_år0, missing
+
+// Kjønn
+import fdb/BEFOLKNING_KJOENN as kjønn
+
+// Aldersintervall (i startår)
+import fdb/ARBSTATUS_PERS_ALDER $dato_år0 as alder_år0
+
+keep if alder_år0 >= 15
+keep if alder_år0 <= 29
+
+tabulate alder_år0
+tabulate alder_år0 Status_år0, missing rowpct freq
+tabulate kjønn Status_år0, freq colpct rowpct
+
+// ===== ÅR 1 (Oppfølgingsår) =====
+
+let dato_år1 = date_fmt($år1, 11, 16)
+let dato1_år1 = date_fmt($år1 + 1, 1, 1)
+
+// Arbeidsstyrkestatus
+import fdb/ARBSTATUS_PERS_UTENFOR $dato_år1 as ARBSTATUS_år1
+tabulate ARBSTATUS_år1 Status_år0, missing
+
+// Døde/utvandret
+import fdb/BEFOLKNING_STATUSKODE $dato1_år1 as statuskode_år1
+tabulate ARBSTATUS_år1 statuskode_år1, missing
+
+// Generer Status_år1
+generate Status_år1 = "5 - Ukjent"
+replace Status_år1 = "1 - Innenfor" if ARBSTATUS_år1 == '0'
+replace Status_år1 = "2 - Utenfor" if ARBSTATUS_år1 == '1'
+replace Status_år1 = "3 - Utvandret" if statuskode_år1 == '3'
+replace Status_år1 = "4 - Død" if statuskode_år1 == '5'
+
+// ===== Tabulering og Sankey =====
+
+// Overgangstabell: Status i startår vs. oppfølgingsår
+tabulate Status_år0 Status_år1, missing
+tabulate Status_år0 Status_år1, missing rowpct freq
+tabulate Status_år0 Status_år1, missing colpct freq
+
+// Sankey-diagram
+sankey Status_år0 Status_år1
+
+// Utenfor-andel i startår vs. oppfølgingsår
+tabulate Status_år0
+tabulate Status_år1
+
+// Etter alder
+tabulate alder_år0 Status_år0, missing rowpct freq
+tabulate alder_år0 Status_år1, missing rowpct freq
+
+// Etter kjønn
+tabulate kjønn Status_år0, freq colpct rowpct
+tabulate kjønn Status_år1, freq colpct rowpct
+
+// Etter bosted
+tabulate bosted_år0 Status_år0, missing
+tabulate bosted_år0 Status_år1, missing
