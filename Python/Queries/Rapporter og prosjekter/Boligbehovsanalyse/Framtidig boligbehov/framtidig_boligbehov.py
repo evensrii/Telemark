@@ -180,6 +180,12 @@ for config in folders_config:
         df["Etterspørsel"] = pd.to_numeric(df["Etterspørsel"], errors="coerce")
         df = df.groupby(["Kommunenummer", "Kommune", "År", "Husholdningsstørrelse"], as_index=False)["Etterspørsel"].sum()
 
+        # Add Telemark total (sum of all municipalities)
+        df_telemark = df.groupby(["År", "Husholdningsstørrelse"], as_index=False)["Etterspørsel"].sum()
+        df_telemark["Kommunenummer"] = "40"
+        df_telemark["Kommune"] = "Telemark"
+        df = pd.concat([df, df_telemark], ignore_index=True)
+
     elif output_file == "framtidige_boligbehov_siste.csv":
         # Rename columns
         df = df.rename(columns={
