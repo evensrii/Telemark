@@ -232,6 +232,86 @@ for config in folders_config:
     print(f"New data status log written to {new_data_status_file}")
 
 
+    ##################### Indeks-fil for husholdninger etter alder #####################
+
+    if output_file == "framskrevet_husholdninger_alder_siste.csv":
+        print(f"\n--- Generating index file for age groups ---")
+
+        # Work with a copy of the transformed df
+        df_idx = df.copy()
+
+        # Map age groups to aggregated categories: "0-69" and "70+"
+        young_groups = ["0-14", "15-19", "20-24", "25-29", "30-39", "40-49", "50-59", "60-69"]
+        old_groups = ["70-79", "80+"]
+
+        def map_age_group(val):
+            if val in young_groups:
+                return "0-69"
+            elif val in old_groups:
+                return "70+"
+            return val
+
+        df_idx["Aldersgruppe"] = df_idx["Aldersgruppe"].apply(map_age_group)
+
+        # Sum demand per Kommunenummer/Kommune/År/Aldersgruppe
+        df_idx["Etterspørsel"] = pd.to_numeric(df_idx["Etterspørsel"], errors="coerce")
+        df_kommune = df_idx.groupby(["Kommunenummer", "Kommune", "År", "Aldersgruppe"], as_index=False)["Etterspørsel"].sum()
+
+        # Also create Telemark total (sum all municipalities)
+        df_telemark = df_idx.groupby(["År", "Aldersgruppe"], as_index=False)["Etterspørsel"].sum()
+        df_telemark["Kommunenummer"] = "40"
+        df_telemark["Kommune"] = "Telemark"
+
+        # Combine kommune-level and Telemark-level
+        df_combined = pd.concat([df_kommune, df_telemark], ignore_index=True)
+
+        # Determine base year (earliest year in data)
+        base_year = df_combined["År"].min()
+        print(f"Base year for index: {base_year}")
+
+        # Calculate index: base_year = 100
+        df_base = df_combined[df_combined["År"] == base_year][["Kommunenummer", "Aldersgruppe", "Etterspørsel"]].rename(
+            columns={"Etterspørsel": "Base"}
+        )
+        df_combined = df_combined.merge(df_base, on=["Kommunenummer", "Aldersgruppe"], how="left")
+        df_combined["Indeks"] = (df_combined["Etterspørsel"] / df_combined["Base"] * 100).round(1)
+
+        # Select final columns
+        df_indeks = df_combined[["Kommunenummer", "Kommune", "År", "Aldersgruppe", "Indeks"]].copy()
+
+        # Ensure proper types
+        df_indeks["Kommunenummer"] = df_indeks["Kommunenummer"].astype(str)
+        df_indeks["Indeks"] = df_indeks["Indeks"].astype(float)
+
+        print(f"\nIndex data preview (Telemark):")
+        print(df_indeks[df_indeks["Kommune"] == "Telemark"].head(10).to_string())
+
+        # Upload index file to GitHub
+        indeks_file_name = "framskrevet_husholdninger_alder_indeks.csv"
+        indeks_task_name = "Boligbehov - Framskrevet husholdninger alder indeks"
+        indeks_github_folder = config["github_data_folder"]
+
+        is_new_data_indeks = handle_output_data(
+            df_indeks,
+            indeks_file_name,
+            indeks_github_folder,
+            temp_folder,
+            keepcsv=True,
+        )
+
+        # Log for index file
+        indeks_task_safe = indeks_task_name.replace(".", "_").replace(" ", "_")
+        indeks_log_file = os.path.join(log_dir, f"new_data_status_{indeks_task_safe}.log")
+
+        with open(indeks_log_file, "w", encoding="utf-8") as log_file:
+            log_file.write(f"{indeks_task_safe},{indeks_file_name},{'Yes' if is_new_data_indeks else 'No'}\n")
+
+        if is_new_data_indeks:
+            print("Index file: New data detected and pushed to GitHub.")
+        else:
+            print("Index file: No new data detected.")
+
+
 ##################### Oppsummering #####################
 
 if error_messages:
