@@ -26,6 +26,9 @@ if TEMP_FOLDER is None:
     raise ValueError("TEMP_FOLDER environment variable is not set")
 
 SCRIPTS = [
+    
+    #### ------------ Tema- og faktasider ------------ ####
+    
     ## Befolkning
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske_07459.py"), "Befolkning - Befolkningsframskrivinger historiske_07459"), # Befolkning fram til nå
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell.py"), "Befolkning - Befolkningsframskrivinger siste tabell"), # Befolkning framover
@@ -117,6 +120,11 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py"), "Bystrategi Grenland - Utslipp fra vei"),
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py"), "Bystrategi Grenland - Luftforurensing"),
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.py"), "Bystrategi Grenland - Arealprofiler"),
+
+    #### ------------ Rapporter og prosjekter ------------ ####
+    
+    ## Boligbehovsanalyse
+    (os.path.join(PYTHON_PATH, "Queries/Rapporter og prosjekter/Boligbehovsanalyse/Framtidig boligbehov/framtidig_boligbehov.py"), "Boligbehovsanalyse - Framtidig boligbehov"),
 ]
 
 # Initialize master log
