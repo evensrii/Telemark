@@ -165,14 +165,20 @@ for config in folders_config:
         # Convert year to datetime format (YYYY-01-01)
         df["År"] = pd.to_datetime(df["År"], format="%Y").dt.strftime("%Y-%m-%d")
 
-        # Rename household sizes: "SIZE_1" -> "1", "SIZE_6_INF" -> "6+"
-        def rename_household_size(val):
-            val = val.replace("SIZE_", "")
-            if val == "6_INF":
-                return "6+"
-            return val
+        # Map household sizes to 4 aggregated categories
+        size_mapping = {
+            "SIZE_1": "Én person",
+            "SIZE_2": "To personer",
+            "SIZE_3": "Tre personer",
+            "SIZE_4": "Fire personer eller mer",
+            "SIZE_5": "Fire personer eller mer",
+            "SIZE_6_INF": "Fire personer eller mer",
+        }
+        df["Husholdningsstørrelse"] = df["Husholdningsstørrelse"].map(size_mapping)
 
-        df["Husholdningsstørrelse"] = df["Husholdningsstørrelse"].apply(rename_household_size)
+        # Aggregate (sum) demand for the merged "Fire personer eller mer" category
+        df["Etterspørsel"] = pd.to_numeric(df["Etterspørsel"], errors="coerce")
+        df = df.groupby(["Kommunenummer", "Kommune", "År", "Husholdningsstørrelse"], as_index=False)["Etterspørsel"].sum()
 
     elif output_file == "framtidige_boligbehov_siste.csv":
         # Rename columns
