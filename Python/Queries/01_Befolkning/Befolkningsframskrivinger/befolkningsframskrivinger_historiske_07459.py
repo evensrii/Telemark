@@ -41,7 +41,7 @@ queries = [
             "https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no"
             "&outputFormat=json-stat2"
             "&valuecodes[ContentsCode]=*"
-            "&valuecodes[Tid]=from(2020)"
+            "&valuecodes[Tid]=from(2000)"
             "&valuecodes[Region]=F-40"
             "&codelist[Region]=agg_KommFylker"
             "&valuecodes[Alder]=*"
@@ -50,13 +50,14 @@ queries = [
             "&stub=Region,Alder"
         ),
     },
+
     {
         "name": "Norge",
         "url": (
             "https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no"
             "&outputFormat=json-stat2"
             "&valuecodes[ContentsCode]=*"
-            "&valuecodes[Tid]=from(2020)"
+            "&valuecodes[Tid]=from(2000)"
             "&valuecodes[Region]=*"
             "&codelist[Region]=vs_Landet"
             "&valuecodes[Alder]=*"

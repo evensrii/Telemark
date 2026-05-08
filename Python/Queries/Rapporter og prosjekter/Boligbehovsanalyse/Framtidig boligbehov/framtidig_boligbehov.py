@@ -200,6 +200,15 @@ for config in folders_config:
         # Convert year to datetime format (YYYY-01-01)
         df["År"] = pd.to_datetime(df["År"], format="%Y").dt.strftime("%Y-%m-%d")
 
+        # Add Telemark total (sum of all municipalities)
+        df["Etterspørsel"] = pd.to_numeric(df["Etterspørsel"], errors="coerce")
+        df["Tilbud"] = pd.to_numeric(df["Tilbud"], errors="coerce")
+        df["Ny etterspørsel"] = pd.to_numeric(df["Ny etterspørsel"], errors="coerce")
+        df_telemark = df.groupby(["År"], as_index=False)[["Etterspørsel", "Tilbud", "Ny etterspørsel"]].sum()
+        df_telemark["Kommunenummer"] = "40"
+        df_telemark["Kommune"] = "Telemark"
+        df = pd.concat([df, df_telemark], ignore_index=True)
+
     # Ensure Kommunenummer is string (for github_functions compatibility)
     df["Kommunenummer"] = df["Kommunenummer"].astype(str)
 
