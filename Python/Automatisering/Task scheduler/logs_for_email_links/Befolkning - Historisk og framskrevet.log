@@ -49,8 +49,23 @@ Combined data: 20120 rows
 18          4012  Bamble  0 Ã¥r  2018-01-01  Historisk       141           1
 19          4012  Bamble  0 Ã¥r  2019-01-01  Historisk       121           1
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkning_historisk_og_framskrevet.csv
-[2026-05-06 08:05:44] No new data to upload. Skipping GitHub update.
+[2026-05-08 08:05:49] Row count changed: 20520 -> 20120
+
+Removed rows (showing up to 10):
+Alder: 0 Ã¥r, Kommune: Telemark, Kommunenummer: 40, Personer: 1878, SortColumn: 1, Type: Historisk, r: 2000-01-01
+Alder: 0 Ã¥r, Kommune: Telemark, Kommunenummer: 40, Personer: 1897, SortColumn: 1, Type: Historisk, r: 2001-01-01
+Alder: 0 Ã¥r, Kommune: Telemark, Kommunenummer: 40, Personer: 1856, SortColumn: 1, Type: Historisk, r: 2002-01-01
+Alder: 0 Ã¥r, Kommune: Telemark, Kommunenummer: 40, Personer: 1721, SortColumn: 1, Type: Historisk, r: 2003-01-01
+Alder: 0 Ã¥r, Kommune: Telemark, Kommunenummer: 40, Personer: 1782, SortColumn: 1, Type: Historisk, r: 2004-01-01
+Alder: 0 Ã¥r, Kommune: Telemark, Kommunenummer: 40, Personer: 1725, SortColumn: 1, Type: Historisk, r: 2005-01-01
+Alder: 0 Ã¥r, Kommune: Telemark, Kommunenummer: 40, Personer: 1690, SortColumn: 1, Type: Historisk, r: 2006-01-01
+Alder: 0 Ã¥r, Kommune: Telemark, Kommunenummer: 40, Personer: 1690, SortColumn: 1, Type: Historisk, r: 2007-01-01
+Alder: 0 Ã¥r, Kommune: Telemark, Kommunenummer: 40, Personer: 1716, SortColumn: 1, Type: Historisk, r: 2008-01-01
+Alder: 0 Ã¥r, Kommune: Telemark, Kommunenummer: 40, Personer: 1746, SortColumn: 1, Type: Historisk, r: 2009-01-01
+... and 390 more rows
+File uploaded successfully: Data/01_Befolkning/Befolkningsframskrivinger/befolkning_historisk_og_framskrevet.csv
+Email notifications disabled. Updates for befolkning_historisk_og_framskrevet.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkning_historisk_og_framskrevet.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Historisk_og_framskrevet.log
 
