@@ -21,8 +21,23 @@ Husholdninger etter boligtype (06070) JSON-stat data loaded successfully.
 
 [5 rows x 6 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\husholdninger_etter_boligtype.csv
-[2026-05-08 08:20:08] No new data to upload. Skipping GitHub update.
+[2026-05-11 08:19:47] Row count changed: 1512 -> 1428
+
+Removed rows (showing up to 10):
+Antall: 324, Husholdningstype: AleneforsÃ¸rger med barn under 18 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 4, r: 01.01.2014
+Antall: 0, Husholdningstype: Andre husholdninger, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 0, r: 01.01.2014
+Antall: 523, Husholdningstype: Par eller aleneforsÃ¸rger med voksne barn (18+), Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 3, r: 01.01.2014
+Antall: 1241, Husholdningstype: Par med barn under 18 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 5, r: 01.01.2014
+Antall: 303, Husholdningstype: AleneforsÃ¸rger med barn under 18 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 4, r: 01.01.2015
+Antall: 0, Husholdningstype: Andre husholdninger, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 0, r: 01.01.2015
+Antall: 522, Husholdningstype: Par eller aleneforsÃ¸rger med voksne barn (18+), Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 3, r: 01.01.2015
+Antall: 1233, Husholdningstype: Par med barn under 18 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 5, r: 01.01.2015
+Antall: 296, Husholdningstype: AleneforsÃ¸rger med barn under 18 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 4, r: 01.01.2016
+Antall: 0, Husholdningstype: Andre husholdninger, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 0, r: 01.01.2016
+... and 890 more rows
+File uploaded successfully: Data/10_Areal- og stedsutvikling/Bolig/Dagens boligmasse/husholdninger_etter_boligtype.csv
+Email notifications disabled. Updates for husholdninger_etter_boligtype.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\husholdninger_etter_boligtype.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Husholdninger_etter_boligtype.log
 
