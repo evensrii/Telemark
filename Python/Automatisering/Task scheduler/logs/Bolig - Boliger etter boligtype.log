@@ -22,8 +22,23 @@ Boliger etter boligtype (06265) - nasjonale data JSON-stat data loaded successfu
 
 [5 rows x 8 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\boliger_etter_boligtype.csv
-[2026-05-08 08:19:51] No new data to upload. Skipping GitHub update.
+[2026-05-11 08:19:28] Row count changed: 1596 -> 1512
+
+Removed rows (showing up to 10):
+Antall: 3085, Bygningstype: Andre bygningstyper, Bygningstype_4_gr: Annen boligbygging, Kommune: Telemark, Kommunenummer: 40, Sort_Bygningstype: 5, Sort_Bygningstype_4_gr: 4, r: 01.01.2013
+Antall: 9565, Bygningstype: Boligblokk, Bygningstype_4_gr: Leilighet, Kommune: Telemark, Kommunenummer: 40, Sort_Bygningstype: 2, Sort_Bygningstype_4_gr: 3, r: 01.01.2013
+Antall: 1780, Bygningstype: Bygning for bofellesskap, Bygningstype_4_gr: Annen boligbygging, Kommune: Telemark, Kommunenummer: 40, Sort_Bygningstype: 6, Sort_Bygningstype_4_gr: 4, r: 01.01.2013
+Antall: 55456, Bygningstype: Enebolig, Bygningstype_4_gr: Enebolig, Kommune: Telemark, Kommunenummer: 40, Sort_Bygningstype: 1, Sort_Bygningstype_4_gr: 1, r: 01.01.2013
+Antall: 8427, Bygningstype: Rekkehus, kjedehus og andre smÃ¥hus, Bygningstype_4_gr: Rekkehus, tomannsbolig og smÃ¥hus, Kommune: Telemark, Kommunenummer: 40, Sort_Bygningstype: 3, Sort_Bygningstype_4_gr: 2, r: 01.01.2013
+Antall: 6373, Bygningstype: Tomannsbolig, Bygningstype_4_gr: Rekkehus, tomannsbolig og smÃ¥hus, Kommune: Telemark, Kommunenummer: 40, Sort_Bygningstype: 4, Sort_Bygningstype_4_gr: 2, r: 01.01.2013
+Antall: 3072, Bygningstype: Andre bygningstyper, Bygningstype_4_gr: Annen boligbygging, Kommune: Telemark, Kommunenummer: 40, Sort_Bygningstype: 5, Sort_Bygningstype_4_gr: 4, r: 01.01.2014
+Antall: 9735, Bygningstype: Boligblokk, Bygningstype_4_gr: Leilighet, Kommune: Telemark, Kommunenummer: 40, Sort_Bygningstype: 2, Sort_Bygningstype_4_gr: 3, r: 01.01.2014
+Antall: 1794, Bygningstype: Bygning for bofellesskap, Bygningstype_4_gr: Annen boligbygging, Kommune: Telemark, Kommunenummer: 40, Sort_Bygningstype: 6, Sort_Bygningstype_4_gr: 4, r: 01.01.2014
+Antall: 55733, Bygningstype: Enebolig, Bygningstype_4_gr: Enebolig, Kommune: Telemark, Kommunenummer: 40, Sort_Bygningstype: 1, Sort_Bygningstype_4_gr: 1, r: 01.01.2014
+... and 74 more rows
+File uploaded successfully: Data/10_Areal- og stedsutvikling/Bolig/Dagens boligmasse/boliger_etter_boligtype.csv
+Email notifications disabled. Updates for boliger_etter_boligtype.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\boliger_etter_boligtype.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Boliger_etter_boligtype.log
 
