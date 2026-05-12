@@ -1,74 +1,74 @@
-[11.05.2026  08:05:15] Befolkning - Befolkningsframskrivinger historiske_07459: befolkningsframskrivinger_historiske_07459.py: Completed, No, 2026-05-08 08:13:23
-[11.05.2026  08:05:28] Befolkning - Befolkningsframskrivinger siste tabell: befolkningsframskrivinger_siste_tabell.py: Completed, No, 2026-03-23 14:28:10
-[11.05.2026  08:05:41] Befolkning - Historisk og framskrevet: kombiner_historisk_og_framskrevet.py: Completed, No, 2026-05-08 08:16:23
-[11.05.2026  08:05:50] Befolkning - Befolkningsframskrivinger egne intervaller: befolkningsframskrivinger_egne_intervaller.py: Completed, No, 2026-04-30 07:06:00
-[11.05.2026  08:06:00] Flytting - Til og fra Telemark: flytting_til_og_fra_telemark.py: Completed, No, 2026-04-07 08:39:21
-[11.05.2026  08:06:11] Flytting - Til og fra kommunene: flytting_til_og_fra_kommunene.py: Completed, No, 2026-04-30 07:06:25
-[11.05.2026  08:06:23] Befolkning - Folketall: folketall.py: Completed, No, 2026-02-25 08:05:48
-[11.05.2026  08:06:31] Opplaering og kompetanse - Utdanningsnivaa: utdanningsnivaa.py: Completed, No, 2025-08-28 09:49:33
-[11.05.2026  08:06:52] Opplaering og kompetanse - Utdanningsnivaa Telemark og landet: utdanningsnivaa_telemark_og_landet.py: Completed, No, 2025-08-28 13:43:37
-[11.05.2026  08:07:03] Opplaering og kompetanse - Andel unge utenfor etter kommune: andel_unge_utenfor_kommuner.py: Completed, No, 2026-03-20 11:33:41
-[11.05.2026  08:07:16] Opplaering og kompetanse - Andel utenfor per fylke og alder: andel_utenfor_fylke_alder.py: Completed, No, 2026-03-20 12:04:04
-[11.05.2026  08:07:25] Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune: arbeidsmarkedstilknytning.py: Completed, No, 2026-01-30 08:06:36
-[11.05.2026  08:07:43] Arbeid og naeringsliv - Sysselsatte etter aldersgruppe: sysselsetting_alder.py: Completed, No, 2026-02-26 08:06:52
-[11.05.2026  08:07:55] Arbeid og naeringsliv - Sysselsatte i kommunene: sysselsetting_i_kommunene.py: Completed, No, 2026-02-26 08:07:01
-[11.05.2026  08:08:03] Arbeid og naeringsliv - Offentlig vs. privat naeringsliv: offentlig_vs_privat_sysselsetting.py: Completed, No, 2026-02-26 08:07:16
-[11.05.2026  08:08:16] Arbeid og naeringsliv - Sysselsatte i naeringer: arbeidsplasser_i_naringer.py: Completed, No, 2026-02-26 08:07:28
-[11.05.2026  08:08:29] Arbeid og naeringsliv - Sysselsatte (fliser): arbeidsplasser_fliser.py: Completed, No, 2026-02-26 08:07:44
-[11.05.2026  08:08:44] Arbeid og naeringsliv - Endring arbeidsplasser over tid: endring_arbeidsplasser_over_tid.py: Completed, No, 2026-02-26 08:08:00
-[11.05.2026  08:08:51] Arbeid og naeringsliv - Virksomheter: virksomheter.py: Completed, No, 2026-01-12 08:07:53
-[11.05.2026  08:09:04] Arbeid og naeringsliv - Standard for naeringsgruppering: nace_klassifisering.py: Completed, No, 2026-04-16 07:09:08
-[11.05.2026  08:09:13] NAV - Arbeidsledighet: arbeidsledighet.py: Completed, No, 2026-03-11 13:43:35
-[11.05.2026  08:09:26] NAV - Nedsatt arbeidsevne: nedsatt_arbeidsevne.py: Completed, No, 2026-01-06 08:08:33
-[11.05.2026  08:09:38] Opplaering og kompetanse - Sokere og stillinger etter yrkespraksis: soekere_stillinger_yrkespraksis.py: Completed, No, 2026-02-04 08:09:08
-[11.05.2026  08:09:58] Klima og energi - Sektorvise utslipp: klimagassutslipp.py: Completed, No, 2026-04-24 07:11:53
-[11.05.2026  08:12:11] Klima og energi - Utslipp fra landbasert industri: norskeutslipp.py: Completed, No, 2026-03-11 13:06:43
-[11.05.2026  08:12:23] Klima og energi - Okologisk tilstand vann: okologisk_tilstand.py: Completed, No, 2025-05-12 07:10:49
-[11.05.2026  08:13:08] Klima og energi - Felte hjortedyr: antall_felt.py: Completed, No, 2026-03-20 08:11:56
-[11.05.2026  08:13:19] Klima og energi - Vannkraft Telemark: vannkraft.py: Completed, No, 2026-03-18 08:11:58
-[11.05.2026  08:13:26] Klima og energi - Kraftproduksjon Telemark (SSB): kraftproduksjon_ssb.py: Completed, No, 2026-05-08 07:13:31
-[11.05.2026  08:13:34] Klima og energi - Strompriser: strompriser.py: Failed, No, 2026-05-05 07:13:39
-[11.05.2026  08:13:42] Klima og energi - Stromforbruk (Elhub): elhub.py: Completed, Yes, 2026-05-08 07:14:52
-[11.05.2026  08:14:16] Klima og energi - Installert_effekt (Elhub): installert_effekt.py: Completed, No, 2026-05-08 07:14:52
-[11.05.2026  08:14:54] Idrett friluftsliv og frivillighet - Jegere: andel_jegere.py: Completed, No, 2026-04-10 07:14:40
-[11.05.2026  08:15:02] Innvandrere - Flyktninger og arbeidsinnvandrere: andel_flyktninger_og_arbeidsinnvandrere.py: Completed, No, 2025-11-06 08:14:07
-[11.05.2026  08:15:10] Innvandrere - Botid: botid.py: Completed, No, 2025-07-30 07:13:03
-[11.05.2026  08:15:18] Innvandrere - Bosatt: innvandrere_bosatt.py: Completed, No, 2026-03-16 10:18:14
-[11.05.2026  08:15:26] Innvandrere - Innvandringsgrunn: innvandringsgrunn.py: Completed, No, 2025-11-06 08:14:35
-[11.05.2026  08:15:35] Innvandrere - Lavinntekt: andel_innvandrere_i_lavinntekt_fhi.py: Completed, No, 2026-03-17 09:00:00
-[11.05.2026  08:15:42] Innvandrere - Sysselsatte: andel_sysselsatte_innvandrere.py: Completed, No, 2026-03-16 10:37:18
-[11.05.2026  08:15:53] Innvandrere - Sysselsatte etter botid og bakgrunn: andel_sysselsatte_etter_botid_og_landbakgrunn.py: Completed, No, 2025-04-23 07:13:18
-[11.05.2026  08:16:01] Innvandrere - Deltakere introduksjonsprogrammet: deltakere_introduksjonsprogram.py: Completed, No, 2025-06-19 07:12:58
-[11.05.2026  08:16:09] Innvandrere - Etter introduksjonsprogrammet: etter_introduksjonsprogram.py: Completed, No, 2026-03-17 08:15:09
-[11.05.2026  08:16:16] Innvandrere - Enslige mindreaarige: enslige_mindreaarige.py: Completed, No, 2025-11-04 08:15:05
-[11.05.2026  08:16:23] Innvandrere - Anmodninger og faktisk bosetting: anmodninger_og_faktisk_bosetting.py: Completed, No, 2026-05-05 07:17:32
-[11.05.2026  08:16:30] Innvandrere - Sekundaerflytting: sekundaerflytting.py: Completed, No, 2024-12-12 12:12:41
-[11.05.2026  08:16:37] Innvandrere - Fullfort VGO: innv_fullfort_vgo.py: Completed, No, 2025-06-27 07:14:19
-[11.05.2026  08:16:47] Innvandrere - Hoyeste utdanning: innv_hoyeste_utdanning.py: Completed, No, 2025-11-07 08:22:24
-[11.05.2026  08:16:54] Folkehelse - Dødsårsaker, ettårig: doedsaarsaker_ettaarig.py: Completed, No, 2026-03-27 14:00:29
-[11.05.2026  08:17:03] Folkehelse - Fornøyd med helsa - ungdom: fornoeyd_med_helsa_ungdom.py: Completed, No, 2026-03-30 07:17:12
-[11.05.2026  08:17:10] Folkehelse - Forventet levealder etter utdanning, 7 årig: forventet_levealder_etter_utdanning_7_aarig.py: Completed, No, 2026-04-17 07:17:11
-[11.05.2026  08:17:18] Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, ettårige tall: hjerte_og_karsykdom_primaerhelsetjenesten_ettaarige_tall.py: Completed, No, 2026-04-16 07:17:03
-[11.05.2026  08:17:27] Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall: hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.py: Completed, No, 2026-04-16 07:17:13
-[11.05.2026  08:17:34] Folkehelse - Kols, dødsårsak, ettårig: kols_doedsaarsak_ettaarig.py: Completed, No, 2026-03-30 07:17:47
-[11.05.2026  08:17:42] Folkehelse - Kreft, nye tilfeller, tiårige tall: kreft_nye_tilfeller_tiaarige_tall.py: Completed, No, 2026-04-16 07:17:30
-[11.05.2026  08:17:50] Folkehelse - Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall: muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.py: Completed, No, 2026-04-16 07:17:40
-[11.05.2026  08:17:58] Folkehelse - Psykiske plager, ungdom: psykiske_plager_ungdom.py: Completed, No, 2026-03-30 07:18:13
-[11.05.2026  08:18:05] Folkehelse - Psykiske symptomer og lidelser - primærhelsetjenesten, ettårige tall: psykiske_symptomer_og_lidelser_primaerhelsetjenesten_ettaarige_tall.py: Completed, No, 2026-04-16 07:17:55
-[11.05.2026  08:18:13] Folkehelse - Reseptfrie smertestillende legemidler, ungdom: reseptfrie_smertestillende_legemidler_ungdom.py: Completed, No, 2026-03-30 07:18:31
-[11.05.2026  08:18:20] Folkehelse - Selvmord, femårig: selvmord_femaarig.py: Completed, No, 2026-03-30 07:18:40
-[11.05.2026  08:18:28] Folkehelse - Sykehusinnlagte, somatikk, ettårige. inkl. skader: sykehusinnlagte_somatikk_ettaarige_inkl_skader.py: Completed, No, 2026-03-30 07:18:52
-[11.05.2026  08:18:37] Folkehelse - Tilfredshet med livet, ungdom: tilfredshet_med_livet_ungdom.py: Completed, No, 2026-03-30 07:19:00
-[11.05.2026  08:18:44] Folkehelse - Skader, kontakt med primærhelsetjeneste, ettårige tall: skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.py: Completed, No, 2025-12-19 15:18:33
-[11.05.2026  08:18:52] Areal - Jordbruksareal per kommune: jordbruksareal_per_kommune.py: Completed, No, 2025-08-20 08:13:22
-[11.05.2026  08:19:01] Areal - Fulldyrka vs ikke-fulldyrka: fulldyrka_vs_ikke-fulldyrka.py: Completed, No, 2025-08-21 07:15:16
-[11.05.2026  08:19:10] Bolig - Antall boliger etter type og bosattes alder: antall_boliger_etter_type_og_bosattes_alder.py: Completed, No, 2026-04-29 13:30:10
-[11.05.2026  08:19:19] Bolig - Boliger etter boligtype: boliger_etter_boligtype.py: Completed, Yes, 2026-05-08 13:35:51
-[11.05.2026  08:19:30] Bolig - Fullforte boliger etter boligtype: fullførte_boliger_etter_boligtype.py: Completed, No, 2026-04-27 13:19:54
-[11.05.2026  08:19:39] Bolig - Husholdninger etter boligtype: husholdninger_etter_boligtype.py: Completed, Yes, 2026-05-08 13:33:17
-[11.05.2026  08:19:49] Bolig - Igangsettelser etter boligtype: igangsettelser_etter_boligtype.py: Completed, No, 2026-04-27 13:40:48
-[11.05.2026  08:19:58] Bystrategi Grenland - Utslipp fra vei: klimagassutslipp_vei.py: Completed, No, 2025-09-04 10:44:33
-[11.05.2026  08:21:56] Bystrategi Grenland - Luftforurensing: luftforurensning_grenland.py: Completed, No, 2026-03-17 09:32:05
-[11.05.2026  08:22:11] Bystrategi Grenland - Arealprofiler: arealprofiler.py: Completed, No, 2025-10-14 08:14:57
-[11.05.2026  08:22:23] Boligbehovsanalyse - Framtidig boligbehov: framtidig_boligbehov.py: Completed, No
-[2026-05-11 08:23:59.008217] Master script completed
+[12.05.2026  08:05:13] Befolkning - Befolkningsframskrivinger historiske_07459: befolkningsframskrivinger_historiske_07459.py: Completed, No, 2026-05-08 08:13:23
+[12.05.2026  08:05:26] Befolkning - Befolkningsframskrivinger siste tabell: befolkningsframskrivinger_siste_tabell.py: Completed, No, 2026-03-23 14:28:10
+[12.05.2026  08:05:38] Befolkning - Historisk og framskrevet: kombiner_historisk_og_framskrevet.py: Completed, No, 2026-05-08 08:16:23
+[12.05.2026  08:05:47] Befolkning - Befolkningsframskrivinger egne intervaller: befolkningsframskrivinger_egne_intervaller.py: Completed, No, 2026-04-30 07:06:00
+[12.05.2026  08:05:57] Flytting - Til og fra Telemark: flytting_til_og_fra_telemark.py: Completed, No, 2026-04-07 08:39:21
+[12.05.2026  08:06:08] Flytting - Til og fra kommunene: flytting_til_og_fra_kommunene.py: Completed, No, 2026-04-30 07:06:25
+[12.05.2026  08:06:20] Befolkning - Folketall: folketall.py: Completed, No, 2026-02-25 08:05:48
+[12.05.2026  08:06:28] Opplaering og kompetanse - Utdanningsnivaa: utdanningsnivaa.py: Completed, No, 2025-08-28 09:49:33
+[12.05.2026  08:06:48] Opplaering og kompetanse - Utdanningsnivaa Telemark og landet: utdanningsnivaa_telemark_og_landet.py: Completed, No, 2025-08-28 13:43:37
+[12.05.2026  08:06:59] Opplaering og kompetanse - Andel unge utenfor etter kommune: andel_unge_utenfor_kommuner.py: Completed, No, 2026-03-20 11:33:41
+[12.05.2026  08:07:12] Opplaering og kompetanse - Andel utenfor per fylke og alder: andel_utenfor_fylke_alder.py: Completed, No, 2026-03-20 12:04:04
+[12.05.2026  08:07:21] Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune: arbeidsmarkedstilknytning.py: Completed, No, 2026-01-30 08:06:36
+[12.05.2026  08:07:39] Arbeid og naeringsliv - Sysselsatte etter aldersgruppe: sysselsetting_alder.py: Completed, No, 2026-02-26 08:06:52
+[12.05.2026  08:07:51] Arbeid og naeringsliv - Sysselsatte i kommunene: sysselsetting_i_kommunene.py: Completed, No, 2026-02-26 08:07:01
+[12.05.2026  08:07:59] Arbeid og naeringsliv - Offentlig vs. privat naeringsliv: offentlig_vs_privat_sysselsetting.py: Completed, No, 2026-02-26 08:07:16
+[12.05.2026  08:08:11] Arbeid og naeringsliv - Sysselsatte i naeringer: arbeidsplasser_i_naringer.py: Completed, No, 2026-02-26 08:07:28
+[12.05.2026  08:08:23] Arbeid og naeringsliv - Sysselsatte (fliser): arbeidsplasser_fliser.py: Completed, No, 2026-02-26 08:07:44
+[12.05.2026  08:08:37] Arbeid og naeringsliv - Endring arbeidsplasser over tid: endring_arbeidsplasser_over_tid.py: Completed, No, 2026-02-26 08:08:00
+[12.05.2026  08:08:59] Arbeid og naeringsliv - Virksomheter: virksomheter.py: Completed, No, 2026-01-12 08:07:53
+[12.05.2026  08:09:12] Arbeid og naeringsliv - Standard for naeringsgruppering: nace_klassifisering.py: Completed, No, 2026-04-16 07:09:08
+[12.05.2026  08:09:22] NAV - Arbeidsledighet: arbeidsledighet.py: Completed, No, 2026-03-11 13:43:35
+[12.05.2026  08:09:33] NAV - Nedsatt arbeidsevne: nedsatt_arbeidsevne.py: Completed, No, 2026-01-06 08:08:33
+[12.05.2026  08:09:44] Opplaering og kompetanse - Sokere og stillinger etter yrkespraksis: soekere_stillinger_yrkespraksis.py: Completed, No, 2026-02-04 08:09:08
+[12.05.2026  08:10:04] Klima og energi - Sektorvise utslipp: klimagassutslipp.py: Completed, No, 2026-04-24 07:11:53
+[12.05.2026  08:12:09] Klima og energi - Utslipp fra landbasert industri: norskeutslipp.py: Completed, No, 2026-03-11 13:06:43
+[12.05.2026  08:12:22] Klima og energi - Okologisk tilstand vann: okologisk_tilstand.py: Completed, No, 2025-05-12 07:10:49
+[12.05.2026  08:13:07] Klima og energi - Felte hjortedyr: antall_felt.py: Completed, No, 2026-03-20 08:11:56
+[12.05.2026  08:13:18] Klima og energi - Vannkraft Telemark: vannkraft.py: Completed, No, 2026-03-18 08:11:58
+[12.05.2026  08:13:26] Klima og energi - Kraftproduksjon Telemark (SSB): kraftproduksjon_ssb.py: Completed, No, 2026-05-08 07:13:31
+[12.05.2026  08:13:34] Klima og energi - Strompriser: strompriser.py: Completed, Yes, 2026-05-05 07:13:39
+[12.05.2026  08:13:44] Klima og energi - Stromforbruk (Elhub): elhub.py: Completed, Yes, 2026-05-11 07:14:52
+[12.05.2026  08:14:22] Klima og energi - Installert_effekt (Elhub): installert_effekt.py: Completed, No, 2026-05-11 07:14:52
+[12.05.2026  08:14:59] Idrett friluftsliv og frivillighet - Jegere: andel_jegere.py: Completed, No, 2026-04-10 07:14:40
+[12.05.2026  08:15:08] Innvandrere - Flyktninger og arbeidsinnvandrere: andel_flyktninger_og_arbeidsinnvandrere.py: Completed, No, 2025-11-06 08:14:07
+[12.05.2026  08:15:17] Innvandrere - Botid: botid.py: Completed, No, 2025-07-30 07:13:03
+[12.05.2026  08:15:24] Innvandrere - Bosatt: innvandrere_bosatt.py: Completed, No, 2026-03-16 10:18:14
+[12.05.2026  08:15:33] Innvandrere - Innvandringsgrunn: innvandringsgrunn.py: Completed, No, 2025-11-06 08:14:35
+[12.05.2026  08:15:41] Innvandrere - Lavinntekt: andel_innvandrere_i_lavinntekt_fhi.py: Completed, No, 2026-03-17 09:00:00
+[12.05.2026  08:15:49] Innvandrere - Sysselsatte: andel_sysselsatte_innvandrere.py: Completed, No, 2026-03-16 10:37:18
+[12.05.2026  08:15:58] Innvandrere - Sysselsatte etter botid og bakgrunn: andel_sysselsatte_etter_botid_og_landbakgrunn.py: Completed, No, 2025-04-23 07:13:18
+[12.05.2026  08:16:07] Innvandrere - Deltakere introduksjonsprogrammet: deltakere_introduksjonsprogram.py: Completed, No, 2025-06-19 07:12:58
+[12.05.2026  08:16:14] Innvandrere - Etter introduksjonsprogrammet: etter_introduksjonsprogram.py: Completed, No, 2026-03-17 08:15:09
+[12.05.2026  08:16:22] Innvandrere - Enslige mindreaarige: enslige_mindreaarige.py: Completed, No, 2025-11-04 08:15:05
+[12.05.2026  08:16:29] Innvandrere - Anmodninger og faktisk bosetting: anmodninger_og_faktisk_bosetting.py: Completed, No, 2026-05-05 07:17:32
+[12.05.2026  08:16:37] Innvandrere - Sekundaerflytting: sekundaerflytting.py: Completed, No, 2024-12-12 12:12:41
+[12.05.2026  08:16:44] Innvandrere - Fullfort VGO: innv_fullfort_vgo.py: Completed, No, 2025-06-27 07:14:19
+[12.05.2026  08:16:54] Innvandrere - Hoyeste utdanning: innv_hoyeste_utdanning.py: Completed, No, 2025-11-07 08:22:24
+[12.05.2026  08:17:01] Folkehelse - Dødsårsaker, ettårig: doedsaarsaker_ettaarig.py: Completed, No, 2026-03-27 14:00:29
+[12.05.2026  08:17:10] Folkehelse - Fornøyd med helsa - ungdom: fornoeyd_med_helsa_ungdom.py: Completed, No, 2026-03-30 07:17:12
+[12.05.2026  08:17:17] Folkehelse - Forventet levealder etter utdanning, 7 årig: forventet_levealder_etter_utdanning_7_aarig.py: Completed, No, 2026-04-17 07:17:11
+[12.05.2026  08:17:25] Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, ettårige tall: hjerte_og_karsykdom_primaerhelsetjenesten_ettaarige_tall.py: Completed, No, 2026-04-16 07:17:03
+[12.05.2026  08:17:33] Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall: hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.py: Completed, No, 2026-04-16 07:17:13
+[12.05.2026  08:17:41] Folkehelse - Kols, dødsårsak, ettårig: kols_doedsaarsak_ettaarig.py: Completed, No, 2026-03-30 07:17:47
+[12.05.2026  08:17:48] Folkehelse - Kreft, nye tilfeller, tiårige tall: kreft_nye_tilfeller_tiaarige_tall.py: Completed, No, 2026-04-16 07:17:30
+[12.05.2026  08:17:57] Folkehelse - Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall: muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.py: Completed, No, 2026-04-16 07:17:40
+[12.05.2026  08:18:04] Folkehelse - Psykiske plager, ungdom: psykiske_plager_ungdom.py: Completed, No, 2026-03-30 07:18:13
+[12.05.2026  08:18:12] Folkehelse - Psykiske symptomer og lidelser - primærhelsetjenesten, ettårige tall: psykiske_symptomer_og_lidelser_primaerhelsetjenesten_ettaarige_tall.py: Completed, No, 2026-04-16 07:17:55
+[12.05.2026  08:18:20] Folkehelse - Reseptfrie smertestillende legemidler, ungdom: reseptfrie_smertestillende_legemidler_ungdom.py: Completed, No, 2026-03-30 07:18:31
+[12.05.2026  08:18:27] Folkehelse - Selvmord, femårig: selvmord_femaarig.py: Completed, No, 2026-03-30 07:18:40
+[12.05.2026  08:18:35] Folkehelse - Sykehusinnlagte, somatikk, ettårige. inkl. skader: sykehusinnlagte_somatikk_ettaarige_inkl_skader.py: Completed, No, 2026-03-30 07:18:52
+[12.05.2026  08:18:44] Folkehelse - Tilfredshet med livet, ungdom: tilfredshet_med_livet_ungdom.py: Completed, No, 2026-03-30 07:19:00
+[12.05.2026  08:18:51] Folkehelse - Skader, kontakt med primærhelsetjeneste, ettårige tall: skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.py: Completed, No, 2025-12-19 15:18:33
+[12.05.2026  08:18:59] Areal - Jordbruksareal per kommune: jordbruksareal_per_kommune.py: Completed, No, 2025-08-20 08:13:22
+[12.05.2026  08:19:08] Areal - Fulldyrka vs ikke-fulldyrka: fulldyrka_vs_ikke-fulldyrka.py: Completed, No, 2025-08-21 07:15:16
+[12.05.2026  08:19:17] Bolig - Antall boliger etter type og bosattes alder: antall_boliger_etter_type_og_bosattes_alder.py: Completed, No, 2026-04-29 13:30:10
+[12.05.2026  08:19:25] Bolig - Boliger etter boligtype: boliger_etter_boligtype.py: Completed, No, 2026-05-11 09:09:55
+[12.05.2026  08:19:35] Bolig - Fullforte boliger etter boligtype: fullførte_boliger_etter_boligtype.py: Completed, Yes, 2026-05-11 09:28:08
+[12.05.2026  08:19:48] Bolig - Husholdninger etter boligtype: husholdninger_etter_boligtype.py: Completed, No, 2026-05-11 09:07:34
+[12.05.2026  08:19:57] Bolig - Igangsettelser etter boligtype: igangsettelser_etter_boligtype.py: Completed, Yes, 2026-05-11 09:15:11
+[12.05.2026  08:20:08] Bystrategi Grenland - Utslipp fra vei: klimagassutslipp_vei.py: Completed, No, 2025-09-04 10:44:33
+[12.05.2026  08:22:05] Bystrategi Grenland - Luftforurensing: luftforurensning_grenland.py: Completed, No, 2026-03-17 09:32:05
+[12.05.2026  08:22:19] Bystrategi Grenland - Arealprofiler: arealprofiler.py: Completed, No, 2025-10-14 08:14:57
+[12.05.2026  08:22:32] Boligbehovsanalyse - Framtidig boligbehov: framtidig_boligbehov.py: Completed, No
+[2026-05-12 08:24:09.276777] Master script completed
