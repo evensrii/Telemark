@@ -174,7 +174,7 @@ ninegr_to_4gr = {
     "Koie, seterhus og lignende": "Annen boligbygging",
     "Garasje og uthus til bolig": "Annen boligbygging",
     "Annen boligbygning": "Annen boligbygging",
-    "Andre bygg enn boligbygg": "Andre bygg enn boligbygg",
+    "Andre bygg enn boligbygg": "Annen boligbygging",
 }
 df["Bygningstype_4_gr"] = df["Bygningstype_9_gr"].map(ninegr_to_4gr)
 
