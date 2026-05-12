@@ -14,14 +14,14 @@ Husholdninger etter boligtype (06070) JSON-stat data loaded successfully.
 ['region', 'statistikkvariabel', 'Ã¥r', 'husholdningstype', 'value']
   Kommunenummer Kommune  ... SortHusholdningstype Antall
 0          4012  Bamble  ...                    1   1917
-1          4012  Bamble  ...                    5    324
-2          4012  Bamble  ...                    7      0
+1          4012  Bamble  ...                    4    324
+2          4012  Bamble  ...                    0      0
 3          4012  Bamble  ...                    6    272
-4          4012  Bamble  ...                    4    523
+4          4012  Bamble  ...                    3    523
 
 [5 rows x 6 columns]
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\husholdninger_etter_boligtype.csv
-[2026-05-08 08:20:08] No new data to upload. Skipping GitHub update.
+[2026-05-12 08:19:56] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\husholdninger_etter_boligtype.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Husholdninger_etter_boligtype.log
