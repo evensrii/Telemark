@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innenlands flytting - Telemark</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            background: #f5f5f5;
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .header {
+            background: #005260;
+            color: white;
+            padding: 22px 28px;
+            font-size: 30px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            position: relative;
+            min-height: 80px;
+        }
+        .header .header-subtitle {
+            font-size: 22px;
+            font-weight: 400;
+            opacity: 0.85;
+        }
+        .header .header-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            pointer-events: none;
+        }
+        .header .header-logo {
+            position: absolute;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 48px;
+            padding: 2px 0;
+        }
+        .main-container {
+            display: flex;
+            height: calc(100vh - 80px);
+        }
+        /* LEFT SIDEBAR */
+        .sidebar {
+            width: 280px;
+            min-width: 280px;
+            background: white;
+            border-right: 1px solid #ddd;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .sidebar h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #005260;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .control-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+        }
+        .control-group select {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            background: white;
+        }
+        .control-group input[type="range"] {
+            width: 100%;
+            cursor: pointer;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+        }
+        .checkbox-group input {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+        .radio-group {
+            display: flex;
+            gap: 2px;
+        }
+        .radio-group label {
+            flex: 1;
+            text-align: center;
+            padding: 7px 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            cursor: pointer;
+            background: white;
+            transition: all 0.15s;
+        }
+        .radio-group label:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+        .radio-group label:last-child {
+            border-radius: 0 4px 4px 0;
+        }
+        .radio-group input {
+            display: none;
+        }
+        .radio-group label.active {
+            background: #005260;
+            color: white;
+            border-color: #005260;
+        }
+        .legend {
+            display: flex;
+            gap: 14px;
+            font-size: 13px;
+            align-items: center;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .legend-line {
+            width: 20px;
+            height: 3px;
+            border-radius: 2px;
+        }
+        .stats-box {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .stats-box .stat-value {
+            font-weight: 700;
+            color: #005260;
+        }
+        .threshold-display {
+            font-size: 13px;
+            color: #888;
+            text-align: right;
+        }
+        /* CENTER MAP */
+        .center-panel {
+            flex: 1;
+            position: relative;
+            min-width: 200px;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        /* RIGHT PANEL: table + sankeys stacked */
+        .right-panel {
+            width: 760px;
+            min-width: 760px;
+            background: white;
+            border-left: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .table-container {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        .table-container h4 {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+        .top-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .top-table th {
+            background: #f0f0f0;
+            padding: 5px 8px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+        }
+        .top-table td {
+            padding: 4px 8px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .top-table tr:hover {
+            background: #f8f8f8;
+        }
+        .top-table .count-til {
+            color: #2166ac;
+            font-weight: 600;
+        }
+        .top-table .count-fra {
+            color: #d6604d;
+            font-weight: 600;
+        }
+        .sankey-panel {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 4px 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .sankey-panel:last-child {
+            border-bottom: none;
+        }
+        .sankey-panel h4 {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            padding: 2px 0;
+            margin: 0;
+            flex-shrink: 0;
+        }
+        .sankey-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            position: relative;
+            padding: 2px 0;
+        }
+        .sankey-hint {
+            font-size: 13px;
+            color: #999;
+            font-style: italic;
+            flex-shrink: 0;
+            display: none;
+            margin-top: 2px;
+        }
+        .sankey-chart .nsewdrag {
+            cursor: pointer !important;
+        }
+        .js-plotly-plot .sankey-link {
+            cursor: pointer !important;
+        }
+        .sankey-back {
+            font-size: 12px;
+            color: #005260;
+            cursor: pointer;
+            display: none;
+            background: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid #005260;
+            font-weight: 600;
+            white-space: nowrap;
+            position: absolute;
+            right: 4px;
+            top: 0px;
+            z-index: 10;
+        }
+        .sankey-back:hover {
+            background: #e0f0f0;
+        }
+        .sankey-chart {
+            flex: 1;
+            min-height: 0;
+        }
+        .flow-tooltip {
+            background: white !important;
+            border: 1px solid #ccc !important;
+            border-radius: 4px !important;
+            padding: 6px 10px !important;
+            font-family: 'Segoe UI', sans-serif !important;
+            font-size: 14px !important;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+        }
+        .map-label {
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+            text-shadow: 1px 1px 2px white, -1px -1px 2px white, 1px -1px 2px white, -1px 1px 2px white;
+        }
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255,255,255,0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 20px;
+            color: #005260;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loading-overlay">Laster data...</div>
+    <div class="header">
+        <span class="header-subtitle" id="header-subtitle">Fylkesniv&aring;</span>
+        <span class="header-center">Innenlands flytting til og fra Telemark</span>
+        <img class="header-logo" src="https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/docs/flyttestrommer/T_logo_02_Sidestilt_RGB_hvit_tekst.png" alt="Telemark fylkeskommune" />
+    </div>
+    <div class="main-container">
+        <!-- LEFT SIDEBAR -->
+        <div class="sidebar">
+            <div class="control-group">
+                <h3>Niv&aring;</h3>
+                <div class="radio-group" id="level-toggle">
+                    <label class="active" data-value="fylke"><input type="radio" name="level" value="fylke" checked><span>Fylke</span></label>
+                    <label data-value="kommune"><input type="radio" name="level" value="kommune"><span>Kommune</span></label>
+                </div>
+            </div>
+
+            <div class="control-group" id="kommune-group" style="display:none;">
+                <h3>Velg kommune</h3>
+                <select id="kommune-select"></select>
+            </div>
+
+            <div class="control-group" id="internal-group" style="display:none;">
+                <h3>Intern flytting</h3>
+                <div style="display:flex;flex-direction:column;gap:4px;font-size:13px;">
+                    <label style="cursor:pointer;"><input type="radio" name="internal-mode" value="exclude" checked style="margin-right:5px;">Uten intern flytting i fylket</label>
+                    <label style="cursor:pointer;"><input type="radio" name="internal-mode" value="include" style="margin-right:5px;">Med intern flytting i fylket</label>
+                    <label style="cursor:pointer;"><input type="radio" name="internal-mode" value="only" style="margin-right:5px;">Kun intern flytting i Telemark</label>
+                </div>
+            </div>
+
+            <div class="control-group" id="simplify-group" style="display:none;">
+                <h3>Forenkle kartvisningen</h3>
+                <label>Tegn forbindelser med minst:</label>
+                <input type="range" id="threshold-slider" min="1" max="100" value="5" step="1">
+                <div class="threshold-display"><span id="threshold-value">5</span> personer</div>
+                <label style="margin-top:6px;">Juster klyngedannelse:</label>
+                <input type="range" id="cluster-slider" min="0" max="100" value="30" step="5">
+                <div class="threshold-display"><span id="cluster-value">30</span> %</div>
+            </div>
+
+            <div class="control-group" id="direction-group">
+                <h3>Retning</h3>
+                <select id="direction-select">
+                    <option value="both">Begge retninger</option>
+                    <option value="tilflytting">Tilflytting (inn)</option>
+                    <option value="fraflytting">Fraflytting (ut)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <h3>Forklaring</h3>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-line" style="background: #2166ac;"></div>
+                        <span>Tilflytting</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-line" style="background: #d6604d;"></div>
+                        <span>Fraflytting</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Statistikk</h3>
+                <div class="stats-box" id="stats-box">
+                    Laster...
+                </div>
+            </div>
+        </div>
+
+        <!-- CENTER MAP -->
+        <div class="center-panel" id="map-container">
+            <div id="map"></div>
+        </div>
+
+        <!-- RIGHT PANEL: table then sankeys -->
+        <div class="right-panel">
+            <div class="table-container" id="top-table-container">
+                <h4 id="table-title">Topp forbindelser</h4>
+                <table class="top-table" id="top-table">
+                    <thead><tr><th>Fra</th><th>Til</th><th>Antall</th></tr></thead>
+                    <tbody id="top-table-body"></tbody>
+                </table>
+            </div>
+            <div class="sankey-panel" id="sankey-til-panel">
+                <div class="sankey-header">
+                    <span class="sankey-back" id="sankey-til-back" data-type="tilflytting">&larr; Tilbake til fylkesoversikt</span>
+                    <h4 id="sankey-til-title">Tilflytting</h4>
+                    <div class="sankey-hint" id="sankey-til-hint">Klikk p&aring; en forbindelse for &aring; drille ned</div>
+                </div>
+                <div id="sankey-tilflytting" class="sankey-chart"></div>
+            </div>
+            <div class="sankey-panel" id="sankey-fra-panel">
+                <div class="sankey-header">
+                    <span class="sankey-back" id="sankey-fra-back" data-type="fraflytting">&larr; Tilbake til fylkesoversikt</span>
+                    <h4 id="sankey-fra-title">Fraflytting</h4>
+                    <div class="sankey-hint" id="sankey-fra-hint">Klikk p&aring; en forbindelse for &aring; drille ned</div>
+                </div>
+                <div id="sankey-fraflytting" class="sankey-chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // ============================================================
+    // Data (fetched from GitHub CSV files)
+    // ============================================================
+    const CSV_URL_TIL = 'https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/01_Befolkning/Flytting/tilflytting_til_telemarkskommuner.csv';
+    const CSV_URL_FRA = 'https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/01_Befolkning/Flytting/fraflytting_fra_telemarkskommuner.csv';
+
+    let dataFra = [];
+    let dataTil = [];
+    let dataFraFylke = [];
+    let dataTilFylke = [];
+    let dataYear = '';
+
+    // Derive the "internal" flag: both Fra and Til municipalities are in Telemark
+    function addInternalFlag(rows) {
+        const telemarkSet = new Set(telemarkKommuner);
+        return rows.map(r => ({
+            ...r,
+            internal: telemarkSet.has(r["Fra kommune"]) && telemarkSet.has(r["Til kommune"])
+        }));
+    }
+
+    // Aggregate municipality data to county level (excluding internal Telemark moves)
+    function aggregateToFylke(rows, fylkeKey) {
+        const agg = {};
+        rows.forEach(r => {
+            if (r.internal) return;
+            const fylke = r[fylkeKey];
+            if (fylke === 'Telemark') return;
+            agg[fylke] = (agg[fylke] || 0) + r["Antall"];
+        });
+        return Object.entries(agg).map(([fylke, antall]) => {
+            const coords = fylkeCoords[fylke];
+            return {
+                Fylke: fylke,
+                Antall: antall,
+                lat: coords ? coords[0] : 0,
+                lon: coords ? coords[1] : 0
+            };
+        });
+    }
+
+    // Parse CSV text into array of objects with correct types
+    function parseCSV(csvText) {
+        const result = Papa.parse(csvText, {
+            header: true,
+            dynamicTyping: true,
+            skipEmptyLines: true,
+        });
+        return result.data;
+    }
+
+    async function loadData() {
+        try {
+            const [fraResp, tilResp] = await Promise.all([
+                fetch(CSV_URL_FRA),
+                fetch(CSV_URL_TIL),
+            ]);
+            if (!fraResp.ok) throw new Error('Kunne ikke laste fraflyttingsdata');
+            if (!tilResp.ok) throw new Error('Kunne ikke laste tilflyttingsdata');
+
+            const fraText = await fraResp.text();
+            const tilText = await tilResp.text();
+
+            dataFra = addInternalFlag(parseCSV(fraText));
+            dataTil = addInternalFlag(parseCSV(tilText));
+            dataFraFylke = aggregateToFylke(dataFra, "Til fylke");
+            dataTilFylke = aggregateToFylke(dataTil, "Fra fylke");
+
+            // Extract year from data (single unique year expected)
+            const years = [...new Set(dataFra.map(r => r["År"]).filter(Boolean))];
+            dataYear = years.length > 0 ? String(years[0]) : '';
+
+            // Hide loading overlay and start the app
+            document.getElementById('loading-overlay').style.display = 'none';
+            document.getElementById('header-subtitle').textContent = 'Fylkesnivå' + (dataYear ? ' - ' + dataYear : '');
+            setDirectionForLevel('fylke');
+            updateAll();
+            setTimeout(() => { map.invalidateSize(); }, 200);
+        } catch (err) {
+            document.getElementById('loading-overlay').textContent = 'Feil ved lasting av data: ' + err.message;
+            console.error(err);
+        }
+    }
+
+    const telemarkKommuner = ["Porsgrunn", "Skien", "Notodden", "Siljan", "Bamble", "Kragerø", "Drangedal", "Nome", "Midt-Telemark", "Seljord", "Hjartdal", "Tinn", "Kviteseid", "Nissedal", "Fyresdal", "Tokke", "Vinje"];
+    const fylkeCoords = {"Oslo": [59.91, 10.75], "Rogaland": [59.0, 6.0], "Møre og Romsdal": [62.5, 7.1], "Nordland": [67.0, 15.0], "Østfold": [59.3, 11.2], "Akershus": [59.9, 11.2], "Buskerud": [60.1, 9.5], "Innlandet": [61.2, 10.5], "Vestfold": [59.25, 10.2], "Telemark": [59.4, 9.0], "Agder": [58.35, 7.8], "Vestland": [60.7, 5.8], "Trøndelag": [63.8, 11.5], "Troms": [69.3, 19.0], "Finnmark": [70.2, 25.5]};
+    const PALETTE = ["#1C6C6C", "#14828C", "#009BC2", "#1F9562", "#2F7542", "#A5983A", "#7B7B7A", "#727062", "#8A6C3E", "#BC7726", "#996954", "#B7173D", "#5A2E61", "#414681"];
+
+    const COLOR_TILFLYTTING = "#2166ac";
+    const COLOR_FRAFLYTTING = "#d6604d";
+    const COLOR_TELEMARK = "#005260";
+    const TELEMARK_LAT = 59.4;
+    const TELEMARK_LON = 9.0;
+
+    // Norway bounding box (south to north)
+    const NORWAY_BOUNDS = [[57.8, 4.0], [71.5, 31.5]];
+
+    // ============================================================
+    // Initialize Leaflet map
+    // ============================================================
+    const map = L.map('map', {
+        zoomControl: true,
+        preferCanvas: true,
+    });
+    map.setView([64.5, 13.0], 5);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+        maxZoom: 19,
+    }).addTo(map);
+
+    let flowLayer = L.layerGroup().addTo(map);
+    let markerLayer = L.layerGroup().addTo(map);
+    let labelLayer = L.layerGroup().addTo(map);
+
+    // Track whether we should reset the map view
+    let shouldResetView = true;
+    let lastLevel = 'fylke';
+    let lastKommune = 'Skien';
+
+    // ============================================================
+    // Populate municipality dropdown
+    // ============================================================
+    const kommuneSelect = document.getElementById('kommune-select');
+    telemarkKommuner.forEach(k => {
+        const opt = document.createElement('option');
+        opt.value = k;
+        opt.textContent = k;
+        if (k === 'Skien') opt.selected = true;
+        kommuneSelect.appendChild(opt);
+    });
+
+    // ============================================================
+    // Direction select management
+    // ============================================================
+    const directionSelect = document.getElementById('direction-select');
+    const bothOption = directionSelect.querySelector('option[value="both"]');
+
+    function setDirectionForLevel(level) {
+        if (level === 'kommune') {
+            // Hide "Begge retninger", default to tilflytting
+            bothOption.style.display = 'none';
+            if (directionSelect.value === 'both') {
+                directionSelect.value = 'tilflytting';
+            }
+        } else {
+            // Restore "Begge retninger" for fylke
+            bothOption.style.display = '';
+            directionSelect.value = 'both';
+        }
+    }
+
+    // ============================================================
+    // Level toggle logic
+    // ============================================================
+    const levelLabels = document.querySelectorAll('#level-toggle label');
+    let currentLevel = 'fylke';
+
+    levelLabels.forEach(lbl => {
+        lbl.addEventListener('click', () => {
+            levelLabels.forEach(l => l.classList.remove('active'));
+            lbl.classList.add('active');
+            currentLevel = lbl.dataset.value;
+
+            const kommuneGroup = document.getElementById('kommune-group');
+            const internalGroup = document.getElementById('internal-group');
+            const simplifyGroup = document.getElementById('simplify-group');
+            const subtitle = document.getElementById('header-subtitle');
+            if (currentLevel === 'kommune') {
+                kommuneGroup.style.display = '';
+                internalGroup.style.display = '';
+                simplifyGroup.style.display = '';
+                subtitle.textContent = 'Kommunenivå' + (dataYear ? ' - ' + dataYear : '');
+            } else {
+                kommuneGroup.style.display = 'none';
+                internalGroup.style.display = 'none';
+                simplifyGroup.style.display = 'none';
+                subtitle.textContent = 'Fylkesnivå' + (dataYear ? ' - ' + dataYear : '');
+            }
+
+            setDirectionForLevel(currentLevel);
+            shouldResetView = true;
+            updateAll();
+        });
+    });
+
+    // ============================================================
+    // Bézier curve helper
+    // ============================================================
+    function bezierCurve(from, to, numPoints) {
+        numPoints = numPoints || 30;
+        const [lat1, lon1] = from;
+        const [lat2, lon2] = to;
+        const midLat = (lat1 + lat2) / 2;
+        const midLon = (lon1 + lon2) / 2;
+        const dx = lon2 - lon1;
+        const dy = lat2 - lat1;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist === 0) return [[lat1, lon1]];
+        const curvature = Math.min(dist * 0.15, 1.0);
+        const ctrlLat = midLat + (-dx / dist) * curvature;
+        const ctrlLon = midLon + (dy / dist) * curvature;
+
+        const points = [];
+        for (let i = 0; i <= numPoints; i++) {
+            const t = i / numPoints;
+            const inv = 1 - t;
+            points.push([
+                inv * inv * lat1 + 2 * inv * t * ctrlLat + t * t * lat2,
+                inv * inv * lon1 + 2 * inv * t * ctrlLon + t * t * lon2,
+            ]);
+        }
+        return points;
+    }
+
+    // ============================================================
+    // Distance-based clustering for municipality flows
+    // ============================================================
+    function clusterFlows(flows, clusterPct, destName, internalMode) {
+        const clusterSuffix = internalMode === 'only' ? ' m. fl.' : ' og omegn';
+        // clusterPct: 0 = no clustering, 100 = max clustering
+        if (clusterPct === 0 || flows.length <= 1) {
+            // Still ensure each flow has clusterSize and proper label with arrow
+            return flows.map(f => ({...f, clusterSize: 1,
+                label: `<strong>${f.name} → ${destName || ''}</strong><br>${f.count.toLocaleString('nb-NO')} personer`}));
+        }
+
+        // Base radius in degrees; scale with distance from Telemark
+        const baseRadius = 0.1 + (clusterPct / 100) * 0.5;
+        const distFactor = 0.02 + (clusterPct / 100) * 0.08;
+
+        // Sort by count desc so largest is the cluster representative
+        const sorted = [...flows].sort((a, b) => b.count - a.count);
+        const used = new Array(sorted.length).fill(false);
+        const clustered = [];
+
+        for (let i = 0; i < sorted.length; i++) {
+            if (used[i]) continue;
+            const anchor = sorted[i];
+
+            // Distance from this point to Telemark
+            const dLat = anchor.fromLat - TELEMARK_LAT;
+            const dLon = anchor.fromLon - TELEMARK_LON;
+            const distToTelemark = Math.sqrt(dLat * dLat + dLon * dLon);
+            const radius = baseRadius + distFactor * distToTelemark;
+
+            let totalCount = anchor.count;
+            let wLat = anchor.fromLat * anchor.count;
+            let wLon = anchor.fromLon * anchor.count;
+            const names = [anchor.name || ''];
+            let memberCount = 1;
+            used[i] = true;
+
+            for (let j = i + 1; j < sorted.length; j++) {
+                if (used[j]) continue;
+                const other = sorted[j];
+                const dx = anchor.fromLat - other.fromLat;
+                const dy = anchor.fromLon - other.fromLon;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d <= radius) {
+                    totalCount += other.count;
+                    wLat += other.fromLat * other.count;
+                    wLon += other.fromLon * other.count;
+                    names.push(other.name || '');
+                    memberCount++;
+                    used[j] = true;
+                }
+            }
+
+            const displayName = names.length > 1
+                ? names[0] + clusterSuffix
+                : names[0];
+            const labelName = names.length > 1
+                ? names[0] + clusterSuffix + ' (' + names.length + ')'
+                : names[0];
+
+            clustered.push({
+                fromLat: wLat / totalCount,
+                fromLon: wLon / totalCount,
+                toLat: anchor.toLat,
+                toLon: anchor.toLon,
+                count: totalCount,
+                clusterSize: memberCount,
+                name: displayName,
+                label: `<strong>${labelName} → ${destName || ''}</strong><br>${totalCount.toLocaleString('nb-NO')} personer`,
+            });
+        }
+        return clustered;
+    }
+
+    // ============================================================
+    // Draw flow lines on the map (with gradient direction + hover highlight)
+    // ============================================================
+    function drawFlows(flows, color) {
+        if (flows.length === 0) return;
+        const maxCount = Math.max(...flows.map(f => f.count));
+
+        flows.forEach(f => {
+            const cs = f.clusterSize || 1;
+            const baseWeight = 1.5 + (f.count / maxCount) * 5;
+            const clusterBoost = cs > 1 ? Math.log2(cs) * 1.5 : 0;
+            const weight = baseWeight + clusterBoost;
+            const baseOpacity = 0.25 + (f.count / maxCount) * 0.35;
+            const pts = bezierCurve([f.fromLat, f.fromLon], [f.toLat, f.toLon]);
+
+            // Invisible wider polyline for easier mouse detection
+            const hitArea = L.polyline(pts, {
+                color: color,
+                weight: Math.max(weight, 14),
+                opacity: 0,
+                smoothFactor: 1,
+            });
+            hitArea.bindTooltip(f.label, { sticky: true, className: 'flow-tooltip' });
+            flowLayer.addLayer(hitArea);
+
+            // Smooth gradient: many small segments, butt caps, overlapping by 1 point
+            const numSeg = 30;
+            const segSize = Math.max(1, Math.floor(pts.length / numSeg));
+            const segLines = [];
+
+            for (let s = 0; s < numSeg; s++) {
+                const start = Math.max(0, s * segSize - 1);
+                const end = s === numSeg - 1 ? pts.length - 1 : (s + 1) * segSize;
+                const segPts = pts.slice(start, end + 1);
+                if (segPts.length < 2) continue;
+                const frac = (s + 0.5) / numSeg;
+                const segOpacity = baseOpacity * (0.15 + 0.85 * frac);
+
+                const seg = L.polyline(segPts, {
+                    color: color,
+                    weight: weight,
+                    opacity: segOpacity,
+                    smoothFactor: 1,
+                    lineCap: 'butt',
+                    lineJoin: 'round',
+                    interactive: false,
+                });
+                flowLayer.addLayer(seg);
+                segLines.push(seg);
+            }
+
+            // Origin marker (small dot at the start of the flow line)
+            const originDot = L.circleMarker([f.fromLat, f.fromLon], {
+                radius: 4,
+                fillColor: color,
+                color: 'white',
+                weight: 1,
+                fillOpacity: 0.85,
+                interactive: false,
+            });
+            flowLayer.addLayer(originDot);
+
+            // Hover highlight via the invisible hit area
+            hitArea.on('mouseover', () => {
+                segLines.forEach(sl => {
+                    sl.setStyle({ weight: weight + 3, opacity: 1.0 });
+                    sl.bringToFront();
+                });
+            });
+            hitArea.on('mouseout', () => {
+                segLines.forEach((sl, idx) => {
+                    const fr = (idx + 0.5) / numSeg;
+                    sl.setStyle({ weight: weight, opacity: baseOpacity * (0.15 + 0.85 * fr) });
+                });
+            });
+        });
+    }
+
+    // ============================================================
+    // Draw location markers
+    // ============================================================
+    function drawMarker(name, lat, lon, tooltipHtml, showLabel) {
+        const marker = L.circleMarker([lat, lon], {
+            radius: 5,
+            fillColor: COLOR_TELEMARK,
+            color: 'white',
+            weight: 1.5,
+            fillOpacity: 0.9,
+        });
+        marker.bindTooltip(tooltipHtml, { direction: 'top', offset: [0, -6] });
+        markerLayer.addLayer(marker);
+
+        if (showLabel) {
+            currentFlowLabels.push({ name: name, lat: lat, lon: lon, count: 999999 });
+        }
+    }
+
+    // ============================================================
+    // Data labels: zoom-responsive for both views
+    // ============================================================
+    let currentFlowLabels = []; // store { name, lat, lon, count }
+    let forceAllLabels = false; // when true, show all labels (used by "Kun intern" mode)
+
+    const MAJOR_CITIES = ['Oslo', 'Bergen', 'Stavanger', 'Trondheim', 'Kristiansand',
+                          'Bodø', 'Tromsø', 'Molde', 'Ålesund', 'Kirkenes'];
+    const OSLO_LAT = 59.9;
+    const OSLO_LON = 10.75;
+
+    function isMajorCity(name) {
+        return MAJOR_CITIES.some(c => name === c || name.startsWith(c + ' '));
+    }
+
+    function distFromOslo(lat, lon) {
+        const dLat = lat - OSLO_LAT;
+        const dLon = lon - OSLO_LON;
+        return Math.sqrt(dLat * dLat + dLon * dLon);
+    }
+
+    function updateLabelsForZoom() {
+        labelLayer.clearLayers();
+        if (currentFlowLabels.length === 0) return;
+
+        if (currentLevel === 'fylke') {
+            // Show all labels in fylke view
+            currentFlowLabels.forEach(f => {
+                const label = L.tooltip({
+                    permanent: true,
+                    direction: 'right',
+                    offset: [8, 0],
+                    className: 'map-label',
+                });
+                label.setContent(f.name);
+                label.setLatLng([f.lat, f.lon]);
+                labelLayer.addLayer(label);
+            });
+        } else if (forceAllLabels) {
+            // Force all labels (e.g. internal-only mode)
+            currentFlowLabels.forEach(f => {
+                const label = L.tooltip({
+                    permanent: true,
+                    direction: 'right',
+                    offset: [8, 0],
+                    className: 'map-label',
+                });
+                label.setContent(f.name);
+                label.setLatLng([f.lat, f.lon]);
+                labelLayer.addLayer(label);
+            });
+        } else {
+            // Kommune view: zoom-responsive with geographic bias
+            const zoom = map.getZoom();
+            const maxLabels = Math.min(currentFlowLabels.length, Math.max(3, Math.floor(5 + (zoom - 6) * 4)));
+
+            // Always show major cities that appear in flows
+            const majorSet = new Set();
+            const toShow = [];
+            currentFlowLabels.forEach(f => {
+                if (isMajorCity(f.name)) {
+                    majorSet.add(f.name);
+                    toShow.push(f);
+                }
+            });
+
+            // Score remaining by count + distance bonus (far from Oslo = higher chance)
+            const distBonus = 2 + (zoom - 5) * 1.5;
+            const remaining = currentFlowLabels.filter(f => !majorSet.has(f.name));
+            const scored = remaining.map(f => ({
+                ...f,
+                score: f.count + distFromOslo(f.lat, f.lon) * distBonus
+            }));
+            scored.sort((a, b) => b.score - a.score);
+
+            const slotsLeft = Math.max(0, maxLabels - toShow.length);
+            toShow.push(...scored.slice(0, slotsLeft));
+
+            toShow.forEach(f => {
+                const label = L.tooltip({
+                    permanent: true,
+                    direction: 'right',
+                    offset: [8, 0],
+                    className: 'map-label',
+                });
+                label.setContent(f.name);
+                label.setLatLng([f.lat, f.lon]);
+                labelLayer.addLayer(label);
+            });
+        }
+    }
+    map.on('zoomend', updateLabelsForZoom);
+
+    // ============================================================
+    // Top table builder
+    // ============================================================
+    function buildTopTable(tilRows, fraRows, direction, showAll) {
+        const tbody = document.getElementById('top-table-body');
+        tbody.innerHTML = '';
+        const topTil = showAll ? tilRows : tilRows.slice(0, 12);
+        const topFra = showAll ? fraRows : fraRows.slice(0, 12);
+
+        if ((direction === 'both' || direction === 'tilflytting') && topTil.length > 0) {
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = '<td colspan="3" style="background:#e8f0fe;font-weight:600;color:#2166ac;padding:5px 8px;">▶ Tilflytting (inn)</td>';
+            tbody.appendChild(headerRow);
+            topTil.forEach(r => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${r.from}</td><td>${r.to}</td><td class="count-til">${r.count.toLocaleString('nb-NO')}</td>`;
+                tbody.appendChild(tr);
+            });
+        }
+        if ((direction === 'both' || direction === 'fraflytting') && topFra.length > 0) {
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = '<td colspan="3" style="background:#fce8e4;font-weight:600;color:#d6604d;padding:5px 8px;">▶ Fraflytting (ut)</td>';
+            tbody.appendChild(headerRow);
+            topFra.forEach(r => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${r.from}</td><td>${r.to}</td><td class="count-fra">${r.count.toLocaleString('nb-NO')}</td>`;
+                tbody.appendChild(tr);
+            });
+        }
+    }
+
+    // ============================================================
+    // Assign Telemark palette colors to sorted entries
+    // ============================================================
+    function getPaletteColor(index) {
+        return PALETTE[index % PALETTE.length];
+    }
+
+    function hexToRgba(hex, alpha) {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
+    // ============================================================
+    // County-level update
+    // ============================================================
+    function updateFylke(direction) {
+        flowLayer.clearLayers();
+        markerLayer.clearLayers();
+        currentFlowLabels = [];
+
+        // Hide drill-down UI
+        document.getElementById('sankey-til-hint').style.display = 'none';
+        document.getElementById('sankey-fra-hint').style.display = 'none';
+        document.getElementById('sankey-til-back').style.display = 'none';
+        document.getElementById('sankey-fra-back').style.display = 'none';
+
+        const tilFlows = [];
+        const fraFlows = [];
+
+        if (direction === 'both' || direction === 'tilflytting') {
+            dataTilFylke.forEach(d => {
+                if (d.Fylke === 'Telemark') return;
+                tilFlows.push({
+                    fromLat: d.lat, fromLon: d.lon,
+                    toLat: TELEMARK_LAT, toLon: TELEMARK_LON,
+                    count: d.Antall,
+                    clusterSize: 1,
+                    name: d.Fylke,
+                    label: `<strong>${d.Fylke} → Telemark</strong><br>${d.Antall.toLocaleString('nb-NO')} personer`,
+                });
+            });
+        }
+
+        if (direction === 'both' || direction === 'fraflytting') {
+            dataFraFylke.forEach(d => {
+                if (d.Fylke === 'Telemark') return;
+                fraFlows.push({
+                    fromLat: TELEMARK_LAT, fromLon: TELEMARK_LON,
+                    toLat: d.lat, toLon: d.lon,
+                    count: d.Antall,
+                    clusterSize: 1,
+                    name: d.Fylke,
+                    label: `<strong>Telemark → ${d.Fylke}</strong><br>${d.Antall.toLocaleString('nb-NO')} personer`,
+                });
+            });
+        }
+
+        drawFlows(tilFlows, COLOR_TILFLYTTING);
+        drawFlows(fraFlows, COLOR_FRAFLYTTING);
+
+        // Draw Telemark marker (always labeled)
+        const totalIn = dataTilFylke.reduce((s, d) => s + d.Antall, 0);
+        const totalOut = dataFraFylke.reduce((s, d) => s + d.Antall, 0);
+        drawMarker('Telemark', TELEMARK_LAT, TELEMARK_LON,
+            `<strong>Telemark</strong><br>Til Telemark: ${totalIn.toLocaleString('nb-NO')}<br>Fra Telemark: ${totalOut.toLocaleString('nb-NO')}`, true);
+
+        // Draw other county markers (all labeled in fylke view)
+        const allFylker = new Set([...dataTilFylke.map(d => d.Fylke), ...dataFraFylke.map(d => d.Fylke)]);
+        allFylker.forEach(f => {
+            if (f === 'Telemark') return;
+            const coords = fylkeCoords[f];
+            if (!coords) return;
+            const inn = dataTilFylke.find(d => d.Fylke === f);
+            const ut = dataFraFylke.find(d => d.Fylke === f);
+            const innVal = inn ? inn.Antall : 0;
+            const utVal = ut ? ut.Antall : 0;
+            drawMarker(f, coords[0], coords[1],
+                `<strong>${f}</strong><br>Til Telemark: ${innVal.toLocaleString('nb-NO')}<br>Fra Telemark: ${utVal.toLocaleString('nb-NO')}`, true);
+        });
+
+        // Stats
+        updateStats('Telemark', totalIn, totalOut);
+
+        // Update labels
+        updateLabelsForZoom();
+
+        // Sankey — show both panels in fylke view
+        document.getElementById('sankey-til-panel').style.display = '';
+        document.getElementById('sankey-fra-panel').style.display = '';
+        buildSankeyFylke('sankey-tilflytting', dataTilFylke, 'tilflytting');
+        buildSankeyFylke('sankey-fraflytting', dataFraFylke, 'fraflytting');
+
+        document.getElementById('sankey-til-title').textContent = 'Flytting til Telemark';
+        document.getElementById('sankey-fra-title').textContent = 'Flytting fra Telemark';
+
+        // Top table
+        const tilTableRows = [...dataTilFylke].filter(d => d.Fylke !== 'Telemark').sort((a,b) => b.Antall - a.Antall)
+            .map(d => ({ from: d.Fylke, to: 'Telemark', count: d.Antall }));
+        const fraTableRows = [...dataFraFylke].filter(d => d.Fylke !== 'Telemark').sort((a,b) => b.Antall - a.Antall)
+            .map(d => ({ from: 'Telemark', to: d.Fylke, count: d.Antall }));
+        document.getElementById('table-title').textContent = 'Flyttestrømmer – Telemark';
+        buildTopTable(tilTableRows, fraTableRows, direction, false);
+
+        if (shouldResetView) {
+            shouldResetView = false;
+            setTimeout(() => { map.setView([64.5, 13.0], 5); }, 50);
+        }
+    }
+
+    // ============================================================
+    // Municipality-level update
+    // ============================================================
+    function getInternalMode() {
+        const radios = document.querySelectorAll('input[name="internal-mode"]');
+        for (const r of radios) {
+            if (r.checked) return r.value;
+        }
+        return 'exclude';
+    }
+
+    function updateKommune(kommune, direction) {
+        flowLayer.clearLayers();
+        markerLayer.clearLayers();
+        currentFlowLabels = [];
+
+        document.getElementById('header-subtitle').textContent = 'Kommunenivå' + (dataYear ? ' - ' + dataYear : '');
+
+        const threshold = parseInt(document.getElementById('threshold-slider').value);
+        const internalMode = getInternalMode();
+        const clusterPct = parseInt(document.getElementById('cluster-slider').value);
+        document.getElementById('threshold-value').textContent = threshold;
+        document.getElementById('cluster-value').textContent = clusterPct;
+
+        // Filter data for this kommune
+        let tilDataBase = dataTil.filter(d => d["Til kommune"] === kommune);
+        let fraDataBase = dataFra.filter(d => d["Fra kommune"] === kommune);
+
+        // Apply internal movement filter
+        if (internalMode === 'exclude') {
+            tilDataBase = tilDataBase.filter(d => !d.internal);
+            fraDataBase = fraDataBase.filter(d => !d.internal);
+        } else if (internalMode === 'only') {
+            // Only flows where BOTH municipalities are in Telemark
+            tilDataBase = tilDataBase.filter(d => telemarkKommuner.includes(d["Fra kommune"]));
+            fraDataBase = fraDataBase.filter(d => telemarkKommuner.includes(d["Til kommune"]));
+        }
+        // internalMode === 'include' → no filter
+
+        // Stats use ALL data (before threshold), Sankeys also use unthresholded
+        const statsTotalIn = tilDataBase.reduce((s, d) => s + d["Antall"], 0);
+        const statsTotalOut = fraDataBase.reduce((s, d) => s + d["Antall"], 0);
+
+        // Apply threshold for map + table only
+        let tilData = tilDataBase.filter(d => d["Antall"] >= threshold);
+        let fraData = fraDataBase.filter(d => d["Antall"] >= threshold);
+
+        // Build raw flow arrays with names
+        let tilFlows = [];
+        let fraFlows = [];
+
+        if (direction === 'tilflytting') {
+            tilData.forEach(d => {
+                tilFlows.push({
+                    fromLat: d["Fra lat"], fromLon: d["Fra lon"],
+                    toLat: d["Til lat"], toLon: d["Til lon"],
+                    count: d["Antall"],
+                    clusterSize: 1,
+                    name: d["Fra kommune"],
+                    label: `<strong>${d["Fra kommune"]} → ${d["Til kommune"]}</strong><br>${d["Antall"]} personer`,
+                });
+            });
+        }
+
+        if (direction === 'fraflytting') {
+            fraData.forEach(d => {
+                fraFlows.push({
+                    fromLat: d["Til lat"], fromLon: d["Til lon"],
+                    toLat: d["Fra lat"], toLon: d["Fra lon"],
+                    count: d["Antall"],
+                    clusterSize: 1,
+                    name: d["Til kommune"],
+                    label: `<strong>${d["Fra kommune"]} → ${d["Til kommune"]}</strong><br>${d["Antall"]} personer`,
+                });
+            });
+        }
+
+        // Apply clustering
+        tilFlows = clusterFlows(tilFlows, clusterPct, kommune, internalMode);
+        fraFlows = clusterFlows(fraFlows, clusterPct, kommune, internalMode);
+
+        drawFlows(tilFlows, COLOR_TILFLYTTING);
+        drawFlows(fraFlows, COLOR_FRAFLYTTING);
+
+        // Collect labels for zoom-responsive display
+        tilFlows.forEach(f => currentFlowLabels.push({ name: f.name, lat: f.fromLat, lon: f.fromLon, count: f.count }));
+        fraFlows.forEach(f => currentFlowLabels.push({ name: f.name, lat: f.fromLat, lon: f.fromLon, count: f.count }));
+
+        // Draw marker for selected kommune
+        const allKomm = [...dataTil.filter(d => d["Til kommune"] === kommune), ...dataFra.filter(d => d["Fra kommune"] === kommune)];
+        if (allKomm.length > 0) {
+            const sample = allKomm[0];
+            const kLat = sample["Til kommune"] === kommune ? sample["Til lat"] : sample["Fra lat"];
+            const kLon = sample["Til kommune"] === kommune ? sample["Til lon"] : sample["Fra lon"];
+            drawMarker(kommune, kLat, kLon,
+                `<strong>${kommune}</strong><br>Tilflytting: ${statsTotalIn.toLocaleString('nb-NO')}<br>Fraflytting: ${statsTotalOut.toLocaleString('nb-NO')}`, true);
+
+            let statsLabel = kommune;
+            if (internalMode === 'exclude') statsLabel += ' (uten intern flytting)';
+            else if (internalMode === 'include') statsLabel += ' (med intern flytting)';
+            else if (internalMode === 'only') statsLabel += ' (kun internt i Telemark)';
+            updateStats(statsLabel, statsTotalIn, statsTotalOut);
+        }
+
+        // Update zoom-based labels
+        updateLabelsForZoom();
+
+        // Sankey at kommune level (use unthresholded data)
+        const showInternal = internalMode !== 'exclude';
+
+        // Show only the active direction's sankey panel
+        const tilPanel = document.getElementById('sankey-til-panel');
+        const fraPanel = document.getElementById('sankey-fra-panel');
+        if (direction === 'tilflytting') {
+            tilPanel.style.display = '';
+            fraPanel.style.display = 'none';
+            buildSankeyKommune('sankey-tilflytting', dataTil, 'tilflytting', kommune, showInternal, internalMode);
+            document.getElementById('sankey-til-title').textContent = `Flytting til ${kommune}`;
+            document.getElementById('sankey-til-hint').style.display = 'block';
+            document.getElementById('sankey-til-back').style.display = 'none';
+        } else {
+            tilPanel.style.display = 'none';
+            fraPanel.style.display = '';
+            buildSankeyKommune('sankey-fraflytting', dataFra, 'fraflytting', kommune, showInternal, internalMode);
+            document.getElementById('sankey-fra-title').textContent = `Flytting fra ${kommune}`;
+            document.getElementById('sankey-fra-hint').style.display = 'block';
+            document.getElementById('sankey-fra-back').style.display = 'none';
+        }
+
+        // Top table (use threshold-filtered data)
+        const tilSorted = [...tilData].sort((a,b) => b["Antall"] - a["Antall"]);
+        const fraSorted = [...fraData].sort((a,b) => b["Antall"] - a["Antall"]);
+        const tilTableRows = tilSorted.map(d => ({ from: d["Fra kommune"], to: d["Til kommune"], count: d["Antall"] }));
+        const fraTableRows = fraSorted.map(d => ({ from: d["Fra kommune"], to: d["Til kommune"], count: d["Antall"] }));
+        document.getElementById('table-title').textContent = `Flyttestrømmer – ${kommune}`;
+        buildTopTable(tilTableRows, fraTableRows, direction, true);
+
+        if (shouldResetView) {
+            shouldResetView = false;
+            setTimeout(() => { map.setView([59.2, 9.0], 8); }, 50);
+        }
+    }
+
+    // ============================================================
+    // Stats update (shared) — Fraflytting value in red
+    // ============================================================
+    function updateStats(label, totalIn, totalOut) {
+        const netto = totalIn - totalOut;
+        const box = document.getElementById('stats-box');
+        box.innerHTML = `
+            <strong>${label}</strong><br>
+            Tilflytting: <span class="stat-value">${totalIn.toLocaleString('nb-NO')}</span><br>
+            Fraflytting: <span class="stat-value" style="color:#d6604d">${totalOut.toLocaleString('nb-NO')}</span><br>
+            Netto: <span class="stat-value" style="color:${netto >= 0 ? '#2a9d2a' : '#d63333'}">${netto >= 0 ? '+' : ''}${netto.toLocaleString('nb-NO')}</span>
+        `;
+    }
+
+    // ============================================================
+    // Sankey diagram – County level (with palette colors)
+    // ============================================================
+    function buildSankeyFylke(divId, data, direction) {
+        const filtered = data.filter(d => d.Fylke !== 'Telemark' && d.Antall > 0);
+        if (filtered.length === 0) { Plotly.purge(divId); return; }
+
+        const sorted = [...filtered].sort((a, b) => b.Antall - a.Antall);
+
+        let labels, sources, targets, values, linkColors, nodeColors;
+        const target = 'Telemark';
+
+        if (direction === 'tilflytting') {
+            labels = [...sorted.map(d => d.Fylke), target];
+            const tIdx = labels.length - 1;
+            sources = sorted.map((_, i) => i);
+            targets = sorted.map(() => tIdx);
+            values = sorted.map(d => d.Antall);
+            nodeColors = [...sorted.map((_, i) => getPaletteColor(i)), COLOR_TELEMARK];
+            linkColors = sorted.map((_, i) => hexToRgba(getPaletteColor(i), 0.35));
+        } else {
+            labels = [target, ...sorted.map(d => d.Fylke)];
+            sources = sorted.map(() => 0);
+            targets = sorted.map((_, i) => i + 1);
+            values = sorted.map(d => d.Antall);
+            nodeColors = [COLOR_TELEMARK, ...sorted.map((_, i) => getPaletteColor(i))];
+            linkColors = sorted.map((_, i) => hexToRgba(getPaletteColor(i), 0.35));
+        }
+
+        Plotly.newPlot(divId, [{
+            type: 'sankey', orientation: 'h',
+            node: { pad: 8, thickness: 20, label: labels, color: nodeColors,
+                     hovertemplate: '%{label}: %{value:.0f} personer<extra></extra>' },
+            link: { source: sources, target: targets, value: values, color: linkColors,
+                     hovertemplate: '%{source.label} → %{target.label}: %{value:.0f} personer<extra></extra>' },
+        }], {
+            margin: { l: 5, r: 5, t: 5, b: 5 },
+            font: { family: 'Segoe UI, sans-serif', size: 13 },
+            paper_bgcolor: 'transparent',
+        }, { responsive: true, displayModeBar: false });
+    }
+
+    // ============================================================
+    // Sankey diagram – Municipality level (with drill-down)
+    // ============================================================
+    let currentSankeyKommune = '';
+    let currentSankeyShowInternal = false;
+    let currentSankeyInternalMode = 'exclude';
+
+    function buildSankeyKommune(divId, rawData, direction, kommune, showInternal, internalMode) {
+        currentSankeyKommune = kommune;
+        currentSankeyShowInternal = showInternal;
+        currentSankeyInternalMode = internalMode || 'exclude';
+
+        let filtered;
+        if (direction === 'tilflytting') {
+            filtered = rawData.filter(d => d["Til kommune"] === kommune);
+        } else {
+            filtered = rawData.filter(d => d["Fra kommune"] === kommune);
+        }
+        if (currentSankeyInternalMode === 'exclude') {
+            filtered = filtered.filter(d => !d.internal);
+        } else if (currentSankeyInternalMode === 'only') {
+            if (direction === 'tilflytting') {
+                filtered = filtered.filter(d => telemarkKommuner.includes(d["Fra kommune"]));
+            } else {
+                filtered = filtered.filter(d => telemarkKommuner.includes(d["Til kommune"]));
+            }
+        }
+        if (filtered.length === 0) { Plotly.purge(divId); return; }
+
+        // Aggregate by county
+        const agg = {};
+        filtered.forEach(d => {
+            const key = direction === 'tilflytting' ? d["Fra fylke"] : d["Til fylke"];
+            agg[key] = (agg[key] || 0) + d["Antall"];
+        });
+
+        let entries = Object.entries(agg).filter(([k, v]) => v > 0);
+        entries.sort((a, b) => b[1] - a[1]);
+
+        let labels, sources, targets, values, linkColors, nodeColors;
+
+        if (direction === 'tilflytting') {
+            labels = [...entries.map(([k]) => k), kommune];
+            const tIdx = labels.length - 1;
+            sources = entries.map((_, i) => i);
+            targets = entries.map(() => tIdx);
+            values = entries.map(([, v]) => v);
+            nodeColors = [...entries.map((_, i) => getPaletteColor(i)), COLOR_TELEMARK];
+            linkColors = entries.map((_, i) => hexToRgba(getPaletteColor(i), 0.35));
+        } else {
+            labels = [kommune, ...entries.map(([k]) => k)];
+            sources = entries.map(() => 0);
+            targets = entries.map((_, i) => i + 1);
+            values = entries.map(([, v]) => v);
+            nodeColors = [COLOR_TELEMARK, ...entries.map((_, i) => getPaletteColor(i))];
+            linkColors = entries.map((_, i) => hexToRgba(getPaletteColor(i), 0.35));
+        }
+
+        Plotly.purge(divId);
+        Plotly.newPlot(divId, [{
+            type: 'sankey', orientation: 'h',
+            node: { pad: 8, thickness: 20, label: labels, color: nodeColors,
+                     hovertemplate: '%{label}: %{value:.0f} personer<extra></extra>' },
+            link: { source: sources, target: targets, value: values, color: linkColors,
+                     hovertemplate: '%{source.label} → %{target.label}: %{value:.0f} personer<extra></extra>' },
+        }], {
+            margin: { l: 5, r: 5, t: 5, b: 5 },
+            font: { family: 'Segoe UI, sans-serif', size: 13 },
+            paper_bgcolor: 'transparent',
+        }, { responsive: true, displayModeBar: false });
+
+        // Attach click handler for drill-down
+        const div = document.getElementById(divId);
+        div.on('plotly_click', function(eventData) {
+            if (!eventData || !eventData.points || eventData.points.length === 0) return;
+            const pt = eventData.points[0];
+            // Only drill down on link clicks
+            if (pt.hasOwnProperty('source') && pt.hasOwnProperty('target')) {
+                const srcLabel = pt.source.label;
+                const tgtLabel = pt.target.label;
+                const clickedFylke = direction === 'tilflytting' ? srcLabel : tgtLabel;
+                if (clickedFylke !== kommune) {
+                    buildSankeyDrillDown(divId, rawData, direction, kommune, clickedFylke, currentSankeyInternalMode);
+                }
+            }
+        });
+    }
+
+    // ============================================================
+    // Sankey drill-down: show municipalities within a county
+    // ============================================================
+    function buildSankeyDrillDown(divId, rawData, direction, kommune, fylke, internalMode) {
+        let filtered;
+        if (direction === 'tilflytting') {
+            filtered = rawData.filter(d => d["Til kommune"] === kommune && d["Fra fylke"] === fylke);
+        } else {
+            filtered = rawData.filter(d => d["Fra kommune"] === kommune && d["Til fylke"] === fylke);
+        }
+        if (internalMode === 'exclude') {
+            filtered = filtered.filter(d => !d.internal);
+        } else if (internalMode === 'only') {
+            if (direction === 'tilflytting') {
+                filtered = filtered.filter(d => telemarkKommuner.includes(d["Fra kommune"]));
+            } else {
+                filtered = filtered.filter(d => telemarkKommuner.includes(d["Til kommune"]));
+            }
+        }
+        if (filtered.length === 0) return;
+
+        // Aggregate by municipality
+        const agg = {};
+        filtered.forEach(d => {
+            const key = direction === 'tilflytting' ? d["Fra kommune"] : d["Til kommune"];
+            agg[key] = (agg[key] || 0) + d["Antall"];
+        });
+
+        let entries = Object.entries(agg).filter(([k, v]) => v > 0);
+        entries.sort((a, b) => b[1] - a[1]);
+        if (entries.length === 0) return;
+
+        let labels, sources, targets, values, linkColors, nodeColors;
+
+        if (direction === 'tilflytting') {
+            labels = [...entries.map(([k]) => k), kommune];
+            const tIdx = labels.length - 1;
+            sources = entries.map((_, i) => i);
+            targets = entries.map(() => tIdx);
+            values = entries.map(([, v]) => v);
+            nodeColors = [...entries.map((_, i) => getPaletteColor(i)), COLOR_TELEMARK];
+            linkColors = entries.map((_, i) => hexToRgba(getPaletteColor(i), 0.35));
+        } else {
+            labels = [kommune, ...entries.map(([k]) => k)];
+            sources = entries.map(() => 0);
+            targets = entries.map((_, i) => i + 1);
+            values = entries.map(([, v]) => v);
+            nodeColors = [COLOR_TELEMARK, ...entries.map((_, i) => getPaletteColor(i))];
+            linkColors = entries.map((_, i) => hexToRgba(getPaletteColor(i), 0.35));
+        }
+
+        Plotly.newPlot(divId, [{
+            type: 'sankey', orientation: 'h',
+            node: { pad: 8, thickness: 20, label: labels, color: nodeColors,
+                     hovertemplate: '%{label}: %{value:.0f} personer<extra></extra>' },
+            link: { source: sources, target: targets, value: values, color: linkColors,
+                     hovertemplate: '%{source.label} → %{target.label}: %{value:.0f} personer<extra></extra>' },
+        }], {
+            margin: { l: 5, r: 5, t: 5, b: 5 },
+            font: { family: 'Segoe UI, sans-serif', size: 13 },
+            paper_bgcolor: 'transparent',
+        }, { responsive: true, displayModeBar: false });
+
+        // Update title and show back button
+        const titleId = divId === 'sankey-tilflytting' ? 'sankey-til-title' : 'sankey-fra-title';
+        const hintId = divId === 'sankey-tilflytting' ? 'sankey-til-hint' : 'sankey-fra-hint';
+        const backId = divId === 'sankey-tilflytting' ? 'sankey-til-back' : 'sankey-fra-back';
+
+        document.getElementById(titleId).textContent = (direction === 'tilflytting' ? 'Flytting til ' : 'Flytting fra ') + currentSankeyKommune + ' – ' + fylke;
+        document.getElementById(hintId).style.display = 'none';
+        document.getElementById(backId).style.display = 'inline-block';
+        document.getElementById(backId).dataset.direction = direction;
+        document.getElementById(backId).dataset.divId = divId;
+    }
+
+    // ============================================================
+    // Sankey back button handler
+    // ============================================================
+    function sankeyBack(type) {
+        const divId = type === 'tilflytting' ? 'sankey-tilflytting' : 'sankey-fraflytting';
+        const backId = type === 'tilflytting' ? 'sankey-til-back' : 'sankey-fra-back';
+        const hintId = type === 'tilflytting' ? 'sankey-til-hint' : 'sankey-fra-hint';
+        const titleId = type === 'tilflytting' ? 'sankey-til-title' : 'sankey-fra-title';
+
+        document.getElementById(backId).style.display = 'none';
+        document.getElementById(hintId).style.display = 'block';
+        document.getElementById(titleId).textContent = (type === 'tilflytting' ? 'Flytting til ' : 'Flytting fra ') + currentSankeyKommune;
+
+        const rawData = type === 'tilflytting' ? dataTil : dataFra;
+        buildSankeyKommune(divId, rawData, type, currentSankeyKommune, currentSankeyShowInternal, currentSankeyInternalMode);
+    }
+
+    // ============================================================
+    // Master update
+    // ============================================================
+    function updateAll() {
+        const direction = document.getElementById('direction-select').value;
+
+        if (currentLevel === 'fylke') {
+            updateFylke(direction);
+        } else {
+            const kommune = kommuneSelect.value;
+            updateKommune(kommune, direction);
+        }
+    }
+
+    // ============================================================
+    // Event listeners
+    // ============================================================
+    kommuneSelect.addEventListener('change', () => {
+        if (currentLevel === 'kommune') {
+            shouldResetView = true;
+            updateAll();
+        }
+    });
+    document.getElementById('direction-select').addEventListener('change', () => {
+        // No view reset on direction change
+        updateAll();
+    });
+    document.getElementById('threshold-slider').addEventListener('input', () => {
+        // No view reset on slider
+        updateAll();
+    });
+    document.querySelectorAll('input[name="internal-mode"]').forEach(r => {
+        r.addEventListener('change', () => {
+            const mode = r.value;
+            if (mode === 'only') {
+                // Force sliders to minimum for internal-only view
+                document.getElementById('threshold-slider').value = 1;
+                document.getElementById('cluster-slider').value = 0;
+                forceAllLabels = true;
+            } else {
+                // Reset to defaults
+                document.getElementById('threshold-slider').value = 5;
+                document.getElementById('cluster-slider').value = 30;
+                forceAllLabels = false;
+            }
+            updateAll();
+        });
+    });
+    document.getElementById('cluster-slider').addEventListener('input', () => {
+        // No view reset on cluster slider
+        updateAll();
+    });
+    document.querySelectorAll('.sankey-back').forEach(btn => {
+        btn.addEventListener('click', () => {
+            sankeyBack(btn.dataset.type);
+        });
+    });
+
+    // ============================================================
+    // Initial render
+    // ============================================================
+    loadData();
+    </script>
+</body>
+</html>

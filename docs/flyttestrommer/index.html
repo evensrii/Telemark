@@ -401,6 +401,14 @@
                     Laster...
                 </div>
             </div>
+
+            <div style="font-size:15px;color:#555;line-height:1.5;">
+                Les mer om flytting i Telemark p&aring; nettsidene <a href="https://www.telemarkfylke.no/no/kunnskap-om-telemark/tema/befolkning/flytting/" target="_blank" style="color:#005260;font-weight:500;">Kunnskap om Telemark</a>.
+            </div>
+
+            <div style="margin-top:auto;font-size:13px;color:#888;padding-top:10px;">
+                Kilde: SSB, tabell <a href="https://www.ssb.no/statbank/table/13864" target="_blank" style="color:#005260;">13864</a>
+            </div>
         </div>
 
         <!-- CENTER MAP -->
@@ -1051,7 +1059,7 @@
         const fraTableRows = [...dataFraFylke].filter(d => d.Fylke !== 'Telemark').sort((a,b) => b.Antall - a.Antall)
             .map(d => ({ from: 'Telemark', to: d.Fylke, count: d.Antall }));
         document.getElementById('table-title').textContent = 'Flyttestrømmer – Telemark';
-        buildTopTable(tilTableRows, fraTableRows, direction, false);
+        buildTopTable(tilTableRows, fraTableRows, direction, true);
 
         if (shouldResetView) {
             shouldResetView = false;
