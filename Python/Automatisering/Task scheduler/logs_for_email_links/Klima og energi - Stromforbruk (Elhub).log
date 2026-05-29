@@ -2,10 +2,40 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2026-05-28 08:13:39] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
-[2026-05-28 08:13:39] GITHUB_TOKEN loaded successfully.
-[2026-05-28 08:22:38] Error in main: ('Connection broken: IncompleteRead(15124837 bytes read, 16556982 more expected)', IncompleteRead(15124837 bytes read, 16556982 more expected))
+[2026-05-29 08:13:41] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+[2026-05-29 08:13:41] GITHUB_TOKEN loaded successfully.
+[2026-05-29 08:13:52] Latest date in GitHub files: 2026-05-21
+[2026-05-29 08:13:52] Querying data for 2026-05-22
+[2026-05-29 08:13:52] API Response status code: 200
+[2026-05-29 08:13:52] Querying data for 2026-05-23
+[2026-05-29 08:13:53] API Response status code: 200
+[2026-05-29 08:13:53] Querying data for 2026-05-24
+[2026-05-29 08:13:54] API Response status code: 200
+[2026-05-29 08:13:54] Querying data for 2026-05-25
+[2026-05-29 08:13:55] API Response status code: 200
+[2026-05-29 08:13:55] Querying data for 2026-05-26
+[2026-05-29 08:13:55] API Response status code: 200
+[2026-05-29 08:13:56] Querying data for 2026-05-27
+[2026-05-29 08:13:56] API Response status code: 200
+[2026-05-29 08:13:56] No consumption data available for 2026-05-27
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\2026.csv
+[2026-05-29 08:14:00] Row count changed: 172482 -> 178602
 
+Added rows (showing up to 10):
+Antall mlere: 1278.0, Forbruk (kWh): 1809.406, Gruppe: Husholdninger, Knr: 4010, Kommunenavn: Siljan, Tid: 2026-05-21 22:00:00+00:00
+Antall mlere: 332.0, Forbruk (kWh): 1374.972, Gruppe: NÃ¦ring (unntatt industri), Knr: 4022, Kommunenavn: Seljord, Tid: 2026-05-21 22:00:00+00:00
+Antall mlere: 96.0, Forbruk (kWh): 163.384, Gruppe: Industri, Knr: 4022, Kommunenavn: Seljord, Tid: 2026-05-21 22:00:00+00:00
+Antall mlere: 2228.0, Forbruk (kWh): 2540.963, Gruppe: Husholdninger, Knr: 4022, Kommunenavn: Seljord, Tid: 2026-05-21 22:00:00+00:00
+Antall mlere: 199.0, Forbruk (kWh): 2677.807, Gruppe: Industri, Knr: 4005, Kommunenavn: Notodden, Tid: 2026-05-21 22:00:00+00:00
+Antall mlere: 522.0, Forbruk (kWh): 206328.67, Gruppe: Industri, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-05-21 22:00:00+00:00
+Antall mlere: 19643.0, Forbruk (kWh): 24011.805, Gruppe: Husholdninger, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-05-21 22:00:00+00:00
+Antall mlere: 871.0, Forbruk (kWh): 3745.394, Gruppe: NÃ¦ring (unntatt industri), Knr: 4005, Kommunenavn: Notodden, Tid: 2026-05-21 22:00:00+00:00
+Antall mlere: 50.0, Forbruk (kWh): 150.345, Gruppe: Industri, Knr: 4010, Kommunenavn: Siljan, Tid: 2026-05-21 22:00:00+00:00
+Antall mlere: 1675.0, Forbruk (kWh): 10099.041, Gruppe: NÃ¦ring (unntatt industri), Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-05-21 22:00:00+00:00
+... and 6110 more rows
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/2026.csv
+Email notifications disabled. Updates for 2026.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\2026.csv
+[2026-05-29 08:14:13] New data detected in 2026.csv and pushed to GitHub.
+[2026-05-29 08:14:13] New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Stromforbruk_(Elhub).log
 
-Errors:
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Forbruk/Elhub/elhub.py` failed. (See above for error)
