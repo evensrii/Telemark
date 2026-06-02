@@ -83,6 +83,15 @@ print(df.columns.tolist())
 # Drop statistikkvariabel column
 df = df.drop(columns=["statistikkvariabel"])
 
+# Create Telemark aggregate (sum of all municipalities, excluding national data)
+df_telemark_agg = (
+    df[~df["region"].isin(["Hele landet"])]
+    .groupby(["år", "bygningstype"], as_index=False)["value"]
+    .sum()
+)
+df_telemark_agg["region"] = "Telemark"
+df = pd.concat([df, df_telemark_agg], ignore_index=True)
+
 # Add Kommunenummer based on kommune name
 kommunenummer_map = {
     "Porsgrunn": "4001",
@@ -102,6 +111,7 @@ kommunenummer_map = {
     "Fyresdal": "4032",
     "Tokke": "4034",
     "Vinje": "4036",
+    "Telemark": "40",
     "Hele landet": "00",
 }
 df["Kommunenummer"] = df["region"].map(kommunenummer_map)

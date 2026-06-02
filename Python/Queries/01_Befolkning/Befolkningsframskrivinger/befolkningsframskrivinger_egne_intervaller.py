@@ -192,6 +192,16 @@ df_agg = (
     .sum()
 )
 
+# Create "Telemark" aggregate (sum all kommuner)
+df_telemark = (
+    df.groupby(["år", "Aldersgruppe"], as_index=False)["value"]
+    .sum()
+)
+df_telemark["region"] = "Telemark"
+
+# Append Telemark aggregate to the kommune data
+df_agg = pd.concat([df_agg, df_telemark], ignore_index=True)
+
 # Rename columns
 df_agg = df_agg.rename(columns={
     "region": "Kommune",
@@ -226,6 +236,7 @@ kommunenummer_map = {
     "Fyresdal": "4032",
     "Tokke": "4034",
     "Vinje": "4036",
+    "Telemark": "40",
 }
 df_agg["Kommunenummer"] = df_agg["Kommune"].map(kommunenummer_map)
 

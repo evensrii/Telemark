@@ -22,6 +22,7 @@ Successfully uploaded log file Bolig - Boliger etter boligtype.log. URL: https:/
 Successfully uploaded log file Bolig - Fullforte boliger etter boligtype.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bolig - Fullforte boliger etter boligtype.log
 Successfully uploaded log file Bolig - Husholdninger etter boligtype.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bolig - Husholdninger etter boligtype.log
 Successfully uploaded log file Bolig - Igangsettelser etter boligtype.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bolig - Igangsettelser etter boligtype.log
+Successfully uploaded log file Boligbehovsanalyse - Framtidig boligbehov.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Boligbehovsanalyse - Framtidig boligbehov.log
 Successfully uploaded log file Bystrategi Grenland - Arealprofiler.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Arealprofiler.log
 Successfully uploaded log file Bystrategi Grenland - Luftforurensing.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Luftforurensing.log
 Successfully uploaded log file Bystrategi Grenland - Utslipp fra vei.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Utslipp fra vei.log
@@ -60,7 +61,7 @@ Successfully uploaded log file Innvandrere - Sysselsatte.log. URL: https://githu
 Successfully uploaded log file Klima og energi - Felte hjortedyr.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Felte hjortedyr.log
 Successfully uploaded log file Klima og energi - Installert_effekt (Elhub).log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Installert_effekt (Elhub).log
 Successfully uploaded log file Klima og energi - Kraftproduksjon Telemark (SSB).log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Kraftproduksjon Telemark (SSB).log
-No changes detected for Klima og energi - Okologisk tilstand vann.log. Skipping upload. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Okologisk tilstand vann.log
+Successfully uploaded log file Klima og energi - Okologisk tilstand vann.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Okologisk tilstand vann.log
 Successfully uploaded log file Klima og energi - Sektorvise utslipp.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Sektorvise utslipp.log
 Successfully uploaded log file Klima og energi - Stromforbruk (Elhub).log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Stromforbruk (Elhub).log
 Successfully uploaded log file Klima og energi - Strompriser.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Strompriser.log
@@ -77,17 +78,8 @@ Successfully uploaded log file Opplaering og kompetanse - Utdanningsnivaa.log. U
 DEBUG - Task: Klima og energi - Stromforbruk (Elhub)
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Stromforbruk%20(Elhub).log
 
-DEBUG - Task: Flytting - Til og fra kommunene
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Flytting%20-%20Til%20og%20fra%20kommunene.log
-
-DEBUG - Task: Befolkning - Befolkningsframskrivinger egne intervaller
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Befolkningsframskrivinger%20egne%20intervaller.log
-
-DEBUG - Task: Bolig - Antall boliger etter type og bosattes alder
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bolig%20-%20Antall%20boliger%20etter%20type%20og%20bosattes%20alder.log
-
-DEBUG - Task: Bolig - Boliger etter boligtype
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bolig%20-%20Boliger%20etter%20boligtype.log
+DEBUG - Task: Befolkning - Historisk og framskrevet
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Historisk%20og%20framskrevet.log
 
 DEBUG - Task: Klima og energi - Installert_effekt (Elhub)
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Installert_effekt%20(Elhub).log
@@ -100,6 +92,30 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 
 DEBUG - Task: Bolig - Fullforte boliger etter boligtype
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bolig%20-%20Fullforte%20boliger%20etter%20boligtype.log
+
+DEBUG - Task: Bolig - Boliger etter boligtype
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bolig%20-%20Boliger%20etter%20boligtype.log
+
+DEBUG - Task: Bolig - Husholdninger etter boligtype
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bolig%20-%20Husholdninger%20etter%20boligtype.log
+
+DEBUG - Task: Befolkning - Befolkningsframskrivinger historiske_07459
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Befolkningsframskrivinger%20historiske_07459.log
+
+DEBUG - Task: Klima og energi - Kraftproduksjon Telemark (SSB)
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Kraftproduksjon%20Telemark%20(SSB).log
+
+DEBUG - Task: Innvandrere - Anmodninger og faktisk bosetting
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Anmodninger%20og%20faktisk%20bosetting.log
+
+DEBUG - Task: Flytting - Til og fra kommunene
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Flytting%20-%20Til%20og%20fra%20kommunene.log
+
+DEBUG - Task: Befolkning - Befolkningsframskrivinger egne intervaller
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Befolkningsframskrivinger%20egne%20intervaller.log
+
+DEBUG - Task: Bolig - Antall boliger etter type og bosattes alder
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bolig%20-%20Antall%20boliger%20etter%20type%20og%20bosattes%20alder.log
 
 DEBUG - Task: Klima og energi - Sektorvise utslipp
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Sektorvise%20utslipp.log
@@ -131,9 +147,6 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 DEBUG - Task: Flytting - Til og fra Telemark
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Flytting%20-%20Til%20og%20fra%20Telemark.log
 
-DEBUG - Task: Innvandrere - Anmodninger og faktisk bosetting
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Anmodninger%20og%20faktisk%20bosetting.log
-
 DEBUG - Task: Folkehelse - Tilfredshet med livet, ungdom
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Tilfredshet%20med%20livet,%20ungdom.log
 
@@ -157,15 +170,6 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 
 DEBUG - Task: Folkehelse - Dødsårsaker, ettårig
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Dødsårsaker,%20ettårig.log
-
-DEBUG - Task: Bolig - Husholdninger etter boligtype
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bolig%20-%20Husholdninger%20etter%20boligtype.log
-
-DEBUG - Task: Befolkning - Befolkningsframskrivinger historiske_07459
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Befolkningsframskrivinger%20historiske_07459.log
-
-DEBUG - Task: Befolkning - Historisk og framskrevet
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Historisk%20og%20framskrevet.log
 
 DEBUG - Task: Befolkning - Befolkningsframskrivinger siste tabell
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Befolkning%20-%20Befolkningsframskrivinger%20siste%20tabell.log
@@ -278,9 +282,6 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 DEBUG - Task: Innvandrere - Deltakere introduksjonsprogrammet
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Deltakere%20introduksjonsprogrammet.log
 
-DEBUG - Task: Klima og energi - Kraftproduksjon Telemark (SSB)
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Kraftproduksjon%20Telemark%20(SSB).log
-
 DEBUG - Task: Klima og energi - Okologisk tilstand vann
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Okologisk%20tilstand%20vann.log
 
@@ -289,4 +290,7 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 
 DEBUG - Task: Innvandrere - Sekundaerflytting
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Sekundaerflytting.log
+
+DEBUG - Task: Boligbehovsanalyse - Framtidig boligbehov
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Boligbehovsanalyse%20-%20Framtidig%20boligbehov.log
 Email sent successfully to Even (even.sannes.riiser@telemarkfylke.no).

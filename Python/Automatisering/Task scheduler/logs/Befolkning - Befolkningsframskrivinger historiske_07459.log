@@ -11,14 +11,14 @@ Historiske 07459 - Telemark kommuner JSON-stat data loaded successfully.
 Querying Telemark fylke...
   URL: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=*&valueco...
 Historiske 07459 - Telemark fylke JSON-stat data loaded successfully.
-  -> Got 70 rows
+  -> Got 270 rows
 
 Querying Norge...
   URL: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=*&valueco...
 Historiske 07459 - Norge JSON-stat data loaded successfully.
-  -> Got 70 rows
+  -> Got 270 rows
 
-Combined data: 4730 rows
+Combined data: 5130 rows
   Columns: ['region', 'alder', 'statistikkvariabel', 'Ã¥r', 'value']
   Regions: ['Bamble', 'Drangedal', 'Fyresdal', 'Hele landet', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Telemark', 'Tinn', 'Tokke', 'Vinje']
       region alder statistikkvariabel    Ã¥r  value
@@ -28,7 +28,7 @@ Combined data: 4730 rows
 3  Porsgrunn  0 Ã¥r           Personer  2003    335
 4  Porsgrunn  0 Ã¥r           Personer  2004    364
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_historiske.csv
-[2026-04-30 08:05:27] No new data to upload. Skipping GitHub update.
+[2026-05-20 08:05:22] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_historiske.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_historiske_07459.log

@@ -71,6 +71,14 @@ df["husholdningstype"] = df["husholdningstype"].map(husholdningstype_map)
 # Sum values for categories that were merged (Flerfamiliehusholdninger)
 df = df.groupby(["region", "år", "husholdningstype"], as_index=False)["value"].sum()
 
+# Create Telemark aggregate (sum of all municipalities)
+df_telemark_agg = (
+    df.groupby(["år", "husholdningstype"], as_index=False)["value"]
+    .sum()
+)
+df_telemark_agg["region"] = "Telemark"
+df = pd.concat([df, df_telemark_agg], ignore_index=True)
+
 # Add Kommunenummer based on kommune name
 kommunenummer_map = {
     "Porsgrunn": "4001",
@@ -90,6 +98,7 @@ kommunenummer_map = {
     "Fyresdal": "4032",
     "Tokke": "4034",
     "Vinje": "4036",
+    "Telemark": "40",
 }
 df["Kommunenummer"] = df["region"].map(kommunenummer_map)
 
@@ -105,13 +114,15 @@ df = df.rename(columns={
 })
 
 # Reorder columns with Kommunenummer first
-# Sort column: rank husholdningstyper by summed Antall (1 = largest)
-rank_husholdningstype = (
-    df.groupby("Husholdningstype")["Antall"]
-    .sum()
-    .rank(ascending=False, method="min")
-    .astype(int)
-)
+# Sort column: manual sort order for husholdningstyper
+rank_husholdningstype = {
+    "Aleneboende": 1,
+    "Par uten hjemmeboende barn": 2,
+    "Par eller aleneforsørger med voksne barn (18+)": 3,
+    "Aleneforsørger med barn under 18 år": 4,
+    "Par med barn under 18 år": 5,
+    "Flerfamiliehusholdninger": 6,
+}
 df["SortHusholdningstype"] = df["Husholdningstype"].map(rank_husholdningstype).fillna(0).astype(int)
 
 df = df[["Kommunenummer", "Kommune", "År", "Husholdningstype", "SortHusholdningstype", "Antall"]]
