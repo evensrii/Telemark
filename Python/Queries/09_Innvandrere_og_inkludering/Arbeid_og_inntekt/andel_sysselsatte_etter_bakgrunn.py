@@ -1,67 +1,44 @@
-import requests
-import sys
 import os
-import glob
-from io import BytesIO
-from io import StringIO
 import pandas as pd
-from pyjstat import pyjstat
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.utility_functions import delete_files_in_temp_folder
 from Helper_scripts.email_functions import notify_errors
-from Helper_scripts.github_functions import upload_github_file
-from Helper_scripts.github_functions import download_github_file
-from Helper_scripts.github_functions import compare_to_github
 from Helper_scripts.github_functions import handle_output_data
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
 
-# Example list of error messages to collect errors during execution <--- Eksempel på liste for å samle feilmeldinger under kjøring
+# Example list of error messages to collect errors during execution
 error_messages = []
 
-# Alle kommuner, siste ti år (dvs. "top 10")
+################# Spørring #################
 
+# SSB API v2 GET URL (tabell 11607 - Sysselsatte etter innvandrerbakgrunn)
+# Region: 40=Telemark (2024-), 38=Vestfold og Telemark (2020-2023), 08=Telemark (før 2020)
+GET_URL = (
+    "https://data.ssb.no/api/pxwebapi/v2/tables/11607/data?lang=no"
+    "&outputFormat=json-stat2"
+    "&valuecodes[Tid]=from(2015)"
+    "&valuecodes[Region]=40,38,08"
+    "&codelist[Region]=vs_FylkerAlle"
+    "&valuecodes[Landbakgrunn]=abc,ddd,eee"
+    "&valuecodes[Alder]=15-74"
+    "&valuecodes[Kjonn]=0"
+    "&valuecodes[ContentsCode]=Sysselsatte2"
+    "&heading=ContentsCode,Tid,Alder,Kjonn"
+    "&stub=Region,Landbakgrunn"
+)
 
-## MANGLER TALL FOR KUN TELEMARK I ÅRENE 2020-2023!
-## SJEKKER PÅ NYTT NÅR 2024-TALLENE ER KLARE
-
-
-""" # Endepunkt for SSB API
-POST_URL = "https://data.ssb.no/api/v0/no/table/11607/"
-
-payload = {
-    "query": [
-        {
-            "code": "Region",
-            "selection": {"filter": "vs:FylkerAlle", "values": ["40", "38", "08"]},
-        },
-        {"code": "Alder", "selection": {"filter": "item", "values": ["15-74"]}},
-        {"code": "Kjonn", "selection": {"filter": "item", "values": ["0"]}},
-        {
-            "code": "Landbakgrunn",
-            "selection": {"filter": "item", "values": ["abc", "ddd", "eee"]},
-        },
-        {
-            "code": "ContentsCode",
-            "selection": {"filter": "item", "values": ["Sysselsatte2"]},
-        },
-        {"code": "Tid", "selection": {"filter": "top", "values": ["10"]}},
-    ],
-    "response": {"format": "json-stat2"},
-}
+## Kjøre spørring i try-except for å fange opp feil. Quitter hvis feil.
 
 try:
     df = fetch_data(
-        url=POST_URL,
-        payload=payload, #The JSON payload for POST requests. If None, a GET request is used.
+        url=GET_URL,
+        payload=None,  # None = GET request (new SSB API v2)
         error_messages=error_messages,
-        query_name="Query name",
-        response_type="csv", # The expected response type, either 'json' or 'csv'.
-        delimiter=";", # The delimiter for CSV data (default: ';').
-        encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+        query_name="Sysselsatte etter innvandrerbakgrunn (11607)",
+        response_type="json",
     )
 except Exception as e:
     print(f"Error occurred: {e}")
@@ -73,11 +50,15 @@ except Exception as e:
 df.head()
 df.info()
 
-# Convert "år" to datetime
-df["år"] = pd.to_datetime(df["år"])
+################# Bearbeide data #################
 
-df["kjønn"].unique()
-df["landbakgrunn"].unique()
+# Unify region names: all variants of Telemark -> "Telemark"
+df["region"] = df["region"].replace(
+    {
+        "Vestfold og Telemark (2020-2023)": "Telemark",
+        "Telemark (-2019)": "Telemark",
+    }
+)
 
 # Rename values in column "landbakgrunn"
 df["landbakgrunn"] = df["landbakgrunn"].replace(
@@ -93,13 +74,22 @@ df = df.drop(columns=["alder", "kjønn", "statistikkvariabel"])
 # Remove rows with NaN values
 df = df.dropna()
 
+# Keep only "Telemark" rows
+df = df[df["region"] == "Telemark"].copy()
 
-# Rename columns
-df_fylker = df_fylker.rename(columns={"Antall": "Andel"})
+# Pivot to wide format: År as rows, landbakgrunn categories as columns
+df = df.pivot_table(index="år", columns="landbakgrunn", values="value", aggfunc="first")
+df = df.reset_index()
+df.columns.name = None
 
-# Reset index
-df_fylker = df_fylker.reset_index(drop=True)
- """
+# Rename "år" column
+df = df.rename(columns={"år": "År"})
+
+# Ensure correct data types
+df["År"] = df["År"].astype(str)
+
+df.head(20)
+df.info()
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
