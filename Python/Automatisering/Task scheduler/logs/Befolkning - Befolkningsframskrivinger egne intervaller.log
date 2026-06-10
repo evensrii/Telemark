@@ -29,7 +29,7 @@ Raw data: 48654 rows
 3  Porsgrunn  0 Ã¥r  Hovedalternativet (MMMM)  2027    332
 4  Porsgrunn  0 Ã¥r  Hovedalternativet (MMMM)  2028    336
 
-Aggregated data: 2295 rows
+Aggregated data: 2430 rows
   Columns: ['Kommune', 'Ã…r', 'Aldersgruppe', 'Personer']
   Age groups: ['0-19 Ã¥r', '20-39 Ã¥r', '40-66 Ã¥r', '67-79 Ã¥r', '80+ Ã¥r']
   Kommune    Ã…r Aldersgruppe  Personer
@@ -44,7 +44,7 @@ Aggregated data: 2295 rows
 8  Bamble  2025     67-79 Ã¥r      2239
 9  Bamble  2025       80+ Ã¥r       832
 
-Final data: 2295 rows
+Final data: 2430 rows
   Columns: ['Kommunenummer', 'Kommune', 'Aldersgruppe', 'Ã…r', 'Personer', 'SortColumn']
    Kommunenummer Kommune Aldersgruppe          Ã…r  Personer  SortColumn
 0           4012  Bamble      0-19 Ã¥r  2024-01-01      3061           1
@@ -68,7 +68,7 @@ Final data: 2295 rows
 18          4012  Bamble      0-19 Ã¥r  2042-01-01      2718           1
 19          4012  Bamble      0-19 Ã¥r  2043-01-01      2722           1
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell_egendef_alder.csv
-[2026-05-20 08:06:18] No new data to upload. Skipping GitHub update.
+[2026-06-08 08:06:00] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell_egendef_alder.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_egne_intervaller.log
