@@ -2,28 +2,27 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Ingen driftsmeldinger dukket opp, continuing...
 An unexpected error occurred during setup: Message: 
 Stacktrace:
-	chromedriver!GetHandleVerifier [0x7ff716de7de5+14895]
-	chromedriver!GetHandleVerifier [0x7ff716de7e50+14900]
-	chromedriver!(No symbol) [0x7ff716b4d5ad]
-	chromedriver!(No symbol) [0x7ff716ba7822]
-	chromedriver!(No symbol) [0x7ff716ba7b2c]
-	chromedriver!(No symbol) [0x7ff716bf7d17]
-	chromedriver!(No symbol) [0x7ff716bf486f]
-	chromedriver!(No symbol) [0x7ff716b99df8]
-	chromedriver!(No symbol) [0x7ff716b9ace3]
-	chromedriver!GetHandleVerifier [0x7ff7170fcc49+3296f9]
-	chromedriver!GetHandleVerifier [0x7ff7170f7375+323e25]
-	chromedriver!GetHandleVerifier [0x7ff71711bc82+348732]
-	chromedriver!GetHandleVerifier [0x7ff716e06045+32af5]
-	chromedriver!GetHandleVerifier [0x7ff716e0ecec+3b79c]
-	chromedriver!GetHandleVerifier [0x7ff716df1bc4+1e674]
-	chromedriver!GetHandleVerifier [0x7ff716df1d54+1e804]
-	chromedriver!GetHandleVerifier [0x7ff716dd60e7+2b97]
-	KERNEL32!BaseThreadInitThunk [0x7ff970677ac4+14]
-	ntdll!RtlUserThreadStart [0x7ff97174a8c1+21]
+	chromedriver!GetHandleVerifier [0x7ff676b9fd95+15395]
+	chromedriver!GetHandleVerifier [0x7ff676b9fdf0+153f0]
+	chromedriver!(No symbol) [0x7ff6766d78fd]
+	chromedriver!(No symbol) [0x7ff676731479]
+	chromedriver!(No symbol) [0x7ff67673177c]
+	chromedriver!(No symbol) [0x7ff676781ef7]
+	chromedriver!(No symbol) [0x7ff67677eaeb]
+	chromedriver!(No symbol) [0x7ff676723a58]
+	chromedriver!(No symbol) [0x7ff676724953]
+	chromedriver!GetHandleVerifier [0x7ff677165511+5dab11]
+	chromedriver!GetHandleVerifier [0x7ff67715f8fb+5d4efb]
+	chromedriver!GetHandleVerifier [0x7ff677183205+5f8805]
+	chromedriver!GetHandleVerifier [0x7ff676bbcc6e+3226e]
+	chromedriver!GetHandleVerifier [0x7ff676bc562c+3ac2c]
+	chromedriver!GetHandleVerifier [0x7ff676ba9984+1ef84]
+	chromedriver!GetHandleVerifier [0x7ff676ba9b14+1f114]
+	chromedriver!GetHandleVerifier [0x7ff676b8ca77+2077]
+	KERNEL32!BaseThreadInitThunk [0x7ffef1037ac4+14]
+	ntdll!RtlUserThreadStart [0x7ffef2bca8c1+21]
 
 Email notifications disabled. Errors in Vannkvalitet were not sent.
 
