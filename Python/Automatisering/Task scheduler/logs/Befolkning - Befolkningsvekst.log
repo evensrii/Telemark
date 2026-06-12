@@ -1,0 +1,43 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Befolkningsvekst Telemark JSON-stat data loaded successfully.
+Raw data: 85 rows
+      region    Ã¥r    statistikkvariabel  value
+0  Porsgrunn  2022  Befolkning 1. januar  36624
+1  Porsgrunn  2023  Befolkning 1. januar  37056
+2  Porsgrunn  2024  Befolkning 1. januar  37193
+3  Porsgrunn  2025  Befolkning 1. januar  37289
+4  Porsgrunn  2026  Befolkning 1. januar  37435
+5      Skien  2022  Befolkning 1. januar  55513
+6      Skien  2023  Befolkning 1. januar  55924
+7      Skien  2024  Befolkning 1. januar  56619
+8      Skien  2025  Befolkning 1. januar  56866
+9      Skien  2026  Befolkning 1. januar  56906
+['region', 'Ã¥r', 'statistikkvariabel', 'value']
+Calculating change from 2022 to 2026
+          Kommune  Andel (2022-2026)          Label
+0       Porsgrunn                  2      Porsgrunn
+1           Skien                  3          Skien
+2        Notodden                  3       Notodden
+3          Siljan                  1         Siljan
+4          Bamble                  2         Bamble
+5         KragerÃ¸                  0        KragerÃ¸
+6       Drangedal                 -1      Drangedal
+7            Nome                  1           Nome
+8   Midt-Telemark                  6  Midt-Telemark
+9         Seljord                  2        Seljord
+10       Hjartdal                  5       Hjartdal
+11           Tinn                  0           Tinn
+12      Kviteseid                  0      Kviteseid
+13       Nissedal                  7       Nissedal
+14       Fyresdal                  6       Fyresdal
+15          Tokke                  5          Tokke
+16          Vinje                  2          Vinje
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsvekst.csv
+[2026-06-12 08:06:48] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsvekst.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsvekst.log
+
