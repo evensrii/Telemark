@@ -1,0 +1,97 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Region groups:
+  Grenland: Porsgrunn, Skien, Siljan, Bamble
+  Vest-Telemark: Seljord, Hjartdal, Kviteseid, Nissedal, Fyresdal, Tokke, Vinje
+  Ã˜st- og Midt-Telemark: Notodden, KragerÃ¸, Drangedal, Nome, Midt-Telemark, Tinn
+
+Found 2 tables matching 'Framskrevet folkemengde'
+
+Befolkningsframskrivinger table:
+  Table ID: 14746
+  Label: 14746: Framskrevet folkemengde 1. januar, etter kjÃ¸nn og alder, i 9 alternativer (K) 2026-2050
+  Period: 2026-2050
+
+Folkevekst table (ID + 1): 14747
+
+Telemark municipality codes found: 17
+  Grenland: ['4001', '4003', '4010', '4012']
+  Vest-Telemark: ['4022', '4024', '4028', '4030', '4032', '4034', '4036']
+  Ã˜st- og Midt-Telemark: ['4005', '4014', '4016', '4018', '4020', '4026']
+  Kommune codelist: vs_KommunFram2024Agg
+
+Querying Befolkningsframskrivinger (table 14746)...
+Befolkningsframskrivinger 14746 JSON-stat data loaded successfully.
+  -> Got 425 rows
+      region        statistikkvariabel    Ã¥r  value
+0  Porsgrunn  Hovedalternativet (MMMM)  2026  37435
+1  Porsgrunn  Hovedalternativet (MMMM)  2027  37533
+2  Porsgrunn  Hovedalternativet (MMMM)  2028  37635
+3  Porsgrunn  Hovedalternativet (MMMM)  2029  37741
+4  Porsgrunn  Hovedalternativet (MMMM)  2030  37852
+
+Querying Folkevekst (table 14747)...
+Folkevekst 14747 JSON-stat data loaded successfully.
+  -> Got 1700 rows
+      region                alternativ statistikkvariabel    Ã¥r  value
+0  Porsgrunn  Hovedalternativet (MMMM)              FÃ¸dte  2026    315
+1  Porsgrunn  Hovedalternativet (MMMM)              FÃ¸dte  2027    314
+2  Porsgrunn  Hovedalternativet (MMMM)              FÃ¸dte  2028    314
+3  Porsgrunn  Hovedalternativet (MMMM)              FÃ¸dte  2029    315
+4  Porsgrunn  Hovedalternativet (MMMM)              FÃ¸dte  2030    316
+
+Befolkningsframskrivinger columns: ['region', 'statistikkvariabel', 'Ã¥r', 'value']
+
+Population period: 2026 - 2050
+
+Samlet vekst (%):
+OmrÃ¥de
+Grenland                 5.0
+Vest-Telemark            0.6
+Ã˜st- og Midt-Telemark    1.8
+Name: value, dtype: float64
+
+Folkevekst columns: ['region', 'alternativ', 'statistikkvariabel', 'Ã¥r', 'value']
+
+Pivoted components (absolute numbers):
+statistikkvariabel      DÃ¸de  ...  Nettoinnvandring
+OmrÃ¥de                        ...                  
+Grenland               30526  ...              7385
+Vest-Telemark           4916  ...              2069
+Ã˜st- og Midt-Telemark  15285  ...              5844
+
+[3 rows x 4 columns]
+
+=== Final result ===
+               OmrÃ¥de  Naturlig tilvekst  Vekst fra nettoinnvandring  Vekst fra nettoinnflytting  Samlet vekst
+             Grenland               -6.0                         6.7                         4.5           5.0
+Ã˜st- og Midt-Telemark               -9.7                        11.5                         0.1           1.8
+        Vest-Telemark              -10.4                        13.0                        -2.0           0.6
+
+=== Summary per area ===
+
+Grenland:
+  Befolkning 2026: 110,985 -> 2050: 116,562 (Samlet vekst: 5.0%)
+  Naturlig tilvekst: -6,663 / 110,985 * 100 = -6.0%
+  Nettoinnvandring:  7,385 / 110,985 * 100 = 6.7%
+  Nettoinnflytting:  4,973 / 110,985 * 100 = 4.5%
+
+Ã˜st- og Midt-Telemark:
+  Befolkning 2026: 51,024 -> 2050: 51,947 (Samlet vekst: 1.8%)
+  Naturlig tilvekst: -4,974 / 51,024 * 100 = -9.7%
+  Nettoinnvandring:  5,844 / 51,024 * 100 = 11.5%
+  Nettoinnflytting:  59 / 51,024 * 100 = 0.1%
+
+Vest-Telemark:
+  Befolkning 2026: 15,914 -> 2050: 16,017 (Samlet vekst: 0.6%)
+  Naturlig tilvekst: -1,653 / 15,914 * 100 = -10.4%
+  Nettoinnvandring:  2,069 / 15,914 * 100 = 13.0%
+  Nettoinnflytting:  -325 / 15,914 * 100 = -2.0%
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\bidrag_til_samlet_befolkningsvekst.csv
+[2026-06-15 08:06:13] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\bidrag_til_samlet_befolkningsvekst.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Bidrag_til_samlet_befolkningsvekst.log
+
