@@ -35,6 +35,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/kombiner_historisk_og_framskrevet.py"), "Befolkning - Historisk og framskrevet"), # Kombinert de to over
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_egne_intervaller.py"), "Befolkning - Befolkningsframskrivinger egne intervaller"), # Framskrevet med egendefinerte aldersgrupper
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/bidrag_til_samlet_befolkningsvekst.py"), "Befolkning - Bidrag til samlet befolkningsvekst"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/andel_67_pluss.py"), "Befolkning - Andel 67 pluss"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/flytting_til_og_fra_telemark.py"), "Flytting - Til og fra Telemark"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/flytting_til_og_fra_kommunene.py"), "Flytting - Til og fra kommunene"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/folketall.py"), "Befolkning - Folketall"),
