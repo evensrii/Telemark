@@ -182,7 +182,7 @@ def get_telemark_info(table_id, first_period):
             if not any(code.startswith(p) for p in valid_prefixes):
                 continue
             # Strip year suffixes like "(-2019)" or "(2020-2023)" from label
-            clean_label = re.sub(r"\s*\(.*?\)\s*$", "", label).strip()
+            clean_label = re.sub(r"\s*\(-?\d{4}(?:-\d{4})?\)\s*$", "", label).strip()
             if clean_label in TELEMARK_NAMES:
                 telemark_codes.append(code)
 
