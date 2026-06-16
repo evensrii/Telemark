@@ -2,7 +2,7 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Found 4 tables matching 'Framskrevet folkemengde'
+Found 2 tables matching 'Framskrevet folkemengde'
 
 Most recent regional (K) table:
   Table ID: 14746
@@ -42,29 +42,13 @@ Combined data: 14250 rows
 3  Porsgrunn  Hovedalternativet (MMMM)  2026  13-15 Ã¥r   1327
 4  Porsgrunn  Hovedalternativet (MMMM)  2026  16-19 Ã¥r   1804
 
-Existing data year range: 2024-2050
+Existing data year range: 2026-2050
 New data year range:      2026-2050
 
-New framskriving detected! Archiving old data as: Framskrevet_folkemengde_2024-2050.csv
-  Archived to GitHub: Data/01_Befolkning/Befolkningsframskrivinger/Framskrevet_folkemengde_2024-2050.csv
+Same framskriving year range â€” no archiving needed.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell.csv
-[2026-06-12 08:05:41] Row count changed: 15390 -> 14250
-
-Removed rows (showing up to 10):
-Framskriving: 2024, Tabell: 14288, alder: 0 Ã¥r, region: Porsgrunn, statistikkvariabel: Hovedalternativet (MMMM), value: 303, r: 2024
-Framskriving: 2024, Tabell: 14288, alder: 1-5 Ã¥r, region: Porsgrunn, statistikkvariabel: Hovedalternativet (MMMM), value: 1733, r: 2024
-Framskriving: 2024, Tabell: 14288, alder: 6-12 Ã¥r, region: Porsgrunn, statistikkvariabel: Hovedalternativet (MMMM), value: 2781, r: 2024
-Framskriving: 2024, Tabell: 14288, alder: 13-15 Ã¥r, region: Porsgrunn, statistikkvariabel: Hovedalternativet (MMMM), value: 1351, r: 2024
-Framskriving: 2024, Tabell: 14288, alder: 16-19 Ã¥r, region: Porsgrunn, statistikkvariabel: Hovedalternativet (MMMM), value: 1760, r: 2024
-Framskriving: 2024, Tabell: 14288, alder: 20-44 Ã¥r, region: Porsgrunn, statistikkvariabel: Hovedalternativet (MMMM), value: 11298, r: 2024
-Framskriving: 2024, Tabell: 14288, alder: 45-66 Ã¥r, region: Porsgrunn, statistikkvariabel: Hovedalternativet (MMMM), value: 11015, r: 2024
-Framskriving: 2024, Tabell: 14288, alder: 67-79 Ã¥r, region: Porsgrunn, statistikkvariabel: Hovedalternativet (MMMM), value: 5009, r: 2024
-Framskriving: 2024, Tabell: 14288, alder: 80-89 Ã¥r, region: Porsgrunn, statistikkvariabel: Hovedalternativet (MMMM), value: 1633, r: 2024
-Framskriving: 2024, Tabell: 14288, alder: 90 Ã¥r eller eldre, region: Porsgrunn, statistikkvariabel: Hovedalternativet (MMMM), value: 310, r: 2024
-... and 15380 more rows
-File uploaded successfully: Data/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell.csv
-Email notifications disabled. Updates for befolkningsframskrivinger_siste_tabell.csv were not sent.
+[2026-06-16 08:05:39] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_siste_tabell.log
 

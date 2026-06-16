@@ -2,7 +2,7 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Found 4 tables matching 'Framskrevet folkemengde'
+Found 2 tables matching 'Framskrevet folkemengde'
 
 Most recent regional (K) table:
   Table ID: 14746
@@ -68,23 +68,8 @@ Final data: 2250 rows
 18          4012  Bamble      0-19 Ã¥r  2044-01-01      2818           1
 19          4012  Bamble      0-19 Ã¥r  2045-01-01      2812           1
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell_egendef_alder.csv
-[2026-06-12 08:06:06] Row count changed: 2430 -> 2250
-
-Removed rows (showing up to 10):
-Aldersgruppe: 0-19 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, Personer: 3061, SortColumn: 1, r: 2024-01-01
-Aldersgruppe: 0-19 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, Personer: 3043, SortColumn: 1, r: 2025-01-01
-Aldersgruppe: 0-19 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, Personer: 3021, SortColumn: 1, r: 2026-01-01
-Aldersgruppe: 0-19 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, Personer: 2963, SortColumn: 1, r: 2027-01-01
-Aldersgruppe: 0-19 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, Personer: 2917, SortColumn: 1, r: 2028-01-01
-Aldersgruppe: 0-19 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, Personer: 2877, SortColumn: 1, r: 2029-01-01
-Aldersgruppe: 0-19 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, Personer: 2849, SortColumn: 1, r: 2030-01-01
-Aldersgruppe: 0-19 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, Personer: 2829, SortColumn: 1, r: 2031-01-01
-Aldersgruppe: 0-19 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, Personer: 2795, SortColumn: 1, r: 2032-01-01
-Aldersgruppe: 0-19 Ã¥r, Kommune: Bamble, Kommunenummer: 4012, Personer: 2778, SortColumn: 1, r: 2033-01-01
-... and 2380 more rows
-File uploaded successfully: Data/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell_egendef_alder.csv
-Email notifications disabled. Updates for befolkningsframskrivinger_siste_tabell_egendef_alder.csv were not sent.
+[2026-06-16 08:05:58] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell_egendef_alder.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_egne_intervaller.log
 
