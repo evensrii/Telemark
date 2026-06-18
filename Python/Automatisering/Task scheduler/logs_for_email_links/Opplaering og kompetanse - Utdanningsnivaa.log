@@ -39,7 +39,7 @@ Andel 2004 - 2019 JSON-stat data loaded successfully.
 
 Direct comparison:
 Local df shape: (14040, 6)
-GitHub df shape: (13428, 6)
+GitHub df shape: (14040, 6)
 Local df dtypes:
 Kommune           object
 UtdanningsnivÃ¥    object
@@ -56,28 +56,11 @@ Variabel          object
 Ã…r                object
 Verdi             object
 dtype: object
-DataFrames equal: False
-Different shapes detected - this indicates new data has been added.
-Difference: 612 rows
+DataFrames equal: True
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\utdanningsnivaa.csv
-[2026-06-17 08:07:05] Row count changed: 13428 -> 14040
-
-Added rows (showing up to 10):
-Kjnn: Begge kjÃ¸nn, Kommune: Bamble, Utdanningsniv: FagskolenivÃ¥, Variabel: Personer 16 Ã¥r og over, Verdi: 480.0, r: 2025
-Kjnn: Begge kjÃ¸nn, Kommune: Bamble, Utdanningsniv: FagskolenivÃ¥, Variabel: Personer 16 Ã¥r og over (prosent), Verdi: 4.0, r: 2025
-Kjnn: Kvinner, Kommune: Bamble, Utdanningsniv: FagskolenivÃ¥, Variabel: Personer 16 Ã¥r og over, Verdi: 170.0, r: 2025
-Kjnn: Kvinner, Kommune: Bamble, Utdanningsniv: FagskolenivÃ¥, Variabel: Personer 16 Ã¥r og over (prosent), Verdi: 2.8, r: 2025
-Kjnn: Menn, Kommune: Bamble, Utdanningsniv: FagskolenivÃ¥, Variabel: Personer 16 Ã¥r og over, Verdi: 310.0, r: 2025
-Kjnn: Menn, Kommune: Bamble, Utdanningsniv: FagskolenivÃ¥, Variabel: Personer 16 Ã¥r og over (prosent), Verdi: 5.1, r: 2025
-Kjnn: Begge kjÃ¸nn, Kommune: Bamble, Utdanningsniv: GrunnskolenivÃ¥, Variabel: Personer 16 Ã¥r og over, Verdi: 3286.0, r: 2025
-Kjnn: Begge kjÃ¸nn, Kommune: Bamble, Utdanningsniv: GrunnskolenivÃ¥, Variabel: Personer 16 Ã¥r og over (prosent), Verdi: 27.3, r: 2025
-Kjnn: Kvinner, Kommune: Bamble, Utdanningsniv: GrunnskolenivÃ¥, Variabel: Personer 16 Ã¥r og over, Verdi: 1670.0, r: 2025
-Kjnn: Kvinner, Kommune: Bamble, Utdanningsniv: GrunnskolenivÃ¥, Variabel: Personer 16 Ã¥r og over (prosent), Verdi: 27.8, r: 2025
-... and 602 more rows
-File uploaded successfully: Data/02_OpplÃ¦ring og kompetanse/UtdanningsnivÃ¥/utdanningsnivaa.csv
-Email notifications disabled. Updates for utdanningsnivaa.csv were not sent.
+[2026-06-18 08:07:06] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\utdanningsnivaa.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Utdanningsnivaa.log
 Antall alle fylker siste Ã¥r JSON-stat data loaded successfully.
 
