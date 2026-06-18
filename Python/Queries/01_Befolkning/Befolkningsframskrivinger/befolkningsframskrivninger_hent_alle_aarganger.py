@@ -22,30 +22,59 @@ TELEMARK_NAMES = [
 ]
 
 # ============================================================
-# Step 1: Search SSB for all "Framskrevet folkemengde" tables
+# Step 1: Get all "Framskrevet folkemengde" tables
 # ============================================================
 
+# The SSB search API does not return discontinued tables by default.
+# We use includeDiscontinued=true and a broad search query to find all tables.
+
 base_url = "https://data.ssb.no/api/pxwebapi/v2/tables"
+
+
+def search_ssb_tables(query, include_discontinued=True):
+    """Search SSB API with pagination, return list of table dicts."""
+    results = []
+    page = 1
+    while True:
+        params = {
+            "query": query,
+            "lang": "no",
+            "pagesize": 50,
+            "pageNumber": page,
+            "includeDiscontinued": str(include_discontinued).lower(),
+        }
+        r = requests.get(base_url, params=params)
+        r.raise_for_status()
+        data = r.json()
+        results.extend(data["tables"])
+        if page >= data["page"]["totalPages"]:
+            break
+        page += 1
+        time.sleep(0.3)
+    return results
+
+
+# Search for all framskriving tables (current + discontinued)
+all_tables_raw = search_ssb_tables("folkemengde framskrivingen")
+print(f"Found {len(all_tables_raw)} tables via search (including discontinued)")
+
+# Also search without "framskrivingen" to catch the newest active tables
+# which don't have "(YYYY-framskrivingen)" in the title
+active_tables = search_ssb_tables("title:Framskrevet folkemengde", include_discontinued=False)
+print(f"Found {len(active_tables)} active tables via title search")
+
+# Combine all unique tables
+all_table_ids = set()
 all_tables = []
-page = 1
+table_map = {}  # id -> table dict
 
-while True:
-    params = {
-        "query": "title:Framskrevet folkemengde",
-        "lang": "no",
-        "pagesize": 50,
-        "pageNumber": page,
-    }
-    r = requests.get(base_url, params=params)
-    r.raise_for_status()
-    data = r.json()
-    all_tables.extend(data["tables"])
+for t in all_tables_raw + active_tables:
+    if t["id"] not in table_map:
+        table_map[t["id"]] = t
+        all_table_ids.add(t["id"])
 
-    if page >= data["page"]["totalPages"]:
-        break
-    page += 1
-
-print(f"Found {len(all_tables)} tables matching 'Framskrevet folkemengde'")
+all_tables = list(table_map.values())
+print(f"\nTotal unique tables found: {len(all_tables)}")
 
 # ============================================================
 # Step 2: Filter to regional (K) tables from 2005 onward
@@ -182,7 +211,7 @@ def get_telemark_info(table_id, first_period):
             if not any(code.startswith(p) for p in valid_prefixes):
                 continue
             # Strip year suffixes like "(-2019)" or "(2020-2023)" from label
-            clean_label = re.sub(r"\s*\(.*?\)\s*$", "", label).strip()
+            clean_label = re.sub(r"\s*\(-?\d{4}(?:-\d{4})?\)\s*$", "", label).strip()
             if clean_label in TELEMARK_NAMES:
                 telemark_codes.append(code)
 
