@@ -79,30 +79,8 @@ Final transformed dataframe:
 2            Fagskole       3.8          3.4                      3.6
 3    HÃ¸yere utdanning      31.1         38.3                     35.7
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\utdanningsniva_telemark_og_landet.csv
-[2026-06-17 08:07:21] Changes detected in the dataset.
-File uploaded successfully: Data/02_OpplÃ¦ring og kompetanse/UtdanningsnivÃ¥/utdanningsniva_telemark_og_landet.csv
-
-Showing up to 5 examples of changes:
-
-Row: 
-  Hele landet utenom Oslo: 23.8 -> 23.9
-
-Row: 
-  Telemark: 25.6 -> 25.7
-
-Row: 
-  Hele landet: 35.6 -> 34.8
-
-Row: 
-  Hele landet utenom Oslo: 37.5 -> 36.8
-
-Row: 
-  Telemark: 40.0 -> 39.1
-
-Total changes found in examined rows: 11
-(Showing first 5 changes only)
-Email notifications disabled. Updates for utdanningsniva_telemark_og_landet.csv were not sent.
+[2026-06-18 08:07:18] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\utdanningsniva_telemark_og_landet.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Utdanningsnivaa_Telemark_og_landet.log
 
