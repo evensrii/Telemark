@@ -1,0 +1,91 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Found 2 tables matching 'Framskrevet folkemengde'
+
+Most recent regional (K) table:
+  Table ID: 14746
+  Label: 14746: Framskrevet folkemengde 1. januar, etter kjÃ¸nn og alder, i 9 alternativer (K) 2026-2050
+  Period: 2026-2050
+
+Telemark municipalities: 17 found
+Counties: ['0', '11', '15', '18', '31', '32', '33', '34', '39', '40', '42', '46', '50', '55', '56']
+Total region codes in query: 32
+  Age codelist: agg_Funksjonell2a
+  Age groups: {'F306': '0-5 Ã¥r', 'F307': '6-15 Ã¥r', 'F308': '16-19 Ã¥r', 'F309': '20-66 Ã¥r', 'F310': '67 Ã¥r eller eldre'}
+  67+ code: F310 (67 Ã¥r eller eldre)
+
+Querying table 14746...
+Andel 67+ framskriving 14746 JSON-stat data loaded successfully.
+  -> Got 480 rows
+        region     alder        statistikkvariabel    Ã¥r    value
+0  Hele landet    0-5 Ã¥r  Hovedalternativet (MMMM)  2026   332053
+1  Hele landet    0-5 Ã¥r  Hovedalternativet (MMMM)  2040   360743
+2  Hele landet    0-5 Ã¥r  Hovedalternativet (MMMM)  2050   346985
+3  Hele landet   6-15 Ã¥r  Hovedalternativet (MMMM)  2026   629931
+4  Hele landet   6-15 Ã¥r  Hovedalternativet (MMMM)  2040   603184
+5  Hele landet   6-15 Ã¥r  Hovedalternativet (MMMM)  2050   623276
+6  Hele landet  16-19 Ã¥r  Hovedalternativet (MMMM)  2026   276650
+7  Hele landet  16-19 Ã¥r  Hovedalternativet (MMMM)  2040   241747
+8  Hele landet  16-19 Ã¥r  Hovedalternativet (MMMM)  2050   254565
+9  Hele landet  20-66 Ã¥r  Hovedalternativet (MMMM)  2026  3429133
+
+Columns: ['region', 'alder', 'statistikkvariabel', 'Ã¥r', 'value']
+
+=== Final result (CSV) ===
+      Kommune  Andel         Label
+       Bamble     27        Bamble
+    Drangedal     30     Drangedal
+     Fyresdal     29      Fyresdal
+     Hjartdal     28      Hjartdal
+      KragerÃ¸     32       KragerÃ¸
+    Kviteseid     30     Kviteseid
+Midt-Telemark     23 Midt-Telemark
+     Nissedal     32      Nissedal
+         Nome     28          Nome
+     Notodden     27      Notodden
+    Porsgrunn     26     Porsgrunn
+      Seljord     29       Seljord
+       Siljan     25        Siljan
+        Skien     25         Skien
+         Tinn     33          Tinn
+        Tokke     29         Tokke
+        Vinje     27         Vinje
+     Telemark     26      Telemark
+  Hele landet     23   Hele landet
+
+=== Telemark: Andel 67+ ===
+  2040: 25.3%
+  2050: 26.5%
+
+=== Andel 67+ i 2026, alle fylker (sortert) ===
+  Innlandet: 21.6%
+  Telemark: 20.6%
+  Nordland - NordlÃ¡nnda: 20.4%
+  Vestfold: 19.6%
+  MÃ¸re og Romsdal: 19.5%
+  Ã˜stfold: 18.9%
+  Troms - Romsa - Tromssa: 18.3%
+  Buskerud: 18.2%
+  Finnmark - FinnmÃ¡rku - Finmarkku: 18.0%
+  Agder: 17.4%
+  TrÃ¸ndelag - TrÃ¶Ã¶ndelage: 17.4%
+  Vestland: 17.1%
+  Hele landet: 17.1%
+  Akershus: 15.4%
+  Rogaland: 14.8%
+
+=== Kommuner med befolkningsnedgang (2026 -> 2050) ===
+  KragerÃ¸: 10378 -> 9914 (-464)
+  Tinn: 5515 -> 5186 (-329)
+  Drangedal: 4056 -> 3791 (-265)
+  Seljord: 2959 -> 2853 (-106)
+  Tokke: 2242 -> 2231 (-11)
+  Fyresdal: 1274 -> 1272 (-2)
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_67_pluss.csv
+[2026-06-19 08:06:20] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_67_pluss.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Andel_67_pluss.log
+
