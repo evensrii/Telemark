@@ -58,22 +58,26 @@ Verdi             object
 dtype: object
 DataFrames equal: True
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\utdanningsnivaa.csv
-[2026-06-18 08:07:06] No new data to upload. Skipping GitHub update.
+[2026-06-19 08:07:37] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\utdanningsnivaa.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Utdanningsnivaa.log
+Antall Telemark siste Ã¥r JSON-stat data loaded successfully.
 Antall alle fylker siste Ã¥r JSON-stat data loaded successfully.
 
-UtdanningsnivÃ¥ fordeling for 2025:
-Total antall personer: 4,056,849
+UtdanningsnivÃ¥ fordeling for Telemark, 2025:
+Total antall personer: 149,623
 
 Fordeling per utdanningsnivÃ¥:
                                    nivÃ¥  antall  prosent
-                 VideregÃ¥ende skolenivÃ¥ 1485748    36.62
-    Universitets- og hÃ¸gskolenivÃ¥, kort  993354    24.49
-                         GrunnskolenivÃ¥  966886    23.83
-    Universitets- og hÃ¸gskolenivÃ¥, lang  448300    11.05
-                           FagskolenivÃ¥  146373     3.61
-Uoppgitt eller ingen fullfÃ¸rt utdanning   16188     0.40
+                 VideregÃ¥ende skolenivÃ¥   58512    39.11
+                         GrunnskolenivÃ¥   38396    25.66
+    Universitets- og hÃ¸gskolenivÃ¥, kort   34644    23.15
+    Universitets- og hÃ¸gskolenivÃ¥, lang   11814     7.90
+                           FagskolenivÃ¥    5617     3.75
+Uoppgitt eller ingen fullfÃ¸rt utdanning     640     0.43
+
+Andel personer i Telemark med hÃ¸yere utdanning (kort eller lang): 31.0 %
+
 Andel personer i landet utenom Oslo som har hÃ¸yere utdanning (kort eller lang) er 35.5 %
 
