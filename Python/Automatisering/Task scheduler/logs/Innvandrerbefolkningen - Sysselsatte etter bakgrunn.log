@@ -1,0 +1,36 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Sysselsatte etter innvandrerbakgrunn (11607) JSON-stat data loaded successfully.
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 99 entries, 0 to 98
+Data columns (total 7 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   region              99 non-null     object 
+ 1   landbakgrunn        99 non-null     object 
+ 2   statistikkvariabel  99 non-null     object 
+ 3   Ã¥r                  99 non-null     object 
+ 4   alder               99 non-null     object 
+ 5   kjÃ¸nn               99 non-null     object 
+ 6   value               33 non-null     float64
+dtypes: float64(1), object(6)
+memory usage: 5.5+ KB
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 11 entries, 0 to 10
+Data columns (total 4 columns):
+ #   Column                                          Non-Null Count  Dtype  
+---  ------                                          --------------  -----  
+ 0   Ã…r                                              11 non-null     object 
+ 1   Befolkningen eksklusive innvandrere             11 non-null     float64
+ 2   Gruppe 1-land (EU, Storbritannia, USA ++)       11 non-null     float64
+ 3   Gruppe 2-land (Asia, Afrika, Latin-Amerika ++)  11 non-null     float64
+dtypes: float64(3), object(1)
+memory usage: 484.0+ bytes
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_sysselsatte_innvandrere_etter_bakgrunn.csv
+[2026-06-18 08:17:07] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_sysselsatte_innvandrere_etter_bakgrunn.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrerbefolkningen_-_Sysselsatte_etter_bakgrunn.log
+

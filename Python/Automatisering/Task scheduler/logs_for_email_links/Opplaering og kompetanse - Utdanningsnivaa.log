@@ -5,45 +5,41 @@ GITHUB_TOKEN loaded successfully.
 Request error in Antall 2024 - NÃ…: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/09429/
 Query failed for years up to 2026. Retrying with years up to 2025.
 NOTE: This error is perfectly normal - data for 2026 is not yet available in SSB. The script will continue with data up to 2025.
-Request error in Antall 2024 - NÃ…: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/09429/
-Query failed for years up to 2025. Retrying with years up to 2024.
 Antall 2024 - NÃ… JSON-stat data loaded successfully.
-Successfully fetched data for years: ['2024']
+Successfully fetched data for years: ['2024', '2025']
 Antall 2020 - 2023 JSON-stat data loaded successfully.
 Antall 2004 - 2019 JSON-stat data loaded successfully.
 Request error in Andel 2024 - NÃ…: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/09429/
 Query failed for years up to 2026. Retrying with years up to 2025.
 NOTE: This error is perfectly normal - data for 2026 is not yet available in SSB. The script will continue with data up to 2025.
-Request error in Andel 2024 - NÃ…: 400 Client Error: Bad Request for url: https://data.ssb.no/api/v0/no/table/09429/
-Query failed for years up to 2025. Retrying with years up to 2024.
 Andel 2024 - NÃ… JSON-stat data loaded successfully.
-Successfully fetched data for years: ['2024']
+Successfully fetched data for years: ['2024', '2025']
 
-HÃ¸yere utdanning (kort eller lang) per region for 2024:
+HÃ¸yere utdanning (kort eller lang) per region for 2025:
       Kommune  HÃ¸yere utdanning, kort eller lang
-Midt-Telemark                               35.3
-    Porsgrunn                               32.9
-        Skien                               32.3
-    Kviteseid                               31.3
-        Vinje                               30.6
-     Fyresdal                               30.1
-     Notodden                               30.1
-      KragerÃ¸                               28.8
-      Seljord                               28.7
-        Tokke                               28.6
-       Siljan                               27.7
+Midt-Telemark                               35.6
+    Porsgrunn                               33.2
+        Skien                               32.6
+        Vinje                               30.9
+    Kviteseid                               30.9
+     Notodden                               30.2
+     Fyresdal                               30.0
+        Tokke                               29.3
+      KragerÃ¸                               29.1
+      Seljord                               29.0
+       Siljan                               28.9
          Nome                               27.3
-     Nissedal                               27.1
-       Bamble                               26.4
-     Hjartdal                               24.6
-         Tinn                               24.6
-    Drangedal                               21.7
+     Nissedal                               26.9
+       Bamble                               26.8
+     Hjartdal                               25.3
+         Tinn                               25.2
+    Drangedal                               22.2
 Andel 2020 - 2023 JSON-stat data loaded successfully.
 Andel 2004 - 2019 JSON-stat data loaded successfully.
 
 Direct comparison:
-Local df shape: (13428, 6)
-GitHub df shape: (13428, 6)
+Local df shape: (14040, 6)
+GitHub df shape: (14040, 6)
 Local df dtypes:
 Kommune           object
 UtdanningsnivÃ¥    object
@@ -62,22 +58,26 @@ Verdi             object
 dtype: object
 DataFrames equal: True
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\utdanningsnivaa.csv
-[2026-06-08 08:06:52] No new data to upload. Skipping GitHub update.
+[2026-06-22 08:07:35] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\utdanningsnivaa.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Utdanningsnivaa.log
+Antall Telemark siste Ã¥r JSON-stat data loaded successfully.
 Antall alle fylker siste Ã¥r JSON-stat data loaded successfully.
 
-UtdanningsnivÃ¥ fordeling for 2024:
-Total antall personer: 4,019,835
+UtdanningsnivÃ¥ fordeling for Telemark, 2025:
+Total antall personer: 149,623
 
 Fordeling per utdanningsnivÃ¥:
                                    nivÃ¥  antall  prosent
-                 VideregÃ¥ende skolenivÃ¥ 1498705    37.28
-    Universitets- og hÃ¸gskolenivÃ¥, kort  981389    24.41
-                         GrunnskolenivÃ¥  954215    23.74
-    Universitets- og hÃ¸gskolenivÃ¥, lang  427698    10.64
-                           FagskolenivÃ¥  139573     3.47
-Uoppgitt eller ingen fullfÃ¸rt utdanning   18255     0.45
-Andel personer i landet utenom Oslo som har hÃ¸yere utdanning (kort eller lang) er 35.0 %
+                 VideregÃ¥ende skolenivÃ¥   58512    39.11
+                         GrunnskolenivÃ¥   38396    25.66
+    Universitets- og hÃ¸gskolenivÃ¥, kort   34644    23.15
+    Universitets- og hÃ¸gskolenivÃ¥, lang   11814     7.90
+                           FagskolenivÃ¥    5617     3.75
+Uoppgitt eller ingen fullfÃ¸rt utdanning     640     0.43
+
+Andel personer i Telemark med hÃ¸yere utdanning (kort eller lang): 31.0 %
+
+Andel personer i landet utenom Oslo som har hÃ¸yere utdanning (kort eller lang) er 35.5 %
 

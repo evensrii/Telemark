@@ -6,7 +6,7 @@ def get_elhub_data():
     Fetches energy consumption data from the Elhub API and returns it as a pandas DataFrame.
     """
     # Define the API endpoint
-    url = "https://api.elhub.no/energy-data/v0/municipalities?dataset=CONSUMPTION_PER_GROUP_MUNICIPALITY_HOUR&startDate=2025-08-08&endDate=2025-08-09"
+    url = "https://api.elhub.no/energy-data/v0/municipalities?dataset=CONSUMPTION_PER_GROUP_MUNICIPALITY_HOUR&startDate=2024-01-01&endDate=2024-01-02"
 
     try:
         # Make the GET request
@@ -69,10 +69,16 @@ if elhub_df is not None:
     # Convert the column to integer type for comparison
     numeric_df["attributes.municipalityNumber"] = numeric_df["attributes.municipalityNumber"].astype(int)
 
+#### Fylke eller kommune? ####
+
     # Now, filter for Telemark municipalities (number between 4000 and 4200)
+    # df_telemark = numeric_df[
+    #     (numeric_df["attributes.municipalityNumber"] > 4000) & 
+    #     (numeric_df["attributes.municipalityNumber"] < 4200)
+    # ]
+
     df_telemark = numeric_df[
-        (numeric_df["attributes.municipalityNumber"] > 4000) & 
-        (numeric_df["attributes.municipalityNumber"] < 4200)
+        (numeric_df["attributes.municipalityNumber"] == 4001)
     ]
 
     print("Filtered Telemark Data:")

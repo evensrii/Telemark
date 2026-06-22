@@ -34,9 +34,13 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell.py"), "Befolkning - Befolkningsframskrivinger siste tabell"), # Befolkning framover
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/kombiner_historisk_og_framskrevet.py"), "Befolkning - Historisk og framskrevet"), # Kombinert de to over
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_egne_intervaller.py"), "Befolkning - Befolkningsframskrivinger egne intervaller"), # Framskrevet med egendefinerte aldersgrupper
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/bidrag_til_samlet_befolkningsvekst.py"), "Befolkning - Bidrag til samlet befolkningsvekst"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/andel_67_pluss.py"), "Befolkning - Andel 67 pluss"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_graf.py"), "Befolkning - Sammenlikning historisk og framskrivinger"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/flytting_til_og_fra_telemark.py"), "Flytting - Til og fra Telemark"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/flytting_til_og_fra_kommunene.py"), "Flytting - Til og fra kommunene"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/folketall.py"), "Befolkning - Folketall"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/befolkningsvekst.py"), "Befolkning - Befolkningsvekst"),
     
     ## Opplæring og kompetanse
     (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa.py"), "Opplaering og kompetanse - Utdanningsnivaa"),
@@ -69,6 +73,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/SSB/kraftproduksjon_ssb.py"), "Klima og energi - Kraftproduksjon Telemark (SSB)"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py"), "Klima og energi - Strompriser"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Forbruk/Elhub/elhub.py"), "Klima og energi - Stromforbruk (Elhub)"),
+    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Forbruk/Elhub/ssb_forbruk.py"), "Klima og energi - Stromforbruk (SSB)"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/Elhub/installert_effekt.py"), "Klima og energi - Installert_effekt (Elhub)"),
 
     ## Idrett, friluftsliv og frivillighet (husk, ingen komma i oppgavenavn)
@@ -82,6 +87,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt_fhi.py"), "Innvandrere - Lavinntekt"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_innvandrere.py"), "Innvandrere - Sysselsatte"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_botid_og_landbakgrunn.py"), "Innvandrere - Sysselsatte etter botid og bakgrunn"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_bakgrunn.py"), "Innvandrerbefolkningen - Sysselsatte etter bakgrunn"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/deltakere_introduksjonsprogram.py"), "Innvandrere - Deltakere introduksjonsprogrammet"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.py"), "Innvandrere - Etter introduksjonsprogrammet"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/enslige_mindreaarige.py"), "Innvandrere - Enslige mindreaarige"),

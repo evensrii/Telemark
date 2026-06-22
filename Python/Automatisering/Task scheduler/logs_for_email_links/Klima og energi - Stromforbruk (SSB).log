@@ -1,0 +1,47 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+SSB 14490 - Elektrisitetsforbruk JSON-stat data loaded successfully.
+      region forbrukergruppe statistikkvariabel    Ã¥r   value
+0  Porsgrunn           I alt            Forbruk  2020  2118.1
+1  Porsgrunn           I alt            Forbruk  2021  1946.5
+2  Porsgrunn           I alt            Forbruk  2022  1947.4
+3  Porsgrunn           I alt            Forbruk  2023  1915.4
+4  Porsgrunn           I alt            Forbruk  2024  2627.2
+['region', 'forbrukergruppe', 'statistikkvariabel', 'Ã¥r', 'value']
+region                 object
+forbrukergruppe        object
+statistikkvariabel     object
+Ã¥r                     object
+value                 float64
+dtype: object
+
+Final dataframe shape: (714, 4)
+      Kommune       Forbrukergruppe    Ã…r   Verdi
+0      Bamble               Boliger  2020   107.9
+1      Bamble         Husholdninger  2020   119.9
+2      Bamble  Hytter og fritidshus  2020    12.1
+3      Bamble                 I alt  2020  1551.2
+4      Bamble        PrimÃ¦rnÃ¦ringer  2020     0.4
+5      Bamble      SekundÃ¦rnÃ¦ringer  2020  1375.2
+6      Bamble       TertiÃ¦rnÃ¦ringer  2020    55.8
+7   Drangedal               Boliger  2020    29.8
+8   Drangedal         Husholdninger  2020    37.0
+9   Drangedal  Hytter og fritidshus  2020     7.2
+10  Drangedal                 I alt  2020    53.2
+11  Drangedal        PrimÃ¦rnÃ¦ringer  2020     2.2
+12  Drangedal      SekundÃ¦rnÃ¦ringer  2020     1.5
+13  Drangedal       TertiÃ¦rnÃ¦ringer  2020    12.4
+14   Fyresdal               Boliger  2020     9.5
+15   Fyresdal         Husholdninger  2020    12.9
+16   Fyresdal  Hytter og fritidshus  2020     3.4
+17   Fyresdal                 I alt  2020    22.3
+18   Fyresdal        PrimÃ¦rnÃ¦ringer  2020     0.3
+19   Fyresdal      SekundÃ¦rnÃ¦ringer  2020     3.9
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\ssb_forbruk.csv
+[2026-06-22 08:15:35] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\ssb_forbruk.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Stromforbruk_(SSB).log
+
