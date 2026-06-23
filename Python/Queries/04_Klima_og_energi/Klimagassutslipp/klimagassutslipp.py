@@ -139,7 +139,7 @@ def beregne_utslipp(recent_year=True):
     df_donut = df_donut.drop(columns="År")
 
     # Step 8: Group "Oppvarming", "Luftfart", and "Energiforsyning" into "Annet utslipp"
-    sectors_to_group = ["Oppvarming", "Luftfart", "Energiforsyning"]
+    sectors_to_group = ["Oppvarming", "Luftfart", "Energiforsyning", "produkter med fluorgasser"]
 
     # Calculate the sum of "Utslipp" for the selected sectors
     annet_sum = df_donut[df_donut["Sektor"].isin(sectors_to_group)][utslipp_column_name].sum()
