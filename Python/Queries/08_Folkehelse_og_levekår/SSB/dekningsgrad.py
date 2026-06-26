@@ -168,6 +168,9 @@ print(
 # Filter CSV output to only include "Andel 1-5 år"
 df = df[df["Statistikkvariabel"] == "Andel 1-5 år"].drop(columns=["Statistikkvariabel"]).reset_index(drop=True)
 
+# Divide andel by 100 (convert from percent to decimal)
+df["Andel"] = df["Andel"] / 100
+
 print("\n--- CSV-output ---")
 print(df.head(20))
 

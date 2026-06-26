@@ -97,24 +97,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py"), "Innvandrere - Hoyeste utdanning"),
 
     ## Folkehelse og levekår - FHI
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/doedsaarsaker_ettaarig.py"), "Folkehelse - Dødsårsaker, ettårig"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/fornoeyd_med_helsa_ungdom.py"), "Folkehelse - Fornøyd med helsa - ungdom"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/forventet_levealder_etter_utdanning_7_aarig.py"), "Folkehelse - Forventet levealder etter utdanning, 7 årig"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/hjerte_og_karsykdom_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, ettårige tall"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.py"), "Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/kols_doedsaarsak_ettaarig.py"), "Folkehelse - Kols, dødsårsak, ettårig"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/kreft_nye_tilfeller_tiaarige_tall.py"), "Folkehelse - Kreft, nye tilfeller, tiårige tall"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/psykiske_plager_ungdom.py"), "Folkehelse - Psykiske plager, ungdom"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/psykiske_symptomer_og_lidelser_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Psykiske symptomer og lidelser - primærhelsetjenesten, ettårige tall"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/reseptfrie_smertestillende_legemidler_ungdom.py"), "Folkehelse - Reseptfrie smertestillende legemidler, ungdom"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/selvmord_femaarig.py"), "Folkehelse - Selvmord, femårig"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/sykehusinnlagte_somatikk_ettaarige_inkl_skader.py"), "Folkehelse - Sykehusinnlagte, somatikk, ettårige. inkl. skader"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/tilfredshet_med_livet_ungdom.py"), "Folkehelse - Tilfredshet med livet, ungdom"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Skader og ulykker/skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.py"), "Folkehelse - Skader, kontakt med primærhelsetjeneste, ettårige tall"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/dekningsgrad.py"), "Folkehelse - Dekningsgrad barnehage"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/minoriteter_bhg_pbi.py"), "Folkehelse - Minoriteter barnehage"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/Udir/pedagognorm.py"), "Folkehelse - Pedagognorm barnehager"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/vedvarende_lavinntekt_etter_innvandringskategori_kommunegrense.py"), "Folkehelse - Vedvarende lavinntekt etter innvandringskategori, kommunegrense"),
 
     ## Areal og stedsutvikling
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py"), "Areal - Jordbruksareal per kommune"),
