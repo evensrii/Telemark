@@ -113,6 +113,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/tilfredshet_med_livet_ungdom.py"), "Folkehelse - Tilfredshet med livet, ungdom"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Skader og ulykker/skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.py"), "Folkehelse - Skader, kontakt med primærhelsetjeneste, ettårige tall"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/dekningsgrad.py"), "Folkehelse - Dekningsgrad barnehage"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/minoriteter_bhg_pbi.py"), "Folkehelse - Minoriteter barnehage"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/Udir/pedagognorm.py"), "Folkehelse - Pedagognorm barnehager"),
 
     ## Areal og stedsutvikling
