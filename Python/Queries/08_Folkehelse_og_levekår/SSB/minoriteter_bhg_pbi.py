@@ -148,11 +148,35 @@ df["År"] = pd.to_datetime(df["År"].astype(str) + "-01-01").dt.strftime("%Y-%m-
 # Divide andel by 100 (convert from percent to decimal)
 df["Andel"] = df["Andel"] / 100
 
-# Reorder columns
-df = df[["Kommunenummer", "Kommune", "År", "Andel"]]
+# Combine "Telemark" and "Vestfold og Telemark" into "Fylket"
+df.loc[df["Kommune"].isin(["Telemark", "Vestfold og Telemark"]), "Kommune"] = "Fylket"
 
-# Sort by Kommune and År
-df = df.sort_values(["Kommune", "År"]).reset_index(drop=True)
+# Rename "Landet" to "Hele landet"
+df.loc[df["Kommune"] == "Landet", "Kommune"] = "Hele landet"
+
+# Create SortKommune column
+unique_kommuner = df["Kommune"].unique().tolist()
+sort_map = {"Fylket": 1, "Hele landet": 2}
+# Alphabetically sorted kommuner (excluding Fylket, Hele landet, Bø, Sauherad)
+regular = sorted([k for k in unique_kommuner if k not in ["Fylket", "Hele landet", "Bø", "Sauherad"]])
+sort_num = 3
+for k in regular:
+    sort_map[k] = sort_num
+    sort_num += 1
+# Bø and Sauherad last
+if "Bø" in unique_kommuner:
+    sort_map["Bø"] = sort_num
+    sort_num += 1
+if "Sauherad" in unique_kommuner:
+    sort_map["Sauherad"] = sort_num
+    sort_num += 1
+df["SortKommune"] = df["Kommune"].map(sort_map)
+
+# Reorder columns
+df = df[["Kommunenummer", "Kommune", "År", "Andel", "SortKommune"]]
+
+# Sort by SortKommune and År
+df = df.sort_values(["SortKommune", "År"]).reset_index(drop=True)
 
 print("\n--- Ferdig datasett ---")
 print(df.head(30))

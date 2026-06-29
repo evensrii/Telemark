@@ -109,6 +109,13 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/vedvarende_lavinntekt_etter_innvandringskategori_kommunegrense.py"), "Folkehelse - Vedvarende lavinntekt etter innvandringskategori, kommunegrense"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Trangboddhet/bor_trangt.py"), "Folkehelse - Bor trangt"),
 
+    ## Folkehelse og levekår - SSB
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/dekningsgrad.py"), "Folkehelse - Dekningsgrad barnehage"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/minoriteter_bhg_pbi.py"), "Folkehelse - Minoriteter barnehage"),
+
+    ## Folkehelse og levekår - Udir
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/Udir/pedagognorm.py"), "Folkehelse - Pedagognorm barnehager"),
+
     ## Areal og stedsutvikling
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py"), "Areal - Jordbruksareal per kommune"),
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/fulldyrka_vs_ikke-fulldyrka.py"), "Areal - Fulldyrka vs ikke-fulldyrka"),
