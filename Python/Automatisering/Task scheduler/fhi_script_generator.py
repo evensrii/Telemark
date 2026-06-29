@@ -33,7 +33,7 @@ FHI_BASE = os.path.join(pythonpath, "Queries", "08_Folkehelse_og_levekår", "FHI
 QUERIES_DIR = os.path.join(FHI_BASE, "queries")
 SCRIPTS_DIR = os.path.join(FHI_BASE, "scripts")
 MASTER_SCRIPT = os.path.join(pythonpath, "Automatisering", "Task scheduler", "master_script.py")
-DATA_BASE = os.path.join(pythonpath, "Data", "08_Folkehelse og levekår")
+DATA_BASE = os.path.join(pythonpath, "..", "Data", "08_Folkehelse og levekår")
 
 
 def sanitize_filename(filename):
@@ -105,16 +105,30 @@ def generate_script_template(query_file_path, script_file_path, queries_base_dir
     query_dir = os.path.dirname(query_file_path)
     relative_subfolder = os.path.relpath(query_dir, queries_base_dir)
     
-    # GitHub folder path
+    # GitHub folder path (use forward slashes for GitHub)
     if relative_subfolder == '.':
         github_folder = "Data/08_Folkehelse og levekår"
         data_subfolder = ""
     else:
-        github_folder = f"Data/08_Folkehelse og levekår/{relative_subfolder}"
+        # Normalize to forward slashes for GitHub paths
+        relative_subfolder_posix = relative_subfolder.replace(os.sep, '/')
+        github_folder = f"Data/08_Folkehelse og levekår/{relative_subfolder_posix}"
         data_subfolder = relative_subfolder
     
     # Output filename (same as script name)
     output_filename = f"{script_filename}.csv"
+    
+    # Build path parts for os.path.join in generated script
+    # Split subfolder into individual components for proper os.path.join usage
+    if data_subfolder:
+        subfolder_parts = Path(data_subfolder).parts
+        # Build the query path arguments: each subfolder part + filename as separate strings
+        query_path_args = ', '.join([f'"{part}"' for part in subfolder_parts] + [f'"{query_filename}"'])
+        # Build the output path arguments for Data folder
+        output_path_args = ', '.join([f'"{part}"' for part in subfolder_parts])
+    else:
+        query_path_args = f'"{query_filename}"'
+        output_path_args = ""
     
     # Use raw string for docstring to avoid escape sequence warnings
     rel_query_path_escaped = rel_query_path.replace('\\', '/')
@@ -145,7 +159,11 @@ from pathlib import Path
 # Get PYTHONPATH and add to sys.path
 pythonpath = os.environ.get("PYTHONPATH")
 if not pythonpath:
-    pythonpath = str(Path(__file__).parent.parent.parent.parent.parent)
+    # Navigate up from script location to find the Python folder
+    current = Path(__file__).resolve()
+    while current.name != "Python" and current != current.parent:
+        current = current.parent
+    pythonpath = str(current)
     os.environ["PYTHONPATH"] = pythonpath
 
 sys.path.append(pythonpath)
@@ -163,8 +181,7 @@ query_file = os.path.join(
     "08_Folkehelse_og_levekår", 
     "FHI", 
     "queries",
-    "{data_subfolder}",
-    "{query_filename}"
+    {query_path_args}
 )
 
 # Output configuration
@@ -262,10 +279,8 @@ if has_changes:
 else:
     print("  ✓ No changes detected")
 
-# Save to local output directory
-output_dir = os.path.join(pythonpath, "Data", "08_Folkehelse og levekår"{', "' + data_subfolder + '"' if data_subfolder else ''})
-os.makedirs(output_dir, exist_ok=True)
-output_path = os.path.join(output_dir, output_filename)
+# Save to temp folder
+output_path = os.path.join(temp_folder, output_filename)
 df.to_csv(output_path, index=False, encoding='utf-8')
 print(f"\\n  ✓ Saved to: {{output_path}}")
 
@@ -497,7 +512,8 @@ def main():
         # Determine script path
         if subfolder:
             script_dir = os.path.join(SCRIPTS_DIR, subfolder)
-            script_rel_path = f"Queries/08_Folkehelse_og_levekår/FHI/scripts/{subfolder}/{sanitized_name}.py"
+            subfolder_posix = subfolder.replace(os.sep, '/')
+            script_rel_path = f"Queries/08_Folkehelse_og_levekår/FHI/scripts/{subfolder_posix}/{sanitized_name}.py"
         else:
             script_dir = SCRIPTS_DIR
             script_rel_path = f"Queries/08_Folkehelse_og_levekår/FHI/scripts/{sanitized_name}.py"
