@@ -250,11 +250,59 @@ print(f"  Columns: {{', '.join(df.columns.tolist())}}")
 ### Add your data transformations and processing here            ###
 ####################################################################
 
-# Example transformations (uncomment and modify as needed):
-# df = df[df['value'] > 0]  # Filter rows
-# df['new_column'] = df['old_column'] * 2  # Create new column
-# df = df.rename(columns={{'old_name': 'new_name'}})  # Rename columns
-# df = df.sort_values('column_name')  # Sort data
+# --- Standard FHI transformations (auto-generated) ---
+
+# Convert År to datetime (YYYY-01-01) if column contains single years
+if 'År' in df.columns:
+    if df['År'].astype(str).str.match(r'^\\d{{4}}$').all():
+        df['År'] = pd.to_datetime(df['År'].astype(str) + '-01-01').dt.strftime('%Y-%m-%d')
+
+# Capitalize first letter in Kjønn if column exists
+if 'Kjønn' in df.columns:
+    df['Kjønn'] = df['Kjønn'].str.capitalize()
+
+# Capitalize first letter in Alder if column exists
+if 'Alder' in df.columns:
+    df['Alder'] = df['Alder'].str.capitalize()
+
+# Determine value column name based on Måltall content
+value_col_name = 'Antall'
+if 'Måltall' in df.columns:
+    maaltall_str = df['Måltall'].astype(str).str.lower().str.cat(sep=' ')
+    if any(term in maaltall_str for term in ['andel', 'prosent', 'percent']):
+        value_col_name = 'Andel'
+
+# Replace ":" with empty string and process value column
+if 'value' in df.columns:
+    df['value'] = df['value'].replace(':', '')
+    df['value'] = pd.to_numeric(df['value'], errors='coerce').round(1)
+    df = df.rename(columns={{'value': value_col_name}})
+
+# Create SortKjonn column if Kjønn exists
+if 'Kjønn' in df.columns:
+    kjonn_sort = {{"Kjønn samlet": 1, "Menn": 2, "Kvinner": 3}}
+    df['SortKjonn'] = df['Kjønn'].map(kjonn_sort)
+
+# Create SortAlder column if Alder exists (adjust mapping as needed)
+if 'Alder' in df.columns:
+    unique_alder = df['Alder'].unique().tolist()
+    alder_sort = {{}}
+    sort_num = 1
+    if 'Alle aldre' in unique_alder:
+        alder_sort['Alle aldre'] = sort_num
+        sort_num += 1
+    if '0-74 år' in unique_alder:
+        alder_sort['0-74 år'] = sort_num
+        sort_num += 1
+    remaining = sorted([a for a in unique_alder if a not in alder_sort],
+                       key=lambda x: (int(x.split('-')[0].split(' ')[0]) if x[0].isdigit() else 999))
+    for a in remaining:
+        alder_sort[a] = sort_num
+        sort_num += 1
+    df['SortAlder'] = df['Alder'].map(alder_sort)
+
+# --- End standard transformations ---
+# Add script-specific transformations below:
 
 ####################################################################
 ### EDITABLE SECTION END                                         ###

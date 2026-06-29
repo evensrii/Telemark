@@ -1,9 +1,9 @@
 """
-FHI Query Script: Bor trangt.txt
-================================
+FHI Query Script: Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall.txt
+=========================================================================================================
 
 Auto-generated script for processing FHI query data.
-Query file: Oppvekst og levekår/Levekår/Trangboddhet/Bor trangt.txt
+Query file: Helsetilstand/Sykdomsgrupper/Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall.txt
 
 This script:
 1. Loads query from .txt file
@@ -12,9 +12,7 @@ This script:
 4. Compares with GitHub and uploads if changed
 5. Saves to CSV output
 
-NB: Only creates script if it doesn't exist already! Does not overwrite code in "EDITABLE SECTION". :)
-
-Generated: 2026-06-26 14:00:45
+Generated: 2026-06-29 11:48:15
 """
 
 import json
@@ -48,12 +46,12 @@ query_file = os.path.join(
     "08_Folkehelse_og_levekår", 
     "FHI", 
     "queries",
-    "Oppvekst og levekår", "Levekår", "Trangboddhet", "Bor trangt.txt"
+    "Helsetilstand", "Sykdomsgrupper", "Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall.txt"
 )
 
 # Output configuration
-output_filename = "bor_trangt.csv"
-github_folder = "Data/08_Folkehelse og levekår/Oppvekst og levekår/Levekår/Trangboddhet"
+output_filename = "muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.csv"
+github_folder = "Data/08_Folkehelse og levekår/Helsetilstand/Sykdomsgrupper"
 
 # Get temp folder
 temp_folder = os.environ.get("TEMP_FOLDER")
@@ -80,7 +78,7 @@ def load_query_file(file_path):
 
 # %%
 print(f"\n{'=' * 70}")
-print(f"FHI Query: Bor trangt.txt")
+print(f"FHI Query: Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall.txt")
 print(f"{'=' * 70}\n")
 
 # Load query from file
@@ -117,30 +115,58 @@ print(f"  Columns: {', '.join(df.columns.tolist())}")
 ### Add your data transformations and processing here            ###
 ####################################################################
 
-# Define Telemark kommuner
-telemark_kommuner = [
-    "Porsgrunn", "Skien", "Notodden", "Siljan", "Bamble", "Kragerø",
-    "Drangedal", "Nome", "Midt-Telemark", "Seljord", "Hjartdal",
-    "Tinn", "Kviteseid", "Nissedal", "Fyresdal", "Tokke", "Vinje"
-]
+# --- Standard FHI transformations ---
 
-# Get the year from data
-year = df['År'].iloc[0]
+# Convert År to datetime (YYYY-01-01) if column contains single years
+if 'År' in df.columns:
+    if df['År'].astype(str).str.match(r'^\d{4}$').all():
+        df['År'] = pd.to_datetime(df['År'].astype(str) + '-01-01').dt.strftime('%Y-%m-%d')
 
-# Reshape for Everviz: Kommune, Andel (ÅR), Label
-df = df[['Geografi', 'value']].copy()
-df['value'] = pd.to_numeric(df['value'], errors='coerce').fillna(0).round(0).astype(int)
-df = df.rename(columns={
-    'Geografi': 'Kommune',
-    'value': f'Andel ({year})'
-})
-df['Label'] = df['Kommune']
+# Capitalize first letter in Kjønn if column exists
+if 'Kjønn' in df.columns:
+    df['Kjønn'] = df['Kjønn'].str.capitalize()
 
-# Sort: kommuner alphabetically, then Telemark and Hele landet last
-kommuner_df = df[df['Kommune'].isin(telemark_kommuner)].sort_values('Kommune')
-aggregates_df = df[df['Kommune'].isin(["Telemark", "Hele landet"])]
-aggregates_df = aggregates_df.set_index('Kommune').loc[["Telemark", "Hele landet"]].reset_index()
-df = pd.concat([kommuner_df, aggregates_df], ignore_index=True)
+# Capitalize first letter in Alder if column exists
+if 'Alder' in df.columns:
+    df['Alder'] = df['Alder'].str.capitalize()
+
+# Determine value column name based on Måltall content
+value_col_name = 'Antall'
+if 'Måltall' in df.columns:
+    maaltall_str = df['Måltall'].astype(str).str.lower().str.cat(sep=' ')
+    if any(term in maaltall_str for term in ['andel', 'prosent', 'percent']):
+        value_col_name = 'Andel'
+
+# Replace ":" with empty string and process value column
+if 'value' in df.columns:
+    df['value'] = df['value'].replace(':', '')
+    df['value'] = pd.to_numeric(df['value'], errors='coerce').round(1)
+    df = df.rename(columns={'value': value_col_name})
+
+# Create SortKjonn column if Kjønn exists
+if 'Kjønn' in df.columns:
+    kjonn_sort = {"Kjønn samlet": 1, "Menn": 2, "Kvinner": 3}
+    df['SortKjonn'] = df['Kjønn'].map(kjonn_sort)
+
+# Create SortAlder column if Alder exists (adjust mapping as needed)
+if 'Alder' in df.columns:
+    unique_alder = df['Alder'].unique().tolist()
+    alder_sort = {}
+    sort_num = 1
+    if 'Alle aldre' in unique_alder:
+        alder_sort['Alle aldre'] = sort_num
+        sort_num += 1
+    if '0-74 år' in unique_alder:
+        alder_sort['0-74 år'] = sort_num
+        sort_num += 1
+    remaining = sorted([a for a in unique_alder if a not in alder_sort],
+                       key=lambda x: (int(x.split('-')[0].split(' ')[0]) if x[0].isdigit() else 999))
+    for a in remaining:
+        alder_sort[a] = sort_num
+        sort_num += 1
+    df['SortAlder'] = df['Alder'].map(alder_sort)
+
+# --- End standard transformations ---
 
 ####################################################################
 ### EDITABLE SECTION END                                         ###

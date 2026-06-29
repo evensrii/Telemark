@@ -97,7 +97,15 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py"), "Innvandrere - Hoyeste utdanning"),
 
     ## Folkehelse og levekår - FHI
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/gjeld_over_tre_ganger_inntekt_hisholdninger.py"), "Folkehelse - Gjeld over tre ganger inntekt, hisholdninger"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Hjerte- og karsykdommer/hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.py"), "Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Hjerte- og karsykdommer/sykehusinnlagte_sykdommer_og_skader.py"), "Folkehelse - Sykehusinnlagte sykdommer og skader"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Psykisk helse/psykiske_symptomer_og_lidelser_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Psykiske symptomer og lidelser - primærhelsetjenesten, ettårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Sykdomsgrupper/kreft_doedsaarsak_ettaarig.py"), "Folkehelse - Kreft dødsårsak ettårig"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Sykdomsgrupper/kreft_nye_tilfeller_tiaarige_tall.py"), "Folkehelse - Kreft, nye tilfeller, tiårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Sykdomsgrupper/muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Barnevern/barnevern.py"), "Folkehelse - barnevern"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/gjeld_over_tre_ganger_inntekt_husholdninger.py"), "Folkehelse - Gjeld over tre ganger inntekt, husholdninger"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/inntektsulikhet.py"), "Folkehelse - Inntektsulikhet"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/vedvarende_lavinntekt_etter_innvandringskategori_kommunegrense.py"), "Folkehelse - Vedvarende lavinntekt etter innvandringskategori, kommunegrense"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Trangboddhet/bor_trangt.py"), "Folkehelse - Bor trangt"),
 

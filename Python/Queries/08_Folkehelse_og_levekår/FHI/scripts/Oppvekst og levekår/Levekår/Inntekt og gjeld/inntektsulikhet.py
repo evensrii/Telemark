@@ -1,9 +1,9 @@
 """
-FHI Query Script: Bor trangt.txt
-================================
+FHI Query Script: Inntektsulikhet.txt
+=====================================
 
 Auto-generated script for processing FHI query data.
-Query file: Oppvekst og levekår/Levekår/Trangboddhet/Bor trangt.txt
+Query file: Oppvekst og levekår/Levekår/Inntekt og gjeld/Inntektsulikhet.txt
 
 This script:
 1. Loads query from .txt file
@@ -12,9 +12,7 @@ This script:
 4. Compares with GitHub and uploads if changed
 5. Saves to CSV output
 
-NB: Only creates script if it doesn't exist already! Does not overwrite code in "EDITABLE SECTION". :)
-
-Generated: 2026-06-26 14:00:45
+Generated: 2026-06-29 09:54:05
 """
 
 import json
@@ -48,12 +46,12 @@ query_file = os.path.join(
     "08_Folkehelse_og_levekår", 
     "FHI", 
     "queries",
-    "Oppvekst og levekår", "Levekår", "Trangboddhet", "Bor trangt.txt"
+    "Oppvekst og levekår", "Levekår", "Inntekt og gjeld", "Inntektsulikhet.txt"
 )
 
 # Output configuration
-output_filename = "bor_trangt.csv"
-github_folder = "Data/08_Folkehelse og levekår/Oppvekst og levekår/Levekår/Trangboddhet"
+output_filename = "inntektsulikhet.csv"
+github_folder = "Data/08_Folkehelse og levekår/Oppvekst og levekår/Levekår/Inntekt og gjeld"
 
 # Get temp folder
 temp_folder = os.environ.get("TEMP_FOLDER")
@@ -80,7 +78,7 @@ def load_query_file(file_path):
 
 # %%
 print(f"\n{'=' * 70}")
-print(f"FHI Query: Bor trangt.txt")
+print(f"FHI Query: Inntektsulikhet.txt")
 print(f"{'=' * 70}\n")
 
 # Load query from file
@@ -117,6 +115,8 @@ print(f"  Columns: {', '.join(df.columns.tolist())}")
 ### Add your data transformations and processing here            ###
 ####################################################################
 
+
+
 # Define Telemark kommuner
 telemark_kommuner = [
     "Porsgrunn", "Skien", "Notodden", "Siljan", "Bamble", "Kragerø",
@@ -127,9 +127,9 @@ telemark_kommuner = [
 # Get the year from data
 year = df['År'].iloc[0]
 
-# Reshape for Everviz: Kommune, Andel (ÅR), Label
+# Reshape for Everviz: Kommune, P90/P10 (ÅR), Label
 df = df[['Geografi', 'value']].copy()
-df['value'] = pd.to_numeric(df['value'], errors='coerce').fillna(0).round(0).astype(int)
+df['value'] = pd.to_numeric(df['value'], errors='coerce').round(1)
 df = df.rename(columns={
     'Geografi': 'Kommune',
     'value': f'Andel ({year})'

@@ -161,6 +161,7 @@ current_year = datetime.now().year
 andel_col = f"Andel ({current_year})"
 
 df_output = df[["Kommune", "Andel oppfyller pedagognormen"]].copy()
+df_output["Andel oppfyller pedagognormen"] = df_output["Andel oppfyller pedagognormen"].round(0).astype(int)
 df_output = df_output.rename(columns={"Andel oppfyller pedagognormen": andel_col})
 df_output["Label"] = df_output["Kommune"]
 

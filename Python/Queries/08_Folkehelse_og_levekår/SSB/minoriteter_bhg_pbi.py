@@ -142,6 +142,9 @@ df = df.rename(columns={
     "value": "Andel",
 })
 
+# Convert År to datetime (YYYY-01-01)
+df["År"] = pd.to_datetime(df["År"].astype(str) + "-01-01").dt.strftime("%Y-%m-%d")
+
 # Divide andel by 100 (convert from percent to decimal)
 df["Andel"] = df["Andel"] / 100
 

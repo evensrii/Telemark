@@ -1,9 +1,9 @@
 """
-FHI Query Script: Bor trangt.txt
-================================
+FHI Query Script: Sykehusinnlagte sykdommer og skader.txt
+=========================================================
 
 Auto-generated script for processing FHI query data.
-Query file: Oppvekst og levekår/Levekår/Trangboddhet/Bor trangt.txt
+Query file: Helsetilstand/Hjerte- og karsykdommer/Sykehusinnlagte sykdommer og skader.txt
 
 This script:
 1. Loads query from .txt file
@@ -12,9 +12,7 @@ This script:
 4. Compares with GitHub and uploads if changed
 5. Saves to CSV output
 
-NB: Only creates script if it doesn't exist already! Does not overwrite code in "EDITABLE SECTION". :)
-
-Generated: 2026-06-26 14:00:45
+Generated: 2026-06-29 10:34:41
 """
 
 import json
@@ -48,12 +46,12 @@ query_file = os.path.join(
     "08_Folkehelse_og_levekår", 
     "FHI", 
     "queries",
-    "Oppvekst og levekår", "Levekår", "Trangboddhet", "Bor trangt.txt"
+    "Helsetilstand", "Hjerte- og karsykdommer", "Sykehusinnlagte sykdommer og skader.txt"
 )
 
 # Output configuration
-output_filename = "bor_trangt.csv"
-github_folder = "Data/08_Folkehelse og levekår/Oppvekst og levekår/Levekår/Trangboddhet"
+output_filename = "sykehusinnlagte_sykdommer_og_skader.csv"
+github_folder = "Data/08_Folkehelse og levekår/Helsetilstand/Hjerte- og karsykdommer"
 
 # Get temp folder
 temp_folder = os.environ.get("TEMP_FOLDER")
@@ -80,7 +78,7 @@ def load_query_file(file_path):
 
 # %%
 print(f"\n{'=' * 70}")
-print(f"FHI Query: Bor trangt.txt")
+print(f"FHI Query: Sykehusinnlagte sykdommer og skader.txt")
 print(f"{'=' * 70}\n")
 
 # Load query from file
@@ -117,30 +115,41 @@ print(f"  Columns: {', '.join(df.columns.tolist())}")
 ### Add your data transformations and processing here            ###
 ####################################################################
 
-# Define Telemark kommuner
-telemark_kommuner = [
-    "Porsgrunn", "Skien", "Notodden", "Siljan", "Bamble", "Kragerø",
-    "Drangedal", "Nome", "Midt-Telemark", "Seljord", "Hjartdal",
-    "Tinn", "Kviteseid", "Nissedal", "Fyresdal", "Tokke", "Vinje"
-]
+# Convert År to datetime (YYYY-01-01)
+df['År'] = pd.to_datetime(df['År'].astype(str) + '-01-01').dt.strftime('%Y-%m-%d')
 
-# Get the year from data
-year = df['År'].iloc[0]
+# Capitalize first letter in Kjønn and Alder
+df['Kjønn'] = df['Kjønn'].str.capitalize()
+df['Alder'] = df['Alder'].str.capitalize()
 
-# Reshape for Everviz: Kommune, Andel (ÅR), Label
-df = df[['Geografi', 'value']].copy()
-df['value'] = pd.to_numeric(df['value'], errors='coerce').fillna(0).round(0).astype(int)
-df = df.rename(columns={
-    'Geografi': 'Kommune',
-    'value': f'Andel ({year})'
-})
-df['Label'] = df['Kommune']
+# Replace ":" with empty string
+df['value'] = df['value'].replace(':', '')
 
-# Sort: kommuner alphabetically, then Telemark and Hele landet last
-kommuner_df = df[df['Kommune'].isin(telemark_kommuner)].sort_values('Kommune')
-aggregates_df = df[df['Kommune'].isin(["Telemark", "Hele landet"])]
-aggregates_df = aggregates_df.set_index('Kommune').loc[["Telemark", "Hele landet"]].reset_index()
-df = pd.concat([kommuner_df, aggregates_df], ignore_index=True)
+# Rename value to Antall and round to 1 decimal
+df['value'] = pd.to_numeric(df['value'], errors='coerce').round(1)
+df = df.rename(columns={'value': 'Antall'})
+
+# Create SortKjonn column
+kjonn_sort = {"Kjønn samlet": 1, "Menn": 2, "Kvinner": 3}
+df['SortKjonn'] = df['Kjønn'].map(kjonn_sort)
+
+# Create SortAlder column
+alder_sort = {
+    "Alle aldre": 1,
+    "0-74 år": 2,
+    "0-14 år": 3,
+    "0-24 år": 4,
+    "0-44 år": 5,
+    "15-24 år": 6,
+    "25-44 år": 7,
+    "45-64 år": 8,
+    "45-74 år": 9,
+    "65-74 år": 10,
+    "75 år+": 11,
+    "75-79 år": 12,
+    "80 år+": 13,
+}
+df['SortAlder'] = df['Alder'].map(alder_sort)
 
 ####################################################################
 ### EDITABLE SECTION END                                         ###
