@@ -279,10 +279,8 @@ if has_changes:
 else:
     print("  ✓ No changes detected")
 
-# Save to local output directory
-output_dir = os.path.join(pythonpath, "..", "Data", "08_Folkehelse og levekår"{', ' + output_path_args if output_path_args else ''})
-os.makedirs(output_dir, exist_ok=True)
-output_path = os.path.join(output_dir, output_filename)
+# Save to temp folder
+output_path = os.path.join(temp_folder, output_filename)
 df.to_csv(output_path, index=False, encoding='utf-8')
 print(f"\\n  ✓ Saved to: {{output_path}}")
 

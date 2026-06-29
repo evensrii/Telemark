@@ -1,9 +1,9 @@
 """
-FHI Query Script: Vedvarende lavinntekt etter innvandringskategori, kommunegrense.txt
-=====================================================================================
+FHI Query Script: Bor trangt.txt
+================================
 
 Auto-generated script for processing FHI query data.
-Query file: Oppvekst og levekår/Levekår/Inntekt og gjeld/Vedvarende lavinntekt etter innvandringskategori, kommunegrense.txt
+Query file: Oppvekst og levekår/Levekår/Trangboddhet/Bor trangt.txt
 
 This script:
 1. Loads query from .txt file
@@ -12,7 +12,9 @@ This script:
 4. Compares with GitHub and uploads if changed
 5. Saves to CSV output
 
-Generated: 2026-06-26 12:37:29
+NB: Only creates script if it doesn't exist already! Does not overwrite code in "EDITABLE SECTION". :)
+
+Generated: 2026-06-26 14:00:45
 """
 
 import json
@@ -46,12 +48,12 @@ query_file = os.path.join(
     "08_Folkehelse_og_levekår", 
     "FHI", 
     "queries",
-    "Oppvekst og levekår", "Levekår", "Inntekt og gjeld", "Vedvarende lavinntekt etter innvandringskategori, kommunegrense.txt"
+    "Oppvekst og levekår", "Levekår", "Trangboddhet", "Bor trangt.txt"
 )
 
 # Output configuration
-output_filename = "vedvarende_lavinntekt_etter_innvandringskategori_kommunegrense.csv"
-github_folder = "Data/08_Folkehelse og levekår/Oppvekst og levekår/Levekår/Inntekt og gjeld"
+output_filename = "bor_trangt.csv"
+github_folder = "Data/08_Folkehelse og levekår/Oppvekst og levekår/Levekår/Trangboddhet"
 
 # Get temp folder
 temp_folder = os.environ.get("TEMP_FOLDER")
@@ -78,7 +80,7 @@ def load_query_file(file_path):
 
 # %%
 print(f"\n{'=' * 70}")
-print(f"FHI Query: Vedvarende lavinntekt etter innvandringskategori, kommunegrense.txt")
+print(f"FHI Query: Bor trangt.txt")
 print(f"{'=' * 70}\n")
 
 # Load query from file
@@ -115,80 +117,58 @@ print(f"  Columns: {', '.join(df.columns.tolist())}")
 ### Add your data transformations and processing here            ###
 ####################################################################
 
-# Define Telemark kommuner (exclude aggregates like "Hele landet" and "Telemark")
+# Define Telemark kommuner
 telemark_kommuner = [
     "Porsgrunn", "Skien", "Notodden", "Siljan", "Bamble", "Kragerø",
     "Drangedal", "Nome", "Midt-Telemark", "Seljord", "Hjartdal",
     "Tinn", "Kviteseid", "Nissedal", "Fyresdal", "Tokke", "Vinje"
 ]
 
-# Filter: Telemark kommuner + aggregates, total
-all_geographies = telemark_kommuner + ["Telemark", "Hele landet"]
-df_base = df[
-    (df['Geografi'].isin(all_geographies)) &
-    (df['Innvandringsbakgrunn'] == 'total')
-].copy()
+# Get the year from data
+year = df['År'].iloc[0]
 
-# Find the latest period
-latest_period = df_base['År'].max()
-print(f"  Latest period: {latest_period}")
+# Reshape for Everviz: Kommune, Andel (ÅR), Label
+df = df[['Geografi', 'value']].copy()
+df['value'] = pd.to_numeric(df['value'], errors='coerce').round(0).astype('Int64')
+df = df.rename(columns={
+    'Geografi': 'Kommune',
+    'value': f'Andel ({year})'
+})
+df['Label'] = df['Kommune']
 
-df_base = df_base[df_base['År'] == latest_period].copy()
-
-def reshape_for_everviz(df_input, alder_filter):
-    """Filter by alder and reshape to Everviz format."""
-    df_out = df_input[df_input['Alder'] == alder_filter][['Geografi', 'value']].copy()
-    df_out['value'] = pd.to_numeric(df_out['value'], errors='coerce').round(0).astype('Int64')
-    df_out = df_out.rename(columns={
-        'Geografi': 'Kommune',
-        'value': f'Andel ({latest_period})'
-    })
-    df_out['Label'] = df_out['Kommune']
-    # Sort: kommuner alphabetically, then Telemark and Hele landet last
-    kommuner_part = df_out[df_out['Kommune'].isin(telemark_kommuner)].sort_values('Kommune')
-    aggregates_part = df_out[df_out['Kommune'].isin(["Telemark", "Hele landet"])]
-    aggregates_part = aggregates_part.set_index('Kommune').loc[["Telemark", "Hele landet"]].reset_index()
-    return pd.concat([kommuner_part, aggregates_part], ignore_index=True)
-
-# Create two output DataFrames
-df_alle_aldre = reshape_for_everviz(df_base, 'alle aldre')
-df_0_17 = reshape_for_everviz(df_base, '0-17 år')
+# Sort: kommuner alphabetically, then Telemark and Hele landet last
+kommuner_df = df[df['Kommune'].isin(telemark_kommuner)].sort_values('Kommune')
+aggregates_df = df[df['Kommune'].isin(["Telemark", "Hele landet"])]
+aggregates_df = aggregates_df.set_index('Kommune').loc[["Telemark", "Hele landet"]].reset_index()
+df = pd.concat([kommuner_df, aggregates_df], ignore_index=True)
 
 ####################################################################
 ### EDITABLE SECTION END                                         ###
 ####################################################################
 
-print(f"\nAfter processing: {len(df_alle_aldre)} rows (alle aldre), {len(df_0_17)} rows (0-17 år)")
+print(f"\nAfter processing: {len(df)} rows and {len(df.columns)} columns")
 
 # %%
-# Output file names
-output_files = [
-    ("vedvarende_lavinntekt_alle_aldre.csv", df_alle_aldre),
-    ("vedvarende_lavinntekt_0-17.csv", df_0_17),
-]
-
 # Compare with GitHub and upload if changed
 print("\nComparing with GitHub...")
-for file_name, df_out in output_files:
-    print(f"\n  Processing: {file_name}")
-    has_changes = handle_output_data(
-        df=df_out,
-        file_name=file_name,
-        github_folder=github_folder,
-        temp_folder=temp_folder,
-        keepcsv=True
-    )
-    if has_changes:
-        print(f"    ✓ New data detected and uploaded to GitHub")
-        print("New data detected")  # For master_script.py parsing
-    else:
-        print(f"    ✓ No changes detected")
+has_changes = handle_output_data(
+    df=df,
+    file_name=output_filename,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
+    keepcsv=True
+)
+
+if has_changes:
+    print("  ✓ New data detected and uploaded to GitHub")
+    print("New data detected")  # For master_script.py parsing
+else:
+    print("  ✓ No changes detected")
 
 # Save to temp folder
-for file_name, df_out in output_files:
-    output_path = os.path.join(temp_folder, file_name)
-    df_out.to_csv(output_path, index=False, encoding='utf-8')
-    print(f"  ✓ Saved to: {output_path}")
+output_path = os.path.join(temp_folder, output_filename)
+df.to_csv(output_path, index=False, encoding='utf-8')
+print(f"\n  ✓ Saved to: {output_path}")
 
 print(f"\n{'=' * 70}")
 print("Processing complete")
