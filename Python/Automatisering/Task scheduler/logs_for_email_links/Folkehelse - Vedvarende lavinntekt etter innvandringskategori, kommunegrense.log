@@ -1,0 +1,42 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+
+======================================================================
+FHI Query: Vedvarende lavinntekt etter innvandringskategori, kommunegrense.txt
+======================================================================
+
+Loading query from file...
+  âœ“ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/403/data
+
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  âœ“ Fetched 152 rows and 7 columns
+  Columns: Geografi, Ã…r, Alder, Innvandringsbakgrunn, Lavinntektsgrense, MÃ¥ltall, value
+  Latest period: 2021-2023
+
+After processing: 19 rows (alle aldre), 19 rows (0-17 Ã¥r)
+
+Comparing with GitHub...
+
+  Processing: vedvarende_lavinntekt_alle_aldre.csv
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\vedvarende_lavinntekt_alle_aldre.csv
+[2026-07-01 09:06:12] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\vedvarende_lavinntekt_alle_aldre.csv
+    âœ“ No changes detected
+
+  Processing: vedvarende_lavinntekt_0-17.csv
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\vedvarende_lavinntekt_0-17.csv
+[2026-07-01 09:06:12] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\vedvarende_lavinntekt_0-17.csv
+    âœ“ No changes detected
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\vedvarende_lavinntekt_alle_aldre.csv
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\vedvarende_lavinntekt_0-17.csv
+
+======================================================================
+Processing complete
+======================================================================
+
+

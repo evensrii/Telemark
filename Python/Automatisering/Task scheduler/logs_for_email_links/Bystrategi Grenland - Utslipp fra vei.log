@@ -2,10 +2,15 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-All tasks completed successfully.
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_vei_telemark.csv
-[2026-06-29 08:24:09] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_vei_telemark.csv
-No new data detected in klimagassutslipp_vei_telemark.csv.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bystrategi_Grenland_-_Utslipp_fra_vei.log
+Error occurred while downloading the file: HTTPSConnectionPool(host='www.miljodirektoratet.no', port=443): Max retries exceeded with url: /globalassets/netttjenester/klimagassutslipp-kommuner/utslippsstatistikk_alle_kommuner.xlsx (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000141EBB42ED0>, 'Connection to www.miljodirektoratet.no timed out. (connect timeout=None)'))
+Email notifications disabled. Errors in Extract_Miljodirektoratet_Data were not sent.
 
+
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py", line 93, in <module>
+    df_telemark = df[df["Fylke"] == "Telemark"]
+                  ^^
+NameError: name 'df' is not defined
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py` failed. (See above for error)
