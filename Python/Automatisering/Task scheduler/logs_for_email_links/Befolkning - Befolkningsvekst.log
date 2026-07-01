@@ -2,8 +2,8 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Befolkningsvekst Telemark: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/06913/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2022)&valuecodes%5BRegion%5D=K_4001,K_4003,K_4005,K_4010,K_4012,K_4014,K_4016,K_4018,K_4020,K_4022,K_4024,K_4026,K_4028,K_4030,K_4032,K_4034,K_4036&codelist%5BRegion%5D=agg_KommSummerHist&outputValues%5BRegion%5D=aggregated&valuecodes%5BContentsCode%5D=Folkemengde&heading=Tid,ContentsCode&stub=Region (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002AF997B9160>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
-Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/06913/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2022)&valuecodes%5BRegion%5D=K_4001,K_4003,K_4005,K_4010,K_4012,K_4014,K_4016,K_4018,K_4020,K_4022,K_4024,K_4026,K_4028,K_4030,K_4032,K_4034,K_4036&codelist%5BRegion%5D=agg_KommSummerHist&outputValues%5BRegion%5D=aggregated&valuecodes%5BContentsCode%5D=Folkemengde&heading=Tid,ContentsCode&stub=Region (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002AF997B9160>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Request error in Befolkningsvekst Telemark: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/06913/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2022)&valuecodes%5BRegion%5D=K_4001,K_4003,K_4005,K_4010,K_4012,K_4014,K_4016,K_4018,K_4020,K_4022,K_4024,K_4026,K_4028,K_4030,K_4032,K_4034,K_4036&codelist%5BRegion%5D=agg_KommSummerHist&outputValues%5BRegion%5D=aggregated&valuecodes%5BContentsCode%5D=Folkemengde&heading=Tid,ContentsCode&stub=Region (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000015E8B099640>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/06913/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2022)&valuecodes%5BRegion%5D=K_4001,K_4003,K_4005,K_4010,K_4012,K_4014,K_4016,K_4018,K_4020,K_4022,K_4024,K_4026,K_4028,K_4030,K_4032,K_4034,K_4036&codelist%5BRegion%5D=agg_KommSummerHist&outputValues%5BRegion%5D=aggregated&valuecodes%5BContentsCode%5D=Folkemengde&heading=Tid,ContentsCode&stub=Region (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000015E8B099640>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in befolkningsvekst.py were not sent.
 
 
@@ -35,7 +35,7 @@ Traceback (most recent call last):
                        ^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
     raise ConnectTimeoutError(
-urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x000002AF997B9160>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x0000015E8B099640>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
 
 The above exception was the direct cause of the following exception:
 
@@ -49,7 +49,7 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/06913/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2022)&valuecodes%5BRegion%5D=K_4001,K_4003,K_4005,K_4010,K_4012,K_4014,K_4016,K_4018,K_4020,K_4022,K_4024,K_4026,K_4028,K_4030,K_4032,K_4034,K_4036&codelist%5BRegion%5D=agg_KommSummerHist&outputValues%5BRegion%5D=aggregated&valuecodes%5BContentsCode%5D=Folkemengde&heading=Tid,ContentsCode&stub=Region (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002AF997B9160>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/06913/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2022)&valuecodes%5BRegion%5D=K_4001,K_4003,K_4005,K_4010,K_4012,K_4014,K_4016,K_4018,K_4020,K_4022,K_4024,K_4026,K_4028,K_4030,K_4032,K_4034,K_4036&codelist%5BRegion%5D=agg_KommSummerHist&outputValues%5BRegion%5D=aggregated&valuecodes%5BContentsCode%5D=Folkemengde&heading=Tid,ContentsCode&stub=Region (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000015E8B099640>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 
 During handling of the above exception, another exception occurred:
 
@@ -74,7 +74,7 @@ Traceback (most recent call last):
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
     raise ConnectTimeout(e, request=request)
-requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/06913/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2022)&valuecodes%5BRegion%5D=K_4001,K_4003,K_4005,K_4010,K_4012,K_4014,K_4016,K_4018,K_4020,K_4022,K_4024,K_4026,K_4028,K_4030,K_4032,K_4034,K_4036&codelist%5BRegion%5D=agg_KommSummerHist&outputValues%5BRegion%5D=aggregated&valuecodes%5BContentsCode%5D=Folkemengde&heading=Tid,ContentsCode&stub=Region (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002AF997B9160>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/06913/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2022)&valuecodes%5BRegion%5D=K_4001,K_4003,K_4005,K_4010,K_4012,K_4014,K_4016,K_4018,K_4020,K_4022,K_4024,K_4026,K_4028,K_4030,K_4032,K_4034,K_4036&codelist%5BRegion%5D=agg_KommSummerHist&outputValues%5BRegion%5D=aggregated&valuecodes%5BContentsCode%5D=Folkemengde&heading=Tid,ContentsCode&stub=Region (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000015E8B099640>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 
 During handling of the above exception, another exception occurred:
 

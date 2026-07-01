@@ -2,8 +2,8 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Flytting til Telemark: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13864/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000217E9D64F20>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
-Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13864/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000217E9D64F20>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Request error in Flytting til Telemark: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13864/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000028DC3E2F410>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13864/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000028DC3E2F410>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in flytting_til_og_fra_telemark.py were not sent.
 
 
@@ -35,7 +35,7 @@ Traceback (most recent call last):
                        ^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
     raise ConnectTimeoutError(
-urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x00000217E9D64F20>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x0000028DC3E2F410>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
 
 The above exception was the direct cause of the following exception:
 
@@ -49,7 +49,7 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13864/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000217E9D64F20>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13864/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000028DC3E2F410>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 
 During handling of the above exception, another exception occurred:
 
@@ -74,7 +74,7 @@ Traceback (most recent call last):
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
     raise ConnectTimeout(e, request=request)
-requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13864/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000217E9D64F20>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13864/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000028DC3E2F410>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 
 During handling of the above exception, another exception occurred:
 
