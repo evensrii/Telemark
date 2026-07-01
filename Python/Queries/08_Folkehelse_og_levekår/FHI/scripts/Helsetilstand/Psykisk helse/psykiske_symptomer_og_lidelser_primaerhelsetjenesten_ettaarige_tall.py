@@ -146,6 +146,14 @@ alder_sort = {
 }
 df['SortAlder'] = df['Alder'].map(alder_sort)
 
+# Create SortKommune column
+unique_kommuner = df['Geografi'].unique().tolist()
+sort_kommune = {"Telemark": 1, "Hele landet": 2}
+regular = sorted([k for k in unique_kommuner if k not in sort_kommune])
+for i, k in enumerate(regular, start=3):
+    sort_kommune[k] = i
+df['SortKommune'] = df['Geografi'].map(sort_kommune)
+
 ####################################################################
 ### EDITABLE SECTION END                                         ###
 ####################################################################

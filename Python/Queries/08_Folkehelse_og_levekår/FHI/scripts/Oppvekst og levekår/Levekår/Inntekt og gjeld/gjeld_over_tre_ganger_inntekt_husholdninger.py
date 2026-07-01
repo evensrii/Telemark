@@ -122,6 +122,14 @@ df = df.rename(columns={'value': 'Andel'})
 # Convert År to datetime (YYYY-01-01)
 df['År'] = pd.to_datetime(df['År'].astype(str) + '-01-01').dt.strftime('%Y-%m-%d')
 
+# Create SortKommune column
+unique_kommuner = df['Geografi'].unique().tolist()
+sort_map = {"Telemark": 1, "Hele landet": 2}
+regular = sorted([k for k in unique_kommuner if k not in sort_map])
+for i, k in enumerate(regular, start=3):
+    sort_map[k] = i
+df['SortKommune'] = df['Geografi'].map(sort_map)
+
 ####################################################################
 ### EDITABLE SECTION END                                         ###
 ####################################################################

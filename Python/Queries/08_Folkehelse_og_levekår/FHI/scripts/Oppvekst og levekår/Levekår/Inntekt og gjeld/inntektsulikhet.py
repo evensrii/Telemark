@@ -132,7 +132,7 @@ df = df[['Geografi', 'value']].copy()
 df['value'] = pd.to_numeric(df['value'], errors='coerce').round(1)
 df = df.rename(columns={
     'Geografi': 'Kommune',
-    'value': f'Andel ({year})'
+    'value': f'Forholdstall ({year})'
 })
 df['Label'] = df['Kommune']
 
