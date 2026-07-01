@@ -253,8 +253,18 @@ print(f"  Columns: {{', '.join(df.columns.tolist())}}")
 # --- Standard FHI transformations (auto-generated) ---
 
 # Convert År to datetime (YYYY-01-01) if column contains single years
+# If År contains intervals (e.g. "2013-2016"), rename to "År (intervall)" and create "År" from first year
 if 'År' in df.columns:
-    if df['År'].astype(str).str.match(r'^\\d{{4}}$').all():
+    if df['År'].astype(str).str.match(r'^\\d{{4}}[-/]\\d{{4}}$').all():
+        df = df.rename(columns={{'År': 'År (intervall)'}})
+        df['År'] = pd.to_datetime(df['År (intervall)'].str[:4] + '-01-01').dt.strftime('%Y-%m-%d')
+        # Place År directly after År (intervall)
+        cols = df.columns.tolist()
+        idx = cols.index('År (intervall)')
+        cols.remove('År')
+        cols.insert(idx + 1, 'År')
+        df = df[cols]
+    elif df['År'].astype(str).str.match(r'^\\d{{4}}$').all():
         df['År'] = pd.to_datetime(df['År'].astype(str) + '-01-01').dt.strftime('%Y-%m-%d')
 
 # Capitalize first letter in Kjønn if column exists
@@ -278,13 +288,18 @@ if 'value' in df.columns:
     df['value'] = pd.to_numeric(df['value'], errors='coerce').round(1)
     df = df.rename(columns={{'value': value_col_name}})
 
-# Create SortKjonn column if Kjønn exists
-if 'Kjønn' in df.columns:
-    kjonn_sort = {{"Kjønn samlet": 1, "Menn": 2, "Kvinner": 3}}
+# Divide by 100 for Andel columns (named "Andel" or "Andel (YYYY)")
+for col in df.columns:
+    if col == 'Andel' or (col.startswith('Andel (') and col.endswith(')')):
+        df[col] = df[col] / 100
+
+# Create SortKjonn column if Kjønn exists and has more than one unique value
+if 'Kjønn' in df.columns and df['Kjønn'].nunique() > 1:
+    kjonn_sort = {{"Kjønn samlet": 1, "Menn": 2, "Gutter": 2, "Kvinner": 3, "Jenter": 3}}
     df['SortKjonn'] = df['Kjønn'].map(kjonn_sort)
 
-# Create SortAlder column if Alder exists (adjust mapping as needed)
-if 'Alder' in df.columns:
+# Create SortAlder column if Alder exists and has more than one unique value
+if 'Alder' in df.columns and df['Alder'].nunique() > 1:
     unique_alder = df['Alder'].unique().tolist()
     alder_sort = {{}}
     sort_num = 1
@@ -300,6 +315,29 @@ if 'Alder' in df.columns:
         alder_sort[a] = sort_num
         sort_num += 1
     df['SortAlder'] = df['Alder'].map(alder_sort)
+
+# Rename Geografi to Kommune
+if 'Geografi' in df.columns:
+    df = df.rename(columns={{'Geografi': 'Kommune'}})
+
+# Create SortKommune column
+if 'Kommune' in df.columns:
+    unique_kommuner = df['Kommune'].unique().tolist()
+    sort_kommune = {{"Telemark": 1, "Hele landet": 2}}
+    # Alphabetically sorted kommuner (excluding fixed and Bø/Sauherad)
+    regular = sorted([k for k in unique_kommuner if k not in ["Telemark", "Hele landet", "Bø", "Sauherad"]])
+    sort_num = 3
+    for k in regular:
+        sort_kommune[k] = sort_num
+        sort_num += 1
+    # Bø and Sauherad last
+    if "Bø" in unique_kommuner:
+        sort_kommune["Bø"] = sort_num
+        sort_num += 1
+    if "Sauherad" in unique_kommuner:
+        sort_kommune["Sauherad"] = sort_num
+        sort_num += 1
+    df['SortKommune'] = df['Kommune'].map(sort_kommune)
 
 # --- End standard transformations ---
 # Add script-specific transformations below:
