@@ -2,68 +2,85 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Sysselsatte, kommuner JSON-stat data loaded successfully.
-Sysselsatte, landet JSON-stat data loaded successfully.
-Personer, landet JSON-stat data loaded successfully.
-Personer, kommunene JSON-stat data loaded successfully.
+Request error in Sysselsatte, kommuner: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/07984/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001EFDA29A5A0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/07984/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001EFDA29A5A0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Email notifications disabled. Errors in sysselsetting_alder.py were not sent.
 
-Sysselsetting for 15-74 i landet i 2025: 68.6%
-Sysselsetting for 15-74 bosatte i Telemark i 2025: 64.3%
-Sysselsetting for 15-74 bosatte i Telemark i 2025: 84653
 
-Landet age groups:
-  age_group    value
-0     15-19   340230
-1     20-24   334359
-2     25-39  1156987
-3     40-54  1101505
-4     55-66   821053
-5     67-74   434063
+Errors:
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
-Kommuner age groups:
-age_group      15-19  20-24  25-39  40-54  55-66  67-74
-region                                                 
-Bamble           917    771   2398   2632   2402   1441
-Drangedal        242    236    621    813    687    403
-Fyresdal          79     67    183    245    227    139
-Hjartdal          86     95    267    268    280    158
-KragerÃ¸          604    487   1587   1995   1811   1151
-Kviteseid        109    144    370    460    481    262
-Midt-Telemark    712    841   2151   2109   1522    972
-Nissedal          89     70    203    273    262    187
-Nome             360    345   1116   1203   1168    656
-Notodden         771    712   2421   2455   2177   1316
-Porsgrunn       2234   2067   6877   7435   5911   3318
-Seljord          177    165    445    577    476    306
-Siljan           146    113    408    445    382    222
-Skien           3517   3046  10669  11005   8888   4951
-Tinn             345    290    822   1071   1013    629
-Tokke            145     99    372    402    416    229
-Vinje            204    214    675    695    645    368
+The above exception was the direct cause of the following exception:
 
-Telemark population by age groups:
-age_group  15-19  20-24  25-39  40-54  55-66  67-74
-Telemark   10737   9762  31585  34083  28748  16708
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x000001EFDA29A5A0>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
 
-Telemark employment by age groups:
-     region     alder  value
-0  Telemark  15-19 Ã¥r   4454
-1  Telemark  20-24 Ã¥r   6462
-2  Telemark  25-39 Ã¥r  24362
-3  Telemark  40-54 Ã¥r  26668
-4  Telemark  55-66 Ã¥r  19154
-5  Telemark  67-74 Ã¥r   3553
+The above exception was the direct cause of the following exception:
 
-Employment rates by age group (%):
-  Aldersgruppe  Telemark (2025)  Hele landet (2025)
-0     20-24 Ã¥r             66.2                67.7
-1     25-39 Ã¥r             77.1                80.8
-2     40-54 Ã¥r             78.2                81.2
-3     55-66 Ã¥r             66.6                69.8
-4     67-74 Ã¥r             21.3                22.5
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
-[2026-06-30 08:08:52] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_etter_aldersgruppe.log
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/07984/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001EFDA29A5A0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_alder.py", line 97, in <module>
+    df_kommuner = fetch_data(
+                  ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 43, in fetch_data
+    response = requests.post(url, json=payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/07984/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001EFDA29A5A0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_alder.py", line 109, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_alder.py` failed. (See above for error)
