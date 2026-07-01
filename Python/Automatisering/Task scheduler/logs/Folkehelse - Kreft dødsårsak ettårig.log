@@ -4,7 +4,7 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 
 ======================================================================
-FHI Query: Kols, dÃ¸dsÃ¥rsak, ettÃ¥rig.txt
+FHI Query: Kreft dÃ¸dsÃ¥rsak ettÃ¥rig.txt
 ======================================================================
 
 Loading query from file...
@@ -13,20 +13,18 @@ Loading query from file...
 
 Fetching data from FHI API...
 FHI Query JSON-stat data loaded successfully.
-  âœ“ Fetched 5700 rows and 7 columns
+  âœ“ Fetched 190 rows and 7 columns
   Columns: Geografi, Ã…r, KjÃ¸nn, Alder, DÃ¸dsÃ¥rsaker, MÃ¥ltall, value
 
-After processing: 5700 rows and 7 columns
+After processing: 190 rows and 7 columns
 
 Comparing with GitHub...
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\kols_doedsaarsak_ettaarig.csv
-File not found on GitHub: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/kols_doedsaarsak_ettaarig.csv
-[2026-06-29 08:19:36] Uploading new file: kols_doedsaarsak_ettaarig.csv
-File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/kols_doedsaarsak_ettaarig.csv
-Email notifications disabled. Updates for kols_doedsaarsak_ettaarig.csv were not sent.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\kols_doedsaarsak_ettaarig.csv
-  âœ“ New data detected and uploaded to GitHub
-New data detected
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\kreft_doedsaarsak_ettaarig.csv
+[2026-07-01 09:05:22] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\kreft_doedsaarsak_ettaarig.csv
+  âœ“ No changes detected
+
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\kreft_doedsaarsak_ettaarig.csv
 
 ======================================================================
 Processing complete
