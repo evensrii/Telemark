@@ -2,11 +2,11 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2026-07-01 08:20:59] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
-[2026-07-01 08:20:59] GITHUB_TOKEN loaded successfully.
-[2026-07-01 08:21:10] Latest date in GitHub files: 2026-06-28
-[2026-07-01 08:21:10] Querying data for 2026-06-29
-[2026-07-01 08:21:31] Error in main: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities?dataset=CONSUMPTION_PER_GROUP_MUNICIPALITY_HOUR&startDate=2026-06-29 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000216EA60B8F0>, 'Connection to api.elhub.no timed out. (connect timeout=None)'))
+[2026-07-01 09:49:15] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+[2026-07-01 09:49:15] GITHUB_TOKEN loaded successfully.
+[2026-07-01 09:49:26] Latest date in GitHub files: 2026-06-28
+[2026-07-01 09:49:26] Querying data for 2026-06-29
+[2026-07-01 09:49:47] Error in main: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities?dataset=CONSUMPTION_PER_GROUP_MUNICIPALITY_HOUR&startDate=2026-06-29 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000258F524BCB0>, 'Connection to api.elhub.no timed out. (connect timeout=None)'))
 
 
 Errors:

@@ -33,7 +33,7 @@ GET_URL_AGGREGERT = (
     "&outputFormat=json-stat2"
     "&valueCodes[ContentsCode]=KOSandel150000,KOSandel350000"
     "&valueCodes[Tid]=from(2020)"
-    "&valueCodes[KOKkommuneregion0000]=EAK,EKA40"
+    "&valueCodes[KOKkommuneregion0000]=EAK,EKA38,EKA40"
 )
 
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
@@ -87,6 +87,9 @@ df["statistikkvariabel"] = df["statistikkvariabel"].replace(var_map)
 df_agg["år"] = pd.to_datetime(df_agg["år"], format="%Y").dt.strftime("%Y-%m-%d")
 df_agg = df_agg.dropna(subset=["value"])
 df_agg["statistikkvariabel"] = df_agg["statistikkvariabel"].replace(var_map)
+
+# Strip parenthetical suffixes from aggregated data
+df_agg["region"] = df_agg["region"].str.replace(r"\s*\(.*?\)", "", regex=True).str.strip()
 
 df_landet = df_agg[df_agg["region"] == "Landet"].copy()
 df_telemark = df_agg[df_agg["region"] == "Telemark"].copy()
@@ -165,11 +168,26 @@ print(
     f"Landsgjennomsnittet ligger på henholdsvis {landet_1_5:.1f} % og {landet_3_5:.1f} %."
 )
 
+# Add Telemark and Landet to the output DataFrame
+df_agg_output = df_agg.rename(columns={
+    "region": "Kommune",
+    "år": "År",
+    "statistikkvariabel": "Statistikkvariabel",
+    "value": "Andel",
+})
+df_agg_output["Kommunenummer"] = df_agg_output["Kommune"].map({"Vestfold og Telemark": "08", "Telemark": "40", "Landet": "00"})
+df_agg_output["Kommune"] = df_agg_output["Kommune"].replace("Vestfold og Telemark", "Telemark")
+df_agg_output = df_agg_output[["Kommunenummer", "Kommune", "År", "Statistikkvariabel", "Andel"]]
+df = pd.concat([df, df_agg_output], ignore_index=True)
+
 # Filter CSV output to only include "Andel 1-5 år"
 df = df[df["Statistikkvariabel"] == "Andel 1-5 år"].drop(columns=["Statistikkvariabel"]).reset_index(drop=True)
 
 # Divide andel by 100 (convert from percent to decimal), cap at 1
 df["Andel"] = (df["Andel"] / 100).clip(upper=1)
+
+# Sort by Kommunenummer and År
+df = df.sort_values(["Kommunenummer", "År"]).reset_index(drop=True)
 
 print("\n--- CSV-output ---")
 print(df.head(20))

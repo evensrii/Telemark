@@ -2,7 +2,7 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Error occurred while downloading the file: HTTPSConnectionPool(host='www.miljodirektoratet.no', port=443): Max retries exceeded with url: /sharepoint/downloaditem/?id=01FM3LD2WOT7QL4D6Y5FC3JYADXGI6A3FA (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018C052AB3B0>, 'Connection to www.miljodirektoratet.no timed out. (connect timeout=None)'))
+Error occurred while downloading the file: HTTPSConnectionPool(host='www.miljodirektoratet.no', port=443): Max retries exceeded with url: /sharepoint/downloaditem/?id=01FM3LD2WOT7QL4D6Y5FC3JYADXGI6A3FA (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002CAC44F7380>, 'Connection to www.miljodirektoratet.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in Extract_Miljodirektoratet_Data were not sent.
 
 
