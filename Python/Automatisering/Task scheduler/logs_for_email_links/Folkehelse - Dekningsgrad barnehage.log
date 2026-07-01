@@ -2,148 +2,85 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Dekningsgrad barnehage - kommuner (13502) JSON-stat data loaded successfully.
-Dekningsgrad barnehage - landet/Telemark (13502) JSON-stat data loaded successfully.
-       region                                 statistikkvariabel    Ã¥r  value
-0   Porsgrunn  Andel barn 1-5 Ã¥r i barnehage, i forhold til i...  2020    NaN
-1   Porsgrunn  Andel barn 1-5 Ã¥r i barnehage, i forhold til i...  2021    NaN
-2   Porsgrunn  Andel barn 1-5 Ã¥r i barnehage, i forhold til i...  2022    NaN
-3   Porsgrunn  Andel barn 1-5 Ã¥r i barnehage, i forhold til i...  2023    NaN
-4   Porsgrunn  Andel barn 1-5 Ã¥r i barnehage, i forhold til i...  2024   97.6
-5   Porsgrunn  Andel barn 1-5 Ã¥r i barnehage, i forhold til i...  2025   97.8
-6   Porsgrunn  Andel barn 3-5 Ã¥r i barnehage, i forhold til i...  2020    NaN
-7   Porsgrunn  Andel barn 3-5 Ã¥r i barnehage, i forhold til i...  2021    NaN
-8   Porsgrunn  Andel barn 3-5 Ã¥r i barnehage, i forhold til i...  2022    NaN
-9   Porsgrunn  Andel barn 3-5 Ã¥r i barnehage, i forhold til i...  2023    NaN
-10  Porsgrunn  Andel barn 3-5 Ã¥r i barnehage, i forhold til i...  2024  100.6
-11  Porsgrunn  Andel barn 3-5 Ã¥r i barnehage, i forhold til i...  2025  100.1
-12      Skien  Andel barn 1-5 Ã¥r i barnehage, i forhold til i...  2020    NaN
-13      Skien  Andel barn 1-5 Ã¥r i barnehage, i forhold til i...  2021    NaN
-14      Skien  Andel barn 1-5 Ã¥r i barnehage, i forhold til i...  2022    NaN
-15      Skien  Andel barn 1-5 Ã¥r i barnehage, i forhold til i...  2023    NaN
-16      Skien  Andel barn 1-5 Ã¥r i barnehage, i forhold til i...  2024   93.9
-17      Skien  Andel barn 1-5 Ã¥r i barnehage, i forhold til i...  2025   94.7
-18      Skien  Andel barn 3-5 Ã¥r i barnehage, i forhold til i...  2020    NaN
-19      Skien  Andel barn 3-5 Ã¥r i barnehage, i forhold til i...  2021    NaN
-['region', 'statistikkvariabel', 'Ã¥r', 'value']
-['Porsgrunn' 'Skien' 'Notodden' 'Siljan' 'Bamble' 'KragerÃ¸' 'Drangedal'
- 'Nome' 'Midt-Telemark' 'Seljord' 'Hjartdal' 'Tinn' 'Kviteseid' 'Nissedal'
- 'Fyresdal' 'Tokke' 'Vinje' 'Porsgrunn (2020-2023)' 'Skien (2020-2023)'
- 'Notodden (2020-2023)' 'Siljan (2020-2023)' 'Bamble (2020-2023)'
- 'KragerÃ¸ (2020-2023)' 'Drangedal (2020-2023)' 'Nome (2020-2023)'
- 'Midt-Telemark (2020-2023)' 'Tinn (2020-2023)' 'Hjartdal (2020-2023)'
- 'Seljord (2020-2023)' 'Kviteseid (2020-2023)' 'Nissedal (2020-2023)'
- 'Fyresdal (2020-2023)' 'Tokke (2020-2023)' 'Vinje (2020-2023)']
+Request error in Dekningsgrad barnehage - kommuner (13502): HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13502/data?lang=no&outputFormat=json-stat2&valueCodes%5BContentsCode%5D=KOSandel150000,KOSandel350000&valueCodes%5BTid%5D=from(2020)&valueCodes%5BKOKkommuneregion0000%5D=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036,3806,3807,3808,3812,3813,3814,3815,3816,3817,3818,3819,3820,3821,3822,3823,3824,3825&codelist%5BKOKkommuneregion0000%5D=agg_KOGkommuneregion000005401&outputValues%5BKOKkommuneregion0000%5D=aggregated (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001E756584050>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13502/data?lang=no&outputFormat=json-stat2&valueCodes%5BContentsCode%5D=KOSandel150000,KOSandel350000&valueCodes%5BTid%5D=from(2020)&valueCodes%5BKOKkommuneregion0000%5D=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036,3806,3807,3808,3812,3813,3814,3815,3816,3817,3818,3819,3820,3821,3822,3823,3824,3825&codelist%5BKOKkommuneregion0000%5D=agg_KOGkommuneregion000005401&outputValues%5BKOKkommuneregion0000%5D=aggregated (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001E756584050>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Email notifications disabled. Errors in dekningsgrad.py were not sent.
 
---- Nasjonale data ---
-    region statistikkvariabel          Ã¥r  value
-0   Landet       Andel 1-5 Ã¥r  2020-01-01   92.7
-1   Landet       Andel 1-5 Ã¥r  2021-01-01   93.4
-2   Landet       Andel 1-5 Ã¥r  2022-01-01   93.4
-3   Landet       Andel 1-5 Ã¥r  2023-01-01   93.8
-4   Landet       Andel 1-5 Ã¥r  2024-01-01   94.3
-5   Landet       Andel 1-5 Ã¥r  2025-01-01   94.5
-6   Landet       Andel 3-5 Ã¥r  2020-01-01   97.3
-7   Landet       Andel 3-5 Ã¥r  2021-01-01   97.4
-8   Landet       Andel 3-5 Ã¥r  2022-01-01   97.1
-9   Landet       Andel 3-5 Ã¥r  2023-01-01   97.2
-10  Landet       Andel 3-5 Ã¥r  2024-01-01   97.4
-11  Landet       Andel 3-5 Ã¥r  2025-01-01   97.5
 
---- Telemark aggregert ---
-      region statistikkvariabel          Ã¥r  value
-16  Telemark       Andel 1-5 Ã¥r  2024-01-01   94.9
-17  Telemark       Andel 1-5 Ã¥r  2025-01-01   95.3
-22  Telemark       Andel 3-5 Ã¥r  2024-01-01   97.9
-23  Telemark       Andel 3-5 Ã¥r  2025-01-01   98.2
+Errors:
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
---- Kommunedata ---
-   Kommunenummer    Kommune          Ã…r Statistikkvariabel  Andel
-0           4001  Porsgrunn  2020-01-01       Andel 1-5 Ã¥r   96.6
-1           4001  Porsgrunn  2021-01-01       Andel 1-5 Ã¥r   99.5
-2           4001  Porsgrunn  2022-01-01       Andel 1-5 Ã¥r   96.7
-3           4001  Porsgrunn  2023-01-01       Andel 1-5 Ã¥r   97.5
-4           4001  Porsgrunn  2024-01-01       Andel 1-5 Ã¥r   97.6
-5           4001  Porsgrunn  2025-01-01       Andel 1-5 Ã¥r   97.8
-6           4001  Porsgrunn  2020-01-01       Andel 3-5 Ã¥r  100.8
-7           4001  Porsgrunn  2021-01-01       Andel 3-5 Ã¥r  102.1
-8           4001  Porsgrunn  2022-01-01       Andel 3-5 Ã¥r   99.4
-9           4001  Porsgrunn  2023-01-01       Andel 3-5 Ã¥r  101.0
-10          4001  Porsgrunn  2024-01-01       Andel 3-5 Ã¥r  100.6
-11          4001  Porsgrunn  2025-01-01       Andel 3-5 Ã¥r  100.1
-12          4003      Skien  2020-01-01       Andel 1-5 Ã¥r   90.9
-13          4003      Skien  2021-01-01       Andel 1-5 Ã¥r   91.0
-14          4003      Skien  2022-01-01       Andel 1-5 Ã¥r   91.6
-15          4003      Skien  2023-01-01       Andel 1-5 Ã¥r   92.0
-16          4003      Skien  2024-01-01       Andel 1-5 Ã¥r   93.9
-17          4003      Skien  2025-01-01       Andel 1-5 Ã¥r   94.7
-18          4003      Skien  2020-01-01       Andel 3-5 Ã¥r   95.2
-19          4003      Skien  2021-01-01       Andel 3-5 Ã¥r   95.0
-20          4003      Skien  2022-01-01       Andel 3-5 Ã¥r   96.0
-21          4003      Skien  2023-01-01       Andel 3-5 Ã¥r   95.5
-22          4003      Skien  2024-01-01       Andel 3-5 Ã¥r   96.4
-23          4003      Skien  2025-01-01       Andel 3-5 Ã¥r   97.4
-24          4005   Notodden  2020-01-01       Andel 1-5 Ã¥r   94.1
-25          4005   Notodden  2021-01-01       Andel 1-5 Ã¥r   97.0
-26          4005   Notodden  2022-01-01       Andel 1-5 Ã¥r   97.0
-27          4005   Notodden  2023-01-01       Andel 1-5 Ã¥r   94.3
-28          4005   Notodden  2024-01-01       Andel 1-5 Ã¥r   95.4
-29          4005   Notodden  2025-01-01       Andel 1-5 Ã¥r   96.2
+The above exception was the direct cause of the following exception:
 
-Antall rader: 204
-Kommuner: ['Porsgrunn' 'Skien' 'Notodden' 'Siljan' 'Bamble' 'KragerÃ¸' 'Drangedal'
- 'Nome' 'Midt-Telemark' 'Seljord' 'Hjartdal' 'Tinn' 'Kviteseid' 'Nissedal'
- 'Fyresdal' 'Tokke' 'Vinje']
-Ã…r: ['2020-01-01', '2021-01-01', '2022-01-01', '2023-01-01', '2024-01-01', '2025-01-01']
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x000001E756584050>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
 
---- Andel per kommune (2025-01-01) ---
-Kommunenummer       Kommune  Andel 1-5 Ã¥r  Andel 3-5 Ã¥r
-         4001     Porsgrunn          97.8         100.1
-         4003         Skien          94.7          97.4
-         4005      Notodden          96.2          98.1
-         4010        Siljan          94.4          98.7
-         4012        Bamble          95.3          97.0
-         4014       KragerÃ¸          93.4          98.4
-         4016     Drangedal          93.8          96.8
-         4018          Nome          97.2          99.5
-         4020 Midt-Telemark          91.2          93.9
-         4022       Seljord          91.9          97.5
-         4024      Hjartdal         101.2         103.7
-         4026          Tinn          93.9          97.2
-         4028     Kviteseid          94.6         101.6
-         4030      Nissedal          94.4          97.6
-         4032      Fyresdal          87.5         100.0
-         4034         Tokke          93.7         100.0
-         4036         Vinje          96.1         104.5
+The above exception was the direct cause of the following exception:
 
---- Oppsummering (2025-01-01) ---
-Blant Telemarkskommunene gÃ¥r i snitt 95.3 % av alle barn mellom ett og fem Ã¥r i barnehagen, mens andelen blant tre-femÃ¥ringene er 98.2 %. Landsgjennomsnittet ligger pÃ¥ henholdsvis 94.5 % og 97.5 %.
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13502/data?lang=no&outputFormat=json-stat2&valueCodes%5BContentsCode%5D=KOSandel150000,KOSandel350000&valueCodes%5BTid%5D=from(2020)&valueCodes%5BKOKkommuneregion0000%5D=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036,3806,3807,3808,3812,3813,3814,3815,3816,3817,3818,3819,3820,3821,3822,3823,3824,3825&codelist%5BKOKkommuneregion0000%5D=agg_KOGkommuneregion000005401&outputValues%5BKOKkommuneregion0000%5D=aggregated (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001E756584050>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 
---- CSV-output ---
-   Kommunenummer    Kommune          Ã…r  Andel
-0           4001  Porsgrunn  2020-01-01  0.966
-1           4001  Porsgrunn  2021-01-01  0.995
-2           4001  Porsgrunn  2022-01-01  0.967
-3           4001  Porsgrunn  2023-01-01  0.975
-4           4001  Porsgrunn  2024-01-01  0.976
-5           4001  Porsgrunn  2025-01-01  0.978
-6           4003      Skien  2020-01-01  0.909
-7           4003      Skien  2021-01-01  0.910
-8           4003      Skien  2022-01-01  0.916
-9           4003      Skien  2023-01-01  0.920
-10          4003      Skien  2024-01-01  0.939
-11          4003      Skien  2025-01-01  0.947
-12          4005   Notodden  2020-01-01  0.941
-13          4005   Notodden  2021-01-01  0.970
-14          4005   Notodden  2022-01-01  0.970
-15          4005   Notodden  2023-01-01  0.943
-16          4005   Notodden  2024-01-01  0.954
-17          4005   Notodden  2025-01-01  0.962
-18          4010     Siljan  2020-01-01  0.855
-19          4010     Siljan  2021-01-01  0.850
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\dekningsgrad_barnehage.csv
-[2026-06-30 08:20:19] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\dekningsgrad_barnehage.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Dekningsgrad_barnehage.log
+During handling of the above exception, another exception occurred:
 
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/08_Folkehelse_og_levekÃ¥r/SSB/dekningsgrad.py", line 42, in <module>
+    df = fetch_data(
+         ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 45, in fetch_data
+    response = requests.get(url)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13502/data?lang=no&outputFormat=json-stat2&valueCodes%5BContentsCode%5D=KOSandel150000,KOSandel350000&valueCodes%5BTid%5D=from(2020)&valueCodes%5BKOKkommuneregion0000%5D=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036,3806,3807,3808,3812,3813,3814,3815,3816,3817,3818,3819,3820,3821,3822,3823,3824,3825&codelist%5BKOKkommuneregion0000%5D=agg_KOGkommuneregion000005401&outputValues%5BKOKkommuneregion0000%5D=aggregated (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001E756584050>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/08_Folkehelse_og_levekÃ¥r/SSB/dekningsgrad.py", line 59, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/SSB/dekningsgrad.py` failed. (See above for error)
