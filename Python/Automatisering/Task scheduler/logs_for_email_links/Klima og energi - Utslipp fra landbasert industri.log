@@ -2,7 +2,7 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-An error occurred: HTTPSConnectionPool(host='www.norskeutslipp.no', port=443): Max retries exceeded with url: /no/Komponenter/Utslipp/Klimagasser-CO2-ekvivalenter/?ComponentType=utslipp&ComponentPageID=1166&SectorID=600 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000279447BFC50>, 'Connection to www.norskeutslipp.no timed out. (connect timeout=None)'))
+An error occurred: HTTPSConnectionPool(host='www.norskeutslipp.no', port=443): Max retries exceeded with url: /no/Komponenter/Utslipp/Klimagasser-CO2-ekvivalenter/?ComponentType=utslipp&ComponentPageID=1166&SectorID=600 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001FBA8E6B3B0>, 'Connection to www.norskeutslipp.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in Extract_NorskeUtslipp_Data were not sent.
 
 

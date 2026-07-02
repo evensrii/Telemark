@@ -124,11 +124,11 @@ df = df.rename(columns={'Dødsår': 'År', 'Bofylke': 'Kommune'})
 df['År'] = df['År'].astype(str).str.replace(r'[^\d\-]', '', regex=True)
 
 # Convert År to datetime (YYYY-01-01) if column contains single years
-# If År contains intervals (e.g. "2013-2016"), rename to "År (intervall)" and create "År" from first year
+# If År contains intervals (e.g. "2013-2016"), rename to "År (intervall)" and create "År" from last year
 if 'År' in df.columns:
     if df['År'].astype(str).str.match(r'^\d{4}-\d{4}$').all():
         df = df.rename(columns={'År': 'År (intervall)'})
-        df['År'] = pd.to_datetime(df['År (intervall)'].str[:4] + '-01-01').dt.strftime('%Y-%m-%d')
+        df['År'] = pd.to_datetime(df['År (intervall)'].str.split(r'[-/]').str[1] + '-01-01').dt.strftime('%Y-%m-%d')
         # Place År directly after År (intervall)
         cols = df.columns.tolist()
         idx = cols.index('År (intervall)')
