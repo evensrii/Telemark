@@ -1,0 +1,37 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+
+======================================================================
+FHI Query: Leseferdigheter treÃ¥rig 5. og 8. trinn.txt
+======================================================================
+
+Loading query from file...
+  âœ“ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/670/data
+
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  âœ“ Fetched 76 rows and 9 columns
+  Columns: Geografi, SkoleÃ¥r, KjÃ¸nn, Foreldrenes utdanningsnivÃ¥, Innvandringsbakgrunn, MestringsnivÃ¥, Klassetrinn, MÃ¥ltall, value
+
+After processing: 76 rows and 10 columns
+
+Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\leseferdigheter_treaarig_5_og_8_trinn.csv
+File not found on GitHub: Data/08_Folkehelse og levekÃ¥r/Grunnskole/leseferdigheter_treaarig_5_og_8_trinn.csv
+[2026-07-02 09:04:57] Uploading new file: leseferdigheter_treaarig_5_og_8_trinn.csv
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Grunnskole/leseferdigheter_treaarig_5_og_8_trinn.csv
+Email notifications disabled. Updates for leseferdigheter_treaarig_5_og_8_trinn.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\leseferdigheter_treaarig_5_og_8_trinn.csv
+  âœ“ New data detected and uploaded to GitHub
+New data detected
+
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\leseferdigheter_treaarig_5_og_8_trinn.csv
+
+======================================================================
+Processing complete
+======================================================================
+
+
