@@ -33,7 +33,7 @@ FHI_BASE = os.path.join(pythonpath, "Queries", "08_Folkehelse_og_levekår", "FHI
 QUERIES_DIR = os.path.join(FHI_BASE, "queries")
 SCRIPTS_DIR = os.path.join(FHI_BASE, "scripts")
 MASTER_SCRIPT = os.path.join(pythonpath, "Automatisering", "Task scheduler", "master_script.py")
-DATA_BASE = os.path.join(pythonpath, "Data", "08_Folkehelse og levekår")
+DATA_BASE = os.path.join(pythonpath, "..", "Data", "08_Folkehelse og levekår")
 
 
 def sanitize_filename(filename):
@@ -105,16 +105,30 @@ def generate_script_template(query_file_path, script_file_path, queries_base_dir
     query_dir = os.path.dirname(query_file_path)
     relative_subfolder = os.path.relpath(query_dir, queries_base_dir)
     
-    # GitHub folder path
+    # GitHub folder path (use forward slashes for GitHub)
     if relative_subfolder == '.':
         github_folder = "Data/08_Folkehelse og levekår"
         data_subfolder = ""
     else:
-        github_folder = f"Data/08_Folkehelse og levekår/{relative_subfolder}"
+        # Normalize to forward slashes for GitHub paths
+        relative_subfolder_posix = relative_subfolder.replace(os.sep, '/')
+        github_folder = f"Data/08_Folkehelse og levekår/{relative_subfolder_posix}"
         data_subfolder = relative_subfolder
     
     # Output filename (same as script name)
     output_filename = f"{script_filename}.csv"
+    
+    # Build path parts for os.path.join in generated script
+    # Split subfolder into individual components for proper os.path.join usage
+    if data_subfolder:
+        subfolder_parts = Path(data_subfolder).parts
+        # Build the query path arguments: each subfolder part + filename as separate strings
+        query_path_args = ', '.join([f'"{part}"' for part in subfolder_parts] + [f'"{query_filename}"'])
+        # Build the output path arguments for Data folder
+        output_path_args = ', '.join([f'"{part}"' for part in subfolder_parts])
+    else:
+        query_path_args = f'"{query_filename}"'
+        output_path_args = ""
     
     # Use raw string for docstring to avoid escape sequence warnings
     rel_query_path_escaped = rel_query_path.replace('\\', '/')
@@ -145,7 +159,11 @@ from pathlib import Path
 # Get PYTHONPATH and add to sys.path
 pythonpath = os.environ.get("PYTHONPATH")
 if not pythonpath:
-    pythonpath = str(Path(__file__).parent.parent.parent.parent.parent)
+    # Navigate up from script location to find the Python folder
+    current = Path(__file__).resolve()
+    while current.name != "Python" and current != current.parent:
+        current = current.parent
+    pythonpath = str(current)
     os.environ["PYTHONPATH"] = pythonpath
 
 sys.path.append(pythonpath)
@@ -163,8 +181,7 @@ query_file = os.path.join(
     "08_Folkehelse_og_levekår", 
     "FHI", 
     "queries",
-    "{data_subfolder}",
-    "{query_filename}"
+    {query_path_args}
 )
 
 # Output configuration
@@ -233,11 +250,97 @@ print(f"  Columns: {{', '.join(df.columns.tolist())}}")
 ### Add your data transformations and processing here            ###
 ####################################################################
 
-# Example transformations (uncomment and modify as needed):
-# df = df[df['value'] > 0]  # Filter rows
-# df['new_column'] = df['old_column'] * 2  # Create new column
-# df = df.rename(columns={{'old_name': 'new_name'}})  # Rename columns
-# df = df.sort_values('column_name')  # Sort data
+# --- Standard FHI transformations (auto-generated) ---
+
+# Convert År to datetime (YYYY-01-01) if column contains single years
+# If År contains intervals (e.g. "2013-2016"), rename to "År (intervall)" and create "År" from first year
+if 'År' in df.columns:
+    if df['År'].astype(str).str.match(r'^\\d{{4}}[-/]\\d{{4}}$').all():
+        df = df.rename(columns={{'År': 'År (intervall)'}})
+        df['År'] = pd.to_datetime(df['År (intervall)'].str[:4] + '-01-01').dt.strftime('%Y-%m-%d')
+        # Place År directly after År (intervall)
+        cols = df.columns.tolist()
+        idx = cols.index('År (intervall)')
+        cols.remove('År')
+        cols.insert(idx + 1, 'År')
+        df = df[cols]
+    elif df['År'].astype(str).str.match(r'^\\d{{4}}$').all():
+        df['År'] = pd.to_datetime(df['År'].astype(str) + '-01-01').dt.strftime('%Y-%m-%d')
+
+# Capitalize first letter in Kjønn if column exists
+if 'Kjønn' in df.columns:
+    df['Kjønn'] = df['Kjønn'].str.capitalize()
+
+# Capitalize first letter in Alder if column exists
+if 'Alder' in df.columns:
+    df['Alder'] = df['Alder'].str.capitalize()
+
+# Determine value column name based on Måltall content
+value_col_name = 'Antall'
+if 'Måltall' in df.columns:
+    maaltall_str = df['Måltall'].astype(str).str.lower().str.cat(sep=' ')
+    if any(term in maaltall_str for term in ['andel', 'prosent', 'percent']):
+        value_col_name = 'Andel'
+
+# Replace ":" with empty string and process value column
+if 'value' in df.columns:
+    df['value'] = df['value'].replace(':', '')
+    df['value'] = pd.to_numeric(df['value'], errors='coerce').round(1)
+    df = df.rename(columns={{'value': value_col_name}})
+
+# Divide by 100 for Andel columns (named "Andel" or "Andel (YYYY)")
+for col in df.columns:
+    if col == 'Andel' or (col.startswith('Andel (') and col.endswith(')')):
+        df[col] = df[col] / 100
+
+# Create SortKjonn column if Kjønn exists and has more than one unique value
+if 'Kjønn' in df.columns and df['Kjønn'].nunique() > 1:
+    kjonn_sort = {{"Kjønn samlet": 1, "Menn": 2, "Gutter": 2, "Kvinner": 3, "Jenter": 3}}
+    df['SortKjonn'] = df['Kjønn'].map(kjonn_sort)
+
+# Create SortAlder column if Alder exists and has more than one unique value
+if 'Alder' in df.columns and df['Alder'].nunique() > 1:
+    unique_alder = df['Alder'].unique().tolist()
+    alder_sort = {{}}
+    sort_num = 1
+    if 'Alle aldre' in unique_alder:
+        alder_sort['Alle aldre'] = sort_num
+        sort_num += 1
+    if '0-74 år' in unique_alder:
+        alder_sort['0-74 år'] = sort_num
+        sort_num += 1
+    remaining = sorted([a for a in unique_alder if a not in alder_sort],
+                       key=lambda x: (int(x.split('-')[0].split(' ')[0]) if x[0].isdigit() else 999))
+    for a in remaining:
+        alder_sort[a] = sort_num
+        sort_num += 1
+    df['SortAlder'] = df['Alder'].map(alder_sort)
+
+# Rename Geografi to Kommune
+if 'Geografi' in df.columns:
+    df = df.rename(columns={{'Geografi': 'Kommune'}})
+
+# Create SortKommune column
+if 'Kommune' in df.columns:
+    unique_kommuner = df['Kommune'].unique().tolist()
+    sort_kommune = {{"Telemark": 1, "Hele landet": 2}}
+    # Alphabetically sorted kommuner (excluding fixed and Bø/Sauherad)
+    regular = sorted([k for k in unique_kommuner if k not in ["Telemark", "Hele landet", "Bø", "Sauherad"]])
+    sort_num = 3
+    for k in regular:
+        sort_kommune[k] = sort_num
+        sort_num += 1
+    # Bø and Sauherad last
+    if "Bø" in unique_kommuner:
+        sort_kommune["Bø"] = sort_num
+        sort_num += 1
+    if "Sauherad" in unique_kommuner:
+        sort_kommune["Sauherad"] = sort_num
+        sort_num += 1
+    df['SortKommune'] = df['Kommune'].map(sort_kommune)
+
+# --- End standard transformations ---
+# Add script-specific transformations below:
 
 ####################################################################
 ### EDITABLE SECTION END                                         ###
@@ -262,10 +365,8 @@ if has_changes:
 else:
     print("  ✓ No changes detected")
 
-# Save to local output directory
-output_dir = os.path.join(pythonpath, "Data", "08_Folkehelse og levekår"{', "' + data_subfolder + '"' if data_subfolder else ''})
-os.makedirs(output_dir, exist_ok=True)
-output_path = os.path.join(output_dir, output_filename)
+# Save to temp folder
+output_path = os.path.join(temp_folder, output_filename)
 df.to_csv(output_path, index=False, encoding='utf-8')
 print(f"\\n  ✓ Saved to: {{output_path}}")
 
@@ -497,7 +598,8 @@ def main():
         # Determine script path
         if subfolder:
             script_dir = os.path.join(SCRIPTS_DIR, subfolder)
-            script_rel_path = f"Queries/08_Folkehelse_og_levekår/FHI/scripts/{subfolder}/{sanitized_name}.py"
+            subfolder_posix = subfolder.replace(os.sep, '/')
+            script_rel_path = f"Queries/08_Folkehelse_og_levekår/FHI/scripts/{subfolder_posix}/{sanitized_name}.py"
         else:
             script_dir = SCRIPTS_DIR
             script_rel_path = f"Queries/08_Folkehelse_og_levekår/FHI/scripts/{sanitized_name}.py"

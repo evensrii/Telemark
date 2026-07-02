@@ -2,49 +2,79 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-SSB Klass - Standard for nÃ¦ringsgruppering CSV data loaded successfully.
-No exact duplicate rows found.
-Found 192 near-duplicate rows with same Nace_5_nr but different Nace_5_navn.
+Request error in SSB Klass - Standard for nÃ¦ringsgruppering: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/klass/v1/classifications/6/codes.csv?from=2009-01-01&language=nb&csvSeparator=; (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000014544A61D90>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 
-Top 10 near-duplicate rows being removed:
---------------------------------------------------------------------------------
-Nace_5_nr: 01.110
-Nace_5_navn: Dyrking av korn, unntatt ris, belgvekster og oljeholdige vekster
---------------------------------------------------------------------------------
-Nace_5_nr: 01.410
-Nace_5_navn: Melkeproduksjon pÃ¥ storfe og oppdrett av melkekyr
---------------------------------------------------------------------------------
-Nace_5_nr: 01.420
-Nace_5_navn: Oppdrett av annet storfe til kjÃ¸ttproduksjon og sÃ¦dproduksjon
---------------------------------------------------------------------------------
-Nace_5_nr: 01.430
-Nace_5_navn: Hestehold
---------------------------------------------------------------------------------
-Nace_5_nr: 01.630
-Nace_5_navn: Etterbehandling av vekster etter innhÃ¸sting og behandling av sÃ¥frÃ¸
---------------------------------------------------------------------------------
-Nace_5_nr: 01.700
-Nace_5_navn: Jakt, fangst, viltstell og tilknyttede tjenester
---------------------------------------------------------------------------------
-Nace_5_nr: 03.120
-Nace_5_navn: Ferskvannsfiske
---------------------------------------------------------------------------------
-Nace_5_nr: 03.211
-Nace_5_navn: Produksjon av matfisk, blÃ¸tdyr, krepsdyr og pigghuder i hav- og kystbasert akvakultur
---------------------------------------------------------------------------------
-Nace_5_nr: 03.212
-Nace_5_navn: Produksjon av yngel og settefisk i sjÃ¸ og brakkvann
---------------------------------------------------------------------------------
-Nace_5_nr: 03.221
-Nace_5_navn: Produksjon av matfisk, blÃ¸tdyr og krepsdyr i ferskvannsbasert akvakultur
---------------------------------------------------------------------------------
 
-Kept first instance of each Nace_5_nr, removed 192 near-duplicates.
-Final dataset: 1064 rows with 1064 unique Nace_5_nr values.
-âœ“ Verification passed: All Nace_5_nr values are unique.
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\standard_for_naeringsgruppering.csv
-[2026-05-22 08:10:10] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\standard_for_naeringsgruppering.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Standard_for_naeringsgruppering.log
+Errors:
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x0000014544A61D90>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/klass/v1/classifications/6/codes.csv?from=2009-01-01&language=nb&csvSeparator=; (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000014544A61D90>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Virksomheter/nace_klassifisering.py", line 232, in <module>
+    df_raw = download_standard_for_naeringsgruppering()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Virksomheter/nace_klassifisering.py", line 44, in download_standard_for_naeringsgruppering
+    df = fetch_data(
+         ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 45, in fetch_data
+    response = requests.get(url)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/klass/v1/classifications/6/codes.csv?from=2009-01-01&language=nb&csvSeparator=; (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000014544A61D90>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/nace_klassifisering.py` failed. (See above for error)

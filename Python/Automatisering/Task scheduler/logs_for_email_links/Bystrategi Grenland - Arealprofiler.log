@@ -2,12 +2,14 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Data successfully loaded. Shape: (73043, 6)
-Columns: ['statistikkvariabel', 'kommunenr', 'kommune', 'Ã¥r', 'verdi', 'klasse']
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\arealprofiler.csv
-[2026-05-22 08:24:25] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\arealprofiler.csv
-No new data detected in arealprofiler.csv.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bystrategi_Grenland_-_Arealprofiler.log
-All tasks completed successfully.
+Error occurred while downloading the file: HTTPSConnectionPool(host='www.ssb.no', port=443): Max retries exceeded with url: /natur-og-miljo/areal/arealprofiler/_/attachment/download/e4df8809-39df-4c28-94c2-997fdbd2a6db:00ad9738b90efb99f39fb0247125832e538d3e71/arealprofiler2020_ettark.xlsx (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001F27FE4BA10>, 'Connection to www.ssb.no timed out. (connect timeout=None)'))
 
+
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.py", line 71, in <module>
+    df = df.drop(columns=["kommunenr"])
+         ^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'drop'
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.py` failed. (See above for error)

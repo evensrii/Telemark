@@ -13,16 +13,18 @@ Loading query from file...
 
 Fetching data from FHI API...
 FHI Query JSON-stat data loaded successfully.
-  âœ“ Fetched 22800 rows and 7 columns
+  âœ“ Fetched 4560 rows and 7 columns
   Columns: Geografi, Ã…r, KjÃ¸nn, Alder, Krefttyper, MÃ¥ltall, value
 
-After processing: 22800 rows and 7 columns
+After processing: 4560 rows and 8 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\kreft_nye_tilfeller_tiaarige_tall.csv
-[2026-05-20 08:18:02] No new data to upload. Skipping GitHub update.
+[2026-07-01 10:33:44] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\kreft_nye_tilfeller_tiaarige_tall.csv
   âœ“ No changes detected
+
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\kreft_nye_tilfeller_tiaarige_tall.csv
 
 ======================================================================
 Processing complete

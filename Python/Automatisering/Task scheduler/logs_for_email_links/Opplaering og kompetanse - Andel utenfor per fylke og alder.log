@@ -2,10 +2,85 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Andel utenfor per fylke og alder (13563) JSON-stat data loaded successfully.
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_utenfor_fylke_alder.csv
-[2026-05-22 08:08:12] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_utenfor_fylke_alder.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Andel_utenfor_per_fylke_og_alder.log
+Request error in Andel utenfor per fylke og alder (13563): HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13563/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=top(1)&valuecodes%5BRegion%5D=F-31,F-32,F-03,F-34,F-33,F-39,F-40,F-42,F-11,F-46,F-15,F-50,F-18,F-55,F-56&codelist%5BRegion%5D=agg_KommFylker&valuecodes%5BHovArbStyrkStatus%5D=TOT3,NEET2&codelist%5BHovArbStyrkStatus%5D=vs_ArbStatus2018niva4a&valuecodes%5BAlder%5D=15-29,30-61&heading=ContentsCode,Tid,Alder&stub=Region,HovArbStyrkStatus (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000022DFB8E35F0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13563/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=top(1)&valuecodes%5BRegion%5D=F-31,F-32,F-03,F-34,F-33,F-39,F-40,F-42,F-11,F-46,F-15,F-50,F-18,F-55,F-56&codelist%5BRegion%5D=agg_KommFylker&valuecodes%5BHovArbStyrkStatus%5D=TOT3,NEET2&codelist%5BHovArbStyrkStatus%5D=vs_ArbStatus2018niva4a&valuecodes%5BAlder%5D=15-29,30-61&heading=ContentsCode,Tid,Alder&stub=Region,HovArbStyrkStatus (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000022DFB8E35F0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Email notifications disabled. Errors in andel_utenfor_fylke_alder.py were not sent.
 
+
+Errors:
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x0000022DFB8E35F0>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13563/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=top(1)&valuecodes%5BRegion%5D=F-31,F-32,F-03,F-34,F-33,F-39,F-40,F-42,F-11,F-46,F-15,F-50,F-18,F-55,F-56&codelist%5BRegion%5D=agg_KommFylker&valuecodes%5BHovArbStyrkStatus%5D=TOT3,NEET2&codelist%5BHovArbStyrkStatus%5D=vs_ArbStatus2018niva4a&valuecodes%5BAlder%5D=15-29,30-61&heading=ContentsCode,Tid,Alder&stub=Region,HovArbStyrkStatus (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000022DFB8E35F0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃ¦ring_og_kompetanse/Utenforskap/andel_utenfor_fylke_alder.py", line 35, in <module>
+    df = fetch_data(
+         ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 45, in fetch_data
+    response = requests.get(url)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13563/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=top(1)&valuecodes%5BRegion%5D=F-31,F-32,F-03,F-34,F-33,F-39,F-40,F-42,F-11,F-46,F-15,F-50,F-18,F-55,F-56&codelist%5BRegion%5D=agg_KommFylker&valuecodes%5BHovArbStyrkStatus%5D=TOT3,NEET2&codelist%5BHovArbStyrkStatus%5D=vs_ArbStatus2018niva4a&valuecodes%5BAlder%5D=15-29,30-61&heading=ContentsCode,Tid,Alder&stub=Region,HovArbStyrkStatus (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000022DFB8E35F0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃ¦ring_og_kompetanse/Utenforskap/andel_utenfor_fylke_alder.py", line 45, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/02_Opplæring_og_kompetanse/Utenforskap/andel_utenfor_fylke_alder.py` failed. (See above for error)

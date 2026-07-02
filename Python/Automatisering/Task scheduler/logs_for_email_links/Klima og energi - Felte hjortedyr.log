@@ -2,20 +2,85 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Elg JSON-stat data loaded successfully.
-Hjort JSON-stat data loaded successfully.
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 40 entries, 0 to 39
-Data columns (total 2 columns):
- #   Column              Non-Null Count  Dtype 
----  ------              --------------  ----- 
- 0   JaktÃ¥r              40 non-null     object
- 1   Antall felte hjort  40 non-null     int64 
-dtypes: int64(1), object(1)
-memory usage: 772.0+ bytes
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\antall_felte_elg_og_hjort.csv
-[2026-05-22 08:14:11] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\antall_felte_elg_og_hjort.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Felte_hjortedyr.log
+Request error in Elg: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/03432/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000025BE865BA10>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/03432/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000025BE865BA10>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Email notifications disabled. Errors in antall_felt.py were not sent.
 
+
+Errors:
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x0000025BE865BA10>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/03432/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000025BE865BA10>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py", line 48, in <module>
+    df_elg = fetch_data(
+             ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 43, in fetch_data
+    response = requests.post(url, json=payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/03432/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000025BE865BA10>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py", line 60, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Ressursforvaltning/antall_felt.py` failed. (See above for error)

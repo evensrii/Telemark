@@ -2,27 +2,85 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Antall boliger etter type og bosattes alder (11031) JSON-stat data loaded successfully.
-      region        alder  ...                      bygningstype    value
-0  Porsgrunn  Alder i alt  ...                     Boliger i alt  36621.0
-1  Porsgrunn  Alder i alt  ...                          Enebolig  22082.0
-2  Porsgrunn  Alder i alt  ...                      Tomannsbolig   2834.0
-3  Porsgrunn  Alder i alt  ...  Rekkehus, kjedehus, andre smÃ¥hus   5234.0
-4  Porsgrunn  Alder i alt  ...                        Boligblokk   5108.0
+Request error in Antall boliger etter type og bosattes alder (11031): HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/11031/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2024)&valuecodes%5BRegion%5D=4001,4003,4005,4012,4014,4020&codelist%5BRegion%5D=vs_KommunStore&valuecodes%5BByggeareal%5D=*&valuecodes%5BAlder%5D=*&heading=ContentsCode,Tid,Byggeareal&stub=Region,Alder (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001B156908EF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/11031/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2024)&valuecodes%5BRegion%5D=4001,4003,4005,4012,4014,4020&codelist%5BRegion%5D=vs_KommunStore&valuecodes%5BByggeareal%5D=*&valuecodes%5BAlder%5D=*&heading=ContentsCode,Tid,Byggeareal&stub=Region,Alder (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001B156908EF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Email notifications disabled. Errors in antall_boliger_etter_type_og_bosattes_alder.py were not sent.
 
-[5 rows x 6 columns]
-['region', 'alder', 'statistikkvariabel', 'Ã¥r', 'bygningstype', 'value']
-  Kommunenummer    Kommune    Alder  ...  SortBygningstype  Antall     Andel
-0          4001  Porsgrunn  0-19 Ã¥r  ...                 5   113.0  0.041453
-1          4001  Porsgrunn  0-19 Ã¥r  ...                 1  7844.0  0.107097
-2          4001  Porsgrunn  0-19 Ã¥r  ...                 2  5608.0  0.126981
-3          4001  Porsgrunn  0-19 Ã¥r  ...                 4   475.0  0.046496
-4          4001  Porsgrunn  0-19 Ã¥r  ...                 3  1648.0  0.102132
 
-[5 rows x 9 columns]
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\antall_boliger_etter_type_og_bosattes_alder.csv
-[2026-05-22 08:21:24] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\antall_boliger_etter_type_og_bosattes_alder.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Antall_boliger_etter_type_og_bosattes_alder.log
+Errors:
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x000001B156908EF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/11031/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2024)&valuecodes%5BRegion%5D=4001,4003,4005,4012,4014,4020&codelist%5BRegion%5D=vs_KommunStore&valuecodes%5BByggeareal%5D=*&valuecodes%5BAlder%5D=*&heading=ContentsCode,Tid,Byggeareal&stub=Region,Alder (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001B156908EF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/antall_boliger_etter_type_og_bosattes_alder.py", line 34, in <module>
+    df = fetch_data(
+         ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 45, in fetch_data
+    response = requests.get(url)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/11031/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2024)&valuecodes%5BRegion%5D=4001,4003,4005,4012,4014,4020&codelist%5BRegion%5D=vs_KommunStore&valuecodes%5BByggeareal%5D=*&valuecodes%5BAlder%5D=*&heading=ContentsCode,Tid,Byggeareal&stub=Region,Alder (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001B156908EF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/antall_boliger_etter_type_og_bosattes_alder.py", line 44, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/antall_boliger_etter_type_og_bosattes_alder.py` failed. (See above for error)

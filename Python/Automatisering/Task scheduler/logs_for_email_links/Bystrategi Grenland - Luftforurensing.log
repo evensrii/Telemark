@@ -3,9 +3,9 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 === Luftforurensning Grenland (Excel) ===
-Script started: 2026-05-22 08:24:05
+Script started: 2026-07-02 09:13:42
 === Listing Excel files from GitHub ===
-Found 18 Excel files:
+Found 19 Excel files:
   - PM10 og NO2 dÃ¸gn 2014 (KM og FM, mangler).xlsx
   - PM10 og NO2 dÃ¸gn 2015 (KM og FM mangler).xlsx
   - PM10 og NO2 dÃ¸gn 2016 (KM mangler).xlsx
@@ -24,6 +24,7 @@ Found 18 Excel files:
   - PM10 og NO2 dÃ¸gn jan-jun 2025.xlsx
   - PM10 og NO2 dÃ¸gn november 2025.xlsx
   - PM10 og NO2 dÃ¸gn jan-feb 2026.xlsx
+  - PM10 og NO2 dÃ¸gn mars-mai 2026.xlsx
 
 Downloading: PM10 og NO2 dÃ¸gn 2014 (KM og FM, mangler).xlsx
   Loaded 365 rows, 12 cols
@@ -79,7 +80,10 @@ Downloading: PM10 og NO2 dÃ¸gn november 2025.xlsx
 Downloading: PM10 og NO2 dÃ¸gn jan-feb 2026.xlsx
   Loaded 59 rows, 20 cols
 
-Combining 18 DataFrames...
+Downloading: PM10 og NO2 dÃ¸gn mars-mai 2026.xlsx
+  Loaded 62 rows, 20 cols
+
+Combining 19 DataFrames...
   Standardized DataFrame 1: (365, 20)
   Standardized DataFrame 2: (365, 20)
   Standardized DataFrame 3: (366, 20)
@@ -98,6 +102,7 @@ Combining 18 DataFrames...
   Standardized DataFrame 16: (181, 20)
   Standardized DataFrame 17: (30, 20)
   Standardized DataFrame 18: (59, 20)
+  Standardized DataFrame 19: (62, 20)
 
 === Final transformations ===
 âœ“ Removed 'Til-tid'
@@ -107,9 +112,9 @@ Combining 18 DataFrames...
 âœ“ Ensured 9 measurement columns are float64
 âœ“ Rounded 18 numeric columns to 8 decimal places
 âœ“ Ensured proper data types for CSV consistency
-Final shape: (4412, 19)
+Final shape: (4474, 19)
 
-Processed total rows: 4412
+Processed total rows: 4474
 Preview:
          Dato  Furulund NO2 Âµg/mÂ³  ...  Datadekning (%).7  Datadekning (%).8
 0  2014-01-01                 NaN  ...                NaN                NaN
@@ -118,16 +123,16 @@ Preview:
 
 [3 rows x 19 columns]
 
-Date range: 2014-01-01 to 2026-02-28
+Date range: 2014-01-01 to 2026-05-01
 Data types: {dtype('float64'): 18, dtype('O'): 1}
 Column order: ['Dato', 'Furulund NO2 Âµg/mÂ³', 'Furulund PM10 Âµg/mÂ³', 'Haukenes NO2 Âµg/mÂ³', 'Knarrdalstranda NO2 Âµg/mÂ³']...['Datadekning (%).6', 'Datadekning (%).7', 'Datadekning (%).8']
 
-NaN counts per column: {'Furulund NO2 Âµg/mÂ³': np.int64(939), 'Furulund PM10 Âµg/mÂ³': np.int64(1323), 'Haukenes NO2 Âµg/mÂ³': np.int64(120), 'Knarrdalstranda NO2 Âµg/mÂ³': np.int64(1187), 'Knarrdalstranda PM10 Âµg/mÂ³': np.int64(1233), 'Lensmannsdalen NO2 Âµg/mÂ³': np.int64(103), 'Lensmannsdalen PM10 Âµg/mÂ³': np.int64(109), 'Sverresgate NO2 Âµg/mÂ³': np.int64(98), 'Sverresgate PM10 Âµg/mÂ³': np.int64(57), 'Datadekning (%)': np.int64(109), 'Datadekning (%).1': np.int64(105), 'Datadekning (%).2': np.int64(118), 'Datadekning (%).3': np.int64(98), 'Datadekning (%).4': np.int64(57), 'Datadekning (%).5': np.int64(939), 'Datadekning (%).6': np.int64(1323), 'Datadekning (%).7': np.int64(1233), 'Datadekning (%).8': np.int64(1187)}
+NaN counts per column: {'Furulund NO2 Âµg/mÂ³': np.int64(939), 'Furulund PM10 Âµg/mÂ³': np.int64(1323), 'Haukenes NO2 Âµg/mÂ³': np.int64(120), 'Knarrdalstranda NO2 Âµg/mÂ³': np.int64(1187), 'Knarrdalstranda PM10 Âµg/mÂ³': np.int64(1233), 'Lensmannsdalen NO2 Âµg/mÂ³': np.int64(103), 'Lensmannsdalen PM10 Âµg/mÂ³': np.int64(112), 'Sverresgate NO2 Âµg/mÂ³': np.int64(98), 'Sverresgate PM10 Âµg/mÂ³': np.int64(57), 'Datadekning (%)': np.int64(109), 'Datadekning (%).1': np.int64(105), 'Datadekning (%).2': np.int64(118), 'Datadekning (%).3': np.int64(98), 'Datadekning (%).4': np.int64(57), 'Datadekning (%).5': np.int64(939), 'Datadekning (%).6': np.int64(1326), 'Datadekning (%).7': np.int64(1233), 'Datadekning (%).8': np.int64(1187)}
 
 âœ… Saved copy to temp folder: D:\Scripts\analyse\Telemark\Python\Temp\luftforurensing_grenland.csv
 
 === Comparing with existing GitHub data ===
-Downloaded existing CSV: 4412 rows, 19 columns
+Downloaded existing CSV: 4474 rows, 19 columns
 âœ… No changes detected - data is identical
 
 ðŸŽ¯ RESULT: No new data - Excel files match existing CSV

@@ -1,0 +1,100 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Found 6 prediction files (2016+): ['Framskrevet_folkemengde_2016-2040.csv', 'Framskrevet_folkemengde_2018-2040.csv', 'Framskrevet_folkemengde_2020-2050.csv', 'Framskrevet_folkemengde_2022-2050.csv', 'Framskrevet_folkemengde_2024-2050.csv', 'Framskrevet_folkemengde_2026-2050.csv']
+============================================================
+Step 1: Reading historical data
+============================================================
+Historical data: 4590 rows, years 2000-2026
+Kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+
+============================================================
+Step 2: Reading prediction files
+============================================================
+
+Processing: Framskrevet_folkemengde_2016-2040.csv
+  Kommuner rows: 4250, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+  Fylke row available: YES
+
+Processing: Framskrevet_folkemengde_2018-2040.csv
+  Kommuner rows: 3910, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+  Fylke row available: YES
+
+Processing: Framskrevet_folkemengde_2020-2050.csv
+  Kommuner rows: 5270, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+  Fylke row available: NO
+
+Processing: Framskrevet_folkemengde_2022-2050.csv
+  Kommuner rows: 4930, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+  Fylke row available: NO
+
+Processing: Framskrevet_folkemengde_2024-2050.csv
+  Kommuner rows: 4590, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+  Fylke row available: YES
+
+Processing: Framskrevet_folkemengde_2026-2050.csv
+  Kommuner rows: 4250, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+  Fylke row available: YES
+
+Total prediction kommune rows: 27200
+Framskrivinger: [np.int64(2016), np.int64(2018), np.int64(2020), np.int64(2022), np.int64(2024), np.int64(2026)]
+
+============================================================
+Step 3: Building output CSV
+============================================================
+Output dataset: 31790 rows
+Kilder: ['Framskriving 2016', 'Framskriving 2018', 'Framskriving 2020', 'Framskriving 2022', 'Framskriving 2024', 'Framskriving 2026', 'Historisk']
+Years: 2000 - 2050
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkning_sammenlikning_historisk_og_framskrivinger.csv
+[2026-07-02 08:07:59] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkning_sammenlikning_historisk_og_framskrivinger.csv
+No new data detected.
+
+============================================================
+Step 4: Debug table â€” Total Telemark per year per source
+============================================================
+
+Historical Telemark population at framskriving start years:
+----------------------------------------
+Ã…r          Historisk
+----------------------------------------
+2016          172,494
+2018          173,391
+2020          173,355
+2022          173,970
+2024          177,093
+2026          177,923
+
+
+Total Telemark population per framskriving (selected years):
+----------------------------------------------------------------------
+Kilde                Ã…r       Sum kommuner    Fylke-rad     Diff
+----------------------------------------------------------------------
+Framskriving 2016    2016          172,494      172,494        0
+Framskriving 2016    2028          182,604      182,604        0
+Framskriving 2016    2040          192,122      192,122        0
+
+Framskriving 2018    2018          173,391      173,391        0
+Framskriving 2018    2029          179,876      179,876        0
+Framskriving 2018    2040          186,256      186,256        0
+
+Framskriving 2020    2020          173,355          N/A         
+Framskriving 2020    2035          177,286          N/A         
+Framskriving 2020    2050          179,957          N/A         
+
+Framskriving 2022    2022          173,970          N/A         
+Framskriving 2022    2036          178,927          N/A         
+Framskriving 2022    2050          181,352          N/A         
+
+Framskriving 2024    2024          177,093      177,093        0
+Framskriving 2024    2037          183,410      183,410        0
+Framskriving 2024    2050          185,686      185,686        0
+
+Framskriving 2026    2026          177,923      177,923        0
+Framskriving 2026    2038          181,629      181,629        0
+Framskriving 2026    2050          184,526      184,526        0
+
+
+Done!
+

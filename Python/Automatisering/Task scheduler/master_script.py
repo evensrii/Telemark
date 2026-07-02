@@ -34,9 +34,13 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell.py"), "Befolkning - Befolkningsframskrivinger siste tabell"), # Befolkning framover
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/kombiner_historisk_og_framskrevet.py"), "Befolkning - Historisk og framskrevet"), # Kombinert de to over
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_egne_intervaller.py"), "Befolkning - Befolkningsframskrivinger egne intervaller"), # Framskrevet med egendefinerte aldersgrupper
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/bidrag_til_samlet_befolkningsvekst.py"), "Befolkning - Bidrag til samlet befolkningsvekst"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/andel_67_pluss.py"), "Befolkning - Andel 67 pluss"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_graf.py"), "Befolkning - Sammenlikning historisk og framskrivinger"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/flytting_til_og_fra_telemark.py"), "Flytting - Til og fra Telemark"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/flytting_til_og_fra_kommunene.py"), "Flytting - Til og fra kommunene"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/folketall.py"), "Befolkning - Folketall"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/befolkningsvekst.py"), "Befolkning - Befolkningsvekst"),
     
     ## Opplæring og kompetanse
     (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa.py"), "Opplaering og kompetanse - Utdanningsnivaa"),
@@ -69,6 +73,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/SSB/kraftproduksjon_ssb.py"), "Klima og energi - Kraftproduksjon Telemark (SSB)"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Strompriser/strompriser.py"), "Klima og energi - Strompriser"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Forbruk/Elhub/elhub.py"), "Klima og energi - Stromforbruk (Elhub)"),
+    (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Forbruk/Elhub/ssb_forbruk.py"), "Klima og energi - Stromforbruk (SSB)"),
     (os.path.join(PYTHON_PATH, "Queries/04_Klima_og_energi/Kraft og energi/Produksjon/Elhub/installert_effekt.py"), "Klima og energi - Installert_effekt (Elhub)"),
 
     ## Idrett, friluftsliv og frivillighet (husk, ingen komma i oppgavenavn)
@@ -82,6 +87,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_innvandrere_i_lavinntekt_fhi.py"), "Innvandrere - Lavinntekt"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_innvandrere.py"), "Innvandrere - Sysselsatte"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_botid_og_landbakgrunn.py"), "Innvandrere - Sysselsatte etter botid og bakgrunn"),
+    (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_bakgrunn.py"), "Innvandrerbefolkningen - Sysselsatte etter bakgrunn"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/deltakere_introduksjonsprogram.py"), "Innvandrere - Deltakere introduksjonsprogrammet"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Introduksjonsprogrammet/etter_introduksjonsprogram.py"), "Innvandrere - Etter introduksjonsprogrammet"),
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/enslige_mindreaarige.py"), "Innvandrere - Enslige mindreaarige"),
@@ -91,21 +97,39 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py"), "Innvandrere - Hoyeste utdanning"),
 
     ## Folkehelse og levekår - FHI
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/doedsaarsaker_ettaarig.py"), "Folkehelse - Dødsårsaker, ettårig"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/fornoeyd_med_helsa_ungdom.py"), "Folkehelse - Fornøyd med helsa - ungdom"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/forventet_levealder_etter_utdanning_7_aarig.py"), "Folkehelse - Forventet levealder etter utdanning, 7 årig"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/hjerte_og_karsykdom_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, ettårige tall"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.py"), "Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/kols_doedsaarsak_ettaarig.py"), "Folkehelse - Kols, dødsårsak, ettårig"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/kreft_nye_tilfeller_tiaarige_tall.py"), "Folkehelse - Kreft, nye tilfeller, tiårige tall"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/psykiske_plager_ungdom.py"), "Folkehelse - Psykiske plager, ungdom"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/psykiske_symptomer_og_lidelser_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Psykiske symptomer og lidelser - primærhelsetjenesten, ettårige tall"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/reseptfrie_smertestillende_legemidler_ungdom.py"), "Folkehelse - Reseptfrie smertestillende legemidler, ungdom"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/selvmord_femaarig.py"), "Folkehelse - Selvmord, femårig"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/sykehusinnlagte_somatikk_ettaarige_inkl_skader.py"), "Folkehelse - Sykehusinnlagte, somatikk, ettårige. inkl. skader"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/tilfredshet_med_livet_ungdom.py"), "Folkehelse - Tilfredshet med livet, ungdom"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Skader og ulykker/skader_kontakt_med_primaerhelsetjeneste_ettaarige_tall.py"), "Folkehelse - Skader, kontakt med primærhelsetjeneste, ettårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Grunnskole/grunnskolepoeng_etter_foreldrenes_utdanningsnivaa.py"), "Folkehelse - Grunnskolepoeng etter foreldrenes utdanningsnivå"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Grunnskole/leseferdigheter_treaarig_5_og_8_trinn.py"), "Folkehelse - Leseferdigheter treårig 5. og 8. trinn"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Grunnskole/mobbing_7_trinn_treaarig.py"), "Folkehelse - Mobbing 7. trinn treårig"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Grunnskole/regneferdighet_treaarig_5_og_8_trinn.py"), "Folkehelse - Regneferdighet treårig 5. og 8. trinn"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Grunnskole/trvisel_10_klasse_treaarig.py"), "Folkehelse - Trvisel 10. klasse treårig"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Dødsårsaker/doedsaarsaker_tiaarig.py"), "Folkehelse - Dødsårsaker tiårig"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Dødsårsaker/selvmord.py"), "Folkehelse - Selvmord"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Forventet levealder/forventet_levealder_7_aarig.py"), "Folkehelse - Forventet levealder 7 årig"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Hjerte- og karsykdommer/hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.py"), "Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Hjerte- og karsykdommer/sykehusinnlagte_sykdommer_og_skader.py"), "Folkehelse - Sykehusinnlagte sykdommer og skader"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Psykisk helse/psykiske_symptomer_og_lidelser_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Psykiske symptomer og lidelser - primærhelsetjenesten, ettårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Sykdomsgrupper/kreft_doedsaarsak_ettaarig.py"), "Folkehelse - Kreft dødsårsak ettårig"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Sykdomsgrupper/kreft_nye_tilfeller_tiaarige_tall.py"), "Folkehelse - Kreft, nye tilfeller, tiårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Sykdomsgrupper/muskel_og_skjelettplager_lidelser_kontakt_med_primaerhelsetjenesten_ettaarige_tall.py"), "Folkehelse - Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Sykdomsgrupper/overvekt_og_fedme_17_aar_fireaarig.py"), "Folkehelse - Overvekt og fedme, 17 år, fireårig"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Vaksinasjon/barnevaksinasjonsprogrammet.py"), "Folkehelse - Barnevaksinasjonsprogrammet"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Vaksinasjon/influensavaksinerte_over_65_aar.py"), "Folkehelse - Influensavaksinerte over 65 år"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Miljø/drikkevann.py"), "Folkehelse - Drikkevann"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Miljø/luftforurensning.py"), "Folkehelse - Luftforurensning"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Barnevern/barnevern.py"), "Folkehelse - barnevern"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/gjeld_over_tre_ganger_inntekt_husholdninger.py"), "Folkehelse - Gjeld over tre ganger inntekt, husholdninger"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/inntektsulikhet.py"), "Folkehelse - Inntektsulikhet"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/vedvarende_lavinntekt_etter_innvandringskategori_kommunegrense.py"), "Folkehelse - Vedvarende lavinntekt etter innvandringskategori, kommunegrense"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Trangboddhet/bor_trangt.py"), "Folkehelse - Bor trangt"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Skader og ulykker/Skader/hoftebrudd.py"), "Folkehelse - Hoftebrudd"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Skader og ulykker/Skader/skader_sykehusinnlagte_somatikk_treaarige_tall.py"), "Folkehelse - Skader, sykehusinnlagte, somatikk, treårige tall"),
+
+    ## Folkehelse og levekår - SSB
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/dekningsgrad.py"), "Folkehelse - Dekningsgrad barnehage"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/minoriteter_bhg_pbi.py"), "Folkehelse - Minoriteter barnehage"),
+
+    ## Folkehelse og levekår - Udir
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/Udir/pedagognorm.py"), "Folkehelse - Pedagognorm barnehager"),
 
     ## Areal og stedsutvikling
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py"), "Areal - Jordbruksareal per kommune"),

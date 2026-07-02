@@ -2,36 +2,85 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Sysselsetting i kommunene (new codes) JSON-stat data loaded successfully.
+Request error in Sysselsetting i kommunene (new codes): HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/06445/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001A359092960>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/06445/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001A359092960>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Email notifications disabled. Errors in sysselsetting_i_kommunene.py were not sent.
 
-Fetched data:
-          Kommune  Andel sysselsatte (2025)          Label
-0       Porsgrunn                      64.1      Porsgrunn
-1           Skien                      64.2          Skien
-2        Notodden                      63.9       Notodden
-3          Siljan                      69.8         Siljan
-4          Bamble                      63.8         Bamble
-5         KragerÃ¸                      61.3        KragerÃ¸
-6       Drangedal                      62.7      Drangedal
-7            Nome                      62.4           Nome
-8   Midt-Telemark                      62.4  Midt-Telemark
-9         Seljord                      67.4        Seljord
-10       Hjartdal                      68.1       Hjartdal
-11           Tinn                      66.8           Tinn
-12      Kviteseid                      66.4      Kviteseid
-13       Nissedal                      63.7       Nissedal
-14       Fyresdal                      68.7       Fyresdal
-15          Tokke                      69.3          Tokke
-16          Vinje                      71.7          Vinje
 
-Data types:
-Kommune                      object
-Andel sysselsatte (2025)    float64
-Label                        object
-dtype: object
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
-[2026-05-20 08:08:18] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_i_kommunene.log
+Errors:
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x000001A359092960>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/06445/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001A359092960>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py", line 130, in <module>
+    df = fetch_data(
+         ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 43, in fetch_data
+    response = requests.post(url, json=payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/06445/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001A359092960>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py", line 151, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py` failed. (See above for error)

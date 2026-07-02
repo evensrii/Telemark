@@ -877,12 +877,86 @@ else:
 print(f"New data status log written to {new_data_status_file}")  
 
 
-################################ Landet utenom Oslo, siste år (for tekst på nettside)
+################################ Telemark, siste år (for tabell) + Landet utenom Oslo (for tekst på nettside)
 
 POST_URL = "https://data.ssb.no/api/v0/no/table/09429/"
 
-# Spørring for å hente ut data fra SSB
-payload = {
+# --- Spørring 1: Telemark only ---
+payload_telemark = {
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "agg_single:FylkerGjeldende",
+        "values": [
+          "40"
+        ]
+      }
+    },
+    {
+      "code": "Nivaa",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "01",
+          "02a",
+          "11",
+          "03a",
+          "04a",
+          "09a"
+        ]
+      }
+    },
+    {
+      "code": "Kjonn",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "0"
+        ]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "Personer"
+        ]
+      }
+    },
+    {
+      "code": "Tid",
+      "selection": {
+        "filter": "top",
+        "values": [
+          "1"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}
+
+try:
+    df_antall_telemark = fetch_data(
+        url=POST_URL,
+        payload=payload_telemark,
+        error_messages=error_messages,
+        query_name="Antall Telemark siste år",
+        response_type="json",
+    )
+except Exception as e:
+    print(f"Error occurred: {e}")
+    notify_errors(error_messages, script_name=script_name)
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+
+# --- Spørring 2: Alle fylker utenom Oslo (for "andel" sentence) ---
+payload_landet = {
   "query": [
     {
       "code": "Region",
@@ -953,18 +1027,13 @@ payload = {
   }
 }
 
-
-## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
-
 try:
     df_antall_alle_fylker = fetch_data(
         url=POST_URL,
-        payload=payload,  # The JSON payload for POST requests. If None, a GET request is used.
+        payload=payload_landet,
         error_messages=error_messages,
         query_name="Antall alle fylker siste år",
-        response_type="json",  # The expected response type, either 'json' or 'csv'.
-        # delimiter=";", # The delimiter for CSV data (default: ';').
-        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+        response_type="json",
     )
 except Exception as e:
     print(f"Error occurred: {e}")
@@ -973,32 +1042,34 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-# Get the year from the data (since we use "top 1" filter)
-latest_year = df_antall_alle_fylker['år'].iloc[0] if 'år' in df_antall_alle_fylker.columns else "ukjent år"
+# --- Telemark: tabell og totalt antall ---
+latest_year = df_antall_telemark['år'].iloc[0] if 'år' in df_antall_telemark.columns else "ukjent år"
 
-# Calculate percentage of each education level (nivå)
-# Group by 'nivå' and sum the values to get total for each education level
-df_nivaa_summary = df_antall_alle_fylker.groupby('nivå')['value'].sum().reset_index()
+df_nivaa_summary = df_antall_telemark.groupby('nivå')['value'].sum().reset_index()
 df_nivaa_summary.columns = ['nivå', 'antall']
 
-# Calculate total across all education levels
 total_personer = df_nivaa_summary['antall'].sum()
 
-# Calculate percentage for each education level
 df_nivaa_summary['prosent'] = (df_nivaa_summary['antall'] / total_personer * 100).round(2)
 
-# Sort by percentage descending for better readability
 df_nivaa_summary = df_nivaa_summary.sort_values('prosent', ascending=False).reset_index(drop=True)
 
-print(f"\nUtdanningsnivå fordeling for {latest_year}:")
+print(f"\nUtdanningsnivå fordeling for Telemark, {latest_year}:")
 print(f"Total antall personer: {total_personer:,}")
 print("\nFordeling per utdanningsnivå:")
 print(df_nivaa_summary.to_string(index=False))
 
-# Calculate the sum of "Universitets- og høgskolenivå, kort" og "Universitets- og høgskolenivå, lang"
-universitets_prosent = df_nivaa_summary[df_nivaa_summary['nivå'].isin(['Universitets- og høgskolenivå, kort', 'Universitets- og høgskolenivå, lang'])]['prosent'].sum()
+universitets_prosent_telemark = df_nivaa_summary[df_nivaa_summary['nivå'].isin(['Universitets- og høgskolenivå, kort', 'Universitets- og høgskolenivå, lang'])]['prosent'].sum()
+print(f"\nAndel personer i Telemark med høyere utdanning (kort eller lang): {universitets_prosent_telemark:.1f} %")
 
-# Print a sentence "Andel personer i landet utenom Oslo som har høyere utdanning (kort eller lang) er {universitets_prosent:.1f} %"
-print(f"Andel personer i landet utenom Oslo som har høyere utdanning (kort eller lang) er {universitets_prosent:.1f} %")
+# --- Landet utenom Oslo: "andel" sentence ---
+df_landet_summary = df_antall_alle_fylker.groupby('nivå')['value'].sum().reset_index()
+df_landet_summary.columns = ['nivå', 'antall']
+total_landet = df_landet_summary['antall'].sum()
+df_landet_summary['prosent'] = (df_landet_summary['antall'] / total_landet * 100).round(2)
+
+universitets_prosent = df_landet_summary[df_landet_summary['nivå'].isin(['Universitets- og høgskolenivå, kort', 'Universitets- og høgskolenivå, lang'])]['prosent'].sum()
+
+print(f"\nAndel personer i landet utenom Oslo som har høyere utdanning (kort eller lang) er {universitets_prosent:.1f} %")
 
 

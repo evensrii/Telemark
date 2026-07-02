@@ -2,96 +2,58 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Found 2 tables matching 'Framskrevet folkemengde'
-
-Most recent regional (K) table:
-  Table ID: 14288
-  Label: 14288: Framskrevet folkemengde 1. januar, etter kjÃ¸nn og alder, i 9 alternativer (K) 2024-2050
-  Period: 2024-2050
-  Updated: 2024-09-13
-
-Metadata for table 14288:
-  Telemark municipalities: 17 found
-  Region codelist: vs_KommunFram2024Agg
-  Age codelist: agg_Funksjonell4
-  ContentsCode: ['Personer', 'Personer1', 'Personer2', 'Personer3', 'Personer4', 'Personer5', 'Personer6', 'Personer7', 'Personer8']
-  Period: 2024-2050
-
-Querying Telemark kommuner from table 14288...
-  URL: https://data.ssb.no/api/pxwebapi/v2/tables/14288/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=Personer,...
-Siste framskriving 14288 - Telemark kommuner JSON-stat data loaded successfully.
-  -> Got 13770 rows
-
-Querying Telemark fylke from table 14288...
-  URL: https://data.ssb.no/api/pxwebapi/v2/tables/14288/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=Personer,...
-Siste framskriving 14288 - Telemark fylke JSON-stat data loaded successfully.
-  -> Got 810 rows
-
-Querying Norge from table 14288...
-  URL: https://data.ssb.no/api/pxwebapi/v2/tables/14288/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=Personer,...
-Siste framskriving 14288 - Norge JSON-stat data loaded successfully.
-  -> Got 810 rows
-
-Combined data: 15390 rows
-  Columns: ['region', 'statistikkvariabel', 'Ã¥r', 'alder', 'value']
-  Regions: ['Bamble', 'Drangedal', 'Fyresdal', 'Hele landet', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Telemark', 'Tinn', 'Tokke', 'Vinje']
-      region        statistikkvariabel    Ã¥r     alder  value
-0  Porsgrunn  Hovedalternativet (MMMM)  2024      0 Ã¥r    303
-1  Porsgrunn  Hovedalternativet (MMMM)  2024    1-5 Ã¥r   1733
-2  Porsgrunn  Hovedalternativet (MMMM)  2024   6-12 Ã¥r   2781
-3  Porsgrunn  Hovedalternativet (MMMM)  2024  13-15 Ã¥r   1351
-4  Porsgrunn  Hovedalternativet (MMMM)  2024  16-19 Ã¥r   1760
-
-Existing data year range: 2024-2050
-New data year range:      2024-2050
-
-Same framskriving year range â€” no archiving needed.
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell.csv
 
 
 Errors:
 Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\response.py", line 779, in _error_catcher
-    yield
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\response.py", line 925, in _raw_read
-    raise IncompleteRead(self._fp_bytes_read, self.length_remaining)
-urllib3.exceptions.IncompleteRead: IncompleteRead(617385 bytes read, 381003 more expected)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 820, in generate
-    yield from self.raw.stream(chunk_size, decode_content=True)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\response.py", line 1091, in stream
-    data = self.read(amt=amt, decode_content=decode_content)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\response.py", line 1008, in read
-    data = self._raw_read(amt)
-           ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\response.py", line 903, in _raw_read
-    with self._error_catcher():
-         ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\contextlib.py", line 158, in __exit__
-    self.gen.throw(value)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\response.py", line 803, in _error_catcher
-    raise ProtocolError(arg, e) from e
-urllib3.exceptions.ProtocolError: ('Connection broken: IncompleteRead(617385 bytes read, 381003 more expected)', IncompleteRead(617385 bytes read, 381003 more expected))
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x00000225E176AD50>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables?query=title%3AFramskrevet+folkemengde&lang=no&pagesize=50&pageNumber=1 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000225E176AD50>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell.py", line 295, in <module>
-    is_new_data = handle_output_data(df, file_name, github_folder, temp_folder, keepcsv=True)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 590, in handle_output_data
-    is_new_data = compare_to_github(
-                  ^^^^^^^^^^^^^^^^^^
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 182, in compare_to_github
-    existing_data = download_github_file(f"{github_folder}/{file_name}")
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 73, in download_github_file
-    response = requests.get(url, headers=headers)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell.py", line 42, in <module>
+    r = requests.get(base_url, params=params)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 73, in get
     return request("get", url, params=params, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -101,13 +63,11 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 589, in request
     resp = self.send(prep, **send_kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 746, in send
-    r.content
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 902, in content
-    self._content = b"".join(self.iter_content(CONTENT_CHUNK_SIZE)) or b""
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 822, in generate
-    raise ChunkedEncodingError(e)
-requests.exceptions.ChunkedEncodingError: ('Connection broken: IncompleteRead(617385 bytes read, 381003 more expected)', IncompleteRead(617385 bytes read, 381003 more expected))
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables?query=title%3AFramskrevet+folkemengde&lang=no&pagesize=50&pageNumber=1 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000225E176AD50>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 
 ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell.py` failed. (See above for error)
