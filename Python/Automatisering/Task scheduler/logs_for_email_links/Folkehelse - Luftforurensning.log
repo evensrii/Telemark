@@ -1,0 +1,33 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+
+======================================================================
+FHI Query: Luftforurensning.txt
+======================================================================
+
+Loading query from file...
+  âœ“ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/803/data
+
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  âœ“ Fetched 19 rows and 4 columns
+  Columns: Geografi, Ã…r, MÃ¥ltall, value
+
+After processing: 19 rows and 6 columns
+
+Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\luftforurensning.csv
+[2026-07-02 09:07:18] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\luftforurensning.csv
+  âœ“ No changes detected
+
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\luftforurensning.csv
+
+======================================================================
+Processing complete
+======================================================================
+
+
