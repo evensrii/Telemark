@@ -2,7 +2,7 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Error occurred while downloading the file: HTTPSConnectionPool(host='www.ssb.no', port=443): Max retries exceeded with url: /natur-og-miljo/areal/arealprofiler/_/attachment/download/e4df8809-39df-4c28-94c2-997fdbd2a6db:00ad9738b90efb99f39fb0247125832e538d3e71/arealprofiler2020_ettark.xlsx (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001DD35523200>, 'Connection to www.ssb.no timed out. (connect timeout=None)'))
+Error occurred while downloading the file: HTTPSConnectionPool(host='www.ssb.no', port=443): Max retries exceeded with url: /natur-og-miljo/areal/arealprofiler/_/attachment/download/e4df8809-39df-4c28-94c2-997fdbd2a6db:00ad9738b90efb99f39fb0247125832e538d3e71/arealprofiler2020_ettark.xlsx (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001F27FE4BA10>, 'Connection to www.ssb.no timed out. (connect timeout=None)'))
 
 
 Errors:
