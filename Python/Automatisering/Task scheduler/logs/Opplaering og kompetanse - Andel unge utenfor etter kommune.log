@@ -1,7 +1,11 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
+<<<<<<< HEAD
 Request error in Andel unge utenfor arbeid og utdanning (13556): HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13556/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=BosatteProsent&valuecodes%5BTid%5D=top(1)&valuecodes%5BRegion%5D=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036&codelist%5BRegion%5D=agg_KommGjeldende&valuecodes%5BHovArbStyrkStatus%5D=NEET&codelist%5BHovArbStyrkStatus%5D=vs_ArbStatus2018niva4&valuecodes%5BAlder%5D=15-29&valuecodes%5BKjonn%5D=0&heading=Tid,ContentsCode,HovArbStyrkStatus&stub=Region,Alder,Kjonn (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000274EA2F9E20>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13556/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=BosatteProsent&valuecodes%5BTid%5D=top(1)&valuecodes%5BRegion%5D=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036&codelist%5BRegion%5D=agg_KommGjeldende&valuecodes%5BHovArbStyrkStatus%5D=NEET&codelist%5BHovArbStyrkStatus%5D=vs_ArbStatus2018niva4&valuecodes%5BAlder%5D=15-29&valuecodes%5BKjonn%5D=0&heading=Tid,ContentsCode,HovArbStyrkStatus&stub=Region,Alder,Kjonn (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000274EA2F9E20>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in andel_unge_utenfor_kommuner.py were not sent.
@@ -84,3 +88,23 @@ Traceback (most recent call last):
 RuntimeError: A critical error occurred during data fetching, stopping execution.
 
 ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/02_Opplæring_og_kompetanse/Utenforskap/andel_unge_utenfor_kommuner.py` failed. (See above for error)
+=======
+
+Andel unge utenfor arbeid og utdanning (13556) JSON-stat data loaded successfully.
+
+Andel unge utenfor - Hele landet (13556) JSON-stat data loaded successfully.
+
+Andel unge utenfor - Telemark (13556) JSON-stat data loaded successfully.
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_unge_utenfor_kommuner.csv
+
+[2026-07-03 09:43:17] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_unge_utenfor_kommuner.csv
+
+No new data detected.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Andel_unge_utenfor_etter_kommune.log
+
+
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba

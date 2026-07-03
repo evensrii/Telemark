@@ -1,25 +1,26 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
+<<<<<<< HEAD
 Request error in Arbeidsmarkedstilknytning, kommuner: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13563/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000025E10122CF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13563/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000025E10122CF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in arbeidsmarkedstilknytning.py were not sent.
+=======
+
+Arbeidsmarkedstilknytning, kommuner JSON-stat data loaded successfully.
+
+Arbeidsmarkedstilknytning, Telemark JSON-stat data loaded successfully.
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
-    sock = connection.create_connection(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
-    raise err
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
-    sock.connect(sa)
-TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
-The above exception was the direct cause of the following exception:
+Arbeidsmarkedstilknytning i Telemark:
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
     response = self._make_request(
@@ -36,9 +37,13 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
     raise ConnectTimeoutError(
 urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x0000025E10122CF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+=======
+     region                     prioritert arbeidsstyrkestatus  ...    år  value
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-The above exception was the direct cause of the following exception:
+0  Telemark                                        Sysselsatte  ...  2024  85874
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
     resp = conn.urlopen(
@@ -50,9 +55,13 @@ Traceback (most recent call last):
     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13563/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000025E10122CF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+=======
+1  Telemark                          Registrerte arbeidsledige  ...  2024   1611
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-During handling of the above exception, another exception occurred:
+2  Telemark                  Deltakere på arbeidsmarkedstiltak  ...  2024   1865
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning.py", line 91, in <module>
     df_kommuner = fetch_data(
@@ -75,12 +84,116 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
     raise ConnectTimeout(e, request=request)
 requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13563/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000025E10122CF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+=======
+3  Telemark                            Under ordinær utdanning  ...  2024   8715
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-During handling of the above exception, another exception occurred:
+4  Telemark  Mottakere av arbeidsavklaringspenger / uføretrygd  ...  2024  13737
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning.py", line 103, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+5  Telemark                     Mottakere av AFP/alderspensjon  ...  2024  32626
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning.py` failed. (See above for error)
+6  Telemark                                              Andre  ...  2024   6409
+
+
+
+[7 rows x 5 columns]
+
+Arbeidsmarkedstilknytning, Landet JSON-stat data loaded successfully.
+
+Arbeidsmarkedstilknytning, fylker JSON-stat data loaded successfully.
+
+
+
+Pensjonister per fylke:
+
+                               region  ... Andel
+
+26                          Innlandet  ...  22.1
+
+47                           Telemark  ...  21.5
+
+89              Nordland - Nordlánnda  ...  21.3
+
+40                           Vestfold  ...  20.5
+
+75                    Møre og Romsdal  ...  20.3
+
+5                             Østfold  ...  20.1
+
+33                           Buskerud  ...  19.0
+
+96            Troms - Romsa - Tromssa  ...  18.7
+
+103  Finnmark - Finnmárku - Finmarkku  ...  18.5
+
+54                              Agder  ...  18.4
+
+82            Trøndelag - Trööndelage  ...  18.3
+
+68                           Vestland  ...  18.2
+
+12                           Akershus  ...  16.6
+
+61                           Rogaland  ...  16.3
+
+19                      Oslo - Oslove  ...  12.0
+
+
+
+[15 rows x 5 columns]
+
+
+
+Uføre per fylke:
+
+                               region  ... Andel
+
+4                             Østfold  ...  10.4
+
+53                              Agder  ...   9.7
+
+46                           Telemark  ...   9.0
+
+25                          Innlandet  ...   8.9
+
+39                           Vestfold  ...   8.6
+
+88              Nordland - Nordlánnda  ...   8.4
+
+102  Finnmark - Finnmárku - Finmarkku  ...   8.2
+
+32                           Buskerud  ...   7.9
+
+95            Troms - Romsa - Tromssa  ...   7.5
+
+81            Trøndelag - Trööndelage  ...   7.3
+
+60                           Rogaland  ...   6.8
+
+74                    Møre og Romsdal  ...   6.8
+
+67                           Vestland  ...   6.4
+
+11                           Akershus  ...   6.0
+
+18                      Oslo - Oslove  ...   5.7
+
+
+
+[15 rows x 5 columns]
+
+Sysselsatte med arbeidssted i Telemark JSON-stat data loaded successfully.
+
+Sysselsatte med arbeidssted i Telemark i 2025: 78857
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\arbeidsmarkedstilknytning_per_kommune.csv
+
+[2026-07-03 09:43:37] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\arbeidsmarkedstilknytning_per_kommune.csv
+
+No new data detected.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Arbeidsmarkedstilknytning_per_kommune.log
+
+

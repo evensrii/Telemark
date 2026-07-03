@@ -1,7 +1,11 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
+<<<<<<< HEAD
 Request error in Befolkningsvekst Telemark: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/06913/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2022)&valuecodes%5BRegion%5D=K_4001,K_4003,K_4005,K_4010,K_4012,K_4014,K_4016,K_4018,K_4020,K_4022,K_4024,K_4026,K_4028,K_4030,K_4032,K_4034,K_4036&codelist%5BRegion%5D=agg_KommSummerHist&outputValues%5BRegion%5D=aggregated&valuecodes%5BContentsCode%5D=Folkemengde&heading=Tid,ContentsCode&stub=Region (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002D809B4D370>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/06913/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2022)&valuecodes%5BRegion%5D=K_4001,K_4003,K_4005,K_4010,K_4012,K_4014,K_4016,K_4018,K_4020,K_4022,K_4024,K_4026,K_4028,K_4030,K_4032,K_4034,K_4036&codelist%5BRegion%5D=agg_KommSummerHist&outputValues%5BRegion%5D=aggregated&valuecodes%5BContentsCode%5D=Folkemengde&heading=Tid,ContentsCode&stub=Region (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002D809B4D370>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in befolkningsvekst.py were not sent.
@@ -84,3 +88,83 @@ Traceback (most recent call last):
 RuntimeError: A critical error occurred during data fetching, stopping execution.
 
 ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsutvikling/befolkningsvekst.py` failed. (See above for error)
+=======
+
+Befolkningsvekst Telemark JSON-stat data loaded successfully.
+
+Raw data: 85 rows
+
+      region    år    statistikkvariabel  value
+
+0  Porsgrunn  2022  Befolkning 1. januar  36624
+
+1  Porsgrunn  2023  Befolkning 1. januar  37056
+
+2  Porsgrunn  2024  Befolkning 1. januar  37193
+
+3  Porsgrunn  2025  Befolkning 1. januar  37289
+
+4  Porsgrunn  2026  Befolkning 1. januar  37435
+
+5      Skien  2022  Befolkning 1. januar  55513
+
+6      Skien  2023  Befolkning 1. januar  55924
+
+7      Skien  2024  Befolkning 1. januar  56619
+
+8      Skien  2025  Befolkning 1. januar  56866
+
+9      Skien  2026  Befolkning 1. januar  56906
+
+['region', 'år', 'statistikkvariabel', 'value']
+
+Calculating change from 2022 to 2026
+
+          Kommune  Andel (2022-2026)          Label
+
+0       Porsgrunn                  2      Porsgrunn
+
+1           Skien                  3          Skien
+
+2        Notodden                  3       Notodden
+
+3          Siljan                  1         Siljan
+
+4          Bamble                  2         Bamble
+
+5         Kragerø                  0        Kragerø
+
+6       Drangedal                 -1      Drangedal
+
+7            Nome                  1           Nome
+
+8   Midt-Telemark                  6  Midt-Telemark
+
+9         Seljord                  2        Seljord
+
+10       Hjartdal                  5       Hjartdal
+
+11           Tinn                  0           Tinn
+
+12      Kviteseid                  0      Kviteseid
+
+13       Nissedal                  7       Nissedal
+
+14       Fyresdal                  6       Fyresdal
+
+15          Tokke                  5          Tokke
+
+16          Vinje                  2          Vinje
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\befolkningsvekst.csv
+
+[2026-07-03 09:42:35] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\befolkningsvekst.csv
+
+No new data detected.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsvekst.log
+
+
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba

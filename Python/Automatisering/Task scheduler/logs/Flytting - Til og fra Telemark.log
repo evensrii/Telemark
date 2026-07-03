@@ -1,7 +1,11 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
+<<<<<<< HEAD
 Request error in Flytting til Telemark: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13864/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002430420F4D0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13864/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002430420F4D0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in flytting_til_og_fra_telemark.py were not sent.
@@ -84,3 +88,29 @@ Traceback (most recent call last):
 RuntimeError: A critical error occurred during data fetching, stopping execution.
 
 ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Flytting/flytting_til_og_fra_telemark.py` failed. (See above for error)
+=======
+
+Flytting til Telemark JSON-stat data loaded successfully.
+
+Flytting fra Telemark JSON-stat data loaded successfully.
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\tilflytting_til_telemark.csv
+
+[2026-07-03 09:42:13] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\tilflytting_til_telemark.csv
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\fraflytting_fra_telemark.csv
+
+[2026-07-03 09:42:13] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\fraflytting_fra_telemark.csv
+
+No new data detected in tilflytting_til_telemark.csv.
+
+No new data detected in fraflytting_fra_telemark.csv.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Flytting_-_Til_og_fra_Telemark.log
+
+
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba

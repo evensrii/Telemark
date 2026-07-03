@@ -1,22 +1,16 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
 
+Found 2 tables matching 'Framskrevet folkemengde'
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
-    sock = connection.create_connection(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
-    raise err
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
-    sock.connect(sa)
-TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
-The above exception was the direct cause of the following exception:
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
     response = self._make_request(
@@ -33,9 +27,13 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
     raise ConnectTimeoutError(
 urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x00000176D8EE6360>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+=======
+Most recent regional (K) table:
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-The above exception was the direct cause of the following exception:
+  Table ID: 14746
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
     resp = conn.urlopen(
@@ -47,9 +45,141 @@ Traceback (most recent call last):
     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables?query=title%3AFramskrevet+folkemengde&lang=no&pagesize=50&pageNumber=1 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000176D8EE6360>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+=======
+  Label: 14746: Framskrevet folkemengde 1. januar, etter kjønn og alder, i 9 alternativer (K) 2026-2050
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-During handling of the above exception, another exception occurred:
+  Period: 2026-2050
 
+  Updated: 2026-06-12
+
+
+
+Metadata for table 14746:
+
+  Telemark municipalities: 17 found
+
+  Municipality codes: ['4001', '4003', '4005', '4010', '4012', '4014', '4016', '4018', '4020', '4022', '4024', '4026', '4028', '4030', '4032', '4034', '4036']
+
+  Region codelist: vs_KommunFram2024Agg
+
+
+
+Querying Telemark kommuner from table 14746...
+
+  URL: https://data.ssb.no/api/pxwebapi/v2/tables/14746/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=Personer&...
+
+Framskriving egne intervaller - Telemark kommuner JSON-stat data loaded successfully.
+
+
+
+Raw data: 45050 rows
+
+  Columns: ['region', 'alder', 'statistikkvariabel', 'år', 'value']
+
+  Regions: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'Kragerø', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+
+      region alder        statistikkvariabel    år  value
+
+0  Porsgrunn  0 år  Hovedalternativet (MMMM)  2026    320
+
+1  Porsgrunn  0 år  Hovedalternativet (MMMM)  2027    318
+
+2  Porsgrunn  0 år  Hovedalternativet (MMMM)  2028    318
+
+3  Porsgrunn  0 år  Hovedalternativet (MMMM)  2029    319
+
+4  Porsgrunn  0 år  Hovedalternativet (MMMM)  2030    320
+
+
+
+Aggregated data: 2250 rows
+
+  Columns: ['Kommune', 'År', 'Aldersgruppe', 'Personer']
+
+  Age groups: ['0-19 år', '20-39 år', '40-66 år', '67-79 år', '80+ år']
+
+  Kommune    År Aldersgruppe  Personer
+
+0  Bamble  2026      0-19 år      2979
+
+1  Bamble  2026     20-39 år      3186
+
+2  Bamble  2026     40-66 år      4986
+
+3  Bamble  2026     67-79 år      2221
+
+4  Bamble  2026       80+ år       895
+
+5  Bamble  2027      0-19 år      2907
+
+6  Bamble  2027     20-39 år      3213
+
+7  Bamble  2027     40-66 år      4954
+
+8  Bamble  2027     67-79 år      2214
+
+9  Bamble  2027       80+ år       970
+
+
+
+Final data: 2250 rows
+
+  Columns: ['Kommunenummer', 'Kommune', 'Aldersgruppe', 'År', 'Personer', 'SortColumn']
+
+   Kommunenummer Kommune Aldersgruppe          År  Personer  SortColumn
+
+0           4012  Bamble      0-19 år  2026-01-01      2979           1
+
+1           4012  Bamble      0-19 år  2027-01-01      2907           1
+
+2           4012  Bamble      0-19 år  2028-01-01      2847           1
+
+3           4012  Bamble      0-19 år  2029-01-01      2802           1
+
+4           4012  Bamble      0-19 år  2030-01-01      2779           1
+
+5           4012  Bamble      0-19 år  2031-01-01      2771           1
+
+6           4012  Bamble      0-19 år  2032-01-01      2753           1
+
+7           4012  Bamble      0-19 år  2033-01-01      2753           1
+
+8           4012  Bamble      0-19 år  2034-01-01      2753           1
+
+9           4012  Bamble      0-19 år  2035-01-01      2763           1
+
+10          4012  Bamble      0-19 år  2036-01-01      2770           1
+
+11          4012  Bamble      0-19 år  2037-01-01      2766           1
+
+12          4012  Bamble      0-19 år  2038-01-01      2774           1
+
+13          4012  Bamble      0-19 år  2039-01-01      2776           1
+
+14          4012  Bamble      0-19 år  2040-01-01      2772           1
+
+15          4012  Bamble      0-19 år  2041-01-01      2784           1
+
+16          4012  Bamble      0-19 år  2042-01-01      2794           1
+
+17          4012  Bamble      0-19 år  2043-01-01      2806           1
+
+18          4012  Bamble      0-19 år  2044-01-01      2818           1
+
+19          4012  Bamble      0-19 år  2045-01-01      2812           1
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell_egendef_alder.csv
+
+[2026-07-03 09:41:36] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\befolkningsframskrivinger_siste_tabell_egendef_alder.csv
+
+No new data detected.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_egne_intervaller.log
+
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_egne_intervaller.py", line 39, in <module>
     r = requests.get(base_url, params=params)
@@ -69,5 +199,6 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
     raise ConnectTimeout(e, request=request)
 requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables?query=title%3AFramskrevet+folkemengde&lang=no&pagesize=50&pageNumber=1 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000176D8EE6360>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+=======
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_egne_intervaller.py` failed. (See above for error)

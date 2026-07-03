@@ -1,25 +1,50 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
+<<<<<<< HEAD
 Request error in Flytting til og fra Telemark-kommuner: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13864/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=top(1)&valuecodes%5BFraflyttingsregion%5D=*&codelist%5BFraflyttingsregion%5D=agg_KommGjeldende&valuecodes%5BTilflyttRegion%5D=*&codelist%5BTilflyttRegion%5D=agg_KommGjeldende&heading=ContentsCode,Tid,TilflyttRegion&stub=Fraflyttingsregion (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001E65EBC8E90>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13864/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=top(1)&valuecodes%5BFraflyttingsregion%5D=*&codelist%5BFraflyttingsregion%5D=agg_KommGjeldende&valuecodes%5BTilflyttRegion%5D=*&codelist%5BTilflyttRegion%5D=agg_KommGjeldende&heading=ContentsCode,Tid,TilflyttRegion&stub=Fraflyttingsregion (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001E65EBC8E90>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in flytting_til_og_fra_kommunene.py were not sent.
+=======
+
+Flytting til og fra Telemark-kommuner JSON-stat data loaded successfully.
+
+Raw data: 128164 rows
+
+  Columns: ['fraflyttingsregion', 'statistikkvariabel', 'år', 'tilflyttingsregion', 'value']
+
+  fraflyttingsregion       statistikkvariabel    år tilflyttingsregion  value
+
+0             Halden  Innenlandske flyttinger  2025             Halden    0.0
+
+1             Halden  Innenlandske flyttinger  2025               Moss   46.0
+
+2             Halden  Innenlandske flyttinger  2025          Sarpsborg  131.0
+
+3             Halden  Innenlandske flyttinger  2025        Fredrikstad  186.0
+
+4             Halden  Innenlandske flyttinger  2025             Hvaler    8.0
+
+5             Halden  Innenlandske flyttinger  2025               Råde    8.0
+
+6             Halden  Innenlandske flyttinger  2025    Våler (Østfold)    2.0
+
+7             Halden  Innenlandske flyttinger  2025           Skiptvet    6.0
+
+8             Halden  Innenlandske flyttinger  2025      Indre Østfold   14.0
+
+9             Halden  Innenlandske flyttinger  2025          Rakkestad   21.0
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
-    sock = connection.create_connection(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
-    raise err
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
-    sock.connect(sa)
-TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
-The above exception was the direct cause of the following exception:
+After filtering to Telemark: 11883 rows
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
     response = self._make_request(
@@ -36,9 +61,13 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
     raise ConnectTimeoutError(
 urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x000001E65EBC8E90>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+=======
+  Unique fraflyttingsregion: ['Aarborte - Hattfjelldal', 'Alstahaug', 'Alta', 'Alvdal', 'Alver', 'Andøy', 'Aremark', 'Arendal', 'Asker', 'Askvoll', 'Askøy', 'Aukra', 'Aure', 'Aurland', 'Aurskog-Høland', 'Austevoll', 'Austrheim', 'Averøy', 'Balsfjord', 'Bamble', 'Bardu', 'Beiarn', 'Bergen', 'Berlevåg', 'Bindal', 'Birkenes', 'Bjerkreim', 'Bjørnafjorden', 'Bodø', 'Bokn', 'Bremanger', 'Brønnøy', 'Bygland', 'Bykle', 'Båtsfjord', 'Bærum', 'Bø', 'Bømlo', 'Deatnu - Tana', 'Dielddanuorri - Tjeldsund', 'Dovre', 'Drammen', 'Drangedal', 'Dyrøy', 'Dønna', 'Eidfjord', 'Eidskog', 'Eidsvoll', 'Eigersund', 'Elverum', 'Enebakk', 'Engerdal', 'Etne', 'Etnedal', 'Evenes - Evenássi', 'Evje og Hornnes', 'Farsund', 'Fauske - Fuossko', 'Fedje', 'Fitjar', 'Fjaler', 'Fjord', 'Flakstad', 'Flatanger', 'Flekkefjord', 'Flesberg', 'Flå', 'Folldal', 'Fredrikstad', 'Frogn', 'Froland', 'Frosta', 'Frøya', 'Fyresdal', 'Færder', 'Gamvik', 'Gausdal', 'Gildeskål', 'Giske', 'Gjemnes', 'Gjerdrum', 'Gjerstad', 'Gjesdal', 'Gjøvik', 'Gloppen', 'Gol', 'Gran', 'Grane', 'Gratangen - Rivtták', 'Grimstad', 'Grong', 'Grue', 'Gulen', 'Guovdageaidnu - Kautokeino', 'Gáivuotna - Kåfjord - Kaivuono', 'Hadsel', 'Halden', 'Hamar', 'Hammerfest - Hámmerfeasta', 'Haram', 'Hareid', 'Harstad - Hárstták', 'Hasvik', 'Haugesund', 'Heim', 'Hemnes', 'Hemsedal', 'Herøy (Møre og Romsdal)', 'Herøy (Nordland)', 'Hitra', 'Hjartdal', 'Hjelmeland', 'Hol', 'Hole', 'Holmestrand', 'Holtålen', 'Horten', 'Hurdal', 'Hustadvika', 'Hvaler', 'Hyllestad', 'Hábmer - Hamarøy', 'Hå', 'Hægebostad', 'Høyanger', 'Høylandet', 'Ibestad', 'Inderøy', 'Indre Fosen', 'Indre Østfold', 'Iveland', 'Jevnaker', 'Karlsøy', 'Karmøy', 'Kinn', 'Klepp', 'Kongsberg', 'Kongsvinger', 'Kragerø', 'Kristiansand', 'Kristiansund', 'Krødsherad', 'Kvam', 'Kvinesdal', 'Kvinnherad', 'Kviteseid', 'Kvitsøy', 'Kvæfjord', 'Kvænangen', 'Kárásjohka - Karasjok', 'Larvik', 'Lebesby', 'Leirfjord', 'Leka', 'Lesja', 'Levanger - Levangke', 'Lier', 'Lierne', 'Lillehammer', 'Lillesand', 'Lillestrøm', 'Lindesnes', 'Loabák - Lavangen', 'Lom', 'Loppa', 'Lund', 'Lunner', 'Lurøy', 'Luster', 'Lyngdal', 'Lyngen - Ivgu - Yykeä', 'Lærdal', 'Lødingen', 'Lørenskog', 'Løten', 'Malvik', 'Marker', 'Masfjorden', 'Melhus', 'Meløy', 'Meråker', 'Midt-Telemark', 'Midtre Gauldal', 'Modalen', 'Modum', 'Molde', 'Moskenes', 'Moss', 'Målselv', 'Måsøy', 'Namsos - Nåavmesjenjaelmie', 'Namsskogan', 'Nannestad', 'Narvik', 'Nes', 'Nesbyen', 'Nesna', 'Nesodden', 'Nissedal', 'Nittedal', 'Nome', 'Nord-Aurdal', 'Nord-Fron', 'Nord-Odal', 'Nordkapp', 'Nordre Follo', 'Nordre Land', 'Nordreisa - Ráisa - Raisi', 'Nore og Uvdal', 'Notodden', 'Nærøysund', 'Oppdal', 'Orkland', 'Os', 'Osen', 'Oslo - Oslove', 'Osterøy', 'Overhalla', 'Porsanger - Porsángu - Porsanki', 'Porsgrunn', 'Raarvihke - Røyrvik', 'Rakkestad', 'Rana - Raane', 'Randaberg', 'Rauma', 'Rendalen', 'Rennebu', 'Rindal', 'Ringebu', 'Ringerike', 'Ringsaker', 'Risør', 'Rollag', 'Råde', 'Rælingen', 'Rødøy', 'Røros - Rosse', 'Røst', 'Salangen', 'Saltdal', 'Samnanger', 'Sande', 'Sandefjord', 'Sandnes', 'Sarpsborg', 'Sauda', 'Sel', 'Selbu', 'Seljord', 'Senja', 'Sigdal', 'Siljan', 'Sirdal', 'Skaun', 'Skien', 'Skiptvet', 'Skjervøy', 'Skjåk', 'Smøla', 'Snåase - Snåsa', 'Sogndal', 'Sokndal', 'Sola', 'Solund', 'Sortland - Suortá', 'Stad', 'Stange', 'Stavanger', 'Steigen', 'Steinkjer - Stïentje', 'Stjørdal', 'Stor-Elvdal', 'Stord', 'Storfjord - Omasvuotna - Omasvuono', 'Strand', 'Stranda', 'Stryn', 'Sula', 'Suldal', 'Sunndal', 'Sunnfjord', 'Surnadal', 'Sveio', 'Sykkylven', 'Sømna', 'Søndre Land', 'Sør-Aurdal', 'Sør-Fron', 'Sør-Odal', 'Sør-Varanger', 'Sørfold - Fuolldá', 'Sørreisa', 'Time', 'Tingvoll', 'Tinn', 'Tokke', 'Tolga', 'Tromsø', 'Trondheim - Tråante', 'Trysil', 'Træna', 'Tvedestrand', 'Tydal', 'Tynset', 'Tysnes', 'Tysvær', 'Tønsberg', 'Ullensaker', 'Ullensvang', 'Ulstein', 'Ulvik', 'Unjárga - Nesseby', 'Uoppgitt kommune', 'Utsira', 'Vadsø', 'Vaksdal', 'Valle', 'Vang', 'Vanylven', 'Vardø', 'Vefsn', 'Vega', 'Vegårshei', 'Vennesla', 'Verdal', 'Vestby', 'Vestnes', 'Vestre Slidre', 'Vestre Toten', 'Vestvågøy', 'Vevelstad', 'Vik', 'Vindafjord', 'Vinje', 'Volda', 'Voss', 'Vågan', 'Vågå', 'Våler (Innlandet)', 'Våler (Østfold)', 'Værøy', 'Åfjord', 'Ål', 'Ålesund', 'Åmli', 'Åmot', 'Årdal', 'Ås', 'Åseral', 'Åsnes', 'Øksnes', 'Ørland', 'Ørsta', 'Østre Toten', 'Øvre Eiker', 'Øyer', 'Øygarden', 'Øystre Slidre']
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-The above exception was the direct cause of the following exception:
+  Unique tilflyttingsregion: ['Aarborte - Hattfjelldal', 'Alstahaug', 'Alta', 'Alvdal', 'Alver', 'Andøy', 'Aremark', 'Arendal', 'Asker', 'Askvoll', 'Askøy', 'Aukra', 'Aure', 'Aurland', 'Aurskog-Høland', 'Austevoll', 'Austrheim', 'Averøy', 'Balsfjord', 'Bamble', 'Bardu', 'Beiarn', 'Bergen', 'Berlevåg', 'Bindal', 'Birkenes', 'Bjerkreim', 'Bjørnafjorden', 'Bodø', 'Bokn', 'Bremanger', 'Brønnøy', 'Bygland', 'Bykle', 'Båtsfjord', 'Bærum', 'Bø', 'Bømlo', 'Deatnu - Tana', 'Dielddanuorri - Tjeldsund', 'Dovre', 'Drammen', 'Drangedal', 'Dyrøy', 'Dønna', 'Eidfjord', 'Eidskog', 'Eidsvoll', 'Eigersund', 'Elverum', 'Enebakk', 'Engerdal', 'Etne', 'Etnedal', 'Evenes - Evenássi', 'Evje og Hornnes', 'Farsund', 'Fauske - Fuossko', 'Fedje', 'Fitjar', 'Fjaler', 'Fjord', 'Flakstad', 'Flatanger', 'Flekkefjord', 'Flesberg', 'Flå', 'Folldal', 'Fredrikstad', 'Frogn', 'Froland', 'Frosta', 'Frøya', 'Fyresdal', 'Færder', 'Gamvik', 'Gausdal', 'Gildeskål', 'Giske', 'Gjemnes', 'Gjerdrum', 'Gjerstad', 'Gjesdal', 'Gjøvik', 'Gloppen', 'Gol', 'Gran', 'Grane', 'Gratangen - Rivtták', 'Grimstad', 'Grong', 'Grue', 'Gulen', 'Guovdageaidnu - Kautokeino', 'Gáivuotna - Kåfjord - Kaivuono', 'Hadsel', 'Halden', 'Hamar', 'Hammerfest - Hámmerfeasta', 'Haram', 'Hareid', 'Harstad - Hárstták', 'Hasvik', 'Haugesund', 'Heim', 'Hemnes', 'Hemsedal', 'Herøy (Møre og Romsdal)', 'Herøy (Nordland)', 'Hitra', 'Hjartdal', 'Hjelmeland', 'Hol', 'Hole', 'Holmestrand', 'Holtålen', 'Horten', 'Hurdal', 'Hustadvika', 'Hvaler', 'Hyllestad', 'Hábmer - Hamarøy', 'Hå', 'Hægebostad', 'Høyanger', 'Høylandet', 'Ibestad', 'Inderøy', 'Indre Fosen', 'Indre Østfold', 'Iveland', 'Jevnaker', 'Karlsøy', 'Karmøy', 'Kinn', 'Klepp', 'Kongsberg', 'Kongsvinger', 'Kragerø', 'Kristiansand', 'Kristiansund', 'Krødsherad', 'Kvam', 'Kvinesdal', 'Kvinnherad', 'Kviteseid', 'Kvitsøy', 'Kvæfjord', 'Kvænangen', 'Kárásjohka - Karasjok', 'Larvik', 'Lebesby', 'Leirfjord', 'Leka', 'Lesja', 'Levanger - Levangke', 'Lier', 'Lierne', 'Lillehammer', 'Lillesand', 'Lillestrøm', 'Lindesnes', 'Loabák - Lavangen', 'Lom', 'Loppa', 'Lund', 'Lunner', 'Lurøy', 'Luster', 'Lyngdal', 'Lyngen - Ivgu - Yykeä', 'Lærdal', 'Lødingen', 'Lørenskog', 'Løten', 'Malvik', 'Marker', 'Masfjorden', 'Melhus', 'Meløy', 'Meråker', 'Midt-Telemark', 'Midtre Gauldal', 'Modalen', 'Modum', 'Molde', 'Moskenes', 'Moss', 'Målselv', 'Måsøy', 'Namsos - Nåavmesjenjaelmie', 'Namsskogan', 'Nannestad', 'Narvik', 'Nes', 'Nesbyen', 'Nesna', 'Nesodden', 'Nissedal', 'Nittedal', 'Nome', 'Nord-Aurdal', 'Nord-Fron', 'Nord-Odal', 'Nordkapp', 'Nordre Follo', 'Nordre Land', 'Nordreisa - Ráisa - Raisi', 'Nore og Uvdal', 'Notodden', 'Nærøysund', 'Oppdal', 'Orkland', 'Os', 'Osen', 'Oslo - Oslove', 'Osterøy', 'Overhalla', 'Porsanger - Porsángu - Porsanki', 'Porsgrunn', 'Raarvihke - Røyrvik', 'Rakkestad', 'Rana - Raane', 'Randaberg', 'Rauma', 'Rendalen', 'Rennebu', 'Rindal', 'Ringebu', 'Ringerike', 'Ringsaker', 'Risør', 'Rollag', 'Råde', 'Rælingen', 'Rødøy', 'Røros - Rosse', 'Røst', 'Salangen', 'Saltdal', 'Samnanger', 'Sande', 'Sandefjord', 'Sandnes', 'Sarpsborg', 'Sauda', 'Sel', 'Selbu', 'Seljord', 'Senja', 'Sigdal', 'Siljan', 'Sirdal', 'Skaun', 'Skien', 'Skiptvet', 'Skjervøy', 'Skjåk', 'Smøla', 'Snåase - Snåsa', 'Sogndal', 'Sokndal', 'Sola', 'Solund', 'Sortland - Suortá', 'Stad', 'Stange', 'Stavanger', 'Steigen', 'Steinkjer - Stïentje', 'Stjørdal', 'Stor-Elvdal', 'Stord', 'Storfjord - Omasvuotna - Omasvuono', 'Strand', 'Stranda', 'Stryn', 'Sula', 'Suldal', 'Sunndal', 'Sunnfjord', 'Surnadal', 'Sveio', 'Sykkylven', 'Sømna', 'Søndre Land', 'Sør-Aurdal', 'Sør-Fron', 'Sør-Odal', 'Sør-Varanger', 'Sørfold - Fuolldá', 'Sørreisa', 'Time', 'Tingvoll', 'Tinn', 'Tokke', 'Tolga', 'Tromsø', 'Trondheim - Tråante', 'Trysil', 'Træna', 'Tvedestrand', 'Tydal', 'Tynset', 'Tysnes', 'Tysvær', 'Tønsberg', 'Ullensaker', 'Ullensvang', 'Ulstein', 'Ulvik', 'Unjárga - Nesseby', 'Uoppgitt kommune', 'Utsira', 'Vadsø', 'Vaksdal', 'Valle', 'Vang', 'Vanylven', 'Vardø', 'Vefsn', 'Vega', 'Vegårshei', 'Vennesla', 'Verdal', 'Vestby', 'Vestnes', 'Vestre Slidre', 'Vestre Toten', 'Vestvågøy', 'Vevelstad', 'Vik', 'Vindafjord', 'Vinje', 'Volda', 'Voss', 'Vågan', 'Vågå', 'Våler (Innlandet)', 'Våler (Østfold)', 'Værøy', 'Åfjord', 'Ål', 'Ålesund', 'Åmli', 'Åmot', 'Årdal', 'Ås', 'Åseral', 'Åsnes', 'Øksnes', 'Ørland', 'Ørsta', 'Østre Toten', 'Øvre Eiker', 'Øyer', 'Øygarden', 'Øystre Slidre']
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
     resp = conn.urlopen(
@@ -50,9 +79,11 @@ Traceback (most recent call last):
     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13864/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=top(1)&valuecodes%5BFraflyttingsregion%5D=*&codelist%5BFraflyttingsregion%5D=agg_KommGjeldende&valuecodes%5BTilflyttRegion%5D=*&codelist%5BTilflyttRegion%5D=agg_KommGjeldende&heading=ContentsCode,Tid,TilflyttRegion&stub=Fraflyttingsregion (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001E65EBC8E90>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+=======
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-During handling of the above exception, another exception occurred:
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Flytting/flytting_til_og_fra_kommunene.py", line 40, in <module>
     df = fetch_data(
@@ -75,12 +106,88 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
     raise ConnectTimeout(e, request=request)
 requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13864/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=top(1)&valuecodes%5BFraflyttingsregion%5D=*&codelist%5BFraflyttingsregion%5D=agg_KommGjeldende&valuecodes%5BTilflyttRegion%5D=*&codelist%5BTilflyttRegion%5D=agg_KommGjeldende&heading=ContentsCode,Tid,TilflyttRegion&stub=Fraflyttingsregion (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001E65EBC8E90>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+=======
+WARNING: 1 kommuner missing coordinates:
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-During handling of the above exception, another exception occurred:
+  Uoppgitt kommune (kommunenummer: unknown)
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Flytting/flytting_til_og_fra_kommunene.py", line 50, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Flytting/flytting_til_og_fra_kommunene.py` failed. (See above for error)
+
+Fraflytting fra Telemark-kommuner: 1015 rows
+
+     Fra kommune    År    Til kommune  ...    Fra lat    Til lon    Til lat
+
+1768   Porsgrunn  2025         Halden  ...  59.128627  11.540067  59.119693
+
+1769   Porsgrunn  2025           Moss  ...  59.128627  10.757536  59.437986
+
+1770   Porsgrunn  2025      Sarpsborg  ...  59.128627  11.103603  59.330441
+
+1771   Porsgrunn  2025    Fredrikstad  ...  59.128627  10.921894  59.279517
+
+1776   Porsgrunn  2025  Indre Østfold  ...  59.128627  11.070075  59.593028
+
+1780   Porsgrunn  2025          Bærum  ...  59.128627  10.447244  59.926341
+
+1781   Porsgrunn  2025          Asker  ...  59.128627  10.367314  59.845273
+
+1782   Porsgrunn  2025     Lillestrøm  ...  59.128627  11.211944  59.955020
+
+1783   Porsgrunn  2025   Nordre Follo  ...  59.128627  10.889534  59.708178
+
+1784   Porsgrunn  2025     Ullensaker  ...  59.128627  11.195032  60.156103
+
+
+
+[10 rows x 12 columns]
+
+
+
+Tilflytting til Telemark-kommuner: 957 rows
+
+   Fra kommune    År    Til kommune  ...    Fra lat   Til lon    Til lat
+
+0       Halden  2025      Porsgrunn  ...  59.119693  9.749579  59.128627
+
+1       Halden  2025          Skien  ...  59.119693  9.513377  59.248775
+
+6       Halden  2025      Drangedal  ...  59.119693  9.073635  59.128067
+
+8       Halden  2025  Midt-Telemark  ...  59.119693  9.099006  59.436604
+
+17        Moss  2025      Porsgrunn  ...  59.437986  9.749579  59.128627
+
+18        Moss  2025          Skien  ...  59.437986  9.513377  59.248775
+
+19        Moss  2025       Notodden  ...  59.437986  9.045503  59.638927
+
+20        Moss  2025         Siljan  ...  59.437986  9.706677  59.268424
+
+21        Moss  2025         Bamble  ...  59.437986  9.427091  59.007494
+
+22        Moss  2025        Kragerø  ...  59.437986  9.297764  58.892936
+
+
+
+[10 rows x 12 columns]
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\fraflytting_fra_telemarkskommuner.csv
+
+[2026-07-03 09:42:23] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\fraflytting_fra_telemarkskommuner.csv
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\tilflytting_til_telemarkskommuner.csv
+
+[2026-07-03 09:42:24] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\tilflytting_til_telemarkskommuner.csv
+
+No new data detected in fraflytting_fra_telemarkskommuner.csv.
+
+No new data detected in tilflytting_til_telemarkskommuner.csv.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Flytting_-_Til_og_fra_kommunene.log
+
+

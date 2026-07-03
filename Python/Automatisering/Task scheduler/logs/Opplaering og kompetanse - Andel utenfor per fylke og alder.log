@@ -1,7 +1,11 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
+<<<<<<< HEAD
 Request error in Andel utenfor per fylke og alder (13563): HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13563/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=top(1)&valuecodes%5BRegion%5D=F-31,F-32,F-03,F-34,F-33,F-39,F-40,F-42,F-11,F-46,F-15,F-50,F-18,F-55,F-56&codelist%5BRegion%5D=agg_KommFylker&valuecodes%5BHovArbStyrkStatus%5D=TOT3,NEET2&codelist%5BHovArbStyrkStatus%5D=vs_ArbStatus2018niva4a&valuecodes%5BAlder%5D=15-29,30-61&heading=ContentsCode,Tid,Alder&stub=Region,HovArbStyrkStatus (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001CCE0850DA0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/13563/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=top(1)&valuecodes%5BRegion%5D=F-31,F-32,F-03,F-34,F-33,F-39,F-40,F-42,F-11,F-46,F-15,F-50,F-18,F-55,F-56&codelist%5BRegion%5D=agg_KommFylker&valuecodes%5BHovArbStyrkStatus%5D=TOT3,NEET2&codelist%5BHovArbStyrkStatus%5D=vs_ArbStatus2018niva4a&valuecodes%5BAlder%5D=15-29,30-61&heading=ContentsCode,Tid,Alder&stub=Region,HovArbStyrkStatus (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001CCE0850DA0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in andel_utenfor_fylke_alder.py were not sent.
@@ -84,3 +88,19 @@ Traceback (most recent call last):
 RuntimeError: A critical error occurred during data fetching, stopping execution.
 
 ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/02_Opplæring_og_kompetanse/Utenforskap/andel_utenfor_fylke_alder.py` failed. (See above for error)
+=======
+
+Andel utenfor per fylke og alder (13563) JSON-stat data loaded successfully.
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_utenfor_fylke_alder.csv
+
+[2026-07-03 09:43:23] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\andel_utenfor_fylke_alder.csv
+
+No new data detected.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Andel_utenfor_per_fylke_og_alder.log
+
+
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba

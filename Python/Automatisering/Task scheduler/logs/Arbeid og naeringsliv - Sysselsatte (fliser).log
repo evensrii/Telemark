@@ -1,7 +1,11 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
+<<<<<<< HEAD
 Request error in Sysselsatte i nÃ¦ringer, Telemark, kun siste Ã¥r: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13470/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002B235EF84D0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13470/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002B235EF84D0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in arbeidsplasser_fliser.py were not sent.
@@ -84,3 +88,21 @@ Traceback (most recent call last):
 RuntimeError: A critical error occurred during data fetching, stopping execution.
 
 ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_fliser.py` failed. (See above for error)
+=======
+
+Sysselsatte i næringer, Telemark, kun siste år JSON-stat data loaded successfully.
+
+Sysselsatte i næringer, Telemark JSON-stat data loaded successfully.
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\ansatte_i_naringer_fliser.csv
+
+[2026-07-03 09:44:27] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\ansatte_i_naringer_fliser.csv
+
+No new data detected.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_(fliser).log
+
+
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba

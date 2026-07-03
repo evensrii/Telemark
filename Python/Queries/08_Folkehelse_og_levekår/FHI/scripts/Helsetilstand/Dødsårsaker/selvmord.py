@@ -12,7 +12,7 @@ This script:
 4. Compares with GitHub and uploads if changed
 5. Saves to CSV output
 
-Generated: 2026-07-01 14:31:29
+Generated: 2026-07-03 09:52:47
 """
 
 import json
@@ -117,16 +117,17 @@ print(f"  Columns: {', '.join(df.columns.tolist())}")
 
 # --- Standard FHI transformations (auto-generated) ---
 
-# Rename columns
+# Rename columns specific to this dataset
 df = df.rename(columns={'Dødsår': 'År', 'Bofylke': 'Kommune'})
 
 # Remove any non-numeric/non-dash symbols from År (e.g. asterisks)
-df['År'] = df['År'].astype(str).str.replace(r'[^\d\-]', '', regex=True)
+if 'År' in df.columns:
+    df['År'] = df['År'].astype(str).str.replace(r'[^\d\-]', '', regex=True)
 
 # Convert År to datetime (YYYY-01-01) if column contains single years
 # If År contains intervals (e.g. "2013-2016"), rename to "År (intervall)" and create "År" from last year
 if 'År' in df.columns:
-    if df['År'].astype(str).str.match(r'^\d{4}-\d{4}$').all():
+    if df['År'].astype(str).str.match(r'^\d{4}[-/]\d{4}$').all():
         df = df.rename(columns={'År': 'År (intervall)'})
         df['År'] = pd.to_datetime(df['År (intervall)'].str.split(r'[-/]').str[1] + '-01-01').dt.strftime('%Y-%m-%d')
         # Place År directly after År (intervall)
@@ -166,7 +167,7 @@ for col in df.columns:
 
 # Create SortKjonn column if Kjønn exists and has more than one unique value
 if 'Kjønn' in df.columns and df['Kjønn'].nunique() > 1:
-    kjonn_sort = {"Kjønn samlet": 1, "Menn": 2, "Gutter": 2, "Kvinner": 3, "Jenter": 3}
+    kjonn_sort = {"Kjønn samlet": 1, "Begge kjønn": 1, "Menn": 2, "Mann": 2, "Gutter": 2, "Kvinner": 3, "Kvinne": 3, "Jenter": 3}
     df['SortKjonn'] = df['Kjønn'].map(kjonn_sort)
 
 # Create SortAlder column if Alder exists and has more than one unique value

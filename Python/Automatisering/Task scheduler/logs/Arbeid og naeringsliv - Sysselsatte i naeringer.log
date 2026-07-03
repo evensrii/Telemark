@@ -1,25 +1,26 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
+<<<<<<< HEAD
 Request error in Sysselsatte i nÃ¦ringer, Telemark: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13470/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000020E60D921E0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13470/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000020E60D921E0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in arbeidsplasser_i_naringer.py were not sent.
+=======
+
+Sysselsatte i næringer, Telemark JSON-stat data loaded successfully.
+
+Sysselsatte i næringer, landet JSON-stat data loaded successfully.
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
-    sock = connection.create_connection(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
-    raise err
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
-    sock.connect(sa)
-TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
-The above exception was the direct cause of the following exception:
+Processed Telemark data:
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
     response = self._make_request(
@@ -36,9 +37,13 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
     raise ConnectTimeoutError(
 urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x0000020E60D921E0>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+=======
+                          næring (SN2007)  Telemark (2025)
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-The above exception was the direct cause of the following exception:
+0             Jordbruk, skogbruk og fiske              2.0
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
     resp = conn.urlopen(
@@ -50,9 +55,13 @@ Traceback (most recent call last):
     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13470/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000020E60D921E0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+=======
+1             Bergverksdrift og utvinning              0.3
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-During handling of the above exception, another exception occurred:
+2                                Industri             10.9
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_i_naringer.py", line 90, in <module>
     df_telemark = fetch_data(
@@ -75,12 +84,96 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
     raise ConnectTimeout(e, request=request)
 requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/13470/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000020E60D921E0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+=======
+3        Elektrisitet, vann og renovasjon              2.3
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-During handling of the above exception, another exception occurred:
+4             Bygge- og anleggsvirksomhet              9.0
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_i_naringer.py", line 102, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+5   Varehandel, reparasjon av motorvogner             12.9
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_i_naringer.py` failed. (See above for error)
+6                    Transport og lagring              3.8
+
+7   Overnattings- og serveringsvirksomhet              3.2
+
+8            Informasjon og kommunikasjon              1.9
+
+9              Finansiering og forsikring              0.9
+
+10   Teknisk tjenesteyting, eiendomsdrift              5.1
+
+11        Forretningsmessig tjenesteyting              4.3
+
+12    Off.adm., forsvar, sosialforsikring              5.5
+
+13                           Undervisning              8.5
+
+14              Helse- og sosialtjenester             25.6
+
+15                Personlig tjenesteyting              3.7
+
+
+
+Processed national data:
+
+                          næring (SN2007)  Landet (2025)
+
+0             Jordbruk, skogbruk og fiske            2.3
+
+1             Bergverksdrift og utvinning            2.4
+
+2                                Industri            7.7
+
+3        Elektrisitet, vann og renovasjon            1.3
+
+4             Bygge- og anleggsvirksomhet            8.2
+
+5   Varehandel, reparasjon av motorvogner           12.4
+
+6                    Transport og lagring            4.8
+
+7   Overnattings- og serveringsvirksomhet            3.8
+
+8            Informasjon og kommunikasjon            4.1
+
+9              Finansiering og forsikring            1.9
+
+10   Teknisk tjenesteyting, eiendomsdrift            6.9
+
+11        Forretningsmessig tjenesteyting            4.5
+
+12    Off.adm., forsvar, sosialforsikring            6.5
+
+13                           Undervisning            8.1
+
+14              Helse- og sosialtjenester           20.9
+
+15                Personlig tjenesteyting            4.3
+
+
+
+Combined data:
+
+                          næring (SN2007)  Telemark (2025)  Landet (2025)
+
+5               Helse- og sosialtjenester             25.6           20.9
+
+15  Varehandel, reparasjon av motorvogner             12.9           12.4
+
+6                                Industri             10.9            7.7
+
+1             Bygge- og anleggsvirksomhet              9.0            8.2
+
+14                           Undervisning              8.5            8.1
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\ansatte_i_storste_naringer.csv
+
+[2026-07-03 09:44:13] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\ansatte_i_storste_naringer.csv
+
+No new data detected.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_i_naeringer.log
+
+

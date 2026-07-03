@@ -1,25 +1,36 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
+<<<<<<< HEAD
 Request error in Telemark: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/09429/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000019B4123BE60>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/09429/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000019B4123BE60>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in utdanningsnivaa_telemark_og_landet.py were not sent.
+=======
+
+Telemark JSON-stat data loaded successfully.
+
+     region                                 nivå  ...    år value
+
+0  Telemark                       Grunnskolenivå  ...  2025  25.2
+
+1  Telemark               Videregående skolenivå  ...  2025  39.6
+
+2  Telemark                         Fagskolenivå  ...  2025   3.7
+
+3  Telemark  Universitets- og høgskolenivå, kort  ...  2025  23.1
+
+4  Telemark  Universitets- og høgskolenivå, lang  ...  2025   7.9
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
-    sock = connection.create_connection(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
-    raise err
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
-    sock.connect(sa)
-TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
-The above exception was the direct cause of the following exception:
+[5 rows x 6 columns]
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
     response = self._make_request(
@@ -36,9 +47,13 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
     raise ConnectTimeoutError(
 urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x0000019B4123BE60>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+=======
+Hele landet JSON-stat data loaded successfully.
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-The above exception was the direct cause of the following exception:
+        region                                 nivå  ...    år value
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
     resp = conn.urlopen(
@@ -50,9 +65,13 @@ Traceback (most recent call last):
     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/09429/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000019B4123BE60>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+=======
+0  Hele landet                       Grunnskolenivå  ...  2025  22.7
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-During handling of the above exception, another exception occurred:
+1  Hele landet               Videregående skolenivå  ...  2025  35.1
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃ¦ring_og_kompetanse/UtdanningsnivÃ¥/utdanningsnivaa_telemark_og_landet.py", line 90, in <module>
     df_telemark = fetch_data(
@@ -75,12 +94,186 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
     raise ConnectTimeout(e, request=request)
 requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/09429/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000019B4123BE60>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+=======
+2  Hele landet                         Fagskolenivå  ...  2025   3.4
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-During handling of the above exception, another exception occurred:
+3  Hele landet  Universitets- og høgskolenivå, kort  ...  2025  25.3
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃ¦ring_og_kompetanse/UtdanningsnivÃ¥/utdanningsnivaa_telemark_og_landet.py", line 102, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+4  Hele landet  Universitets- og høgskolenivå, lang  ...  2025  13.0
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa_telemark_og_landet.py` failed. (See above for error)
+
+
+[5 rows x 6 columns]
+
+Hele landet uten Oslo JSON-stat data loaded successfully.
+
+                              region  ...   value
+
+0                            Østfold  ...   73388
+
+1                            Østfold  ...  100541
+
+2                            Østfold  ...    8609
+
+3                            Østfold  ...   60241
+
+4                            Østfold  ...   20275
+
+..                               ...  ...     ...
+
+65  Finnmark - Finnmárku - Finmarkku  ...   17936
+
+66  Finnmark - Finnmárku - Finmarkku  ...   22546
+
+67  Finnmark - Finnmárku - Finmarkku  ...    2442
+
+68  Finnmark - Finnmárku - Finmarkku  ...   14637
+
+69  Finnmark - Finnmárku - Finmarkku  ...    5312
+
+
+
+[70 rows x 6 columns]
+
+
+
+Processed df_landet_uten_oslo:
+
+                    region                                 nivå  ...    år value
+
+0  Hele landet utenom Oslo                         Fagskolenivå  ...  2025   3.6
+
+1  Hele landet utenom Oslo                       Grunnskolenivå  ...  2025  23.5
+
+2  Hele landet utenom Oslo  Universitets- og høgskolenivå, kort  ...  2025  24.6
+
+3  Hele landet utenom Oslo  Universitets- og høgskolenivå, lang  ...  2025  11.1
+
+4  Hele landet utenom Oslo               Videregående skolenivå  ...  2025  37.2
+
+
+
+[5 rows x 6 columns]
+
+
+
+Final processed dataframes:
+
+
+
+df_telemark_final:
+
+     region                                 nivå  Andel (2025)
+
+0  Telemark                       Grunnskolenivå          25.2
+
+1  Telemark               Videregående skolenivå          39.6
+
+2  Telemark                         Fagskolenivå           3.7
+
+3  Telemark  Universitets- og høgskolenivå, kort          23.1
+
+4  Telemark  Universitets- og høgskolenivå, lang           7.9
+
+
+
+df_landet_final:
+
+        region                                 nivå  Andel (2025)
+
+0  Hele landet                       Grunnskolenivå          22.7
+
+1  Hele landet               Videregående skolenivå          35.1
+
+2  Hele landet                         Fagskolenivå           3.4
+
+3  Hele landet  Universitets- og høgskolenivå, kort          25.3
+
+4  Hele landet  Universitets- og høgskolenivå, lang          13.0
+
+
+
+df_landet_uten_oslo_final:
+
+                    region                                 nivå  Andel (2025)
+
+0  Hele landet utenom Oslo                         Fagskolenivå           3.6
+
+1  Hele landet utenom Oslo                       Grunnskolenivå          23.5
+
+2  Hele landet utenom Oslo  Universitets- og høgskolenivå, kort          24.6
+
+3  Hele landet utenom Oslo  Universitets- og høgskolenivå, lang          11.1
+
+4  Hele landet utenom Oslo               Videregående skolenivå          37.2
+
+
+
+Final transformed dataframe:
+
+       Utdanningsnivå  Telemark  Hele landet  Hele landet utenom Oslo
+
+0          Grunnskole      25.2         22.7                     23.5
+
+1  Videregående skole      39.6         35.1                     37.2
+
+2            Fagskole       3.7          3.4                      3.6
+
+3    Høyere utdanning      31.0         38.3                     35.7
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\utdanningsniva_telemark_og_landet.csv
+
+[2026-07-03 09:43:04] Changes detected in the dataset.
+
+File uploaded successfully: Data/02_Opplæring og kompetanse/Utdanningsnivå/utdanningsniva_telemark_og_landet.csv
+
+
+
+Showing up to 5 examples of changes:
+
+
+
+Row: 
+
+  Hele landet: 23.1 -> 22.7
+
+
+
+Row: 
+
+  Hele landet utenom Oslo: 23.9 -> 23.5
+
+
+
+Row: 
+
+  Telemark: 25.7 -> 25.2
+
+
+
+Row: 
+
+  Hele landet: 34.8 -> 35.1
+
+
+
+Row: 
+
+  Hele landet utenom Oslo: 36.8 -> 37.2
+
+
+
+Total changes found in examined rows: 8
+
+(Showing first 5 changes only)
+
+Email notifications disabled. Updates for utdanningsniva_telemark_og_landet.csv were not sent.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\utdanningsniva_telemark_og_landet.csv
+
+New data detected and pushed to GitHub.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Utdanningsnivaa_Telemark_og_landet.log
+
+

@@ -1,28 +1,32 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
 
+
+
 Querying Telemark kommuner...
+
   URL: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=*&valueco...
+<<<<<<< HEAD
 Request error in Historiske 07459 - Telemark kommuner: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2000)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BAlder%5D=*&codelist%5BAlder%5D=agg_Funksjonell4&heading=ContentsCode,Tid&stub=Region,Alder (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001C3FCA2FEF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2000)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BAlder%5D=*&codelist%5BAlder%5D=agg_Funksjonell4&heading=ContentsCode,Tid&stub=Region,Alder (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001C3FCA2FEF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 Email notifications disabled. Errors in befolkningsframskrivinger_historiske_07459.py were not sent.
+=======
+
+Historiske 07459 - Telemark kommuner JSON-stat data loaded successfully.
+
+  -> Got 4590 rows
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
-    sock = connection.create_connection(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
-    raise err
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
-    sock.connect(sa)
-TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
-The above exception was the direct cause of the following exception:
+Querying Telemark fylke...
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
     response = self._make_request(
@@ -39,9 +43,13 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
     raise ConnectTimeoutError(
 urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x000001C3FCA2FEF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+=======
+  URL: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=*&valueco...
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-The above exception was the direct cause of the following exception:
+Historiske 07459 - Telemark fylke JSON-stat data loaded successfully.
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
     resp = conn.urlopen(
@@ -53,9 +61,12 @@ Traceback (most recent call last):
     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2000)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BAlder%5D=*&codelist%5BAlder%5D=agg_Funksjonell4&heading=ContentsCode,Tid&stub=Region,Alder (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001C3FCA2FEF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+=======
+  -> Got 270 rows
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-During handling of the above exception, another exception occurred:
 
+<<<<<<< HEAD
 Traceback (most recent call last):
   File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske_07459.py", line 78, in <module>
     df_q = fetch_data(
@@ -78,12 +89,45 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
     raise ConnectTimeout(e, request=request)
 requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2000)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BAlder%5D=*&codelist%5BAlder%5D=agg_Funksjonell4&heading=ContentsCode,Tid&stub=Region,Alder (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001C3FCA2FEF0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+=======
+>>>>>>> 2a14722d3e7de9477fb917f9e5393ab95dba59ba
 
-During handling of the above exception, another exception occurred:
+Querying Norge...
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske_07459.py", line 88, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+  URL: https://data.ssb.no/api/pxwebapi/v2/tables/07459/data?lang=no&outputFormat=json-stat2&valuecodes[ContentsCode]=*&valueco...
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske_07459.py` failed. (See above for error)
+Historiske 07459 - Norge JSON-stat data loaded successfully.
+
+  -> Got 270 rows
+
+
+
+Combined data: 5130 rows
+
+  Columns: ['region', 'alder', 'statistikkvariabel', 'år', 'value']
+
+  Regions: ['Bamble', 'Drangedal', 'Fyresdal', 'Hele landet', 'Hjartdal', 'Kragerø', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Telemark', 'Tinn', 'Tokke', 'Vinje']
+
+      region alder statistikkvariabel    år  value
+
+0  Porsgrunn  0 år           Personer  2000    413
+
+1  Porsgrunn  0 år           Personer  2001    413
+
+2  Porsgrunn  0 år           Personer  2002    365
+
+3  Porsgrunn  0 år           Personer  2003    335
+
+4  Porsgrunn  0 år           Personer  2004    364
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\befolkningsframskrivinger_historiske.csv
+
+[2026-07-03 09:41:12] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\befolkningsframskrivinger_historiske.csv
+
+No new data detected.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsframskrivinger_historiske_07459.log
+
+
