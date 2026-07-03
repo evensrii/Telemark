@@ -2,429 +2,429 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2026-07-02 08:22:04] GITHUB_TOKEN loaded successfully.
-[2026-07-02 08:22:04] Starting Elhub query for all Telemark municipalities (incremental mode)
-[2026-07-02 08:22:04] Checking GitHub path: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/Installert_kapasitet/installed_capacity.csv
-[2026-07-02 08:22:05] Latest date found in existing installed_capacity.csv: 2026-06-29
-[2026-07-02 08:22:05] Will query for data from: 2026-06-30
-[2026-07-02 08:22:05] Will query up to: 2026-07-02
+[2026-07-03 08:22:08] GITHUB_TOKEN loaded successfully.
+[2026-07-03 08:22:08] Starting Elhub query for all Telemark municipalities (incremental mode)
+[2026-07-03 08:22:08] Checking GitHub path: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/Installert_kapasitet/installed_capacity.csv
+[2026-07-03 08:22:11] Latest date found in existing installed_capacity.csv: 2026-06-29
+[2026-07-03 08:22:11] Will query for data from: 2026-06-30
+[2026-07-03 08:22:11] Will query up to: 2026-07-03
 
-[2026-07-02 08:22:05] Querying municipality 4001 for new data...
-[2026-07-02 08:22:05] Querying municipality 4001 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:22:05] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:22:26] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25C440>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:22:26] Retrying in 1 seconds...
-[2026-07-02 08:22:27] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:22:48] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283080>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:22:48] Retrying in 3 seconds...
-[2026-07-02 08:22:51] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:23:13] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2833E0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:23:13] Failed after 3 attempts.
-[2026-07-02 08:23:13] Failed to get data for 4001 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:23:14] Querying municipality 4001 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:23:14] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:23:35] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283C50>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:23:35] Retrying in 1 seconds...
-[2026-07-02 08:23:36] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:23:57] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C44D0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:23:57] Retrying in 3 seconds...
-[2026-07-02 08:24:00] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:24:21] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2833B0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:24:21] Failed after 3 attempts.
-[2026-07-02 08:24:21] Failed to get data for 4001 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:22:11] Querying municipality 4001 for new data...
+[2026-07-03 08:22:11] Querying municipality 4001 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:22:11] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:22:32] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D477CF8C0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:22:32] Retrying in 1 seconds...
+[2026-07-03 08:22:33] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:22:54] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D474FFE00>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:22:54] Retrying in 3 seconds...
+[2026-07-03 08:22:57] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:23:18] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492135C0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:23:18] Failed after 3 attempts.
+[2026-07-03 08:23:18] Failed to get data for 4001 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:23:19] Querying municipality 4001 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:23:19] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:23:40] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49254050>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:23:40] Retrying in 1 seconds...
+[2026-07-03 08:23:41] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:24:02] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49254680>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:24:02] Retrying in 3 seconds...
+[2026-07-03 08:24:05] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:24:26] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492138C0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:24:26] Failed after 3 attempts.
+[2026-07-03 08:24:26] Failed to get data for 4001 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:24:22] Querying municipality 4003 for new data...
-[2026-07-02 08:24:22] Querying municipality 4003 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:24:22] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:24:43] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C1439E0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:24:43] Retrying in 1 seconds...
-[2026-07-02 08:24:44] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:25:05] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25CB60>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:25:05] Retrying in 3 seconds...
-[2026-07-02 08:25:08] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:25:29] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C4D40>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:25:29] Failed after 3 attempts.
-[2026-07-02 08:25:29] Failed to get data for 4003 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:25:30] Querying municipality 4003 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:25:30] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:25:51] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C56D0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:25:51] Retrying in 1 seconds...
-[2026-07-02 08:25:52] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:26:13] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C4E00>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:26:13] Retrying in 3 seconds...
-[2026-07-02 08:26:16] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:26:37] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25C200>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:26:37] Failed after 3 attempts.
-[2026-07-02 08:26:37] Failed to get data for 4003 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:24:27] Querying municipality 4003 for new data...
+[2026-07-03 08:24:27] Querying municipality 4003 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:24:27] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:24:48] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E9550>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:24:48] Retrying in 1 seconds...
+[2026-07-03 08:24:49] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:25:10] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D4769B620>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:25:10] Retrying in 3 seconds...
+[2026-07-03 08:25:13] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:25:34] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49254F20>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:25:34] Failed after 3 attempts.
+[2026-07-03 08:25:34] Failed to get data for 4003 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:25:35] Querying municipality 4003 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:25:35] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:25:56] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492558B0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:25:56] Retrying in 1 seconds...
+[2026-07-03 08:25:57] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:26:18] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49254FE0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:26:18] Retrying in 3 seconds...
+[2026-07-03 08:26:21] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:26:42] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D4746F410>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:26:42] Failed after 3 attempts.
+[2026-07-03 08:26:42] Failed to get data for 4003 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:26:38] Querying municipality 4005 for new data...
-[2026-07-02 08:26:38] Querying municipality 4005 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:26:38] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:26:59] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C047C20>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:26:59] Retrying in 1 seconds...
-[2026-07-02 08:27:00] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:27:21] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283950>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:27:21] Retrying in 3 seconds...
-[2026-07-02 08:27:24] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:27:45] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5220>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:27:45] Failed after 3 attempts.
-[2026-07-02 08:27:45] Failed to get data for 4005 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:27:46] Querying municipality 4005 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:27:46] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:28:07] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C4B60>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:28:07] Retrying in 1 seconds...
-[2026-07-02 08:28:08] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:28:29] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5EE0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:28:29] Retrying in 3 seconds...
-[2026-07-02 08:28:32] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:28:53] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3AC7CB30>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:28:53] Failed after 3 attempts.
-[2026-07-02 08:28:53] Failed to get data for 4005 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:26:43] Querying municipality 4005 for new data...
+[2026-07-03 08:26:43] Querying municipality 4005 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:26:43] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:27:04] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49007980>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:27:04] Retrying in 1 seconds...
+[2026-07-03 08:27:05] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:27:26] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213800>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:27:26] Retrying in 3 seconds...
+[2026-07-03 08:27:29] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:27:50] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49255910>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:27:50] Failed after 3 attempts.
+[2026-07-03 08:27:50] Failed to get data for 4005 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:27:51] Querying municipality 4005 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:27:51] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:28:12] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49254CE0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:28:12] Retrying in 1 seconds...
+[2026-07-03 08:28:13] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:28:34] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256090>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:28:34] Retrying in 3 seconds...
+[2026-07-03 08:28:37] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:28:58] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213F50>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:28:58] Failed after 3 attempts.
+[2026-07-03 08:28:58] Failed to get data for 4005 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:28:54] Querying municipality 4010 for new data...
-[2026-07-02 08:28:54] Querying municipality 4010 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:28:54] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:29:15] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C282EA0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:29:15] Retrying in 1 seconds...
-[2026-07-02 08:29:16] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:29:37] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3ABBD160>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:29:37] Retrying in 3 seconds...
-[2026-07-02 08:29:40] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:30:01] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C4C20>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:30:01] Failed after 3 attempts.
-[2026-07-02 08:30:01] Failed to get data for 4010 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:30:02] Querying municipality 4010 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:30:02] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:30:23] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5D00>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:30:23] Retrying in 1 seconds...
-[2026-07-02 08:30:24] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:30:45] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C4CE0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:30:45] Retrying in 3 seconds...
-[2026-07-02 08:30:48] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:31:09] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5940>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:31:09] Failed after 3 attempts.
-[2026-07-02 08:31:09] Failed to get data for 4010 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:28:59] Querying municipality 4010 for new data...
+[2026-07-03 08:28:59] Querying municipality 4010 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:28:59] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:29:20] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D477CF8C0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:29:20] Retrying in 1 seconds...
+[2026-07-03 08:29:21] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:29:42] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491B83E0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:29:42] Retrying in 3 seconds...
+[2026-07-03 08:29:45] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:30:06] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492548C0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:30:06] Failed after 3 attempts.
+[2026-07-03 08:30:06] Failed to get data for 4010 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:30:07] Querying municipality 4010 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:30:07] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:30:28] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49255EB0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:30:28] Retrying in 1 seconds...
+[2026-07-03 08:30:29] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:30:50] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49255130>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:30:50] Retrying in 3 seconds...
+[2026-07-03 08:30:53] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:31:14] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49255BB0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:31:14] Failed after 3 attempts.
+[2026-07-03 08:31:14] Failed to get data for 4010 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:31:10] Querying municipality 4012 for new data...
-[2026-07-02 08:31:10] Querying municipality 4012 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:31:10] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:31:31] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3A55C500>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:31:31] Retrying in 1 seconds...
-[2026-07-02 08:31:32] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:31:53] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2835C0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:31:53] Retrying in 3 seconds...
-[2026-07-02 08:31:56] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:32:17] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3BE39370>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:32:17] Failed after 3 attempts.
-[2026-07-02 08:32:17] Failed to get data for 4012 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:32:18] Querying municipality 4012 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:32:18] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:32:39] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C49E0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:32:39] Retrying in 1 seconds...
-[2026-07-02 08:32:40] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:33:01] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C6300>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:33:01] Retrying in 3 seconds...
-[2026-07-02 08:33:04] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:33:25] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C6A80>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:33:25] Failed after 3 attempts.
-[2026-07-02 08:33:25] Failed to get data for 4012 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:31:15] Querying municipality 4012 for new data...
+[2026-07-03 08:31:15] Querying municipality 4012 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:31:15] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:31:36] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E8DA0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:31:36] Retrying in 1 seconds...
+[2026-07-03 08:31:37] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:31:58] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213CB0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:31:58] Retrying in 3 seconds...
+[2026-07-03 08:32:01] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:32:22] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213440>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:32:22] Failed after 3 attempts.
+[2026-07-03 08:32:22] Failed to get data for 4012 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:32:23] Querying municipality 4012 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:32:23] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:32:44] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49254A10>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:32:44] Retrying in 1 seconds...
+[2026-07-03 08:32:45] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:33:06] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256330>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:33:06] Retrying in 3 seconds...
+[2026-07-03 08:33:09] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:33:30] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256B10>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:33:30] Failed after 3 attempts.
+[2026-07-03 08:33:30] Failed to get data for 4012 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:33:26] Querying municipality 4014 for new data...
-[2026-07-02 08:33:26] Querying municipality 4014 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:33:26] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:33:48] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C140530>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:33:48] Retrying in 1 seconds...
-[2026-07-02 08:33:49] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:34:10] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283D70>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:34:10] Retrying in 3 seconds...
-[2026-07-02 08:34:13] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:34:34] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3A709F70>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:34:34] Failed after 3 attempts.
-[2026-07-02 08:34:34] Failed to get data for 4014 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:34:35] Querying municipality 4014 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:34:35] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:34:56] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C57F0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:34:56] Retrying in 1 seconds...
-[2026-07-02 08:34:57] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:35:18] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C6810>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:35:18] Retrying in 3 seconds...
-[2026-07-02 08:35:21] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:35:42] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C4860>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:35:42] Failed after 3 attempts.
-[2026-07-02 08:35:42] Failed to get data for 4014 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:33:31] Querying municipality 4014 for new data...
+[2026-07-03 08:33:31] Querying municipality 4014 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:33:31] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:33:52] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213410>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:33:52] Retrying in 1 seconds...
+[2026-07-03 08:33:53] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:34:14] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D46990D40>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:34:14] Retrying in 3 seconds...
+[2026-07-03 08:34:17] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:34:38] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E9580>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:34:38] Failed after 3 attempts.
+[2026-07-03 08:34:38] Failed to get data for 4014 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:34:39] Querying municipality 4014 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:34:39] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:35:00] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256C60>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:35:00] Retrying in 1 seconds...
+[2026-07-03 08:35:01] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:35:22] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492569C0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:35:22] Retrying in 3 seconds...
+[2026-07-03 08:35:25] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:35:46] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492556A0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:35:46] Failed after 3 attempts.
+[2026-07-03 08:35:46] Failed to get data for 4014 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:35:43] Querying municipality 4016 for new data...
-[2026-07-02 08:35:43] Querying municipality 4016 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:35:43] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:36:04] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C70E0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:36:04] Retrying in 1 seconds...
-[2026-07-02 08:36:05] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:36:26] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A38A393A0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:36:26] Retrying in 3 seconds...
-[2026-07-02 08:36:29] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:36:50] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2830E0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:36:50] Failed after 3 attempts.
-[2026-07-02 08:36:50] Failed to get data for 4016 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:36:51] Querying municipality 4016 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:36:51] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:37:12] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3BE39370>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:37:12] Retrying in 1 seconds...
-[2026-07-02 08:37:13] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:37:34] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C60F0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:37:34] Retrying in 3 seconds...
-[2026-07-02 08:37:37] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:37:58] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C6BA0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:37:58] Failed after 3 attempts.
-[2026-07-02 08:37:58] Failed to get data for 4016 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:35:47] Querying municipality 4016 for new data...
+[2026-07-03 08:35:47] Querying municipality 4016 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:35:47] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:36:08] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49257170>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:36:08] Retrying in 1 seconds...
+[2026-07-03 08:36:09] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:36:30] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D4906A1E0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:36:30] Retrying in 3 seconds...
+[2026-07-03 08:36:33] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:36:54] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213C80>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:36:54] Failed after 3 attempts.
+[2026-07-03 08:36:54] Failed to get data for 4016 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:36:55] Querying municipality 4016 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:36:55] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:37:16] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E9130>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:37:16] Retrying in 1 seconds...
+[2026-07-03 08:37:17] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:37:38] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256300>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:37:38] Retrying in 3 seconds...
+[2026-07-03 08:37:41] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:38:02] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256F60>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:38:02] Failed after 3 attempts.
+[2026-07-03 08:38:02] Failed to get data for 4016 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:37:59] Querying municipality 4018 for new data...
-[2026-07-02 08:37:59] Querying municipality 4018 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:37:59] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:38:20] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C75C0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:38:20] Retrying in 1 seconds...
-[2026-07-02 08:38:21] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:38:42] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C228D40>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:38:42] Retrying in 3 seconds...
-[2026-07-02 08:38:45] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:39:06] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C282EA0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:39:06] Failed after 3 attempts.
-[2026-07-02 08:39:06] Failed to get data for 4018 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:39:07] Querying municipality 4018 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:39:07] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:39:28] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25C350>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:39:28] Retrying in 1 seconds...
-[2026-07-02 08:39:29] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:39:50] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C72F0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:39:50] Retrying in 3 seconds...
-[2026-07-02 08:39:53] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:40:14] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C64E0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:40:14] Failed after 3 attempts.
-[2026-07-02 08:40:14] Failed to get data for 4018 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:38:03] Querying municipality 4018 for new data...
+[2026-07-03 08:38:03] Querying municipality 4018 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:38:03] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:38:24] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492575F0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:38:24] Retrying in 1 seconds...
+[2026-07-03 08:38:25] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:38:46] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213680>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:38:46] Retrying in 3 seconds...
+[2026-07-03 08:38:49] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:39:10] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D46990D40>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:39:10] Failed after 3 attempts.
+[2026-07-03 08:39:10] Failed to get data for 4018 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:39:11] Querying municipality 4018 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:39:11] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:39:32] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E8C50>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:39:32] Retrying in 1 seconds...
+[2026-07-03 08:39:33] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:39:54] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49257320>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:39:54] Retrying in 3 seconds...
+[2026-07-03 08:39:57] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:40:18] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256780>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:40:18] Failed after 3 attempts.
+[2026-07-03 08:40:18] Failed to get data for 4018 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:40:15] Querying municipality 4020 for new data...
-[2026-07-02 08:40:15] Querying municipality 4020 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:40:15] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:40:36] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5F70>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:40:36] Retrying in 1 seconds...
-[2026-07-02 08:40:37] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:40:58] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C4EF0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:40:58] Retrying in 3 seconds...
-[2026-07-02 08:41:01] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:41:22] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3A49F050>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:41:22] Failed after 3 attempts.
-[2026-07-02 08:41:22] Failed to get data for 4020 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:41:23] Querying municipality 4020 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:41:23] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:41:44] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283A10>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:41:44] Retrying in 1 seconds...
-[2026-07-02 08:41:45] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:42:06] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25CB90>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:42:06] Retrying in 3 seconds...
-[2026-07-02 08:42:09] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:42:30] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5FA0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:42:30] Failed after 3 attempts.
-[2026-07-02 08:42:30] Failed to get data for 4020 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:40:19] Querying municipality 4020 for new data...
+[2026-07-03 08:40:19] Querying municipality 4020 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:40:19] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:40:40] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49254BC0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:40:40] Retrying in 1 seconds...
+[2026-07-03 08:40:41] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:41:02] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492561E0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:41:02] Retrying in 3 seconds...
+[2026-07-03 08:41:05] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:41:26] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49007A10>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:41:26] Failed after 3 attempts.
+[2026-07-03 08:41:26] Failed to get data for 4020 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:41:27] Querying municipality 4020 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:41:27] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:41:48] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492138F0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:41:48] Retrying in 1 seconds...
+[2026-07-03 08:41:49] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:42:10] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E8DD0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:42:10] Retrying in 3 seconds...
+[2026-07-03 08:42:13] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:42:34] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256330>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:42:34] Failed after 3 attempts.
+[2026-07-03 08:42:34] Failed to get data for 4020 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:42:31] Querying municipality 4022 for new data...
-[2026-07-02 08:42:31] Querying municipality 4022 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:42:31] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:42:52] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C65D0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:42:52] Retrying in 1 seconds...
-[2026-07-02 08:42:53] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:43:14] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C72F0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:43:14] Retrying in 3 seconds...
-[2026-07-02 08:43:17] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:43:38] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25CB60>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:43:38] Failed after 3 attempts.
-[2026-07-02 08:43:38] Failed to get data for 4022 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:43:39] Querying municipality 4022 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:43:39] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:44:00] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2834D0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:44:00] Retrying in 1 seconds...
-[2026-07-02 08:44:01] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:44:22] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A38287C20>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:44:22] Retrying in 3 seconds...
-[2026-07-02 08:44:25] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:44:46] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C7680>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:44:46] Failed after 3 attempts.
-[2026-07-02 08:44:46] Failed to get data for 4022 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:42:35] Querying municipality 4022 for new data...
+[2026-07-03 08:42:35] Querying municipality 4022 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:42:35] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:42:56] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256510>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:42:56] Retrying in 1 seconds...
+[2026-07-03 08:42:57] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:43:19] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49257320>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:43:19] Retrying in 3 seconds...
+[2026-07-03 08:43:22] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:43:43] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E9130>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:43:43] Failed after 3 attempts.
+[2026-07-03 08:43:43] Failed to get data for 4022 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:43:44] Querying municipality 4022 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:43:44] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:44:05] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492131A0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:44:05] Retrying in 1 seconds...
+[2026-07-03 08:44:06] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:44:27] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49007A10>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:44:27] Retrying in 3 seconds...
+[2026-07-03 08:44:30] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:44:51] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492550A0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:44:51] Failed after 3 attempts.
+[2026-07-03 08:44:51] Failed to get data for 4022 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:44:47] Querying municipality 4024 for new data...
-[2026-07-02 08:44:47] Querying municipality 4024 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:44:47] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:45:08] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C6060>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:45:08] Retrying in 1 seconds...
-[2026-07-02 08:45:09] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:45:31] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5C70>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:45:31] Retrying in 3 seconds...
-[2026-07-02 08:45:34] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:45:55] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C42F0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:45:55] Failed after 3 attempts.
-[2026-07-02 08:45:55] Failed to get data for 4024 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:45:56] Querying municipality 4024 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:45:56] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:46:17] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283B90>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:46:17] Retrying in 1 seconds...
-[2026-07-02 08:46:18] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:46:39] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283F50>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:46:39] Retrying in 3 seconds...
-[2026-07-02 08:46:42] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:47:03] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25C440>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:47:03] Failed after 3 attempts.
-[2026-07-02 08:47:03] Failed to get data for 4024 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:44:52] Querying municipality 4024 for new data...
+[2026-07-03 08:44:52] Querying municipality 4024 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:44:52] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:45:13] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256B70>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:45:13] Retrying in 1 seconds...
+[2026-07-03 08:45:14] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:45:35] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49255B20>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:45:35] Retrying in 3 seconds...
+[2026-07-03 08:45:38] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:45:59] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492544A0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:45:59] Failed after 3 attempts.
+[2026-07-03 08:45:59] Failed to get data for 4024 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:46:00] Querying municipality 4024 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:46:00] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:46:21] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D47578320>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:46:21] Retrying in 1 seconds...
+[2026-07-03 08:46:22] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:46:43] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213E30>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:46:43] Retrying in 3 seconds...
+[2026-07-03 08:46:46] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:47:07] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E8590>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:47:07] Failed after 3 attempts.
+[2026-07-03 08:47:07] Failed to get data for 4024 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:47:04] Querying municipality 4026 for new data...
-[2026-07-02 08:47:04] Querying municipality 4026 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:47:04] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:47:25] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C60C0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:47:25] Retrying in 1 seconds...
-[2026-07-02 08:47:26] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:47:47] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C6DB0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:47:47] Retrying in 3 seconds...
-[2026-07-02 08:47:50] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:48:11] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C74D0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:48:11] Failed after 3 attempts.
-[2026-07-02 08:48:11] Failed to get data for 4026 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:48:12] Querying municipality 4026 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:48:12] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:48:33] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25CB90>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:48:33] Retrying in 1 seconds...
-[2026-07-02 08:48:34] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:48:55] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283B60>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:48:55] Retrying in 3 seconds...
-[2026-07-02 08:48:58] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:49:19] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2833B0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:49:19] Failed after 3 attempts.
-[2026-07-02 08:49:19] Failed to get data for 4026 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:47:08] Querying municipality 4026 for new data...
+[2026-07-03 08:47:08] Querying municipality 4026 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:47:08] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:47:29] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49254710>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:47:29] Retrying in 1 seconds...
+[2026-07-03 08:47:30] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:47:51] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492559D0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:47:51] Retrying in 3 seconds...
+[2026-07-03 08:47:54] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:48:15] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492570E0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:48:15] Failed after 3 attempts.
+[2026-07-03 08:48:15] Failed to get data for 4026 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:48:16] Querying municipality 4026 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:48:16] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:48:37] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E9EB0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:48:37] Retrying in 1 seconds...
+[2026-07-03 08:48:38] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:48:59] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213E30>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:48:59] Retrying in 3 seconds...
+[2026-07-03 08:49:02] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:49:23] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D47578230>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:49:23] Failed after 3 attempts.
+[2026-07-03 08:49:23] Failed to get data for 4026 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:49:20] Querying municipality 4028 for new data...
-[2026-07-02 08:49:20] Querying municipality 4028 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:49:20] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:49:41] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C6780>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:49:41] Retrying in 1 seconds...
-[2026-07-02 08:49:42] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:50:03] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C6810>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:50:03] Retrying in 3 seconds...
-[2026-07-02 08:50:06] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:50:27] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5430>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:50:27] Failed after 3 attempts.
-[2026-07-02 08:50:27] Failed to get data for 4028 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:50:28] Querying municipality 4028 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:50:28] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:50:49] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C7920>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:50:49] Retrying in 1 seconds...
-[2026-07-02 08:50:50] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:51:11] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283830>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:51:11] Retrying in 3 seconds...
-[2026-07-02 08:51:14] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:51:35] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283440>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:51:35] Failed after 3 attempts.
-[2026-07-02 08:51:35] Failed to get data for 4028 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:49:24] Querying municipality 4028 for new data...
+[2026-07-03 08:49:24] Querying municipality 4028 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:49:24] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:49:45] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49254770>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:49:45] Retrying in 1 seconds...
+[2026-07-03 08:49:46] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:50:07] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49255430>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:50:07] Retrying in 3 seconds...
+[2026-07-03 08:50:10] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:50:31] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492565A0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:50:31] Failed after 3 attempts.
+[2026-07-03 08:50:31] Failed to get data for 4028 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:50:32] Querying municipality 4028 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:50:32] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:50:53] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49257890>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:50:53] Retrying in 1 seconds...
+[2026-07-03 08:50:54] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:51:15] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D475781A0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:51:15] Retrying in 3 seconds...
+[2026-07-03 08:51:18] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:51:39] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213C20>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:51:39] Failed after 3 attempts.
+[2026-07-03 08:51:39] Failed to get data for 4028 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:51:36] Querying municipality 4030 for new data...
-[2026-07-02 08:51:36] Querying municipality 4030 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:51:36] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:51:57] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25DA30>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:51:57] Retrying in 1 seconds...
-[2026-07-02 08:51:58] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:52:19] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5C40>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:52:19] Retrying in 3 seconds...
-[2026-07-02 08:52:22] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:52:43] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5D90>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:52:43] Failed after 3 attempts.
-[2026-07-02 08:52:43] Failed to get data for 4030 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:52:44] Querying municipality 4030 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:52:44] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:53:05] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C4440>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:53:05] Retrying in 1 seconds...
-[2026-07-02 08:53:06] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:53:27] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25CF20>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:53:27] Retrying in 3 seconds...
-[2026-07-02 08:53:30] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:53:51] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283E00>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:53:51] Failed after 3 attempts.
-[2026-07-02 08:53:51] Failed to get data for 4030 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:51:40] Querying municipality 4030 for new data...
+[2026-07-03 08:51:40] Querying municipality 4030 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:51:40] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:52:01] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E8590>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:52:01] Retrying in 1 seconds...
+[2026-07-03 08:52:02] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:52:23] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256120>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:52:23] Retrying in 3 seconds...
+[2026-07-03 08:52:26] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:52:47] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D492568D0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:52:47] Failed after 3 attempts.
+[2026-07-03 08:52:47] Failed to get data for 4030 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:52:48] Querying municipality 4030 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:52:48] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:53:09] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49254260>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:53:09] Retrying in 1 seconds...
+[2026-07-03 08:53:10] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:53:31] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E9130>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:53:31] Retrying in 3 seconds...
+[2026-07-03 08:53:34] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:53:55] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213B90>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:53:55] Failed after 3 attempts.
+[2026-07-03 08:53:55] Failed to get data for 4030 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:53:52] Querying municipality 4032 for new data...
-[2026-07-02 08:53:52] Querying municipality 4032 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:53:52] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:54:13] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283410>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:54:13] Retrying in 1 seconds...
-[2026-07-02 08:54:14] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:54:35] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5460>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:54:35] Retrying in 3 seconds...
-[2026-07-02 08:54:38] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:54:59] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5F10>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:54:59] Failed after 3 attempts.
-[2026-07-02 08:54:59] Failed to get data for 4032 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:55:00] Querying municipality 4032 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:55:00] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:55:21] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C5040>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:55:21] Retrying in 1 seconds...
-[2026-07-02 08:55:22] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:55:43] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C7C50>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:55:43] Retrying in 3 seconds...
-[2026-07-02 08:55:46] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:56:07] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C283530>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:56:07] Failed after 3 attempts.
-[2026-07-02 08:56:07] Failed to get data for 4032 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:53:56] Querying municipality 4032 for new data...
+[2026-07-03 08:53:56] Querying municipality 4032 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:53:56] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:54:17] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D469907A0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:54:17] Retrying in 1 seconds...
+[2026-07-03 08:54:18] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:54:39] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49255D00>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:54:39] Retrying in 3 seconds...
+[2026-07-03 08:54:42] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:55:03] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49255010>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:55:03] Failed after 3 attempts.
+[2026-07-03 08:55:03] Failed to get data for 4032 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:55:04] Querying municipality 4032 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:55:04] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:55:25] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49255D90>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:55:25] Retrying in 1 seconds...
+[2026-07-03 08:55:26] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:55:47] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49257B90>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:55:47] Retrying in 3 seconds...
+[2026-07-03 08:55:50] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:56:11] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D4752C350>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:56:11] Failed after 3 attempts.
+[2026-07-03 08:56:11] Failed to get data for 4032 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:56:08] Querying municipality 4034 for new data...
-[2026-07-02 08:56:08] Querying municipality 4034 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:56:08] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:56:29] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2835C0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:56:29] Retrying in 1 seconds...
-[2026-07-02 08:56:30] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:56:52] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25CEF0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:56:52] Retrying in 3 seconds...
-[2026-07-02 08:56:55] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:57:16] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C6E70>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:57:16] Failed after 3 attempts.
-[2026-07-02 08:57:16] Failed to get data for 4034 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:57:17] Querying municipality 4034 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:57:17] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:57:38] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C6DE0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:57:38] Retrying in 1 seconds...
-[2026-07-02 08:57:39] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 08:58:00] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C28C1A0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:58:00] Retrying in 3 seconds...
-[2026-07-02 08:58:03] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 08:58:24] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C4620>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:58:24] Failed after 3 attempts.
-[2026-07-02 08:58:24] Failed to get data for 4034 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:56:12] Querying municipality 4034 for new data...
+[2026-07-03 08:56:12] Querying municipality 4034 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:56:12] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:56:33] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213A70>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:56:33] Retrying in 1 seconds...
+[2026-07-03 08:56:34] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:56:55] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E8F50>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:56:55] Retrying in 3 seconds...
+[2026-07-03 08:56:58] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:57:19] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256030>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:57:19] Failed after 3 attempts.
+[2026-07-03 08:57:19] Failed to get data for 4034 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:57:20] Querying municipality 4034 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:57:20] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:57:41] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256930>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:57:41] Retrying in 1 seconds...
+[2026-07-03 08:57:42] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 08:58:03] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D4921C0B0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:58:03] Retrying in 3 seconds...
+[2026-07-03 08:58:06] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 08:58:27] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49257EF0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:58:27] Failed after 3 attempts.
+[2026-07-03 08:58:27] Failed to get data for 4034 for 2026-07-01 to 2026-07-31
 
-[2026-07-02 08:58:25] Querying municipality 4036 for new data...
-[2026-07-02 08:58:25] Querying municipality 4036 for period 2026-06-30 to 2026-06-30
-[2026-07-02 08:58:25] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
-[2026-07-02 08:58:46] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C2C4BC0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:58:46] Retrying in 1 seconds...
-[2026-07-02 08:58:47] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
-[2026-07-02 08:59:08] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25CB00>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:59:08] Retrying in 3 seconds...
-[2026-07-02 08:59:11] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
-[2026-07-02 08:59:32] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C25CBF0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:59:32] Failed after 3 attempts.
-[2026-07-02 08:59:32] Failed to get data for 4036 for 2026-06-30 to 2026-06-30
-[2026-07-02 08:59:33] Querying municipality 4036 for period 2026-07-01 to 2026-07-31
-[2026-07-02 08:59:33] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
-[2026-07-02 08:59:54] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C282F60>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 08:59:54] Retrying in 1 seconds...
-[2026-07-02 08:59:55] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
-[2026-07-02 09:00:16] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3A709520>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 09:00:16] Retrying in 3 seconds...
-[2026-07-02 09:00:19] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
-[2026-07-02 09:00:40] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000029A3C28C770>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
-[2026-07-02 09:00:40] Failed after 3 attempts.
-[2026-07-02 09:00:40] Failed to get data for 4036 for 2026-07-01 to 2026-07-31
+[2026-07-03 08:58:28] Querying municipality 4036 for new data...
+[2026-07-03 08:58:28] Querying municipality 4036 for period 2026-06-30 to 2026-06-30
+[2026-07-03 08:58:28] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 1)
+[2026-07-03 08:58:49] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49256FC0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:58:49] Retrying in 1 seconds...
+[2026-07-03 08:58:50] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 2)
+[2026-07-03 08:59:11] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E8CB0>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:59:11] Retrying in 3 seconds...
+[2026-07-03 08:59:14] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (attempt 3)
+[2026-07-03 08:59:35] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-06-30&endDate=2026-06-30 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D491E9250>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:59:35] Failed after 3 attempts.
+[2026-07-03 08:59:35] Failed to get data for 4036 for 2026-06-30 to 2026-06-30
+[2026-07-03 08:59:36] Querying municipality 4036 for period 2026-07-01 to 2026-07-31
+[2026-07-03 08:59:36] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 1)
+[2026-07-03 08:59:57] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D49213560>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 08:59:57] Retrying in 1 seconds...
+[2026-07-03 08:59:58] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 2)
+[2026-07-03 09:00:19] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D4903A690>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 09:00:19] Retrying in 3 seconds...
+[2026-07-03 09:00:22] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (attempt 3)
+[2026-07-03 09:00:43] Request exception: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-07-01&endDate=2026-07-31 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000018D4921C680>, 'Connection to api.elhub.no timed out. (connect timeout=30)'))
+[2026-07-03 09:00:43] Failed after 3 attempts.
+[2026-07-03 09:00:43] Failed to get data for 4036 for 2026-07-01 to 2026-07-31
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\installed_capacity.csv
-[2026-07-02 09:00:42] No new data to upload. Skipping GitHub update.
+[2026-07-03 09:00:46] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\installed_capacity.csv
 
-[2026-07-02 09:00:44] Combined file processed and uploaded via handle_output_data
-[2026-07-02 09:00:44] Total records in combined file: 94450
-[2026-07-02 09:00:44] New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Installert_effekt_(Elhub).log
+[2026-07-03 09:00:49] Combined file processed and uploaded via handle_output_data
+[2026-07-03 09:00:49] Total records in combined file: 94450
+[2026-07-03 09:00:49] New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Installert_effekt_(Elhub).log
 
-[2026-07-02 09:00:44] Query completed
+[2026-07-03 09:00:49] Query completed
 
 
 Errors/Warnings:
