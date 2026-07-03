@@ -80,7 +80,7 @@ Successfully uploaded log file Innvandrere - Sysselsatte.log. URL: https://githu
 Successfully uploaded log file Klima og energi - Felte hjortedyr.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Felte hjortedyr.log
 Successfully uploaded log file Klima og energi - Installert_effekt (Elhub).log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Installert_effekt (Elhub).log
 Successfully uploaded log file Klima og energi - Kraftproduksjon Telemark (SSB).log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Kraftproduksjon Telemark (SSB).log
-No changes detected for Klima og energi - Okologisk tilstand vann.log. Skipping upload. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Okologisk tilstand vann.log
+Successfully uploaded log file Klima og energi - Okologisk tilstand vann.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Okologisk tilstand vann.log
 Successfully uploaded log file Klima og energi - Sektorvise utslipp.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Sektorvise utslipp.log
 Successfully uploaded log file Klima og energi - Stromforbruk (Elhub).log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Stromforbruk (Elhub).log
 Successfully uploaded log file Klima og energi - Stromforbruk (SSB).log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Stromforbruk (SSB).log
@@ -97,18 +97,6 @@ Successfully uploaded log file Opplaering og kompetanse - Utdanningsnivaa.log. U
 
 DEBUG - Task: Folkehelse - Grunnskolepoeng etter foreldrenes utdanningsnivå
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Grunnskolepoeng%20etter%20foreldrenes%20utdanningsnivå.log
-
-DEBUG - Task: Folkehelse - Leseferdigheter treårig 5. og 8. trinn
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Leseferdigheter%20treårig%205.%20og%208.%20trinn.log
-
-DEBUG - Task: Folkehelse - Mobbing 7. trinn treårig
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Mobbing%207.%20trinn%20treårig.log
-
-DEBUG - Task: Folkehelse - Regneferdighet treårig 5. og 8. trinn
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Regneferdighet%20treårig%205.%20og%208.%20trinn.log
-
-DEBUG - Task: Folkehelse - Trvisel 10. klasse treårig
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Trvisel%2010.%20klasse%20treårig.log
 
 DEBUG - Task: Folkehelse - Dekningsgrad barnehage
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Dekningsgrad%20barnehage.log
@@ -245,17 +233,14 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 DEBUG - Task: Areal - Jordbruksareal per kommune
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Areal%20-%20Jordbruksareal%20per%20kommune.log
 
-DEBUG - Task: Folkehelse - Hoftebrudd
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Hoftebrudd.log
-
 DEBUG - Task: Folkehelse - Skader, sykehusinnlagte, somatikk, treårige tall
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Skader,%20sykehusinnlagte,%20somatikk,%20treårige%20tall.log
 
+DEBUG - Task: Folkehelse - Hoftebrudd
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Hoftebrudd.log
+
 DEBUG - Task: Folkehelse - Luftforurensning
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Luftforurensning.log
-
-DEBUG - Task: Folkehelse - Drikkevann
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Drikkevann.log
 
 DEBUG - Task: Folkehelse - Influensavaksinerte over 65 år
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Influensavaksinerte%20over%2065%20år.log
@@ -263,17 +248,47 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 DEBUG - Task: Folkehelse - Barnevaksinasjonsprogrammet
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Barnevaksinasjonsprogrammet.log
 
+DEBUG - Task: Folkehelse - Overvekt og fedme, 17 år, fireårig
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Overvekt%20og%20fedme,%2017%20år,%20fireårig.log
+
+DEBUG - Task: Folkehelse - Kreft, nye tilfeller, tiårige tall
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Kreft,%20nye%20tilfeller,%20tiårige%20tall.log
+
+DEBUG - Task: Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Hjerte-%20og%20karsykdom%20-%20primærhelsetjenesten,%20treårige%20tall.log
+
 DEBUG - Task: Folkehelse - Forventet levealder 7 årig
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Forventet%20levealder%207%20årig.log
-
-DEBUG - Task: Folkehelse - Selvmord
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Selvmord.log
 
 DEBUG - Task: Folkehelse - Dødsårsaker tiårig
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Dødsårsaker%20tiårig.log
 
-DEBUG - Task: Folkehelse - Overvekt og fedme, 17 år, fireårig
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Overvekt%20og%20fedme,%2017%20år,%20fireårig.log
+DEBUG - Task: Folkehelse - Kreft dødsårsak ettårig
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Kreft%20dødsårsak%20ettårig.log
+
+DEBUG - Task: Folkehelse - Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Muskel-%20og%20skjelettplager%20lidelser,%20kontakt%20med%20primærhelsetjenesten,%20ettårige%20tall.log
+
+DEBUG - Task: Folkehelse - Sykehusinnlagte sykdommer og skader
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Sykehusinnlagte%20sykdommer%20og%20skader.log
+
+DEBUG - Task: Folkehelse - Trvisel 10. klasse treårig
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Trvisel%2010.%20klasse%20treårig.log
+
+DEBUG - Task: Folkehelse - Regneferdighet treårig 5. og 8. trinn
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Regneferdighet%20treårig%205.%20og%208.%20trinn.log
+
+DEBUG - Task: Folkehelse - Mobbing 7. trinn treårig
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Mobbing%207.%20trinn%20treårig.log
+
+DEBUG - Task: Folkehelse - Leseferdigheter treårig 5. og 8. trinn
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Leseferdigheter%20treårig%205.%20og%208.%20trinn.log
+
+DEBUG - Task: Folkehelse - Drikkevann
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Drikkevann.log
+
+DEBUG - Task: Folkehelse - Selvmord
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Selvmord.log
 
 DEBUG - Task: Folkehelse - Inntektsulikhet
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Inntektsulikhet.log
@@ -296,23 +311,8 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 DEBUG - Task: Folkehelse - Pedagognorm barnehager
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Pedagognorm%20barnehager.log
 
-DEBUG - Task: Folkehelse - Muskel- og skjelettplager lidelser, kontakt med primærhelsetjenesten, ettårige tall
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Muskel-%20og%20skjelettplager%20lidelser,%20kontakt%20med%20primærhelsetjenesten,%20ettårige%20tall.log
-
 DEBUG - Task: Folkehelse - barnevern
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20barnevern.log
-
-DEBUG - Task: Folkehelse - Sykehusinnlagte sykdommer og skader
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Sykehusinnlagte%20sykdommer%20og%20skader.log
-
-DEBUG - Task: Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Hjerte-%20og%20karsykdom%20-%20primærhelsetjenesten,%20treårige%20tall.log
-
-DEBUG - Task: Folkehelse - Kreft, nye tilfeller, tiårige tall
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Kreft,%20nye%20tilfeller,%20tiårige%20tall.log
-
-DEBUG - Task: Folkehelse - Kreft dødsårsak ettårig
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Kreft%20dødsårsak%20ettårig.log
 
 DEBUG - Task: Folkehelse - Vedvarende lavinntekt etter innvandringskategori, kommunegrense
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Vedvarende%20lavinntekt%20etter%20innvandringskategori,%20kommunegrense.log
