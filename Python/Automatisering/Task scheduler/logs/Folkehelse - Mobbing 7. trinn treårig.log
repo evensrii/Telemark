@@ -1,0 +1,37 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+
+======================================================================
+FHI Query: Mobbing 7. trinn treÃ¥rig.txt
+======================================================================
+
+Loading query from file...
+  âœ“ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/806/data
+
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  âœ“ Fetched 152 rows and 7 columns
+  Columns: Geografi, SkoleÃ¥r, KjÃ¸nn, Spm.id, Klassetrinn, MÃ¥ltall, value
+
+After processing: 152 rows and 8 columns
+
+Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\mobbing_7_trinn_treaarig.csv
+File not found on GitHub: Data/08_Folkehelse og levekÃ¥r/Grunnskole/mobbing_7_trinn_treaarig.csv
+[2026-07-02 09:05:06] Uploading new file: mobbing_7_trinn_treaarig.csv
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Grunnskole/mobbing_7_trinn_treaarig.csv
+Email notifications disabled. Updates for mobbing_7_trinn_treaarig.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\mobbing_7_trinn_treaarig.csv
+  âœ“ New data detected and uploaded to GitHub
+New data detected
+
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\mobbing_7_trinn_treaarig.csv
+
+======================================================================
+Processing complete
+======================================================================
+
+
