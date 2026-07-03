@@ -1,9 +1,9 @@
 """
-FHI Query Script: Trvisel 10. klasse treårig.txt
-================================================
+FHI Query Script: Forventet levealder etter utdanningsnivå.txt
+==============================================================
 
 Auto-generated script for processing FHI query data.
-Query file: Grunnskole/Trvisel 10. klasse treårig.txt
+Query file: Helsetilstand/Forventet levealder/Forventet levealder etter utdanningsnivå.txt
 
 This script:
 1. Loads query from .txt file
@@ -12,7 +12,7 @@ This script:
 4. Compares with GitHub and uploads if changed
 5. Saves to CSV output
 
-Generated: 2026-07-01 14:44:55
+Generated: 2026-07-03 10:39:19
 """
 
 import json
@@ -46,12 +46,12 @@ query_file = os.path.join(
     "08_Folkehelse_og_levekår", 
     "FHI", 
     "queries",
-    "Grunnskole", "Trvisel 10. klasse treårig.txt"
+    "Helsetilstand", "Forventet levealder", "Forventet levealder etter utdanningsnivå.txt"
 )
 
 # Output configuration
-output_filename = "trvisel_10_klasse_treaarig.csv"
-github_folder = "Data/08_Folkehelse og levekår/Grunnskole"
+output_filename = "forventet_levealder_etter_utdanningsnivaa.csv"
+github_folder = "Data/08_Folkehelse og levekår/Helsetilstand/Forventet levealder"
 
 # Get temp folder
 temp_folder = os.environ.get("TEMP_FOLDER")
@@ -78,7 +78,7 @@ def load_query_file(file_path):
 
 # %%
 print(f"\n{'=' * 70}")
-print(f"FHI Query: Trvisel 10. klasse treårig.txt")
+print(f"FHI Query: Forventet levealder etter utdanningsnivå.txt")
 print(f"{'=' * 70}\n")
 
 # Load query from file
@@ -160,7 +160,7 @@ for col in df.columns:
 
 # Create SortKjonn column if Kjønn exists and has more than one unique value
 if 'Kjønn' in df.columns and df['Kjønn'].nunique() > 1:
-    kjonn_sort = {"Kjønn samlet": 1, "Menn": 2, "Gutter": 2, "Kvinner": 3, "Jenter": 3}
+    kjonn_sort = {"Kjønn samlet": 1, "Begge kjønn": 1, "Menn": 2, "Mann": 2, "Gutter": 2, "Kvinner": 3, "Kvinne": 3, "Jenter": 3}
     df['SortKjonn'] = df['Kjønn'].map(kjonn_sort)
 
 # Create SortAlder column if Alder exists and has more than one unique value
@@ -206,6 +206,24 @@ if 'Kommune' in df.columns:
 
 # --- End standard transformations ---
 # Add script-specific transformations below:
+
+# Pivot from long to wide: one column per Utdanningsnivå
+df_pivot = df.pivot_table(index='År (intervall)', columns='Utdanningsnivå', values='Antall', aggfunc='first').reset_index()
+
+# Rename education level columns to match Everviz labels
+col_rename = {
+    'grunnskole': 'Grunnskole',
+    'videregående': 'Videregående',
+    'universitet/ høgskole': 'Universitet/Høyskole'
+}
+df_pivot = df_pivot.rename(columns=col_rename)
+
+# Format interval: "YYYY-YYYY" → "YYYY - YYYY" (add spaces around dash)
+df_pivot['År (intervall)'] = df_pivot['År (intervall)'].str.replace('-', ' - ', regex=False)
+
+# Rename to År and select final columns
+df_pivot = df_pivot.rename(columns={'År (intervall)': 'År'})
+df = df_pivot[['År', 'Grunnskole', 'Videregående', 'Universitet/Høyskole']].reset_index(drop=True)
 
 ####################################################################
 ### EDITABLE SECTION END                                         ###

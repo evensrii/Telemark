@@ -252,6 +252,19 @@ print(f"  Columns: {{', '.join(df.columns.tolist())}}")
 
 # --- Standard FHI transformations (auto-generated) ---
 
+# Handle Skoleår column (e.g. "2022/23-2024/25"): keep as-is, create "År" and "Skoleår_slutt"
+if 'Skoleår' in df.columns:
+    df['År'] = pd.to_datetime(df['Skoleår'].str.split('-').str[-1].str[:4] + '-01-01').dt.strftime('%Y-%m-%d')
+    df['Skoleår_slutt'] = df['Skoleår'].str.split('-').str[-1]
+    # Place År and Skoleår_slutt directly after Skoleår
+    cols = df.columns.tolist()
+    idx = cols.index('Skoleår')
+    cols.remove('År')
+    cols.remove('Skoleår_slutt')
+    cols.insert(idx + 1, 'År')
+    cols.insert(idx + 2, 'Skoleår_slutt')
+    df = df[cols]
+
 # Convert År to datetime (YYYY-01-01) if column contains single years
 # If År contains intervals (e.g. "2013-2016"), rename to "År (intervall)" and create "År" from last year
 if 'År' in df.columns:
@@ -295,7 +308,7 @@ for col in df.columns:
 
 # Create SortKjonn column if Kjønn exists and has more than one unique value
 if 'Kjønn' in df.columns and df['Kjønn'].nunique() > 1:
-    kjonn_sort = {{"Kjønn samlet": 1, "Menn": 2, "Gutter": 2, "Kvinner": 3, "Jenter": 3}}
+    kjonn_sort = {{"Kjønn samlet": 1, "Begge kjønn": 1, "Menn": 2, "Mann": 2, "Gutter": 2, "Kvinner": 3, "Kvinne": 3, "Jenter": 3}}
     df['SortKjonn'] = df['Kjønn'].map(kjonn_sort)
 
 # Create SortAlder column if Alder exists and has more than one unique value

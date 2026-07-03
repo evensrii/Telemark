@@ -1,9 +1,9 @@
 """
-FHI Query Script: Mobbing 7. trinn treårig.txt
-==============================================
+FHI Query Script: Trivsel 10. klasse treårig.txt
+================================================
 
 Auto-generated script for processing FHI query data.
-Query file: Grunnskole/Mobbing 7. trinn treårig.txt
+Query file: Grunnskole/Trivsel 10. klasse treårig.txt
 
 This script:
 1. Loads query from .txt file
@@ -46,11 +46,11 @@ query_file = os.path.join(
     "08_Folkehelse_og_levekår", 
     "FHI", 
     "queries",
-    "Grunnskole", "Mobbing 7. trinn treårig.txt"
+    "Grunnskole", "Trivsel 10. klasse treårig.txt"
 )
 
 # Output configuration
-output_filename = "mobbing_7_trinn_treaarig.csv"
+output_filename = "trivsel_10_klasse_treaarig.csv"
 github_folder = "Data/08_Folkehelse og levekår/Grunnskole"
 
 # Get temp folder
@@ -78,7 +78,7 @@ def load_query_file(file_path):
 
 # %%
 print(f"\n{'=' * 70}")
-print(f"FHI Query: Mobbing 7. trinn treårig.txt")
+print(f"FHI Query: Trivsel 10. klasse treårig.txt")
 print(f"{'=' * 70}\n")
 
 # Load query from file

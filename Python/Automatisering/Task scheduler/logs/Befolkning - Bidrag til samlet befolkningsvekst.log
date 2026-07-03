@@ -1,77 +1,193 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+
+Loaded .env file from: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\token.env
+
 GITHUB_TOKEN loaded successfully.
+
 Region groups:
+
   Grenland: Porsgrunn, Skien, Siljan, Bamble
+
   Vest-Telemark: Seljord, Hjartdal, Kviteseid, Nissedal, Fyresdal, Tokke, Vinje
-  Ã˜st- og Midt-Telemark: Notodden, KragerÃ¸, Drangedal, Nome, Midt-Telemark, Tinn
+
+  Øst- og Midt-Telemark: Notodden, Kragerø, Drangedal, Nome, Midt-Telemark, Tinn
 
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
-    sock = connection.create_connection(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
-    raise err
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
-    sock.connect(sa)
-TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 
-The above exception was the direct cause of the following exception:
+Found 2 tables matching 'Framskrevet folkemengde'
 
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
-    response = self._make_request(
-               ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
-    raise new_e
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
-    self._validate_conn(conn)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
-    conn.connect()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 753, in connect
-    self.sock = sock = self._new_conn()
-                       ^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
-    raise ConnectTimeoutError(
-urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x000001D2E36F3A10>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
 
-The above exception was the direct cause of the following exception:
 
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
-    resp = conn.urlopen(
-           ^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
-    retries = retries.increment(
-              ^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
-    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables?query=title%3AFramskrevet+folkemengde&lang=no&pagesize=50&pageNumber=1 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001D2E36F3A10>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Befolkningsframskrivinger table:
 
-During handling of the above exception, another exception occurred:
+  Table ID: 14746
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/bidrag_til_samlet_befolkningsvekst.py", line 47, in <module>
-    r = requests.get(base_url, params=params)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 73, in get
-    return request("get", url, params=params, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 59, in request
-    return session.request(method=method, url=url, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 589, in request
-    resp = self.send(prep, **send_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 703, in send
-    r = adapter.send(request, **kwargs)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
-    raise ConnectTimeout(e, request=request)
-requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables?query=title%3AFramskrevet+folkemengde&lang=no&pagesize=50&pageNumber=1 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001D2E36F3A10>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+  Label: 14746: Framskrevet folkemengde 1. januar, etter kjønn og alder, i 9 alternativer (K) 2026-2050
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/01_Befolkning/Befolkningsframskrivinger/bidrag_til_samlet_befolkningsvekst.py` failed. (See above for error)
+  Period: 2026-2050
+
+
+
+Folkevekst table (ID + 1): 14747
+
+
+
+Telemark municipality codes found: 17
+
+  Grenland: ['4001', '4003', '4010', '4012']
+
+  Vest-Telemark: ['4022', '4024', '4028', '4030', '4032', '4034', '4036']
+
+  Øst- og Midt-Telemark: ['4005', '4014', '4016', '4018', '4020', '4026']
+
+  Kommune codelist: vs_KommunFram2024Agg
+
+
+
+Querying Befolkningsframskrivinger (table 14746)...
+
+Befolkningsframskrivinger 14746 JSON-stat data loaded successfully.
+
+  -> Got 425 rows
+
+      region        statistikkvariabel    år  value
+
+0  Porsgrunn  Hovedalternativet (MMMM)  2026  37435
+
+1  Porsgrunn  Hovedalternativet (MMMM)  2027  37533
+
+2  Porsgrunn  Hovedalternativet (MMMM)  2028  37635
+
+3  Porsgrunn  Hovedalternativet (MMMM)  2029  37741
+
+4  Porsgrunn  Hovedalternativet (MMMM)  2030  37852
+
+
+
+Querying Folkevekst (table 14747)...
+
+Folkevekst 14747 JSON-stat data loaded successfully.
+
+  -> Got 1700 rows
+
+      region                alternativ statistikkvariabel    år  value
+
+0  Porsgrunn  Hovedalternativet (MMMM)              Fødte  2026    315
+
+1  Porsgrunn  Hovedalternativet (MMMM)              Fødte  2027    314
+
+2  Porsgrunn  Hovedalternativet (MMMM)              Fødte  2028    314
+
+3  Porsgrunn  Hovedalternativet (MMMM)              Fødte  2029    315
+
+4  Porsgrunn  Hovedalternativet (MMMM)              Fødte  2030    316
+
+
+
+Befolkningsframskrivinger columns: ['region', 'statistikkvariabel', 'år', 'value']
+
+
+
+Population period: 2026 - 2050
+
+
+
+Samlet vekst (%):
+
+Område
+
+Grenland                 5.0
+
+Vest-Telemark            0.6
+
+Øst- og Midt-Telemark    1.8
+
+Name: value, dtype: float64
+
+
+
+Folkevekst columns: ['region', 'alternativ', 'statistikkvariabel', 'år', 'value']
+
+
+
+Pivoted components (absolute numbers):
+
+statistikkvariabel      Døde  ...  Nettoinnvandring
+
+Område                        ...                  
+
+Grenland               30526  ...              7385
+
+Vest-Telemark           4916  ...              2069
+
+Øst- og Midt-Telemark  15285  ...              5844
+
+
+
+[3 rows x 4 columns]
+
+
+
+=== Final result ===
+
+               Område  Naturlig tilvekst  Vekst fra nettoinnvandring  Vekst fra nettoinnflytting  Samlet vekst
+
+             Grenland               -6.0                         6.7                         4.5           5.0
+
+Øst- og Midt-Telemark               -9.7                        11.5                         0.1           1.8
+
+        Vest-Telemark              -10.4                        13.0                        -2.0           0.6
+
+
+
+=== Summary per area ===
+
+
+
+Grenland:
+
+  Befolkning 2026: 110,985 -> 2050: 116,562 (Samlet vekst: 5.0%)
+
+  Naturlig tilvekst: -6,663 / 110,985 * 100 = -6.0%
+
+  Nettoinnvandring:  7,385 / 110,985 * 100 = 6.7%
+
+  Nettoinnflytting:  4,973 / 110,985 * 100 = 4.5%
+
+
+
+Øst- og Midt-Telemark:
+
+  Befolkning 2026: 51,024 -> 2050: 51,947 (Samlet vekst: 1.8%)
+
+  Naturlig tilvekst: -4,974 / 51,024 * 100 = -9.7%
+
+  Nettoinnvandring:  5,844 / 51,024 * 100 = 11.5%
+
+  Nettoinnflytting:  59 / 51,024 * 100 = 0.1%
+
+
+
+Vest-Telemark:
+
+  Befolkning 2026: 15,914 -> 2050: 16,017 (Samlet vekst: 0.6%)
+
+  Naturlig tilvekst: -1,653 / 15,914 * 100 = -10.4%
+
+  Nettoinnvandring:  2,069 / 15,914 * 100 = 13.0%
+
+  Nettoinnflytting:  -325 / 15,914 * 100 = -2.0%
+
+Saved file to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\bidrag_til_samlet_befolkningsvekst.csv
+
+[2026-07-03 09:41:43] No new data to upload. Skipping GitHub update.
+
+Keeping CSV file: C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Temp\bidrag_til_samlet_befolkningsvekst.csv
+
+No new data detected.
+
+New data status log written to C:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Python\Log\new_data_status_Befolkning_-_Bidrag_til_samlet_befolkningsvekst.log
+
+
