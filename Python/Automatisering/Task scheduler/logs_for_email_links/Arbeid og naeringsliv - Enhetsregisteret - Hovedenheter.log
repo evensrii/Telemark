@@ -36,7 +36,7 @@ Traceback (most recent call last):
                        ^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
     raise ConnectTimeoutError(
-urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x000001FF9FCE3110>, 'Connection to data.brreg.no timed out. (connect timeout=300)')
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x0000020408BBF320>, 'Connection to data.brreg.no timed out. (connect timeout=300)')
 
 The above exception was the direct cause of the following exception:
 
@@ -60,7 +60,7 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.brreg.no', port=443): Max retries exceeded with url: /enhetsregisteret/api/enheter/lastned (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001FF9FCE3110>, 'Connection to data.brreg.no timed out. (connect timeout=300)'))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.brreg.no', port=443): Max retries exceeded with url: /enhetsregisteret/api/enheter/lastned (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000020408BBF320>, 'Connection to data.brreg.no timed out. (connect timeout=300)'))
 
 During handling of the above exception, another exception occurred:
 
@@ -79,14 +79,14 @@ Traceback (most recent call last):
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
     raise ConnectTimeout(e, request=request)
-requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.brreg.no', port=443): Max retries exceeded with url: /enhetsregisteret/api/enheter/lastned (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001FF9FCE3110>, 'Connection to data.brreg.no timed out. (connect timeout=300)'))
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.brreg.no', port=443): Max retries exceeded with url: /enhetsregisteret/api/enheter/lastned (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000020408BBF320>, 'Connection to data.brreg.no timed out. (connect timeout=300)'))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
   File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Virksomheter/enhetsregisteret_hovedenheter.py", line 98, in <module>
     raise RuntimeError(f"Download/extraction failed: {str(dl_error)}")
-RuntimeError: Download/extraction failed: HTTPSConnectionPool(host='data.brreg.no', port=443): Max retries exceeded with url: /enhetsregisteret/api/enheter/lastned (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001FF9FCE3110>, 'Connection to data.brreg.no timed out. (connect timeout=300)'))
+RuntimeError: Download/extraction failed: HTTPSConnectionPool(host='data.brreg.no', port=443): Max retries exceeded with url: /enhetsregisteret/api/enheter/lastned (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000020408BBF320>, 'Connection to data.brreg.no timed out. (connect timeout=300)'))
 
 During handling of the above exception, another exception occurred:
 
