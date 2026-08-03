@@ -2,9 +2,8 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Jordbruksareal per kommune: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/09594/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000215A411B3B0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
-Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/09594/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000215A411B3B0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
-Email notifications disabled. Errors in jordbruksareal_per_kommune.py were not sent.
+Downloading file from Enhetsregisteret...
+Email notifications disabled. Errors in enhetsregisteret_underenheter.py were not sent.
 
 
 Errors:
@@ -35,7 +34,7 @@ Traceback (most recent call last):
                        ^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
     raise ConnectTimeoutError(
-urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x00000215A411B3B0>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x00000180F45133B0>, 'Connection to data.brreg.no timed out. (connect timeout=None)')
 
 The above exception was the direct cause of the following exception:
 
@@ -49,20 +48,17 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/09594/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000215A411B3B0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.brreg.no', port=443): Max retries exceeded with url: /enhetsregisteret/api/underenheter/lastned (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000180F45133B0>, 'Connection to data.brreg.no timed out. (connect timeout=None)'))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py", line 60, in <module>
-    df = fetch_data(
-         ^^^^^^^^^^^
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 43, in fetch_data
-    response = requests.post(url, json=payload)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 115, in post
-    return request("post", url, data=data, json=json, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Virksomheter/enhetsregisteret_underenheter.py", line 38, in <module>
+    response = requests.get(url, stream=True)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 59, in request
     return session.request(method=method, url=url, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -74,13 +70,20 @@ Traceback (most recent call last):
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
     raise ConnectTimeout(e, request=request)
-requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/09594/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000215A411B3B0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.brreg.no', port=443): Max retries exceeded with url: /enhetsregisteret/api/underenheter/lastned (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000180F45133B0>, 'Connection to data.brreg.no timed out. (connect timeout=None)'))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py", line 72, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Virksomheter/enhetsregisteret_underenheter.py", line 87, in <module>
+    raise RuntimeError(f"Download/extraction failed: {str(dl_error)}")
+RuntimeError: Download/extraction failed: HTTPSConnectionPool(host='data.brreg.no', port=443): Max retries exceeded with url: /enhetsregisteret/api/underenheter/lastned (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000180F45133B0>, 'Connection to data.brreg.no timed out. (connect timeout=None)'))
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/jordbruksareal_per_kommune.py` failed. (See above for error)
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Virksomheter/enhetsregisteret_underenheter.py", line 226, in <module>
+    raise RuntimeError("A critical error occurred during script execution.")
+RuntimeError: A critical error occurred during script execution.
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/enhetsregisteret_underenheter.py` failed. (See above for error)
