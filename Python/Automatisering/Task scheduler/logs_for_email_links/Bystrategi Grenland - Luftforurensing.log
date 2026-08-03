@@ -3,9 +3,9 @@ X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 === Luftforurensning Grenland (Excel) ===
-Script started: 2026-07-03 09:14:32
+Script started: 2026-08-03 10:19:55
 === Listing Excel files from GitHub ===
-Found 19 Excel files:
+Found 20 Excel files:
   - PM10 og NO2 dÃ¸gn 2014 (KM og FM, mangler).xlsx
   - PM10 og NO2 dÃ¸gn 2015 (KM og FM mangler).xlsx
   - PM10 og NO2 dÃ¸gn 2016 (KM mangler).xlsx
@@ -24,6 +24,7 @@ Found 19 Excel files:
   - PM10 og NO2 dÃ¸gn jan-jun 2025.xlsx
   - PM10 og NO2 dÃ¸gn november 2025.xlsx
   - PM10 og NO2 dÃ¸gn jan-feb 2026.xlsx
+  - PM10 og NO2 dÃ¸gn mai 2026.xlsx
   - PM10 og NO2 dÃ¸gn mars-mai 2026.xlsx
 
 Downloading: PM10 og NO2 dÃ¸gn 2014 (KM og FM, mangler).xlsx
@@ -80,29 +81,34 @@ Downloading: PM10 og NO2 dÃ¸gn november 2025.xlsx
 Downloading: PM10 og NO2 dÃ¸gn jan-feb 2026.xlsx
   Loaded 59 rows, 20 cols
 
+Downloading: PM10 og NO2 dÃ¸gn mai 2026.xlsx
+  Loaded 36 rows, 21 cols
+
 Downloading: PM10 og NO2 dÃ¸gn mars-mai 2026.xlsx
   Loaded 62 rows, 20 cols
 
-Combining 19 DataFrames...
-  Standardized DataFrame 1: (365, 20)
-  Standardized DataFrame 2: (365, 20)
-  Standardized DataFrame 3: (366, 20)
-  Standardized DataFrame 4: (335, 20)
-  Standardized DataFrame 5: (365, 20)
-  Standardized DataFrame 6: (365, 20)
-  Standardized DataFrame 7: (366, 20)
-  Standardized DataFrame 8: (365, 20)
-  Standardized DataFrame 9: (365, 20)
-  Standardized DataFrame 10: (365, 20)
-  Standardized DataFrame 11: (366, 20)
-  Standardized DataFrame 12: (31, 20)
-  Standardized DataFrame 13: (61, 20)
-  Standardized DataFrame 14: (31, 20)
-  Standardized DataFrame 15: (31, 20)
-  Standardized DataFrame 16: (181, 20)
-  Standardized DataFrame 17: (30, 20)
-  Standardized DataFrame 18: (59, 20)
-  Standardized DataFrame 19: (62, 20)
+Combining 20 DataFrames...
+  Standardized DataFrame 1: (365, 41)
+  Standardized DataFrame 2: (365, 41)
+  Standardized DataFrame 3: (366, 41)
+  Standardized DataFrame 4: (335, 41)
+  Standardized DataFrame 5: (365, 41)
+  Standardized DataFrame 6: (365, 41)
+  Standardized DataFrame 7: (366, 41)
+  Standardized DataFrame 8: (365, 41)
+  Standardized DataFrame 9: (365, 41)
+  Standardized DataFrame 10: (365, 41)
+  Standardized DataFrame 11: (366, 41)
+  Standardized DataFrame 12: (31, 41)
+  Standardized DataFrame 13: (61, 41)
+  Standardized DataFrame 14: (31, 41)
+  Standardized DataFrame 15: (31, 41)
+  Standardized DataFrame 16: (181, 41)
+  Standardized DataFrame 17: (30, 41)
+  Standardized DataFrame 18: (59, 41)
+  Standardized DataFrame 19: (36, 41)
+  Standardized DataFrame 20: (62, 41)
+  Dropping 36 rows with invalid/missing 'Fra-tid'
 
 === Final transformations ===
 âœ“ Removed 'Til-tid'

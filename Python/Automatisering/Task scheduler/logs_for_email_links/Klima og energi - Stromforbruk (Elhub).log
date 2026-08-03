@@ -2,12 +2,89 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2026-07-03 08:20:59] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
-[2026-07-03 08:20:59] GITHUB_TOKEN loaded successfully.
-[2026-07-03 08:21:10] Latest date in GitHub files: 2026-06-28
-[2026-07-03 08:21:10] Querying data for 2026-06-29
-[2026-07-03 08:21:31] Error in main: HTTPSConnectionPool(host='api.elhub.no', port=443): Max retries exceeded with url: /energy-data/v0/municipalities?dataset=CONSUMPTION_PER_GROUP_MUNICIPALITY_HOUR&startDate=2026-06-29 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000232972BBF50>, 'Connection to api.elhub.no timed out. (connect timeout=None)'))
+[2026-08-03 10:02:36] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+[2026-08-03 10:02:36] GITHUB_TOKEN loaded successfully.
+[2026-08-03 10:02:46] Latest date in GitHub files: 2026-07-01
+[2026-08-03 10:02:46] Querying data for 2026-07-02
+[2026-08-03 10:02:47] API Response status code: 200
+[2026-08-03 10:02:47] Querying data for 2026-07-03
+[2026-08-03 10:02:48] API Response status code: 200
+[2026-08-03 10:02:48] Querying data for 2026-07-04
+[2026-08-03 10:02:49] API Response status code: 200
+[2026-08-03 10:02:49] Querying data for 2026-07-05
+[2026-08-03 10:02:50] API Response status code: 200
+[2026-08-03 10:02:50] Querying data for 2026-07-06
+[2026-08-03 10:02:51] API Response status code: 200
+[2026-08-03 10:02:51] Querying data for 2026-07-07
+[2026-08-03 10:02:52] API Response status code: 200
+[2026-08-03 10:02:52] Querying data for 2026-07-08
+[2026-08-03 10:02:52] API Response status code: 200
+[2026-08-03 10:02:53] Querying data for 2026-07-09
+[2026-08-03 10:02:53] API Response status code: 200
+[2026-08-03 10:02:54] Querying data for 2026-07-10
+[2026-08-03 10:02:55] API Response status code: 200
+[2026-08-03 10:02:55] Querying data for 2026-07-11
+[2026-08-03 10:02:55] API Response status code: 200
+[2026-08-03 10:02:56] Querying data for 2026-07-12
+[2026-08-03 10:02:56] API Response status code: 200
+[2026-08-03 10:02:57] Querying data for 2026-07-13
+[2026-08-03 10:02:57] API Response status code: 200
+[2026-08-03 10:02:58] Querying data for 2026-07-14
+[2026-08-03 10:02:58] API Response status code: 200
+[2026-08-03 10:02:58] Querying data for 2026-07-15
+[2026-08-03 10:02:59] API Response status code: 200
+[2026-08-03 10:02:59] Querying data for 2026-07-16
+[2026-08-03 10:03:00] API Response status code: 200
+[2026-08-03 10:03:00] Querying data for 2026-07-17
+[2026-08-03 10:03:01] API Response status code: 200
+[2026-08-03 10:03:01] Querying data for 2026-07-18
+[2026-08-03 10:03:02] API Response status code: 200
+[2026-08-03 10:03:02] Querying data for 2026-07-19
+[2026-08-03 10:03:03] API Response status code: 200
+[2026-08-03 10:03:03] Querying data for 2026-07-20
+[2026-08-03 10:03:04] API Response status code: 200
+[2026-08-03 10:03:04] Querying data for 2026-07-21
+[2026-08-03 10:03:05] API Response status code: 200
+[2026-08-03 10:03:05] Querying data for 2026-07-22
+[2026-08-03 10:03:06] API Response status code: 200
+[2026-08-03 10:03:06] Querying data for 2026-07-23
+[2026-08-03 10:03:07] API Response status code: 200
+[2026-08-03 10:03:07] Querying data for 2026-07-24
+[2026-08-03 10:03:07] API Response status code: 200
+[2026-08-03 10:03:08] Querying data for 2026-07-25
+[2026-08-03 10:03:08] API Response status code: 200
+[2026-08-03 10:03:09] Querying data for 2026-07-26
+[2026-08-03 10:03:09] API Response status code: 200
+[2026-08-03 10:03:10] Querying data for 2026-07-27
+[2026-08-03 10:03:10] API Response status code: 200
+[2026-08-03 10:03:10] Querying data for 2026-07-28
+[2026-08-03 10:03:11] API Response status code: 200
+[2026-08-03 10:03:11] Querying data for 2026-07-29
+[2026-08-03 10:03:12] API Response status code: 200
+[2026-08-03 10:03:12] Querying data for 2026-07-30
+[2026-08-03 10:03:13] API Response status code: 200
+[2026-08-03 10:03:13] Querying data for 2026-07-31
+[2026-08-03 10:03:14] API Response status code: 200
+[2026-08-03 10:03:14] Querying data for 2026-08-01
+[2026-08-03 10:03:15] API Response status code: 200
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\2026.csv
+[2026-08-03 10:03:20] Row count changed: 222666 -> 260610
 
+Added rows (showing up to 10):
+Antall mlere: 50.0, Forbruk (kWh): 104.525, Gruppe: Industri, Knr: 4010, Kommunenavn: Siljan, Tid: 2026-07-01 22:00:00+00:00
+Antall mlere: 199.0, Forbruk (kWh): 2615.003, Gruppe: Industri, Knr: 4005, Kommunenavn: Notodden, Tid: 2026-07-01 22:00:00+00:00
+Antall mlere: 878.0, Forbruk (kWh): 3323.582, Gruppe: NÃ¦ring (unntatt industri), Knr: 4005, Kommunenavn: Notodden, Tid: 2026-07-01 22:00:00+00:00
+Antall mlere: 19647.0, Forbruk (kWh): 18089.441, Gruppe: Husholdninger, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-07-01 22:00:00+00:00
+Antall mlere: 538.0, Forbruk (kWh): 1623.965, Gruppe: NÃ¦ring (unntatt industri), Knr: 4036, Kommunenavn: Vinje, Tid: 2026-07-01 22:00:00+00:00
+Antall mlere: 1675.0, Forbruk (kWh): 9710.49, Gruppe: NÃ¦ring (unntatt industri), Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-07-01 22:00:00+00:00
+Antall mlere: 2226.0, Forbruk (kWh): 1727.891, Gruppe: Husholdninger, Knr: 4022, Kommunenavn: Seljord, Tid: 2026-07-01 22:00:00+00:00
+Antall mlere: 96.0, Forbruk (kWh): 170.874, Gruppe: Industri, Knr: 4022, Kommunenavn: Seljord, Tid: 2026-07-01 22:00:00+00:00
+Antall mlere: 335.0, Forbruk (kWh): 1162.94, Gruppe: NÃ¦ring (unntatt industri), Knr: 4022, Kommunenavn: Seljord, Tid: 2026-07-01 22:00:00+00:00
+Antall mlere: 1278.0, Forbruk (kWh): 1299.026, Gruppe: Husholdninger, Knr: 4010, Kommunenavn: Siljan, Tid: 2026-07-01 22:00:00+00:00
+... and 37934 more rows
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/2026.csv
+Email notifications disabled. Updates for 2026.csv were not sent.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\2026.csv
+[2026-08-03 10:03:38] New data detected in 2026.csv and pushed to GitHub.
+[2026-08-03 10:03:38] New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Stromforbruk_(Elhub).log
 
-Errors:
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Forbruk/Elhub/elhub.py` failed. (See above for error)

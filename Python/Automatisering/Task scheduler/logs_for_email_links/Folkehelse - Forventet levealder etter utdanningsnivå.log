@@ -4,27 +4,27 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 
 ======================================================================
-FHI Query: DÃ¸dsÃ¥rsaker tiÃ¥rig.txt
+FHI Query: Forventet levealder etter utdanningsnivÃ¥.txt
 ======================================================================
 
 Loading query from file...
   âœ“ Query loaded
-  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/342/data
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/507/data
 
 Fetching data from FHI API...
 FHI Query JSON-stat data loaded successfully.
-  âœ“ Fetched 1995 rows and 7 columns
-  Columns: Geografi, Ã…r, KjÃ¸nn, Alder, DÃ¸dsÃ¥rsak, MÃ¥ltall, value
+  âœ“ Fetched 87 rows and 7 columns
+  Columns: Geografi, Ã…r, KjÃ¸nn, Alder, UtdanningsnivÃ¥, MÃ¥ltall, value
 
-After processing: 1995 rows and 9 columns
+After processing: 29 rows and 4 columns
 
 Comparing with GitHub...
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\doedsaarsaker_tiaarig.csv
-[2026-08-03 10:12:39] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\doedsaarsaker_tiaarig.csv
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanningsnivaa.csv
+[2026-08-03 10:13:03] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanningsnivaa.csv
   âœ“ No changes detected
 
-  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\doedsaarsaker_tiaarig.csv
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanningsnivaa.csv
 
 ======================================================================
 Processing complete
