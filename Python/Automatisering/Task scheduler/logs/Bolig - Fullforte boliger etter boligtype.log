@@ -2,8 +2,9 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Downloading file from Enhetsregisteret...
-Email notifications disabled. Errors in enhetsregisteret_underenheter.py were not sent.
+Request error in FullfÃ¸rte boliger etter boligtype (05940): HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/05940/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=*&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BByggeareal%5D=*&valuecodes%5BContentsCode%5D=Fullforte&heading=Region,ContentsCode,Tid&stub=Byggeareal (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000025BD34BEAB0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/05940/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=*&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BByggeareal%5D=*&valuecodes%5BContentsCode%5D=Fullforte&heading=Region,ContentsCode,Tid&stub=Byggeareal (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000025BD34BEAB0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Email notifications disabled. Errors in fullfÃ¸rte_boliger_etter_boligtype.py were not sent.
 
 
 Errors:
@@ -34,7 +35,7 @@ Traceback (most recent call last):
                        ^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
     raise ConnectTimeoutError(
-urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x00000180F45133B0>, 'Connection to data.brreg.no timed out. (connect timeout=None)')
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x0000025BD34BEAB0>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
 
 The above exception was the direct cause of the following exception:
 
@@ -48,14 +49,17 @@ Traceback (most recent call last):
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.brreg.no', port=443): Max retries exceeded with url: /enhetsregisteret/api/underenheter/lastned (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000180F45133B0>, 'Connection to data.brreg.no timed out. (connect timeout=None)'))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/05940/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=*&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BByggeareal%5D=*&valuecodes%5BContentsCode%5D=Fullforte&heading=Region,ContentsCode,Tid&stub=Byggeareal (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000025BD34BEAB0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Virksomheter/enhetsregisteret_underenheter.py", line 38, in <module>
-    response = requests.get(url, stream=True)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/fullfÃ¸rte_boliger_etter_boligtype.py", line 33, in <module>
+    df = fetch_data(
+         ^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 45, in fetch_data
+    response = requests.get(url)
+               ^^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 73, in get
     return request("get", url, params=params, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -70,20 +74,13 @@ Traceback (most recent call last):
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
     raise ConnectTimeout(e, request=request)
-requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.brreg.no', port=443): Max retries exceeded with url: /enhetsregisteret/api/underenheter/lastned (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000180F45133B0>, 'Connection to data.brreg.no timed out. (connect timeout=None)'))
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/pxwebapi/v2/tables/05940/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=*&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BByggeareal%5D=*&valuecodes%5BContentsCode%5D=Fullforte&heading=Region,ContentsCode,Tid&stub=Byggeareal (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000025BD34BEAB0>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Virksomheter/enhetsregisteret_underenheter.py", line 87, in <module>
-    raise RuntimeError(f"Download/extraction failed: {str(dl_error)}")
-RuntimeError: Download/extraction failed: HTTPSConnectionPool(host='data.brreg.no', port=443): Max retries exceeded with url: /enhetsregisteret/api/underenheter/lastned (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000180F45133B0>, 'Connection to data.brreg.no timed out. (connect timeout=None)'))
+  File "D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/fullfÃ¸rte_boliger_etter_boligtype.py", line 43, in <module>
+    raise RuntimeError(
+RuntimeError: A critical error occurred during data fetching, stopping execution.
 
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/NÃ¦ringsliv/Virksomheter/enhetsregisteret_underenheter.py", line 226, in <module>
-    raise RuntimeError("A critical error occurred during script execution.")
-RuntimeError: A critical error occurred during script execution.
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/enhetsregisteret_underenheter.py` failed. (See above for error)
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/fullførte_boliger_etter_boligtype.py` failed. (See above for error)
