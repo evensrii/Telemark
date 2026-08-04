@@ -4,20 +4,12 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Anmodninger og faktisk bosetting CSV data loaded successfully.
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-[2026-08-03 10:11:12] Row count changed: 1661 -> 1662
+[2026-08-04 08:25:35] Changes detected in the dataset.
 
-Added rows (showing up to 10):
-Antall: 17.0, Kategori: Faktisk bosetting, Kommune: Bamble, r: 2026-01-01
-Antall: 14.0, Kategori: Faktisk bosetting, Kommune: Hjartdal, r: 2026-01-01
-Antall: 10.0, Kategori: Faktisk bosetting, Kommune: KragerÃ¸, r: 2026-01-01
-Antall: 0.0, Kategori: Faktisk bosetting, Kommune: Kviteseid, r: 2026-01-01
-Antall: 6.0, Kategori: Faktisk bosetting, Kommune: Nissedal, r: 2026-01-01
-Antall: 13.0, Kategori: Faktisk bosetting, Kommune: Notodden, r: 2026-01-01
-Antall: 21.0, Kategori: Faktisk bosetting, Kommune: Porsgrunn, r: 2026-01-01
-Antall: 19.0, Kategori: Faktisk bosetting, Kommune: Skien, r: 2026-01-01
-Antall: 11.0, Kategori: Faktisk bosetting, Kommune: Tinn, r: 2026-01-01
-Antall: 9.0, Kategori: Faktisk bosetting, Kommune: Vinje, r: 2026-01-01
+[2026-08-04 08:25:35] Dataset is large. Showing detailed changes from the last 200 rows only.
 File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/anmodninger_og_faktisk_bosetting.csv
+
+No changes found in the last 200 rows, but changes exist elsewhere in the dataset.
 Email notifications disabled. Updates for anmodninger_og_faktisk_bosetting.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
 New data detected and pushed to GitHub.
