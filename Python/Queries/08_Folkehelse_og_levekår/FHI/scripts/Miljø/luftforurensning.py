@@ -211,6 +211,28 @@ if 'Kommune' in df.columns:
 if 'Antall' in df.columns:
     df = df.rename(columns={'Antall': 'Konsentrasjon_PM2_5'})
 
+# Define Telemark kommuner
+telemark_kommuner = [
+    "Porsgrunn", "Skien", "Notodden", "Siljan", "Bamble", "Kragerø",
+    "Drangedal", "Nome", "Midt-Telemark", "Seljord", "Hjartdal",
+    "Tinn", "Kviteseid", "Nissedal", "Fyresdal", "Tokke", "Vinje"
+]
+
+# Get the year (YYYY) from the År column
+year = pd.to_datetime(df['År']).dt.year.max()
+
+# Reshape for Everviz: Kommune, Konsentrasjon PM2_5 (ÅR), Label
+df = df[['Kommune', 'Konsentrasjon_PM2_5']].copy()
+df['Konsentrasjon_PM2_5'] = pd.to_numeric(df['Konsentrasjon_PM2_5'], errors='coerce').round(0).astype(int)
+df = df.rename(columns={'Konsentrasjon_PM2_5': f'Konsentrasjon PM2_5 ({year})'})
+df['Label'] = df['Kommune']
+
+# Sort: kommuner alphabetically, then Telemark and Hele landet last
+kommuner_df = df[df['Kommune'].isin(telemark_kommuner)].sort_values('Kommune')
+aggregates_df = df[df['Kommune'].isin(["Telemark", "Hele landet"])]
+aggregates_df = aggregates_df.set_index('Kommune').loc[["Telemark", "Hele landet"]].reset_index()
+df = pd.concat([kommuner_df, aggregates_df], ignore_index=True)
+
 ####################################################################
 ### EDITABLE SECTION END                                         ###
 ####################################################################

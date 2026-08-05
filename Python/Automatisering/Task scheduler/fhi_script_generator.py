@@ -526,6 +526,105 @@ def sync_master_script(all_script_entries):
     print(f"\n✓ Synchronized master_script.py with {len(all_script_entries)} FHI scripts")
 
 
+def sync_ssb_master_script():
+    """
+    Synchronize master_script.py with SSB scripts in Queries/08_Folkehelse_og_levekår/SSB/.
+    - Scans for .py files in the SSB folder
+    - Adds missing entries to the '## Folkehelse og levekår - SSB' section
+    - Removes entries for deleted scripts
+    """
+    ssb_dir = os.path.join(pythonpath, "Queries", "08_Folkehelse_og_levekår", "SSB")
+    
+    if not os.path.exists(ssb_dir):
+        print("\n✓ No SSB folder found, skipping SSB sync")
+        return
+    
+    # Find all .py files in the SSB folder
+    ssb_scripts = []
+    for file in sorted(os.listdir(ssb_dir)):
+        if file.endswith('.py'):
+            script_name = Path(file).stem
+            # Create task name from filename
+            task_name = f"Folkehelse - {script_name.replace('_', ' ').capitalize()}"
+            rel_path = f"Queries/08_Folkehelse_og_levekår/SSB/{file}"
+            ssb_scripts.append((rel_path, task_name))
+    
+    if not ssb_scripts:
+        print("\n✓ No SSB scripts found")
+        return
+    
+    # Read current master_script.py
+    with open(MASTER_SCRIPT, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    lines = content.split('\n')
+    
+    # Find the SSB section
+    ssb_section_marker = "## Folkehelse og levekår - SSB"
+    ssb_section_start = None
+    ssb_section_end = None
+    
+    for i, line in enumerate(lines):
+        if ssb_section_marker in line:
+            ssb_section_start = i
+            # Find end of SSB section (next ## or blank line followed by ##, or closing bracket)
+            for j in range(i + 1, len(lines)):
+                if lines[j].strip().startswith('##') or lines[j].strip() == ']':
+                    ssb_section_end = j
+                    break
+            break
+    
+    if ssb_section_start is None:
+        print(f"\n⚠ Could not find '{ssb_section_marker}' section in master_script.py")
+        return
+    
+    # Extract existing SSB entries (paths only)
+    existing_ssb_paths = set()
+    if ssb_section_start is not None and ssb_section_end is not None:
+        for i in range(ssb_section_start + 1, ssb_section_end):
+            line = lines[i].strip()
+            if 'Folkehelse_og_levekår/SSB/' in line:
+                # Extract the relative path from the os.path.join
+                match = re.search(r'"(Queries/08_Folkehelse_og_levekår/SSB/[^"]+)"', line)
+                if match:
+                    existing_ssb_paths.add(match.group(1))
+    
+    # Compare
+    actual_ssb_paths = {path for path, _ in ssb_scripts}
+    to_add = actual_ssb_paths - existing_ssb_paths
+    to_remove = existing_ssb_paths - actual_ssb_paths
+    
+    if to_remove:
+        print(f"\n⚠ Removing {len(to_remove)} deleted SSB scripts from master_script.py:")
+        for path in sorted(to_remove):
+            print(f"  - {os.path.basename(path)}")
+    
+    if to_add:
+        print(f"\n+ Adding {len(to_add)} missing SSB scripts to master_script.py:")
+        for path in sorted(to_add):
+            print(f"  + {os.path.basename(path)}")
+    
+    if not to_add and not to_remove:
+        print("\n✓ master_script.py SSB section is already in sync")
+        return
+    
+    # Rebuild SSB section
+    new_ssb_lines = [f"    {ssb_section_marker}"]
+    for script_path, task_name in sorted(ssb_scripts, key=lambda x: x[0]):
+        new_ssb_lines.append(f'    (os.path.join(PYTHON_PATH, "{script_path}"), "{task_name}"),')
+    new_ssb_lines.append("")
+    
+    # Replace the section
+    lines = lines[:ssb_section_start] + new_ssb_lines + lines[ssb_section_end:]
+    
+    # Write updated content
+    content = '\n'.join(lines)
+    with open(MASTER_SCRIPT, 'w', encoding='utf-8') as f:
+        f.write(content)
+    
+    print(f"\n✓ Synchronized master_script.py with {len(ssb_scripts)} SSB scripts")
+
+
 def find_orphaned_scripts(queries_dir, scripts_dir):
     """
     Find scripts that don't have corresponding query files.
@@ -668,6 +767,10 @@ def main():
     # Always sync master_script.py with all scripts
     print("Synchronizing master_script.py...")
     sync_master_script(all_script_entries)
+    
+    # Also sync SSB scripts
+    print("\nSynchronizing SSB scripts...")
+    sync_ssb_master_script()
     print()
     
     print("=" * 70)
