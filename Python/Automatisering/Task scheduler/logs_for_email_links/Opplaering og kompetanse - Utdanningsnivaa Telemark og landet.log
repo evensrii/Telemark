@@ -2,85 +2,85 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Telemark: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/09429/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000019B4123BE60>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
-Error occurred: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/09429/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000019B4123BE60>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
-Email notifications disabled. Errors in utdanningsnivaa_telemark_og_landet.py were not sent.
+Telemark JSON-stat data loaded successfully.
+     region                                 nivÃ¥  ...    Ã¥r value
+0  Telemark                       GrunnskolenivÃ¥  ...  2025  25.2
+1  Telemark               VideregÃ¥ende skolenivÃ¥  ...  2025  39.6
+2  Telemark                         FagskolenivÃ¥  ...  2025   3.7
+3  Telemark  Universitets- og hÃ¸gskolenivÃ¥, kort  ...  2025  23.1
+4  Telemark  Universitets- og hÃ¸gskolenivÃ¥, lang  ...  2025   7.9
 
+[5 rows x 6 columns]
+Hele landet JSON-stat data loaded successfully.
+        region                                 nivÃ¥  ...    Ã¥r value
+0  Hele landet                       GrunnskolenivÃ¥  ...  2025  22.7
+1  Hele landet               VideregÃ¥ende skolenivÃ¥  ...  2025  35.1
+2  Hele landet                         FagskolenivÃ¥  ...  2025   3.4
+3  Hele landet  Universitets- og hÃ¸gskolenivÃ¥, kort  ...  2025  25.3
+4  Hele landet  Universitets- og hÃ¸gskolenivÃ¥, lang  ...  2025  13.0
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
-    sock = connection.create_connection(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
-    raise err
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
-    sock.connect(sa)
-TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+[5 rows x 6 columns]
+Hele landet uten Oslo JSON-stat data loaded successfully.
+                              region  ...   value
+0                            Ã˜stfold  ...   73388
+1                            Ã˜stfold  ...  100541
+2                            Ã˜stfold  ...    8609
+3                            Ã˜stfold  ...   60241
+4                            Ã˜stfold  ...   20275
+..                               ...  ...     ...
+65  Finnmark - FinnmÃ¡rku - Finmarkku  ...   17936
+66  Finnmark - FinnmÃ¡rku - Finmarkku  ...   22546
+67  Finnmark - FinnmÃ¡rku - Finmarkku  ...    2442
+68  Finnmark - FinnmÃ¡rku - Finmarkku  ...   14637
+69  Finnmark - FinnmÃ¡rku - Finmarkku  ...    5312
 
-The above exception was the direct cause of the following exception:
+[70 rows x 6 columns]
 
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
-    response = self._make_request(
-               ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
-    raise new_e
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
-    self._validate_conn(conn)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
-    conn.connect()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 753, in connect
-    self.sock = sock = self._new_conn()
-                       ^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
-    raise ConnectTimeoutError(
-urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x0000019B4123BE60>, 'Connection to data.ssb.no timed out. (connect timeout=None)')
+Processed df_landet_uten_oslo:
+                    region                                 nivÃ¥  ...    Ã¥r value
+0  Hele landet utenom Oslo                         FagskolenivÃ¥  ...  2025   3.6
+1  Hele landet utenom Oslo                       GrunnskolenivÃ¥  ...  2025  23.5
+2  Hele landet utenom Oslo  Universitets- og hÃ¸gskolenivÃ¥, kort  ...  2025  24.6
+3  Hele landet utenom Oslo  Universitets- og hÃ¸gskolenivÃ¥, lang  ...  2025  11.1
+4  Hele landet utenom Oslo               VideregÃ¥ende skolenivÃ¥  ...  2025  37.2
 
-The above exception was the direct cause of the following exception:
+[5 rows x 6 columns]
 
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
-    resp = conn.urlopen(
-           ^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
-    retries = retries.increment(
-              ^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
-    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/09429/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000019B4123BE60>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+Final processed dataframes:
 
-During handling of the above exception, another exception occurred:
+df_telemark_final:
+     region                                 nivÃ¥  Andel (2025)
+0  Telemark                       GrunnskolenivÃ¥          25.2
+1  Telemark               VideregÃ¥ende skolenivÃ¥          39.6
+2  Telemark                         FagskolenivÃ¥           3.7
+3  Telemark  Universitets- og hÃ¸gskolenivÃ¥, kort          23.1
+4  Telemark  Universitets- og hÃ¸gskolenivÃ¥, lang           7.9
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃ¦ring_og_kompetanse/UtdanningsnivÃ¥/utdanningsnivaa_telemark_og_landet.py", line 90, in <module>
-    df_telemark = fetch_data(
-                  ^^^^^^^^^^^
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 43, in fetch_data
-    response = requests.post(url, json=payload)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 115, in post
-    return request("post", url, data=data, json=json, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 59, in request
-    return session.request(method=method, url=url, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 589, in request
-    resp = self.send(prep, **send_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 703, in send
-    r = adapter.send(request, **kwargs)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
-    raise ConnectTimeout(e, request=request)
-requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='data.ssb.no', port=443): Max retries exceeded with url: /api/v0/no/table/09429/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000019B4123BE60>, 'Connection to data.ssb.no timed out. (connect timeout=None)'))
+df_landet_final:
+        region                                 nivÃ¥  Andel (2025)
+0  Hele landet                       GrunnskolenivÃ¥          22.7
+1  Hele landet               VideregÃ¥ende skolenivÃ¥          35.1
+2  Hele landet                         FagskolenivÃ¥           3.4
+3  Hele landet  Universitets- og hÃ¸gskolenivÃ¥, kort          25.3
+4  Hele landet  Universitets- og hÃ¸gskolenivÃ¥, lang          13.0
 
-During handling of the above exception, another exception occurred:
+df_landet_uten_oslo_final:
+                    region                                 nivÃ¥  Andel (2025)
+0  Hele landet utenom Oslo                         FagskolenivÃ¥           3.6
+1  Hele landet utenom Oslo                       GrunnskolenivÃ¥          23.5
+2  Hele landet utenom Oslo  Universitets- og hÃ¸gskolenivÃ¥, kort          24.6
+3  Hele landet utenom Oslo  Universitets- og hÃ¸gskolenivÃ¥, lang          11.1
+4  Hele landet utenom Oslo               VideregÃ¥ende skolenivÃ¥          37.2
 
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/02_OpplÃ¦ring_og_kompetanse/UtdanningsnivÃ¥/utdanningsnivaa_telemark_og_landet.py", line 102, in <module>
-    raise RuntimeError(
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+Final transformed dataframe:
+       UtdanningsnivÃ¥  Telemark  Hele landet  Hele landet utenom Oslo
+0          Grunnskole      25.2         22.7                     23.5
+1  VideregÃ¥ende skole      39.6         35.1                     37.2
+2            Fagskole       3.7          3.4                      3.6
+3    HÃ¸yere utdanning      31.0         38.3                     35.7
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\utdanningsniva_telemark_og_landet.csv
+[2026-08-05 08:07:51] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\utdanningsniva_telemark_og_landet.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Utdanningsnivaa_Telemark_og_landet.log
 
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa_telemark_og_landet.py` failed. (See above for error)
