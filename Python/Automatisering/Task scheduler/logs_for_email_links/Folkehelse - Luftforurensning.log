@@ -20,9 +20,14 @@ After processing: 19 rows and 6 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\luftforurensning.csv
-[2026-08-04 08:28:51] No new data to upload. Skipping GitHub update.
+[2026-08-05 08:23:05] Header structure changed in luftforurensning.csv:
+Removed headers: label, konsentrasjon pm2_5 (2024)
+Added headers: konsentrasjon_pm2_5, Ã¥r, sortkommune, Ã¥r (intervall), mÃ¥ltall
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/MiljÃ¸/luftforurensning.csv
+Email notifications disabled. Updates for luftforurensning.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\luftforurensning.csv
-  âœ“ No changes detected
+  âœ“ New data detected and uploaded to GitHub
+New data detected
 
   âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\luftforurensning.csv
 
