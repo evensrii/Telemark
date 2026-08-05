@@ -20,34 +20,9 @@ After processing: 4560 rows and 10 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\kreft_nye_tilfeller_tiaarige_tall.csv
-[2026-08-05 08:22:15] Changes detected in the dataset.
-
-[2026-08-05 08:22:15] Dataset is large. Showing detailed changes from the last 200 rows only.
-File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Helsetilstand/Sykdomsgrupper/kreft_nye_tilfeller_tiaarige_tall.csv
-
-Showing up to 5 examples of changes from the last 200 rows:
-
-Row: r: 2017-01-01 | Kommune: Vinje
-  Antall: 481.3 -> 459.7
-
-Row: r: 2017-01-01 | Kommune: Vinje
-  r (intervall): 2007-2016 -> 2008-2017
-
-Row: r: 2017-01-01 | Kommune: Vinje
-  Antall: 71.7 -> 81.9
-
-Row: r: 2017-01-01 | Kommune: Vinje
-  r (intervall): 2007-2016 -> 2008-2017
-
-Row: r: 2017-01-01 | Kommune: Vinje
-  r (intervall): 2007-2016 -> 2008-2017
-
-Total changes found in examined rows: 287
-(Showing first 5 changes only)
-Email notifications disabled. Updates for kreft_nye_tilfeller_tiaarige_tall.csv were not sent.
+[2026-08-05 13:35:51] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\kreft_nye_tilfeller_tiaarige_tall.csv
-  âœ“ New data detected and uploaded to GitHub
-New data detected
+  âœ“ No changes detected
 
   âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\kreft_nye_tilfeller_tiaarige_tall.csv
 
