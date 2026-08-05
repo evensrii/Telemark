@@ -1,0 +1,37 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Sysselsetting i kommunene (new codes) JSON-stat data loaded successfully.
+
+Fetched data:
+          Kommune  Andel sysselsatte (2025)          Label
+0       Porsgrunn                      64.1      Porsgrunn
+1           Skien                      64.2          Skien
+2        Notodden                      63.9       Notodden
+3          Siljan                      69.8         Siljan
+4          Bamble                      63.8         Bamble
+5         KragerÃ¸                      61.3        KragerÃ¸
+6       Drangedal                      62.7      Drangedal
+7            Nome                      62.4           Nome
+8   Midt-Telemark                      62.4  Midt-Telemark
+9         Seljord                      67.4        Seljord
+10       Hjartdal                      68.1       Hjartdal
+11           Tinn                      66.8           Tinn
+12      Kviteseid                      66.4      Kviteseid
+13       Nissedal                      63.7       Nissedal
+14       Fyresdal                      68.7       Fyresdal
+15          Tokke                      69.3          Tokke
+16          Vinje                      71.7          Vinje
+
+Data types:
+Kommune                      object
+Andel sysselsatte (2025)    float64
+Label                        object
+dtype: object
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
+[2026-08-05 08:08:51] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_i_kommunene.log
+

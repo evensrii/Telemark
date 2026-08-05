@@ -1,0 +1,86 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Telemark JSON-stat data loaded successfully.
+     region                                 nivÃ¥  ...    Ã¥r value
+0  Telemark                       GrunnskolenivÃ¥  ...  2025  25.2
+1  Telemark               VideregÃ¥ende skolenivÃ¥  ...  2025  39.6
+2  Telemark                         FagskolenivÃ¥  ...  2025   3.7
+3  Telemark  Universitets- og hÃ¸gskolenivÃ¥, kort  ...  2025  23.1
+4  Telemark  Universitets- og hÃ¸gskolenivÃ¥, lang  ...  2025   7.9
+
+[5 rows x 6 columns]
+Hele landet JSON-stat data loaded successfully.
+        region                                 nivÃ¥  ...    Ã¥r value
+0  Hele landet                       GrunnskolenivÃ¥  ...  2025  22.7
+1  Hele landet               VideregÃ¥ende skolenivÃ¥  ...  2025  35.1
+2  Hele landet                         FagskolenivÃ¥  ...  2025   3.4
+3  Hele landet  Universitets- og hÃ¸gskolenivÃ¥, kort  ...  2025  25.3
+4  Hele landet  Universitets- og hÃ¸gskolenivÃ¥, lang  ...  2025  13.0
+
+[5 rows x 6 columns]
+Hele landet uten Oslo JSON-stat data loaded successfully.
+                              region  ...   value
+0                            Ã˜stfold  ...   73388
+1                            Ã˜stfold  ...  100541
+2                            Ã˜stfold  ...    8609
+3                            Ã˜stfold  ...   60241
+4                            Ã˜stfold  ...   20275
+..                               ...  ...     ...
+65  Finnmark - FinnmÃ¡rku - Finmarkku  ...   17936
+66  Finnmark - FinnmÃ¡rku - Finmarkku  ...   22546
+67  Finnmark - FinnmÃ¡rku - Finmarkku  ...    2442
+68  Finnmark - FinnmÃ¡rku - Finmarkku  ...   14637
+69  Finnmark - FinnmÃ¡rku - Finmarkku  ...    5312
+
+[70 rows x 6 columns]
+
+Processed df_landet_uten_oslo:
+                    region                                 nivÃ¥  ...    Ã¥r value
+0  Hele landet utenom Oslo                         FagskolenivÃ¥  ...  2025   3.6
+1  Hele landet utenom Oslo                       GrunnskolenivÃ¥  ...  2025  23.5
+2  Hele landet utenom Oslo  Universitets- og hÃ¸gskolenivÃ¥, kort  ...  2025  24.6
+3  Hele landet utenom Oslo  Universitets- og hÃ¸gskolenivÃ¥, lang  ...  2025  11.1
+4  Hele landet utenom Oslo               VideregÃ¥ende skolenivÃ¥  ...  2025  37.2
+
+[5 rows x 6 columns]
+
+Final processed dataframes:
+
+df_telemark_final:
+     region                                 nivÃ¥  Andel (2025)
+0  Telemark                       GrunnskolenivÃ¥          25.2
+1  Telemark               VideregÃ¥ende skolenivÃ¥          39.6
+2  Telemark                         FagskolenivÃ¥           3.7
+3  Telemark  Universitets- og hÃ¸gskolenivÃ¥, kort          23.1
+4  Telemark  Universitets- og hÃ¸gskolenivÃ¥, lang           7.9
+
+df_landet_final:
+        region                                 nivÃ¥  Andel (2025)
+0  Hele landet                       GrunnskolenivÃ¥          22.7
+1  Hele landet               VideregÃ¥ende skolenivÃ¥          35.1
+2  Hele landet                         FagskolenivÃ¥           3.4
+3  Hele landet  Universitets- og hÃ¸gskolenivÃ¥, kort          25.3
+4  Hele landet  Universitets- og hÃ¸gskolenivÃ¥, lang          13.0
+
+df_landet_uten_oslo_final:
+                    region                                 nivÃ¥  Andel (2025)
+0  Hele landet utenom Oslo                         FagskolenivÃ¥           3.6
+1  Hele landet utenom Oslo                       GrunnskolenivÃ¥          23.5
+2  Hele landet utenom Oslo  Universitets- og hÃ¸gskolenivÃ¥, kort          24.6
+3  Hele landet utenom Oslo  Universitets- og hÃ¸gskolenivÃ¥, lang          11.1
+4  Hele landet utenom Oslo               VideregÃ¥ende skolenivÃ¥          37.2
+
+Final transformed dataframe:
+       UtdanningsnivÃ¥  Telemark  Hele landet  Hele landet utenom Oslo
+0          Grunnskole      25.2         22.7                     23.5
+1  VideregÃ¥ende skole      39.6         35.1                     37.2
+2            Fagskole       3.7          3.4                      3.6
+3    HÃ¸yere utdanning      31.0         38.3                     35.7
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\utdanningsniva_telemark_og_landet.csv
+[2026-08-05 08:07:51] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\utdanningsniva_telemark_og_landet.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Utdanningsnivaa_Telemark_og_landet.log
+
