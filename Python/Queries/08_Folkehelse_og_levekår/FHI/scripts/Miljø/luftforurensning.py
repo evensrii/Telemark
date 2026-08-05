@@ -223,6 +223,7 @@ year = pd.to_datetime(df['År']).dt.year.max()
 
 # Reshape for Everviz: Kommune, Konsentrasjon PM2_5 (ÅR), Label
 df = df[['Kommune', 'Konsentrasjon_PM2_5']].copy()
+df['Konsentrasjon_PM2_5'] = pd.to_numeric(df['Konsentrasjon_PM2_5'], errors='coerce').round(0).astype(int)
 df = df.rename(columns={'Konsentrasjon_PM2_5': f'Konsentrasjon PM2_5 ({year})'})
 df['Label'] = df['Kommune']
 
