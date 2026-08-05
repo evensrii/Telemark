@@ -20,9 +20,14 @@ After processing: 190 rows and 9 columns
 
 Comparing with GitHub...
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\hoftebrudd.csv
-[2026-08-04 08:29:48] No new data to upload. Skipping GitHub update.
+[2026-08-05 08:23:51] Header structure changed in hoftebrudd.csv:
+Removed headers: antall (2024), label
+Added headers: Ã¥r, sortkommune, Ã¥r (intervall), antall, kjÃ¸nn, mÃ¥ltall, alder, sykdomsgruppe
+File uploaded successfully: Data/08_Folkehelse og levekÃ¥r/Skader og ulykker/Skader/hoftebrudd.csv
+Email notifications disabled. Updates for hoftebrudd.csv were not sent.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\hoftebrudd.csv
-  âœ“ No changes detected
+  âœ“ New data detected and uploaded to GitHub
+New data detected
 
   âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\hoftebrudd.csv
 
