@@ -14,28 +14,48 @@ script_name = os.path.basename(__file__)
 error_messages = []
 
 # ============================================================
-# Step 1: Query folkemengde per kommune i Telemark (table 06913)
-#         From 2022, all Telemark municipalities.
+# Step 1: Query folkemengde (table 06913), last 5 years, for:
+#         a) Telemark municipalities (agg_KommSummerHist keeps municipality
+#            boundaries consistent over time)
+#         b) Norway (the whole country)
+#         Telemark county is NOT queried directly, since fylke 40 (Telemark)
+#         only exists under that code from 2024 onwards (it was part of
+#         "Vestfold og Telemark" in 2020-2023). Instead, the county total is
+#         derived by summing all municipalities per year (see Step 2).
 # ============================================================
 
-GET_URL = (
+GET_URL_KOMMUNER = (
     "https://data.ssb.no/api/pxwebapi/v2/tables/06913/data?lang=no"
     "&outputFormat=json-stat2"
-    "&valuecodes[Tid]=from(2022)"
-    "&valuecodes[Region]=K_4001,K_4003,K_4005,K_4010,K_4012,K_4014,K_4016,K_4018,K_4020,K_4022,K_4024,K_4026,K_4028,K_4030,K_4032,K_4034,K_4036"
+    "&valueCodes[ContentsCode]=Folkemengde"
+    "&valueCodes[Tid]=top(5)"
+    "&valueCodes[Region]=K_4001,K_4003,K_4005,K_4010,K_4012,K_4014,K_4016,K_4018,K_4020,K_4022,K_4024,K_4026,K_4028,K_4030,K_4032,K_4034,K_4036"
     "&codelist[Region]=agg_KommSummerHist"
     "&outputValues[Region]=aggregated"
-    "&valuecodes[ContentsCode]=Folkemengde"
-    "&heading=Tid,ContentsCode"
-    "&stub=Region"
+)
+
+GET_URL_LANDET = (
+    "https://data.ssb.no/api/pxwebapi/v2/tables/06913/data?lang=no"
+    "&outputFormat=json-stat2"
+    "&valueCodes[ContentsCode]=Folkemengde"
+    "&valueCodes[Tid]=top(5)"
+    "&valueCodes[Region]=0"
+    "&codelist[Region]=vs_Landet"
 )
 
 try:
-    df = fetch_data(
-        url=GET_URL,
+    df_kommuner_raw = fetch_data(
+        url=GET_URL_KOMMUNER,
         payload=None,
         error_messages=error_messages,
-        query_name="Befolkningsvekst Telemark",
+        query_name="Befolkningsvekst kommuner",
+        response_type="json",
+    )
+    df_landet_raw = fetch_data(
+        url=GET_URL_LANDET,
+        payload=None,
+        error_messages=error_messages,
+        query_name="Befolkningsvekst Norge",
         response_type="json",
     )
 except Exception as e:
@@ -45,53 +65,106 @@ except Exception as e:
         "A critical error occurred during data fetching, stopping execution."
     )
 
-print(f"Raw data: {len(df)} rows")
-print(df.head(10))
+print(f"Kommuner raw data: {len(df_kommuner_raw)} rows")
+print(df_kommuner_raw.head(10))
+print(f"Landet raw data: {len(df_landet_raw)} rows")
+print(df_landet_raw.head(10))
 
 # ============================================================
-# Step 2: Calculate percentage change per municipality
+# Step 2: Calculate percentage change per region
 #         (latest_year - earliest_year) / earliest_year * 100
 # ============================================================
 
-# Rename columns for easier handling
-df.columns = [col.strip() for col in df.columns]
-print(df.columns.tolist())
 
-# Identify the year column and value column
-# SSB json-stat2 typically returns columns like: region, statistikkvariabel, år, value
-# Adjust column names based on actual output
-df["år"] = df["år"].astype(str)
-df["value"] = pd.to_numeric(df["value"], errors="coerce")
+def build_fylke_raw(df_kommuner_raw):
+    """Derive Telemark county totals by summing all municipalities per year."""
+    df = df_kommuner_raw.copy()
+    df.columns = [col.strip() for col in df.columns]
+    df["år"] = df["år"].astype(str)
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
 
-# Get earliest and latest year
-earliest_year = df["år"].min()
-latest_year = df["år"].max()
+    df_fylke = df.groupby("år", as_index=False)["value"].sum()
+    df_fylke["region"] = "Telemark"
+
+    return df_fylke[["region", "år", "value"]]
+
+
+df_fylke_raw = build_fylke_raw(df_kommuner_raw)
+print("Fylke (summed from kommuner):")
+print(df_fylke_raw)
+
+
+def calculate_change(df):
+    """Given a raw json-stat2 dataframe (columns: region, år, value, ...),
+    return a dataframe with one row per region containing the earliest and
+    latest population value, plus the earliest/latest year used."""
+    df = df.copy()
+    df.columns = [col.strip() for col in df.columns]
+    df["år"] = df["år"].astype(str)
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+
+    earliest_year = df["år"].min()
+    latest_year = df["år"].max()
+
+    df_earliest = df[df["år"] == earliest_year][["region", "value"]].rename(columns={"value": "earliest"})
+    df_latest = df[df["år"] == latest_year][["region", "value"]].rename(columns={"value": "latest"})
+
+    df_change = df_earliest.merge(df_latest, on="region")
+
+    # Guard against NaN (e.g. mismatched region labels between years, or
+    # missing values in the source data) before casting to int.
+    missing = df_change[df_change["earliest"].isna() | df_change["latest"].isna()]
+    if not missing.empty:
+        print("Warning: missing earliest/latest value for the following region(s), dropping them:")
+        print(missing)
+        df_change = df_change.dropna(subset=["earliest", "latest"])
+
+    df_change["Andel"] = ((df_change["latest"] - df_change["earliest"]) / df_change["earliest"] * 100).round(0).astype(int)
+
+    return df_change, earliest_year, latest_year
+
+
+df_change_kommuner, earliest_year, latest_year = calculate_change(df_kommuner_raw)
+df_change_fylke, earliest_year_fylke, latest_year_fylke = calculate_change(df_fylke_raw)
+df_change_landet, earliest_year_landet, latest_year_landet = calculate_change(df_landet_raw)
+
+# Sanity check: all three queries should cover the same year range (they all use top(5))
+if not (earliest_year == earliest_year_fylke == earliest_year_landet
+        and latest_year == latest_year_fylke == latest_year_landet):
+    print(
+        "Warning: Year ranges differ between kommune-, fylke- and landstall "
+        f"(kommuner: {earliest_year}-{latest_year}, fylke: {earliest_year_fylke}-{latest_year_fylke}, "
+        f"landet: {earliest_year_landet}-{latest_year_landet})."
+    )
+
+andel_col = f"Andel ({earliest_year}-{latest_year})"
+
+for df_change in (df_change_kommuner, df_change_fylke, df_change_landet):
+    df_change.rename(columns={"Andel": andel_col}, inplace=True)
+    # Remove number prefix like "4001 " (municipalities/county); leaves "Norge" untouched
+    df_change["Region"] = df_change["region"].str.replace(r"^\d+\s+", "", regex=True)
+    df_change["Label"] = df_change["Region"]
+
 print(f"Calculating change from {earliest_year} to {latest_year}")
 
-# Pivot to get one row per municipality with earliest and latest population
-df_earliest = df[df["år"] == earliest_year][["region", "value"]].rename(columns={"value": "earliest"})
-df_latest = df[df["år"] == latest_year][["region", "value"]].rename(columns={"value": "latest"})
+# ============================================================
+# Step 3: Combine municipalities, county and country into one
+#         standard Everviz table
+# ============================================================
 
-df_change = df_earliest.merge(df_latest, on="region")
-
-# Calculate percentage change, rounded to nearest integer
-df_change["Andel"] = ((df_change["latest"] - df_change["earliest"]) / df_change["earliest"] * 100).round(0).astype(int)
-
-# Rename "Andel" column to include the year range
-andel_col = f"Andel ({earliest_year}-{latest_year})"
-df_change = df_change.rename(columns={"Andel": andel_col})
-
-# Extract municipality name (remove number prefix like "4001 ")
-df_change["Kommune"] = df_change["region"].str.replace(r"^\d+\s+", "", regex=True)
-df_change["Label"] = df_change["Kommune"]
-
-# Select and order final columns
-df_final = df_change[["Kommune", andel_col, "Label"]].reset_index(drop=True)
+df_final = pd.concat(
+    [
+        df_change_kommuner[["Region", andel_col, "Label"]],
+        df_change_fylke[["Region", andel_col, "Label"]],
+        df_change_landet[["Region", andel_col, "Label"]],
+    ],
+    ignore_index=True,
+)
 
 print(df_final)
 
 # ============================================================
-# Step 3: Save to CSV, compare and upload to GitHub
+# Step 4: Save to CSV, compare and upload to GitHub
 # ============================================================
 
 file_name = "befolkningsvekst.csv"
