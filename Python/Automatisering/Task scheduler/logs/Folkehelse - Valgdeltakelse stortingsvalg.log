@@ -1,0 +1,59 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Valgdeltakelse stortingsvalg - landet (08243) JSON-stat data loaded successfully.
+Valgdeltakelse stortingsvalg - kommuner (08243) JSON-stat data loaded successfully.
+Valgdeltakelse stortingsvalg - Telemark (08243) JSON-stat data loaded successfully.
+           region statistikkvariabel fireÃ¥rlig  value
+0       Porsgrunn       Valdeltaking      2025   78.2
+1           Skien       Valdeltaking      2025   76.5
+2        Notodden       Valdeltaking      2025   77.4
+3          Siljan       Valdeltaking      2025   81.7
+4          Bamble       Valdeltaking      2025   78.7
+5         KragerÃ¸       Valdeltaking      2025   78.3
+6       Drangedal       Valdeltaking      2025   79.9
+7            Nome       Valdeltaking      2025   77.8
+8   Midt-Telemark       Valdeltaking      2025   77.8
+9         Seljord       Valdeltaking      2025   77.7
+10       Hjartdal       Valdeltaking      2025   80.6
+11           Tinn       Valdeltaking      2025   77.1
+12      Kviteseid       Valdeltaking      2025   77.2
+13       Nissedal       Valdeltaking      2025   83.2
+14       Fyresdal       Valdeltaking      2025   81.1
+15          Tokke       Valdeltaking      2025   80.3
+16          Vinje       Valdeltaking      2025   80.8
+17       Telemark       Valdeltaking      2025   77.8
+18    Hele landet       Valdeltaking      2025   80.0
+['region', 'statistikkvariabel', 'fireÃ¥rlig', 'value']
+Kolonner: ['region', 'statistikkvariabel', 'fireÃ¥rlig', 'value']
+
+--- Ferdig datasett ---
+          Kommune  Andel (2025)          Label
+0          Bamble            79         Bamble
+1       Drangedal            80      Drangedal
+2        Fyresdal            81       Fyresdal
+3        Hjartdal            81       Hjartdal
+4         KragerÃ¸            78        KragerÃ¸
+5       Kviteseid            77      Kviteseid
+6   Midt-Telemark            78  Midt-Telemark
+7        Nissedal            83       Nissedal
+8            Nome            78           Nome
+9        Notodden            77       Notodden
+10      Porsgrunn            78      Porsgrunn
+11        Seljord            78        Seljord
+12         Siljan            82         Siljan
+13          Skien            76          Skien
+14           Tinn            77           Tinn
+15          Tokke            80          Tokke
+16          Vinje            81          Vinje
+17       Telemark            78       Telemark
+18         Landet            80         Landet
+
+Antall rader: 19
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\valgdeltakelse_stortingsvalg.csv
+[2026-08-06 08:28:50] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\valgdeltakelse_stortingsvalg.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Valgdeltakelse_stortingsvalg.log
+
