@@ -26,20 +26,29 @@ error_messages = []
 # Jeg bruker requests for å simulere nedlasting av filen.
 
 # Finner URL vha. "Inspiser side" og fane "Network"
-url = "https://app-simapi-prod.azurewebsites.net/download_csv/k/befolkning_innvandringsgrunn"
-
+url_kommune = "https://app-simapi-prod.azurewebsites.net/download_csv/k/befolkning_innvandringsgrunn"
+url_fylke = "https://app-simapi-prod.azurewebsites.net/download_csv/f/befolkning_innvandringsgrunn"
 
 ## Kjøre spørringer i try-except for å fange opp feil. Quitter hvis feil.
 
 try:
     df = fetch_data(
-        url=url,
+        url=url_kommune,
         payload=None,  # The JSON payload for POST requests. If None, a GET request is used.
         error_messages=error_messages,
-        query_name="Flyktninger og arbeidsinnvandrere",
+        query_name="Flyktninger og arbeidsinnvandrere kommuner",
         response_type="csv",  # The expected response type, either 'json' or 'csv'.
         delimiter=";",  # The delimiter for CSV data (default: ';').
         encoding="ISO-8859-1",  # The encoding for CSV data (default: 'ISO-8859-1').
+    )
+    df_fylke_raw = fetch_data(
+        url=url_fylke,
+        payload=None,
+        error_messages=error_messages,
+        query_name="Flyktninger og arbeidsinnvandrere fylke og landet",
+        response_type="csv",
+        delimiter=";",
+        encoding="ISO-8859-1",
     )
 except Exception as e:
     print(f"Error occurred: {e}")
@@ -127,41 +136,97 @@ df = df.query("Kjønn == 'Alle'")
 # Filter only the most recent data (last year available)
 most_recent_year = df["År"].max()
 df = df.query("År == @most_recent_year")
-print(f"Selected data from year {df['År'].max()}")
+print(f"Selected kommune data from year {df['År'].max()}")
+
+
+def calculate_pivot(df, region_col):
+    """Given a filtered dataframe (one region column, Innvandringsgrunn,
+    Antall), return a pivoted dataframe with one row per region and the
+    percentage of 'Arbeidsinnvandrere' and 'Flyktninger og deres
+    familieinnvandrede' relative to 'Alle'."""
+    df_pivot = df.pivot(
+        index=region_col, columns="Innvandringsgrunn", values="Antall"
+    ).reset_index()
+
+    # Calculate the percentage for each category relative to 'Alle'
+    percentage_columns = df_pivot.columns[
+        2:
+    ]  # Skip region_col, and 'Alle'
+    for column in percentage_columns:
+        df_pivot[column] = ((df_pivot[column] / df_pivot["Alle"]) * 100).astype(
+            int
+        )  # Convert to percentage and format as integer
+
+    df_pivot.columns.name = None
+    return df_pivot
+
 
 # Create a table with a row for each "Kommune", and a column for each "Innvandringsgrunn"
-df_pivot = df.pivot(
-    index="Kommune", columns="Innvandringsgrunn", values="Antall"
-).reset_index()
+df_pivot_kommune = calculate_pivot(df, "Kommune")
+df_pivot_kommune.rename(columns={"Kommune": "Region"}, inplace=True)
 
-# Calculate the percentage for each category relative to 'Alle'
-percentage_columns = df_pivot.columns[
-    2:
-]  # Skip 'Innvandringsgrunn', 'Kommune', and 'Alle'
-for column in percentage_columns:
-    df_pivot[column] = ((df_pivot[column] / df_pivot["Alle"]) * 100).astype(
-        int
-    )  # Convert to percentage and format as integer
+# ============================================================
+# Behandle fylke- og landstall (Norge + Telemark)
+# ============================================================
 
-# Remove the "Innvandringsgrunn" column
-df_pivot.columns.name = None
+df_fylke = df_fylke_raw.copy()
+
+columns_to_convert_fylke = ["Fylke", "Kjønn", "Innvandringsgrunn", "Enhet"]
+for column in columns_to_convert_fylke:
+    df_fylke[column] = df_fylke[column].astype("category")
+
+df_fylke["År"] = pd.to_datetime(df_fylke["År"], format="%Y")
+
+# Filtrere kun personer og "Alle" kjønn
+df_fylke = df_fylke.query("Enhet == 'Personer'")
+df_fylke = df_fylke.query("Kjønn == 'Alle'")
+
+# Konverter "Fylkesnummer" til string med 2 siffer
+df_fylke["Fylkesnummer"] = df_fylke["Fylkesnummer"].astype(str).str.pad(width=2, fillchar="0")
+
+# Behold kun Norge ("00") og Telemark ("40")
+df_fylke = df_fylke[df_fylke["Fylkesnummer"].isin(["00", "40"])]
+
+# Fjerne parentetisk suffiks fra fylkesnavn, f.eks. "Telemark (t.o.m. 2019, f.o.m. 2024)" -> "Telemark"
+df_fylke["Fylke"] = df_fylke["Fylke"].astype("object").str.replace(r"\s*\(.*\)$", "", regex=True)
+
+# Filter only the most recent data (last year available)
+most_recent_year_fylke = df_fylke["År"].max()
+df_fylke = df_fylke.query("År == @most_recent_year_fylke")
+print(f"Selected fylke/landet data from year {df_fylke['År'].max()}")
+
+if most_recent_year != most_recent_year_fylke:
+    print(
+        "Warning: Year differs between kommune- and fylke/landstall "
+        f"(kommuner: {most_recent_year.year}, fylke/landet: {most_recent_year_fylke.year})."
+    )
+
+df_pivot_fylke = calculate_pivot(df_fylke, "Fylke")
+df_pivot_fylke.rename(columns={"Fylke": "Region"}, inplace=True)
+
+# ============================================================
+# Kombiner kommuner, fylke og landet til én Everviz-tabell
+# per kategori
+# ============================================================
+
+df_pivot = pd.concat([df_pivot_kommune, df_pivot_fylke], ignore_index=True)
 
 # Split the data into two dataframes, one for 'Arbeidsinnvandrere' and one for 'Flyktninger og deres familieinnvandrede'
-df_pivot_arbeidsinnvandrere = df_pivot[["Kommune", "Arbeidsinnvandrere"]]
-df_pivot_flyktninger = df_pivot[["Kommune", "Flyktninger og deres familieinnvandrede"]]
+df_pivot_arbeidsinnvandrere = df_pivot[["Region", "Arbeidsinnvandrere"]].copy()
+df_pivot_flyktninger = df_pivot[["Region", "Flyktninger og deres familieinnvandrede"]].copy()
 
-# Add a label column "Label" with the values from column "Kommune"
-df_pivot_arbeidsinnvandrere["Label"] = df_pivot_arbeidsinnvandrere["Kommune"]
-df_pivot_flyktninger["Label"] = df_pivot_flyktninger["Kommune"]
+# Add a label column "Label" with the values from column "Region"
+df_pivot_arbeidsinnvandrere["Label"] = df_pivot_arbeidsinnvandrere["Region"]
+df_pivot_flyktninger["Label"] = df_pivot_flyktninger["Region"]
 
 # Rename the columns to "Andel flyktninger {most_recent_year.year}" and "Andel arbeidsinnvandrere {most_recent_year.year}"
 df_pivot_arbeidsinnvandrere.columns = [
-    "Kommune",
+    "Region",
     f"Andel arbeidsinnvandrere {most_recent_year.year}",
     "Label",
 ]
 df_pivot_flyktninger.columns = [
-    "Kommune",
+    "Region",
     f"Andel flyktninger {most_recent_year.year}",
     "Label",
 ]
