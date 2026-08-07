@@ -1,0 +1,83 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Aleneboende Norge JSON-stat data loaded successfully.
+Aleneboende Telemark fylke JSON-stat data loaded successfully.
+Aleneboende kommuner JSON-stat data loaded successfully.
+Landet raw data: 11 rows
+         region  ...    value
+0   Hele landet  ...  1090359
+1   Hele landet  ...   640956
+2   Hele landet  ...   216581
+3   Hele landet  ...   270232
+4   Hele landet  ...    21654
+5   Hele landet  ...    86506
+6   Hele landet  ...   193072
+7   Hele landet  ...    97169
+8   Hele landet  ...    13468
+9   Hele landet  ...    19398
+10  Hele landet  ...        0
+
+[11 rows x 5 columns]
+Fylke raw data: 11 rows
+      region                                   husholdningstype  ...    Ã¥r  value
+0   Telemark                                        Aleneboende  ...  2025  35358
+1   Telemark                         Par uten hjemmeboende barn  ...  2025  22223
+2   Telemark              Par med smÃ¥ barn (yngste barn 0-5 Ã¥r)  ...  2025   6015
+3   Telemark           Par med store barn (yngste barn 6-17 Ã¥r)  ...  2025   8047
+4   Telemark          Mor/Far med smÃ¥ barn (yngste barn 0-5 Ã¥r)  ...  2025    861
+5   Telemark       Mor/Far med store barn (yngste barn 6-17 Ã¥r)  ...  2025   3120
+6   Telemark  Enfamiliehusholdninger med voksne barn (yngste...  ...  2025   6495
+7   Telemark           Flerfamiliehusholdning uten barn 0-17 Ã¥r  ...  2025   2344
+8   Telemark  Flerfamiliehusholdning med smÃ¥ barn (yngste ba...  ...  2025    365
+9   Telemark  Flerfamiliehusholdning med store barn (yngste ...  ...  2025    587
+10  Telemark                                Andre husholdninger  ...  2025      0
+
+[11 rows x 5 columns]
+Kommuner raw data: 187 rows
+       region                                   husholdningstype  ...    Ã¥r  value
+0   Porsgrunn                                        Aleneboende  ...  2025   7515
+1   Porsgrunn                         Par uten hjemmeboende barn  ...  2025   4613
+2   Porsgrunn              Par med smÃ¥ barn (yngste barn 0-5 Ã¥r)  ...  2025   1291
+3   Porsgrunn           Par med store barn (yngste barn 6-17 Ã¥r)  ...  2025   1710
+4   Porsgrunn          Mor/Far med smÃ¥ barn (yngste barn 0-5 Ã¥r)  ...  2025    186
+5   Porsgrunn       Mor/Far med store barn (yngste barn 6-17 Ã¥r)  ...  2025    683
+6   Porsgrunn  Enfamiliehusholdninger med voksne barn (yngste...  ...  2025   1365
+7   Porsgrunn           Flerfamiliehusholdning uten barn 0-17 Ã¥r  ...  2025    522
+8   Porsgrunn  Flerfamiliehusholdning med smÃ¥ barn (yngste ba...  ...  2025     72
+9   Porsgrunn  Flerfamiliehusholdning med store barn (yngste ...  ...  2025    138
+10  Porsgrunn                                Andre husholdninger  ...  2025      0
+11      Skien                                        Aleneboende  ...  2025  11136
+12      Skien                         Par uten hjemmeboende barn  ...  2025   6845
+13      Skien              Par med smÃ¥ barn (yngste barn 0-5 Ã¥r)  ...  2025   2006
+14      Skien           Par med store barn (yngste barn 6-17 Ã¥r)  ...  2025   2589
+
+[15 rows x 5 columns]
+Calculated andel aleneboende for 2025
+husholdningstype         Region  Andel aleneboende (2025)          Label
+0                        Bamble                        36         Bamble
+1                     Drangedal                        41      Drangedal
+2                      Fyresdal                        45       Fyresdal
+3                      Hjartdal                        36       Hjartdal
+4                       KragerÃ¸                        43        KragerÃ¸
+5                     Kviteseid                        42      Kviteseid
+6                 Midt-Telemark                        44  Midt-Telemark
+7                      Nissedal                        37       Nissedal
+8                          Nome                        41           Nome
+9                      Notodden                        42       Notodden
+10                    Porsgrunn                        42      Porsgrunn
+11                      Seljord                        41        Seljord
+12                       Siljan                        32         Siljan
+13                        Skien                        41          Skien
+14                         Tinn                        46           Tinn
+15                        Tokke                        45          Tokke
+16                        Vinje                        44          Vinje
+17                     Telemark                        41       Telemark
+18                  Hele landet                        41    Hele landet
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\aleneboende.csv
+[2026-08-07 08:07:33] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\aleneboende.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Aleneboende.log
+
