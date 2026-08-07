@@ -1,0 +1,58 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+ForsÃ¸rgerevne kommuner JSON-stat data loaded successfully.
+ForsÃ¸rgerevne Telemark fylke JSON-stat data loaded successfully.
+ForsÃ¸rgerevne Norge JSON-stat data loaded successfully.
+Kommuner raw data: 68 rows
+      region              alder statistikkvariabel    Ã¥r  value
+0  Porsgrunn             0-5 Ã¥r           Personer  2026   1992
+1  Porsgrunn            6-15 Ã¥r           Personer  2026   4045
+2  Porsgrunn           16-66 Ã¥r           Personer  2026  24162
+3  Porsgrunn  67 Ã¥r eller eldre           Personer  2026   7236
+4      Skien             0-5 Ã¥r           Personer  2026   3146
+5      Skien            6-15 Ã¥r           Personer  2026   6314
+6      Skien           16-66 Ã¥r           Personer  2026  36443
+7      Skien  67 Ã¥r eller eldre           Personer  2026  11003
+8   Notodden             0-5 Ã¥r           Personer  2026    677
+9   Notodden            6-15 Ã¥r           Personer  2026   1469
+Fylke raw data: 4 rows
+     region              alder statistikkvariabel    Ã¥r   value
+0  Telemark             0-5 Ã¥r           Personer  2026    9416
+1  Telemark            6-15 Ã¥r           Personer  2026   19164
+2  Telemark           16-66 Ã¥r           Personer  2026  112728
+3  Telemark  67 Ã¥r eller eldre           Personer  2026   36615
+Landet raw data: 4 rows
+        region              alder statistikkvariabel    Ã¥r    value
+0  Hele landet             0-5 Ã¥r           Personer  2026   332053
+1  Hele landet            6-15 Ã¥r           Personer  2026   629931
+2  Hele landet           16-66 Ã¥r           Personer  2026  3705783
+3  Hele landet  67 Ã¥r eller eldre           Personer  2026   959633
+Calculated forsÃ¸rgerevne for 2026
+alder         Region  ForsÃ¸rgerevne (2026)          Label
+0             Bamble                   1.7         Bamble
+1          Drangedal                   1.7      Drangedal
+2           Fyresdal                   1.7       Fyresdal
+3           Hjartdal                   1.5       Hjartdal
+4            KragerÃ¸                   1.5        KragerÃ¸
+5          Kviteseid                   1.6      Kviteseid
+6      Midt-Telemark                   1.8  Midt-Telemark
+7           Nissedal                   1.4       Nissedal
+8               Nome                   1.7           Nome
+9           Notodden                   1.7       Notodden
+10         Porsgrunn                   1.8      Porsgrunn
+11           Seljord                   1.5        Seljord
+12            Siljan                   1.5         Siljan
+13             Skien                   1.8          Skien
+14              Tinn                   1.7           Tinn
+15             Tokke                   1.7          Tokke
+16             Vinje                   1.6          Vinje
+17          Telemark                   1.7       Telemark
+18       Hele landet                   1.9    Hele landet
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\forsÃ¸rgerevne.csv
+[2026-08-07 08:07:23] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\forsÃ¸rgerevne.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_ForsÃ¸rgerevne.log
+
