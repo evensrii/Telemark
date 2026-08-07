@@ -2,22 +2,36 @@ Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 X_FUNCTIONS_KEY loaded successfully.
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Befolkningsvekst Telemark JSON-stat data loaded successfully.
-Raw data: 85 rows
-      region    Ã¥r    statistikkvariabel  value
-0  Porsgrunn  2022  Befolkning 1. januar  36624
-1  Porsgrunn  2023  Befolkning 1. januar  37056
-2  Porsgrunn  2024  Befolkning 1. januar  37193
-3  Porsgrunn  2025  Befolkning 1. januar  37289
-4  Porsgrunn  2026  Befolkning 1. januar  37435
-5      Skien  2022  Befolkning 1. januar  55513
-6      Skien  2023  Befolkning 1. januar  55924
-7      Skien  2024  Befolkning 1. januar  56619
-8      Skien  2025  Befolkning 1. januar  56866
-9      Skien  2026  Befolkning 1. januar  56906
-['region', 'Ã¥r', 'statistikkvariabel', 'value']
+Befolkningsvekst kommuner JSON-stat data loaded successfully.
+Befolkningsvekst Norge JSON-stat data loaded successfully.
+Kommuner raw data: 85 rows
+      region    statistikkvariabel    Ã¥r  value
+0  Porsgrunn  Befolkning 1. januar  2022  36624
+1  Porsgrunn  Befolkning 1. januar  2023  37056
+2  Porsgrunn  Befolkning 1. januar  2024  37193
+3  Porsgrunn  Befolkning 1. januar  2025  37289
+4  Porsgrunn  Befolkning 1. januar  2026  37435
+5      Skien  Befolkning 1. januar  2022  55513
+6      Skien  Befolkning 1. januar  2023  55924
+7      Skien  Befolkning 1. januar  2024  56619
+8      Skien  Befolkning 1. januar  2025  56866
+9      Skien  Befolkning 1. januar  2026  56906
+Landet raw data: 5 rows
+        region    statistikkvariabel    Ã¥r    value
+0  Hele landet  Befolkning 1. januar  2022  5425270
+1  Hele landet  Befolkning 1. januar  2023  5488984
+2  Hele landet  Befolkning 1. januar  2024  5550203
+3  Hele landet  Befolkning 1. januar  2025  5594340
+4  Hele landet  Befolkning 1. januar  2026  5627400
+Fylke (summed from kommuner):
+     region    Ã¥r   value
+0  Telemark  2022  173970
+1  Telemark  2023  175546
+2  Telemark  2024  177093
+3  Telemark  2025  177863
+4  Telemark  2026  177923
 Calculating change from 2022 to 2026
-          Kommune  Andel (2022-2026)          Label
+           Region  Andel (2022-2026)          Label
 0       Porsgrunn                  2      Porsgrunn
 1           Skien                  3          Skien
 2        Notodden                  3       Notodden
@@ -35,8 +49,10 @@ Calculating change from 2022 to 2026
 14       Fyresdal                  6       Fyresdal
 15          Tokke                  5          Tokke
 16          Vinje                  2          Vinje
+17       Telemark                  2       Telemark
+18    Hele landet                  4    Hele landet
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsvekst.csv
-[2026-08-06 08:07:13] No new data to upload. Skipping GitHub update.
+[2026-08-07 08:07:11] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsvekst.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsvekst.log
