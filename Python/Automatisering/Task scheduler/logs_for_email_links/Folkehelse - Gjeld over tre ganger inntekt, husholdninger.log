@@ -12,18 +12,22 @@ Loading query from file...
   URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/358/data
 
 Fetching data from FHI API...
-Request error in FHI Query: 404 Client Error: Not Found for url: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/358/data
+FHI Query JSON-stat data loaded successfully.
+  âœ“ Fetched 190 rows and 6 columns
+  Columns: Geografi, Ã…r, KjÃ¸nn, Alder, MÃ¥ltall, value
+
+After processing: 190 rows and 7 columns
+
+Comparing with GitHub...
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\gjeld_over_tre_ganger_inntekt_husholdninger.csv
+[2026-08-10 08:23:48] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\gjeld_over_tre_ganger_inntekt_husholdninger.csv
+  âœ“ No changes detected
+
+  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\gjeld_over_tre_ganger_inntekt_husholdninger.csv
+
+======================================================================
+Processing complete
+======================================================================
 
 
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/08_Folkehelse_og_levekÃ¥r/FHI/scripts/Oppvekst og levekÃ¥r/LevekÃ¥r/Inntekt og gjeld/gjeld_over_tre_ganger_inntekt_husholdninger.py", line 94, in <module>
-    df = fetch_data(
-         ^^^^^^^^^^^
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/358/data
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/gjeld_over_tre_ganger_inntekt_husholdninger.py` failed. (See above for error)
