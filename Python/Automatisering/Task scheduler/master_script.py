@@ -41,6 +41,8 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/flytting_til_og_fra_kommunene.py"), "Flytting - Til og fra kommunene"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/folketall.py"), "Befolkning - Folketall"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/befolkningsvekst.py"), "Befolkning - Befolkningsvekst"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Alderssammensetning/forsørgerevne.py"), "Befolkning - Forsørgerevne"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Husholdninger/aleneboende.py"), "Befolkning - Aleneboende"),
     
     ## Opplæring og kompetanse
     (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa.py"), "Opplaering og kompetanse - Utdanningsnivaa"),
@@ -126,8 +128,10 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Skader og ulykker/Skader/skader_sykehusinnlagte_somatikk_treaarige_tall.py"), "Folkehelse - Skader, sykehusinnlagte, somatikk, treårige tall"),
 
     ## Folkehelse og levekår - SSB
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/dekningsgrad.py"), "Folkehelse - Dekningsgrad barnehage"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/minoriteter_bhg_pbi.py"), "Folkehelse - Minoriteter barnehage"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/dekningsgrad.py"), "Folkehelse - Dekningsgrad"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/minoriteter_bhg_pbi.py"), "Folkehelse - Minoriteter bhg pbi"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/valgdeltakelse_kommunevalg.py"), "Folkehelse - Valgdeltakelse kommunevalg"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/valgdeltakelse_stortingsvalg.py"), "Folkehelse - Valgdeltakelse stortingsvalg"),
 
     ## Folkehelse og levekår - Udir
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/Udir/pedagognorm.py"), "Folkehelse - Pedagognorm barnehager"),

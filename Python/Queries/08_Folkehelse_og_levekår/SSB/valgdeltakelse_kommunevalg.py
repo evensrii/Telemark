@@ -90,8 +90,8 @@ df = df.rename(columns=rename_map)
 # Rename "Hele landet" if present
 df.loc[df["Kommune"] == "Hele landet", "Kommune"] = "Landet"
 
-# Andel as float64
-df["Andel"] = df["Andel"].astype(float)
+# Andel as integer (rounded)
+df["Andel"] = df["Andel"].astype(float).round(0).astype(int)
 
 # Get the year dynamically from the data
 year = df["År"].astype(str).str[:4].iloc[0]

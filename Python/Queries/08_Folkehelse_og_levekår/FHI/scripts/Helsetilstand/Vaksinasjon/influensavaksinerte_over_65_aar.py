@@ -115,97 +115,49 @@ print(f"  Columns: {', '.join(df.columns.tolist())}")
 ### Add your data transformations and processing here            ###
 ####################################################################
 
-# --- Standard FHI transformations (auto-generated) ---
-
-# Convert År to datetime (YYYY-01-01) if column contains single years
-# If År contains intervals (e.g. "2013-2016"), rename to "År (intervall)" and create "År" from last year
-if 'År' in df.columns:
-    if df['År'].astype(str).str.match(r'^\d{4}[-/]\d{4}$').all():
-        df = df.rename(columns={'År': 'År (intervall)'})
-        df['År'] = pd.to_datetime(df['År (intervall)'].str.split(r'[-/]').str[1] + '-01-01').dt.strftime('%Y-%m-%d')
-        # Place År directly after År (intervall)
-        cols = df.columns.tolist()
-        idx = cols.index('År (intervall)')
-        cols.remove('År')
-        cols.insert(idx + 1, 'År')
-        df = df[cols]
-    elif df['År'].astype(str).str.match(r'^\d{4}$').all():
-        df['År'] = pd.to_datetime(df['År'].astype(str) + '-01-01').dt.strftime('%Y-%m-%d')
-
-# Capitalize first letter in Kjønn if column exists
-if 'Kjønn' in df.columns:
-    df['Kjønn'] = df['Kjønn'].str.capitalize()
-
-# Capitalize first letter in Alder if column exists
-if 'Alder' in df.columns:
-    df['Alder'] = df['Alder'].str.capitalize()
-
-# Determine value column name based on Måltall content
-value_col_name = 'Antall'
-if 'Måltall' in df.columns:
-    maaltall_str = df['Måltall'].astype(str).str.lower().str.cat(sep=' ')
-    if any(term in maaltall_str for term in ['andel', 'prosent', 'percent']):
-        value_col_name = 'Andel'
-
-# Replace ":" with empty string and process value column
-if 'value' in df.columns:
-    df['value'] = df['value'].replace(':', '')
-    df['value'] = pd.to_numeric(df['value'], errors='coerce').round(1)
-    df = df.rename(columns={'value': value_col_name})
-
-# Divide by 100 for Andel columns (named "Andel" or "Andel (YYYY)")
-for col in df.columns:
-    if col == 'Andel' or (col.startswith('Andel (') and col.endswith(')')):
-        df[col] = df[col] / 100
-
-# Create SortKjonn column if Kjønn exists and has more than one unique value
-if 'Kjønn' in df.columns and df['Kjønn'].nunique() > 1:
-    kjonn_sort = {"Kjønn samlet": 1, "Menn": 2, "Gutter": 2, "Kvinner": 3, "Jenter": 3}
-    df['SortKjonn'] = df['Kjønn'].map(kjonn_sort)
-
-# Create SortAlder column if Alder exists and has more than one unique value
-if 'Alder' in df.columns and df['Alder'].nunique() > 1:
-    unique_alder = df['Alder'].unique().tolist()
-    alder_sort = {}
-    sort_num = 1
-    if 'Alle aldre' in unique_alder:
-        alder_sort['Alle aldre'] = sort_num
-        sort_num += 1
-    if '0-74 år' in unique_alder:
-        alder_sort['0-74 år'] = sort_num
-        sort_num += 1
-    remaining = sorted([a for a in unique_alder if a not in alder_sort],
-                       key=lambda x: (int(x.split('-')[0].split(' ')[0]) if x[0].isdigit() else 999))
-    for a in remaining:
-        alder_sort[a] = sort_num
-        sort_num += 1
-    df['SortAlder'] = df['Alder'].map(alder_sort)
+# --- Everviz format: Kommune, Andel (YYYY), Label ---
 
 # Rename Geografi to Kommune
 if 'Geografi' in df.columns:
     df = df.rename(columns={'Geografi': 'Kommune'})
 
-# Create SortKommune column
-if 'Kommune' in df.columns:
-    unique_kommuner = df['Kommune'].unique().tolist()
-    sort_kommune = {"Telemark": 1, "Hele landet": 2}
-    # Alphabetically sorted kommuner (excluding fixed and Bø/Sauherad)
-    regular = sorted([k for k in unique_kommuner if k not in ["Telemark", "Hele landet", "Bø", "Sauherad"]])
-    sort_num = 3
-    for k in regular:
-        sort_kommune[k] = sort_num
-        sort_num += 1
-    # Bø and Sauherad last
-    if "Bø" in unique_kommuner:
-        sort_kommune["Bø"] = sort_num
-        sort_num += 1
-    if "Sauherad" in unique_kommuner:
-        sort_kommune["Sauherad"] = sort_num
-        sort_num += 1
-    df['SortKommune'] = df['Kommune'].map(sort_kommune)
+# Rename "Hele landet" to "Landet"
+df.loc[df["Kommune"] == "Hele landet", "Kommune"] = "Landet"
 
-# --- End standard transformations ---
-# Add script-specific transformations below:
+# Get year dynamically from År column
+if 'År' in df.columns:
+    year = df['År'].astype(str).str[:4].iloc[0]
+
+# Process value column: round to integer
+if 'value' in df.columns:
+    df['value'] = df['value'].replace(':', '')
+    df['value'] = pd.to_numeric(df['value'], errors='coerce').round(0).astype('Int64')
+    df = df.rename(columns={'value': f'Andel ({year})'})
+
+# Drop unnecessary columns (keep only Kommune and Andel)
+keep_cols = ['Kommune', f'Andel ({year})']
+df = df[[c for c in keep_cols if c in df.columns]]
+
+# Sort: Kommuner alphabetically, then Telemark, then Landet
+unique_kommuner = df['Kommune'].unique().tolist()
+sort_map = {}
+regular = sorted([k for k in unique_kommuner if k not in ["Telemark", "Landet"]])
+for i, k in enumerate(regular, start=1):
+    sort_map[k] = i
+sort_map["Telemark"] = len(regular) + 1
+sort_map["Landet"] = len(regular) + 2
+
+df["SortOrder"] = df["Kommune"].map(sort_map)
+df = df.sort_values("SortOrder").reset_index(drop=True)
+df = df.drop(columns=["SortOrder"])
+
+# Add Label column
+df["Label"] = df["Kommune"]
+
+# Final column order
+df = df[["Kommune", f"Andel ({year})", "Label"]]
+
+# --- End Everviz transformations ---
 
 ####################################################################
 ### EDITABLE SECTION END                                         ###
@@ -221,7 +173,8 @@ has_changes = handle_output_data(
     file_name=output_filename,
     github_folder=github_folder,
     temp_folder=temp_folder,
-    keepcsv=True
+    keepcsv=True,
+    value_columns=[f"Andel ({year})"],
 )
 
 if has_changes:
