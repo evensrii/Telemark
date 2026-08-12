@@ -55,6 +55,9 @@ query_file = os.path.join(
 output_filename = "bor_trangt.csv"
 github_folder = "Data/08_Folkehelse og levekår/Oppvekst og levekår/Levekår/Trangboddhet"
 
+output_filename_long = "trangboddhet.csv"
+github_folder_long = "Data/08_Folkehelse og levekår/Oppvekst og levekår"
+
 # Get temp folder
 temp_folder = os.environ.get("TEMP_FOLDER")
 if not temp_folder:
@@ -110,37 +113,153 @@ if df is None or df.empty:
 
 print(f"  ✓ Fetched {len(df)} rows and {len(df.columns)} columns")
 print(f"  Columns: {', '.join(df.columns.tolist())}")
-
+    
 # %%
 ####################################################################
 ### EDITABLE SECTION START                                       ###
 ### Add your data transformations and processing here            ###
 ####################################################################
 
-# Define Telemark kommuner
+# Define mappings
+kommunenummer_map = {
+    "Hele landet": "00",
+    "Telemark": "40",
+    "Porsgrunn": "4001",
+    "Skien": "4003",
+    "Notodden": "4005",
+    "Siljan": "4010",
+    "Bamble": "4012",
+    "Kragerø": "4014",
+    "Drangedal": "4016",
+    "Nome": "4018",
+    "Midt-Telemark": "4020",
+    "Seljord": "4022",
+    "Hjartdal": "4024",
+    "Tinn": "4026",
+    "Kviteseid": "4028",
+    "Nissedal": "4030",
+    "Fyresdal": "4032",
+    "Tokke": "4034",
+    "Vinje": "4036",
+}
+
 telemark_kommuner = [
     "Porsgrunn", "Skien", "Notodden", "Siljan", "Bamble", "Kragerø",
     "Drangedal", "Nome", "Midt-Telemark", "Seljord", "Hjartdal",
     "Tinn", "Kviteseid", "Nissedal", "Fyresdal", "Tokke", "Vinje"
 ]
 
-# Get the year from data
-year = df['År'].iloc[0]
+# Normalize column names: strip whitespace and create case-insensitive lookup
+df.columns = [c.strip() for c in df.columns]
+col_lookup = {c.lower(): c for c in df.columns}
 
-# Reshape for Everviz: Kommune, Andel (ÅR), Label
-df = df[['Geografi', 'value']].copy()
-df['value'] = pd.to_numeric(df['value'], errors='coerce').fillna(0).round(0).astype(int)
-df = df.rename(columns={
-    'Geografi': 'Kommune',
-    'value': f'Andel ({year})'
+def get_col(name):
+    """Get actual column name matching name (case-insensitive)."""
+    return col_lookup.get(name.lower(), name)
+
+# Identify columns (tolerate different label casing / names)
+geo_col = get_col('Geografi')
+year_col = get_col('År')
+alder_col = get_col('Alder')
+innv_col = get_col('Innvandringsbakgrunn')
+if innv_col not in df.columns:
+    innv_col = get_col('Innvandringskategori')
+if innv_col not in df.columns:
+    innv_col = get_col('Innvkat')
+
+# Find the value/measure column
+value_col = None
+for c in df.columns:
+    if c.lower() in ['value', 'values', 'andel', 'rate']:
+        value_col = c
+        break
+if value_col is None:
+    numeric_cols = df.select_dtypes(include='number').columns.tolist()
+    value_col = numeric_cols[-1] if numeric_cols else df.columns[-1]
+
+print("\nDetected columns:")
+print(f"  Geografi: {geo_col}")
+print(f"  År:       {year_col}")
+print(f"  Alder:    {alder_col}")
+print(f"  Innv.kat: {innv_col}")
+print(f"  Value:    {value_col}")
+print(f"\nRaw data sample:")
+print(df.head(10))
+print(f"\nUnique Alder: {sorted(df[alder_col].dropna().unique())}")
+print(f"Unique Innvandringsbakgrunn: {sorted(df[innv_col].dropna().unique())}")
+print(f"Unique År: {sorted(df[year_col].dropna().unique())}")
+
+# Ensure value is numeric
+df[value_col] = pd.to_numeric(df[value_col], errors='coerce')
+
+# Make filtering helpers that work regardless of exact labels
+def filter_age(series, pattern):
+    return series.astype(str).str.contains(pattern, case=False, na=False, regex=False)
+
+# Determine latest year
+latest_year = df[year_col].max()
+print(f"\nLatest year in data: {latest_year}")
+
+# ---------------------------------------------------------
+# Output 1: bor_trangt.csv — latest year, 0-17 år, Totalt
+# ---------------------------------------------------------
+# Accept either exact "0-17 år" or any label containing "0-17"
+df_bor_trangt = df[
+    filter_age(df[alder_col], '0-17') &
+    (df[innv_col].astype(str).str.lower() == 'totalt') &
+    (df[year_col] == latest_year)
+].copy()
+
+if df_bor_trangt.empty:
+    print(f"\n  Warning: No 0-17 data found for latest year {latest_year}")
+
+df_bor_trangt = df_bor_trangt[[geo_col, value_col]].copy()
+# API returns percentage (e.g. 15.01), round to nearest integer
+df_bor_trangt[value_col] = pd.to_numeric(df_bor_trangt[value_col], errors='coerce').round(0).fillna(0).astype('int64')
+df_bor_trangt = df_bor_trangt.rename(columns={
+    geo_col: 'Kommune',
+    value_col: f'Andel ({latest_year})'
 })
-df['Label'] = df['Kommune']
+df_bor_trangt['Label'] = df_bor_trangt['Kommune']
 
 # Sort: kommuner alphabetically, then Telemark and Hele landet last
-kommuner_df = df[df['Kommune'].isin(telemark_kommuner)].sort_values('Kommune')
-aggregates_df = df[df['Kommune'].isin(["Telemark", "Hele landet"])]
-aggregates_df = aggregates_df.set_index('Kommune').loc[["Telemark", "Hele landet"]].reset_index()
-df = pd.concat([kommuner_df, aggregates_df], ignore_index=True)
+kommuner_df = df_bor_trangt[df_bor_trangt['Kommune'].isin(telemark_kommuner)].sort_values('Kommune')
+aggregates_df = df_bor_trangt[df_bor_trangt['Kommune'].isin(["Telemark", "Hele landet"])]
+if not aggregates_df.empty:
+    aggregates_df = aggregates_df.set_index('Kommune').loc[["Telemark", "Hele landet"]].reset_index()
+df_bor_trangt = pd.concat([kommuner_df, aggregates_df], ignore_index=True)
+
+# ---------------------------------------------------------
+# Output 2: trangboddhet.csv — alle aldre, all years, long format
+# ---------------------------------------------------------
+# Filter to "alle aldre" (case-insensitive)
+df_trangboddhet = df[filter_age(df[alder_col], 'alle aldre')].copy()
+
+if df_trangboddhet.empty:
+    print("\n  Warning: No 'alle aldre' data found")
+
+df_trangboddhet['Kommunenummer'] = df_trangboddhet[geo_col].map(kommunenummer_map)
+df_trangboddhet['År'] = pd.to_datetime(df_trangboddhet[year_col].astype(str), errors='coerce').dt.strftime('%Y-%m-%d')
+df_trangboddhet = df_trangboddhet.rename(columns={value_col: 'Andel'})
+
+# Ensure Andel is numeric and between 0 and 1
+df_trangboddhet['Andel'] = pd.to_numeric(df_trangboddhet['Andel'], errors='coerce')
+if df_trangboddhet['Andel'].max() > 1:
+    df_trangboddhet['Andel'] = df_trangboddhet['Andel'] / 100
+
+# Keep only expected immigration categories (accept common variants)
+innv_mask = df_trangboddhet[innv_col].astype(str).str.lower().isin(['totalt', 'innvandrere', 'alle'])
+df_trangboddhet = df_trangboddhet[innv_mask]
+
+# Order and sort columns
+df_trangboddhet = df_trangboddhet[['Kommunenummer', geo_col, 'År', alder_col, innv_col, 'Andel']]
+df_trangboddhet = df_trangboddhet.sort_values(
+    by=['Kommunenummer', 'År', innv_col],
+    ignore_index=True
+)
+
+print(f"\nbor_trangt.csv: {len(df_bor_trangt)} rows")
+print(f"trangboddhet.csv: {len(df_trangboddhet)} rows")
 
 ####################################################################
 ### EDITABLE SECTION END                                         ###
@@ -149,26 +268,47 @@ df = pd.concat([kommuner_df, aggregates_df], ignore_index=True)
 print(f"\nAfter processing: {len(df)} rows and {len(df.columns)} columns")
 
 # %%
-# Compare with GitHub and upload if changed
-print("\nComparing with GitHub...")
-has_changes = handle_output_data(
-    df=df,
+# Compare bor_trangt.csv with GitHub and upload if changed
+print("\nComparing bor_trangt.csv with GitHub...")
+has_changes_bor_trangt = handle_output_data(
+    df=df_bor_trangt,
     file_name=output_filename,
     github_folder=github_folder,
     temp_folder=temp_folder,
     keepcsv=True
 )
 
-if has_changes:
-    print("  ✓ New data detected and uploaded to GitHub")
-    print("New data detected")  # For master_script.py parsing
+if has_changes_bor_trangt:
+    print("  ✓ New data detected in bor_trangt.csv and uploaded to GitHub")
 else:
-    print("  ✓ No changes detected")
+    print("  ✓ No changes detected in bor_trangt.csv")
+
+# Compare trangboddhet.csv with GitHub and upload if changed
+print("\nComparing trangboddhet.csv with GitHub...")
+has_changes_trangboddhet = handle_output_data(
+    df=df_trangboddhet,
+    file_name=output_filename_long,
+    github_folder=github_folder_long,
+    temp_folder=temp_folder,
+    keepcsv=True
+)
+
+if has_changes_trangboddhet:
+    print("  ✓ New data detected in trangboddhet.csv and uploaded to GitHub")
+else:
+    print("  ✓ No changes detected in trangboddhet.csv")
+
+if has_changes_bor_trangt or has_changes_trangboddhet:
+    print("New data detected")  # For master_script.py parsing
 
 # Save to temp folder
 output_path = os.path.join(temp_folder, output_filename)
-df.to_csv(output_path, index=False, encoding='utf-8')
-print(f"\n  ✓ Saved to: {output_path}")
+df_bor_trangt.to_csv(output_path, index=False, encoding='utf-8')
+print(f"\n  ✓ Saved bor_trangt.csv to: {output_path}")
+
+output_path_long = os.path.join(temp_folder, output_filename_long)
+df_trangboddhet.to_csv(output_path_long, index=False, encoding='utf-8')
+print(f"\n  ✓ Saved trangboddhet.csv to: {output_path_long}")
 
 print(f"\n{'=' * 70}")
 print("Processing complete")
