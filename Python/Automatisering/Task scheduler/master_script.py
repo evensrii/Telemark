@@ -32,7 +32,7 @@ SCRIPTS = [
     ## Befolkning
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske_07459.py"), "Befolkning - Befolkningsframskrivinger historiske_07459"), # Befolkning fram til nå
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell.py"), "Befolkning - Befolkningsframskrivinger siste tabell"), # Befolkning framover
-    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/kombiner_historisk_og_framskrevet.py"), "Befolkning - Historisk og framskrevet"), # Kombinert de to over
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/kombiner_historisk_og_framskrevet.py"), "Befolkning - Historisk og framskrevet"), # Kombinerer de to over
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_egne_intervaller.py"), "Befolkning - Befolkningsframskrivinger egne intervaller"), # Framskrevet med egendefinerte aldersgrupper
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/bidrag_til_samlet_befolkningsvekst.py"), "Befolkning - Bidrag til samlet befolkningsvekst"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/andel_67_pluss.py"), "Befolkning - Andel 67 pluss"),
@@ -120,7 +120,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Miljø/drikkevann.py"), "Folkehelse - Drikkevann"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Miljø/luftforurensning.py"), "Folkehelse - Luftforurensning"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Barnevern/barnevern.py"), "Folkehelse - barnevern"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/gjeld_over_tre_ganger_inntekt_husholdninger.py"), "Folkehelse - Gjeld over tre ganger inntekt, husholdninger"),
+    #(os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/gjeld_over_tre_ganger_inntekt_husholdninger.py"), "Folkehelse - Gjeld over tre ganger inntekt, husholdninger"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/inntektsulikhet.py"), "Folkehelse - Inntektsulikhet"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/vedvarende_lavinntekt_etter_innvandringskategori_kommunegrense.py"), "Folkehelse - Vedvarende lavinntekt etter innvandringskategori, kommunegrense"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Trangboddhet/bor_trangt.py"), "Folkehelse - Bor trangt"),
@@ -154,6 +154,7 @@ SCRIPTS = [
     
     ## Boligbehovsanalyse
     (os.path.join(PYTHON_PATH, "Queries/Rapporter og prosjekter/Boligbehovsanalyse/Framtidig boligbehov/framtidig_boligbehov.py"), "Boligbehovsanalyse - Framtidig boligbehov"),
+    (os.path.join(PYTHON_PATH, "Queries/Rapporter og prosjekter/Boligbehovsanalyse/Bolyst og attraktivitet/Sykepleierindeksen/sykepleierindeksen.py"), "Boligbehovsanalyse - Sykepleierindeksen"),
 ]
 
 # Initialize master log
