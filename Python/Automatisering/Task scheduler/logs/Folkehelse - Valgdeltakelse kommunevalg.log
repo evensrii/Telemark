@@ -1,0 +1,58 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Valgdeltakelse kommunevalg - kommuner (09475) JSON-stat data loaded successfully.
+Valgdeltakelse kommunevalg - fylke og land (09475) JSON-stat data loaded successfully.
+           region        statistikkvariabel fireÃ¥rlig  value
+0       Porsgrunn  Valgdeltakelse i prosent      2023   60.4
+1           Skien  Valgdeltakelse i prosent      2023   57.2
+2        Notodden  Valgdeltakelse i prosent      2023   57.0
+3          Siljan  Valgdeltakelse i prosent      2023   66.5
+4          Bamble  Valgdeltakelse i prosent      2023   62.3
+5         KragerÃ¸  Valgdeltakelse i prosent      2023   63.1
+6       Drangedal  Valgdeltakelse i prosent      2023   63.6
+7            Nome  Valgdeltakelse i prosent      2023   60.2
+8   Midt-Telemark  Valgdeltakelse i prosent      2023   57.7
+9         Seljord  Valgdeltakelse i prosent      2023   66.0
+10       Hjartdal  Valgdeltakelse i prosent      2023   65.8
+11           Tinn  Valgdeltakelse i prosent      2023   62.0
+12      Kviteseid  Valgdeltakelse i prosent      2023   63.7
+13       Nissedal  Valgdeltakelse i prosent      2023   75.2
+14       Fyresdal  Valgdeltakelse i prosent      2023   68.0
+15          Tokke  Valgdeltakelse i prosent      2023   69.5
+16          Vinje  Valgdeltakelse i prosent      2023   67.1
+17    Hele landet  Valgdeltakelse i prosent      2023   62.4
+18       Telemark  Valgdeltakelse i prosent      2023   60.1
+['region', 'statistikkvariabel', 'fireÃ¥rlig', 'value']
+Kolonner: ['region', 'statistikkvariabel', 'fireÃ¥rlig', 'value']
+
+--- Ferdig datasett ---
+          Kommune  Andel (2023)          Label
+0          Bamble            62         Bamble
+1       Drangedal            64      Drangedal
+2        Fyresdal            68       Fyresdal
+3        Hjartdal            66       Hjartdal
+4         KragerÃ¸            63        KragerÃ¸
+5       Kviteseid            64      Kviteseid
+6   Midt-Telemark            58  Midt-Telemark
+7        Nissedal            75       Nissedal
+8            Nome            60           Nome
+9        Notodden            57       Notodden
+10      Porsgrunn            60      Porsgrunn
+11        Seljord            66        Seljord
+12         Siljan            66         Siljan
+13          Skien            57          Skien
+14           Tinn            62           Tinn
+15          Tokke            70          Tokke
+16          Vinje            67          Vinje
+17       Telemark            60       Telemark
+18         Landet            62         Landet
+
+Antall rader: 19
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\valgdeltakelse_kommunevalg.csv
+[2026-08-06 08:28:41] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\valgdeltakelse_kommunevalg.csv
+No new data detected.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Valgdeltakelse_kommunevalg.log
+
