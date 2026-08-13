@@ -29,6 +29,7 @@ Successfully uploaded log file Bolig - Fullforte boliger etter boligtype.log. UR
 Successfully uploaded log file Bolig - Husholdninger etter boligtype.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bolig - Husholdninger etter boligtype.log
 Successfully uploaded log file Bolig - Igangsettelser etter boligtype.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bolig - Igangsettelser etter boligtype.log
 Successfully uploaded log file Boligbehovsanalyse - Framtidig boligbehov.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Boligbehovsanalyse - Framtidig boligbehov.log
+Successfully uploaded log file Boligbehovsanalyse - Sykepleierindeksen.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Boligbehovsanalyse - Sykepleierindeksen.log
 Successfully uploaded log file Bystrategi Grenland - Arealprofiler.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Arealprofiler.log
 Successfully uploaded log file Bystrategi Grenland - Luftforurensing.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Luftforurensing.log
 Successfully uploaded log file Bystrategi Grenland - Utslipp fra vei.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Utslipp fra vei.log
@@ -42,7 +43,6 @@ Successfully uploaded log file Folkehelse - Drikkevann.log. URL: https://github.
 Successfully uploaded log file Folkehelse - Dødsårsaker tiårig.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Folkehelse - Dødsårsaker tiårig.log
 Successfully uploaded log file Folkehelse - Forventet levealder 7 årig.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Folkehelse - Forventet levealder 7 årig.log
 Successfully uploaded log file Folkehelse - Forventet levealder etter utdanningsnivå.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Folkehelse - Forventet levealder etter utdanningsnivå.log
-Successfully uploaded log file Folkehelse - Gjeld over tre ganger inntekt, husholdninger.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Folkehelse - Gjeld over tre ganger inntekt, husholdninger.log
 Successfully uploaded log file Folkehelse - Grunnskolepoeng etter foreldrenes utdanningsnivå.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Folkehelse - Grunnskolepoeng etter foreldrenes utdanningsnivå.log
 Successfully uploaded log file Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Folkehelse - Hjerte- og karsykdom - primærhelsetjenesten, treårige tall.log
 Successfully uploaded log file Folkehelse - Hoftebrudd.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Folkehelse - Hoftebrudd.log
@@ -103,11 +103,20 @@ Successfully uploaded log file Opplaering og kompetanse - Utdanningsnivaa.log. U
 DEBUG - Task: Klima og energi - Stromforbruk (Elhub)
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Stromforbruk%20(Elhub).log
 
-DEBUG - Task: Klima og energi - Strompriser
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Strompriser.log
+DEBUG - Task: Folkehelse - Grunnskolepoeng etter foreldrenes utdanningsnivå
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Grunnskolepoeng%20etter%20foreldrenes%20utdanningsnivå.log
+
+DEBUG - Task: Innvandrere - Lavinntekt
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Lavinntekt.log
+
+DEBUG - Task: Boligbehovsanalyse - Sykepleierindeksen
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Boligbehovsanalyse%20-%20Sykepleierindeksen.log
 
 DEBUG - Task: Klima og energi - Installert_effekt (Elhub)
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Installert_effekt%20(Elhub).log
+
+DEBUG - Task: Klima og energi - Strompriser
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Strompriser.log
 
 DEBUG - Task: Innvandrere - Flyktninger og arbeidsinnvandrere
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Flyktninger%20og%20arbeidsinnvandrere.log
@@ -127,6 +136,9 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 DEBUG - Task: Folkehelse - Influensavaksinerte over 65 år
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Influensavaksinerte%20over%2065%20år.log
 
+DEBUG - Task: Folkehelse - Luftforurensning
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Luftforurensning.log
+
 DEBUG - Task: Innvandrere - Fullfort VGO
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Fullfort%20VGO.log
 
@@ -135,9 +147,6 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 
 DEBUG - Task: Folkehelse - Kreft, nye tilfeller, tiårige tall
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Kreft,%20nye%20tilfeller,%20tiårige%20tall.log
-
-DEBUG - Task: Folkehelse - Luftforurensning
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Luftforurensning.log
 
 DEBUG - Task: Innvandrere - Anmodninger og faktisk bosetting
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Anmodninger%20og%20faktisk%20bosetting.log
@@ -162,9 +171,6 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 
 DEBUG - Task: Folkehelse - Leseferdigheter treårig 5. og 8. trinn
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Leseferdigheter%20treårig%205.%20og%208.%20trinn.log
-
-DEBUG - Task: Folkehelse - Grunnskolepoeng etter foreldrenes utdanningsnivå
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Grunnskolepoeng%20etter%20foreldrenes%20utdanningsnivå.log
 
 DEBUG - Task: Folkehelse - Mobbing 7. trinn treårig
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Mobbing%207.%20trinn%20treårig.log
@@ -216,9 +222,6 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 
 DEBUG - Task: Folkehelse - Inntektsulikhet
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Inntektsulikhet.log
-
-DEBUG - Task: Folkehelse - Gjeld over tre ganger inntekt, husholdninger
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Gjeld%20over%20tre%20ganger%20inntekt,%20husholdninger.log
 
 DEBUG - Task: Folkehelse - Psykiske symptomer og lidelser - primærhelsetjenesten, ettårige tall
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Folkehelse%20-%20Psykiske%20symptomer%20og%20lidelser%20-%20primærhelsetjenesten,%20ettårige%20tall.log
@@ -318,9 +321,6 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 
 DEBUG - Task: Klima og energi - Vannkraft Telemark
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Vannkraft%20Telemark.log
-
-DEBUG - Task: Innvandrere - Lavinntekt
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Lavinntekt.log
 
 DEBUG - Task: Innvandrere - Etter introduksjonsprogrammet
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Innvandrere%20-%20Etter%20introduksjonsprogrammet.log
