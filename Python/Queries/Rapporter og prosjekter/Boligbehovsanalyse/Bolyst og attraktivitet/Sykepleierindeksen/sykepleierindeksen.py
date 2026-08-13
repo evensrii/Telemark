@@ -1,31 +1,73 @@
 import os
 import re
+import requests
 import pandas as pd
 import pdfplumber
-from pathlib import Path
+from io import BytesIO
 
-from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.github_functions import handle_output_data, GITHUB_TOKEN
 
 # Script metadata
 script_name = os.path.basename(__file__)
 error_messages = []
 
-# %% Setup paths
-base_path = Path(r"c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark")
-data_folder = base_path / "Data" / "Boligbehovsanalyse_2026" / "Bolyst_og_attraktivitet" / "Sykepleierindeksen"
-pdf_folder = data_folder / "pdfer"
-pdf_files = sorted(pdf_folder.glob("*_sykepleierindeksen.pdf"))
+# %% Download PDFs from GitHub
 
-print(f"Found {len(pdf_files)} PDFs:")
+github_pdf_folder = "Data/Boligbehovsanalyse_2026/Bolyst_og_attraktivitet/Sykepleierindeksen/pdfer"
+
+def list_github_folder(folder_path):
+    """List files in a GitHub repository folder."""
+    url = f"https://api.github.com/repos/evensrii/Telemark/contents/{folder_path}?ref=main"
+    headers = {
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github.v3+json",
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"Failed to list folder: {folder_path}, Status Code: {response.status_code}")
+        return []
+
+def download_github_pdf(file_path):
+    """Download a raw file (e.g. PDF) from GitHub and return its bytes."""
+    url = f"https://api.github.com/repos/evensrii/Telemark/contents/{file_path}?ref=main"
+    headers = {
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github.v3.raw",
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.content
+    else:
+        print(f"Failed to download file: {file_path}, Status Code: {response.status_code}")
+        return None
+
+# List and download PDFs from GitHub
+folder_contents = list_github_folder(github_pdf_folder)
+pdf_entries = sorted(
+    [f for f in folder_contents if f["name"].endswith("_sykepleierindeksen.pdf")],
+    key=lambda f: f["name"],
+)
+
+# Download each PDF into memory as (filename, bytes) tuples
+pdf_files = []
+for entry in pdf_entries:
+    pdf_bytes = download_github_pdf(entry["path"])
+    if pdf_bytes:
+        pdf_files.append({"name": entry["name"], "bytes": pdf_bytes})
+
+print(f"Found {len(pdf_files)} PDFs on GitHub:")
 for f in pdf_files:
-    print(f"  {f.name}")
+    print(f"  {f['name']}")
 
 # %% Helper functions
 
-def get_period(filepath):
-    """Extract period like '2025_1' from filename."""
-    match = re.match(r'(\d{4}_\d)', filepath.stem)
-    return match.group(1) if match else filepath.stem
+def get_period(filename):
+    """Extract period like '2025_1' from filename string."""
+    stem = os.path.splitext(filename)[0]
+    match = re.match(r'(\d{4}_\d)', stem)
+    return match.group(1) if match else stem
 
 
 def find_page(pdf, pattern, start_page=0, end_page=None):
@@ -89,9 +131,9 @@ def match_known_area(raw_name):
 
 def dump_pages(pdf_index=0):
     """Print first line of each page for a PDF to help identify page contents."""
-    path = pdf_files[pdf_index]
-    print(f"Inspecting: {path.name}")
-    with pdfplumber.open(path) as pdf:
+    pdf_entry = pdf_files[pdf_index]
+    print(f"Inspecting: {pdf_entry['name']}")
+    with pdfplumber.open(BytesIO(pdf_entry['bytes'])) as pdf:
         for i, page in enumerate(pdf.pages):
             text = page.extract_text() or ""
             first_lines = '\n    '.join(text.split('\n')[:3])
@@ -569,11 +611,11 @@ all_alle_omrader = []
 all_telemark = []
 all_nodvendig_inntekt = []
 
-for pdf_path in pdf_files:
-    period = get_period(pdf_path)
-    print(f"\nProcessing: {pdf_path.name} (period: {period})")
+for pdf_entry in pdf_files:
+    period = get_period(pdf_entry['name'])
+    print(f"\nProcessing: {pdf_entry['name']} (period: {period})")
 
-    with pdfplumber.open(pdf_path) as pdf:
+    with pdfplumber.open(BytesIO(pdf_entry['bytes'])) as pdf:
         # 1. Alle områder
         rows = extract_alle_omrader(pdf, period)
         all_alle_omrader.extend(rows)
@@ -587,12 +629,20 @@ for pdf_path in pdf_files:
         all_nodvendig_inntekt.extend(rows)
 
 # 4. Historisk - only from the most recent (last) PDF
-latest_pdf_path = pdf_files[-1]
-latest_period = get_period(latest_pdf_path)
-print(f"\nExtracting historisk from latest PDF: {latest_pdf_path.name} (period: {latest_period})")
+latest_pdf = pdf_files[-1]
+latest_period = get_period(latest_pdf['name'])
+print(f"\nExtracting historisk from latest PDF: {latest_pdf['name']} (period: {latest_period})")
 
-with pdfplumber.open(latest_pdf_path) as pdf:
+with pdfplumber.open(BytesIO(latest_pdf['bytes'])) as pdf:
     latest_historisk = extract_historisk(pdf, latest_period)
+
+# Transform historisk to long format, percentages 0-1, datetime year
+if latest_historisk is not None:
+    year_cols = [c for c in latest_historisk.columns if c != 'Område']
+    latest_historisk = latest_historisk.melt(id_vars='Område', value_vars=year_cols, var_name='År', value_name='Andel')
+    latest_historisk['Andel'] = latest_historisk['Andel'] / 100
+    latest_historisk['År'] = pd.to_datetime(latest_historisk['År'], format='%Y')
+    latest_historisk = latest_historisk.sort_values(['Område', 'År']).reset_index(drop=True)
 
 # %% Build DataFrames
 
