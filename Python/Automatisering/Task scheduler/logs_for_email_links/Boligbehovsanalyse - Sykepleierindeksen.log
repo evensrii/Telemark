@@ -1,0 +1,8 @@
+
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/Rapporter og prosjekter/Boligbehovsanalyse/Bolyst og attraktivitet/Sykepleierindeksen/sykepleierindeksen.py", line 4, in <module>
+    import pdfplumber
+ModuleNotFoundError: No module named 'pdfplumber'
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/Rapporter og prosjekter/Boligbehovsanalyse/Bolyst og attraktivitet/Sykepleierindeksen/sykepleierindeksen.py` failed. (See above for error)
