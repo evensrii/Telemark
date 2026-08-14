@@ -145,13 +145,15 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/husholdninger_etter_boligtype.py"), "Bolig - Husholdninger etter boligtype"),
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/igangsettelser_etter_boligtype.py"), "Bolig - Igangsettelser etter boligtype"),
 
-    ## Bystrategi Grenland
+    #### ------------ Rapporter og prosjekter ------------ ####
+    
+    ## Grenlandsbarometeret
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py"), "Bystrategi Grenland - Utslipp fra vei"),
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py"), "Bystrategi Grenland - Luftforurensing"),
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.py"), "Bystrategi Grenland - Arealprofiler"),
+    (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning/befolkning_250_m.py"), "Bystrategi Grenland - Befolkning 250m"),
+    (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Areal_og_byutvikling/Bolig/bolig_250_m.py"), "Bystrategi Grenland - Bolig 250m"),
 
-    #### ------------ Rapporter og prosjekter ------------ ####
-    
     ## Boligbehovsanalyse
     (os.path.join(PYTHON_PATH, "Queries/Rapporter og prosjekter/Boligbehovsanalyse/Framtidig boligbehov/framtidig_boligbehov.py"), "Boligbehovsanalyse - Framtidig boligbehov"),
     (os.path.join(PYTHON_PATH, "Queries/Rapporter og prosjekter/Boligbehovsanalyse/Bolyst og attraktivitet/Sykepleierindeksen/sykepleierindeksen.py"), "Boligbehovsanalyse - Sykepleierindeksen"),

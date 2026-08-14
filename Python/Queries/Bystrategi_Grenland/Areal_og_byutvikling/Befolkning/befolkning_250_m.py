@@ -52,9 +52,9 @@ OUTPUT_FOLDER = Path(temp_folder)
 OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
 
 # GitHub paths
-GITHUB_FOLDER = "Data/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning"
-GITHUB_FOLDER_GEONORGE = "Data/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning/GeonorgeAPI"
-FILE_NAME = "befolkning_250m_grenland.csv"
+github_folder = "Data/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning"
+github_folder_geonorge = "Data/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning/GeonorgeAPI"
+file_name = "befolkning_250m_grenland.csv"
 
 # Local paths
 MANUAL_FOLDER = Path(r'c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Data\Bystrategi_Grenland\Areal_og_byutvikling\Befolkning\Manuelt nedlastet')
@@ -156,7 +156,7 @@ def download_file(url, output_path):
 ##################### Check GitHub for latest data #####################
 
 print("Checking GitHub for existing data...")
-existing_data = download_github_file(f"{GITHUB_FOLDER}/{FILE_NAME}")
+existing_data = download_github_file(f"{github_folder}/{file_name}")
 
 ##################### Discover available datasets #####################
 
@@ -180,7 +180,7 @@ if existing_data is not None:
         
         # Ensure GeonorgeAPI intermediate files are on GitHub
         for geonorge_file in ["befolkning_250m_2016_and_later.csv", "befolkning_250m_2016_and_later_grenland.csv"]:
-            geonorge_check = download_github_file(f"{GITHUB_FOLDER_GEONORGE}/{geonorge_file}")
+            geonorge_check = download_github_file(f"{github_folder_geonorge}/{geonorge_file}")
             if geonorge_check is None:
                 local_path = OUTPUT_FOLDER / geonorge_file
                 if local_path.exists():
@@ -190,7 +190,7 @@ if existing_data is not None:
                         df_upload = pd.read_csv(local_path, sep=';', dtype=str)
                     else:
                         df_upload = pd.read_csv(local_path, dtype=str)
-                    handle_output_data(df_upload, geonorge_file, GITHUB_FOLDER_GEONORGE, temp_folder, keepcsv=True)
+                    handle_output_data(df_upload, geonorge_file, github_folder_geonorge, temp_folder, keepcsv=True)
                     print(f"  Uploaded missing file: {geonorge_file}")
                 else:
                     print(f"  WARNING: {geonorge_file} not found locally or on GitHub.")
@@ -426,7 +426,7 @@ all_dfs = manual_dfs + [geonorge_df]
 final_df = pd.concat(all_dfs, ignore_index=True)
 final_df = final_df.sort_values(['År', 'ssbid_250']).reset_index(drop=True)
 
-FINAL_OUTPUT_PATH = OUTPUT_FOLDER / FILE_NAME
+FINAL_OUTPUT_PATH = OUTPUT_FOLDER / file_name
 final_df.to_csv(FINAL_OUTPUT_PATH, index=False)
 
 print(f"\n  Final dataset: {FINAL_OUTPUT_PATH.name}")
@@ -440,7 +440,7 @@ print(f"  Unique grid cells: {final_df['ssbid_250'].nunique()}")
 handle_output_data(
     pd.read_csv(OUTPUT_FOLDER / "befolkning_250m_2016_and_later.csv", sep=';', dtype=str),
     "befolkning_250m_2016_and_later.csv",
-    GITHUB_FOLDER_GEONORGE,
+    github_folder_geonorge,
     temp_folder,
     keepcsv=True
 )
@@ -448,13 +448,13 @@ handle_output_data(
 handle_output_data(
     pd.read_csv(OUTPUT_FOLDER / "befolkning_250m_2016_and_later_grenland.csv", dtype=str),
     "befolkning_250m_2016_and_later_grenland.csv",
-    GITHUB_FOLDER_GEONORGE,
+    github_folder_geonorge,
     temp_folder,
     keepcsv=True
 )
 
 # Upload final combined file
-is_new_data = handle_output_data(final_df, FILE_NAME, GITHUB_FOLDER, temp_folder, keepcsv=True)
+is_new_data = handle_output_data(final_df, file_name, github_folder, temp_folder, keepcsv=True)
 
 ##################### Summary #####################
 

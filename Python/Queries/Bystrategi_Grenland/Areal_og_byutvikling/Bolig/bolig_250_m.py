@@ -49,8 +49,8 @@ OUTPUT_FOLDER = Path(temp_folder)
 OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
 
 # GitHub paths
-GITHUB_FOLDER = "Data/Bystrategi_Grenland/Areal_og_byutvikling/Bolig"
-FILE_NAME = "boliger_250m_grenland.csv"
+github_folder = "Data/Bystrategi_Grenland/Areal_og_byutvikling/Bolig"
+file_name = "boliger_250m_grenland.csv"
 
 # Grenland filter file on GitHub
 GRENLAND_FILTER_GITHUB = "Data/Bystrategi_Grenland/Areal_og_byutvikling/geografiske_definisjoner_250m_ruter.csv"
@@ -170,7 +170,7 @@ def download_export(url):
 ##################### Check GitHub for latest data #####################
 
 print("Checking GitHub for existing data...")
-existing_data = download_github_file(f"{GITHUB_FOLDER}/{FILE_NAME}")
+existing_data = download_github_file(f"{github_folder}/{file_name}")
 
 ##################### Discover available years #####################
 
@@ -187,7 +187,7 @@ print(f"  Years: {available_years[0]} - {available_years[-1]}")
 latest_available_year = max(available_years)
 print(f"  Latest available year: {latest_available_year}")
 
-# Early exit if GitHub already has the latest year
+# Determine which years to download
 if existing_data is not None:
     github_latest_year = existing_data['År'].str[:4].astype(int).max()
     print(f"\nLatest year on GitHub: {github_latest_year}")
@@ -196,10 +196,14 @@ if existing_data is not None:
         print(f"\nGitHub already has data up to {github_latest_year}. No update needed.")
         print("The following exception is just cosmetic:")
         sys.exit(0)
-    else:
-        print(f"\nNew data available! GitHub has up to {github_latest_year}, source has {latest_available_year}.")
+    
+    # Only download years newer than what GitHub has
+    years_to_download = [y for y in available_years if y > github_latest_year]
+    print(f"\nNew data available! GitHub has up to {github_latest_year}, source has {latest_available_year}.")
+    print(f"  Years to download: {years_to_download}")
 else:
-    print("\nNo existing file on GitHub. Will create new dataset.")
+    years_to_download = available_years
+    print("\nNo existing file on GitHub. Will download all years.")
 
 ##################### Download Grenland filter #####################
 
@@ -216,13 +220,13 @@ print(f"  Grenland grid cells: {len(grenland_ids)}")
 
 ##################### Download data from export API #####################
 
-print(f"\nDownloading {len(available_years)} years from kart.ssb.no export API...")
+print(f"\nDownloading {len(years_to_download)} year(s) from kart.ssb.no export API...")
 print(f"  Filter: Telemark county (code '40')")
 print()
 
-all_year_dfs = []
+new_year_dfs = []
 
-for year in available_years:
+for year in years_to_download:
     print(f"  [{year}] Starting export...", end=" ", flush=True)
     
     result = start_export(year, use_filter=True)
@@ -249,50 +253,47 @@ for year in available_years:
     df = download_export(download_url)
     df['År'] = f"{year}-01-01"
     print(f"{len(df)} rows.")
-    all_year_dfs.append(df)
+    new_year_dfs.append(df)
     
     time.sleep(1)  # Be polite to the server
 
-print(f"\nTotal: {sum(len(df) for df in all_year_dfs)} rows across {len(all_year_dfs)} years.")
+print(f"\nTotal new: {sum(len(df) for df in new_year_dfs)} rows across {len(new_year_dfs)} year(s).")
 
-##################### Combine and filter to Grenland #####################
+##################### Filter new data to Grenland #####################
 
-if not all_year_dfs:
-    print("No data downloaded. Exiting.")
+if not new_year_dfs:
+    print("No new data downloaded. Exiting.")
     sys.exit(1)
 
-# Combine all years
-combined_df = pd.concat(all_year_dfs, ignore_index=True)
-print(f"\nCombined dataset: {len(combined_df)} rows")
+# Combine newly downloaded years
+new_combined_df = pd.concat(new_year_dfs, ignore_index=True)
+print(f"\nNew downloaded data: {len(new_combined_df)} rows")
 
 # Ensure SSBID is string and stripped
-combined_df['SSBID0250M'] = combined_df['SSBID0250M'].astype(str).str.strip()
+new_combined_df['SSBID0250M'] = new_combined_df['SSBID0250M'].astype(str).str.strip()
 
 # Filter to Grenland cells
-grenland_filtered = combined_df[combined_df['SSBID0250M'].isin(grenland_ids)].copy()
-print(f"After Grenland filter: {len(grenland_filtered)} rows")
+new_grenland = new_combined_df[new_combined_df['SSBID0250M'].isin(grenland_ids)].copy()
+print(f"After Grenland filter: {len(new_grenland)} rows")
 
-if grenland_filtered.empty:
-    print("\nWARNING: No matching Grenland cells found!")
-    print(f"  Sample downloaded SSBID values: {combined_df['SSBID0250M'].head(5).tolist()}")
+if new_grenland.empty:
+    print("\nWARNING: No matching Grenland cells found in new data!")
+    print(f"  Sample downloaded SSBID values: {new_combined_df['SSBID0250M'].head(5).tolist()}")
     print(f"  Sample filter ssbid values: {list(grenland_ids)[:5]}")
     sys.exit(1)
 
-##################### Format output #####################
+##################### Format and merge with existing data #####################
 
-# Select and rename columns
-rename_dict = {k: v for k, v in COLUMN_MAP.items() if k in grenland_filtered.columns}
-grenland_filtered = grenland_filtered.rename(columns=rename_dict)
+# Rename columns in new data
+rename_dict = {k: v for k, v in COLUMN_MAP.items() if k in new_grenland.columns}
+new_grenland = new_grenland.rename(columns=rename_dict)
 
 # Final column order
 FINAL_COLUMNS = ['ssbid_250', 'År', 'boliger_i_alt', 'boliger_i_eneboliger',
                  'boliger_i_tomannsboliger', 'boliger_i_rekkehus_kjedehus_småhus',
                  'boliger_i_boligblokk', 'boliger_i_bofellesskap',
                  'boliger_i_andre_bygningstyper', 'gjennomsnittlig_bruksareal']
-grenland_output = grenland_filtered[[c for c in FINAL_COLUMNS if c in grenland_filtered.columns]]
-
-# Sort by year and ssbid
-grenland_output = grenland_output.sort_values(['År', 'ssbid_250']).reset_index(drop=True)
+new_grenland = new_grenland[[c for c in FINAL_COLUMNS if c in new_grenland.columns]]
 
 # Convert numeric columns (empty strings -> 0)
 numeric_cols = ['boliger_i_alt', 'boliger_i_eneboliger', 'boliger_i_tomannsboliger',
@@ -300,31 +301,38 @@ numeric_cols = ['boliger_i_alt', 'boliger_i_eneboliger', 'boliger_i_tomannsbolig
                 'boliger_i_bofellesskap', 'boliger_i_andre_bygningstyper',
                 'gjennomsnittlig_bruksareal']
 for col in numeric_cols:
-    if col in grenland_output.columns:
-        grenland_output[col] = pd.to_numeric(grenland_output[col], errors='coerce').fillna(0).astype(int)
+    if col in new_grenland.columns:
+        new_grenland[col] = pd.to_numeric(new_grenland[col], errors='coerce').fillna(0).astype(int)
+
+# Merge with existing GitHub data (if any)
+if existing_data is not None:
+    print(f"\nAppending {len(new_grenland)} new rows to {len(existing_data)} existing rows...")
+    grenland_output = pd.concat([existing_data, new_grenland], ignore_index=True)
+else:
+    grenland_output = new_grenland
+
+# Sort by year and ssbid
+grenland_output = grenland_output.sort_values(['År', 'ssbid_250']).reset_index(drop=True)
 
 # Save to temp folder
-output_path = OUTPUT_FOLDER / FILE_NAME
+output_path = OUTPUT_FOLDER / file_name
 grenland_output.to_csv(output_path, index=False)
 
 print(f"\nOutput saved: {output_path.name}")
 print(f"  Rows: {len(grenland_output)}")
 print(f"  Years: {grenland_output['År'].nunique()} ({grenland_output['År'].min()} to {grenland_output['År'].max()})")
 print(f"  Unique grid cells: {grenland_output['ssbid_250'].nunique()}")
-print(f"\nSample:")
-print(grenland_output.head(10).to_string(index=False))
 
 ##################### Upload to GitHub #####################
 
-handle_output_data(grenland_output, FILE_NAME, GITHUB_FOLDER, temp_folder, keepcsv=True)
-
-##################### Cleanup #####################
-
-# Remove per-year temp files (none created in this workflow since we stream from API)
+handle_output_data(grenland_output, file_name, github_folder, temp_folder, keepcsv=True)
 
 print("\n" + "=" * 60)
 print("COMPLETE")
 print("=" * 60)
-print(f"  Years: {grenland_output['År'].nunique()} ({available_years[0]}-{available_years[-1]})")
+print(f"  Years: {grenland_output['År'].nunique()} ({grenland_output['År'].min()[:4]}-{grenland_output['År'].max()[:4]})")
 print(f"  Total rows: {len(grenland_output)}")
 print(f"  Unique grid cells: {grenland_output['ssbid_250'].nunique()}")
+
+print("\nThe following exception is just cosmetic:")
+sys.exit(0)
