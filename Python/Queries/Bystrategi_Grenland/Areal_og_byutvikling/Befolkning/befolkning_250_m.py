@@ -53,6 +53,7 @@ print(f"Output folder: {OUTPUT_FOLDER}")
 
 # GitHub configuration
 GITHUB_FOLDER = "Data/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning"
+GITHUB_FOLDER_GEONORGE = "Data/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning/GeonorgeAPI"
 FILE_NAME = "befolkning_250m_grenland.csv"
 
 # %% Step 0: Check GitHub for latest available data
@@ -387,13 +388,14 @@ else:
 # %% Step 6: Filter to Grenland cells and create final output
 
 # Load the Grenland grid cell filter file
-GRENLAND_FILTER_PATH = Path(r'c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Github\Telemark\Data\Bystrategi_Grenland\Areal_og_byutvikling\geografiske_definisjoner_250m_ruter.csv')
+# Download filter file from GitHub
+GRENLAND_FILTER_GITHUB = "Data/Bystrategi_Grenland/Areal_og_byutvikling/geografiske_definisjoner_250m_ruter.csv"
 
 print("\nFiltering to Grenland cells...")
-print(f"  Filter file: {GRENLAND_FILTER_PATH.name}")
+print(f"  Filter file: {GRENLAND_FILTER_GITHUB}")
 
-# Read filter file (semicolon-separated, ssbid column)
-grenland_df = pd.read_csv(GRENLAND_FILTER_PATH, sep=';', dtype={'ssbid': str})
+# Download filter file from GitHub
+grenland_df = download_github_file(GRENLAND_FILTER_GITHUB)
 grenland_ids = set(grenland_df['ssbid'].astype(str).str.strip())
 print(f"  Grenland grid cells: {len(grenland_ids)}")
 
@@ -436,9 +438,8 @@ FINAL_OUTPUT_PATH = Path(r'c:\Users\eve1509\OneDrive - Telemark fylkeskommune\Gi
 
 print("\nCombining manually downloaded data (2001-2015) with Geonorge API data (2016+)...")
 
-# Read Grenland filter for the manual files
-grenland_df = pd.read_csv(GRENLAND_FILTER_PATH, sep=';', dtype={'ssbid': str})
-grenland_ids = set(grenland_df['ssbid'].astype(str).str.strip())
+# Reuse Grenland filter (already downloaded in Step 6)
+# grenland_ids already available from Step 6
 
 # Process manual files (2001-2015)
 manual_dfs = []
@@ -490,8 +491,27 @@ print(final_df.head(10).to_string(index=False))
 
 # %% Step 8: Compare against GitHub and upload if new data
 
-temp_folder = os.environ.get("TEMP_FOLDER")
+# Upload GeonorgeAPI intermediate files
+geonorge_temp_folder = str(OUTPUT_FOLDER)
 
+handle_output_data(
+    pd.read_csv(OUTPUT_FOLDER / "befolkning_250m_2016_and_later.csv", sep=';', dtype=str),
+    "befolkning_250m_2016_and_later.csv",
+    GITHUB_FOLDER_GEONORGE,
+    geonorge_temp_folder,
+    keepcsv=True
+)
+
+handle_output_data(
+    pd.read_csv(OUTPUT_FOLDER / "befolkning_250m_2016_and_later_grenland.csv", dtype=str),
+    "befolkning_250m_2016_and_later_grenland.csv",
+    GITHUB_FOLDER_GEONORGE,
+    geonorge_temp_folder,
+    keepcsv=True
+)
+
+# Upload final combined file
+temp_folder = os.environ.get("TEMP_FOLDER")
 is_new_data = handle_output_data(final_df, FILE_NAME, GITHUB_FOLDER, temp_folder, keepcsv=True)
 
 # %% Summary
