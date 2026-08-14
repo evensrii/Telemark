@@ -153,6 +153,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.py"), "Bystrategi Grenland - Arealprofiler"),
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning/befolkning_250_m.py"), "Bystrategi Grenland - Befolkning 250m"),
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Areal_og_byutvikling/Bolig/bolig_250_m.py"), "Bystrategi Grenland - Bolig 250m"),
+    (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Areal_og_byutvikling/Bedrifter/bedrifter_250_m.py"), "Bystrategi Grenland - Bedrifter 250m"),
 
     ## Boligbehovsanalyse
     (os.path.join(PYTHON_PATH, "Queries/Rapporter og prosjekter/Boligbehovsanalyse/Framtidig boligbehov/framtidig_boligbehov.py"), "Boligbehovsanalyse - Framtidig boligbehov"),
