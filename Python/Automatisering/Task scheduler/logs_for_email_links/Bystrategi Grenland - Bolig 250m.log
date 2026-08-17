@@ -1,0 +1,31 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+X_FUNCTIONS_KEY loaded successfully.
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Temp folder: D:\Scripts\analyse\Telemark\Python\Temp
+Checking GitHub for existing data...
+
+Discovering available years from kart.ssb.no...
+Found 19 yearly datasets (250m):
+  Years: 2008 - 2026
+  Latest available year: 2026
+
+Latest year on GitHub: 2025
+
+New data available! GitHub has up to 2025, source has 2026.
+  Years to download: [2026]
+
+Downloading Grenland filter file...
+  Grenland grid cells: 19173
+
+Downloading 1 year(s) from kart.ssb.no export API...
+  Filter: Telemark county (code '40')
+
+  [2026] Starting export... Dataset not found, skipping.
+
+Total new: 0 rows across 0 year(s).
+No new data downloaded. Exiting.
+
+
+Errors:
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Areal_og_byutvikling/Bolig/bolig_250_m.py` failed. (See above for error)
