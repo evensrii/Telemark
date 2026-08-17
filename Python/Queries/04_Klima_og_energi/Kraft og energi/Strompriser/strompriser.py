@@ -156,9 +156,9 @@ def fetch_exchange_rates(start_date, end_date, existing_df, error_messages):
     except Exception as e:
         print(f"Could not fetch new exchange rates: {str(e)}, trying fallback...")
         if not existing_df.empty and 'kurs' in existing_df.columns:
-            latest_rate = existing_df.iloc[-1]["kurs"]
+            latest_rate = pd.to_numeric(existing_df["kurs"], errors="coerce").dropna().iloc[-1]
             dates = pd.date_range(start=start_date, end=end_date, freq='D')
-            df_rates = pd.DataFrame({'time': dates, 'eur_nok_rate': [latest_rate] * len(dates)})
+            df_rates = pd.DataFrame({'time': dates, 'eur_nok_rate': float(latest_rate)})
             print(f"Using latest available rate from existing data: {latest_rate}")
             return df_rates
         else:
@@ -177,6 +177,10 @@ desired_start_date = datetime(2021, 1, 1)
 yesterday = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=1)
 all_processed_data = []
 
+# Tolerance: allow up to this many days of missing data before reporting an error.
+# Norges Bank does not publish exchange rates on weekends/holidays, so 1-2 day gaps are normal.
+MAX_MISSING_DAYS_TOLERANCE = 3
+
 # 2. Download existing data
 existing_df = download_github_file(f"{github_folder}/{file_name}")
 if existing_df is not None and not existing_df.empty:
@@ -190,13 +194,22 @@ missing_ranges = find_missing_date_ranges(existing_df, desired_start_date, yeste
 if missing_ranges:
     print("Fetching data for missing periods...")
     for start_gap, end_gap in missing_ranges:
-        print(f"-- Processing gap: {start_gap.date()} to {end_gap.date()} --")
+        gap_days = (end_gap - start_gap).days + 1
+        print(f"-- Processing gap: {start_gap.date()} to {end_gap.date()} ({gap_days} day(s)) --")
+        
         df_prices = fetch_energy_prices(start_gap, end_gap, API_KEY, error_messages)
         if df_prices.empty:
+            if gap_days <= MAX_MISSING_DAYS_TOLERANCE:
+                print(f"  Skipping gap (within {MAX_MISSING_DAYS_TOLERANCE}-day tolerance).")
+                # Remove any error messages added for this gap (tolerated failure)
+                error_messages.clear()
             continue
         
         df_rates = fetch_exchange_rates(start_gap, end_gap, existing_df, error_messages)
         if df_rates.empty:
+            if gap_days <= MAX_MISSING_DAYS_TOLERANCE:
+                print(f"  Skipping gap (within {MAX_MISSING_DAYS_TOLERANCE}-day tolerance).")
+                error_messages.clear()
             continue
         
         # Merge, process, and append gap data
@@ -208,7 +221,8 @@ if missing_ranges:
         df = df.drop(columns=["time_exchange", "date_for_merge"])
         
         # Forward-fill missing exchange rates (for weekends/holidays)
-        df["eur_nok_rate"] = df["eur_nok_rate"].fillna(method="ffill")
+        df["eur_nok_rate"] = pd.to_numeric(df["eur_nok_rate"], errors="coerce").ffill()
+        df["price_eur"] = pd.to_numeric(df["price_eur"], errors="coerce")
         df["price_nok"] = df["price_eur"] * df["eur_nok_rate"]
         df["date"] = pd.to_datetime(df["time"]).dt.date
 
