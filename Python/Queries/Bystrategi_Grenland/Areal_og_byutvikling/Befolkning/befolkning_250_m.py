@@ -9,6 +9,7 @@ Uses the Geonorge v3 API to:
 4. Convert to CSV using geopandas
 5. Combine with manually downloaded data (2001-2015)
 6. Compare against GitHub and upload if new data is available
+7. This is a test
 
 API docs: https://nedlasting.geonorge.no/swagger/index.html
 Metadata: https://kartkatalog.geonorge.no/Metadata/0c0ad0ce-55e8-4d73-9c12-0eb0e2454acb
