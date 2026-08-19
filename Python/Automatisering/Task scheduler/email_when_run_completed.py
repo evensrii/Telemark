@@ -59,7 +59,7 @@ def push_logs_to_github():
 
     owner = "evensrii"
     repo = "Telemark"
-    branch = "main"
+    branch = "logs"
     base_url = f"https://github.com/{owner}/{repo}/blob/{branch}"
     logs_path = "Python/Automatisering/Task scheduler/logs_for_email_links"
 
@@ -83,8 +83,8 @@ def push_logs_to_github():
                 "Accept": "application/vnd.github.v3+json",
             }
 
-            # Check if the file exists on GitHub
-            response = requests.get(url, headers=headers)
+            # Check if the file exists on GitHub (on the target branch)
+            response = requests.get(url, headers=headers, params={"ref": branch})
             if response.status_code == 200:
                 # File exists, check if content differs
                 github_content = base64.b64decode(response.json()["content"]).decode("utf-8")
@@ -162,8 +162,8 @@ def generate_raw_github_url(task_name):
     Returns:
         str: Raw GitHub URL for the log file
     """
-    # Base URL for raw GitHub content with refs/heads/
-    base_url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links"
+    # Base URL for raw GitHub content with refs/heads/ (logs live on the dedicated "logs" branch, not main)
+    base_url = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/logs/Python/Automatisering/Task%20scheduler/logs_for_email_links"
     
     # Create the file name by replacing spaces with %20 and adding .log extension
     file_name = task_name.replace(" ", "%20") + ".log"
