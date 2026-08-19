@@ -31,9 +31,9 @@ Successfully uploaded log file Bolig - Igangsettelser etter boligtype.log. URL: 
 Successfully uploaded log file Boligbehovsanalyse - Framtidig boligbehov.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Boligbehovsanalyse - Framtidig boligbehov.log
 Successfully uploaded log file Boligbehovsanalyse - Sykepleierindeksen.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Boligbehovsanalyse - Sykepleierindeksen.log
 Successfully uploaded log file Bystrategi Grenland - Arealprofiler.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Arealprofiler.log
-Successfully uploaded log file Bystrategi Grenland - Bedrifter 250m.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Bedrifter 250m.log
+No changes detected for Bystrategi Grenland - Bedrifter 250m.log. Skipping upload. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Bedrifter 250m.log
 Successfully uploaded log file Bystrategi Grenland - Befolkning 250m.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Befolkning 250m.log
-Successfully uploaded log file Bystrategi Grenland - Bolig 250m.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Bolig 250m.log
+No changes detected for Bystrategi Grenland - Bolig 250m.log. Skipping upload. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Bolig 250m.log
 Successfully uploaded log file Bystrategi Grenland - Luftforurensing.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Luftforurensing.log
 Successfully uploaded log file Bystrategi Grenland - Utslipp fra vei.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Bystrategi Grenland - Utslipp fra vei.log
 Successfully uploaded log file Flytting - Til og fra kommunene.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Flytting - Til og fra kommunene.log
@@ -88,7 +88,7 @@ Successfully uploaded log file Innvandrere - Sysselsatte.log. URL: https://githu
 Successfully uploaded log file Klima og energi - Felte hjortedyr.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Felte hjortedyr.log
 Successfully uploaded log file Klima og energi - Installert_effekt (Elhub).log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Installert_effekt (Elhub).log
 Successfully uploaded log file Klima og energi - Kraftproduksjon Telemark (SSB).log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Kraftproduksjon Telemark (SSB).log
-No changes detected for Klima og energi - Okologisk tilstand vann.log. Skipping upload. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Okologisk tilstand vann.log
+Successfully uploaded log file Klima og energi - Okologisk tilstand vann.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Okologisk tilstand vann.log
 Successfully uploaded log file Klima og energi - Sektorvise utslipp.log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Sektorvise utslipp.log
 Successfully uploaded log file Klima og energi - Stromforbruk (Elhub).log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Stromforbruk (Elhub).log
 Successfully uploaded log file Klima og energi - Stromforbruk (SSB).log. URL: https://github.com/evensrii/Telemark/blob/main/Python/Automatisering/Task scheduler/logs_for_email_links/Klima og energi - Stromforbruk (SSB).log
@@ -106,9 +106,6 @@ Successfully uploaded log file Opplaering og kompetanse - Utdanningsnivaa.log. U
 DEBUG - Task: Klima og energi - Stromforbruk (Elhub)
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Stromforbruk%20(Elhub).log
 
-DEBUG - Task: Bystrategi Grenland - Bolig 250m
-DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bystrategi%20Grenland%20-%20Bolig%20250m.log
-
 DEBUG - Task: Bystrategi Grenland - Befolkning 250m
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bystrategi%20Grenland%20-%20Befolkning%20250m.log
 
@@ -117,6 +114,9 @@ DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/
 
 DEBUG - Task: Bystrategi Grenland - Bedrifter 250m
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bystrategi%20Grenland%20-%20Bedrifter%20250m.log
+
+DEBUG - Task: Bystrategi Grenland - Bolig 250m
+DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Bystrategi%20Grenland%20-%20Bolig%20250m.log
 
 DEBUG - Task: Klima og energi - Installert_effekt (Elhub)
 DEBUG - Generated URL: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Python/Automatisering/Task%20scheduler/logs_for_email_links/Klima%20og%20energi%20-%20Installert_effekt%20(Elhub).log
