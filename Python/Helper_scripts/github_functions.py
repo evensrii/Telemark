@@ -10,8 +10,6 @@ import pandas as pd
 import re
 from io import BytesIO
 
-from Helper_scripts.email_functions import notify_updated_data
-
 # Track the current file being processed
 _current_file = None
 
@@ -188,11 +186,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
             f"{github_folder}/{file_name}",
             message=f"Added {file_name}"
         )
-        notify_updated_data(
-            file_name, 
-            diff_lines=None, 
-            reason="New file added to repository"
-        )
         return True
 
     # Skip numeric type conversions - keep consistent string format for reliable comparison
@@ -230,11 +223,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
             f"{github_folder}/{file_name}",
             message=f"Updated {file_name} - Header structure changed"
         )
-        notify_updated_data(
-            file_name,
-            diff_lines=None,
-            reason=f"Header structure changed: {'; '.join(change_msg)}"
-        )
         return True
 
     # If column names are same, check for year changes in headers
@@ -254,11 +242,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
             os.path.join(temp_folder, file_name),
             f"{github_folder}/{file_name}",
             message=f"Updated {file_name} - Headers updated"
-        )
-        notify_updated_data(
-            file_name,
-            diff_lines=None,
-            reason=f"Headers changed: {'; '.join(year_changes)}"
         )
         return True
 
@@ -338,25 +321,6 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
             os.path.join(temp_folder, file_name),
             f"{github_folder}/{file_name}",
             message=f"Updated {file_name} - Row count changed from {len(existing_data)} to {len(input_df)}"
-        )
-        
-        # Create detailed change message for notification
-        change_details = []
-        if len(input_df) < len(existing_data):
-            removed_count = len(existing_data) - len(input_df)
-            change_details.append(f"Removed {removed_count} row{'s' if removed_count > 1 else ''}:")
-            for _, row in removed_rows.head(10).iterrows():
-                change_details.append("  " + ", ".join(f"{col}: {val}" for col, val in row.items()))
-        else:
-            added_count = len(input_df) - len(existing_data)
-            change_details.append(f"Added {added_count} row{'s' if added_count > 1 else ''}:")
-            for _, row in added_rows.head(10).iterrows():
-                change_details.append("  " + ", ".join(f"{col}: {val}" for col, val in row.items()))
-        
-        notify_updated_data(
-            file_name,
-            diff_lines=None,
-            reason="\n".join(change_details)
         )
         return True
 
@@ -483,22 +447,7 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
             print("(Showing first 5 changes only)")
     elif is_large_dataset:
         print("\nNo changes found in the last 200 rows, but changes exist elsewhere in the dataset.")
-    
-    # Format changes for email notification
-    diff_lines = []
-    if changes:
-        for change in changes[:5]:
-            diff_dict = {'Identifiers': change['identifiers']}
-            diff_dict[f"{change['column']} (Old)"] = change['old_value']
-            diff_dict[f"{change['column']} (New)"] = change['new_value']
-            diff_lines.append(diff_dict)
 
-    notify_updated_data(
-        file_name,
-        diff_lines,
-        reason=f"Changes detected in dataset" + 
-              (" (showing examples from last 200 rows)" if is_large_dataset else "")
-    )
     return True
 
 

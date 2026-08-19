@@ -119,25 +119,6 @@ else:
     except Exception as e:
         print(f"✗ Error in email setup: {e}")
 
-### COMPARISON WITH EMAIL_FUNCTIONS.PY ###
-print("\n4. COMPARING WITH EMAIL_FUNCTIONS.PY")
-print("-" * 40)
-
-try:
-    # Try to import and test the email_functions
-    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-    from email_functions import notify_errors
-    
-    print("✓ Successfully imported email_functions.py")
-    
-    # Test the notify_errors function (dry run)
-    test_errors = ["This is a test error message"]
-    print("Testing notify_errors function (dry run)...")
-    notify_errors(test_errors, script_name="test_email_debug.py", send_email=False)
-    
-except Exception as e:
-    print(f"✗ Error importing or testing email_functions.py: {e}")
-
 print("\n" + "=" * 60)
 print("DEBUG TEST COMPLETED")
 print("=" * 60)

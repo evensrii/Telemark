@@ -6,7 +6,6 @@ import os
 import io
 
 # Import the utility functions from the Helper_scripts folder
-from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import download_github_file, handle_output_data
 
 # Capture the name of the current script

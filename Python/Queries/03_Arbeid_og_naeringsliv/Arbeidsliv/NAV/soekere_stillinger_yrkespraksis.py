@@ -9,7 +9,6 @@ import pandas as pd
 import numpy as np
 
 # Import the utility functions from the Helper_scripts folder
-from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import handle_output_data
 
 def import_job_seeker_sheet(excel_content, sheet_name):

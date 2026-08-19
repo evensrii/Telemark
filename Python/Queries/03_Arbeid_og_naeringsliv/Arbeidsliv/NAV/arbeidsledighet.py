@@ -10,7 +10,6 @@ import numpy as np
 
 # Import the utility functions from the Helper_scripts folder
 
-from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import handle_output_data
 
 def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
@@ -73,7 +72,6 @@ except Exception as e:
     error_message = f"Error loading unemployment data: {str(e)}"
     error_messages.append(error_message)
     print(error_message)
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError("Failed to load unemployment data")
 
 column_names = ['Nivå', 'Geografisk enhet', 'Arbeidsmarkedsstatus', 'Kjønn', 'Antall personer', 'Andel av arbeidsstyrken', 'Dato']
@@ -238,7 +236,6 @@ else:
 
 # Check if we had any errors during processing
 if error_messages and not new_data_exists:
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError("Failed to load unemployment data")
 
 # Sort the final dataset for consistent ordering

@@ -14,7 +14,6 @@ import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
 
 # Import the utility functions from the Helper_scripts folder
-from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import handle_output_data
 
 def import_excel_sheet(excel_content, sheet_name, range1, range2, column_names):
@@ -287,7 +286,6 @@ try:
             error_message = f"Error loading data from {filename}: {str(e)}"
             error_messages.append(error_message)
             print(error_message)
-            notify_errors(error_messages, script_name=script_name)
             raise RuntimeError(f"Failed to load data from {filename}")
     
     if not found_files:
@@ -334,5 +332,4 @@ except Exception as e:
     error_message = f"Error loading unemployment data: {str(e)}"
     error_messages.append(error_message)
     print(error_message)
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError("Failed to load unemployment data")

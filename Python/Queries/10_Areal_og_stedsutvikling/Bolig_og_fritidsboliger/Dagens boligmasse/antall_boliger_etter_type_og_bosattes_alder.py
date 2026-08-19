@@ -3,7 +3,6 @@ import pandas as pd
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import handle_output_data
 
 # Capture the name of the current script
@@ -40,7 +39,6 @@ try:
     )
 except Exception as e:
     print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )

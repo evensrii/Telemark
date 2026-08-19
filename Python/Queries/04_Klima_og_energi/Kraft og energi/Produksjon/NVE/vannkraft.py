@@ -8,7 +8,6 @@ import pandas as pd
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import delete_files_in_temp_folder
-from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import upload_github_file, download_github_file, compare_to_github, handle_output_data
 
 
@@ -60,13 +59,11 @@ def get_hydro_power_plants_in_operation():
 
     except requests.exceptions.RequestException as e:
         error_messages.append(f"Error fetching data from NVE API: {str(e)}")
-        notify_errors(error_messages, script_name=script_name)
         raise RuntimeError(
             "A critical error occurred during data fetching, stopping execution."
         )
     except Exception as e:
         error_messages.append(f"Error in get_hydro_power_plants_in_operation: {str(e)}")
-        notify_errors(error_messages, script_name=script_name)
         raise RuntimeError(
             "A critical error occurred during data fetching, stopping execution."
         )
@@ -75,7 +72,6 @@ try:
     df = get_hydro_power_plants_in_operation()
 except Exception as e:
     print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )

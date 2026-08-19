@@ -6,7 +6,6 @@ from datetime import datetime
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import handle_output_data
 
 # Capture the name of the current script
@@ -78,7 +77,6 @@ for knr, knavn in telemark_kommuner:
 
 if not rows:
     print("Ingen data hentet. Avslutter.")
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError("No data fetched from barnehagefakta.no API.")
 
 df = pd.DataFrame(rows)

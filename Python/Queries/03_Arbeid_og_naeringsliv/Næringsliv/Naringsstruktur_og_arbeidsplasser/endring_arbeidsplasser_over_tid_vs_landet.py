@@ -9,7 +9,6 @@ from pyjstat import pyjstat
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import delete_files_in_temp_folder, fetch_data
-from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import upload_github_file, download_github_file, compare_to_github, handle_output_data
 
 # Capture the name of the current script
@@ -98,7 +97,6 @@ try:
     )
 except Exception as e:
     print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )
@@ -214,7 +212,6 @@ try:
     )
 except Exception as e:
     print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )
@@ -306,7 +303,6 @@ try:
     )
 except Exception as e:
     print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )

@@ -9,7 +9,6 @@ from pyjstat import pyjstat
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.email_functions import notify_errors
 
 from Helper_scripts.github_functions import handle_output_data
 
@@ -83,7 +82,7 @@ except Exception as e:
 
 # Notify yourself of errors, if any
 if error_messages:
-    notify_errors(error_messages, script_name="Extract_Miljodirektoratet_Data")
+    print(f"Completed with {len(error_messages)} error(s).")
 else:
     print("All tasks completed successfully.")
 

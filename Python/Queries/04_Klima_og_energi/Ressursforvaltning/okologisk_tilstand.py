@@ -18,7 +18,6 @@ import time
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import delete_files_in_temp_folder
-from Helper_scripts.email_functions import notify_errors
 from Helper_scripts.github_functions import upload_github_file
 from Helper_scripts.github_functions import download_github_file
 from Helper_scripts.github_functions import compare_to_github
@@ -614,9 +613,6 @@ finally:
     except:
         print("Failed to quit driver, it may have already been closed")
 
-    # Send error notifications if any errors occurred
+    # Report errors if any occurred
     if error_messages:
-        try:
-            notify_errors(error_messages, "Vannkvalitet")
-        except Exception as e:
-            print("Email notifications disabled. Errors in Vannkvalitet were not sent.")
+        print(f"Completed with {len(error_messages)} error(s).")

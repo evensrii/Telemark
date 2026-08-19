@@ -5,7 +5,6 @@ from pyjstat import pyjstat
 
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
-from Helper_scripts.email_functions import notify_errors
 
 from Helper_scripts.github_functions import handle_output_data
 
@@ -143,7 +142,6 @@ while df_antall_2024_naa is None and years_to_query:
                 print(f"NOTE: This error is perfectly normal - data for {removed_year} is not yet available in SSB. The script will continue with data up to {years_to_query[-1]}.")
         else:
             print(f"An unrecoverable error occurred: {e}")
-            notify_errors(error_messages, script_name=script_name)
             raise RuntimeError("A critical error occurred during data fetching, stopping execution.")
 
 # If df is still None after the loop, it means all attempts failed
@@ -151,7 +149,6 @@ if df_antall_2024_naa is None:
     error_msg = "Could not fetch data from SSB after multiple attempts."
     print(error_msg)
     error_messages.append(error_msg)
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(error_msg)
 
 
@@ -253,7 +250,6 @@ try:
     )
 except Exception as e:
     print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )
@@ -370,7 +366,6 @@ try:
     )
 except Exception as e:
     print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )
@@ -493,7 +488,6 @@ while df_andel_2024_naa is None and years_to_query:
                 print(f"NOTE: This error is perfectly normal - data for {removed_year} is not yet available in SSB. The script will continue with data up to {years_to_query[-1]}.")
         else:
             print(f"An unrecoverable error occurred: {e}")
-            notify_errors(error_messages, script_name=script_name)
             raise RuntimeError("A critical error occurred during data fetching, stopping execution.")
 
 # If df is still None after the loop, it means all attempts failed
@@ -501,7 +495,6 @@ if df_andel_2024_naa is None:
     error_msg = "Could not fetch data from SSB after multiple attempts."
     print(error_msg)
     error_messages.append(error_msg)
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(error_msg)
 
 # Process df_andel_2024_naa: filter most recent year and kjønn = "Begge kjønn"
@@ -657,7 +650,6 @@ try:
     )
 except Exception as e:
     print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )
@@ -775,7 +767,6 @@ try:
     )
 except Exception as e:
     print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )
@@ -950,7 +941,6 @@ try:
     )
 except Exception as e:
     print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )
@@ -1037,7 +1027,6 @@ try:
     )
 except Exception as e:
     print(f"Error occurred: {e}")
-    notify_errors(error_messages, script_name=script_name)
     raise RuntimeError(
         "A critical error occurred during data fetching, stopping execution."
     )
