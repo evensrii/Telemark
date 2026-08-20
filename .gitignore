@@ -2,6 +2,8 @@ Python/environment.yaml
 Python/token.env
 Python/Temp/
 Python/Log/
+__pycache__/
+*.pyc
 Python/Automatisering/Task scheduler/logs/
 Python/Automatisering/Task scheduler/logs_for_email_links/
 Python/Automatisering/Task scheduler/git_sync.log
