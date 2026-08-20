@@ -1,6 +1,4 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
-X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Valgdeltakelse stortingsvalg - landet (08243) JSON-stat data loaded successfully.
 Valgdeltakelse stortingsvalg - kommuner (08243) JSON-stat data loaded successfully.
@@ -52,7 +50,7 @@ Kolonner: ['region', 'statistikkvariabel', 'fireÃ¥rlig', 'value']
 
 Antall rader: 19
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\valgdeltakelse_stortingsvalg.csv
-[2026-08-19 08:23:14] No new data to upload. Skipping GitHub update.
+[2026-08-20 08:23:37] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\valgdeltakelse_stortingsvalg.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Valgdeltakelse_stortingsvalg.log
