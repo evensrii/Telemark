@@ -1,6 +1,4 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
-X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Found file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2026-02-05.xlsx
 Found file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/03_Arbeid%20og%20n%C3%A6ringsliv/01_Arbeidsliv/NAV/Arbeidsledighet/2026-01-05.xlsx
@@ -278,7 +276,7 @@ Final dataset: 3744 rows, 6 columns
 Saving as: soekere_stillinger_yrkespraksis.csv
 Value columns for comparison: ['Antall sÃ¸kere', 'Antall utlyste stillinger']
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\soekere_stillinger_yrkespraksis.csv
-[2026-08-19 08:11:04] No new data to upload. Skipping GitHub update.
+[2026-08-20 08:11:19] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\soekere_stillinger_yrkespraksis.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Sokere_og_stillinger_etter_yrkespraksis.log
@@ -299,7 +297,7 @@ C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyx
   warn("Workbook contains no default style, apply openpyxl's default")
 C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
   warn("Workbook contains no default style, apply openpyxl's default")
-D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:48: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:47: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'] = df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'].replace('*', np.nan)
 C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
   warn("Workbook contains no default style, apply openpyxl's default")
@@ -307,21 +305,7 @@ C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyx
   warn("Workbook contains no default style, apply openpyxl's default")
 C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
   warn("Workbook contains no default style, apply openpyxl's default")
-D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:48: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
-  df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'] = df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'].replace('*', np.nan)
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")
-D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:48: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:47: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'] = df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'].replace('*', np.nan)
 C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
   warn("Workbook contains no default style, apply openpyxl's default")
@@ -333,11 +317,25 @@ C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyx
   warn("Workbook contains no default style, apply openpyxl's default")
 C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
   warn("Workbook contains no default style, apply openpyxl's default")
-D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:48: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:47: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'] = df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'].replace('*', np.nan)
 C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
   warn("Workbook contains no default style, apply openpyxl's default")
-D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:48: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:47: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'] = df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'].replace('*', np.nan)
+C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")
+D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:47: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'] = df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'].replace('*', np.nan)
 C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
   warn("Workbook contains no default style, apply openpyxl's default")
@@ -349,11 +347,11 @@ C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyx
   warn("Workbook contains no default style, apply openpyxl's default")
 C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
   warn("Workbook contains no default style, apply openpyxl's default")
-D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:48: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:47: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'] = df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'].replace('*', np.nan)
 C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
   warn("Workbook contains no default style, apply openpyxl's default")
-D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:48: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+D:\Scripts\analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/soekere_stillinger_yrkespraksis.py:47: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'] = df['Sum helt ledige, delvis ledige og arbeidssÃ¸kere pÃ¥ tiltak'].replace('*', np.nan)
 C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\openpyxl\styles\stylesheet.py:237: UserWarning: Workbook contains no default style, apply openpyxl's default
   warn("Workbook contains no default style, apply openpyxl's default")
