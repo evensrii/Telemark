@@ -1,79 +1,25 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
-X_FUNCTIONS_KEY loaded successfully.
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Temp folder: D:\Scripts\analyse\Telemark\Python\Temp
 Checking GitHub for existing data...
 Discovering datasets in the series...
 
+Found 10 datasets:
+  2016: Befolkning pÃ¥ rutenett 250 m 2016 (UUID: 7a5782c4-4e54-412f-8d0e-09140a456543)
+  2017: Befolkning pÃ¥ rutenett 250 m 2017 (UUID: fa79e0b3-3b66-4fd1-8d0c-07fd59a7e168)
+  2018: Befolkning pÃ¥ rutenett 250 m 2018 (UUID: 65877687-46c7-4926-94a5-7974f1f8606b)
+  2019: Befolkning pÃ¥ rutenett 250 m 2019 (UUID: f0cc3cb9-e06b-4a3f-93f0-b66aaad06cd2)
+  2020: Befolkning pÃ¥ rutenett 250 m 2020 (UUID: 4aa1809c-0c35-42ef-801d-0558b47a0c20)
+  2021: Befolkning pÃ¥ rutenett 250 m 2021 (UUID: ddf1864a-2852-4f6b-96ea-680712a6f664)
+  2022: Befolkning pÃ¥ rutenett 250 m 2022 (UUID: be417823-5df2-48ab-91c1-edf28b76e4f5)
+  2023: Befolkning pÃ¥ rutenett 250 m 2023 (UUID: 89bc9a2c-5cb8-4780-8c24-7965c0829696)
+  2024: Befolkning pÃ¥ rutenett 250 m 2024 (UUID: e668abf5-2fac-472e-976b-1526f1d38bbe)
+  2025: Befolkning pÃ¥ rutenett 250 m 2025 (UUID: d8f245c0-a002-4d3b-b833-10c638c6a879)
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
-    sock = connection.create_connection(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
-    raise err
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
-    sock.connect(sa)
-TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+Latest available year from Geonorge: 2025
+Latest year on GitHub: 2025
 
-The above exception was the direct cause of the following exception:
+GitHub already has data up to 2025. No update needed.
+  Already on GitHub: befolkning_250m_2016_and_later.csv
+  Already on GitHub: befolkning_250m_2016_and_later_grenland.csv
 
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
-    response = self._make_request(
-               ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
-    raise new_e
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
-    self._validate_conn(conn)
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
-    conn.connect()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 753, in connect
-    self.sock = sock = self._new_conn()
-                       ^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connection.py", line 207, in _new_conn
-    raise ConnectTimeoutError(
-urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.HTTPSConnection object at 0x000002254C765F40>, 'Connection to kartkatalog.geonorge.no timed out. (connect timeout=None)')
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 644, in send
-    resp = conn.urlopen(
-           ^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
-    retries = retries.increment(
-              ^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
-    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='kartkatalog.geonorge.no', port=443): Max retries exceeded with url: /api/getdata/0c0ad0ce-55e8-4d73-9c12-0eb0e2454acb (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002254C765F40>, 'Connection to kartkatalog.geonorge.no timed out. (connect timeout=None)'))
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning/befolkning_250_m.py", line 164, in <module>
-    datasets = get_series_datasets(SERIES_UUID)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning/befolkning_250_m.py", line 73, in get_series_datasets
-    response = requests.get(url)
-               ^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 73, in get
-    return request("get", url, params=params, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\api.py", line 59, in request
-    return session.request(method=method, url=url, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 589, in request
-    resp = self.send(prep, **send_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\sessions.py", line 703, in send
-    r = adapter.send(request, **kwargs)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\adapters.py", line 665, in send
-    raise ConnectTimeout(e, request=request)
-requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='kartkatalog.geonorge.no', port=443): Max retries exceeded with url: /api/getdata/0c0ad0ce-55e8-4d73-9c12-0eb0e2454acb (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000002254C765F40>, 'Connection to kartkatalog.geonorge.no timed out. (connect timeout=None)'))
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning/befolkning_250_m.py` failed. (See above for error)
