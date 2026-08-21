@@ -1,7 +1,7 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 === Luftforurensning Grenland (Excel) ===
-Script started: 2026-08-20 08:27:16
+Script started: 2026-08-21 12:16:55
 === Listing Excel files from GitHub ===
 Found 20 Excel files:
   - PM10 og NO2 dÃ¸gn 2014 (KM og FM, mangler).xlsx
@@ -133,17 +133,29 @@ Column order: ['Dato', 'Furulund NO2 Âµg/mÂ³', 'Furulund PM10 Âµg/mÂ³', 
 
 NaN counts per column: {'Furulund NO2 Âµg/mÂ³': np.int64(939), 'Furulund PM10 Âµg/mÂ³': np.int64(1323), 'Haukenes NO2 Âµg/mÂ³': np.int64(120), 'Knarrdalstranda NO2 Âµg/mÂ³': np.int64(1187), 'Knarrdalstranda PM10 Âµg/mÂ³': np.int64(1233), 'Lensmannsdalen NO2 Âµg/mÂ³': np.int64(103), 'Lensmannsdalen PM10 Âµg/mÂ³': np.int64(112), 'Sverresgate NO2 Âµg/mÂ³': np.int64(98), 'Sverresgate PM10 Âµg/mÂ³': np.int64(57), 'Datadekning (%)': np.int64(109), 'Datadekning (%).1': np.int64(105), 'Datadekning (%).2': np.int64(118), 'Datadekning (%).3': np.int64(98), 'Datadekning (%).4': np.int64(57), 'Datadekning (%).5': np.int64(939), 'Datadekning (%).6': np.int64(1326), 'Datadekning (%).7': np.int64(1233), 'Datadekning (%).8': np.int64(1187)}
 
-âœ… Saved copy to temp folder: D:\Scripts\analyse\Telemark\Python\Temp\luftforurensing_grenland.csv
 
-=== Comparing with existing GitHub data ===
-Downloaded existing CSV: 4474 rows, 19 columns
-âœ… No changes detected - data is identical
-
-ðŸŽ¯ RESULT: No new data - Excel files match existing CSV
-Status log: D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bystrategi_Grenland_-_Luftforurensing.log
-
-
-Errors/Warnings:
+Errors:
 D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py:289: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
   df_all = pd.concat(standardized, ignore_index=True)
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py", line 482, in <module>
+    main()
+  File "D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py", line 425, in main
+    df.to_csv(temp_file_path, index=False, encoding='utf-8')
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\generic.py", line 3989, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\luftforurensing_grenland.csv'
 
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py` failed. (See above for error)
