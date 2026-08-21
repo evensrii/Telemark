@@ -4,13 +4,30 @@ Flyktninger og arbeidsinnvandrere kommuner CSV data loaded successfully.
 Flyktninger og arbeidsinnvandrere fylke og landet CSV data loaded successfully.
 Selected kommune data from year 2025-01-01 00:00:00
 Selected fylke/landet data from year 2025-01-01 00:00:00
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_arbeidsinnvandrere.csv
-[2026-08-20 08:17:33] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_arbeidsinnvandrere.csv
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_flyktninger.csv
-[2026-08-20 08:17:33] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_flyktninger.csv
-No new data detected in andel_arbeidsinnvandrere.csv.
-No new data detected in andel_flyktninger.csv.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Flyktninger_og_arbeidsinnvandrere.log
 
+
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py", line 241, in <module>
+    is_new_data1 = handle_output_data(df_pivot_arbeidsinnvandrere, file_name1, github_folder, temp_folder, keepcsv=True)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 535, in handle_output_data
+    df.to_csv(temp_file_path, index=False, encoding="utf-8")  # Use consistent float precision
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\generic.py", line 3989, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\andel_arbeidsinnvandrere.csv'
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Innvandrerbefolkningen/andel_flyktninger_og_arbeidsinnvandrere.py` failed. (See above for error)
