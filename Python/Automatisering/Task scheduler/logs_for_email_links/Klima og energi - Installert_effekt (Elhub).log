@@ -1,176 +1,191 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2026-08-20 08:16:49] GITHUB_TOKEN loaded successfully.
-[2026-08-20 08:16:49] Starting Elhub query for all Telemark municipalities (incremental mode)
-[2026-08-20 08:16:49] Checking GitHub path: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/Installert_kapasitet/installed_capacity.csv
-[2026-08-20 08:16:50] Latest date found in existing installed_capacity.csv: 2026-08-18
-[2026-08-20 08:16:50] Will query for data from: 2026-08-19
-[2026-08-20 08:16:50] Will query up to: 2026-08-20
+[2026-08-21 11:45:10] GITHUB_TOKEN loaded successfully.
+[2026-08-21 11:45:10] Starting Elhub query for all Telemark municipalities (incremental mode)
+[2026-08-21 11:45:10] Checking GitHub path: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/Installert_kapasitet/installed_capacity.csv
+[2026-08-21 11:45:11] Latest date found in existing installed_capacity.csv: 2026-08-18
+[2026-08-21 11:45:11] Will query for data from: 2026-08-19
+[2026-08-21 11:45:11] Will query up to: 2026-08-21
 
-[2026-08-20 08:16:50] Querying municipality 4001 for new data...
-[2026-08-20 08:16:50] Querying municipality 4001 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:16:50] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:16:50] Got successful response
-[2026-08-20 08:16:50] Extracting data from response for municipality 4001...
-[2026-08-20 08:16:50] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:16:50] No records extracted
-[2026-08-20 08:16:50] No data found for 4001 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:11] Querying municipality 4001 for new data...
+[2026-08-21 11:45:11] Querying municipality 4001 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:11] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4001?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:12] Got successful response
+[2026-08-21 11:45:12] Extracting data from response for municipality 4001...
+[2026-08-21 11:45:12] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:12] No records extracted
+[2026-08-21 11:45:12] No data found for 4001 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:16:51] Querying municipality 4003 for new data...
-[2026-08-20 08:16:51] Querying municipality 4003 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:16:51] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:16:53] Got successful response
-[2026-08-20 08:16:53] Extracting data from response for municipality 4003...
-[2026-08-20 08:16:53] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:16:53] No records extracted
-[2026-08-20 08:16:53] No data found for 4003 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:13] Querying municipality 4003 for new data...
+[2026-08-21 11:45:13] Querying municipality 4003 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:13] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4003?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:14] Got successful response
+[2026-08-21 11:45:14] Extracting data from response for municipality 4003...
+[2026-08-21 11:45:14] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:14] No records extracted
+[2026-08-21 11:45:14] No data found for 4003 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:16:54] Querying municipality 4005 for new data...
-[2026-08-20 08:16:54] Querying municipality 4005 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:16:54] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:16:55] Got successful response
-[2026-08-20 08:16:55] Extracting data from response for municipality 4005...
-[2026-08-20 08:16:55] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:16:55] No records extracted
-[2026-08-20 08:16:55] No data found for 4005 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:15] Querying municipality 4005 for new data...
+[2026-08-21 11:45:15] Querying municipality 4005 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:15] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4005?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:15] Got successful response
+[2026-08-21 11:45:15] Extracting data from response for municipality 4005...
+[2026-08-21 11:45:15] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:15] No records extracted
+[2026-08-21 11:45:15] No data found for 4005 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:16:56] Querying municipality 4010 for new data...
-[2026-08-20 08:16:56] Querying municipality 4010 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:16:56] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:16:56] Got successful response
-[2026-08-20 08:16:56] Extracting data from response for municipality 4010...
-[2026-08-20 08:16:56] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:16:56] No records extracted
-[2026-08-20 08:16:56] No data found for 4010 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:16] Querying municipality 4010 for new data...
+[2026-08-21 11:45:16] Querying municipality 4010 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:16] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4010?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:16] Got successful response
+[2026-08-21 11:45:16] Extracting data from response for municipality 4010...
+[2026-08-21 11:45:16] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:16] No records extracted
+[2026-08-21 11:45:16] No data found for 4010 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:16:57] Querying municipality 4012 for new data...
-[2026-08-20 08:16:57] Querying municipality 4012 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:16:57] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:16:57] Got successful response
-[2026-08-20 08:16:57] Extracting data from response for municipality 4012...
-[2026-08-20 08:16:57] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:16:57] No records extracted
-[2026-08-20 08:16:57] No data found for 4012 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:17] Querying municipality 4012 for new data...
+[2026-08-21 11:45:17] Querying municipality 4012 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:17] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4012?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:17] Got successful response
+[2026-08-21 11:45:17] Extracting data from response for municipality 4012...
+[2026-08-21 11:45:17] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:17] No records extracted
+[2026-08-21 11:45:17] No data found for 4012 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:16:58] Querying municipality 4014 for new data...
-[2026-08-20 08:16:58] Querying municipality 4014 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:16:58] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:16:58] Got successful response
-[2026-08-20 08:16:58] Extracting data from response for municipality 4014...
-[2026-08-20 08:16:58] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:16:58] No records extracted
-[2026-08-20 08:16:58] No data found for 4014 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:18] Querying municipality 4014 for new data...
+[2026-08-21 11:45:18] Querying municipality 4014 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:18] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4014?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:18] Got successful response
+[2026-08-21 11:45:18] Extracting data from response for municipality 4014...
+[2026-08-21 11:45:18] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:18] No records extracted
+[2026-08-21 11:45:18] No data found for 4014 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:16:59] Querying municipality 4016 for new data...
-[2026-08-20 08:16:59] Querying municipality 4016 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:16:59] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:16:59] Got successful response
-[2026-08-20 08:16:59] Extracting data from response for municipality 4016...
-[2026-08-20 08:16:59] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:16:59] No records extracted
-[2026-08-20 08:16:59] No data found for 4016 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:19] Querying municipality 4016 for new data...
+[2026-08-21 11:45:19] Querying municipality 4016 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:19] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4016?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:19] Got successful response
+[2026-08-21 11:45:19] Extracting data from response for municipality 4016...
+[2026-08-21 11:45:19] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:19] No records extracted
+[2026-08-21 11:45:19] No data found for 4016 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:17:00] Querying municipality 4018 for new data...
-[2026-08-20 08:17:00] Querying municipality 4018 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:17:00] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:17:00] Got successful response
-[2026-08-20 08:17:00] Extracting data from response for municipality 4018...
-[2026-08-20 08:17:00] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:17:00] No records extracted
-[2026-08-20 08:17:00] No data found for 4018 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:20] Querying municipality 4018 for new data...
+[2026-08-21 11:45:20] Querying municipality 4018 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:20] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4018?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:21] Got successful response
+[2026-08-21 11:45:21] Extracting data from response for municipality 4018...
+[2026-08-21 11:45:21] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:21] No records extracted
+[2026-08-21 11:45:21] No data found for 4018 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:17:01] Querying municipality 4020 for new data...
-[2026-08-20 08:17:01] Querying municipality 4020 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:17:01] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:17:02] Got successful response
-[2026-08-20 08:17:02] Extracting data from response for municipality 4020...
-[2026-08-20 08:17:02] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:17:02] No records extracted
-[2026-08-20 08:17:02] No data found for 4020 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:22] Querying municipality 4020 for new data...
+[2026-08-21 11:45:22] Querying municipality 4020 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:22] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4020?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:22] Got successful response
+[2026-08-21 11:45:22] Extracting data from response for municipality 4020...
+[2026-08-21 11:45:22] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:22] No records extracted
+[2026-08-21 11:45:22] No data found for 4020 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:17:03] Querying municipality 4022 for new data...
-[2026-08-20 08:17:03] Querying municipality 4022 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:17:03] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:17:03] Got successful response
-[2026-08-20 08:17:03] Extracting data from response for municipality 4022...
-[2026-08-20 08:17:03] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:17:03] No records extracted
-[2026-08-20 08:17:03] No data found for 4022 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:23] Querying municipality 4022 for new data...
+[2026-08-21 11:45:23] Querying municipality 4022 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:23] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4022?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:23] Got successful response
+[2026-08-21 11:45:23] Extracting data from response for municipality 4022...
+[2026-08-21 11:45:23] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:23] No records extracted
+[2026-08-21 11:45:23] No data found for 4022 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:17:04] Querying municipality 4024 for new data...
-[2026-08-20 08:17:04] Querying municipality 4024 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:17:04] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:17:04] Got successful response
-[2026-08-20 08:17:04] Extracting data from response for municipality 4024...
-[2026-08-20 08:17:04] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:17:04] No records extracted
-[2026-08-20 08:17:04] No data found for 4024 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:24] Querying municipality 4024 for new data...
+[2026-08-21 11:45:24] Querying municipality 4024 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:24] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4024?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:24] Got successful response
+[2026-08-21 11:45:24] Extracting data from response for municipality 4024...
+[2026-08-21 11:45:24] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:24] No records extracted
+[2026-08-21 11:45:24] No data found for 4024 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:17:05] Querying municipality 4026 for new data...
-[2026-08-20 08:17:05] Querying municipality 4026 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:17:05] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:17:05] Got successful response
-[2026-08-20 08:17:05] Extracting data from response for municipality 4026...
-[2026-08-20 08:17:05] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:17:05] No records extracted
-[2026-08-20 08:17:05] No data found for 4026 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:25] Querying municipality 4026 for new data...
+[2026-08-21 11:45:25] Querying municipality 4026 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:25] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4026?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:25] Got successful response
+[2026-08-21 11:45:25] Extracting data from response for municipality 4026...
+[2026-08-21 11:45:25] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:25] No records extracted
+[2026-08-21 11:45:25] No data found for 4026 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:17:06] Querying municipality 4028 for new data...
-[2026-08-20 08:17:06] Querying municipality 4028 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:17:06] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:17:06] Got successful response
-[2026-08-20 08:17:06] Extracting data from response for municipality 4028...
-[2026-08-20 08:17:06] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:17:06] No records extracted
-[2026-08-20 08:17:06] No data found for 4028 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:26] Querying municipality 4028 for new data...
+[2026-08-21 11:45:26] Querying municipality 4028 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:26] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4028?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:27] Got successful response
+[2026-08-21 11:45:27] Extracting data from response for municipality 4028...
+[2026-08-21 11:45:27] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:27] No records extracted
+[2026-08-21 11:45:27] No data found for 4028 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:17:07] Querying municipality 4030 for new data...
-[2026-08-20 08:17:07] Querying municipality 4030 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:17:07] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:17:07] Got successful response
-[2026-08-20 08:17:07] Extracting data from response for municipality 4030...
-[2026-08-20 08:17:07] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:17:07] No records extracted
-[2026-08-20 08:17:07] No data found for 4030 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:28] Querying municipality 4030 for new data...
+[2026-08-21 11:45:28] Querying municipality 4030 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:28] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4030?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:28] Got successful response
+[2026-08-21 11:45:28] Extracting data from response for municipality 4030...
+[2026-08-21 11:45:28] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:28] No records extracted
+[2026-08-21 11:45:28] No data found for 4030 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:17:08] Querying municipality 4032 for new data...
-[2026-08-20 08:17:08] Querying municipality 4032 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:17:08] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:17:09] Got successful response
-[2026-08-20 08:17:09] Extracting data from response for municipality 4032...
-[2026-08-20 08:17:09] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:17:09] No records extracted
-[2026-08-20 08:17:09] No data found for 4032 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:29] Querying municipality 4032 for new data...
+[2026-08-21 11:45:29] Querying municipality 4032 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:29] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4032?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:29] Got successful response
+[2026-08-21 11:45:29] Extracting data from response for municipality 4032...
+[2026-08-21 11:45:29] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:29] No records extracted
+[2026-08-21 11:45:29] No data found for 4032 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:17:10] Querying municipality 4034 for new data...
-[2026-08-20 08:17:10] Querying municipality 4034 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:17:10] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:17:10] Got successful response
-[2026-08-20 08:17:10] Extracting data from response for municipality 4034...
-[2026-08-20 08:17:10] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:17:10] No records extracted
-[2026-08-20 08:17:10] No data found for 4034 for 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:30] Querying municipality 4034 for new data...
+[2026-08-21 11:45:30] Querying municipality 4034 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:30] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4034?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:30] Got successful response
+[2026-08-21 11:45:30] Extracting data from response for municipality 4034...
+[2026-08-21 11:45:30] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:30] No records extracted
+[2026-08-21 11:45:30] No data found for 4034 for 2026-08-19 to 2026-08-31
 
-[2026-08-20 08:17:11] Querying municipality 4036 for new data...
-[2026-08-20 08:17:11] Querying municipality 4036 for period 2026-08-19 to 2026-08-31
-[2026-08-20 08:17:11] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
-[2026-08-20 08:17:11] Got successful response
-[2026-08-20 08:17:11] Extracting data from response for municipality 4036...
-[2026-08-20 08:17:11] Response keys: ['meta', 'links', 'data']
-[2026-08-20 08:17:11] No records extracted
-[2026-08-20 08:17:11] No data found for 4036 for 2026-08-19 to 2026-08-31
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\installed_capacity.csv
-[2026-08-20 08:17:13] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\installed_capacity.csv
-
-[2026-08-20 08:17:16] Combined file processed and uploaded via handle_output_data
-[2026-08-20 08:17:16] Total records in combined file: 96946
-[2026-08-20 08:17:16] New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Installert_effekt_(Elhub).log
-
-[2026-08-20 08:17:16] Query completed
+[2026-08-21 11:45:31] Querying municipality 4036 for new data...
+[2026-08-21 11:45:31] Querying municipality 4036 for period 2026-08-19 to 2026-08-31
+[2026-08-21 11:45:31] Querying URL: https://api.elhub.no/energy-data/v0/municipalities/4036?dataset=INSTALLED_CAPACITY_PER_METERING_POINT_TYPE_GROUP_MUNICIPALITY_DAILY&startDate=2026-08-19&endDate=2026-08-31 (attempt 1)
+[2026-08-21 11:45:31] Got successful response
+[2026-08-21 11:45:31] Extracting data from response for municipality 4036...
+[2026-08-21 11:45:31] Response keys: ['meta', 'links', 'data']
+[2026-08-21 11:45:31] No records extracted
+[2026-08-21 11:45:31] No data found for 4036 for 2026-08-19 to 2026-08-31
 
 
-Errors/Warnings:
+Errors:
 D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Produksjon/Elhub/installert_effekt.py:272: FutureWarning: In a future version of pandas, parsing datetimes with mixed time zones will raise an error unless `utc=True`. Please specify `utc=True` to opt in to the new behaviour and silence this warning. To create a `Series` with mixed offsets and `object` dtype, please use `apply` and `datetime.datetime.strptime`
   combined_df['SistOppdatert'] = pd.to_datetime(combined_df['SistOppdatert'], errors='coerce')
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Produksjon/Elhub/installert_effekt.py", line 304, in <module>
+    main()
+  File "D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Produksjon/Elhub/installert_effekt.py", line 284, in main
+    handle_output_data(
+  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 535, in handle_output_data
+    df.to_csv(temp_file_path, index=False, encoding="utf-8")  # Use consistent float precision
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\generic.py", line 3989, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
+    csv_formatter.save()
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
+    with get_handle(
+         ^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\installed_capacity.csv'
 
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/04_Klima_og_energi/Kraft og energi/Produksjon/Elhub/installert_effekt.py` failed. (See above for error)
