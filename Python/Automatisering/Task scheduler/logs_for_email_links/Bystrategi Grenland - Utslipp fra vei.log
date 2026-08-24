@@ -1,30 +1,9 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 All tasks completed successfully.
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_vei_telemark.csv
+[2026-08-24 08:38:47] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\klimagassutslipp_vei_telemark.csv
+No new data detected in klimagassutslipp_vei_telemark.csv.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bystrategi_Grenland_-_Utslipp_fra_vei.log
 
-
-Errors:
-Traceback (most recent call last):
-  File "D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py", line 115, in <module>
-    is_new_data = handle_output_data(df_telemark, file_name, github_folder, temp_folder, keepcsv=True)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py", line 535, in handle_output_data
-    df.to_csv(temp_file_path, index=False, encoding="utf-8")  # Use consistent float precision
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
-    return func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\generic.py", line 3989, in to_csv
-    return DataFrameRenderer(formatter).to_csv(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\io\formats\format.py", line 1014, in to_csv
-    csv_formatter.save()
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\io\formats\csvs.py", line 251, in save
-    with get_handle(
-         ^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
-    handle = open(
-             ^^^^^
-PermissionError: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\klimagassutslipp_vei_telemark.csv'
-
-ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py` failed. (See above for error)
