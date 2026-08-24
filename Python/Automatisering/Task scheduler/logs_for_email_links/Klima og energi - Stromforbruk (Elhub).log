@@ -1,11 +1,16 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2026-08-21 11:43:48] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
-[2026-08-21 11:43:48] GITHUB_TOKEN loaded successfully.
-[2026-08-21 11:44:00] Latest date in GitHub files: 2026-08-18
-[2026-08-21 11:44:00] Querying data for 2026-08-19
-[2026-08-21 11:44:01] API Response status code: 200
-[2026-08-21 11:44:03] Error in main: [Errno 13] Permission denied: 'D:\\Scripts\\analyse\\Telemark\\Python\\Temp\\2026.csv'
+[2026-08-24 08:15:37] Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+[2026-08-24 08:15:37] GITHUB_TOKEN loaded successfully.
+[2026-08-24 08:15:48] Latest date in GitHub files: 2026-08-18
+[2026-08-24 08:15:48] Querying data for 2026-08-19
+[2026-08-24 08:19:18] API Response status code: 200
+[2026-08-24 08:19:18] Querying data for 2026-08-20
+[2026-08-24 08:20:17] API Response status code: 200
+[2026-08-24 08:20:18] Querying data for 2026-08-21
+[2026-08-24 08:20:18] API Response status code: 200
+[2026-08-24 08:20:18] Querying data for 2026-08-22
+[2026-08-24 08:20:19] Error in main: Expecting value: line 1 column 1 (char 0)
 
 
 Errors:
