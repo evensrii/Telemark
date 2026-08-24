@@ -21,6 +21,7 @@ error_messages = []
 # REL. (relasjoner til andre vegobjekter, f.eks. involverte kjøretøy), GEO. (geometri), og de
 # dynamiske EGS.<NAVN>.<EGENSKAPSID>-kolonnene med selve ulykkesdataene
 # (f.eks. EGS.ULYKKESDATO.5055, EGS.ULYKKESKODE.5066, EGS.VÆRFORHOLD.5079 osv.).
+
 url = (
     "https://nvdb-eksport-x.atlas.vegvesen.no/vegobjekter/570.csv"
     "?fylke=40&inkluder=alle&srid=5973&segmentering=true"
