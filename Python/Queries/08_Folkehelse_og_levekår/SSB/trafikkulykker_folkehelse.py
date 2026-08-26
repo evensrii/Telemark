@@ -139,7 +139,7 @@ print(f"År: {sorted(df['År'].unique())}")
 
 file_name = "trafikkulykker_folkehelse.csv"
 task_name = "Folkehelse - Trafikkulykker"
-github_folder = "Data/08_Folkehelse og levekår/Skader og ulykker"
+github_folder = "Data/08_Folkehelse og levekår/Skader og ulykker/Trafikkulykker"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
