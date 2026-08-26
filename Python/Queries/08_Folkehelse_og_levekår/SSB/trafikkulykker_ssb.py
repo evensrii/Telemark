@@ -130,6 +130,15 @@ df = df.rename(columns={
 # Reorder columns
 df = df[["Kommunenummer", "Kommune", "År", "Statistikkvariabel", "Antall"]]
 
+# Legg til aggregert kategori "Drepte eller hardt skadde" (DHS), summen av "Drepte" og "Hardt skadde"
+dhs = (
+    df[df["Statistikkvariabel"].isin(["Drepte", "Hardt skadde"])]
+    .groupby(["Kommunenummer", "Kommune", "År"], as_index=False)["Antall"]
+    .sum()
+)
+dhs["Statistikkvariabel"] = "Drepte eller hardt skadde"
+df = pd.concat([df, dhs[["Kommunenummer", "Kommune", "År", "Statistikkvariabel", "Antall"]]], ignore_index=True)
+
 # Sort by Kommunenummer, Statistikkvariabel og År
 df = df.sort_values(["Kommunenummer", "Statistikkvariabel", "År"]).reset_index(drop=True)
 
