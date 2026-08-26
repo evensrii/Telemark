@@ -139,6 +139,38 @@ dhs = (
 dhs["Statistikkvariabel"] = "Drepte eller hardt skadde"
 df = pd.concat([df, dhs[["Kommunenummer", "Kommune", "År", "Statistikkvariabel", "Antall"]]], ignore_index=True)
 
+# Periode-kolonne: enkeltår som tekst for de årlige radene (fylles ut med intervall under)
+df["Periode"] = df["År"].str[:4]
+
+# Legg til aggregerte 5-årsperioder (bakover fra siste år), for å jevne ut små tall for små
+# kommuner/kategorier. Går bakover i ikke-overlappende 5-årsbolker fra siste tilgjengelige år;
+# de eldste årene som ikke fyller opp en hel 5-årsbolk, utelates.
+INTERVAL_LENGTH = 5
+years = sorted(df["Periode"].astype(int).unique())
+intervals = []
+end = years[-1]
+while end - INTERVAL_LENGTH + 1 >= years[0]:
+    start = end - INTERVAL_LENGTH + 1
+    intervals.append((start, end))
+    end = start - 1
+
+interval_frames = []
+for start, end in intervals:
+    mask = df["Periode"].astype(int).between(start, end)
+    grouped = (
+        df[mask]
+        .groupby(["Kommunenummer", "Kommune", "Statistikkvariabel"], as_index=False)["Antall"]
+        .sum()
+    )
+    grouped["År"] = f"{end}-01-01"
+    grouped["Periode"] = f"{start}-{end}"
+    interval_frames.append(grouped)
+
+df = pd.concat([df] + interval_frames, ignore_index=True)
+
+# Reorder columns
+df = df[["Kommunenummer", "Kommune", "År", "Periode", "Statistikkvariabel", "Antall"]]
+
 # Sort by Kommunenummer, Statistikkvariabel og År
 df = df.sort_values(["Kommunenummer", "Statistikkvariabel", "År"]).reset_index(drop=True)
 
