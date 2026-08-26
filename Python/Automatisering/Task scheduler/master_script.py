@@ -158,6 +158,7 @@ SCRIPTS = [
     ## Boligbehovsanalyse
     (os.path.join(PYTHON_PATH, "Queries/Rapporter og prosjekter/Boligbehovsanalyse/Framtidig boligbehov/framtidig_boligbehov.py"), "Boligbehovsanalyse - Framtidig boligbehov"),
     (os.path.join(PYTHON_PATH, "Queries/Rapporter og prosjekter/Boligbehovsanalyse/Bolyst og attraktivitet/Sykepleierindeksen/sykepleierindeksen.py"), "Boligbehovsanalyse - Sykepleierindeksen"),
+
 ]
 
 # Initialize master log

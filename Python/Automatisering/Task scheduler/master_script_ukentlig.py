@@ -33,6 +33,7 @@ SCRIPTS = [
 
     ## Mobilitet i Telemark
     (os.path.join(PYTHON_PATH, "Queries/Rapporter og prosjekter/Mobilitet i Telemark/Trafikkulykker/trafikkulykker.py"), "Mobilitet i Telemark - Trafikkulykker"),
+    (os.path.join(PYTHON_PATH, "Queries/Rapporter og prosjekter/Mobilitet i Telemark/Sykkel/sykkelindeks.py"), "Mobilitet i Telemark - Sykkelindeks"),
 ]
 
 # Initialize master log
