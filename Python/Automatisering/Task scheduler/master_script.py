@@ -130,7 +130,7 @@ SCRIPTS = [
     ## Folkehelse og levekår - SSB
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/dekningsgrad.py"), "Folkehelse - Dekningsgrad"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/minoriteter_bhg_pbi.py"), "Folkehelse - Minoriteter bhg pbi"),
-    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/trafikkulykker_folkehelse.py"), "Folkehelse - Trafikkulykker"),
+    (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/trafikkulykker_ssb.py"), "Folkehelse - Trafikkulykker"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/valgdeltakelse_kommunevalg.py"), "Folkehelse - Valgdeltakelse kommunevalg"),
     (os.path.join(PYTHON_PATH, "Queries/08_Folkehelse_og_levekår/SSB/valgdeltakelse_stortingsvalg.py"), "Folkehelse - Valgdeltakelse stortingsvalg"),
 

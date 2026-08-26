@@ -14,14 +14,17 @@ error_messages = []
 ################# Spørring #################
 
 # SSB API v2 GET URL (tabell 12044 - Personer drept eller skadd i veitrafikkulykker)
-# ContentsCode=Ulykker gir antall trafikkulykker med personskade (ikke antall drepte/skadde personer)
+# ContentsCode gir følgende statistikkvariabler: Ulykker (antall ulykker med personskade),
+# Dod (dødsulykker), PersonerDrept (drepte), PersonerSkadd (skadde i alt),
+# PersonerHardtSkadd (hardt skadde), PersonerLettSkadd (lettere skadde), Uoppgitt (uoppgitt skadegrad)
+CONTENTS_CODE = "Ulykker,Dod,PersonerDrept,PersonerSkadd,PersonerHardtSkadd,PersonerLettSkadd,Uoppgitt"
 
 YEARS = ",".join(str(year) for year in range(2000, 2026))
 
 # Spørring 1: Telemark (fylkesnivå, med codelist for aggregering av historiske fylkesgrenser)
 GET_URL_FYLKE = (
     "https://data.ssb.no/api/pxwebapi/v2/tables/12044/data?lang=no"
-    "&valueCodes[ContentsCode]=Ulykker"
+    f"&valueCodes[ContentsCode]={CONTENTS_CODE}"
     f"&valueCodes[Tid]={YEARS}"
     "&valueCodes[Region]=F-40"
     "&codelist[Region]=agg_KommFylker"
@@ -31,7 +34,7 @@ GET_URL_FYLKE = (
 # Spørring 2: Kommunene i Telemark (med codelist for aggregering av historiske kommunekoder)
 GET_URL_KOMMUNE = (
     "https://data.ssb.no/api/pxwebapi/v2/tables/12044/data?lang=no"
-    "&valueCodes[ContentsCode]=Ulykker"
+    f"&valueCodes[ContentsCode]={CONTENTS_CODE}"
     f"&valueCodes[Tid]={YEARS}"
     "&valueCodes[Region]=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036"
     "&codelist[Region]=agg_KommSummer"
@@ -40,7 +43,7 @@ GET_URL_KOMMUNE = (
 # Spørring 3: Hele landet
 GET_URL_LANDET = (
     "https://data.ssb.no/api/pxwebapi/v2/tables/12044/data?lang=no"
-    "&valueCodes[ContentsCode]=Ulykker"
+    f"&valueCodes[ContentsCode]={CONTENTS_CODE}"
     f"&valueCodes[Tid]={YEARS}"
     "&valueCodes[Region]=0"
     "&codelist[Region]=vs_Landet"
@@ -120,14 +123,15 @@ df = df.dropna(subset=["value"])
 df = df.rename(columns={
     "region": "Kommune",
     "år": "År",
-    "value": "Ulykker",
+    "statistikkvariabel": "Statistikkvariabel",
+    "value": "Antall",
 })
 
 # Reorder columns
-df = df[["Kommunenummer", "Kommune", "År", "Ulykker"]]
+df = df[["Kommunenummer", "Kommune", "År", "Statistikkvariabel", "Antall"]]
 
-# Sort by Kommunenummer og År
-df = df.sort_values(["Kommunenummer", "År"]).reset_index(drop=True)
+# Sort by Kommunenummer, Statistikkvariabel og År
+df = df.sort_values(["Kommunenummer", "Statistikkvariabel", "År"]).reset_index(drop=True)
 
 print("\n--- CSV-output ---")
 print(df.head(30))
@@ -137,7 +141,7 @@ print(f"År: {sorted(df['År'].unique())}")
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
-file_name = "trafikkulykker_folkehelse.csv"
+file_name = "trafikkulykker_ssb.csv"
 task_name = "Folkehelse - Trafikkulykker"
 github_folder = "Data/08_Folkehelse og levekår/Skader og ulykker/Trafikkulykker"
 temp_folder = os.environ.get("TEMP_FOLDER")
@@ -149,7 +153,7 @@ is_new_data = handle_output_data(
     github_folder,
     temp_folder,
     keepcsv=True,
-    value_columns=["Ulykker"],
+    value_columns=["Antall"],
 )
 
 # Write the "New Data" status to a unique log file
