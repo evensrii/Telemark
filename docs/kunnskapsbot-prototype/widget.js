@@ -19,38 +19,78 @@
 
   root.innerHTML = `
     <style>
-      .box { position: fixed; bottom: 20px; right: 20px; width: 320px; height: 420px;
-             border: 1px solid #ccc; border-radius: 8px; background: #fff; display: flex;
-             flex-direction: column; font-family: sans-serif; box-shadow: 0 2px 10px rgba(0,0,0,.2); }
-      .header { background: #00629b; color: #fff; padding: 10px; border-radius: 8px 8px 0 0; font-weight: bold; }
-      .messages { flex: 1; overflow-y: auto; padding: 10px; font-size: 14px; }
-      .msg { margin-bottom: 10px; white-space: pre-wrap; }
-      .msg.user { text-align: right; color: #00629b; }
+      * { box-sizing: border-box; }
+      .box { position: fixed; bottom: 20px; right: 20px; width: 340px; height: 480px;
+             border: 1px solid #e3e0ea; border-radius: 14px; background: #fff; display: flex;
+             flex-direction: column; overflow: hidden; font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+             box-shadow: 0 4px 20px rgba(0,0,0,.15); transition: height .2s ease; }
+      .box.collapsed { height: 56px; }
+      .header { flex-shrink: 0; background: #d8cbe8; color: #1a1a2e; padding: 14px 16px;
+                display: flex; align-items: center; gap: 8px; cursor: pointer; }
+      .header .icon { font-size: 16px; }
+      .header .title { flex: 1; font-weight: 700; font-size: 15px; }
+      .header .badge { font-size: 9px; font-weight: 700; letter-spacing: .03em; color: #6b4fa0;
+                        background: #fff; padding: 2px 6px; border-radius: 8px; }
+      .header .chevron { font-size: 14px; transition: transform .2s ease; }
+      .box.collapsed .chevron { transform: rotate(-90deg); }
+      .body { flex: 1; display: flex; flex-direction: column; justify-content: center;
+              padding: 20px; overflow-y: auto; }
+      .body.has-messages { justify-content: flex-start; }
+      .welcome { font-weight: 700; font-size: 19px; color: #0d1b4c; text-align: center; line-height: 1.3; }
+      .body.has-messages .welcome { display: none; }
+      .messages { display: flex; flex-direction: column; gap: 8px; }
+      .msg { max-width: 82%; padding: 8px 12px; border-radius: 14px; font-size: 14px;
+             line-height: 1.4; white-space: pre-wrap; }
+      .msg.user { align-self: flex-end; background: #ece5f4; color: #1a1a2e; border-bottom-right-radius: 4px; }
+      .msg.bot { align-self: flex-start; background: #f2f2f5; color: #1a1a2e; border-bottom-left-radius: 4px; }
       .sources { font-size: 11px; color: #888; margin-top: 4px; }
-      .input-row { display: flex; border-top: 1px solid #eee; }
-      input { flex: 1; border: none; padding: 10px; font-size: 14px; }
-      button { border: none; background: #00629b; color: #fff; padding: 0 14px; cursor: pointer; }
+      .input-area { flex-shrink: 0; padding: 8px 14px 14px; }
+      .input-row { display: flex; align-items: center; gap: 6px; border: 1px solid #ddd;
+                   border-radius: 24px; padding: 4px 4px 4px 16px; }
+      input { flex: 1; border: none; outline: none; font-size: 14px; padding: 8px 4px;
+              font-family: inherit; }
+      .send { width: 32px; height: 32px; border-radius: 50%; border: none; background: #16161d;
+              color: #fff; cursor: pointer; flex-shrink: 0; display: flex; align-items: center;
+              justify-content: center; font-size: 14px; }
+      .disclaimer { font-size: 11px; color: #8a8a8a; text-align: center; margin-top: 8px; line-height: 1.4; }
     </style>
     <div class="box">
-      <div class="header">Kunnskapsboten (prototype${mockMode ? " – demo, ikke ekte svar" : ""})</div>
-      <div class="messages"></div>
-      <div class="input-row">
-        <input type="text" placeholder="Skriv et spørsmål..." />
-        <button>Send</button>
+      <div class="header">
+        <span class="icon">💬</span>
+        <span class="title">Kunnskapsboten</span>
+        ${mockMode ? '<span class="badge">DEMO</span>' : ""}
+        <span class="chevron">⌄</span>
+      </div>
+      <div class="body">
+        <div class="welcome">Hva kan jeg hjelpe deg med i dag?</div>
+        <div class="messages"></div>
+      </div>
+      <div class="input-area">
+        <div class="input-row">
+          <input type="text" placeholder="Skriv inn ditt spørsmål" />
+          <button class="send" aria-label="Send">&#8593;</button>
+        </div>
+        <div class="disclaimer">Denne tjenesten er basert på kunstig intelligens, feil kan oppstå</div>
       </div>
     </div>
   `;
 
+  const boxEl = root.querySelector(".box");
+  const headerEl = root.querySelector(".header");
+  const bodyEl = root.querySelector(".body");
   const messagesEl = root.querySelector(".messages");
   const inputEl = root.querySelector("input");
-  const buttonEl = root.querySelector("button");
+  const buttonEl = root.querySelector(".send");
+
+  headerEl.addEventListener("click", () => boxEl.classList.toggle("collapsed"));
 
   function addMessage(text, sender) {
+    bodyEl.classList.add("has-messages");
     const div = document.createElement("div");
     div.className = `msg ${sender}`;
     div.textContent = text;
     messagesEl.appendChild(div);
-    messagesEl.scrollTop = messagesEl.scrollHeight;
+    bodyEl.scrollTop = bodyEl.scrollHeight;
     return div;
   }
 
@@ -82,7 +122,11 @@
     }
   }
 
-  buttonEl.addEventListener("click", sendQuestion);
+  buttonEl.addEventListener("click", (e) => {
+    e.stopPropagation();
+    sendQuestion();
+  });
+  inputEl.addEventListener("click", (e) => e.stopPropagation());
   inputEl.addEventListener("keydown", (e) => {
     if (e.key === "Enter") sendQuestion();
   });
