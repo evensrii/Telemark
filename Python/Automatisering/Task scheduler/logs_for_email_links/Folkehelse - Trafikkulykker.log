@@ -1,0 +1,75 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Trafikkulykker - Telemark (12044) JSON-stat data loaded successfully.
+Trafikkulykker - kommuner (12044) JSON-stat data loaded successfully.
+Trafikkulykker - hele landet (12044) JSON-stat data loaded successfully.
+       region statistikkvariabel    Ã¥r  value
+0   Porsgrunn            Ulykker  2000    103
+1   Porsgrunn            Ulykker  2001     84
+2   Porsgrunn            Ulykker  2002     82
+3   Porsgrunn            Ulykker  2003     79
+4   Porsgrunn            Ulykker  2004    101
+5   Porsgrunn            Ulykker  2005     77
+6   Porsgrunn            Ulykker  2006     80
+7   Porsgrunn            Ulykker  2007     90
+8   Porsgrunn            Ulykker  2008     71
+9   Porsgrunn            Ulykker  2009     51
+10  Porsgrunn            Ulykker  2010     69
+11  Porsgrunn            Ulykker  2011     53
+12  Porsgrunn            Ulykker  2012     47
+13  Porsgrunn            Ulykker  2013     36
+14  Porsgrunn            Ulykker  2014     38
+15  Porsgrunn            Ulykker  2015     54
+16  Porsgrunn            Ulykker  2016     45
+17  Porsgrunn            Ulykker  2017     37
+18  Porsgrunn            Ulykker  2018     37
+19  Porsgrunn            Ulykker  2019     31
+['region', 'statistikkvariabel', 'Ã¥r', 'value']
+['Porsgrunn' 'Skien' 'Notodden' 'Siljan' 'Bamble' 'KragerÃ¸' 'Drangedal'
+ 'Nome' 'Midt-Telemark' 'Seljord' 'Hjartdal' 'Tinn' 'Kviteseid' 'Nissedal'
+ 'Fyresdal' 'Tokke' 'Vinje']
+
+--- CSV-output ---
+   Kommunenummer      Kommune          Ã…r    Periode Statistikkvariabel  Antall
+0             00  Hele landet  2000-01-01       2000             Drepte     341
+1             00  Hele landet  2001-01-01       2001             Drepte     275
+2             00  Hele landet  2002-01-01       2002             Drepte     310
+3             00  Hele landet  2003-01-01       2003             Drepte     280
+4             00  Hele landet  2004-01-01       2004             Drepte     257
+5             00  Hele landet  2005-01-01       2005             Drepte     224
+6             00  Hele landet  2005-01-01  2001-2005             Drepte    1346
+7             00  Hele landet  2006-01-01       2006             Drepte     242
+8             00  Hele landet  2007-01-01       2007             Drepte     233
+9             00  Hele landet  2008-01-01       2008             Drepte     255
+10            00  Hele landet  2009-01-01       2009             Drepte     212
+11            00  Hele landet  2010-01-01       2010             Drepte     208
+12            00  Hele landet  2010-01-01  2006-2010             Drepte    1150
+13            00  Hele landet  2011-01-01       2011             Drepte     168
+14            00  Hele landet  2012-01-01       2012             Drepte     145
+15            00  Hele landet  2013-01-01       2013             Drepte     187
+16            00  Hele landet  2014-01-01       2014             Drepte     147
+17            00  Hele landet  2015-01-01       2015             Drepte     117
+18            00  Hele landet  2015-01-01  2011-2015             Drepte     764
+19            00  Hele landet  2016-01-01       2016             Drepte     135
+20            00  Hele landet  2017-01-01       2017             Drepte     106
+21            00  Hele landet  2018-01-01       2018             Drepte     108
+22            00  Hele landet  2019-01-01       2019             Drepte     108
+23            00  Hele landet  2020-01-01       2020             Drepte      93
+24            00  Hele landet  2020-01-01  2016-2020             Drepte     550
+25            00  Hele landet  2021-01-01       2021             Drepte      80
+26            00  Hele landet  2022-01-01       2022             Drepte     116
+27            00  Hele landet  2023-01-01       2023             Drepte     110
+28            00  Hele landet  2024-01-01       2024             Drepte      87
+29            00  Hele landet  2025-01-01       2025             Drepte     106
+
+Antall rader: 4712
+Kommuner: ['Hele landet' 'Telemark' 'Porsgrunn' 'Skien' 'Notodden' 'Siljan' 'Bamble'
+ 'KragerÃ¸' 'Drangedal' 'Nome' 'Midt-Telemark' 'Seljord' 'Hjartdal' 'Tinn'
+ 'Kviteseid' 'Nissedal' 'Fyresdal' 'Tokke' 'Vinje']
+Ã…r: ['2000-01-01', '2001-01-01', '2002-01-01', '2003-01-01', '2004-01-01', '2005-01-01', '2006-01-01', '2007-01-01', '2008-01-01', '2009-01-01', '2010-01-01', '2011-01-01', '2012-01-01', '2013-01-01', '2014-01-01', '2015-01-01', '2016-01-01', '2017-01-01', '2018-01-01', '2019-01-01', '2020-01-01', '2021-01-01', '2022-01-01', '2023-01-01', '2024-01-01', '2025-01-01']
+Saved file to D:\Scripts\analyse\Telemark\Python\Temp\trafikkulykker_ssb.csv
+[2026-08-27 08:24:13] No new data to upload. Skipping GitHub update.
+Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\trafikkulykker_ssb.csv
+No new data detected in trafikkulykker_ssb.csv.
+New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Trafikkulykker.log
+
