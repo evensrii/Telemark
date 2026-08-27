@@ -1,6 +1,9 @@
 """
-Chunk the crawled pages from pages.json, embed each chunk via Azure OpenAI,
-and save the resulting chunks + vectors to index.npz.
+Chunk the crawled pages from pages.json plus the structured datasets from
+data_pages.json (see load_data_files.py - numbers shown as charts on the
+site aren't visible to crawl.py, so they're fed in separately from the
+repo's own Data/ CSVs), embed each chunk via Azure OpenAI, and save the
+resulting chunks + vectors to index.npz.
 
 Run: python build_index.py
 """
@@ -22,6 +25,7 @@ client = AzureOpenAI(
 EMBEDDING_DEPLOYMENT = os.environ["AZURE_OPENAI_EMBEDDING_DEPLOYMENT"]
 
 PAGES_FILE = "pages.json"
+DATA_PAGES_FILE = "data_pages.json"
 INDEX_FILE = "index.npz"
 CHUNK_SIZE_CHARS = 2000  # roughly 400-500 tokens
 CHUNK_OVERLAP_CHARS = 200
@@ -42,9 +46,16 @@ def embed(texts):
     return [item.embedding for item in response.data]
 
 
+def load_pages(path):
+    if not os.path.exists(path):
+        print(f"{path} not found, skipping.")
+        return []
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def build_index():
-    with open(PAGES_FILE, "r", encoding="utf-8") as f:
-        pages = json.load(f)
+    pages = load_pages(PAGES_FILE) + load_pages(DATA_PAGES_FILE)
 
     chunk_records = []
     for page in pages:
