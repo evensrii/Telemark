@@ -1,8 +1,16 @@
 Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Script starting...
+Found missing date ranges: [(Timestamp('2026-08-28 00:00:00'), Timestamp('2026-08-30 00:00:00'))]
+Fetching data for missing periods...
+-- Processing gap: 2026-08-28 to 2026-08-30 (3 day(s)) --
+Fetching energy prices from 2026-08-28 to 2026-08-30...
+  Fetching chunk from 2026-08-28 to 2026-08-30...
+Error connecting to ENTSO-E API for chunk 2026-08-28-2026-08-30: 503 Server Error: Service Unavailable for url: https://web-api.tp.entsoe.eu/api?documentType=A44&in_Domain=10YNO-2--------T&out_Domain=10YNO-2--------T&periodStart=202608280000&periodEnd=202608302300&securityToken=5cf92fdd-a882-4158-a5a9-9b0b8e202786
+No price data found in the API response for the entire period.
+  Skipping gap (within 3-day tolerance).
 Saved file to D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
-[2026-08-28 08:15:33] No new data to upload. Skipping GitHub update.
+[2026-08-31 08:15:58] No new data to upload. Skipping GitHub update.
 Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\strompriser.csv
 No new data detected.
 New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Strompriser.log
