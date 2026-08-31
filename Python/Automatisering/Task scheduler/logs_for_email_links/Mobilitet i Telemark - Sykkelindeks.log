@@ -1,0 +1,27 @@
+Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Request error in Sykkelindeks 2025: HTTPSConnectionPool(host='trafikkdata-api.atlas.vegvesen.no', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001B4583E09B0>, 'Connection to trafikkdata-api.atlas.vegvesen.no timed out. (connect timeout=None)'))
+Request error in Sykkelindeks 2024: HTTPSConnectionPool(host='trafikkdata-api.atlas.vegvesen.no', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001B4585D61E0>, 'Connection to trafikkdata-api.atlas.vegvesen.no timed out. (connect timeout=None)'))
+Request error in Sykkelindeks 2023: HTTPSConnectionPool(host='trafikkdata-api.atlas.vegvesen.no', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001B4585D6900>, 'Connection to trafikkdata-api.atlas.vegvesen.no timed out. (connect timeout=None)'))
+Request error in Sykkelindeks 2022: HTTPSConnectionPool(host='trafikkdata-api.atlas.vegvesen.no', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001B4585D6D20>, 'Connection to trafikkdata-api.atlas.vegvesen.no timed out. (connect timeout=None)'))
+Request error in Sykkelindeks 2021: HTTPSConnectionPool(host='trafikkdata-api.atlas.vegvesen.no', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001B4585D6120>, 'Connection to trafikkdata-api.atlas.vegvesen.no timed out. (connect timeout=None)'))
+Request error in Sykkelindeks 2020: HTTPSConnectionPool(host='trafikkdata-api.atlas.vegvesen.no', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001B4585D7080>, 'Connection to trafikkdata-api.atlas.vegvesen.no timed out. (connect timeout=None)'))
+Request error in Sykkelindeks 2019: HTTPSConnectionPool(host='trafikkdata-api.atlas.vegvesen.no', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001B4585D7BF0>, 'Connection to trafikkdata-api.atlas.vegvesen.no timed out. (connect timeout=None)'))
+Completed with 14 error(s).
+Antall Ã¥rsresponser hentet: 0
+Ingen responser
+
+
+Errors:
+Traceback (most recent call last):
+  File "D:\Scripts\analyse\Telemark\Python\Queries/Rapporter og prosjekter/Mobilitet i Telemark/Sykkel/sykkelindeks.py", line 135, in <module>
+    df = pd.DataFrame(rows).sort_values("Ã…r", ascending=False).reset_index(drop=True)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\frame.py", line 7211, in sort_values
+    k = self._get_label_or_level_values(by[0], axis=axis)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\pandas\core\generic.py", line 1914, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'Ã…r'
+
+ERROR conda.cli.main_run:execute(125): `conda run python D:\Scripts\analyse\Telemark\Python\Queries/Rapporter og prosjekter/Mobilitet i Telemark/Sykkel/sykkelindeks.py` failed. (See above for error)
