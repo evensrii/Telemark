@@ -6,7 +6,7 @@ chcp 65001 > nul
 :: unexpected and safe to discard - this makes the daily run self-healing
 :: instead of silently running stale code.
 
-set "REPO_DIR=D:\Scripts\analyse\Telemark"
+set "REPO_DIR=C:\Analyse\Telemark"
 set "SYNC_LOG=%~dp0git_sync.log"
 
 echo [%DATE% %TIME%] Syncing %REPO_DIR% with origin/main > "%SYNC_LOG%"
