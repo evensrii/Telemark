@@ -256,8 +256,10 @@ def compare_to_github(input_df, file_name, github_folder, temp_folder, value_col
     # Normalize date formats and string values
     for col in input_df.columns:
         # Fill NaN values with empty string for consistent comparison
-        input_df[col] = input_df[col].fillna('')
-        existing_data[col] = existing_data[col].fillna('')
+        # (cast to object first so nullable extension dtypes like Int64 don't
+        # reject '' as an invalid value during fillna)
+        input_df[col] = input_df[col].astype(object).fillna('')
+        existing_data[col] = existing_data[col].astype(object).fillna('')
         
         # Try to convert to datetime first
         try:

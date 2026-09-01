@@ -142,6 +142,12 @@ df = pd.concat([df, dhs[["Kommunenummer", "Kommune", "År", "Statistikkvariabel"
 # Periode-kolonne: enkeltår som tekst for de årlige radene (fylles ut med intervall under)
 df["Periode"] = df["År"].str[:4]
 
+# Periodetype skiller enkeltår fra aggregerte intervaller. Nødvendig fordi en intervallrad
+# (f.eks. "2006-2010") får "År" satt til sluttåret, altså samme x-verdi som enkeltårsraden for
+# det året – uten denne kolonnen ville de to radtypene ikke la seg skille i Power BI-visualiseringer
+# (filtrer på Periodetype i hver visning for å unngå at årlige og 5-årige punkter blandes i samme graf).
+df["Periodetype"] = "Enkeltår"
+
 # Legg til aggregerte 5-årsperioder (bakover fra siste år), for å jevne ut små tall for små
 # kommuner/kategorier. Går bakover i ikke-overlappende 5-årsbolker fra siste tilgjengelige år;
 # de eldste årene som ikke fyller opp en hel 5-årsbolk, utelates.
@@ -164,12 +170,13 @@ for start, end in intervals:
     )
     grouped["År"] = f"{end}-01-01"
     grouped["Periode"] = f"{start}-{end}"
+    grouped["Periodetype"] = f"{INTERVAL_LENGTH}-årsperiode"
     interval_frames.append(grouped)
 
 df = pd.concat([df] + interval_frames, ignore_index=True)
 
 # Reorder columns
-df = df[["Kommunenummer", "Kommune", "År", "Periode", "Statistikkvariabel", "Antall"]]
+df = df[["Kommunenummer", "Kommune", "År", "Periode", "Periodetype", "Statistikkvariabel", "Antall"]]
 
 # Sort by Kommunenummer, Statistikkvariabel og År
 df = df.sort_values(["Kommunenummer", "Statistikkvariabel", "År"]).reset_index(drop=True)
