@@ -1,17 +1,15 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 VTFK Query JSON-stat data loaded successfully.
 TFK Query JSON-stat data loaded successfully.
-Her hentes tallene for Vestfold og Telemark i ['2025']
-Her hentes tallene for Telemark i ['2025']
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_sysselsatte_innvandrere.csv
-[2026-09-01 08:18:20] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_sysselsatte_innvandrere.csv
+Her hentes tallene for Vestfold og Telemark i <StringArray>
+['2025']
+Length: 1, dtype: str
+Her hentes tallene for Telemark i <StringArray>
+['2025']
+Length: 1, dtype: str
+Saved file to C:\Analyse\Telemark\Python\Temp\andel_sysselsatte_innvandrere.csv
+[2026-09-07 14:04:58] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\andel_sysselsatte_innvandrere.csv
 No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Sysselsatte.log
-
-
-Errors/Warnings:
-D:\Scripts\analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_innvandrere.py:146: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
-  df = pd.concat([df_vtfk, df_tfk])
-
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Sysselsatte.log
