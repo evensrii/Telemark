@@ -1,12 +1,31 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Fylker CSV data loaded successfully.
 [ 3 11 15 18 31 32 33 34 39 40 42 46 50 55 56  0  8  7  2  4 12 16 14 19
   5 10  6 17 20  1  9 30 38 54 99]
 Kommuner CSV data loaded successfully.
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\deltakere_introduksjonsprogrammet.csv
-[2026-09-01 08:18:45] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\deltakere_introduksjonsprogrammet.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Deltakere_introduksjonsprogrammet.log
+Saved file to C:\Analyse\Telemark\Python\Temp\deltakere_introduksjonsprogrammet.csv
+[2026-09-07 14:05:17] Changes detected in the dataset.
 
+Showing up to 5 examples of changes:
+
+Row: 
+  r: 2005-01-01 -> 2005-01-01 00:00:00
+
+Row: 
+  r: 2006-01-01 -> 2006-01-01 00:00:00
+
+Row: 
+  r: 2007-01-01 -> 2007-01-01 00:00:00
+
+Row: 
+  r: 2008-01-01 -> 2008-01-01 00:00:00
+
+Row: 
+  r: 2009-01-01 -> 2009-01-01 00:00:00
+
+Total changes found in examined rows: 21
+(Showing first 5 changes only)
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\deltakere_introduksjonsprogrammet.csv
+New data detected and pushed to GitHub.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Deltakere_introduksjonsprogrammet.log
