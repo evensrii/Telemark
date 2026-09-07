@@ -1,19 +1,29 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-SekundÃ¦rflytting CSV data loaded successfully.
+Sekundærflytting CSV data loaded successfully.
 Most recent year in table is 2023-01-01 00:00:00
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sekundÃ¦rflytting.csv
-[2026-09-01 08:19:16] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sekundÃ¦rflytting.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Sekundaerflytting.log
+Saved file to C:\Analyse\Telemark\Python\Temp\sekundærflytting.csv
+[2026-09-07 14:05:40] Changes detected in the dataset.
 
+Showing up to 5 examples of changes:
 
-Errors/Warnings:
-D:\Scripts\analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Bosetting_av_flyktninger/sekundaerflytting.py:116: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
+Row: Kommunenummer: 3821 | Kommune: Kviteseid
+  r: 2023-01-01 -> 2023-01-01 00:00:00
 
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  df_kommuner["Kommune"] = df_kommuner["Kommune"].fillna(
+Row: Kommunenummer: 3806 | Kommune: Porsgrunn
+  r: 2023-01-01 -> 2023-01-01 00:00:00
 
+Row: Kommunenummer: 3823 | Kommune: Fyresdal
+  r: 2023-01-01 -> 2023-01-01 00:00:00
+
+Row: Kommunenummer: 3822 | Kommune: Nissedal
+  r: 2023-01-01 -> 2023-01-01 00:00:00
+
+Row: Kommunenummer: 3819 | Kommune: Hjartdal
+  r: 2023-01-01 -> 2023-01-01 00:00:00
+
+Total changes found in examined rows: 51
+(Showing first 5 changes only)
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\sekundærflytting.csv
+New data detected and pushed to GitHub.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Sekundaerflytting.log
