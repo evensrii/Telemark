@@ -1,4 +1,4 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Sysselsatte, kommuner JSON-stat data loaded successfully.
 Sysselsatte, landet JSON-stat data loaded successfully.
@@ -25,7 +25,7 @@ Bamble           917    771   2398   2632   2402   1441
 Drangedal        242    236    621    813    687    403
 Fyresdal          79     67    183    245    227    139
 Hjartdal          86     95    267    268    280    158
-KragerÃ¸          604    487   1587   1995   1811   1151
+Kragerø          604    487   1587   1995   1811   1151
 Kviteseid        109    144    370    460    481    262
 Midt-Telemark    712    841   2151   2109   1522    972
 Nissedal          89     70    203    273    262    187
@@ -45,23 +45,22 @@ Telemark   10737   9762  31585  34083  28748  16708
 
 Telemark employment by age groups:
      region     alder  value
-0  Telemark  15-19 Ã¥r   4454
-1  Telemark  20-24 Ã¥r   6462
-2  Telemark  25-39 Ã¥r  24362
-3  Telemark  40-54 Ã¥r  26668
-4  Telemark  55-66 Ã¥r  19154
-5  Telemark  67-74 Ã¥r   3553
+0  Telemark  15-19 år   4454
+1  Telemark  20-24 år   6462
+2  Telemark  25-39 år  24362
+3  Telemark  40-54 år  26668
+4  Telemark  55-66 år  19154
+5  Telemark  67-74 år   3553
 
 Employment rates by age group (%):
   Aldersgruppe  Telemark (2025)  Hele landet (2025)
-0     20-24 Ã¥r             66.2                67.7
-1     25-39 Ã¥r             77.1                80.8
-2     40-54 Ã¥r             78.2                81.2
-3     55-66 Ã¥r             66.6                69.8
-4     67-74 Ã¥r             21.3                22.5
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
-[2026-09-01 08:09:01] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
+0     20-24 år             66.2                67.7
+1     25-39 år             77.1                80.8
+2     40-54 år             78.2                81.2
+3     55-66 år             66.6                69.8
+4     67-74 år             21.3                22.5
+Saved file to C:\Analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
+[2026-09-07 13:56:07] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\sysselsatte_etter_aldersgruppe.csv
 No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_etter_aldersgruppe.log
-
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_etter_aldersgruppe.log
