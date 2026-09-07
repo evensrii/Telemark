@@ -1,16 +1,16 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Andel bosatt kommuner JSON-stat data loaded successfully.
 Andel bosatt Telemark fylke JSON-stat data loaded successfully.
 Andel bosatt Norge JSON-stat data loaded successfully.
 Kommuner raw data: 17 rows
-          region innvandringskategori  ...    Ã¥r  value
+          region innvandringskategori  ...    år  value
 0      Porsgrunn          Innvandrere  ...  2026  14.48
 1          Skien          Innvandrere  ...  2026  16.18
 2       Notodden          Innvandrere  ...  2026  14.11
 3         Siljan          Innvandrere  ...  2026   8.25
 4         Bamble          Innvandrere  ...  2026  10.49
-5        KragerÃ¸          Innvandrere  ...  2026  12.71
+5        Kragerø          Innvandrere  ...  2026  12.71
 6      Drangedal          Innvandrere  ...  2026  12.57
 7           Nome          Innvandrere  ...  2026  14.50
 8  Midt-Telemark          Innvandrere  ...  2026  16.52
@@ -18,12 +18,12 @@ Kommuner raw data: 17 rows
 
 [10 rows x 6 columns]
 Fylke raw data: 1 rows
-     region innvandringskategori  ...    Ã¥r  value
+     region innvandringskategori  ...    år  value
 0  Telemark          Innvandrere  ...  2026  14.46
 
 [1 rows x 6 columns]
 Landet raw data: 1 rows
-        region innvandringskategori  ...    Ã¥r  value
+        region innvandringskategori  ...    år  value
 0  Hele landet          Innvandrere  ...  2026  17.54
 
 [1 rows x 6 columns]
@@ -34,7 +34,7 @@ Calculated andel bosatt for 2026
 2        Notodden                 14       Notodden
 3          Siljan                  8         Siljan
 4          Bamble                 10         Bamble
-5         KragerÃ¸                 13        KragerÃ¸
+5         Kragerø                 13        Kragerø
 6       Drangedal                 13      Drangedal
 7            Nome                 14           Nome
 8   Midt-Telemark                 17  Midt-Telemark
@@ -48,9 +48,8 @@ Calculated andel bosatt for 2026
 16          Vinje                 14          Vinje
 17       Telemark                 14       Telemark
 18    Hele landet                 18    Hele landet
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
-[2026-09-01 08:17:53] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
+Saved file to C:\Analyse\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
+[2026-09-07 14:04:45] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\andel_innvandrere_bosatt.csv
 No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Bosatt.log
-
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Bosatt.log
