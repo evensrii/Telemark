@@ -1,9 +1,30 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Botid CSV data loaded successfully.
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\botid.csv
-[2026-09-01 08:17:42] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\botid.csv
-No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Botid.log
+Saved file to C:\Analyse\Telemark\Python\Temp\botid.csv
+[2026-09-07 14:04:38] Changes detected in the dataset.
 
+[2026-09-07 14:04:38] Dataset is large. Showing detailed changes from the last 200 rows only.
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: Kommune: Bamble | Kommunenummer: 4012
+  r: 2026-01-01 -> 2026-01-01 00:00:00
+
+Row: Kommune: Nissedal | Kommunenummer: 4030
+  r: 2026-01-01 -> 2026-01-01 00:00:00
+
+Row: Kommune: Midt-Telemark | Kommunenummer: 4020
+  r: 2026-01-01 -> 2026-01-01 00:00:00
+
+Row: Kommune: Tokke | Kommunenummer: 4034
+  r: 2026-01-01 -> 2026-01-01 00:00:00
+
+Row: Kommune: Drangedal | Kommunenummer: 4016
+  r: 2026-01-01 -> 2026-01-01 00:00:00
+
+Total changes found in examined rows: 200
+(Showing first 5 changes only)
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\botid.csv
+New data detected and pushed to GitHub.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Botid.log
