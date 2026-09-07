@@ -1,6 +1,6 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-MinoritetssprÃ¥klige barn i barnehage (12272) JSON-stat data loaded successfully.
+Minoritetsspråklige barn i barnehage (12272) JSON-stat data loaded successfully.
               region  ... value
 0             Landet  ...  15.3
 1             Landet  ...  16.4
@@ -24,24 +24,40 @@ MinoritetssprÃ¥klige barn i barnehage (12272) JSON-stat data loaded successful
 19  Telemark (-2019)  ...   NaN
 
 [20 rows x 4 columns]
-['region', 'statistikkvariabel', 'Ã¥r', 'value']
-['Landet' 'Telemark (-2019)' 'Vestfold og Telemark (2020-2023)' 'Telemark'
- 'Porsgrunn' 'Skien' 'Notodden' 'Siljan' 'Bamble' 'KragerÃ¸' 'Drangedal'
- 'Nome' 'Midt-Telemark' 'Seljord' 'Hjartdal' 'Tinn' 'Kviteseid' 'Nissedal'
- 'Fyresdal' 'Tokke' 'Vinje' 'Porsgrunn (2020-2023)' 'Skien (2020-2023)'
- 'Notodden (2020-2023)' 'Siljan (2020-2023)' 'Bamble (2020-2023)'
- 'KragerÃ¸ (2020-2023)' 'Drangedal (2020-2023)' 'Nome (2020-2023)'
- 'Midt-Telemark (2020-2023)' 'Tinn (2020-2023)' 'Hjartdal (2020-2023)'
- 'Seljord (2020-2023)' 'Kviteseid (2020-2023)' 'Nissedal (2020-2023)'
- 'Fyresdal (2020-2023)' 'Tokke (2020-2023)' 'Vinje (2020-2023)'
- 'Porsgrunn (-2019)' 'Skien (-2019)' 'Notodden (-2019)' 'Siljan (-2019)'
- 'Bamble (-2019)' 'KragerÃ¸ (-2019)' 'Drangedal (-2019)' 'Nome (-2019)'
- 'BÃ¸ (Telemark) (-2019)' 'Sauherad (-2019)' 'Tinn (-2019)'
- 'Hjartdal (-2019)' 'Seljord (-2019)' 'Kviteseid (-2019)'
- 'Nissedal (-2019)' 'Fyresdal (-2019)' 'Tokke (-2019)' 'Vinje (-2019)']
+['region', 'statistikkvariabel', 'år', 'value']
+<StringArray>
+[                          'Landet',                 'Telemark (-2019)',
+ 'Vestfold og Telemark (2020-2023)',                         'Telemark',
+                        'Porsgrunn',                            'Skien',
+                         'Notodden',                           'Siljan',
+                           'Bamble',                          'Kragerø',
+                        'Drangedal',                             'Nome',
+                    'Midt-Telemark',                          'Seljord',
+                         'Hjartdal',                             'Tinn',
+                        'Kviteseid',                         'Nissedal',
+                         'Fyresdal',                            'Tokke',
+                            'Vinje',            'Porsgrunn (2020-2023)',
+                'Skien (2020-2023)',             'Notodden (2020-2023)',
+               'Siljan (2020-2023)',               'Bamble (2020-2023)',
+              'Kragerø (2020-2023)',            'Drangedal (2020-2023)',
+                 'Nome (2020-2023)',        'Midt-Telemark (2020-2023)',
+                 'Tinn (2020-2023)',             'Hjartdal (2020-2023)',
+              'Seljord (2020-2023)',            'Kviteseid (2020-2023)',
+             'Nissedal (2020-2023)',             'Fyresdal (2020-2023)',
+                'Tokke (2020-2023)',                'Vinje (2020-2023)',
+                'Porsgrunn (-2019)',                    'Skien (-2019)',
+                 'Notodden (-2019)',                   'Siljan (-2019)',
+                   'Bamble (-2019)',                  'Kragerø (-2019)',
+                'Drangedal (-2019)',                     'Nome (-2019)',
+            'Bø (Telemark) (-2019)',                 'Sauherad (-2019)',
+                     'Tinn (-2019)',                 'Hjartdal (-2019)',
+                  'Seljord (-2019)',                'Kviteseid (-2019)',
+                 'Nissedal (-2019)',                 'Fyresdal (-2019)',
+                    'Tokke (-2019)',                    'Vinje (-2019)']
+Length: 56, dtype: str
 
 --- Ferdig datasett ---
-   Kommunenummer      Kommune          Ã…r  Andel  SortKommune
+   Kommunenummer      Kommune          År  Andel  SortKommune
 0             07       Fylket  2015-01-01  0.138            1
 1             07       Fylket  2016-01-01  0.154            1
 2             07       Fylket  2017-01-01  0.161            1
@@ -74,14 +90,17 @@ MinoritetssprÃ¥klige barn i barnehage (12272) JSON-stat data loaded successful
 29          3813       Bamble  2022-01-01  0.137            3
 
 Antall rader: 207
-Kommuner: ['Fylket' 'Hele landet' 'Bamble' 'Drangedal' 'Fyresdal' 'Hjartdal'
- 'KragerÃ¸' 'Kviteseid' 'Midt-Telemark' 'Nissedal' 'Nome' 'Notodden'
- 'Porsgrunn' 'Seljord' 'Siljan' 'Skien' 'Tinn' 'Tokke' 'Vinje' 'BÃ¸'
- 'Sauherad']
-Ã…r: ['2015-01-01', '2016-01-01', '2017-01-01', '2018-01-01', '2019-01-01', '2020-01-01', '2021-01-01', '2022-01-01', '2023-01-01', '2024-01-01', '2025-01-01']
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\minoriteter_barnehage_pbi.csv
-[2026-09-01 08:23:22] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\minoriteter_barnehage_pbi.csv
+Kommuner: <StringArray>
+[       'Fylket',   'Hele landet',        'Bamble',     'Drangedal',
+      'Fyresdal',      'Hjartdal',       'Kragerø',     'Kviteseid',
+ 'Midt-Telemark',      'Nissedal',          'Nome',      'Notodden',
+     'Porsgrunn',       'Seljord',        'Siljan',         'Skien',
+          'Tinn',         'Tokke',         'Vinje',            'Bø',
+      'Sauherad']
+Length: 21, dtype: str
+År: ['2015-01-01', '2016-01-01', '2017-01-01', '2018-01-01', '2019-01-01', '2020-01-01', '2021-01-01', '2022-01-01', '2023-01-01', '2024-01-01', '2025-01-01']
+Saved file to C:\Analyse\Telemark\Python\Temp\minoriteter_barnehage_pbi.csv
+[2026-09-07 14:06:50] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\minoriteter_barnehage_pbi.csv
 No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Minoriteter_barnehage.log
-
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Minoriteter_barnehage.log
