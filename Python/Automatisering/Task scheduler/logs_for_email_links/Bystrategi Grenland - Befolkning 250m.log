@@ -1,25 +1,6 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
-GITHUB_TOKEN loaded successfully.
-Temp folder: D:\Scripts\analyse\Telemark\Python\Temp
-Checking GitHub for existing data...
-Discovering datasets in the series...
 
-Found 10 datasets:
-  2016: Befolkning pÃ¥ rutenett 250 m 2016 (UUID: 7a5782c4-4e54-412f-8d0e-09140a456543)
-  2017: Befolkning pÃ¥ rutenett 250 m 2017 (UUID: fa79e0b3-3b66-4fd1-8d0c-07fd59a7e168)
-  2018: Befolkning pÃ¥ rutenett 250 m 2018 (UUID: 65877687-46c7-4926-94a5-7974f1f8606b)
-  2019: Befolkning pÃ¥ rutenett 250 m 2019 (UUID: f0cc3cb9-e06b-4a3f-93f0-b66aaad06cd2)
-  2020: Befolkning pÃ¥ rutenett 250 m 2020 (UUID: 4aa1809c-0c35-42ef-801d-0558b47a0c20)
-  2021: Befolkning pÃ¥ rutenett 250 m 2021 (UUID: ddf1864a-2852-4f6b-96ea-680712a6f664)
-  2022: Befolkning pÃ¥ rutenett 250 m 2022 (UUID: be417823-5df2-48ab-91c1-edf28b76e4f5)
-  2023: Befolkning pÃ¥ rutenett 250 m 2023 (UUID: 89bc9a2c-5cb8-4780-8c24-7965c0829696)
-  2024: Befolkning pÃ¥ rutenett 250 m 2024 (UUID: e668abf5-2fac-472e-976b-1526f1d38bbe)
-  2025: Befolkning pÃ¥ rutenett 250 m 2025 (UUID: d8f245c0-a002-4d3b-b833-10c638c6a879)
-
-Latest available year from Geonorge: 2025
-Latest year on GitHub: 2025
-
-GitHub already has data up to 2025. No update needed.
-  Already on GitHub: befolkning_250m_2016_and_later.csv
-  Already on GitHub: befolkning_250m_2016_and_later_grenland.csv
-
+Errors:
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning/befolkning_250_m.py", line 26, in <module>
+    import geopandas as gpd
+ModuleNotFoundError: No module named 'geopandas'
