@@ -213,16 +213,13 @@ def run_script(script_path, task_name):
             print(f"Warning: Could not extract file information from {script_path}: {e}")
             # Continue execution even if we can't get the commit time
         
-        # Run the script and capture its output
+        # Run the script and capture its output.
+        # Reuse this process's own interpreter (already running inside the
+        # `analyse` env) instead of shelling out through `conda run` - on
+        # Windows, "conda" resolves to conda.bat, which subprocess.run()
+        # can't launch without shell=True.
         result = subprocess.run(
-            [
-                "conda",
-                "run",
-                "-n",
-                CONDA_ENV,
-                "python",
-                script_path,
-            ],
+            [sys.executable, script_path],
             capture_output=True,
             text=True,
             check=True,
