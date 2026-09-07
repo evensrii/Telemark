@@ -1,4 +1,4 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 
 ======================================================================
@@ -6,26 +6,13 @@ FHI Query: Hoftebrudd.txt
 ======================================================================
 
 Loading query from file...
-  âœ“ Query loaded
-  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/714/data
 
-Fetching data from FHI API...
-FHI Query JSON-stat data loaded successfully.
-  âœ“ Fetched 190 rows and 7 columns
-  Columns: Geografi, Ã…r, KjÃ¸nn, Alder, Sykdomsgruppe, MÃ¥ltall, value
-
-After processing: 190 rows and 9 columns
-
-Comparing with GitHub...
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\hoftebrudd.csv
-[2026-09-01 08:22:57] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\hoftebrudd.csv
-  âœ“ No changes detected
-
-  âœ“ Saved to: D:\Scripts\analyse\Telemark\Python\Temp\hoftebrudd.csv
-
-======================================================================
-Processing complete
-======================================================================
-
-
+Errors:
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/FHI/scripts/Skader og ulykker/Skader/hoftebrudd.py", line 87, in <module>
+    print(f"  \u2713 Query loaded")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
