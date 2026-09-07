@@ -1,38 +1,38 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Found 6 prediction files (2016+): ['Framskrevet_folkemengde_2016-2040.csv', 'Framskrevet_folkemengde_2018-2040.csv', 'Framskrevet_folkemengde_2020-2050.csv', 'Framskrevet_folkemengde_2022-2050.csv', 'Framskrevet_folkemengde_2024-2050.csv', 'Framskrevet_folkemengde_2026-2050.csv']
 ============================================================
 Step 1: Reading historical data
 ============================================================
 Historical data: 4590 rows, years 2000-2026
-Kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+Kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'Kragerø', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
 
 ============================================================
 Step 2: Reading prediction files
 ============================================================
 
 Processing: Framskrevet_folkemengde_2016-2040.csv
-  Kommuner rows: 4250, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+  Kommuner rows: 4250, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'Kragerø', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
   Fylke row available: YES
 
 Processing: Framskrevet_folkemengde_2018-2040.csv
-  Kommuner rows: 3910, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+  Kommuner rows: 3910, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'Kragerø', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
   Fylke row available: YES
 
 Processing: Framskrevet_folkemengde_2020-2050.csv
-  Kommuner rows: 5270, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+  Kommuner rows: 5270, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'Kragerø', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
   Fylke row available: NO
 
 Processing: Framskrevet_folkemengde_2022-2050.csv
-  Kommuner rows: 4930, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+  Kommuner rows: 4930, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'Kragerø', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
   Fylke row available: NO
 
 Processing: Framskrevet_folkemengde_2024-2050.csv
-  Kommuner rows: 4590, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+  Kommuner rows: 4590, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'Kragerø', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
   Fylke row available: YES
 
 Processing: Framskrevet_folkemengde_2026-2050.csv
-  Kommuner rows: 4250, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'KragerÃ¸', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
+  Kommuner rows: 4250, unique kommuner: ['Bamble', 'Drangedal', 'Fyresdal', 'Hjartdal', 'Kragerø', 'Kviteseid', 'Midt-Telemark', 'Nissedal', 'Nome', 'Notodden', 'Porsgrunn', 'Seljord', 'Siljan', 'Skien', 'Tinn', 'Tokke', 'Vinje']
   Fylke row available: YES
 
 Total prediction kommune rows: 27200
@@ -44,18 +44,18 @@ Step 3: Building output CSV
 Output dataset: 31790 rows
 Kilder: ['Framskriving 2016', 'Framskriving 2018', 'Framskriving 2020', 'Framskriving 2022', 'Framskriving 2024', 'Framskriving 2026', 'Historisk']
 Years: 2000 - 2050
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkning_sammenlikning_historisk_og_framskrivinger.csv
-[2026-09-01 08:06:32] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkning_sammenlikning_historisk_og_framskrivinger.csv
+Saved file to C:\Analyse\Telemark\Python\Temp\befolkning_sammenlikning_historisk_og_framskrivinger.csv
+[2026-09-07 13:54:43] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\befolkning_sammenlikning_historisk_og_framskrivinger.csv
 No new data detected.
 
 ============================================================
-Step 4: Debug table â€” Total Telemark per year per source
+Step 4: Debug table — Total Telemark per year per source
 ============================================================
 
 Historical Telemark population at framskriving start years:
 ----------------------------------------
-Ã…r          Historisk
+År          Historisk
 ----------------------------------------
 2016          172,494
 2018          173,391
@@ -67,7 +67,7 @@ Historical Telemark population at framskriving start years:
 
 Total Telemark population per framskriving (selected years):
 ----------------------------------------------------------------------
-Kilde                Ã…r       Sum kommuner    Fylke-rad     Diff
+Kilde                År       Sum kommuner    Fylke-rad     Diff
 ----------------------------------------------------------------------
 Framskriving 2016    2016          172,494      172,494        0
 Framskriving 2016    2028          182,604      182,604        0
@@ -96,3 +96,5 @@ Framskriving 2026    2050          184,526      184,526        0
 
 Done!
 
+Errors/Warnings:
+Matplotlib is building the font cache; this may take a moment.
