@@ -1,14 +1,14 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Valgdeltakelse kommunevalg - kommuner (09475) JSON-stat data loaded successfully.
 Valgdeltakelse kommunevalg - fylke og land (09475) JSON-stat data loaded successfully.
-           region        statistikkvariabel fireÃ¥rlig  value
+           region        statistikkvariabel fireårlig  value
 0       Porsgrunn  Valgdeltakelse i prosent      2023   60.4
 1           Skien  Valgdeltakelse i prosent      2023   57.2
 2        Notodden  Valgdeltakelse i prosent      2023   57.0
 3          Siljan  Valgdeltakelse i prosent      2023   66.5
 4          Bamble  Valgdeltakelse i prosent      2023   62.3
-5         KragerÃ¸  Valgdeltakelse i prosent      2023   63.1
+5         Kragerø  Valgdeltakelse i prosent      2023   63.1
 6       Drangedal  Valgdeltakelse i prosent      2023   63.6
 7            Nome  Valgdeltakelse i prosent      2023   60.2
 8   Midt-Telemark  Valgdeltakelse i prosent      2023   57.7
@@ -22,8 +22,8 @@ Valgdeltakelse kommunevalg - fylke og land (09475) JSON-stat data loaded success
 16          Vinje  Valgdeltakelse i prosent      2023   67.1
 17    Hele landet  Valgdeltakelse i prosent      2023   62.4
 18       Telemark  Valgdeltakelse i prosent      2023   60.1
-['region', 'statistikkvariabel', 'fireÃ¥rlig', 'value']
-Kolonner: ['region', 'statistikkvariabel', 'fireÃ¥rlig', 'value']
+['region', 'statistikkvariabel', 'fireårlig', 'value']
+Kolonner: ['region', 'statistikkvariabel', 'fireårlig', 'value']
 
 --- Ferdig datasett ---
           Kommune  Andel (2023)          Label
@@ -31,7 +31,7 @@ Kolonner: ['region', 'statistikkvariabel', 'fireÃ¥rlig', 'value']
 1       Drangedal            64      Drangedal
 2        Fyresdal            68       Fyresdal
 3        Hjartdal            66       Hjartdal
-4         KragerÃ¸            63        KragerÃ¸
+4         Kragerø            63        Kragerø
 5       Kviteseid            64      Kviteseid
 6   Midt-Telemark            58  Midt-Telemark
 7        Nissedal            75       Nissedal
@@ -48,9 +48,8 @@ Kolonner: ['region', 'statistikkvariabel', 'fireÃ¥rlig', 'value']
 18         Landet            62         Landet
 
 Antall rader: 19
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\valgdeltakelse_kommunevalg.csv
-[2026-09-01 08:23:42] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\valgdeltakelse_kommunevalg.csv
+Saved file to C:\Analyse\Telemark\Python\Temp\valgdeltakelse_kommunevalg.csv
+[2026-09-07 14:06:59] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\valgdeltakelse_kommunevalg.csv
 No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Valgdeltakelse_kommunevalg.log
-
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Valgdeltakelse_kommunevalg.log
