@@ -1,13 +1,13 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-FullfÃ¸rte boliger etter boligtype (05940) JSON-stat data loaded successfully.
-  bygningstype     region statistikkvariabel    Ã¥r  value
-0     Enebolig  Porsgrunn  FullfÃ¸rte boliger  2000     18
-1     Enebolig  Porsgrunn  FullfÃ¸rte boliger  2001    149
-2     Enebolig  Porsgrunn  FullfÃ¸rte boliger  2002     34
-3     Enebolig  Porsgrunn  FullfÃ¸rte boliger  2003     27
-4     Enebolig  Porsgrunn  FullfÃ¸rte boliger  2004     15
-['bygningstype', 'region', 'statistikkvariabel', 'Ã¥r', 'value']
+Fullførte boliger etter boligtype (05940) JSON-stat data loaded successfully.
+  bygningstype     region statistikkvariabel    år  value
+0     Enebolig  Porsgrunn  Fullførte boliger  2000     18
+1     Enebolig  Porsgrunn  Fullførte boliger  2001    149
+2     Enebolig  Porsgrunn  Fullførte boliger  2002     34
+3     Enebolig  Porsgrunn  Fullførte boliger  2003     27
+4     Enebolig  Porsgrunn  Fullførte boliger  2004     15
+['bygningstype', 'region', 'statistikkvariabel', 'år', 'value']
   Kommunenummer    Kommune  ... Sort_Bygningstype_4_gr Antall
 0          4001  Porsgrunn  ...                      1     18
 1          4001  Porsgrunn  ...                      1    149
@@ -16,9 +16,8 @@ FullfÃ¸rte boliger etter boligtype (05940) JSON-stat data loaded successfully.
 4          4001  Porsgrunn  ...                      1     15
 
 [5 rows x 10 columns]
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\fullfÃ¸rte_boliger_etter_boligtype.csv
-[2026-09-01 08:24:54] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\fullfÃ¸rte_boliger_etter_boligtype.csv
+Saved file to C:\Analyse\Telemark\Python\Temp\fullførte_boliger_etter_boligtype.csv
+[2026-09-07 14:07:35] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\fullførte_boliger_etter_boligtype.csv
 No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Bolig_-_Fullforte_boliger_etter_boligtype.log
-
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Bolig_-_Fullforte_boliger_etter_boligtype.log
