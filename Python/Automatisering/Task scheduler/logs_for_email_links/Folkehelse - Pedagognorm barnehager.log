@@ -1,11 +1,11 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
   Porsgrunn (4001): 96.2 %
   Skien (4003): 93.0 %
   Notodden (4005): 83.3 %
   Siljan (4010): 100.0 %
   Bamble (4012): 72.7 %
-  KragerÃ¸ (4014): 100.0 %
+  Kragerø (4014): 100.0 %
   Drangedal (4016): 66.7 %
   Nome (4018): 83.3 %
   Midt-Telemark (4020): 62.5 %
@@ -25,7 +25,7 @@ Hentet data for 17 kommuner.
 2           4005       Notodden  ...                              16.7          552
 3           4010         Siljan  ...                               0.0          119
 4           4012         Bamble  ...                              18.2          597
-5           4014        KragerÃ¸  ...                               0.0          386
+5           4014        Kragerø  ...                               0.0          386
 6           4016      Drangedal  ...                               0.0          184
 7           4018           Nome  ...                               0.0          282
 8           4020  Midt-Telemark  ...                              37.5          484
@@ -60,7 +60,7 @@ Kommuner under 50 %:
 
 Kommuner med 100 %:
   Siljan
-  KragerÃ¸
+  Kragerø
   Seljord
   Hjartdal
 
@@ -71,7 +71,7 @@ Kommunenummer       Kommune  Andel oppfyller pedagognormen  Andel oppfyller ikke
          4005      Notodden                           83.3                                 0.0                              16.7          552
          4010        Siljan                          100.0                                 0.0                               0.0          119
          4012        Bamble                           72.7                                 9.1                              18.2          597
-         4014       KragerÃ¸                          100.0                                 0.0                               0.0          386
+         4014       Kragerø                          100.0                                 0.0                               0.0          386
          4016     Drangedal                           66.7                                33.3                               0.0          184
          4018          Nome                           83.3                                16.7                               0.0          282
          4020 Midt-Telemark                           62.5                                 0.0                              37.5          484
@@ -93,7 +93,7 @@ Kommunenummer       Kommune  Andel oppfyller pedagognormen  Andel oppfyller ikke
      Notodden            83      Notodden
        Siljan           100        Siljan
        Bamble            73        Bamble
-      KragerÃ¸           100       KragerÃ¸
+      Kragerø           100       Kragerø
     Drangedal            67     Drangedal
          Nome            83          Nome
 Midt-Telemark            62 Midt-Telemark
@@ -107,9 +107,8 @@ Midt-Telemark            62 Midt-Telemark
         Vinje            50         Vinje
      Telemark            85      Telemark
        Landet            65        Landet
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\pedagognorm_barnehager.csv
-[2026-09-01 08:24:07] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\pedagognorm_barnehager.csv
+Saved file to C:\Analyse\Telemark\Python\Temp\pedagognorm_barnehager.csv
+[2026-09-07 14:07:14] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\pedagognorm_barnehager.csv
 No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Pedagognorm_barnehager.log
-
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Pedagognorm_barnehager.log
