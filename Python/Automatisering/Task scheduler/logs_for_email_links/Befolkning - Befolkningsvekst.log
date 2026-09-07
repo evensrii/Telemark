@@ -1,9 +1,9 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Befolkningsvekst kommuner JSON-stat data loaded successfully.
 Befolkningsvekst Norge JSON-stat data loaded successfully.
 Kommuner raw data: 85 rows
-      region    statistikkvariabel    Ã¥r  value
+      region    statistikkvariabel    år  value
 0  Porsgrunn  Befolkning 1. januar  2022  36624
 1  Porsgrunn  Befolkning 1. januar  2023  37056
 2  Porsgrunn  Befolkning 1. januar  2024  37193
@@ -15,14 +15,14 @@ Kommuner raw data: 85 rows
 8      Skien  Befolkning 1. januar  2025  56866
 9      Skien  Befolkning 1. januar  2026  56906
 Landet raw data: 5 rows
-        region    statistikkvariabel    Ã¥r    value
+        region    statistikkvariabel    år    value
 0  Hele landet  Befolkning 1. januar  2022  5425270
 1  Hele landet  Befolkning 1. januar  2023  5488984
 2  Hele landet  Befolkning 1. januar  2024  5550203
 3  Hele landet  Befolkning 1. januar  2025  5594340
 4  Hele landet  Befolkning 1. januar  2026  5627400
 Fylke (summed from kommuner):
-     region    Ã¥r   value
+     region    år   value
 0  Telemark  2022  173970
 1  Telemark  2023  175546
 2  Telemark  2024  177093
@@ -35,7 +35,7 @@ Calculating change from 2022 to 2026
 2        Notodden                  3       Notodden
 3          Siljan                  1         Siljan
 4          Bamble                  2         Bamble
-5         KragerÃ¸                  0        KragerÃ¸
+5         Kragerø                  0        Kragerø
 6       Drangedal                 -1      Drangedal
 7            Nome                  1           Nome
 8   Midt-Telemark                  6  Midt-Telemark
@@ -49,9 +49,8 @@ Calculating change from 2022 to 2026
 16          Vinje                  2          Vinje
 17       Telemark                  2       Telemark
 18    Hele landet                  4    Hele landet
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\befolkningsvekst.csv
-[2026-09-01 08:07:17] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\befolkningsvekst.csv
+Saved file to C:\Analyse\Telemark\Python\Temp\befolkningsvekst.csv
+[2026-09-07 13:55:04] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\befolkningsvekst.csv
 No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsvekst.log
-
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Befolkningsvekst.log
