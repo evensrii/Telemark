@@ -1,19 +1,21 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 All tasks completed successfully.
 
 Unique NACE codes in the dataset:
 
 NACE Kode:
-['20.130' '17.120' '24.420' '23.510' '20.160' '20.150' '46.739' '23.410'
- '21.200' '30.113' '11.070' '20.140' '24.100' '24.510' '38.220' '10.510'
- '46.693']
+<StringArray>
+['17.120', '20.130', '24.420', '23.510', '20.160', '20.150', '46.739',
+ '23.410', '21.200', '30.113', '11.070', '20.140', '24.100', '24.510',
+ '38.220', '10.510', '46.693']
+Length: 17, dtype: str
 
 Column names in DataFrame:
-['Ã…r', 'Utslipp fra landbasert industri (norskeutslipp.no)', 'Totale utslipp fra industrien (Mdir)', 'Mdir enkeltÃ¥r']
+['År', 'Utslipp fra landbasert industri (norskeutslipp.no)', 'Totale utslipp fra industrien (Mdir)', 'Mdir enkeltår']
 
 Sample data:
-     Ã…r  ...  Mdir enkeltÃ¥r
+     År  ...  Mdir enkeltår
 0  2001  ...            NaN
 1  2002  ...            NaN
 2  2003  ...            NaN
@@ -21,18 +23,16 @@ Sample data:
 4  2005  ...            NaN
 
 [5 rows x 4 columns]
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-[2026-09-01 08:13:41] No value columns found to compare. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
-[2026-09-01 08:13:41] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
+Saved file to C:\Analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
+[2026-09-07 13:59:32] No value columns found to compare. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\norskeutslipp_detaljert_telemark.csv
+Saved file to C:\Analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
+[2026-09-07 13:59:33] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\norskeutslipp_everviz.csv
 No new data detected in norskeutslipp_detaljert_telemark.csv.
 No new data detected in norskeutslipp_everviz.csv.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Utslipp_fra_landbasert_industri.log
-
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Utslipp_fra_landbasert_industri.log
 
 Errors/Warnings:
-D:\Scripts\analyse\Telemark\Python\Helper_scripts\github_functions.py:259: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
-  input_df[col] = input_df[col].fillna('')
-
+C:\Analyse\Telemark\Python\Queries/04_Klima_og_energi/Klimagassutslipp/norskeutslipp.py:119: UserWarning: obj.round has no effect with datetime, timedelta, or period dtypes. Use obj.dt.round(...) instead.
+  df = df.round(2)
