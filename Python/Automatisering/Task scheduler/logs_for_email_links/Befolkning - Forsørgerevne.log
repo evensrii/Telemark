@@ -1,39 +1,39 @@
-Loaded .env file from: D:\Scripts\analyse\Telemark\Python\token.env
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-ForsÃ¸rgerevne kommuner JSON-stat data loaded successfully.
-ForsÃ¸rgerevne Telemark fylke JSON-stat data loaded successfully.
-ForsÃ¸rgerevne Norge JSON-stat data loaded successfully.
+Forsørgerevne kommuner JSON-stat data loaded successfully.
+Forsørgerevne Telemark fylke JSON-stat data loaded successfully.
+Forsørgerevne Norge JSON-stat data loaded successfully.
 Kommuner raw data: 68 rows
-      region              alder statistikkvariabel    Ã¥r  value
-0  Porsgrunn             0-5 Ã¥r           Personer  2026   1992
-1  Porsgrunn            6-15 Ã¥r           Personer  2026   4045
-2  Porsgrunn           16-66 Ã¥r           Personer  2026  24162
-3  Porsgrunn  67 Ã¥r eller eldre           Personer  2026   7236
-4      Skien             0-5 Ã¥r           Personer  2026   3146
-5      Skien            6-15 Ã¥r           Personer  2026   6314
-6      Skien           16-66 Ã¥r           Personer  2026  36443
-7      Skien  67 Ã¥r eller eldre           Personer  2026  11003
-8   Notodden             0-5 Ã¥r           Personer  2026    677
-9   Notodden            6-15 Ã¥r           Personer  2026   1469
+      region              alder statistikkvariabel    år  value
+0  Porsgrunn             0-5 år           Personer  2026   1992
+1  Porsgrunn            6-15 år           Personer  2026   4045
+2  Porsgrunn           16-66 år           Personer  2026  24162
+3  Porsgrunn  67 år eller eldre           Personer  2026   7236
+4      Skien             0-5 år           Personer  2026   3146
+5      Skien            6-15 år           Personer  2026   6314
+6      Skien           16-66 år           Personer  2026  36443
+7      Skien  67 år eller eldre           Personer  2026  11003
+8   Notodden             0-5 år           Personer  2026    677
+9   Notodden            6-15 år           Personer  2026   1469
 Fylke raw data: 4 rows
-     region              alder statistikkvariabel    Ã¥r   value
-0  Telemark             0-5 Ã¥r           Personer  2026    9416
-1  Telemark            6-15 Ã¥r           Personer  2026   19164
-2  Telemark           16-66 Ã¥r           Personer  2026  112728
-3  Telemark  67 Ã¥r eller eldre           Personer  2026   36615
+     region              alder statistikkvariabel    år   value
+0  Telemark             0-5 år           Personer  2026    9416
+1  Telemark            6-15 år           Personer  2026   19164
+2  Telemark           16-66 år           Personer  2026  112728
+3  Telemark  67 år eller eldre           Personer  2026   36615
 Landet raw data: 4 rows
-        region              alder statistikkvariabel    Ã¥r    value
-0  Hele landet             0-5 Ã¥r           Personer  2026   332053
-1  Hele landet            6-15 Ã¥r           Personer  2026   629931
-2  Hele landet           16-66 Ã¥r           Personer  2026  3705783
-3  Hele landet  67 Ã¥r eller eldre           Personer  2026   959633
-Calculated forsÃ¸rgerevne for 2026
-alder         Region  ForsÃ¸rgerevne (2026)          Label
+        region              alder statistikkvariabel    år    value
+0  Hele landet             0-5 år           Personer  2026   332053
+1  Hele landet            6-15 år           Personer  2026   629931
+2  Hele landet           16-66 år           Personer  2026  3705783
+3  Hele landet  67 år eller eldre           Personer  2026   959633
+Calculated forsørgerevne for 2026
+alder         Region  Forsørgerevne (2026)          Label
 0             Bamble                   1.7         Bamble
 1          Drangedal                   1.7      Drangedal
 2           Fyresdal                   1.7       Fyresdal
 3           Hjartdal                   1.5       Hjartdal
-4            KragerÃ¸                   1.5        KragerÃ¸
+4            Kragerø                   1.5        Kragerø
 5          Kviteseid                   1.6      Kviteseid
 6      Midt-Telemark                   1.8  Midt-Telemark
 7           Nissedal                   1.4       Nissedal
@@ -48,9 +48,8 @@ alder         Region  ForsÃ¸rgerevne (2026)          Label
 16             Vinje                   1.6          Vinje
 17          Telemark                   1.7       Telemark
 18       Hele landet                   1.9    Hele landet
-Saved file to D:\Scripts\analyse\Telemark\Python\Temp\forsÃ¸rgerevne.csv
-[2026-09-01 08:07:28] No new data to upload. Skipping GitHub update.
-Keeping CSV file: D:\Scripts\analyse\Telemark\Python\Temp\forsÃ¸rgerevne.csv
+Saved file to C:\Analyse\Telemark\Python\Temp\forsørgerevne.csv
+[2026-09-07 13:55:10] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\forsørgerevne.csv
 No new data detected.
-New data status log written to D:\Scripts\analyse\Telemark\Python\Log\new_data_status_Befolkning_-_ForsÃ¸rgerevne.log
-
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Forsørgerevne.log
