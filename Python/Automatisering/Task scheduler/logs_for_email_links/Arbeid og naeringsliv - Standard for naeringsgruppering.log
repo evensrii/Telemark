@@ -39,15 +39,14 @@ Nace_5_navn: Produksjon av matfisk, bløtdyr og krepsdyr i ferskvannsbasert akva
 
 Kept first instance of each Nace_5_nr, removed 192 near-duplicates.
 Final dataset: 1064 rows with 1064 unique Nace_5_nr values.
+✓ Verification passed: All Nace_5_nr values are unique.
+Saved file to C:\Analyse\Telemark\Python\Temp\standard_for_naeringsgruppering.csv
+[2026-09-08 09:51:47] Changes detected in the dataset.
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/nace_klassifisering.py", line 235, in <module>
-    df_standard_for_naeringsgruppering = restructure_nace_data(df_raw)
-  File "C:\Analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/nace_klassifisering.py", line 223, in restructure_nace_data
-    print("\u2713 Verification passed: All Nace_5_nr values are unique.")
-    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+[2026-09-08 09:51:47] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/03_Arbeid og næringsliv/02_Næringsliv/Virksomheter/Nace-tabell/standard_for_naeringsgruppering.csv
+
+No changes found in the last 200 rows, but changes exist elsewhere in the dataset.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\standard_for_naeringsgruppering.csv
+New data detected and pushed to GitHub.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Standard_for_naeringsgruppering.log
