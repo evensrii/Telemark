@@ -6,13 +6,25 @@ FHI Query: Drikkevann.txt
 ======================================================================
 
 Loading query from file...
+  ✓ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/341/data
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/FHI/scripts/Miljø/drikkevann.py", line 87, in <module>
-    print(f"  \u2713 Query loaded")
-    ~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  ✓ Fetched 570 rows and 6 columns
+  Columns: Geografi, År, Parameter, Forsyningskvalitet, Måltall, value
+
+After processing: 570 rows and 7 columns
+
+Comparing with GitHub...
+Saved file to C:\Analyse\Telemark\Python\Temp\drikkevann.csv
+[2026-09-08 09:59:13] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\drikkevann.csv
+  ✓ No changes detected
+
+  ✓ Saved to: C:\Analyse\Telemark\Python\Temp\drikkevann.csv
+
+======================================================================
+Processing complete
+======================================================================
+
