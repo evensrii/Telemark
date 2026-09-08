@@ -18,31 +18,9 @@ After processing: 190 rows and 9 columns
 
 Comparing with GitHub...
 Saved file to C:\Analyse\Telemark\Python\Temp\hoftebrudd.csv
-[2026-09-08 09:59:30] Changes detected in the dataset.
-File uploaded successfully: Data/08_Folkehelse og levekår/Skader og ulykker/Skader/hoftebrudd.csv
-
-Showing up to 5 examples of changes:
-
-Row: Kommune: Hele landet
-  Antall: 16.3 -> 16.0
-
-Row: Kommune: Hele landet
-  r: 2015-01-01 -> 2016-01-01
-
-Row: Kommune: Hele landet
-  r (intervall): 2013-2015 -> 2014-2016
-
-Row: Kommune: Hele landet
-  Antall: 16.1 -> 15.7
-
-Row: Kommune: Hele landet
-  r: 2016-01-01 -> 2017-01-01
-
-Total changes found in examined rows: 459
-(Showing first 5 changes only)
+[2026-09-08 12:06:57] No new data to upload. Skipping GitHub update.
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\hoftebrudd.csv
-  ✓ New data detected and uploaded to GitHub
-New data detected
+  ✓ No changes detected
 
   ✓ Saved to: C:\Analyse\Telemark\Python\Temp\hoftebrudd.csv
 
