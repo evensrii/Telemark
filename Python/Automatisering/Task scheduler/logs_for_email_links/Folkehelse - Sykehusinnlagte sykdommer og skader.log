@@ -18,33 +18,9 @@ After processing: 51870 rows and 10 columns
 
 Comparing with GitHub...
 Saved file to C:\Analyse\Telemark\Python\Temp\sykehusinnlagte_sykdommer_og_skader.csv
-[2026-09-08 09:58:43] Changes detected in the dataset.
-
-[2026-09-08 09:58:43] Dataset is large. Showing detailed changes from the last 200 rows only.
-File uploaded successfully: Data/08_Folkehelse og levekår/Helsetilstand/Hjerte- og karsykdommer/sykehusinnlagte_sykdommer_og_skader.csv
-
-Showing up to 5 examples of changes from the last 200 rows:
-
-Row: Kommune: Vinje
-  Antall: 37.2 -> 29.2
-
-Row: Kommune: Vinje
-  r: 2024-01-01 -> 2025-01-01
-
-Row: Kommune: Vinje
-  r: 2024-01-01 -> 2025-01-01
-
-Row: Kommune: Vinje
-  r: 2024-01-01 -> 2025-01-01
-
-Row: Kommune: Vinje
-  r: 2024-01-01 -> 2025-01-01
-
-Total changes found in examined rows: 234
-(Showing first 5 changes only)
+[2026-09-08 12:06:12] No new data to upload. Skipping GitHub update.
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\sykehusinnlagte_sykdommer_og_skader.csv
-  ✓ New data detected and uploaded to GitHub
-New data detected
+  ✓ No changes detected
 
   ✓ Saved to: C:\Analyse\Telemark\Python\Temp\sykehusinnlagte_sykdommer_og_skader.csv
 
