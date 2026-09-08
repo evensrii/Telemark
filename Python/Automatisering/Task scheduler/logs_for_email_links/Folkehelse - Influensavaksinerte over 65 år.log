@@ -6,13 +6,25 @@ FHI Query: Influensavaksinerte over 65 år.txt
 ======================================================================
 
 Loading query from file...
+  ✓ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/396/data
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Vaksinasjon/influensavaksinerte_over_65_aar.py", line 87, in <module>
-    print(f"  \u2713 Query loaded")
-    ~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  ✓ Fetched 19 rows and 4 columns
+  Columns: Geografi, År, Måltall, value
+
+After processing: 19 rows and 3 columns
+
+Comparing with GitHub...
+Saved file to C:\Analyse\Telemark\Python\Temp\influensavaksinerte_over_65_aar.csv
+[2026-09-08 09:59:10] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\influensavaksinerte_over_65_aar.csv
+  ✓ No changes detected
+
+  ✓ Saved to: C:\Analyse\Telemark\Python\Temp\influensavaksinerte_over_65_aar.csv
+
+======================================================================
+Processing complete
+======================================================================
+
