@@ -3,4 +3,11 @@ Errors:
 Traceback (most recent call last):
   File "C:\Analyse\Telemark\Python\Queries/Bystrategi_Grenland/Areal_og_byutvikling/Befolkning/befolkning_250_m.py", line 26, in <module>
     import geopandas as gpd
-ModuleNotFoundError: No module named 'geopandas'
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\geopandas\__init__.py", line 3, in <module>
+    from geopandas.geoseries import GeoSeries  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\geopandas\geoseries.py", line 12, in <module>
+    from geopandas.base import GeoPandasBase, _delegate_property
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\geopandas\base.py", line 9, in <module>
+    from shapely.ops import cascaded_union
+ImportError: cannot import name 'cascaded_union' from 'shapely.ops' (C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\shapely\ops.py)
