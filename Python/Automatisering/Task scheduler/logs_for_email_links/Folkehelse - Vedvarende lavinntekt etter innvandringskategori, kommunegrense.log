@@ -6,13 +6,34 @@ FHI Query: Vedvarende lavinntekt etter innvandringskategori, kommunegrense.txt
 ======================================================================
 
 Loading query from file...
+  ✓ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/403/data
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/Levekår/Inntekt og gjeld/vedvarende_lavinntekt_etter_innvandringskategori_kommunegrense.py", line 87, in <module>
-    print(f"  \u2713 Query loaded")
-    ~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  ✓ Fetched 152 rows and 7 columns
+  Columns: Geografi, År, Alder, Innvandringsbakgrunn, Lavinntektsgrense, Måltall, value
+  Latest period: 2021-2023
+
+After processing: 19 rows (alle aldre), 19 rows (0-17 år)
+
+Comparing with GitHub...
+
+  Processing: vedvarende_lavinntekt_alle_aldre.csv
+Saved file to C:\Analyse\Telemark\Python\Temp\vedvarende_lavinntekt_alle_aldre.csv
+[2026-09-08 09:59:24] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\vedvarende_lavinntekt_alle_aldre.csv
+    ✓ No changes detected
+
+  Processing: vedvarende_lavinntekt_0-17.csv
+Saved file to C:\Analyse\Telemark\Python\Temp\vedvarende_lavinntekt_0-17.csv
+[2026-09-08 09:59:24] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\vedvarende_lavinntekt_0-17.csv
+    ✓ No changes detected
+  ✓ Saved to: C:\Analyse\Telemark\Python\Temp\vedvarende_lavinntekt_alle_aldre.csv
+  ✓ Saved to: C:\Analyse\Telemark\Python\Temp\vedvarende_lavinntekt_0-17.csv
+
+======================================================================
+Processing complete
+======================================================================
+
