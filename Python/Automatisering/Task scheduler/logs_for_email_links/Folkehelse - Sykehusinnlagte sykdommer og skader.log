@@ -6,13 +6,49 @@ FHI Query: Sykehusinnlagte sykdommer og skader.txt
 ======================================================================
 
 Loading query from file...
+  ✓ Query loaded
+  URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/699/data
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Hjerte- og karsykdommer/sykehusinnlagte_sykdommer_og_skader.py", line 87, in <module>
-    print(f"  \u2713 Query loaded")
-    ~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
+Fetching data from FHI API...
+FHI Query JSON-stat data loaded successfully.
+  ✓ Fetched 51870 rows and 7 columns
+  Columns: Geografi, År, Kjønn, Alder, Sykdomsgruppe, Måltall, value
+
+After processing: 51870 rows and 10 columns
+
+Comparing with GitHub...
+Saved file to C:\Analyse\Telemark\Python\Temp\sykehusinnlagte_sykdommer_og_skader.csv
+[2026-09-08 09:58:43] Changes detected in the dataset.
+
+[2026-09-08 09:58:43] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/08_Folkehelse og levekår/Helsetilstand/Hjerte- og karsykdommer/sykehusinnlagte_sykdommer_og_skader.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: Kommune: Vinje
+  Antall: 37.2 -> 29.2
+
+Row: Kommune: Vinje
+  r: 2024-01-01 -> 2025-01-01
+
+Row: Kommune: Vinje
+  r: 2024-01-01 -> 2025-01-01
+
+Row: Kommune: Vinje
+  r: 2024-01-01 -> 2025-01-01
+
+Row: Kommune: Vinje
+  r: 2024-01-01 -> 2025-01-01
+
+Total changes found in examined rows: 234
+(Showing first 5 changes only)
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\sykehusinnlagte_sykdommer_og_skader.csv
+  ✓ New data detected and uploaded to GitHub
+New data detected
+
+  ✓ Saved to: C:\Analyse\Telemark\Python\Temp\sykehusinnlagte_sykdommer_og_skader.csv
+
+======================================================================
+Processing complete
+======================================================================
+
