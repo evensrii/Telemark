@@ -1,7 +1,7 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 === Luftforurensning Grenland (Excel) ===
-Script started: 2026-09-08 08:18:45
+Script started: 2026-09-08 10:02:35
 === Listing Excel files from GitHub ===
 Found 20 Excel files:
   - PM10 og NO2 døgn 2014 (KM og FM, mangler).xlsx
@@ -109,18 +109,35 @@ Combining 20 DataFrames...
   Dropping 36 rows with invalid/missing 'Fra-tid'
 
 === Final transformations ===
+✓ Removed 'Til-tid'
+✓ Converted 'Fra-tid' to 'Dato'
+✓ Reordered columns: Dato + 9 measurement + 9 datadekning
+✓ Converted 9 'Datadekning' columns to fraction
+✓ Ensured 9 measurement columns are float64
+✓ Rounded 18 numeric columns to 8 decimal places
+✓ Ensured proper data types for CSV consistency
+Final shape: (4474, 19)
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py", line 482, in <module>
-    main()
-    ~~~~^^
-  File "C:\Analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py", line 386, in main
-    df = load_and_combine_luftforurensing_from_github_excel()
-  File "C:\Analyse\Telemark\Python\Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py", line 306, in load_and_combine_luftforurensing_from_github_excel
-    print("\u2713 Removed 'Til-tid'")
-    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+Processed total rows: 4474
+Preview:
+         Dato  Furulund NO2 µg/m³  ...  Datadekning (%).7  Datadekning (%).8
+0  2014-01-01                 NaN  ...                NaN                NaN
+1  2014-01-02                 NaN  ...                NaN                NaN
+2  2014-01-03                 NaN  ...                NaN                NaN
+
+[3 rows x 19 columns]
+
+Date range: 2014-01-01 to 2026-05-01
+Data types: {dtype('float64'): 18, dtype('O'): 1}
+Column order: ['Dato', 'Furulund NO2 µg/m³', 'Furulund PM10 µg/m³', 'Haukenes NO2 µg/m³', 'Knarrdalstranda NO2 µg/m³']...['Datadekning (%).6', 'Datadekning (%).7', 'Datadekning (%).8']
+
+NaN counts per column: {'Furulund NO2 µg/m³': np.int64(939), 'Furulund PM10 µg/m³': np.int64(1323), 'Haukenes NO2 µg/m³': np.int64(120), 'Knarrdalstranda NO2 µg/m³': np.int64(1187), 'Knarrdalstranda PM10 µg/m³': np.int64(1233), 'Lensmannsdalen NO2 µg/m³': np.int64(103), 'Lensmannsdalen PM10 µg/m³': np.int64(112), 'Sverresgate NO2 µg/m³': np.int64(98), 'Sverresgate PM10 µg/m³': np.int64(57), 'Datadekning (%)': np.int64(109), 'Datadekning (%).1': np.int64(105), 'Datadekning (%).2': np.int64(118), 'Datadekning (%).3': np.int64(98), 'Datadekning (%).4': np.int64(57), 'Datadekning (%).5': np.int64(939), 'Datadekning (%).6': np.int64(1326), 'Datadekning (%).7': np.int64(1233), 'Datadekning (%).8': np.int64(1187)}
+
+✅ Saved copy to temp folder: C:\Analyse\Telemark\Python\Temp\luftforurensing_grenland.csv
+
+=== Comparing with existing GitHub data ===
+Downloaded existing CSV: 4474 rows, 19 columns
+✅ No changes detected - data is identical
+
+🎯 RESULT: No new data - Excel files match existing CSV
+Status log: C:\Analyse\Telemark\Python\Log\new_data_status_Bystrategi_Grenland_-_Luftforurensing.log
