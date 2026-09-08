@@ -218,11 +218,21 @@ def run_script(script_path, task_name):
         # `analyse` env) instead of shelling out through `conda run` - on
         # Windows, "conda" resolves to conda.bat, which subprocess.run()
         # can't launch without shell=True.
+        # Force UTF-8 for the child process's stdio: when stdout/stderr are
+        # redirected to a pipe (as they are here via capture_output), Python
+        # falls back to the system codepage (cp1252 on this machine) instead
+        # of UTF-8, which crashes any script that prints non-cp1252 characters
+        # (e.g. "✓") with UnicodeEncodeError.
+        child_env = os.environ.copy()
+        child_env["PYTHONIOENCODING"] = "utf-8"
+
         result = subprocess.run(
             [sys.executable, script_path],
             capture_output=True,
             text=True,
+            encoding="utf-8",
             check=True,
+            env=child_env,
         )
 
         # Write script output to its log file
@@ -268,7 +278,9 @@ def send_email():
         
         # Quote the script path to handle spaces
         command = f'cmd.exe /c "conda activate {CONDA_ENV} && python \"{email_script_path}\""'
-        subprocess.run(command, shell=True, stdout=email_log, stderr=subprocess.STDOUT)
+        child_env = os.environ.copy()
+        child_env["PYTHONIOENCODING"] = "utf-8"
+        subprocess.run(command, shell=True, stdout=email_log, stderr=subprocess.STDOUT, env=child_env)
 
 
 def main():
