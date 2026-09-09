@@ -256,7 +256,7 @@ def main():
             combined_df['Dato'] = pd.to_datetime(combined_df['Dato'], errors='coerce')
         if 'SistOppdatert' in combined_df.columns:
             try:
-                combined_df['SistOppdatert'] = pd.to_datetime(combined_df['SistOppdatert'], errors='coerce')
+                combined_df['SistOppdatert'] = pd.to_datetime(combined_df['SistOppdatert'], errors='coerce', utc=True)
             except Exception:
                 pass
         # Fill NaNs in key columns with ''
@@ -269,10 +269,18 @@ def main():
     if 'Dato' in combined_df.columns:
         combined_df['Dato'] = pd.to_datetime(combined_df['Dato'], errors='coerce')
     if 'SistOppdatert' in combined_df.columns:
-        combined_df['SistOppdatert'] = pd.to_datetime(combined_df['SistOppdatert'], errors='coerce')
+        combined_df['SistOppdatert'] = pd.to_datetime(combined_df['SistOppdatert'], errors='coerce', utc=True)
     if all(col in combined_df.columns for col in sort_cols):
         combined_df = combined_df.drop_duplicates(subset=['Kommunenummer', 'Dato', 'MeteringPointTypeCode', 'Kilde'], keep='last')
         combined_df = combined_df.sort_values(sort_cols).reset_index(drop=True)
+
+    # Format date/timestamp columns as plain strings (avoids datetime64 dtype being
+    # stringified with a mismatched format, which would never match the strings
+    # already stored in the CSV on GitHub and trigger a false "change" every run)
+    if 'Dato' in combined_df.columns:
+        combined_df['Dato'] = combined_df['Dato'].dt.strftime('%Y-%m-%d')
+    if 'SistOppdatert' in combined_df.columns:
+        combined_df['SistOppdatert'] = combined_df['SistOppdatert'].astype(str)
 
     # 6. Save and upload only the combined file
     task_name = "Klima og energi - Installert_effekt (Elhub)"

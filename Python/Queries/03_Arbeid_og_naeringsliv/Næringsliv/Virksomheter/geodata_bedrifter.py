@@ -398,6 +398,10 @@ df_filtered_output['Overordnet enhet'] = pd.to_numeric(df_filtered_output['Overo
 
 print(f"✓ Reordered columns and cleaned 'Overordnet enhet'")
 
+# Format "Dato for etablering" as a plain date string (avoids datetime64 dtype being
+# stringified with a " 00:00:00" time component, which would never match the plain
+# date strings already stored in the CSV on GitHub and trigger a false "change" every run)
+df_filtered_output['Dato for etablering'] = df_filtered_output['Dato for etablering'].dt.strftime('%Y-%m-%d')
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 

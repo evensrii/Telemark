@@ -309,6 +309,11 @@ df_barnehage_pivot = df_barnehage_pivot[
     ["År", "Minoritetsspråklige", "Ikke-minoritetsspråklige"]
 ]
 
+# Format "År" as a plain date string (avoids datetime64 dtype being stringified
+# with a " 00:00:00" time component, which would never match the plain date
+# strings already stored in the CSV on GitHub and trigger a false "change" every run)
+df_barnehage_pivot["År"] = df_barnehage_pivot["År"].dt.strftime("%Y-%m-%d")
+
 df_barnehage_pivot.head()
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################

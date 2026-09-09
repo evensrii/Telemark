@@ -165,6 +165,11 @@ df_aggregert.groupby(["År", "Kategori"], as_index=False)["Antall"].sum()
 
 # HAR MANUELT SUMMERT OPP ENKELTKOMMUNENE I TELEMARK HOS IMDI MED TALL FRA 2023 - DETTE STEMMER! :)
 
+# Format "År" as a plain date string (avoids datetime64 dtype being stringified
+# with a " 00:00:00" time component, which would never match the plain date
+# strings already stored in the CSV on GitHub and trigger a false "change" every run)
+df_aggregert["År"] = df_aggregert["År"].dt.strftime("%Y-%m-%d")
+
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "anmodninger_og_faktisk_bosetting.csv"

@@ -202,6 +202,11 @@ df_telemark = df_telemark.pivot(
     index="År", columns="Kategori", values="Antall"
 ).reset_index()
 
+# Format "År" as a plain date string (avoids datetime64 dtype being stringified
+# with a " 00:00:00" time component, which would never match the plain date
+# strings already stored in the CSV on GitHub and trigger a false "change" every run)
+df_telemark["År"] = df_telemark["År"].dt.strftime("%Y-%m-%d")
+
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "bosetting_enslige_mindreårige.csv"

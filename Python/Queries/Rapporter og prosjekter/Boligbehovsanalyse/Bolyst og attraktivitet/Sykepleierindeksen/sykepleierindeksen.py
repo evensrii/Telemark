@@ -643,6 +643,10 @@ if latest_historisk is not None:
     latest_historisk['Andel'] = latest_historisk['Andel'] / 100
     latest_historisk['År'] = pd.to_datetime(latest_historisk['År'], format='%Y')
     latest_historisk = latest_historisk.sort_values(['Område', 'År']).reset_index(drop=True)
+    # Format "År" as a plain date string (avoids datetime64 dtype being stringified
+    # with a " 00:00:00" time component, which would never match the plain date
+    # strings already stored in the CSV on GitHub and trigger a false "change" every run)
+    latest_historisk['År'] = latest_historisk['År'].dt.strftime('%Y-%m-%d')
 
 # %% Build DataFrames
 

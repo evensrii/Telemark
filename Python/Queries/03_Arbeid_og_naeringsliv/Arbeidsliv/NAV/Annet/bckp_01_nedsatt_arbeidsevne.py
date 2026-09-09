@@ -186,6 +186,11 @@ task_name = "NAV - Nedsatt arbeidsevne"
 github_folder = "Data/03_Arbeid og næringsliv/01_Arbeidsliv/NAV/Nedsatt arbeidsevne"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
+# Format "Dato" as a plain date string (avoids datetime64 dtype being stringified
+# with a " 00:00:00" time component, which would never match the plain date
+# strings already stored in the CSV on GitHub and trigger a false "change" every run)
+df_nedsatt['Dato'] = df_nedsatt['Dato'].dt.strftime('%Y-%m-%d')
+
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df_nedsatt, file_name, github_folder, temp_folder, keepcsv=True)
 

@@ -196,6 +196,12 @@ temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Create a copy for comparison and convert Int64 to regular int to avoid type conflicts
 df_compare = df_ledighet.copy()
+
+# Format "Dato" as a plain date string (avoids datetime64 dtype being stringified
+# with a " 00:00:00" time component, which would never match the plain date
+# strings already stored in the CSV on GitHub and trigger a false "change" every run)
+df_compare["Dato"] = df_compare["Dato"].dt.strftime("%Y-%m-%d")
+
 for col in df_compare.select_dtypes(include=['Int64']).columns:
     # Convert Int64 to regular int, filling NaN with 0
     df_compare[col] = df_compare[col].fillna(0).astype('int64')
