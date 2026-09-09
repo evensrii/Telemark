@@ -2,25 +2,25 @@ Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Botid CSV data loaded successfully.
 Saved file to C:\Analyse\Telemark\Python\Temp\botid.csv
-[2026-09-08 12:04:27] Changes detected in the dataset.
+[2026-09-09 08:15:18] Changes detected in the dataset.
 
-[2026-09-08 12:04:27] Dataset is large. Showing detailed changes from the last 200 rows only.
+[2026-09-09 08:15:18] Dataset is large. Showing detailed changes from the last 200 rows only.
 
 Showing up to 5 examples of changes from the last 200 rows:
 
-Row: Kommunenummer: 4012 | Kommune: Bamble
+Row: Kommune: Bamble | Kommunenummer: 4012
   r: 2026-01-01 -> 2026-01-01 00:00:00
 
-Row: Kommunenummer: 4030 | Kommune: Nissedal
+Row: Kommune: Nissedal | Kommunenummer: 4030
   r: 2026-01-01 -> 2026-01-01 00:00:00
 
-Row: Kommunenummer: 4020 | Kommune: Midt-Telemark
+Row: Kommune: Midt-Telemark | Kommunenummer: 4020
   r: 2026-01-01 -> 2026-01-01 00:00:00
 
-Row: Kommunenummer: 4034 | Kommune: Tokke
+Row: Kommune: Tokke | Kommunenummer: 4034
   r: 2026-01-01 -> 2026-01-01 00:00:00
 
-Row: Kommunenummer: 4016 | Kommune: Drangedal
+Row: Kommune: Drangedal | Kommunenummer: 4016
   r: 2026-01-01 -> 2026-01-01 00:00:00
 
 Total changes found in examined rows: 200
