@@ -1,326 +1,188 @@
 // ============================================================================
 // SEKUNDÆRFLYTTING BLANT FLYKTNINGER BOSATT I TELEMARK
 // ============================================================================
-// Formål: Følge flyktninger som fikk sin første bosettingskommune i Telemark
-// i løpet av årene x-9 til x-5 (der x = siste tilgjengelige år), med utgangs-
-// punkt i bosted per 1.1.(x-5). Vi ser 5 år fram i tid (x) og undersøker om de
-// fortsatt bor i samme kommune (bofaste), har flyttet videre - internt i
-// Telemark eller ut av fylket (sekundærflytting) - eller er registrert som
-// utvandret/død.
+// Følger flyktninger som ble bosatt i en Telemark-kommune i løpet av et gitt årsvindu, og undersøker hvor de bor noen år senere: fortsatt i samme kommune (bofast), flyttet internt i Telemark, flyttet ut av fylket (sekundærflytting), utvandret eller død.
 //
-// Bakgrunn/metodikk: se Fafo-rapport 2025:14, "Flytting etter bosetting"
-// (https://www.fafo.no/images/pub/2025/20927.pdf)
-//
-// Scriptet er bygd med samme mønster (dynamiske årstallparametre via let/$,
-// ++ for å bygge årstallspesifikke variabelnavn, for/end-løkker, tabulate/
-// sankey for løpende kontroll) som brukes i andre analysescript i dette
-// repoet, se f.eks.
-// "Microdata/02_Opplæring_og_kompetanse/Analyse 2026/Utenforskap_over_flere_år.txt".
-//
-// ----------------------------------------------------------------------------
-// VIKTIGE ANTAKELSER SOM MÅ VERIFISERES I MICRODATA.NO FØR SCRIPTET TAS I BRUK
-// ----------------------------------------------------------------------------
-// 1) INTRO_FORST_BOSETTING_KOMMNR viste seg (ved faktisk kjøring) å bare ha
-//    bestemte, fastsatte "statusdatoer" tilgjengelig (tidligste 2022-12-31),
-//    og kan derfor IKKE brukes til å hente bosted på en valgfri dato tilbake
-//    i 2016-2020. Scriptet bruker derfor i stedet BEFOLKNING_FORSTDATO
-//    (bosettingsår, STEG 2b) og BEFOLKNING_KOMMNR_FORMELL per 1.1.$aar0
-//    (opprinnelig kommune, STEG 1).
-//    FORSTDATO importeres som alfanumerisk (streng). Ved faktisk kjøring ga
-//    substr() en advarsel om at den forventer et NUMERISK argument - løst
-//    ved å destringe FORSTDATO til numerisk FØRST, og hente årstallet med
-//    heltallsdivisjon (int(forstdato/10000)) i stedet for substr - se STEG 2b.
-//    BEFOLKNING_STATUSKODE per $dato_oppfolging (2025-01-01 med x=2025) er
-//    bekreftet å fungere ved faktisk kjøring (til forskjell fra et lignende
-//    script fra Trøndelag fylkeskommune, som av ukjent grunn kun hentet
-//    denne variabelen per 2024-01-01) - ingen endring nødvendig i STEG 4.
-// 2) Flyktningbakgrunn identifiseres via BEFOLKNING_INNGRUNN1 == 'FLU' alene
-//    (bekreftet kodeverdi) - se STEG 2a. Et separat filter på BEFOLKNING_
-//    INVKAT == 'B' (innvandrer) er bevisst IKKE brukt: INNGRUNN1 er per
-//    definisjon bare populert for innvandrere, så et slikt filter ville vært
-//    redundant (samme tilnærming som i et tilsvarende script fra Trøndelag
-//    fylkeskommune, som heller ikke filtrerer på INVKAT).
-//    NB: INNGRUNN1 er en FIXED-variabel og spenner derfor i utgangspunktet
-//    over hele det historiske befolkningsregisteret (også døde/utvandrede) -
-//    dette er uten betydning her, siden bostedskommune (en STATUS-variabel)
-//    allerede er importert FØRST i STEG 1 og dermed avgrenser populasjonen
-//    til de som var i live og registrert bosatt i Telemark per $dato_aar0,
-//    før flyktningfilteret i det hele tatt anvendes.
-//    Bekreftet dekningsforskjell: INVKAT dekker alle innvandrere tilbake til
-//    1901, mens INNGRUNN1 kun dekker innvandrere med IKKE-nordisk stats-
-//    borgerskap bosatt fra og med 1990. Dette er uten betydning for denne
-//    analysen: kohorten (bosatt 2016-2020) ligger langt innenfor 1990-
-//    grensen, og nordiske statsborgere har i praksis aldri flyktningstatus
-//    (fri bevegelse innad i Norden), så avgrensningen til ikke-nordiske
-//    statsborgere ekskluderer ingen reelle flyktninger.
-// 3) Opprinnelig kommune (STEG 1) er bosted per 1.1.$aar0 (BEFOLKNING_
-//    KOMMNR_FORMELL), ikke nødvendigvis nøyaktig kommunen personen faktisk
-//    ble bosatt i (disse kan i prinsippet avvike hvis personen flyttet
-//    mellom bosettingsdato og 1.1.$aar0) - dette er imidlertid i tråd med
-//    oppgavetekstens egen formulering ("ta utgangspunkt i den kommunen de
-//    bodde i per 1.1.2020").
-// 4) Sentralitets- og kommunenummer-oppslagene (STEG 1 og STEG 4b) er meka-
-//    nisk generert fra de vedlagte filene sentralitet.csv og
-//    telemark_kommuner.csv, og er ikke i seg selv usikre - men de tabuleres
-//    likevel med "missing" underveis, slik at evt. kommunenumre som ikke
-//    fanges opp av oppslagene blir synlige.
-// 5) Rekkefølgen på STEG 1 og STEG 2 (geografi FØR flyktningstatus) følger
-//    samme mønster som Trøndelag fylkeskommune sitt tilsvarende script -
-//    mer effektivt enn å filtrere hele landets flyktningpopulasjon FØR man
-//    avgrenser til Telemark, siden det gir et mindre datasett å jobbe videre
-//    med gjennom resten av scriptet.
+// Juster årstallene i STEG 0 for å kjøre analysen på nytt.
 // ============================================================================
 
 
 require no.ssb.fdb:51 as fdb
 
-// Kommunenavn-oppslag (alle kommuner i Norge, 2024-nummerering), brukt for å
-// gjøre tabulate/sankey-utskrift lesbar. Mekanisk generert fra targetCode/
-// targetName-kolonnene i sentralitet.csv.
+// Kommunenavn for alle kommuner i Norge (2024-nummerering), brukt til å gjøre tabulate/sankey-utskrift lesbar.
 define-labels kommunenavn 301 'Oslo' 1101 'Eigersund' 1103 'Stavanger' 1106 'Haugesund' 1108 'Sandnes' 1111 'Sokndal' 1112 'Lund' 1114 'Bjerkreim' 1119 'Hå' 1120 'Klepp' 1121 'Time' 1122 'Gjesdal' 1124 'Sola' 1127 'Randaberg' 1130 'Strand' 1133 'Hjelmeland' 1134 'Suldal' 1135 'Sauda' 1144 'Kvitsøy' 1145 'Bokn' 1146 'Tysvær' 1149 'Karmøy' 1151 'Utsira' 1160 'Vindafjord' 1505 'Kristiansund' 1506 'Molde' 1508 'Ålesund' 1511 'Vanylven' 1514 'Sande' 1515 'Herøy (Møre og Romsdal)' 1516 'Ulstein' 1517 'Hareid' 1520 'Ørsta' 1525 'Stranda' 1528 'Sykkylven' 1531 'Sula' 1532 'Giske' 1535 'Vestnes' 1539 'Rauma' 1547 'Aukra' 1554 'Averøy' 1557 'Gjemnes' 1560 'Tingvoll' 1563 'Sunndal' 1566 'Surnadal' 1573 'Smøla' 1576 'Aure' 1577 'Volda' 1578 'Fjord' 1579 'Hustadvika' 1580 'Haram' 1804 'Bodø' 1806 'Narvik' 1811 'Bindal' 1812 'Sømna' 1813 'Brønnøy' 1815 'Vega' 1816 'Vevelstad' 1818 'Herøy (Nordland)' 1820 'Alstahaug' 1822 'Leirfjord' 1824 'Vefsn' 1825 'Grane' 1826 'Aarborte - Hattfjelldal' 1827 'Dønna' 1828 'Nesna' 1832 'Hemnes' 1833 'Rana - Raane' 1834 'Lurøy' 1835 'Træna' 1836 'Rødøy' 1837 'Meløy' 1838 'Gildeskål' 1839 'Beiarn' 1840 'Saltdal' 1841 'Fauske - Fuossko' 1845 'Sørfold - Fuolldá' 1848 'Steigen' 1851 'Lødingen' 1853 'Evenes - Evenášši' 1856 'Røst' 1857 'Værøy' 1859 'Flakstad' 1860 'Vestvågøy' 1865 'Vågan' 1866 'Hadsel' 1867 'Bø' 1868 'Øksnes' 1870 'Sortland - Suortá' 1871 'Andøy' 1874 'Moskenes' 1875 'Hábmer - Hamarøy' 3101 'Halden' 3103 'Moss' 3105 'Sarpsborg' 3107 'Fredrikstad' 3110 'Hvaler' 3112 'Råde' 3114 'Våler (Østfold)' 3116 'Skiptvet' 3118 'Indre Østfold' 3120 'Rakkestad' 3122 'Marker' 3124 'Aremark' 3201 'Bærum' 3203 'Asker' 3205 'Lillestrøm' 3207 'Nordre Follo' 3209 'Ullensaker' 3212 'Nesodden' 3214 'Frogn' 3216 'Vestby' 3218 'Ås' 3220 'Enebakk' 3222 'Lørenskog' 3224 'Rælingen' 3226 'Aurskog-Høland' 3228 'Nes' 3230 'Gjerdrum' 3232 'Nittedal' 3234 'Lunner' 3236 'Jevnaker' 3238 'Nannestad' 3240 'Eidsvoll' 3242 'Hurdal' 3301 'Drammen' 3303 'Kongsberg' 3305 'Ringerike' 3310 'Hole' 3312 'Lier' 3314 'Øvre Eiker' 3316 'Modum' 3318 'Krødsherad' 3320 'Flå' 3322 'Nesbyen' 3324 'Gol' 3326 'Hemsedal' 3328 'Ål' 3330 'Hol' 3332 'Sigdal' 3334 'Flesberg' 3336 'Rollag' 3338 'Nore og Uvdal' 3401 'Kongsvinger' 3403 'Hamar' 3405 'Lillehammer' 3407 'Gjøvik' 3411 'Ringsaker' 3412 'Løten' 3413 'Stange' 3414 'Nord-Odal' 3415 'Sør-Odal' 3416 'Eidskog' 3417 'Grue' 3418 'Åsnes' 3419 'Våler (Innlandet)' 3420 'Elverum' 3421 'Trysil' 3422 'Åmot' 3423 'Stor-Elvdal' 3424 'Rendalen' 3425 'Engerdal' 3426 'Tolga' 3427 'Tynset' 3428 'Alvdal' 3429 'Folldal' 3430 'Os' 3431 'Dovre' 3432 'Lesja' 3433 'Skjåk' 3434 'Lom' 3435 'Vågå' 3436 'Nord-Fron' 3437 'Sel' 3438 'Sør-Fron' 3439 'Ringebu' 3440 'Øyer' 3441 'Gausdal' 3442 'Østre Toten' 3443 'Vestre Toten' 3446 'Gran' 3447 'Søndre Land' 3448 'Nordre Land' 3449 'Sør-Aurdal' 3450 'Etnedal' 3451 'Nord-Aurdal' 3452 'Vestre Slidre' 3453 'Øystre Slidre' 3454 'Vang' 3901 'Horten' 3903 'Holmestrand' 3905 'Tønsberg' 3907 'Sandefjord' 3909 'Larvik' 3911 'Færder' 4001 'Porsgrunn' 4003 'Skien' 4005 'Notodden' 4010 'Siljan' 4012 'Bamble' 4014 'Kragerø' 4016 'Drangedal' 4018 'Nome' 4020 'Midt-Telemark' 4022 'Seljord' 4024 'Hjartdal' 4026 'Tinn' 4028 'Kviteseid' 4030 'Nissedal' 4032 'Fyresdal' 4034 'Tokke' 4036 'Vinje' 4201 'Risør' 4202 'Grimstad' 4203 'Arendal' 4204 'Kristiansand' 4205 'Lindesnes' 4206 'Farsund' 4207 'Flekkefjord' 4211 'Gjerstad' 4212 'Vegårshei' 4213 'Tvedestrand' 4214 'Froland' 4215 'Lillesand' 4216 'Birkenes' 4217 'Åmli' 4218 'Iveland' 4219 'Evje og Hornnes' 4220 'Bygland' 4221 'Valle' 4222 'Bykle' 4223 'Vennesla' 4224 'Åseral' 4225 'Lyngdal' 4226 'Hægebostad' 4227 'Kvinesdal' 4228 'Sirdal' 4601 'Bergen' 4602 'Kinn' 4611 'Etne' 4612 'Sveio' 4613 'Bømlo' 4614 'Stord' 4615 'Fitjar' 4616 'Tysnes' 4617 'Kvinnherad' 4618 'Ullensvang' 4619 'Eidfjord' 4620 'Ulvik' 4621 'Voss' 4622 'Kvam' 4623 'Samnanger' 4624 'Bjørnafjorden' 4625 'Austevoll' 4626 'Øygarden' 4627 'Askøy' 4628 'Vaksdal' 4629 'Modalen' 4630 'Osterøy' 4631 'Alver' 4632 'Austrheim' 4633 'Fedje' 4634 'Masfjorden' 4635 'Gulen' 4636 'Solund' 4637 'Hyllestad' 4638 'Høyanger' 4639 'Vik' 4640 'Sogndal' 4641 'Aurland' 4642 'Lærdal' 4643 'Årdal' 4644 'Luster' 4645 'Askvoll' 4646 'Fjaler' 4647 'Sunnfjord' 4648 'Bremanger' 4649 'Stad' 4650 'Gloppen' 4651 'Stryn' 5001 'Trondheim - Tråante' 5006 'Steinkjer' 5007 'Namsos - Nåavmesjenjaelmie' 5014 'Frøya' 5020 'Osen' 5021 'Oppdal' 5022 'Rennebu' 5025 'Røros - Rosse' 5026 'Holtålen' 5027 'Midtre Gauldal' 5028 'Melhus' 5029 'Skaun' 5031 'Malvik' 5032 'Selbu' 5033 'Tydal' 5034 'Meråker' 5035 'Stjørdal' 5036 'Frosta' 5037 'Levanger - Levangke' 5038 'Verdal' 5041 'Snåase - Snåsa' 5042 'Lierne' 5043 'Raarvihke - Røyrvik' 5044 'Namsskogan' 5045 'Grong' 5046 'Høylandet' 5047 'Overhalla' 5049 'Flatanger' 5052 'Leka' 5053 'Inderøy' 5054 'Indre Fosen' 5055 'Heim' 5056 'Hitra' 5057 'Ørland' 5058 'Åfjord' 5059 'Orkland' 5060 'Nærøysund' 5061 'Rindal' 5501 'Tromsø' 5503 'Harstad - Hårstták' 5510 'Kvæfjord' 5512 'Dielddanuorri - Tjeldsund' 5514 'Ibestad' 5516 'Gratangen - Rivtták' 5518 'Loabák - Lavangen' 5520 'Bardu' 5522 'Salangen' 5524 'Målselv' 5526 'Sørreisa' 5528 'Dyrøy' 5530 'Senja' 5532 'Balsfjord' 5534 'Karlsøy' 5536 'Lyngen' 5538 'Storfjord - Omasvuotna - Omasvuono' 5540 'Gáivuotna - Kåfjord - Kaivuono' 5542 'Skjervøy' 5544 'Nordreisa - Ráisa - Raisi' 5546 'Kvænangen' 5601 'Alta' 5603 'Hammerfest - Hámmerfeasta' 5605 'Sør-Varanger' 5607 'Vadsø' 5610 'Kárášjohka - Karasjok' 5612 'Guovdageaidnu - Kautokeino' 5614 'Loppa' 5616 'Hasvik' 5618 'Måsøy' 5620 'Nordkapp' 5622 'Porsanger - Porsángu - Porsanki' 5624 'Lebesby' 5626 'Gamvik' 5628 'Deatnu - Tana' 5630 'Berlevåg' 5632 'Båtsfjord' 5634 'Vardø' 5636 'Unjárga - Nesseby'
 
 
 // ============================================================================
-// STEG 0: DYNAMISKE PARAMETRE - juster kun disse for å kjøre analysen på nytt
+// STEG 0: DYNAMISKE PARAMETRE
 // ============================================================================
 
-// x = siste tilgjengelige år i dataene.
-let x = 2025
+let nyeste_aar = 2024 // Året man vil undersøke hvor flyktningene har flyttet (f. eks. 2024)
+let flytteperiode_ant_aar = 5 // Antall år fra siste bosettingsår til oppfølgingstidspunktet. (Definerer perioden de har på seg til å flytte. F. eks. 2024 --> 2019 = 5 år)
+let population_size_aar = 5 // Antall år i bosettingsvinduet. (F. eks. 2019 --> 2014 = 5 år. Avgjør populasjonens størrelse.)
 
-// aar0 = observasjonsår/basisår. "Opprinnelig" bosettingskommune måles per
-// 1.1.$aar0 (= x-5). Alle i kohorten (bosatt x-9 til x-5) får bosted vurdert
-// på dette tidspunktet.
-let aar0 = $x - 5
+// Bosettingsårvinduet som faktisk inkluderes i populasjonen. Definerer hvor mange flyktninger som inkluderes i populasjonen. F. eks. de som ble bosatt i årene 2015-2019.
+let population_aar_nyeste = $nyeste_aar - $flytteperiode_ant_aar // F. eks. 2024 - 5 = 2019
+let population_aar_eldste = $population_aar_nyeste - $population_size_aar + 1 // F. eks. 2019 - 5 + 1 = 2015
 
-// Antall år kohortvinduet dekker (5 år: bosatt i år aar0-4 t.o.m. aar0, dvs.
-// x-9 til x-5).
-let antall_kohortaar = 5
+let dato_oppfolging = date_fmt($nyeste_aar, 1, 1) // F. eks. 2024-01-01
 
-// oppfolgingsaar = året vi måler bosted 5 år etter (= aar0 + 5 = x).
-let oppfolgingsaar = $aar0 + $antall_kohortaar
-
-let dato_aar0 = date_fmt($aar0, 1, 1)
-let dato_oppfolging = date_fmt($oppfolgingsaar, 1, 1)
-
-// dato_trend brukes KUN i den innledende trend-sjekken (se under) - siste
-// dag i $x, IKKE 1. januar. Grunn: hvis vi hadde brukt 1.1.$x (slik
-// $dato_oppfolging gjør), ville ingen som bosatte seg I LØPET AV $x (f.eks.
-// 2025) rukket å få en registrert Telemark-adresse ennå på den datoen - de
-// ville falt ut mekanisk, akkurat som 2020-kohorten falt ut av hoved-
-// analysen (se advarsel i STEG 1/2b).
-let dato_trend = date_fmt($x, 12, 31)
-
-// NB: x/aar0/oppfolgingsaar er script-parametre (let), ikke datasett-
-// variabler - de kan derfor ikke tabuleres. Verdiene er synlige direkte i
-// let-linjene over (endre kun der for å kjøre analysen på nytt med andre år).
+// Bostedskommunen måles ett år etter siste bosettingsår i populasjonen (population_aar_nyeste), for å gi hele årskullet tid til å bli formelt registrert som bosatt.
+// Hvis vi f. eks. ser på flyktninger som ble bosatt i 2015-2019, venter vi til 2020 for å se hvor de faktisk bor. Derfor +1 år. (OBS: Noen kan allerede ha flyttet i årene 2015-2019..)
+let aar_opprinnelig = $population_aar_nyeste + 1 // F. eks. 2019 + 1 = 2020
+let dato_opprinnelig = date_fmt($aar_opprinnelig, 1, 1) // F. eks. 2020-01-01
 
 
 // ============================================================================
-// DEL A: INNLEDENDE ANALYSE - FLYKTNINGER BOSATT I TELEMARK OVER TID
+// DEL A: FLYKTNINGER OPPRINNELIG BOSATT I TELEMARK, ETTER BOSETTINGSÅR
 // ============================================================================
-// Egen, separat dataset (samme mønster som "kursdata"/"lenke_kurs_person" i
-// "Utafor forløp 2018-2022.txt" - flere datasett kan eksistere side om side
-// i samme script). Populasjonen avgrenses til Telemark ved å bruke bosted
-// per $dato_trend (31.12.$x - se STEG 0 for hvorfor 1.1.$x IKKE kan brukes
-// her). Svarer på "av de som bor i Telemark I DAG med flyktningbakgrunn, når
-// bosatte de seg først i Norge?" - en enkel oversikt over historikken,
-// uavhengig av kohortvinduet i sekundærflyttingsanalysen i DEL B under.
-create-dataset trend_sjekk
-import fdb/BEFOLKNING_INNGRUNN1 as inngrunn1_trend
-keep if inngrunn1_trend == 'FLU'
+// Hvor mange flyktninger ble bosatt i en Telemark-kommune hvert år (fra 2013 til nyeste_aar)? Kommunen måles her ved bosetting (ett år etter, samme grunnprinsipp som i STEG 2 i DEL B, men uten to-årskorreksjonen for asylmottak der), ikke ved dagens bosted - så tallene er uavhengige av om personen senere har flyttet.
+// BEFOLKNING_KOMMNR_FORMELL kan bare importeres på ett fast tidspunkt om gangen, så vi må gjøre ett import per bosettingsår og sette dem sammen etterpå. Legg til/fjern årsblokker under dersom bosetting_startaar/nyeste_aar endres.
+create-dataset bosetting_sjekk
+import fdb/BEFOLKNING_INNGRUNN1 as inngrunn1_bosetting // Lastes aldri inn med en dato. Fixed, one-time fact om hver enkelt person som har blitt bosatt i Norge.
+keep if inngrunn1_bosetting == 'FLU' // Flukt som innvandringsgrunn
 
-import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_trend as bosted_trend
-clone-variables bosted_trend -> kommune_trend_num
-destring kommune_trend_num
+import fdb/BEFOLKNING_FORSTDATO as forstdato_bosetting // Lastes aldri inn med en dato. Fixed, one-time fact om hver enkelt person som har blitt bosatt i Norge.
+destring forstdato_bosetting
+generate bosettingsaar_bosetting = int(forstdato_bosetting / 10000)
 
-recode kommune_trend_num (805 3806 4001 = 4001 'Porsgrunn') (806 3807 4003 = 4003 'Skien') (807 3808 4005 = 4005 'Notodden') (811 3812 4010 = 4010 'Siljan') (814 3813 4012 = 4012 'Bamble') (815 3814 4014 = 4014 'Kragerø') (817 3815 4016 = 4016 'Drangedal') (819 3816 4018 = 4018 'Nome') (821 3817 822 4020 = 4020 'Midt-Telemark') (828 3820 4022 = 4022 'Seljord') (827 3819 4024 = 4024 'Hjartdal') (826 3818 4026 = 4026 'Tinn') (829 3821 4028 = 4028 'Kviteseid') (830 3822 4030 = 4030 'Nissedal') (831 3823 4032 = 4032 'Fyresdal') (833 3824 4034 = 4034 'Tokke') (834 3825 4036 = 4036 'Vinje')
+let bosetting_startaar = 2015
+keep if bosettingsaar_bosetting >= $bosetting_startaar & bosettingsaar_bosetting <= $nyeste_aar
 
-keep if kommune_trend_num == 4001 | kommune_trend_num == 4003 | kommune_trend_num == 4005 | kommune_trend_num == 4010 | kommune_trend_num == 4012 | kommune_trend_num == 4014 | kommune_trend_num == 4016 | kommune_trend_num == 4018 | kommune_trend_num == 4020 | kommune_trend_num == 4022 | kommune_trend_num == 4024 | kommune_trend_num == 4026 | kommune_trend_num == 4028 | kommune_trend_num == 4030 | kommune_trend_num == 4032 | kommune_trend_num == 4034 | kommune_trend_num == 4036
+// Kommune ett år etter bosetting, ett fast importtidspunkt per bosettingsår.
 
-import fdb/BEFOLKNING_FORSTDATO as forstdato_trend
-// Samme ufarlige advarsel som for "forstdato" i DEL B (STEG 2b) - se
-// kommentar der. Konverteringen fungerer korrekt til tross for advarselen.
-destring forstdato_trend
-generate bosettingsaar_trend = int(forstdato_trend / 10000)
-tabulate bosettingsaar_trend if bosettingsaar_trend >= 2013, missing
+let dato_bosetting_2015 = date_fmt(2016, 1, 1)
+let dato_bosetting_2016 = date_fmt(2017, 1, 1)
+let dato_bosetting_2017 = date_fmt(2018, 1, 1)
+let dato_bosetting_2018 = date_fmt(2019, 1, 1)
+let dato_bosetting_2019 = date_fmt(2020, 1, 1)
+let dato_bosetting_2020 = date_fmt(2021, 1, 1)
+let dato_bosetting_2021 = date_fmt(2022, 1, 1)
+let dato_bosetting_2022 = date_fmt(2023, 1, 1)
+let dato_bosetting_2023 = date_fmt(2024, 1, 1)
+let dato_bosetting_2024 = date_fmt(2025, 1, 1)
+
+// Viktig antakelse her: Vi antar at kommunenummeret som er registrert ett år etter bosetting, er den kommunen personen faktisk ble bosatt i. 
+// Dette er ikke nødvendigvis korrekt, men det er den beste tilgjengelige proxyen vi har for å identifisere opprinnelig bosettingskommune.
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_bosetting_2015 as kommune_raw_2015 // Må ha med dato, siden hvor en person er bosatt varierer over tid.
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_bosetting_2016 as kommune_raw_2016
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_bosetting_2017 as kommune_raw_2017
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_bosetting_2018 as kommune_raw_2018
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_bosetting_2019 as kommune_raw_2019
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_bosetting_2020 as kommune_raw_2020
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_bosetting_2021 as kommune_raw_2021
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_bosetting_2022 as kommune_raw_2022
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_bosetting_2023 as kommune_raw_2023
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_bosetting_2024 as kommune_raw_2024
+
+destring kommune_raw_2015
+destring kommune_raw_2016
+destring kommune_raw_2017
+destring kommune_raw_2018
+destring kommune_raw_2019
+destring kommune_raw_2020
+destring kommune_raw_2021
+destring kommune_raw_2022
+destring kommune_raw_2023
+destring kommune_raw_2024
+
+// Setter sammen de tolv årsspesifikke importene til én variabel, ut fra hvilket år personen faktisk ble bosatt.
+generate kommune_ved_bosetting_num = kommune_raw_2015
+replace kommune_ved_bosetting_num = kommune_raw_2016 if bosettingsaar_bosetting == 2016
+replace kommune_ved_bosetting_num = kommune_raw_2017 if bosettingsaar_bosetting == 2017
+replace kommune_ved_bosetting_num = kommune_raw_2018 if bosettingsaar_bosetting == 2018
+replace kommune_ved_bosetting_num = kommune_raw_2019 if bosettingsaar_bosetting == 2019
+replace kommune_ved_bosetting_num = kommune_raw_2020 if bosettingsaar_bosetting == 2020
+replace kommune_ved_bosetting_num = kommune_raw_2021 if bosettingsaar_bosetting == 2021
+replace kommune_ved_bosetting_num = kommune_raw_2022 if bosettingsaar_bosetting == 2022
+replace kommune_ved_bosetting_num = kommune_raw_2023 if bosettingsaar_bosetting == 2023
+replace kommune_ved_bosetting_num = kommune_raw_2024 if bosettingsaar_bosetting == 2024
+
+// Normaliserer kommunenummer til dagens (2024-) nummerering - dekker gammel, midlertidig og dagens nummerering av Telemarks kommuner.
+recode kommune_ved_bosetting_num (805 3806 4001 = 4001 'Porsgrunn') (806 3807 4003 = 4003 'Skien') (807 3808 4005 = 4005 'Notodden') (811 3812 4010 = 4010 'Siljan') (814 3813 4012 = 4012 'Bamble') (815 3814 4014 = 4014 'Kragerø') (817 3815 4016 = 4016 'Drangedal') (819 3816 4018 = 4018 'Nome') (821 3817 822 4020 = 4020 'Midt-Telemark') (828 3820 4022 = 4022 'Seljord') (827 3819 4024 = 4024 'Hjartdal') (826 3818 4026 = 4026 'Tinn') (829 3821 4028 = 4028 'Kviteseid') (830 3822 4030 = 4030 'Nissedal') (831 3823 4032 = 4032 'Fyresdal') (833 3824 4034 = 4034 'Tokke') (834 3825 4036 = 4036 'Vinje')
+
+keep if kommune_ved_bosetting_num == 4001 | kommune_ved_bosetting_num == 4003 | kommune_ved_bosetting_num == 4005 | kommune_ved_bosetting_num == 4010 | kommune_ved_bosetting_num == 4012 | kommune_ved_bosetting_num == 4014 | kommune_ved_bosetting_num == 4016 | kommune_ved_bosetting_num == 4018 | kommune_ved_bosetting_num == 4020 | kommune_ved_bosetting_num == 4022 | kommune_ved_bosetting_num == 4024 | kommune_ved_bosetting_num == 4026 | kommune_ved_bosetting_num == 4028 | kommune_ved_bosetting_num == 4030 | kommune_ved_bosetting_num == 4032 | kommune_ved_bosetting_num == 4034 | kommune_ved_bosetting_num == 4036
+
+tabulate bosettingsaar_bosetting, missing
+
+// Fordeling på kommune for bosettingsåret 2023 - for å se om avviket mot IMDis bosettingstall er større i kommuner med asylmottak (der folk kan bli registrert bosatt i kommunen før IMDi har registrert dem som formelt bosatt der).
+// tabulate kommune_ved_bosetting_num if bosettingsaar_bosetting == 2023, missing
 
 
 // ============================================================================
-// DEL B: SEKUNDÆRFLYTTING BLANT FLYKTNINGER BOSATT I TELEMARK X-9 TIL X-5
+// DEL B: SEKUNDÆRFLYTTING BLANT FLYKTNINGER BOSATT I TELEMARK
 // ============================================================================
 create-dataset sekundærflytting
 
 
 // ============================================================================
-// STEG 1: OPPRINNELIG BOSTEDSKOMMUNE PER 1.1.$AAR0 (GEOGRAFI FØRST)
+// STEG 1: OPPRINNELIG BOSTEDSKOMMUNE (GEOGRAFI FØRST)
 // ============================================================================
-// Geografi filtreres FØR flyktningstatus (motsatt rekkefølge av en tidligere
-// versjon av dette scriptet) - samme mønster som et tilsvarende script fra
-// Trøndelag fylkeskommune. Mer effektivt: å avgrense til Telemark aller
-// først gir et mye mindre datasett å jobbe videre med, enn å først filtrere
-// hele landets flyktningpopulasjon og avgrense geografisk etterpå.
-//
-// OBS (endret etter faktisk kjøring i microdata.no): INTRO_FORST_BOSETTING_
-// KOMMNR kunne ikke importeres på en valgfri dato - variabelen har bare
-// bestemte, fastsatte "statusdatoer" tilgjengelig (tidligste tilbudt var
-// 2022-12-31), og dekker derfor ikke bosettingsårene 2016-2020 slik antatt.
-// Løsning: opprinnelig bostedskommune hentes i stedet fra BEFOLKNING_
-// KOMMNR_FORMELL per 1.1.$aar0 - samme variabel som brukes for "ny" kommune
-// i STEG 4, og som støtter valgfri dato. Dette stemmer også bedre med
-// oppgavetekstens formulering: "ta utgangspunkt i den kommunen de bodde i
-// per 1.1.2020", altså bosted på en FAST kalenderdato for hele kohorten -
-// ikke nødvendigvis nøyaktig bosettingstidspunktet for den enkelte.
-//
-// Siden dette er en STATUS-variabel og importeres FØRST (definerer
-// populasjonen for hele datasettet), filtreres personer som er døde eller
-// utvandret før $dato_aar0 automatisk bort her - de har ingen verdi for
-// BEFOLKNING_KOMMNR_FORMELL på dette tidspunktet.
+// Geografi filtreres før flyktningstatus - gir et mindre datasett å jobbe videre med gjennom resten av scriptet.
 
-// ----------------------------------------------------------------------------
-// STEG 1a: Hent bostedskommune per 1.1.$aar0
-// ----------------------------------------------------------------------------
-import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_aar0 as kommune_opprinnelig_raw
-tabulate kommune_opprinnelig_raw, missing
-
-// ----------------------------------------------------------------------------
-// STEG 1b: Normaliser kommunenummer til dagens (2024-) nummerering
-// ----------------------------------------------------------------------------
-// Blokken under er mekanisk generert fra telemark_kommuner.csv, og dekker
-// BÅDE gammel (-2019), midlertidig (2020-2023) og dagens (2024-) nummerering
-// av Telemarks kommuner - slik at scriptet virker uansett hvilken av de tre
-// nummereringene variabelen faktisk returnerer per 1.1.$aar0.
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_opprinnelig as kommune_opprinnelig_raw
 clone-variables kommune_opprinnelig_raw -> kommune_opprinnelig_num
 destring kommune_opprinnelig_num
 
+// Normaliserer kommunenummer til dagens (2024-) nummerering - dekker gammel, midlertidig og dagens nummerering av Telemarks kommuner.
 recode kommune_opprinnelig_num (805 3806 4001 = 4001 'Porsgrunn') (806 3807 4003 = 4003 'Skien') (807 3808 4005 = 4005 'Notodden') (811 3812 4010 = 4010 'Siljan') (814 3813 4012 = 4012 'Bamble') (815 3814 4014 = 4014 'Kragerø') (817 3815 4016 = 4016 'Drangedal') (819 3816 4018 = 4018 'Nome') (821 3817 822 4020 = 4020 'Midt-Telemark') (828 3820 4022 = 4022 'Seljord') (827 3819 4024 = 4024 'Hjartdal') (826 3818 4026 = 4026 'Tinn') (829 3821 4028 = 4028 'Kviteseid') (830 3822 4030 = 4030 'Nissedal') (831 3823 4032 = 4032 'Fyresdal') (833 3824 4034 = 4034 'Tokke') (834 3825 4036 = 4036 'Vinje')
 
-tabulate kommune_opprinnelig_num, missing
-
-// ----------------------------------------------------------------------------
-// STEG 1c: Behold bare de bosatt i en av dagens 17 Telemark-kommuner
-// (Bø og Sauherad er allerede slått sammen til Midt-Telemark i recode-
-// blokken over)
-// ----------------------------------------------------------------------------
+// Behold bare de bosatt i en av dagens 17 Telemark-kommuner (Bø og Sauherad er allerede slått sammen til Midt-Telemark over).
 keep if kommune_opprinnelig_num == 4001 | kommune_opprinnelig_num == 4003 | kommune_opprinnelig_num == 4005 | kommune_opprinnelig_num == 4010 | kommune_opprinnelig_num == 4012 | kommune_opprinnelig_num == 4014 | kommune_opprinnelig_num == 4016 | kommune_opprinnelig_num == 4018 | kommune_opprinnelig_num == 4020 | kommune_opprinnelig_num == 4022 | kommune_opprinnelig_num == 4024 | kommune_opprinnelig_num == 4026 | kommune_opprinnelig_num == 4028 | kommune_opprinnelig_num == 4030 | kommune_opprinnelig_num == 4032 | kommune_opprinnelig_num == 4034 | kommune_opprinnelig_num == 4036
-
-tabulate kommune_opprinnelig_num, missing
 
 
 // ============================================================================
 // STEG 2: AVGRENS TIL FLYKTNINGER OG BOSETTINGSÅR
 // ============================================================================
 
-// ----------------------------------------------------------------------------
-// STEG 2a: Avgrens til flyktninger
-// ----------------------------------------------------------------------------
-// BEFOLKNING_INNGRUNN1 == 'FLU' er bekreftet kodeverdi for "flyktning". Vi
-// filtrerer IKKE i tillegg på BEFOLKNING_INVKAT == 'B' (innvandrer): INNGRUNN1
-// er per definisjon bare populert for innvandrere, så et slikt filter ville
-// vært redundant (samme tilnærming som i et tilsvarende script fra
-// Trøndelag fylkeskommune).
 import fdb/BEFOLKNING_INNGRUNN1 as inngrunn1
-tabulate inngrunn1, missing
-
 keep if inngrunn1 == 'FLU'
 
-tabulate inngrunn1, missing
-
-// ----------------------------------------------------------------------------
-// STEG 2b: Bosettingsår, fra BEFOLKNING_FORSTDATO
-// ----------------------------------------------------------------------------
-// FORSTDATO importeres som alfanumerisk (streng, YYYYMMDD). Ved faktisk
-// kjøring ga substr(forstdato,...) en advarsel om at funksjonen forventer et
-// NUMERISK argument, ikke alfanumerisk - og det påfølgende destring-steget
-// bekreftet at resultatet ble feil. Løsning: destring forstdato FØRST (gjør
-// den numerisk), og hent årstallet med aritmetikk (heltallsdivisjon) i
-// stedet for substr.
+// Bosettingsår fra BEFOLKNING_FORSTDATO (importeres som streng - destring før heltallsdivisjon for å hente ut årstallet)
 import fdb/BEFOLKNING_FORSTDATO as forstdato
-tabulate forstdato, missing
-
-// NB: "destring forstdato" gir en advarsel her ("Forventet en numerisk
-// variabel, fikk forstdato" / "Konverterte forstdato til en alfanumerisk
-// variabel"). Bekreftet ved faktisk kjøring at dette er ufarlig og kan
-// ignoreres - konverteringen fungerer likevel korrekt (bosettingsaar under
-// gir sensible årstall).
 destring forstdato
 generate bosettingsaar = int(forstdato / 10000)
 
-// DIAGNOSTIKK: fordeling av bosettingsår FØR kohortvinduet (x-9 til x-5)
-// snevrer det inn. NB: siden populasjonen ble definert i STEG 1 via
-// BEFOLKNING_KOMMNR_FORMELL per 1.1.$aar0 (en STATUS-variabel evaluert på en
-// FAST, tidligere dato), er bosettingsaar her mekanisk begrenset til <=
-// omtrent $aar0 for ALLE i datasettet - ingen kan ha bosatt seg etter denne
-// datoen og likevel være med i datasettet. Denne tabellen viser derfor bare
-// årene FØR $aar0, og er ikke egnet til å sjekke om bosetting har fortsatt
-// etter $aar0 (se DEL A øverst i scriptet for en slik sjekk, uavhengig av
-// geografifilteret i STEG 1).
-tabulate bosettingsaar, missing
-
-// Behold bare de som ble bosatt i løpet av kohortvinduet (x-9 til x-5)
-keep if bosettingsaar >= $aar0 - $antall_kohortaar + 1 & bosettingsaar <= $aar0
-
-// Fordeling ETTER at kohortvinduet er anvendt (den faktiske analysepopulasjonen)
+keep if bosettingsaar >= $population_aar_eldste & bosettingsaar <= $population_aar_nyeste
 tabulate bosettingsaar, missing
 
 
 // ============================================================================
 // SVAR PÅ HOVEDSPØRSMÅL 1 og 2: Populasjonsstørrelse og opprinnelseskommune
 // ============================================================================
-tabulate bosettingsaar
-tabulate kommune_opprinnelig_num
 assign-labels kommune_opprinnelig_num kommunenavn
-tabulate kommune_opprinnelig_num
+tabulate kommune_opprinnelig_num, missing
 tabulate kommune_opprinnelig_num bosettingsaar, missing
 
 
 // ============================================================================
-// STEG 3: BAKGRUNNSVARIABLER FOR OPPRINNELIG POPULASJON
+// STEG 3: BAKGRUNNSVARIABLER FOR OPPRINNELIG POPULASJON <--- Hva kjennetegner flyktningene som ble bosatt for første gang i Telemark i perioden 2015-2019?
 // ============================================================================
 
-// Kjønn (Fixed - ingen dato nødvendig)
 import fdb/BEFOLKNING_KJOENN as kjønn
-tabulate kjønn, missing
 
-// Alder ved bosetting (aar0) - avledet fra fødselsår/-måned, se samme mønster
-// som i "Utafor forløp 2018-2022.txt"
+// Alder ved populasjonens nyeste bosettingsår, avledet fra fødselsår/-måned
 import fdb/BEFOLKNING_FOEDSELS_AAR_MND as faarmnd
-generate alder_aar0 = $aar0 - int(faarmnd / 100)
-tabulate alder_aar0, missing
+generate alder_aar0 = $population_aar_nyeste - int(faarmnd / 100)
 
-// Aldersgrupper for oversiktstabeller (samme mønster som "aldersgruppe" i
-// "Utafor forløp 2018-2022.txt" - kumulative replace fra lavest til høyest)
 generate aldersgruppe_aar0 = 'Under 18 år'
 replace aldersgruppe_aar0 = '18-29 år' if alder_aar0 >= 18
 replace aldersgruppe_aar0 = '30-39 år' if alder_aar0 >= 30
 replace aldersgruppe_aar0 = '40-49 år' if alder_aar0 >= 40
 replace aldersgruppe_aar0 = '50-59 år' if alder_aar0 >= 50
 replace aldersgruppe_aar0 = '60+ år' if alder_aar0 >= 60
-tabulate aldersgruppe_aar0, missing
 
-// Husholdningstype ved bosetting (aar0) og ved oppfølging (oppfolgingsaar)
-import fdb/BEFOLKNING_REGSTAT_HUSHTYP $dato_aar0 as husholdningstype_aar0
-tabulate husholdningstype_aar0, missing
+import fdb/BEFOLKNING_REGSTAT_HUSHTYP $dato_opprinnelig as husholdningstype_aar0
 
-// Grupperer husholdningstype til 4 hovedgrupper (etter vedlagt tabell,
-// husholdningstyper.csv). Kodeformatet er bekreftet å være punktumformat
-// ('1.1.1', '1.1.2', ...).
-// NB: 1.7.2 (samboerpar med voksne barn) mangler i den vedlagte tabellen og
-// er derfor ikke gruppert - vises som "Uoppgitt/annet" hvis den forekommer.
+// Grupperer husholdningstype til 4 hovedgrupper (jf. husholdningstyper.csv)
 generate husholdningsgruppe_aar0 = "Uoppgitt/annet"
 replace husholdningsgruppe_aar0 = "Aleneboende, inkl. aleneforeldre med voksne barn" if husholdningstype_aar0 == '1.1.1' | husholdningstype_aar0 == '1.1.2' | husholdningstype_aar0 == '1.1.3' | husholdningstype_aar0 == '1.7.3' | husholdningstype_aar0 == '1.7.4'
 replace husholdningsgruppe_aar0 = "Par uten barn eller med voksne barn" if husholdningstype_aar0 == '1.2.1' | husholdningstype_aar0 == '1.2.2' | husholdningstype_aar0 == '1.2.3' | husholdningstype_aar0 == '1.2.4' | husholdningstype_aar0 == '1.7.1'
 replace husholdningsgruppe_aar0 = "Forelder til barn (yngste barn under 18 år)" if husholdningstype_aar0 == '1.3.1' | husholdningstype_aar0 == '1.3.2' | husholdningstype_aar0 == '1.4.1' | husholdningstype_aar0 == '1.4.2' | husholdningstype_aar0 == '1.5.1' | husholdningstype_aar0 == '1.5.2' | husholdningstype_aar0 == '1.6.1' | husholdningstype_aar0 == '1.6.2'
 replace husholdningsgruppe_aar0 = "Flerfamiliehusholdninger" if husholdningstype_aar0 == '2.1.1' | husholdningstype_aar0 == '2.1.2' | husholdningstype_aar0 == '2.2.0' | husholdningstype_aar0 == '2.3.0'
-tabulate husholdningsgruppe_aar0, missing
 
-// Landbakgrunn (Fixed). NB: tabulate på rå land/fødeland-koder direkte
-// utløser avsløringskontroll ("for mange tabellceller med lav frekvens") når
-// populasjonen er liten - derfor tabuleres KUN den omkodede verdensregion-
-// variabelen nedenfor, ALDRI rå landkoder. Omkodingen er hentet direkte fra
-// microdata.no sitt eget eksempelscript ("Tema - Regionalanalyser/Omkode fra
-// land til verdensregion").
+// Landbakgrunn, gruppert til verdensregion (rå landkoder gir for mange tabellceller med lav frekvens og utløser avsløringskontroll)
 import fdb/BEFOLKNING_FODELAND as land
-
 clone-variables land -> verdensregion
 destring verdensregion
 recode verdensregion \
@@ -347,71 +209,45 @@ define-labels verdensregiontxt \
      9 'Uoppgitt'
 assign-labels verdensregion verdensregiontxt
 
+tabulate kjønn, missing
+tabulate aldersgruppe_aar0, missing
+tabulate husholdningsgruppe_aar0, missing
 tabulate verdensregion, missing
 
 
 // ============================================================================
-// STEG 4: OPPFØLGING - BOSTED 5 ÅR ETTER
+// STEG 4: OPPFØLGING - BOSTED ETTER FLYTTEPERIODEN
 // ============================================================================
 
 import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_oppfolging as kommune_ny_raw
 import fdb/BEFOLKNING_STATUSKODE $dato_oppfolging as statuskode_ny
-tabulate kommune_ny_raw, missing
-tabulate statuskode_ny, missing
-
 clone-variables kommune_ny_raw -> kommune_ny_num
 destring kommune_ny_num
 assign-labels kommune_ny_num kommunenavn
-tabulate kommune_ny_num, missing
 
-// Husholdningstype ved oppfølging (til sammenligning med husholdningstype_aar0)
 import fdb/BEFOLKNING_REGSTAT_HUSHTYP $dato_oppfolging as husholdningstype_ny
-tabulate husholdningstype_ny, missing
-
-// Samme gruppering som for husholdningsgruppe_aar0 (punktumformat, se der)
 generate husholdningsgruppe_ny = "Uoppgitt/annet"
 replace husholdningsgruppe_ny = "Aleneboende, inkl. aleneforeldre med voksne barn" if husholdningstype_ny == '1.1.1' | husholdningstype_ny == '1.1.2' | husholdningstype_ny == '1.1.3' | husholdningstype_ny == '1.7.3' | husholdningstype_ny == '1.7.4'
 replace husholdningsgruppe_ny = "Par uten barn eller med voksne barn" if husholdningstype_ny == '1.2.1' | husholdningstype_ny == '1.2.2' | husholdningstype_ny == '1.2.3' | husholdningstype_ny == '1.2.4' | husholdningstype_ny == '1.7.1'
 replace husholdningsgruppe_ny = "Forelder til barn (yngste barn under 18 år)" if husholdningstype_ny == '1.3.1' | husholdningstype_ny == '1.3.2' | husholdningstype_ny == '1.4.1' | husholdningstype_ny == '1.4.2' | husholdningstype_ny == '1.5.1' | husholdningstype_ny == '1.5.2' | husholdningstype_ny == '1.6.1' | husholdningstype_ny == '1.6.2'
 replace husholdningsgruppe_ny = "Flerfamiliehusholdninger" if husholdningstype_ny == '2.1.1' | husholdningstype_ny == '2.1.2' | husholdningstype_ny == '2.2.0' | husholdningstype_ny == '2.3.0'
-tabulate husholdningsgruppe_ny, missing
 
-// ----------------------------------------------------------------------------
-// STEG 4a: Klassifiser flyttestatus
-// ----------------------------------------------------------------------------
-// Statuskode: '3' = utvandret, '5' = død (samme kodebruk som i
-// "Utenforskap_over_flere_år.txt"). Rekkefølgen på replace-linjene betyr noe:
-// dødsfall/utvandring overstyrer flytting/bofasthet, siden BEFOLKNING_KOMMNR_
-// FORMELL normalt blir missing for disse og derfor ellers ville endt opp som
-// "2 - Flyttet" (missing != egen kommune er sant i sammenligningen under).
+// STEG 4a: Klassifiser flyttestatus. Statuskode '3'=utvandret, '5'=død - disse overstyrer flytting/bofasthet, siden bostedsvariabelen ellers ville gitt "flyttet" for disse (missing != egen kommune). Slått sammen til én kategori fordi "død" alene er for få enheter til å passere avsløringskontrollen i microdata.no.
 generate flyttestatus = "5 - Ukjent/annet"
 replace flyttestatus = "2 - Flyttet til annen kommune" if kommune_ny_num != kommune_opprinnelig_num
 replace flyttestatus = "1 - Bofast (samme kommune)" if kommune_ny_num == kommune_opprinnelig_num
-replace flyttestatus = "3 - Utvandret" if statuskode_ny == '3'
-replace flyttestatus = "4 - Død" if statuskode_ny == '5'
-
-tabulate flyttestatus, missing
-tabulate flyttestatus, missing cellpct
-// Kontroller "5 - Ukjent/annet"-kategorien mot statuskode - bør normalt være
-// tom/svært liten etter overstyringene over
-tabulate flyttestatus statuskode_ny, missing
+replace flyttestatus = "3 - Utvandret/død" if statuskode_ny == '3' | statuskode_ny == '5'
 
 // Skiller ut om flyttingen var internt i Telemark eller ut av fylket
 generate flyttestatus_detaljert = flyttestatus
 replace flyttestatus_detaljert = "2a - Flyttet, fortsatt i Telemark" if flyttestatus == "2 - Flyttet til annen kommune" & (kommune_ny_num == 4001 | kommune_ny_num == 4003 | kommune_ny_num == 4005 | kommune_ny_num == 4010 | kommune_ny_num == 4012 | kommune_ny_num == 4014 | kommune_ny_num == 4016 | kommune_ny_num == 4018 | kommune_ny_num == 4020 | kommune_ny_num == 4022 | kommune_ny_num == 4024 | kommune_ny_num == 4026 | kommune_ny_num == 4028 | kommune_ny_num == 4030 | kommune_ny_num == 4032 | kommune_ny_num == 4034 | kommune_ny_num == 4036)
 replace flyttestatus_detaljert = "2b - Flyttet ut av Telemark" if flyttestatus == "2 - Flyttet til annen kommune" & flyttestatus_detaljert == "2 - Flyttet til annen kommune"
 
-tabulate flyttestatus_detaljert, missing
-tabulate flyttestatus_detaljert, missing cellpct
-
 
 // ============================================================================
 // STEG 4b: SENTRALITET FOR OPPRINNELIG OG NY KOMMUNE
 // ============================================================================
-// Mekanisk generert fra sentralitet.csv (SSBs sentralitetsindeks, 2024-
-// kommunenummerering). Klonet til egne variabler FØR recode, slik at de
-// underliggende kommunenumrene (kommune_opprinnelig_num/kommune_ny_num)
-// beholdes uendret til bruk i STEG 4a/sankey.
+// Sentralitetsklasse (1=høy, 6=lav) for begge kommunene, jf. sentralitet.csv. Klonet FØR recode for å bevare de underliggende kommunenumrene.
 
 clone-variables kommune_opprinnelig_num -> sentralitet_opprinnelig
 recode sentralitet_opprinnelig (301 3201 3205 3222 3224 = 1 'Sentralitet 1 - Høy (925-1000)') (1103 1108 1124 3103 3105 3107 3203 3207 3209 3214 3216 3218 3230 3232 3301 3312 3403 3901 3905 4601 5001 = 2 'Sentralitet 2 (870-924)') (1106 1120 1121 1122 1127 1130 1508 1804 3101 3112 3114 3116 3118 3120 3212 3220 3226 3228 3234 3236 3238 3240 3303 3305 3310 3314 3316 3401 3405 3407 3411 3412 3413 3415 3420 3443 3446 3903 3907 3909 3911 4001 4003 4012 4202 4203 4204 4215 4223 4627 5028 5031 5035 5501 = 3 'Sentralitet 3 (775-869)') (1101 1114 1119 1146 1149 1505 1506 1516 1517 1520 1528 1531 1532 1577 1806 1824 1833 1841 1870 3110 3122 3242 3324 3334 3414 3416 3440 3441 3442 3447 3448 3451 4005 4010 4014 4018 4020 4201 4205 4206 4207 4213 4214 4216 4219 4225 4612 4614 4621 4622 4623 4624 4626 4630 4631 5006 5007 5029 5037 5038 5053 5059 5503 5601 5603 = 4 'Sentralitet 4 (670-774)') (1111 1112 1133 1135 1145 1160 1515 1525 1535 1539 1547 1554 1557 1560 1563 1566 1579 1580 1813 1820 1832 1840 1860 1865 1866 1868 3124 3318 3320 3322 3326 3328 3330 3332 3336 3417 3418 3419 3421 3422 3426 3427 3428 3435 3436 3437 3438 3439 3449 3450 3452 3453 4016 4022 4024 4026 4028 4211 4212 4217 4218 4226 4227 4228 4602 4611 4613 4615 4616 4617 4618 4625 4628 4632 4640 4642 4643 4644 4647 4649 4650 4651 5021 5022 5025 5027 5032 5034 5036 5045 5047 5054 5055 5057 5060 5061 5510 5520 5524 5526 5530 5544 5605 5607 = 5 'Sentralitet 5 (565-669)') (1134 1144 1151 1511 1514 1573 1576 1578 1811 1812 1815 1816 1818 1822 1825 1826 1827 1828 1834 1835 1836 1837 1838 1839 1845 1848 1851 1853 1856 1857 1859 1867 1871 1874 1875 3338 3423 3424 3425 3429 3430 3431 3432 3433 3434 3454 4030 4032 4034 4036 4220 4221 4222 4224 4619 4620 4629 4633 4634 4635 4636 4637 4638 4639 4641 4645 4646 4648 5014 5020 5026 5033 5041 5042 5043 5044 5046 5049 5052 5056 5058 5512 5514 5516 5518 5522 5528 5532 5534 5536 5538 5540 5542 5546 5610 5612 5614 5616 5618 5620 5622 5624 5626 5628 5630 5632 5634 5636 = 6 'Sentralitet 6 - Lav (0-564)')
@@ -419,49 +255,92 @@ recode sentralitet_opprinnelig (301 3201 3205 3222 3224 = 1 'Sentralitet 1 - Hø
 clone-variables kommune_ny_num -> sentralitet_ny
 recode sentralitet_ny (301 3201 3205 3222 3224 = 1 'Sentralitet 1 - Høy (925-1000)') (1103 1108 1124 3103 3105 3107 3203 3207 3209 3214 3216 3218 3230 3232 3301 3312 3403 3901 3905 4601 5001 = 2 'Sentralitet 2 (870-924)') (1106 1120 1121 1122 1127 1130 1508 1804 3101 3112 3114 3116 3118 3120 3212 3220 3226 3228 3234 3236 3238 3240 3303 3305 3310 3314 3316 3401 3405 3407 3411 3412 3413 3415 3420 3443 3446 3903 3907 3909 3911 4001 4003 4012 4202 4203 4204 4215 4223 4627 5028 5031 5035 5501 = 3 'Sentralitet 3 (775-869)') (1101 1114 1119 1146 1149 1505 1506 1516 1517 1520 1528 1531 1532 1577 1806 1824 1833 1841 1870 3110 3122 3242 3324 3334 3414 3416 3440 3441 3442 3447 3448 3451 4005 4010 4014 4018 4020 4201 4205 4206 4207 4213 4214 4216 4219 4225 4612 4614 4621 4622 4623 4624 4626 4630 4631 5006 5007 5029 5037 5038 5053 5059 5503 5601 5603 = 4 'Sentralitet 4 (670-774)') (1111 1112 1133 1135 1145 1160 1515 1525 1535 1539 1547 1554 1557 1560 1563 1566 1579 1580 1813 1820 1832 1840 1860 1865 1866 1868 3124 3318 3320 3322 3326 3328 3330 3332 3336 3417 3418 3419 3421 3422 3426 3427 3428 3435 3436 3437 3438 3439 3449 3450 3452 3453 4016 4022 4024 4026 4028 4211 4212 4217 4218 4226 4227 4228 4602 4611 4613 4615 4616 4617 4618 4625 4628 4632 4640 4642 4643 4644 4647 4649 4650 4651 5021 5022 5025 5027 5032 5034 5036 5045 5047 5054 5055 5057 5060 5061 5510 5520 5524 5526 5530 5544 5605 5607 = 5 'Sentralitet 5 (565-669)') (1134 1144 1151 1511 1514 1573 1576 1578 1811 1812 1815 1816 1818 1822 1825 1826 1827 1828 1834 1835 1836 1837 1838 1839 1845 1848 1851 1853 1856 1857 1859 1867 1871 1874 1875 3338 3423 3424 3425 3429 3430 3431 3432 3433 3434 3454 4030 4032 4034 4036 4220 4221 4222 4224 4619 4620 4629 4633 4634 4635 4636 4637 4638 4639 4641 4645 4646 4648 5014 5020 5026 5033 5041 5042 5043 5044 5046 5049 5052 5056 5058 5512 5514 5516 5518 5522 5528 5532 5534 5536 5538 5540 5542 5546 5610 5612 5614 5616 5618 5620 5622 5624 5626 5628 5630 5632 5634 5636 = 6 'Sentralitet 6 - Lav (0-564)')
 
-tabulate sentralitet_opprinnelig, missing
-tabulate sentralitet_ny, missing
-
 
 // ============================================================================
 // SVAR PÅ HOVEDSPØRSMÅL 3 og 4: Hvor mange har flyttet/dødd/utvandret, og hvor?
 // ============================================================================
-
 tabulate flyttestatus_detaljert, missing cellpct
 tabulate kommune_opprinnelig_num flyttestatus_detaljert, missing rowpct
-tabulate kommune_ny_num if flyttestatus == "2 - Flyttet til annen kommune", missing
+tabulate kommune_opprinnelig_num flyttestatus_detaljert, missing sum
+// tabulate kommune_ny_num if flyttestatus == "2 - Flyttet til annen kommune", missing <-- Hvilken kommune alle flyttet til. For finmasket!
 
 
 // ============================================================================
 // SVAR PÅ HOVEDSPØRSMÅL 5 og 6: Sentralitet og sekundærflytting
 // ============================================================================
-
+tabulate sentralitet_opprinnelig flyttestatus_detaljert, missing rowpct
+tabulate sentralitet_opprinnelig flyttestatus_detaljert, missing colpct
+tabulate sentralitet_opprinnelig flyttestatus_detaljert, missing freq
 tabulate sentralitet_opprinnelig flyttestatus_detaljert, missing rowpct colpct freq
+
 tabulate sentralitet_opprinnelig sentralitet_ny if flyttestatus == "2 - Flyttet til annen kommune", missing rowpct
 
-// Visuell fremstilling av flyttemønster: opprinnelig -> ny sentralitet
+// Sankey: opprinnelig -> ny sentralitet (kun flyttet), og full oversikt
 sankey sentralitet_opprinnelig sentralitet_ny if flyttestatus == "2 - Flyttet til annen kommune"
-// Alle (inkl. bofaste/utvandret/død) for helhetsbildet
-sankey flyttestatus_detaljert
 
 
 // ============================================================================
 // SVAR PÅ HOVEDSPØRSMÅL 7: Hva kjennetegner de som flytter?
 // ============================================================================
-
-// Kjønn
+tabulate flyttestatus_detaljert, missing freq
 tabulate kjønn flyttestatus_detaljert, missing rowpct colpct freq
-
-// Alder (ved bosetting)
-tabulate aldersgruppe_aar0 flyttestatus_detaljert, missing rowpct freq
-
-// Husholdningstype (før og etter)
+tabulate aldersgruppe_aar0 flyttestatus_detaljert, missing rowpct colpct freq
 tabulate husholdningsgruppe_aar0 flyttestatus_detaljert, missing rowpct freq
 tabulate husholdningsgruppe_ny flyttestatus_detaljert, missing rowpct freq
-
-// Landbakgrunn (kun gruppert verdensregion - rå landkoder utløser
-// avsløringskontroll, se advarsel i STEG 3)
 tabulate verdensregion flyttestatus_detaljert, missing rowpct colpct freq
-
-// Kombinert kontrolltabell: bosettingsår vs. flyttestatus (ev. mønster over tid)
 tabulate bosettingsaar flyttestatus_detaljert, missing rowpct freq
+
+
+// ============================================================================
+// DIAGNOSTIKK: FLU + FAM BOSATT I NORGE, 2023-2025 SAMLET, SAMMENLIGNET MED IMDI
+// ============================================================================
+// 2025 alene var for tynt til å passere avsløringskontrollen (trolig fordi FDB ennå ikke har fullstendige 2025-data). Slår derfor sammen 2023-2025 til én pott. Sjekker om FLU alene, eller FLU+FAM samlet, ligger nærmest summen av IMDis tall for de samme tre årene - altså om "FAM - Familie" (som trolig fanger opp familieinnvandrede til flyktninger) er med i IMDis bosettingstall. Nasjonalt tall, ingen kommunefiltrering.
+
+// IMDi: Totalt 71915 bosatte flyktninger i Norge i disse tre årene
+create-dataset diagnostikk_flu_fam_2023_2025
+import fdb/BEFOLKNING_INNGRUNN1 as inngrunn1_2025
+import fdb/BEFOLKNING_FORSTDATO as forstdato_2025
+destring forstdato_2025
+generate bosettingsaar_2025 = int(forstdato_2025 / 10000)
+keep if bosettingsaar_2025 >= 2023 & bosettingsaar_2025 <= 2025
+
+// Full fordeling på innvandringsgrunn for 2023-2025 samlet - viser FLU- og FAM-tallene hver for seg, og evt. andre kategorier.
+tabulate inngrunn1_2025, missing // Microdata: FLU: 60173, FAM: 26507 = 86680
+// Microdata gir 11 000 færre bosatte flyktninger (FLU) enn IMDi --> Kan derfor ikke inkludere flyktninger OG deres familieinnvandrede.
+
+// Kombinert FLU+FAM-total for 2023-2025 samlet, for sammenligning med summen av IMDis tall for de samme tre årene.
+generate flu_eller_fam_2025 = inngrunn1_2025 == 'FLU' | inngrunn1_2025 == 'FAM'
+tabulate flu_eller_fam_2025, missing
+
+
+// ============================================================================
+// DIAGNOSTIKK: INTRO_FORST_BOSETTING_KOMMNR VS. BEFOLKNING_KOMMNR_FORMELL
+// ============================================================================
+// INTRO_FORST_BOSETTING_KOMMNR er hentet fra introduksjonsprogrammet (IMDi) og gir trolig den faktiske, IMDi-registrerte bosettingskommunen direkte - i motsetning til BEFOLKNING_KOMMNR_FORMELL, som er utledet fra folkeregisterets adressehistorikk og kan i praksis reflektere asylmottakskommunen i stedet. Sammenligner de to variablene direkte. Nasjonalt tall, ingen kommunefiltrering.
+// NB: Variabelkatalogen til microdata.no oppgir 31.12 i 2022, 2023, 2024 og 2025 som gyldige måletidspunkt for INTRO-variabelen, men i praksis er det foreløpig bare 2022- og 2023-tallene som faktisk finnes i FDB (samme type etterslep som vi så for BEFOLKNING_FORSTDATO i 2025 tidligere). 2024/2025-blokkene er derfor droppet inntil videre.
+// NB2: INTRO-variabelen dekker bare personer som har deltatt i introduksjonsprogrammet det gjeldende året - andre vil stå uten verdi, og vil vises som "missing" i tabulate-utskriften under, ikke som et reelt avvik.
+create-dataset diagnostikk_intro_vs_folkereg
+
+// INTRO-variabelen måles 31.12, mens BEFOLKNING_KOMMNR_FORMELL (som ellers i scriptet) bare er tilgjengelig med 01.01-datoer. Bruker derfor 01.01 året etter som nærmeste tilgjengelige sammenligningstidspunkt til INTRO sin 31.12-måling.
+let dato_intro_2022 = date_fmt(2022, 12, 31)
+let dato_intro_2023 = date_fmt(2023, 12, 31)
+let dato_folkereg_2022 = date_fmt(2023, 1, 1)
+let dato_folkereg_2023 = date_fmt(2024, 1, 1)
+
+import fdb/INTRO_FORST_BOSETTING_KOMMNR $dato_intro_2022 as intro_kommune_2022
+import fdb/INTRO_FORST_BOSETTING_KOMMNR $dato_intro_2023 as intro_kommune_2023
+
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_folkereg_2022 as folkereg_kommune_2022
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_folkereg_2023 as folkereg_kommune_2023
+
+destring intro_kommune_2022
+destring intro_kommune_2023
+destring folkereg_kommune_2022
+destring folkereg_kommune_2023
+
+// Samsvar mellom de to kildene, ett år om gangen. "Missing" i utskriften betyr som regel at personen ikke deltok i introduksjonsprogrammet det året, ikke at variablene faktisk er uenige.
+generate samsvar_2022 = intro_kommune_2022 == folkereg_kommune_2022
+generate samsvar_2023 = intro_kommune_2023 == folkereg_kommune_2023
+
+tabulate samsvar_2022, missing
+tabulate samsvar_2023, missing
