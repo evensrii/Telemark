@@ -18,9 +18,15 @@ After processing: 51870 rows and 10 columns
 
 Comparing with GitHub...
 Saved file to C:\Analyse\Telemark\Python\Temp\sykehusinnlagte_sykdommer_og_skader.csv
-[2026-09-21 08:16:45] No new data to upload. Skipping GitHub update.
+[2026-09-22 08:17:38] Changes detected in the dataset.
+
+[2026-09-22 08:17:38] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/08_Folkehelse og levekår/Helsetilstand/Hjerte- og karsykdommer/sykehusinnlagte_sykdommer_og_skader.csv
+
+No changes found in the last 200 rows, but changes exist elsewhere in the dataset.
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\sykehusinnlagte_sykdommer_og_skader.csv
-  ✓ No changes detected
+  ✓ New data detected and uploaded to GitHub
+New data detected
 
   ✓ Saved to: C:\Analyse\Telemark\Python\Temp\sykehusinnlagte_sykdommer_og_skader.csv
 
