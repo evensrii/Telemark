@@ -12,6 +12,7 @@
 //   6) Hvor mange og hvor stor andel er flyktninger?
 //   6b) Hva kjennetegner flyktningene (botid, alder, fødeland), og hvordan skiller de seg fra øvrige innvandrere?
 //   6c) Hvor sentrale (SSBs sentralitetsindeks) var kommunene innflytterne - og flyktningene - kom fra?
+//   6d) Hvilken kommune ble flyktningene først bosatt i (introduksjonsprogrammet), og flyttet de direkte derfra til Skien?
 //   7) Hvor mange bor trangt - blant flyktninger, innvandrere generelt og øvrig befolkning?
 //   8) Hvordan er arbeidsmarkedsstatusen (sysselsatt, arbeidsledig, utenfor arbeidsstyrken) blant flyktninger, innvandrere generelt og øvrig befolkning?
 //   9) Hvor stor andel av flyktningene mottar sosialhjelp, sammenliknet med øvrige innvandrere og befolkningen for øvrig?
@@ -20,7 +21,7 @@
 // Juster "nyeste_aar" under for å kjøre analysen på nytt med et annet "i dag". Endres "flytteperiode_ant_aar" fra 5, må aar_t*/dato_t*/kommune_t*-blokkene under utvides eller kortes inn tilsvarende.
 // ============================================================================
 
-require no.ssb.fdb:51 as fdb
+require no.ssb.fdb:56 as fdb
 
 
 let nyeste_aar = 2024 // "I dag" - nyeste året med tilstrekkelig komplette FDB-data. Juster opp etter hvert som nye årganger blir tilgjengelige.
@@ -385,6 +386,58 @@ tabulate sentralitet_opprinnelig if fylkenummer_opprinnelig != 40, missing freq 
 tabulate innvandringskategori sentralitet_opprinnelig if fylkenummer_opprinnelig != 40, missing rowpct
 tabulate innvandrergruppe sentralitet_opprinnelig if innvandringskategori == 1 & fylkenummer_opprinnelig != 40, missing rowpct
 tabulate sentralitet_opprinnelig if erflyktning == 1 & fylkenummer_opprinnelig != 40, missing freq cellpct
+
+
+// ============================================================================
+// FØRSTE BOSETTINGSKOMMUNE (INTRODUKSJONSPROGRAMMET)
+// ============================================================================
+// INTRO_FORST_BOSETTING_KOMMNR (krever fdb versjon 56): kommunenummeret for personens første bosettingskommune i Norge. Finnes KUN for personer som deltok i og/eller avsluttet introduksjonsprogrammet i løpet av rapporteringsåret, og kun for årgangene 2022-2025 (tverrsnitt per 31.12.).
+// Konsekvens: variabelen dekker bare flyktningene som var i introduksjonsprogrammet en gang i 2022-2025 - i praksis de som ble bosatt fra ca. 2019-2020 og senere. De som kom med den store bølgen i 2015-2017 har som regel avsluttet programmet før 2022 og mangler verdi. Dekningsgraden vises derfor først.
+// Opplysningen er fast (samme første bosettingskommune hvert år), så de fire årgangene slås sammen: første årgang med verdi brukes.
+import fdb/INTRO_FORST_BOSETTING_KOMMNR 2022-12-31 as intro_forst_2022
+import fdb/INTRO_FORST_BOSETTING_KOMMNR 2023-12-31 as intro_forst_2023
+import fdb/INTRO_FORST_BOSETTING_KOMMNR 2024-12-31 as intro_forst_2024
+import fdb/INTRO_FORST_BOSETTING_KOMMNR 2025-12-31 as intro_forst_2025
+destring intro_forst_2022
+destring intro_forst_2023
+destring intro_forst_2024
+destring intro_forst_2025
+
+generate forst_bosettingskommune = intro_forst_2022
+replace forst_bosettingskommune = intro_forst_2023 if sysmiss(forst_bosettingskommune) == 1
+replace forst_bosettingskommune = intro_forst_2024 if sysmiss(forst_bosettingskommune) == 1
+replace forst_bosettingskommune = intro_forst_2025 if sysmiss(forst_bosettingskommune) == 1
+recode forst_bosettingskommune (806 3807 4003 = 4003 'Skien')
+
+generate har_intro_info = sysmiss(forst_bosettingskommune) == 0
+
+// Hvor ble de først bosatt? Telemark-kommuner gjenkjennes under alle tre nummerregimer: 8xx (t.o.m. 2019), 3806-3825 unntatt 3811 (Vestfold og Telemark 2020-2023 - 3801-3805 og 3811 er Vestfold) og 40xx (fra 2024).
+generate forst_bosatt_hvor = 'Ukjent (ikke i introprogram 2022-2025)'
+replace forst_bosatt_hvor = 'Utenfor Telemark' if har_intro_info == 1
+replace forst_bosatt_hvor = 'Annen Telemark-kommune' if int(forst_bosettingskommune / 100) == 8 | int(forst_bosettingskommune / 100) == 40 | (forst_bosettingskommune >= 3806 & forst_bosettingskommune <= 3825 & forst_bosettingskommune != 3811)
+replace forst_bosatt_hvor = 'Skien' if forst_bosettingskommune == 4003
+
+// Flyttet de direkte fra første bosettingskommune til Skien (sekundærflytting rett fra bosettingskommunen), eller bodde de et annet sted i mellomtiden?
+// NB: Tilnærming - kommunenummeret for opprinnelseskommunen er det som gjaldt på flyttetidspunktet, mens bosettingskommunen trolig oppgis med nummeret som gjaldt i rapporteringsåret. For kommuner som fikk nytt nummer 1.1.2024 (tidl. Viken, Vestfold og Telemark, Troms og Finnmark, Ålesund/Haram) vil samme kommune da ikke matche, og andelen "direkte" blir noe undervurdert.
+// Laget med én "generate" (0/1 for alle) i stedet for "replace ... if": en replace med denne betingelsen ble stoppet av avsløringskontrollen ("Operasjonen påvirker for få enheter") - dvs. svært få flyttet direkte fra bosettingskommunen. Med generate skjer kontrollen først i tabulate, der små celler skjules/avrundes i stedet for at kjøringen stopper. Tolkes kun blant har_intro_info == 1.
+generate direkte_fra_bosetting = forst_bosettingskommune == kommune_opprinnelig_num
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 6d: Hvilken kommune ble flyktningene først bosatt i, og flyttet de direkte derfra til Skien?
+// ============================================================================
+// Dekningsgrad: hvor mange av flyktningene har opplysning om første bosettingskommune - totalt, etter innflyttingsår og etter botid.
+tabulate har_intro_info if erflyktning == 1, missing freq cellpct
+tabulate innflyttingsaar har_intro_info if erflyktning == 1, missing rowpct
+tabulate botidsgruppe har_intro_info if erflyktning == 1, missing rowpct
+
+// Blant flyktningene MED opplysning: hvor ble de først bosatt, og flyttet de direkte derfra til Skien?
+tabulate forst_bosatt_hvor if erflyktning == 1 & har_intro_info == 1, freq cellpct
+tabulate direkte_fra_bosetting if erflyktning == 1 & har_intro_info == 1, freq cellpct // 1 = flyttet direkte fra bosettingskommunen, 0 = bodde i en annen kommune i mellomtiden
+tabulate forst_bosatt_hvor direkte_fra_bosetting if erflyktning == 1 & har_intro_info == 1, rowpct
+
+// Enkeltkommuner - gir mange små celler som microdata.no skjuler/avrunder. Fjern kommentaren for å se de største bosettingskommunene.
+// tabulate forst_bosettingskommune if erflyktning == 1 & har_intro_info == 1
 
 
 // ============================================================================
