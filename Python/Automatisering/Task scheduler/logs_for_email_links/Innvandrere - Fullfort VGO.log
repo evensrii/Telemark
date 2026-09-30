@@ -1,28 +1,9 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Innvandrere: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/14883/data?lang=no&valueCodes%5BContentsCode%5D=Prosent&valueCodes%5BTid%5D=*&valueCodes%5BRegion%5D=08&valueCodes%5BFullforingVGO%5D=1a,2a,4b&valueCodes%5BUtdProgram%5D=00&valueCodes%5BKjonn%5D=0
-Error occurred: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/14883/data?lang=no&valueCodes%5BContentsCode%5D=Prosent&valueCodes%5BTid%5D=*&valueCodes%5BRegion%5D=08&valueCodes%5BFullforingVGO%5D=1a,2a,4b&valueCodes%5BUtdProgram%5D=00&valueCodes%5BKjonn%5D=0
-
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Utdanning/innv_fullfort_vgo.py", line 30, in <module>
-    df_innvandrere = fetch_data(
-        url=GET_URL_innv,
-    ...<3 lines>...
-        response_type="json",
-    )
-  File "C:\Analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/14883/data?lang=no&valueCodes%5BContentsCode%5D=Prosent&valueCodes%5BTid%5D=*&valueCodes%5BRegion%5D=08&valueCodes%5BFullforingVGO%5D=1a,2a,4b&valueCodes%5BUtdProgram%5D=00&valueCodes%5BKjonn%5D=0
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Utdanning/innv_fullfort_vgo.py", line 39, in <module>
-    raise RuntimeError(
-        "A critical error occurred during data fetching, stopping execution."
-    )
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+Innvandrere JSON-stat data loaded successfully.
+Hele befolkningen JSON-stat data loaded successfully.
+Saved file to C:\Analyse\Telemark\Python\Temp\fullført_vgo_innv_befolk.csv
+[2026-09-30 10:05:42] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\fullført_vgo_innv_befolk.csv
+No new data detected.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Fullfort_VGO.log
