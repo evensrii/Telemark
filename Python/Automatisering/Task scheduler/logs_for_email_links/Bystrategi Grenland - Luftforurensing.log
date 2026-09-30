@@ -1,7 +1,7 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 === Luftforurensning Grenland (Excel) ===
-Script started: 2026-09-30 09:50:25
+Script started: 2026-09-30 10:10:40
 === Listing Excel files from GitHub ===
 Found 21 Excel files:
   - PM10 og NO2 døgn 2014 (KM og FM, mangler).xlsx
@@ -141,11 +141,8 @@ NaN counts per column: {'Furulund NO2 µg/m³': np.int64(939), 'Furulund PM10 µ
 ✅ Saved copy to temp folder: C:\Analyse\Telemark\Python\Temp\luftforurensing_grenland.csv
 
 === Comparing with existing GitHub data ===
-Downloaded existing CSV: 4474 rows, 19 columns
-🔄 Changes detected:
-  • Shape changed: (4474, 19) -> (4566, 19)
-Successfully uploaded Data/Bystrategi_Grenland/Klima/Luftforurensing/luftforurensing_grenland.csv
-✅ Successfully uploaded luftforurensing_grenland.csv to GitHub
+Downloaded existing CSV: 4566 rows, 19 columns
+✅ No changes detected - data is identical
 
-🎯 RESULT: New data detected and uploaded to GitHub
+🎯 RESULT: No new data - Excel files match existing CSV
 Status log: C:\Analyse\Telemark\Python\Log\new_data_status_Bystrategi_Grenland_-_Luftforurensing.log
