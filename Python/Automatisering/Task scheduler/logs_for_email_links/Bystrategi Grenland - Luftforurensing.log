@@ -1,7 +1,7 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 === Luftforurensning Grenland (Excel) ===
-Script started: 2026-09-30 09:37:11
+Script started: 2026-09-30 09:50:25
 === Listing Excel files from GitHub ===
 Found 21 Excel files:
   - PM10 og NO2 døgn 2014 (KM og FM, mangler).xlsx
@@ -81,7 +81,7 @@ Downloading: PM10 og NO2 døgn jan-feb 2026.xlsx
   Loaded 59 rows, 20 cols
 
 Downloading: PM10 og NO2 døgn juni-august 2026.xlsx
-  Loaded 97 rows, 21 cols
+  Loaded 92 rows, 20 cols
 
 Downloading: PM10 og NO2 døgn mai 2026.xlsx
   Loaded 36 rows, 21 cols
@@ -108,10 +108,10 @@ Combining 21 DataFrames...
   Standardized DataFrame 16: (181, 41)
   Standardized DataFrame 17: (30, 41)
   Standardized DataFrame 18: (59, 41)
-  Standardized DataFrame 19: (97, 41)
+  Standardized DataFrame 19: (92, 41)
   Standardized DataFrame 20: (36, 41)
   Standardized DataFrame 21: (62, 41)
-  Dropping 133 rows with invalid/missing 'Fra-tid'
+  Dropping 36 rows with invalid/missing 'Fra-tid'
 
 === Final transformations ===
 ✓ Removed 'Til-tid'
@@ -121,9 +121,9 @@ Combining 21 DataFrames...
 ✓ Ensured 9 measurement columns are float64
 ✓ Rounded 18 numeric columns to 8 decimal places
 ✓ Ensured proper data types for CSV consistency
-Final shape: (4474, 19)
+Final shape: (4566, 19)
 
-Processed total rows: 4474
+Processed total rows: 4566
 Preview:
          Dato  Furulund NO2 µg/m³  ...  Datadekning (%).7  Datadekning (%).8
 0  2014-01-01                 NaN  ...                NaN                NaN
@@ -132,17 +132,20 @@ Preview:
 
 [3 rows x 19 columns]
 
-Date range: 2014-01-01 to 2026-05-01
+Date range: 2014-01-01 to 2026-08-31
 Data types: {dtype('float64'): 18, dtype('O'): 1}
 Column order: ['Dato', 'Furulund NO2 µg/m³', 'Furulund PM10 µg/m³', 'Haukenes NO2 µg/m³', 'Knarrdalstranda NO2 µg/m³']...['Datadekning (%).6', 'Datadekning (%).7', 'Datadekning (%).8']
 
-NaN counts per column: {'Furulund NO2 µg/m³': np.int64(939), 'Furulund PM10 µg/m³': np.int64(1323), 'Haukenes NO2 µg/m³': np.int64(120), 'Knarrdalstranda NO2 µg/m³': np.int64(1187), 'Knarrdalstranda PM10 µg/m³': np.int64(1233), 'Lensmannsdalen NO2 µg/m³': np.int64(103), 'Lensmannsdalen PM10 µg/m³': np.int64(112), 'Sverresgate NO2 µg/m³': np.int64(98), 'Sverresgate PM10 µg/m³': np.int64(57), 'Datadekning (%)': np.int64(109), 'Datadekning (%).1': np.int64(105), 'Datadekning (%).2': np.int64(118), 'Datadekning (%).3': np.int64(98), 'Datadekning (%).4': np.int64(57), 'Datadekning (%).5': np.int64(939), 'Datadekning (%).6': np.int64(1326), 'Datadekning (%).7': np.int64(1233), 'Datadekning (%).8': np.int64(1187)}
+NaN counts per column: {'Furulund NO2 µg/m³': np.int64(939), 'Furulund PM10 µg/m³': np.int64(1323), 'Haukenes NO2 µg/m³': np.int64(120), 'Knarrdalstranda NO2 µg/m³': np.int64(1187), 'Knarrdalstranda PM10 µg/m³': np.int64(1233), 'Lensmannsdalen NO2 µg/m³': np.int64(103), 'Lensmannsdalen PM10 µg/m³': np.int64(122), 'Sverresgate NO2 µg/m³': np.int64(98), 'Sverresgate PM10 µg/m³': np.int64(61), 'Datadekning (%)': np.int64(109), 'Datadekning (%).1': np.int64(105), 'Datadekning (%).2': np.int64(118), 'Datadekning (%).3': np.int64(98), 'Datadekning (%).4': np.int64(57), 'Datadekning (%).5': np.int64(939), 'Datadekning (%).6': np.int64(1336), 'Datadekning (%).7': np.int64(1233), 'Datadekning (%).8': np.int64(1191)}
 
 ✅ Saved copy to temp folder: C:\Analyse\Telemark\Python\Temp\luftforurensing_grenland.csv
 
 === Comparing with existing GitHub data ===
 Downloaded existing CSV: 4474 rows, 19 columns
-✅ No changes detected - data is identical
+🔄 Changes detected:
+  • Shape changed: (4474, 19) -> (4566, 19)
+Successfully uploaded Data/Bystrategi_Grenland/Klima/Luftforurensing/luftforurensing_grenland.csv
+✅ Successfully uploaded luftforurensing_grenland.csv to GitHub
 
-🎯 RESULT: No new data - Excel files match existing CSV
+🎯 RESULT: New data detected and uploaded to GitHub
 Status log: C:\Analyse\Telemark\Python\Log\new_data_status_Bystrategi_Grenland_-_Luftforurensing.log
