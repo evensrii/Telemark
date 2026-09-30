@@ -1,24 +1,28 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Sysselsatte, siste år JSON-stat data loaded successfully.
-Sysselsatte, kommuner JSON-stat data loaded successfully.
+Request error in Sysselsatte, siste år: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/13470/
+Error occurred: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/13470/
 
-Sysselsatte per år:
+Errors:
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/endring_arbeidsplasser_over_tid.py", line 72, in <module>
+    df_sysselsatte_siste_aar = fetch_data(
+        url=POST_URL,
+    ...<3 lines>...
+        response_type="json"
+    )
+  File "C:\Analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/13470/
 
-     år  value
-0  2016  75188
-1  2017  75640
-2  2018  75752
-3  2019  76180
-4  2020  75756
-5  2021  77084
-6  2022  77563
-7  2023  78308
-8  2024  78849
-9  2025  78857
-Økning i antall arbeidsplasser (sysselsatte med arbeidssted i Telemark) fra 2016 til 2025: 3669
-Saved file to C:\Analyse\Telemark\Python\Temp\endring_i_arbeidsplasser_over_tid.csv
-[2026-09-29 08:08:21] No new data to upload. Skipping GitHub update.
-Keeping CSV file: C:\Analyse\Telemark\Python\Temp\endring_i_arbeidsplasser_over_tid.csv
-No new data detected.
-New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Endring_arbeidsplasser_over_tid.log
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/endring_arbeidsplasser_over_tid.py", line 81, in <module>
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+RuntimeError: A critical error occurred during data fetching, stopping execution.
