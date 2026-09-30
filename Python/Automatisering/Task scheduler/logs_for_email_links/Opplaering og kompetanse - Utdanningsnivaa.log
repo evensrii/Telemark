@@ -32,56 +32,29 @@ Midt-Telemark                               35.5
          Tinn                               25.2
      Hjartdal                               25.2
     Drangedal                               22.3
-Andel 2020 - 2023 JSON-stat data loaded successfully.
-Andel 2004 - 2019 JSON-stat data loaded successfully.
+Request error in Andel 2020 - 2023: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/09429/
+Error occurred: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/09429/
 
-Direct comparison:
-Local df shape: (14040, 6)
-GitHub df shape: (14040, 6)
-Local df dtypes:
-Kommune           str
-Utdanningsnivå    str
-Kjønn             str
-Variabel          str
-År                str
-Verdi             str
-dtype: object
-GitHub df dtypes:
-Kommune           str
-Utdanningsnivå    str
-Kjønn             str
-Variabel          str
-År                str
-Verdi             str
-dtype: object
-DataFrames equal: False
-Column 'Kommune' equal: True
-Column 'Utdanningsnivå' equal: True
-Column 'Kjønn' equal: True
-Column 'Variabel' equal: True
-Column 'År' equal: True
-Column 'Verdi' equal: False
-  First difference at index 50: '' vs 'nan'
-Saved file to C:\Analyse\Telemark\Python\Temp\utdanningsnivaa.csv
-[2026-09-29 08:07:06] No new data to upload. Skipping GitHub update.
-Keeping CSV file: C:\Analyse\Telemark\Python\Temp\utdanningsnivaa.csv
-No new data detected.
-New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Opplaering_og_kompetanse_-_Utdanningsnivaa.log
-Antall Telemark siste år JSON-stat data loaded successfully.
-Antall alle fylker siste år JSON-stat data loaded successfully.
+Errors:
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa.py", line 642, in <module>
+    df_andel_2020_2023 = fetch_data(
+        url=POST_URL,
+    ...<5 lines>...
+        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+    )
+  File "C:\Analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/09429/
 
-Utdanningsnivå fordeling for Telemark, 2025:
-Total antall personer: 149,622
+During handling of the above exception, another exception occurred:
 
-Fordeling per utdanningsnivå:
-                                   nivå  antall  prosent
-                 Videregående skolenivå   59205    39.57
-                         Grunnskolenivå   37676    25.18
-    Universitets- og høgskolenivå, kort   34632    23.15
-    Universitets- og høgskolenivå, lang   11815     7.90
-                           Fagskolenivå    5603     3.74
-Uoppgitt eller ingen fullført utdanning     691     0.46
-
-Andel personer i Telemark med høyere utdanning (kort eller lang): 31.0 %
-
-Andel personer i landet utenom Oslo som har høyere utdanning (kort eller lang) er 35.5 %
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa.py", line 653, in <module>
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+RuntimeError: A critical error occurred during data fetching, stopping execution.
