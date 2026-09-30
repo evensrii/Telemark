@@ -1,28 +1,8 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Fulldyrka vs ikke-fulldyrka jordbruksareal: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/09594/
-Error occurred: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/09594/
-
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/fulldyrka_vs_ikke-fulldyrka.py", line 68, in <module>
-    df = fetch_data(
-        url=POST_URL,
-    ...<5 lines>...
-        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1'). Comment if json.
-    )
-  File "C:\Analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/09594/
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Areal_til_jordbruk/fulldyrka_vs_ikke-fulldyrka.py", line 79, in <module>
-    raise RuntimeError(
-        "A critical error occurred during data fetching, stopping execution."
-    )
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+Fulldyrka vs ikke-fulldyrka jordbruksareal JSON-stat data loaded successfully.
+Saved file to C:\Analyse\Telemark\Python\Temp\fulldyrka_vs_ikke-fulldyrka.csv
+[2026-09-30 10:07:56] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\fulldyrka_vs_ikke-fulldyrka.csv
+No new data detected.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Areal_-_Fulldyrka_vs_ikke-fulldyrka.log
