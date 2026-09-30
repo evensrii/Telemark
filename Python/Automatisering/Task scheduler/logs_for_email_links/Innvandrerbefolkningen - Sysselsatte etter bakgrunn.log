@@ -1,28 +1,33 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Sysselsatte etter innvandrerbakgrunn (11607): 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/11607/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2015)&valuecodes%5BRegion%5D=40,38,08&codelist%5BRegion%5D=vs_FylkerAlle&valuecodes%5BLandbakgrunn%5D=abc,ddd,eee&valuecodes%5BAlder%5D=15-74&valuecodes%5BKjonn%5D=0&valuecodes%5BContentsCode%5D=Sysselsatte2&heading=ContentsCode,Tid,Alder,Kjonn&stub=Region,Landbakgrunn
-Error occurred: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/11607/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2015)&valuecodes%5BRegion%5D=40,38,08&codelist%5BRegion%5D=vs_FylkerAlle&valuecodes%5BLandbakgrunn%5D=abc,ddd,eee&valuecodes%5BAlder%5D=15-74&valuecodes%5BKjonn%5D=0&valuecodes%5BContentsCode%5D=Sysselsatte2&heading=ContentsCode,Tid,Alder,Kjonn&stub=Region,Landbakgrunn
-
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_bakgrunn.py", line 35, in <module>
-    df = fetch_data(
-        url=GET_URL,
-    ...<3 lines>...
-        response_type="json",
-    )
-  File "C:\Analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/11607/data?lang=no&outputFormat=json-stat2&valuecodes%5BTid%5D=from(2015)&valuecodes%5BRegion%5D=40,38,08&codelist%5BRegion%5D=vs_FylkerAlle&valuecodes%5BLandbakgrunn%5D=abc,ddd,eee&valuecodes%5BAlder%5D=15-74&valuecodes%5BKjonn%5D=0&valuecodes%5BContentsCode%5D=Sysselsatte2&heading=ContentsCode,Tid,Alder,Kjonn&stub=Region,Landbakgrunn
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_bakgrunn.py", line 44, in <module>
-    raise RuntimeError(
-        "A critical error occurred during data fetching, stopping execution."
-    )
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+Sysselsatte etter innvandrerbakgrunn (11607) JSON-stat data loaded successfully.
+<class 'pandas.DataFrame'>
+RangeIndex: 99 entries, 0 to 98
+Data columns (total 7 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   region              99 non-null     str    
+ 1   landbakgrunn        99 non-null     str    
+ 2   statistikkvariabel  99 non-null     str    
+ 3   år                  99 non-null     str    
+ 4   alder               99 non-null     str    
+ 5   kjønn               99 non-null     str    
+ 6   value               33 non-null     float64
+dtypes: float64(1), str(6)
+memory usage: 5.5 KB
+<class 'pandas.DataFrame'>
+RangeIndex: 11 entries, 0 to 10
+Data columns (total 4 columns):
+ #   Column                                          Non-Null Count  Dtype  
+---  ------                                          --------------  -----  
+ 0   År                                              11 non-null     str    
+ 1   Befolkningen eksklusive innvandrere             11 non-null     float64
+ 2   Gruppe 1-land (EU, Storbritannia, USA ++)       11 non-null     float64
+ 3   Gruppe 2-land (Asia, Afrika, Latin-Amerika ++)  11 non-null     float64
+dtypes: float64(3), str(1)
+memory usage: 484.0 bytes
+Saved file to C:\Analyse\Telemark\Python\Temp\andel_sysselsatte_innvandrere_etter_bakgrunn.csv
+[2026-09-30 10:05:10] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\andel_sysselsatte_innvandrere_etter_bakgrunn.csv
+No new data detected.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Innvandrerbefolkningen_-_Sysselsatte_etter_bakgrunn.log
