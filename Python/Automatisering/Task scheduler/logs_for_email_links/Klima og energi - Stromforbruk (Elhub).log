@@ -1,26 +1,7 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2026-09-30 08:12:19] Loaded .env file from: C:\Analyse\Telemark\Python\token.env
-[2026-09-30 08:12:19] GITHUB_TOKEN loaded successfully.
-[2026-09-30 08:12:31] Latest date in GitHub files: 2026-09-27
-[2026-09-30 08:12:31] Querying data for 2026-09-28
-[2026-09-30 08:12:31] API Response status code: 200
-Saved file to C:\Analyse\Telemark\Python\Temp\2026.csv
-[2026-09-30 08:12:38] Row count changed: 330378 -> 331602
+[2026-09-30 10:03:20] Loaded .env file from: C:\Analyse\Telemark\Python\token.env
+[2026-09-30 10:03:20] GITHUB_TOKEN loaded successfully.
+[2026-09-30 10:03:31] Latest date in GitHub files: 2026-09-28
 
-Added rows (showing up to 10):
-Antall mlere: 290.0, Forbruk (kWh): 1357.514, Gruppe: Næring (unntatt industri), Knr: 4022, Kommunenavn: Seljord, Tid: 2026-09-27 22:00:00+00:00
-Antall mlere: 91.0, Forbruk (kWh): 197.603, Gruppe: Industri, Knr: 4022, Kommunenavn: Seljord, Tid: 2026-09-27 22:00:00+00:00
-Antall mlere: 2163.0, Forbruk (kWh): 2112.778, Gruppe: Husholdninger, Knr: 4022, Kommunenavn: Seljord, Tid: 2026-09-27 22:00:00+00:00
-Antall mlere: 1682.0, Forbruk (kWh): 9890.43, Gruppe: Næring (unntatt industri), Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-09-27 22:00:00+00:00
-Antall mlere: 7212.0, Forbruk (kWh): 8483.646, Gruppe: Husholdninger, Knr: 4005, Kommunenavn: Notodden, Tid: 2026-09-27 22:00:00+00:00
-Antall mlere: 19585.0, Forbruk (kWh): 20994.293, Gruppe: Husholdninger, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-09-27 22:00:00+00:00
-Antall mlere: 872.0, Forbruk (kWh): 3564.906, Gruppe: Næring (unntatt industri), Knr: 4005, Kommunenavn: Notodden, Tid: 2026-09-27 22:00:00+00:00
-Antall mlere: 205.0, Forbruk (kWh): 1744.052, Gruppe: Industri, Knr: 4005, Kommunenavn: Notodden, Tid: 2026-09-27 22:00:00+00:00
-Antall mlere: 1275.0, Forbruk (kWh): 1628.877, Gruppe: Husholdninger, Knr: 4010, Kommunenavn: Siljan, Tid: 2026-09-27 22:00:00+00:00
-Antall mlere: 520.0, Forbruk (kWh): 162340.19, Gruppe: Industri, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-09-27 22:00:00+00:00
-... and 1214 more rows
-File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/2026.csv
-Keeping CSV file: C:\Analyse\Telemark\Python\Temp\2026.csv
-[2026-09-30 08:13:37] New data detected in 2026.csv and pushed to GitHub.
-[2026-09-30 08:13:37] New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Stromforbruk_(Elhub).log
+[2026-09-30 10:03:31] No new dates to query.
