@@ -1,9 +1,28 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Sysselsatte i næringer, Telemark, kun siste år JSON-stat data loaded successfully.
-Sysselsatte i næringer, Telemark JSON-stat data loaded successfully.
-Saved file to C:\Analyse\Telemark\Python\Temp\ansatte_i_naringer_fliser.csv
-[2026-09-29 08:08:18] No new data to upload. Skipping GitHub update.
-Keeping CSV file: C:\Analyse\Telemark\Python\Temp\ansatte_i_naringer_fliser.csv
-No new data detected.
-New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_(fliser).log
+Request error in Sysselsatte i næringer, Telemark, kun siste år: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/13470/
+Error occurred: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/13470/
+
+Errors:
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_fliser.py", line 75, in <module>
+    df_last_year = fetch_data(
+        url=POST_URL,
+    ...<5 lines>...
+        # encoding="ISO-8859-1", # The encoding for CSV data (default: 'ISO-8859-1').
+    )
+  File "C:\Analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/13470/
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/arbeidsplasser_fliser.py", line 86, in <module>
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+RuntimeError: A critical error occurred during data fetching, stopping execution.
