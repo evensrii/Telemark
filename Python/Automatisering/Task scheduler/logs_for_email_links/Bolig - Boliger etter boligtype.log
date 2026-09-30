@@ -1,26 +1,28 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Boliger etter boligtype (06265) - kommunedata JSON-stat data loaded successfully.
-Boliger etter boligtype (06265) - nasjonale data JSON-stat data loaded successfully.
-      region  ... value
-0  Porsgrunn  ...  8947
-1  Porsgrunn  ...  1199
-2  Porsgrunn  ...  2555
-3  Porsgrunn  ...  2902
-4  Porsgrunn  ...   598
+Request error in Boliger etter boligtype (06265) - kommunedata: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/06265/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2013)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BBygnType%5D=*&heading=ContentsCode,Tid,BygnType&stub=Region
+Error occurred: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/06265/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2013)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BBygnType%5D=*&heading=ContentsCode,Tid,BygnType&stub=Region
 
-[5 rows x 5 columns]
-['region', 'statistikkvariabel', 'år', 'bygningstype', 'value']
-  Kommunenummer    Kommune  ... Sort_Bygningstype_4_gr Antall
-0          4001  Porsgrunn  ...                      1   8947
-1          4001  Porsgrunn  ...                      2   1199
-2          4001  Porsgrunn  ...                      2   2555
-3          4001  Porsgrunn  ...                      3   2902
-4          4001  Porsgrunn  ...                      4    598
+Errors:
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/boliger_etter_boligtype.py", line 45, in <module>
+    df = fetch_data(
+        url=GET_URL,
+    ...<3 lines>...
+        response_type="json",
+    )
+  File "C:\Analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/06265/data?lang=no&outputFormat=json-stat2&valuecodes%5BContentsCode%5D=*&valuecodes%5BTid%5D=from(2013)&valuecodes%5BRegion%5D=K-4001,K-4003,K-4005,K-4010,K-4012,K-4014,K-4016,K-4018,K-4020,K-4022,K-4024,K-4026,K-4028,K-4030,K-4032,K-4034,K-4036&codelist%5BRegion%5D=agg_KommSummer&valuecodes%5BBygnType%5D=*&heading=ContentsCode,Tid,BygnType&stub=Region
 
-[5 rows x 8 columns]
-Saved file to C:\Analyse\Telemark\Python\Temp\boliger_etter_boligtype.csv
-[2026-09-29 08:18:31] No new data to upload. Skipping GitHub update.
-Keeping CSV file: C:\Analyse\Telemark\Python\Temp\boliger_etter_boligtype.csv
-No new data detected.
-New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Bolig_-_Boliger_etter_boligtype.log
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/boliger_etter_boligtype.py", line 54, in <module>
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+RuntimeError: A critical error occurred during data fetching, stopping execution.
