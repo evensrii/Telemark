@@ -19,21 +19,7 @@ Husholdninger etter boligtype (06070) JSON-stat data loaded successfully.
 
 [5 rows x 6 columns]
 Saved file to C:\Analyse\Telemark\Python\Temp\husholdninger_etter_boligtype.csv
-[2026-09-30 10:08:14] Row count changed: 1512 -> 1638
-
-Added rows (showing up to 10):
-Antall: 2424, Husholdningstype: Aleneboende, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 1, r: 01.01.2026
-Antall: 294, Husholdningstype: Aleneforsørger med barn under 18 år, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 4, r: 01.01.2026
-Antall: 0, Husholdningstype: Andre husholdninger, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 0, r: 01.01.2026
-Antall: 273, Husholdningstype: Flerfamiliehusholdninger, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 6, r: 01.01.2026
-Antall: 550, Husholdningstype: Par eller aleneforsørger med voksne barn (18+), Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 3, r: 01.01.2026
-Antall: 1084, Husholdningstype: Par med barn under 18 år, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 5, r: 01.01.2026
-Antall: 1969, Husholdningstype: Par uten hjemmeboende barn, Kommune: Bamble, Kommunenummer: 4012, SortHusholdningstype: 2, r: 01.01.2026
-Antall: 794, Husholdningstype: Aleneboende, Kommune: Drangedal, Kommunenummer: 4016, SortHusholdningstype: 1, r: 01.01.2026
-Antall: 81, Husholdningstype: Aleneforsørger med barn under 18 år, Kommune: Drangedal, Kommunenummer: 4016, SortHusholdningstype: 4, r: 01.01.2026
-Antall: 0, Husholdningstype: Andre husholdninger, Kommune: Drangedal, Kommunenummer: 4016, SortHusholdningstype: 0, r: 01.01.2026
-... and 116 more rows
-File uploaded successfully: Data/10_Areal- og stedsutvikling/Bolig/Dagens boligmasse/husholdninger_etter_boligtype.csv
+[2026-09-30 10:44:03] No new data to upload. Skipping GitHub update.
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\husholdninger_etter_boligtype.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Bolig_-_Husholdninger_etter_boligtype.log
