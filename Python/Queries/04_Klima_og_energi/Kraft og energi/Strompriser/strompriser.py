@@ -132,7 +132,8 @@ def fetch_exchange_rates(start_date, end_date, existing_df, error_messages):
     try:
         base_url = "https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP"
         params = {
-            "startPeriod": start_date.strftime("%Y-%m-%d"),
+            # Start a week early so a gap that begins on a weekend/holiday still has a previous business day's rate to forward-fill from
+            "startPeriod": (start_date - timedelta(days=7)).strftime("%Y-%m-%d"),
             "endPeriod": end_date.strftime("%Y-%m-%d"),
             "format": "csv", "bom": "include", "locale": "no",
         }
@@ -146,9 +147,15 @@ def fetch_exchange_rates(start_date, end_date, existing_df, error_messages):
         df_rates["TIME_PERIOD"] = pd.to_datetime(df_rates["TIME_PERIOD"])
         df_rates = df_rates.rename(columns={"TIME_PERIOD": "time", "OBS_VALUE": "eur_nok_rate"})
         df_rates = df_rates[["time", "eur_nok_rate"]]
-        if df_rates["eur_nok_rate"].dtype == object:
-            df_rates["eur_nok_rate"] = df_rates["eur_nok_rate"].str.replace(',', '.').astype(float)
-        
+        # Norges Bank returns the rate with a decimal comma (locale=no). Always convert via str, not only when dtype == object:
+        # from pandas 3 text columns get the "str" dtype, so an "== object" check is False and the rates silently became NaN.
+        df_rates["eur_nok_rate"] = pd.to_numeric(df_rates["eur_nok_rate"].astype(str).str.replace(',', '.'), errors="coerce")
+
+        # One row per calendar day: weekends/holidays get the last published rate, then trim back to the requested period
+        daily_index = pd.date_range(df_rates["time"].min(), max(end_date, df_rates["time"].max()), freq="D", name="time")
+        df_rates = df_rates.set_index("time").reindex(daily_index).ffill().reset_index()
+        df_rates = df_rates[df_rates["time"] >= start_date]
+
         print(f"Successfully fetched {len(df_rates)} exchange rate records")
         return df_rates
             
@@ -184,6 +191,15 @@ MAX_MISSING_DAYS_TOLERANCE = 3
 existing_df = download_github_file(f"{github_folder}/{file_name}")
 if existing_df is not None and not existing_df.empty:
     existing_df["time"] = pd.to_datetime(existing_df["time"])
+    # Drop rows that are missing the exchange rate (after the first date that has one), so they count as gaps below
+    # and are re-fetched instead of being stuck with empty kurs/NOK values forever. The first few days of the series
+    # (around New Year 2021, before any Norges Bank rate exists to forward-fill from) are left as they are.
+    kurs = pd.to_numeric(existing_df["kurs"], errors="coerce")
+    first_valid_time = existing_df.loc[kurs.notna(), "time"].min()
+    missing_kurs = kurs.isna() & (existing_df["time"] > first_valid_time)
+    if missing_kurs.any():
+        print(f"Re-fetching {missing_kurs.sum()} existing row(s) with missing exchange rate.")
+        existing_df = existing_df[~missing_kurs].reset_index(drop=True)
     all_processed_data.append(existing_df)
 
 # 3. Find and fetch data for missing date ranges (gaps)
