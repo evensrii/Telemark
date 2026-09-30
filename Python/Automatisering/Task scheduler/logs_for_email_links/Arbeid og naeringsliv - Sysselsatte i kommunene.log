@@ -1,28 +1,34 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Sysselsetting i kommunene (new codes): 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/06445/
-Error occurred: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/06445/
+Sysselsetting i kommunene (new codes) JSON-stat data loaded successfully.
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py", line 129, in <module>
-    df = fetch_data(
-        url=POST_URL,
-    ...<3 lines>...
-        response_type="json"
-    )
-  File "C:\Analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/v0/no/table/06445/
+Fetched data:
+          Kommune  Andel sysselsatte (2025)          Label
+0       Porsgrunn                      64.1      Porsgrunn
+1           Skien                      64.2          Skien
+2        Notodden                      63.9       Notodden
+3          Siljan                      69.8         Siljan
+4          Bamble                      63.8         Bamble
+5         Kragerø                      61.3        Kragerø
+6       Drangedal                      62.7      Drangedal
+7            Nome                      62.4           Nome
+8   Midt-Telemark                      62.4  Midt-Telemark
+9         Seljord                      67.4        Seljord
+10       Hjartdal                      68.1       Hjartdal
+11           Tinn                      66.8           Tinn
+12      Kviteseid                      66.4      Kviteseid
+13       Nissedal                      63.7       Nissedal
+14       Fyresdal                      68.7       Fyresdal
+15          Tokke                      69.3          Tokke
+16          Vinje                      71.7          Vinje
 
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py", line 149, in <module>
-    raise RuntimeError(
-        "A critical error occurred during data fetching, stopping execution."
-    )
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+Data types:
+Kommune                         str
+Andel sysselsatte (2025)    float64
+Label                           str
+dtype: object
+Saved file to C:\Analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
+[2026-09-30 09:58:26] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\sysselsetting_i_kommunene.csv
+No new data detected.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Sysselsatte_i_kommunene.log
