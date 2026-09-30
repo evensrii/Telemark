@@ -1,9 +1,9 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 === Luftforurensning Grenland (Excel) ===
-Script started: 2026-09-29 08:21:01
+Script started: 2026-09-30 08:20:27
 === Listing Excel files from GitHub ===
-Found 20 Excel files:
+Found 21 Excel files:
   - PM10 og NO2 døgn 2014 (KM og FM, mangler).xlsx
   - PM10 og NO2 døgn 2015 (KM og FM mangler).xlsx
   - PM10 og NO2 døgn 2016 (KM mangler).xlsx
@@ -22,6 +22,7 @@ Found 20 Excel files:
   - PM10 og NO2 døgn jan-jun 2025.xlsx
   - PM10 og NO2 døgn november 2025.xlsx
   - PM10 og NO2 døgn jan-feb 2026.xlsx
+  - PM10 og NO2 døgn juni-august 2026.xlsx
   - PM10 og NO2 døgn mai 2026.xlsx
   - PM10 og NO2 døgn mars-mai 2026.xlsx
 
@@ -79,13 +80,16 @@ Downloading: PM10 og NO2 døgn november 2025.xlsx
 Downloading: PM10 og NO2 døgn jan-feb 2026.xlsx
   Loaded 59 rows, 20 cols
 
+Downloading: PM10 og NO2 døgn juni-august 2026.xlsx
+  Loaded 97 rows, 21 cols
+
 Downloading: PM10 og NO2 døgn mai 2026.xlsx
   Loaded 36 rows, 21 cols
 
 Downloading: PM10 og NO2 døgn mars-mai 2026.xlsx
   Loaded 62 rows, 20 cols
 
-Combining 20 DataFrames...
+Combining 21 DataFrames...
   Standardized DataFrame 1: (365, 41)
   Standardized DataFrame 2: (365, 41)
   Standardized DataFrame 3: (366, 41)
@@ -104,9 +108,10 @@ Combining 20 DataFrames...
   Standardized DataFrame 16: (181, 41)
   Standardized DataFrame 17: (30, 41)
   Standardized DataFrame 18: (59, 41)
-  Standardized DataFrame 19: (36, 41)
-  Standardized DataFrame 20: (62, 41)
-  Dropping 36 rows with invalid/missing 'Fra-tid'
+  Standardized DataFrame 19: (97, 41)
+  Standardized DataFrame 20: (36, 41)
+  Standardized DataFrame 21: (62, 41)
+  Dropping 133 rows with invalid/missing 'Fra-tid'
 
 === Final transformations ===
 ✓ Removed 'Til-tid'
