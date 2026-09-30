@@ -1,55 +1,28 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Valgdeltakelse kommunevalg - kommuner (09475) JSON-stat data loaded successfully.
-Valgdeltakelse kommunevalg - fylke og land (09475) JSON-stat data loaded successfully.
-           region        statistikkvariabel fireårlig  value
-0       Porsgrunn  Valgdeltakelse i prosent      2023   60.4
-1           Skien  Valgdeltakelse i prosent      2023   57.2
-2        Notodden  Valgdeltakelse i prosent      2023   57.0
-3          Siljan  Valgdeltakelse i prosent      2023   66.5
-4          Bamble  Valgdeltakelse i prosent      2023   62.3
-5         Kragerø  Valgdeltakelse i prosent      2023   63.1
-6       Drangedal  Valgdeltakelse i prosent      2023   63.6
-7            Nome  Valgdeltakelse i prosent      2023   60.2
-8   Midt-Telemark  Valgdeltakelse i prosent      2023   57.7
-9         Seljord  Valgdeltakelse i prosent      2023   66.0
-10       Hjartdal  Valgdeltakelse i prosent      2023   65.8
-11           Tinn  Valgdeltakelse i prosent      2023   62.0
-12      Kviteseid  Valgdeltakelse i prosent      2023   63.7
-13       Nissedal  Valgdeltakelse i prosent      2023   75.2
-14       Fyresdal  Valgdeltakelse i prosent      2023   68.0
-15          Tokke  Valgdeltakelse i prosent      2023   69.5
-16          Vinje  Valgdeltakelse i prosent      2023   67.1
-17    Hele landet  Valgdeltakelse i prosent      2023   62.4
-18       Telemark  Valgdeltakelse i prosent      2023   60.1
-['region', 'statistikkvariabel', 'fireårlig', 'value']
-Kolonner: ['region', 'statistikkvariabel', 'fireårlig', 'value']
+Request error in Valgdeltakelse kommunevalg - kommuner (09475): 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/09475/data?lang=no&outputFormat=json-stat2&valueCodes%5BContentsCode%5D=DeltaProsent&valueCodes%5BTid%5D=top(1)&valueCodes%5BRegion%5D=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036&codelist%5BRegion%5D=agg_KommunerV1&outputValues%5BRegion%5D=aggregated
+Error occurred: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/09475/data?lang=no&outputFormat=json-stat2&valueCodes%5BContentsCode%5D=DeltaProsent&valueCodes%5BTid%5D=top(1)&valueCodes%5BRegion%5D=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036&codelist%5BRegion%5D=agg_KommunerV1&outputValues%5BRegion%5D=aggregated
 
---- Ferdig datasett ---
-          Kommune  Andel (2023)          Label
-0          Bamble            62         Bamble
-1       Drangedal            64      Drangedal
-2        Fyresdal            68       Fyresdal
-3        Hjartdal            66       Hjartdal
-4         Kragerø            63        Kragerø
-5       Kviteseid            64      Kviteseid
-6   Midt-Telemark            58  Midt-Telemark
-7        Nissedal            75       Nissedal
-8            Nome            60           Nome
-9        Notodden            57       Notodden
-10      Porsgrunn            60      Porsgrunn
-11        Seljord            66        Seljord
-12         Siljan            66         Siljan
-13          Skien            57          Skien
-14           Tinn            62           Tinn
-15          Tokke            70          Tokke
-16          Vinje            67          Vinje
-17       Telemark            60       Telemark
-18         Landet            62         Landet
+Errors:
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/SSB/valgdeltakelse_kommunevalg.py", line 40, in <module>
+    df_kommuner = fetch_data(
+        url=GET_URL_KOMMUNER,
+    ...<3 lines>...
+        response_type="json",
+    )
+  File "C:\Analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/09475/data?lang=no&outputFormat=json-stat2&valueCodes%5BContentsCode%5D=DeltaProsent&valueCodes%5BTid%5D=top(1)&valueCodes%5BRegion%5D=4001,4003,4005,4010,4012,4014,4016,4018,4020,4022,4024,4026,4028,4030,4032,4034,4036&codelist%5BRegion%5D=agg_KommunerV1&outputValues%5BRegion%5D=aggregated
 
-Antall rader: 19
-Saved file to C:\Analyse\Telemark\Python\Temp\valgdeltakelse_kommunevalg.csv
-[2026-09-29 08:17:58] No new data to upload. Skipping GitHub update.
-Keeping CSV file: C:\Analyse\Telemark\Python\Temp\valgdeltakelse_kommunevalg.csv
-No new data detected.
-New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Valgdeltakelse_kommunevalg.log
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/SSB/valgdeltakelse_kommunevalg.py", line 56, in <module>
+    raise RuntimeError(
+        "A critical error occurred during data fetching, stopping execution."
+    )
+RuntimeError: A critical error occurred during data fetching, stopping execution.
