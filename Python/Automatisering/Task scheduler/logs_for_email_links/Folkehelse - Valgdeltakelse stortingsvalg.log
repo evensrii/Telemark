@@ -1,28 +1,56 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Request error in Valgdeltakelse stortingsvalg - landet (08243): 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/08243/data?lang=no&outputFormat=json-stat2&valueCodes%5BContentsCode%5D=ValgSProsent&valueCodes%5BTid%5D=top(1)&valueCodes%5BRegion%5D=0&codelist%5BRegion%5D=vs_Landet
-Error occurred: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/08243/data?lang=no&outputFormat=json-stat2&valueCodes%5BContentsCode%5D=ValgSProsent&valueCodes%5BTid%5D=top(1)&valueCodes%5BRegion%5D=0&codelist%5BRegion%5D=vs_Landet
+Valgdeltakelse stortingsvalg - landet (08243) JSON-stat data loaded successfully.
+Valgdeltakelse stortingsvalg - kommuner (08243) JSON-stat data loaded successfully.
+Valgdeltakelse stortingsvalg - Telemark (08243) JSON-stat data loaded successfully.
+           region statistikkvariabel fireårlig  value
+0       Porsgrunn       Valdeltaking      2025   78.2
+1           Skien       Valdeltaking      2025   76.5
+2        Notodden       Valdeltaking      2025   77.4
+3          Siljan       Valdeltaking      2025   81.7
+4          Bamble       Valdeltaking      2025   78.7
+5         Kragerø       Valdeltaking      2025   78.3
+6       Drangedal       Valdeltaking      2025   79.9
+7            Nome       Valdeltaking      2025   77.8
+8   Midt-Telemark       Valdeltaking      2025   77.8
+9         Seljord       Valdeltaking      2025   77.7
+10       Hjartdal       Valdeltaking      2025   80.6
+11           Tinn       Valdeltaking      2025   77.1
+12      Kviteseid       Valdeltaking      2025   77.2
+13       Nissedal       Valdeltaking      2025   83.2
+14       Fyresdal       Valdeltaking      2025   81.1
+15          Tokke       Valdeltaking      2025   80.3
+16          Vinje       Valdeltaking      2025   80.8
+17       Telemark       Valdeltaking      2025   77.8
+18    Hele landet       Valdeltaking      2025   80.0
+['region', 'statistikkvariabel', 'fireårlig', 'value']
+Kolonner: ['region', 'statistikkvariabel', 'fireårlig', 'value']
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/SSB/valgdeltakelse_stortingsvalg.py", line 52, in <module>
-    df_landet = fetch_data(
-        url=GET_URL_LANDET,
-    ...<3 lines>...
-        response_type="json",
-    )
-  File "C:\Analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
-    response.raise_for_status()
-    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://data.ssb.no/api/pxwebapi/v2/tables/08243/data?lang=no&outputFormat=json-stat2&valueCodes%5BContentsCode%5D=ValgSProsent&valueCodes%5BTid%5D=top(1)&valueCodes%5BRegion%5D=0&codelist%5BRegion%5D=vs_Landet
+--- Ferdig datasett ---
+          Kommune  Andel (2025)          Label
+0          Bamble            79         Bamble
+1       Drangedal            80      Drangedal
+2        Fyresdal            81       Fyresdal
+3        Hjartdal            81       Hjartdal
+4         Kragerø            78        Kragerø
+5       Kviteseid            77      Kviteseid
+6   Midt-Telemark            78  Midt-Telemark
+7        Nissedal            83       Nissedal
+8            Nome            78           Nome
+9        Notodden            77       Notodden
+10      Porsgrunn            78      Porsgrunn
+11        Seljord            78        Seljord
+12         Siljan            82         Siljan
+13          Skien            76          Skien
+14           Tinn            77           Tinn
+15          Tokke            80          Tokke
+16          Vinje            81          Vinje
+17       Telemark            78       Telemark
+18         Landet            80         Landet
 
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/SSB/valgdeltakelse_stortingsvalg.py", line 75, in <module>
-    raise RuntimeError(
-        "A critical error occurred during data fetching, stopping execution."
-    )
-RuntimeError: A critical error occurred during data fetching, stopping execution.
+Antall rader: 19
+Saved file to C:\Analyse\Telemark\Python\Temp\valgdeltakelse_stortingsvalg.csv
+[2026-09-30 10:07:37] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\valgdeltakelse_stortingsvalg.csv
+No new data detected.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Valgdeltakelse_stortingsvalg.log
