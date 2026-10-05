@@ -68,6 +68,39 @@ define-labels innvandringskategorilabel \
 
 
 // ============================================================================
+// KONTROLL: INNVANDRINGSGRUNN I MICRODATA VS. SSB TABELL 07113 (NASJONALT, 2021-2024)
+// ============================================================================
+// Sjekker om "FLU" i BEFOLKNING_INNGRUNN1 kun omfatter flyktninger, eller også familieinnvandrede til flyktninger. I SSBs innvandringsgrunn-statistikk telles familieinnvandrede til flyktninger under "Familie", ikke "Flukt". Ligger FLU nær SSBs "Flukt" (og FAM nær "Familie"), omfatter FLU kun flyktningene selv.
+// 07113 er en flytstørrelse: førstegangsinnvandringer per innflyttingsår blant innvandrere med ikke-nordisk statsborgerskap, uavhengig av om personen fortsatt bor i Norge. Derfor ingen filtrering på bosted/statuskode her - kun innvandrere (INVKAT 'B') etter år for første bosetting (FORSTDATO).
+// Ikke-nordisk statsborgerskap er tilnærmet med ikke-nordisk fødeland (101 Danmark, 102 Grønland, 103 Finland, 104 Færøyene, 105 Island, 106 Sverige) - små avvik mot SSB er derfor å forvente.
+//
+// SSB 07113 (Personer):   2021     2022     2023     2024
+//   01 Arbeid            18392    17415    17013    13581
+//   02 Familie           12188    17432    15053    12105
+//   03 Flukt              4355    35801    37354    22829
+//   04 Utdanning          4504     5326     3242     3041
+//   05 Ukjent               58      219      309        3
+//   06 Andre               403      370      470      498
+// Kilde: https://data.ssb.no/api/pxwebapi/v2/tables/07113/data?lang=no&valueCodes[ContentsCode]=Personer&valueCodes[Tid]=2021,2022,2023,2024&valueCodes[Innvandringsgrunn]=01,02,03,04,05,06
+create-dataset kontroll_innvandringsgrunn
+import fdb/BEFOLKNING_INVKAT as invkat_kontroll
+keep if invkat_kontroll == 'B'
+
+import fdb/BEFOLKNING_FORSTDATO as forstdato_kontroll
+destring forstdato_kontroll
+generate innvandringsaar_kontroll = int(forstdato_kontroll / 10000)
+keep if innvandringsaar_kontroll >= 2021 & innvandringsaar_kontroll <= 2024
+
+import fdb/BEFOLKNING_FODELAND as fodeland_kontroll
+destring fodeland_kontroll
+drop if fodeland_kontroll >= 101 & fodeland_kontroll <= 106 // Nordisk fødeland (tilnærming til nordisk statsborgerskap)
+
+import fdb/BEFOLKNING_INNGRUNN1 as innvandringsgrunn_kontroll
+tabulate innvandringsaar_kontroll innvandringsgrunn_kontroll, missing // Sammenlign med SSB-tabellen over
+// Microdata:
+
+
+// ============================================================================
 // POPULASJON: FLYTTET TIL SKIEN I LØPET AV DE SISTE 5 ÅRENE, BOSATT DER I DAG
 // ============================================================================
 create-dataset innflytting_skien
@@ -429,12 +462,27 @@ generate direkte_fra_bosetting = forst_bosettingskommune == kommune_opprinnelig_
 // Dekningsgrad: hvor mange av flyktningene har opplysning om første bosettingskommune - totalt, etter innflyttingsår og etter botid.
 tabulate har_intro_info if erflyktning == 1, missing freq cellpct
 tabulate innflyttingsaar har_intro_info if erflyktning == 1, missing rowpct
+tabulate innflyttingsaar har_intro_info if erflyktning == 1, missing freq
 tabulate botidsgruppe har_intro_info if erflyktning == 1, missing rowpct
 
-// Blant flyktningene MED opplysning: hvor ble de først bosatt, og flyttet de direkte derfra til Skien?
-tabulate forst_bosatt_hvor if erflyktning == 1 & har_intro_info == 1, freq cellpct
-tabulate direkte_fra_bosetting if erflyktning == 1 & har_intro_info == 1, freq cellpct // 1 = flyttet direkte fra bosettingskommunen, 0 = bodde i en annen kommune i mellomtiden
-tabulate forst_bosatt_hvor direkte_fra_bosetting if erflyktning == 1 & har_intro_info == 1, rowpct
+// ============================================================================
+// DIAGNOSTIKK: ER "INNFLYTTINGEN" EGENTLIG FØRSTEGANGSBOSETTING FRA ASYLMOTTAK?
+// ============================================================================
+// Blant flyktningene med intro-opplysning var de fleste først bosatt i Skien (IMDi), selv om folkeregisteret (BEFOLKNING_KOMMNR_FORMELL) viser at de flyttet til Skien fra en annen kommune. Trolig forklaring: etter vedtak om opphold registreres flyktningen som bosatt i asylmottakskommunen mens de venter på bosetting - "flyttingen" til Skien er da selve bosettingen, ikke sekundærflytting.
+// Sjekkes for ALLE (ikke bare de ~4 % med intro-opplysning) ved å se på botid i Norge på flyttetidspunktet. Pga. populasjonsdefinisjonen (gyldig bosted i en annen norsk kommune 1.1. i flytteåret) er botid 0 i praksis ikke mulig - mottakseffekten viser seg som botid 1 (bosatt i mottakskommunen året før, flyttet til Skien året etter). Øvrige innvandrere vises som sammenligningsgrunnlag.
+generate botid_ved_flytting = innflyttingsaar - bosettingsaar_norge
+
+generate botid_ved_flytting_gruppe = 'Uoppgitt'
+replace botid_ved_flytting_gruppe = '0-1 år' if botid_ved_flytting >= 0 & botid_ved_flytting <= 1
+replace botid_ved_flytting_gruppe = '2 år' if botid_ved_flytting == 2
+replace botid_ved_flytting_gruppe = '3-4 år' if botid_ved_flytting >= 3 & botid_ved_flytting <= 4
+replace botid_ved_flytting_gruppe = '5-9 år' if botid_ved_flytting >= 5 & botid_ved_flytting <= 9
+replace botid_ved_flytting_gruppe = '10 år eller mer' if botid_ved_flytting >= 10
+
+tabulate botid_ved_flytting if erflyktning == 1, missing freq cellpct
+tabulate innvandrergruppe botid_ved_flytting_gruppe if innvandringskategori == 1, missing rowpct
+tabulate innflyttingsaar botid_ved_flytting_gruppe if erflyktning == 1, missing freq // Evt. topper for enkelte år (f. eks. Ukraina-bosettingen 2022-2023)
+tabulate forst_bosatt_hvor botid_ved_flytting_gruppe if erflyktning == 1 & har_intro_info == 1, freq // Har de som ble først bosatt i Skien (IMDi) kort botid ved flytting? Små celler - tolkes forsiktig
 
 // Enkeltkommuner - gir mange små celler som microdata.no skjuler/avrunder. Fjern kommentaren for å se de største bosettingskommunene.
 // tabulate forst_bosettingskommune if erflyktning == 1 & har_intro_info == 1
