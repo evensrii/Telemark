@@ -225,7 +225,7 @@ def convert_comma_decimals_to_float(df: pd.DataFrame, exclude_columns=None) -> p
         if col in exclude_columns:
             continue
         if any(keyword in col for keyword in ['PM10', 'NO2']) and 'µg/m³' in col:
-            if df[col].dtype == 'object':
+            if pd.api.types.is_object_dtype(df[col]) or pd.api.types.is_string_dtype(df[col]):  # From pandas 3 text columns have the "str" dtype, not "object"
                 df_converted[col] = df[col].astype(str).str.replace(',', '.', regex=False)
                 df_converted[col] = pd.to_numeric(df_converted[col], errors='coerce').astype('float64')
     return df_converted

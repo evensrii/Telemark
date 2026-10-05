@@ -252,6 +252,10 @@ def main():
         combined_df['Dato'] = pd.to_datetime(combined_df['Dato'], errors='coerce')
         combined_df = combined_df.drop_duplicates(subset=['Kommunenummer', 'Dato', 'MeteringPointTypeCode', 'Kilde'], keep='last')
         combined_df = combined_df.sort_values('Dato')
+        # Format "Dato" as a plain date string (avoids datetime64 dtype being stringified
+        # with a " 00:00:00" time component, which would never match the plain date
+        # strings already stored in the CSV on GitHub and trigger a false "change" every run)
+        combined_df['Dato'] = combined_df['Dato'].dt.strftime('%Y-%m-%d')
 
     # 6. Save and upload only the combined file
     task_name = "Klima og energi - Installert_effekt (Elhub)"

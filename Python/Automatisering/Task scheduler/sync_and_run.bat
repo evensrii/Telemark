@@ -14,5 +14,17 @@ git -C "%REPO_DIR%" fetch origin main >> "%SYNC_LOG%" 2>&1
 git -C "%REPO_DIR%" reset --hard origin/main >> "%SYNC_LOG%" 2>&1
 echo [%DATE% %TIME%] Sync step finished >> "%SYNC_LOG%"
 
-call conda activate analyse
-python %*
+set "RUN_LOG=%~dp0run_debug.log"
+echo [%DATE% %TIME%] whoami: %USERNAME% > "%RUN_LOG%"
+echo [%DATE% %TIME%] PYTHONPATH=%PYTHONPATH% >> "%RUN_LOG%"
+echo [%DATE% %TIME%] TEMP_FOLDER=%TEMP_FOLDER% >> "%RUN_LOG%"
+echo [%DATE% %TIME%] LOG_FOLDER=%LOG_FOLDER% >> "%RUN_LOG%"
+echo [%DATE% %TIME%] PATH=%PATH% >> "%RUN_LOG%"
+
+call conda activate analyse >> "%RUN_LOG%" 2>&1
+echo [%DATE% %TIME%] conda activate errorlevel=%ERRORLEVEL% >> "%RUN_LOG%"
+where python >> "%RUN_LOG%" 2>&1
+
+echo [%DATE% %TIME%] Running: python %* >> "%RUN_LOG%"
+python %* >> "%RUN_LOG%" 2>&1
+echo [%DATE% %TIME%] python errorlevel=%ERRORLEVEL% >> "%RUN_LOG%"

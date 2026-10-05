@@ -26,9 +26,9 @@ if TEMP_FOLDER is None:
     raise ValueError("TEMP_FOLDER environment variable is not set")
 
 SCRIPTS = [
-    
+
     #### ------------ Tema- og faktasider ------------ ####
-    
+
     ## Befolkning
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_historiske_07459.py"), "Befolkning - Befolkningsframskrivinger historiske_07459"), # Befolkning fram til nå
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_siste_tabell.py"), "Befolkning - Befolkningsframskrivinger siste tabell"), # Befolkning framover
@@ -43,7 +43,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/befolkningsvekst.py"), "Befolkning - Befolkningsvekst"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Alderssammensetning/forsørgerevne.py"), "Befolkning - Forsørgerevne"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Husholdninger/aleneboende.py"), "Befolkning - Aleneboende"),
-    
+
     ## Opplæring og kompetanse
     (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa.py"), "Opplaering og kompetanse - Utdanningsnivaa"),
     (os.path.join(PYTHON_PATH, "Queries/02_Opplæring_og_kompetanse/Utdanningsnivå/utdanningsnivaa_telemark_og_landet.py"), "Opplaering og kompetanse - Utdanningsnivaa Telemark og landet"),
@@ -60,7 +60,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/endring_arbeidsplasser_over_tid.py"), "Arbeid og naeringsliv - Endring arbeidsplasser over tid"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/virksomheter.py"), "Arbeid og naeringsliv - Virksomheter"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Virksomheter/nace_klassifisering.py"), "Arbeid og naeringsliv - Standard for naeringsgruppering"),
- 
+
     ## Arbeid og næringsliv - NAV
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/arbeidsledighet.py"), "NAV - Arbeidsledighet"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/NAV/nedsatt_arbeidsevne.py"), "NAV - Nedsatt arbeidsevne"),
@@ -147,7 +147,7 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/igangsettelser_etter_boligtype.py"), "Bolig - Igangsettelser etter boligtype"),
 
     #### ------------ Rapporter og prosjekter ------------ ####
-    
+
     ## Grenlandsbarometeret
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/klimagassutslipp_vei.py"), "Bystrategi Grenland - Utslipp fra vei"),
     (os.path.join(PYTHON_PATH, "Queries/Bystrategi_Grenland/Klima/luftforurensning_grenland.py"), "Bystrategi Grenland - Luftforurensing"),
@@ -213,19 +213,26 @@ def run_script(script_path, task_name):
             print(f"Warning: Could not extract file information from {script_path}: {e}")
             # Continue execution even if we can't get the commit time
         
-        # Run the script and capture its output
+        # Run the script and capture its output.
+        # Reuse this process's own interpreter (already running inside the
+        # `analyse` env) instead of shelling out through `conda run` - on
+        # Windows, "conda" resolves to conda.bat, which subprocess.run()
+        # can't launch without shell=True.
+        # Force UTF-8 for the child process's stdio: when stdout/stderr are
+        # redirected to a pipe (as they are here via capture_output), Python
+        # falls back to the system codepage (cp1252 on this machine) instead
+        # of UTF-8, which crashes any script that prints non-cp1252 characters
+        # (e.g. "✓") with UnicodeEncodeError.
+        child_env = os.environ.copy()
+        child_env["PYTHONIOENCODING"] = "utf-8"
+
         result = subprocess.run(
-            [
-                "conda",
-                "run",
-                "-n",
-                CONDA_ENV,
-                "python",
-                script_path,
-            ],
+            [sys.executable, script_path],
             capture_output=True,
             text=True,
+            encoding="utf-8",
             check=True,
+            env=child_env,
         )
 
         # Write script output to its log file
@@ -271,7 +278,9 @@ def send_email():
         
         # Quote the script path to handle spaces
         command = f'cmd.exe /c "conda activate {CONDA_ENV} && python \"{email_script_path}\""'
-        subprocess.run(command, shell=True, stdout=email_log, stderr=subprocess.STDOUT)
+        child_env = os.environ.copy()
+        child_env["PYTHONIOENCODING"] = "utf-8"
+        subprocess.run(command, shell=True, stdout=email_log, stderr=subprocess.STDOUT, env=child_env)
 
 
 def main():

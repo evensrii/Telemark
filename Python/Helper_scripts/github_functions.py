@@ -491,7 +491,7 @@ def identify_key_columns(df):
         
         # Try to identify date columns by checking content
         try:
-            if df[col].dtype == 'object':  # Only check string columns
+            if pd.api.types.is_object_dtype(df[col]) or pd.api.types.is_string_dtype(df[col]):  # Only check string columns (pandas 3 uses the "str" dtype, not "object")
                 # Check if values match date patterns
                 sample = df[col].dropna().iloc[0]
                 if sample and isinstance(sample, str):

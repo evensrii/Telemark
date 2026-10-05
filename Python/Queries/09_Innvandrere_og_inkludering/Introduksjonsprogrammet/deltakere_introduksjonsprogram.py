@@ -172,6 +172,11 @@ df_telemark = df_telemark.sort_values(by=["År"], ascending=True)
 # Rename columns to "År" and "Deltakere"
 df_telemark = df_telemark.rename(columns={"År": "År", "Antall": "Deltakere"})
 
+# Format "År" as a plain date string (avoids datetime64 dtype being stringified
+# with a " 00:00:00" time component, which would never match the plain date
+# strings already stored in the CSV on GitHub and trigger a false "change" every run)
+df_telemark["År"] = df_telemark["År"].dt.strftime("%Y-%m-%d")
+
 df_telemark.head()
 
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################

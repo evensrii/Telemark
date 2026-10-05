@@ -420,7 +420,12 @@ if 'df_final' in locals() and not df_final.empty:
 
     # Create a copy for comparison and ensure proper data types
     df_compare = df_final.copy()
-    
+
+    # Format "Dato" as a plain date string (avoids datetime64 dtype being stringified
+    # with a " 00:00:00" time component, which would never match the plain date
+    # strings already stored in the CSV on GitHub and trigger a false "change" every run)
+    df_compare['Dato'] = df_compare['Dato'].dt.strftime('%Y-%m-%d')
+
     # Convert any Int64 columns to regular int to avoid type conflicts
     for col in df_compare.select_dtypes(include=['Int64']).columns:
         df_compare[col] = df_compare[col].fillna(0).astype('int64')

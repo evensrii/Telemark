@@ -1,0 +1,592 @@
+// ============================================================================
+// INNFLYTTING TIL SKIEN BLANT INNVANDRERE - INNENLANDS FLYTTING SISTE 5 ÅR
+// ============================================================================
+// Ser på personer som er bosatt i Skien i dag, og som i løpet av de siste "flytteperiode_ant_aar" årene har flyttet dit fra en annen norsk kommune (i et hvilket som helst av disse årene - ikke nødvendigvis akkurat "flytteperiode_ant_aar" år siden). Opprinnelseskommunen er stedet personen bodde året før sin egen flytting. Innenlands flytting - personer som kom direkte fra utlandet til Skien er ikke med i populasjonen.
+//
+// Scriptet svarer på alle hovedspørsmålene i analysen:
+//   1) Hvor mange har flyttet til Skien fra andre kommuner i Norge de siste fem årene?
+//   2) Hvor mange og hvor stor andel er innvandrere?
+//   3) Hvilket fylke flyttet de fra (etter dagens fylkesinndeling)?
+//   4) Hva er innvandrernes botid i Norge?
+//   5) Hva kjennetegner innvandrerne (kjønn, alder, landbakgrunn, husholdningstype, utdanningsnivå)?
+//   6) Hvor mange og hvor stor andel er flyktninger?
+//   6b) Hva kjennetegner flyktningene (botid, alder, fødeland), og hvordan skiller de seg fra øvrige innvandrere?
+//   6c) Hvor sentrale (SSBs sentralitetsindeks) var kommunene innflytterne - og flyktningene - kom fra?
+//   6d) Hvilken kommune ble flyktningene først bosatt i (introduksjonsprogrammet), og flyttet de direkte derfra til Skien?
+//   7) Hvor mange bor trangt - blant flyktninger, innvandrere generelt og øvrig befolkning?
+//   8) Hvordan er arbeidsmarkedsstatusen (sysselsatt, arbeidsledig, utenfor arbeidsstyrken) blant flyktninger, innvandrere generelt og øvrig befolkning?
+//   9) Hvor stor andel av flyktningene mottar sosialhjelp, sammenliknet med øvrige innvandrere og befolkningen for øvrig?
+// Hovedspørsmål 7-9 besvares både for innflytterne og for ALLE bosatt i Skien i dag (eget datasett skien_befolkning), som sammenligningsgrunnlag. Under 9 vises i tillegg sammensetningen (flyktninger vs. øvrige) blant alle sosialhjelpsmottakere i Skien.
+//
+// Juster "nyeste_aar" under for å kjøre analysen på nytt med et annet "i dag". Endres "flytteperiode_ant_aar" fra 5, må aar_t*/dato_t*/kommune_t*-blokkene under utvides eller kortes inn tilsvarende.
+// ============================================================================
+
+require no.ssb.fdb:56 as fdb
+
+
+let nyeste_aar = 2024 // "I dag" - nyeste året med tilstrekkelig komplette FDB-data. Juster opp etter hvert som nye årganger blir tilgjengelige.
+let flytteperiode_ant_aar = 5 // Antall år man ser tilbake i tid for å fange opp flytting
+
+let aar_t0 = $nyeste_aar // I dag (eks. 2024)
+let aar_t1 = $nyeste_aar - 1
+let aar_t2 = $nyeste_aar - 2
+let aar_t3 = $nyeste_aar - 3
+let aar_t4 = $nyeste_aar - 4
+let aar_t5 = $nyeste_aar - 5 // Ett år før vinduets start (eks. 2019) - brukes bare til å avgjøre bosted "året før" for de som flyttet i aar_t4 (2020)
+
+let dato_t0 = date_fmt($aar_t0, 1, 1)
+let dato_t1 = date_fmt($aar_t1, 1, 1)
+let dato_t2 = date_fmt($aar_t2, 1, 1)
+let dato_t3 = date_fmt($aar_t3, 1, 1)
+let dato_t4 = date_fmt($aar_t4, 1, 1)
+let dato_t5 = date_fmt($aar_t5, 1, 1)
+let dato_arbmark = date_fmt($aar_t1, 11, 16) // Arbeidsmarkedsstatus (REGSYS) måles 16. november - nærmeste måling FØR "i dag" (1.1.$nyeste_aar), eks. 2023-11-16
+
+
+// Dagens (2024-) fylkesinndeling - 15 fylker. Alle personer skal havne i én av disse, uansett hvilket historisk kommunenummer-regime bostedet på flyttetidspunktet stammer fra (se recode-blokken lenger ned).
+define-labels fylkelabel \
+     3 'Oslo' \
+     11 'Rogaland' \
+     15 'Møre og Romsdal' \
+     18 'Nordland' \
+     31 'Østfold' \
+     32 'Akershus' \
+     33 'Buskerud' \
+     34 'Innlandet' \
+     39 'Vestfold' \
+     40 'Telemark' \
+     42 'Agder' \
+     46 'Vestland' \
+     50 'Trøndelag' \
+     55 'Troms' \
+     56 'Finnmark'
+
+define-labels innvandringskategorilabel \
+     1 'Innvandrer' \
+     2 'Norskfødt med innvandrerforeldre' \
+     3 'Øvrig befolkning'
+
+
+// ============================================================================
+// POPULASJON: FLYTTET TIL SKIEN I LØPET AV DE SISTE 5 ÅRENE, BOSATT DER I DAG
+// ============================================================================
+create-dataset innflytting_skien
+
+// Bosted på hvert av de 6 tidspunktene. Skien har hatt tre ulike kommunenumre i perioden (806 t.o.m. 2019, 3807 i 2020-2023, 4003 fra 2024), derfor slås alle tre sammen med recode - likt for alle seks importene.
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_t0 as kommune_t0_raw
+clone-variables kommune_t0_raw -> kommune_t0_num
+destring kommune_t0_num
+recode kommune_t0_num (806 3807 4003 = 4003 'Skien')
+
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_t1 as kommune_t1_raw
+clone-variables kommune_t1_raw -> kommune_t1_num
+destring kommune_t1_num
+recode kommune_t1_num (806 3807 4003 = 4003 'Skien')
+
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_t2 as kommune_t2_raw
+clone-variables kommune_t2_raw -> kommune_t2_num
+destring kommune_t2_num
+recode kommune_t2_num (806 3807 4003 = 4003 'Skien')
+
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_t3 as kommune_t3_raw
+clone-variables kommune_t3_raw -> kommune_t3_num
+destring kommune_t3_num
+recode kommune_t3_num (806 3807 4003 = 4003 'Skien')
+
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_t4 as kommune_t4_raw
+clone-variables kommune_t4_raw -> kommune_t4_num
+destring kommune_t4_num
+recode kommune_t4_num (806 3807 4003 = 4003 'Skien')
+
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_t5 as kommune_t5_raw
+clone-variables kommune_t5_raw -> kommune_t5_num
+destring kommune_t5_num
+recode kommune_t5_num (806 3807 4003 = 4003 'Skien')
+
+// Bosatt i Skien i dag, og nålevende/bosatt (ekskluderer utvandret/død).
+import fdb/BEFOLKNING_STATUSKODE $dato_t0 as statuskode_t0
+keep if statuskode_t0 != '3' & statuskode_t0 != '5'
+keep if kommune_t0_num == 4003
+
+// Detekter hvilket av de 5 siste årene personen faktisk flyttet til Skien: bosted gikk fra "ikke Skien" (og gyldig registrert i Norge, jf. sysmiss()) til "Skien". flytteaar_offset = antall år siden flyttingen (4 = tidligst mulig i vinduet, 0 = i år). -1 = ingen flytting oppdaget i vinduet (dvs. personen bodde allerede i Skien før vinduet startet - skal ikke telle med).
+generate flytteaar_offset = -1
+replace flytteaar_offset = 4 if kommune_t4_num == 4003 & kommune_t5_num != 4003 & sysmiss(kommune_t5_num) == 0 // Skien i 2020, ikke-Skien i 2019 <-- Flyttet til Skien i løpet av 2019 (registrert i Skien per 01-01-2020)
+replace flytteaar_offset = 3 if kommune_t3_num == 4003 & kommune_t4_num != 4003 & sysmiss(kommune_t4_num) == 0
+replace flytteaar_offset = 2 if kommune_t2_num == 4003 & kommune_t3_num != 4003 & sysmiss(kommune_t3_num) == 0
+replace flytteaar_offset = 1 if kommune_t1_num == 4003 & kommune_t2_num != 4003 & sysmiss(kommune_t2_num) == 0
+replace flytteaar_offset = 0 if kommune_t0_num == 4003 & kommune_t1_num != 4003 & sysmiss(kommune_t1_num) == 0 // Skien i 2024, ikke-Skien i 2023 <-- Flyttet til Skien i løpet av 2023 (registrert i Skien per 01-01-2024)
+
+keep if flytteaar_offset != -1 // Beholder alle som bor i Skien i 2024 og som flyttet dit i løpet av årene 2019 - 2023.
+
+generate innflyttingsaar = $nyeste_aar - flytteaar_offset - 1 // Faktisk kalenderår for flyttingen, til bruk i tabulate. "-1" fordi flytteaar_offset==0 betyr flyttet i løpet av aar_t1 (i fjor), ikke aar_t0 (i år) - overgangen skjer i året FØR sjekkepunktet der personen først vises som bosatt i Skien.
+// Eks.: flytteaar_offset==0 (her 2024) -> innflyttingsaar = 2024 - 0 - 1 = 2023 (siden registrert i Skien første gang 01-01-2024)
+// flytteaar_offset==4 -> innflyttingsaar = 2024 - 4 - 1 = 2019
+
+// Opprinnelseskommune = bosted året FØR personens eget flytteår.
+generate kommune_opprinnelig_num = kommune_t5_num // Default - korrekt for flytteaar_offset == 4
+replace kommune_opprinnelig_num = kommune_t4_num if flytteaar_offset == 3
+replace kommune_opprinnelig_num = kommune_t3_num if flytteaar_offset == 2
+replace kommune_opprinnelig_num = kommune_t2_num if flytteaar_offset == 1
+replace kommune_opprinnelig_num = kommune_t1_num if flytteaar_offset == 0
+
+
+// ============================================================================
+// FYLKE VED FLYTTING, ETTER DAGENS (2024-) FYLKESINNDELING
+// ============================================================================
+// Kommunenummerets to første siffer angir fylket som var gjeldende PÅ DET TIDSPUNKTET nummeret ble brukt. For fylker som ikke er splittet opp igjen etter 2020 (Innlandet, Agder, Vestland, Trøndelag) er dette entydig uansett årstall. For Viken, Vestfold og Telemark og Troms og Finnmark - som ble splittet opp igjen i 2024 - må det historiske 2020-2023-kommunenummeret slås opp mot dagens fylke, siden fylkesnummeret alene ikke skiller f. eks. Østfold fra Akershus/Buskerud i denne perioden.
+generate fylkenummer_opprinnelig = int(kommune_opprinnelig_num / 100)
+
+// Fylker uten fylkessplitting siden 2020 - gammelt og dagens fylkesnummer kan mappes direkte.
+recode fylkenummer_opprinnelig (1 31 = 31 'Østfold') (2 32 = 32 'Akershus') (3 = 3 'Oslo') (4 5 34 = 34 'Innlandet') (6 33 = 33 'Buskerud') (7 39 = 39 'Vestfold') (8 40 = 40 'Telemark') (9 10 42 = 42 'Agder') (11 = 11 'Rogaland') (12 14 46 = 46 'Vestland') (15 = 15 'Møre og Romsdal') (16 17 50 = 50 'Trøndelag') (18 = 18 'Nordland') (19 55 = 55 'Troms') (20 56 = 56 'Finnmark')
+
+// Viken (2020-2023, fylkenr. 30) løses opp på kommunenivå til dagens Østfold/Akershus/Buskerud. Kommunelister hentet fra Wikipedia/SSB, kryssjekket.
+replace fylkenummer_opprinnelig = 31 if kommune_opprinnelig_num==3001 | kommune_opprinnelig_num==3002 | kommune_opprinnelig_num==3003 | kommune_opprinnelig_num==3004 | kommune_opprinnelig_num==3011 | kommune_opprinnelig_num==3012 | kommune_opprinnelig_num==3013 | kommune_opprinnelig_num==3014 | kommune_opprinnelig_num==3015 | kommune_opprinnelig_num==3016 | kommune_opprinnelig_num==3017 | kommune_opprinnelig_num==3018 // Østfold (tidl. Viken)
+replace fylkenummer_opprinnelig = 32 if kommune_opprinnelig_num==3019 | kommune_opprinnelig_num==3020 | kommune_opprinnelig_num==3021 | kommune_opprinnelig_num==3022 | kommune_opprinnelig_num==3023 | kommune_opprinnelig_num==3024 | kommune_opprinnelig_num==3025 | kommune_opprinnelig_num==3026 | kommune_opprinnelig_num==3027 | kommune_opprinnelig_num==3028 | kommune_opprinnelig_num==3029 | kommune_opprinnelig_num==3030 | kommune_opprinnelig_num==3031 | kommune_opprinnelig_num==3032 | kommune_opprinnelig_num==3033 | kommune_opprinnelig_num==3034 | kommune_opprinnelig_num==3035 | kommune_opprinnelig_num==3036 | kommune_opprinnelig_num==3037 | kommune_opprinnelig_num==3053 | kommune_opprinnelig_num==3054 // Akershus (tidl. Viken - inkl. Jevnaker/Lunner som kom fra gamle Oppland i 2020)
+replace fylkenummer_opprinnelig = 33 if kommune_opprinnelig_num==3005 | kommune_opprinnelig_num==3006 | kommune_opprinnelig_num==3007 | kommune_opprinnelig_num==3038 | kommune_opprinnelig_num==3039 | kommune_opprinnelig_num==3040 | kommune_opprinnelig_num==3041 | kommune_opprinnelig_num==3042 | kommune_opprinnelig_num==3043 | kommune_opprinnelig_num==3044 | kommune_opprinnelig_num==3045 | kommune_opprinnelig_num==3046 | kommune_opprinnelig_num==3047 | kommune_opprinnelig_num==3048 | kommune_opprinnelig_num==3049 | kommune_opprinnelig_num==3050 | kommune_opprinnelig_num==3051 | kommune_opprinnelig_num==3052 | kommune_opprinnelig_num==711 // Buskerud (tidl. Viken), inkl. gamle Svelvik (711, slått sammen med Drammen i 2020) - slått sammen med hovedgruppen fordi 711 alene rammes av avsløringskontroll (for få enheter)
+
+// Vestfold og Telemark (2020-2023, fylkenr. 38) løses opp til dagens Vestfold/Telemark. Telemark-delen fanger opp flytting fra de øvrige Telemark-kommunene til Skien (f. eks. fra Porsgrunn) - kun Skien selv er utelukket som opprinnelseskommune, siden populasjonen er definert som flytting TIL Skien fra en annen kommune.
+replace fylkenummer_opprinnelig = 39 if kommune_opprinnelig_num==3801 | kommune_opprinnelig_num==3802 | kommune_opprinnelig_num==3803 | kommune_opprinnelig_num==3804 | kommune_opprinnelig_num==3805 | kommune_opprinnelig_num==3811 // Vestfold (tidl. Vestfold og Telemark)
+replace fylkenummer_opprinnelig = 40 if kommune_opprinnelig_num==3806 | kommune_opprinnelig_num==3807 | kommune_opprinnelig_num==3808 | kommune_opprinnelig_num==3812 | kommune_opprinnelig_num==3813 | kommune_opprinnelig_num==3814 | kommune_opprinnelig_num==3815 | kommune_opprinnelig_num==3816 | kommune_opprinnelig_num==3817 | kommune_opprinnelig_num==3818 | kommune_opprinnelig_num==3819 | kommune_opprinnelig_num==3820 | kommune_opprinnelig_num==3821 | kommune_opprinnelig_num==3822 | kommune_opprinnelig_num==3823 | kommune_opprinnelig_num==3824 | kommune_opprinnelig_num==3825 // Telemark (tidl. Vestfold og Telemark)
+
+// Troms og Finnmark (2020-2023, fylkenr. 54) løses opp til dagens Troms/Finnmark.
+replace fylkenummer_opprinnelig = 55 if kommune_opprinnelig_num==5401 | kommune_opprinnelig_num==5402 | kommune_opprinnelig_num==5411 | kommune_opprinnelig_num==5412 | kommune_opprinnelig_num==5413 | kommune_opprinnelig_num==5414 | kommune_opprinnelig_num==5415 | kommune_opprinnelig_num==5416 | kommune_opprinnelig_num==5417 | kommune_opprinnelig_num==5418 | kommune_opprinnelig_num==5419 | kommune_opprinnelig_num==5420 | kommune_opprinnelig_num==5421 | kommune_opprinnelig_num==5422 | kommune_opprinnelig_num==5423 | kommune_opprinnelig_num==5424 | kommune_opprinnelig_num==5425 | kommune_opprinnelig_num==5426 | kommune_opprinnelig_num==5427 | kommune_opprinnelig_num==5428 | kommune_opprinnelig_num==5429 | kommune_opprinnelig_num==1852 // Troms (tidl. Troms og Finnmark), inkl. gamle Tjeldsund (1852, gamle Nordland, slått sammen med Skånland i Troms i 2020) - slått sammen med hovedgruppen for å unngå avsløringskontroll på en isolert lav-frekvent kode
+replace fylkenummer_opprinnelig = 56 if kommune_opprinnelig_num==5403 | kommune_opprinnelig_num==5404 | kommune_opprinnelig_num==5405 | kommune_opprinnelig_num==5406 | kommune_opprinnelig_num==5430 | kommune_opprinnelig_num==5432 | kommune_opprinnelig_num==5433 | kommune_opprinnelig_num==5434 | kommune_opprinnelig_num==5435 | kommune_opprinnelig_num==5436 | kommune_opprinnelig_num==5437 | kommune_opprinnelig_num==5438 | kommune_opprinnelig_num==5439 | kommune_opprinnelig_num==5440 | kommune_opprinnelig_num==5441 | kommune_opprinnelig_num==5442 | kommune_opprinnelig_num==5443 | kommune_opprinnelig_num==5444 // Finnmark (tidl. Troms og Finnmark)
+
+// Navngitte "grensekommuner" som byttet fylke allerede ved 2020-sammenslåingen (dvs. deres GAMLE, t.o.m. 2019, kommunenummer tilhører "feil" fylke ut fra regelen over) - relevant bare dersom opprinnelsesåret faller før 2020. Svelvik og Tjeldsund er slått sammen inn i hovedgruppene sine over (Buskerud/Troms) i stedet for egne linjer, fordi microdata.nos avsløringskontroll stopper operasjoner som isolert sett rammer for få enheter.
+replace fylkenummer_opprinnelig = 32 if kommune_opprinnelig_num==121 | kommune_opprinnelig_num==627 | kommune_opprinnelig_num==628 | kommune_opprinnelig_num==532 | kommune_opprinnelig_num==534 // Rømskog, Røyken, Hurum, Jevnaker, Lunner -> Akershus
+
+assign-labels fylkenummer_opprinnelig fylkelabel
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 1: Hvor mange har flyttet til Skien fra andre norske kommuner de siste fem årene?
+// ============================================================================
+tabulate innflyttingsaar, missing
+
+
+// ============================================================================
+// INNVANDRINGSKATEGORI
+// ============================================================================
+import fdb/BEFOLKNING_INVKAT as invkat
+generate innvandringskategori = 3
+replace innvandringskategori = 1 if invkat == 'B'
+replace innvandringskategori = 2 if invkat == 'C'
+assign-labels innvandringskategori innvandringskategorilabel
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 2: Hvor mange og hvor stor andel er innvandrere?
+// ============================================================================
+tabulate innvandringskategori, missing cellpct
+tabulate innvandringskategori, missing freq
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 3: Hvilket fylke flyttet de fra?
+// ============================================================================
+tabulate fylkenummer_opprinnelig, missing
+tabulate fylkenummer_opprinnelig innvandringskategori, missing rowpct
+// tabulate kommune_opprinnelig_num, missing <-- Kommunenivå i tillegg til fylke - kan gi svært små celler og bør vurderes opp mot avsløringskontroll før dette tas i bruk.
+
+
+// ============================================================================
+// BOTID I NORGE (KUN INNVANDRERE)
+// ============================================================================
+import fdb/BEFOLKNING_FORSTDATO as forstdato_norge // Fast, engangsopplysning - dato for første gangs bosetting i Norge (kan være hva som helst, f. eks. 2023-03-27)
+destring forstdato_norge
+generate bosettingsaar_norge = int(forstdato_norge / 10000) // Eks. 2023
+generate botid_aar = $nyeste_aar - bosettingsaar_norge // Eks. 2024 - 2023 = 1 (dvs. bosatt i 2023 --> botid ett år)
+
+generate botidsgruppe = 'Uoppgitt'
+replace botidsgruppe = '0-1 år' if botid_aar >= 0 & botid_aar <= 1
+replace botidsgruppe = '2-4 år' if botid_aar >= 2 & botid_aar <= 4
+//replace botidsgruppe = '0-4 år' if botid_aar >= 0 & botid_aar <= 4
+replace botidsgruppe = '5-9 år' if botid_aar >= 5 & botid_aar <= 9
+replace botidsgruppe = '10-19 år' if botid_aar >= 10 & botid_aar <= 19
+replace botidsgruppe = '20 år eller mer' if botid_aar >= 20
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 4: Hva er innvandrernes botid i Norge?
+// ============================================================================
+tabulate botidsgruppe if innvandringskategori == 1, missing
+tabulate bosettingsaar_norge if innvandringskategori == 1, missing
+
+histogram bosettingsaar_norge if innvandringskategori == 1, discrete
+
+// Vil ikke finne noen med botid på 0 eller 1 år (dvs. bosatt i 2024 eller 2023)
+// Botid 0 år tilsier bosatt i Skien første gang i 2024. Kravet for å være med i populasjon er at man må ha vært registrert i en annen kommune året før, noe de ikke er.
+// Botid 1 år tilsier bosatt i Skien første gang i 2023. Siden disse ikke er registrert ved "sjekkpunktet" 01-01-2023 (kun 01-01-2024), blir de ikke med i utgangspopulasjonen.
+// Dette er altså en konsekvens av å bare måle bosted på ett fast tidspunkt i året (1. januar), ikke løpende gjennom året.
+
+// ============================================================================
+// KJENNETEGN: KJØNN, ALDER, LANDBAKGRUNN, HUSHOLDNINGSTYPE, UTDANNINGSNIVÅ
+// ============================================================================
+import fdb/BEFOLKNING_KJOENN as kjonn
+
+// Alder i dag, avledet fra fødselsår/-måned.
+import fdb/BEFOLKNING_FOEDSELS_AAR_MND as faarmnd
+generate alder = $nyeste_aar - int(faarmnd / 100)
+
+generate aldersgruppe = 'Under 18 år'
+replace aldersgruppe = '18-29 år' if alder >= 18
+replace aldersgruppe = '30-39 år' if alder >= 30
+replace aldersgruppe = '40-49 år' if alder >= 40
+replace aldersgruppe = '50-59 år' if alder >= 50
+replace aldersgruppe = '60+ år' if alder >= 60
+
+// Landbakgrunn, gruppert til verdensregion (rå landkoder gir for mange tabellceller med lav frekvens og utløser lett avsløringskontroll). Samme recode som i sekundærflytting_ut.txt.
+import fdb/BEFOLKNING_FODELAND as land
+clone-variables land -> verdensregion
+destring verdensregion
+recode verdensregion \
+     (111 120 138 139 140 148 155 156 159/164 = 2) \
+     (101/141 144/158 = 1) \
+     (203/393 = 3) \
+     (143 404/578 = 4) \
+     (612 684 = 5) \
+     (601/775 802/840 = 6) \
+     (980 990 = 9)
+
+// Sør-/Mellom-Amerika og Oseania (kode 6), samt Statsløse og Uoppgitt (kode 9), er slått sammen - hver for seg ga de for få enheter og ble stoppet av avsløringskontrollen.
+define-labels verdensregiontxt \
+     0 'Norge' \
+     1 'EU/EØS' \
+     2 'Europeiske land utenom EU' \
+     3 'Afrika' \
+     4 'Asia med Tyrkia' \
+     5 'Nord-Amerika' \
+     6 'Sør- og Mellom-Amerika/Oseania' \
+     9 'Statsløse/uoppgitt'
+assign-labels verdensregion verdensregiontxt
+
+// Husholdningstype i dag, gruppert til 4 hovedgrupper (jf. husholdningstyper.csv). Samme gruppering som i sekundærflytting_ut.txt.
+import fdb/BEFOLKNING_REGSTAT_HUSHTYP $dato_t0 as husholdningstype
+generate husholdningsgruppe = 'Uoppgitt/annet'
+replace husholdningsgruppe = 'Aleneboende, inkl. aleneforeldre med voksne barn' if husholdningstype == '1.1.1' | husholdningstype == '1.1.2' | husholdningstype == '1.1.3' | husholdningstype == '1.7.3' | husholdningstype == '1.7.4'
+replace husholdningsgruppe = 'Par uten barn eller med voksne barn' if husholdningstype == '1.2.1' | husholdningstype == '1.2.2' | husholdningstype == '1.2.3' | husholdningstype == '1.2.4' | husholdningstype == '1.7.1'
+replace husholdningsgruppe = 'Forelder til barn (yngste barn under 18 år)' if husholdningstype == '1.3.1' | husholdningstype == '1.3.2' | husholdningstype == '1.4.1' | husholdningstype == '1.4.2' | husholdningstype == '1.5.1' | husholdningstype == '1.5.2' | husholdningstype == '1.6.1' | husholdningstype == '1.6.2'
+replace husholdningsgruppe = 'Flerfamiliehusholdninger' if husholdningstype == '2.1.1' | husholdningstype == '2.1.2' | husholdningstype == '2.2.0' | husholdningstype == '2.3.0'
+
+// Utdanningsnivå i dag (høyeste fullførte utdanning, NUS-kode - se NUDB_BU i variabelkatalogen). Grupperes til 4 hovedkategorier ut fra første siffer i NUS-koden, for å unngå for mange tynt befolkede celler.
+import fdb/NUDB_BU $dato_t0 as utdanning_raw
+generate utdanningssiffer = substr(utdanning_raw, 1, 1)
+generate utdanningsgruppe = 'Uoppgitt'
+replace utdanningsgruppe = 'Grunnskole eller lavere' if utdanningssiffer == '0' | utdanningssiffer == '1' | utdanningssiffer == '2'
+replace utdanningsgruppe = 'Videregående' if utdanningssiffer == '3' | utdanningssiffer == '4' | utdanningssiffer == '5'
+replace utdanningsgruppe = 'Universitet/høgskole' if utdanningssiffer == '6' | utdanningssiffer == '7' | utdanningssiffer == '8'
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 5: Hva kjennetegner innvandrerne (kjønn, alder, landbakgrunn, husholdningstype, utdanningsnivå)?
+// ============================================================================
+tabulate kjonn if innvandringskategori == 1, missing
+tabulate aldersgruppe if innvandringskategori == 1, missing
+tabulate verdensregion if innvandringskategori == 1, missing
+tabulate husholdningsgruppe if innvandringskategori == 1, missing
+tabulate utdanningsgruppe if innvandringskategori == 1, missing
+
+
+// ============================================================================
+// FLYKTNINGER
+// ============================================================================
+import fdb/BEFOLKNING_INNGRUNN1 as innvandringsgrunn // Innvandringsgrunn - fast, engangsopplysning
+generate erflyktning = innvandringsgrunn == 'FLU'
+
+// Befolkningsgruppe: tre gjensidig utelukkende grupper - hver person havner i nøyaktig én. Brukes i krysstabellene for trangboddhet, arbeidsmarkedsstatus og sosialhjelp. "Innvandrere generelt" = Flyktninger + Øvrige innvandrere (summer de to radene). "Befolkningen for øvrig" = alle som ikke er innvandrere (inkl. norskfødte med innvandrerforeldre).
+generate befolkningsgruppe = 'Befolkningen for øvrig'
+replace befolkningsgruppe = 'Øvrige innvandrere' if innvandringskategori == 1 & erflyktning == 0
+replace befolkningsgruppe = 'Flyktninger' if erflyktning == 1
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 6: Hvor mange og hvor stor andel er flyktninger?
+// ============================================================================
+tabulate erflyktning, missing cellpct
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 6b: Hva kjennetegner flyktningene (botid, alder, fødeland)?
+// ============================================================================
+// Samme variabler som for innvandrerne samlet (hovedspørsmål 4 og 5), men avgrenset til flyktninger. Bruker "tabulate ... if erflyktning == 1" i stedet for "keep if", slik at resten av populasjonen beholdes til sosialhjelpsanalysen under (og for å unngå avsløringskontroll på et permanent snevret datasett).
+
+// Botid i Norge
+tabulate botidsgruppe if erflyktning == 1, missing
+tabulate bosettingsaar_norge if erflyktning == 1, missing
+histogram bosettingsaar_norge if erflyktning == 1, discrete
+
+// Alder i dag
+tabulate aldersgruppe if erflyktning == 1, missing
+
+// Fødeland - både gruppert til verdensregion og på enkeltland. Enkeltlandtabellen gir tynne celler for mange land; microdata.no skjuler/avrunder da små celler i resultatet, men de største flyktninglandene bør komme tydelig fram.
+tabulate verdensregion if erflyktning == 1, missing
+tabulate land if erflyktning == 1, missing
+
+// Syria spesifikt (landkode 564 i SSBs landkodeliste, KLASS 91) - antatt største enkeltgruppe blant flyktningene. En 0/1-variabel gir én stor celle i stedet for mange tynne, og er dermed trygg mot avsløringskontroll.
+generate fodt_syria = land == '564'
+tabulate fodt_syria if erflyktning == 1, missing freq cellpct
+
+// Sammenligning flyktninger vs. øvrige innvandrere (radprosent), for å se hva som skiller flyktningene fra innvandrerne for øvrig.
+generate innvandrergruppe = 'Øvrige innvandrere'
+replace innvandrergruppe = 'Flyktninger' if erflyktning == 1
+tabulate innvandrergruppe botidsgruppe if innvandringskategori == 1, missing rowpct
+tabulate innvandrergruppe aldersgruppe if innvandringskategori == 1, missing rowpct
+tabulate innvandrergruppe verdensregion if innvandringskategori == 1, missing rowpct
+
+
+// ============================================================================
+// SENTRALITET I OPPRINNELSESKOMMUNEN
+// ============================================================================
+// SSBs sentralitetsindeks (Sentralitet 2020, KLASS 128), koblet til kommunene via SSBs korrespondansetabell "Sentralitet 2020 - Kommuneinndeling 2024" (KLASS-korrespondanse 1417). 1 = mest sentral (f. eks. Oslo), 6 = minst sentral.
+// Opprinnelseskommunen er registrert med kommunenummeret som gjaldt på flyttetidspunktet (2019-, 2020-2023- eller 2024-inndeling). Recode-listen under er derfor generert ved å følge hvert historiske kommunenummer gjennom SSBs endringshistorikk (KLASS 131, "changes") fram til 2024-kommunen, og deretter slå opp sentraliteten til denne - slik at alle tre nummerregimer er med i samme liste.
+// Kommuner som ble DELT og der delene har ulik sentralitet er lagt til den største delen: gamle Ålesund/Ørskog/Skodje (1504/1507/1523/1529) -> Ålesund (1508, klasse 3); gamle Haram/Sandøy (1534/1546) -> Haram (1580, klasse 5); Tysfjord (1850) -> Narvik (1806, klasse 4); Snillfjord (5012) -> Orkland (5059, klasse 4).
+// Alt i én recode-setning med seks store grupper - ingen egne linjer for enkeltkommuner, for å unngå avsløringskontroll.
+generate sentralitet_opprinnelig = kommune_opprinnelig_num
+recode sentralitet_opprinnelig \
+     (219 226 227 228 230 231 301 3024 3027 3029 3030 3201 3205 3222 3224 = 1) \
+     (104 105 106 136 211 213 214 215 217 220 233 234 235 403 602 625 626 627 628 701 704 711 716 1102 1103 1108 1124 1129 1141 1142 1201 3002 3003 3004 3005 3019 3020 3021 3022 3025 3031 3032 3033 3049 3103 3105 3107 3203 3207 3209 3214 3216 3218 3230 3232 3301 3312 3403 3801 3803 3901 3905 4601 5001 5030 = 2) \
+     (101 121 122 123 124 125 127 128 135 137 138 216 221 229 236 237 238 402 412 415 417 419 427 501 502 529 532 533 534 604 605 612 623 624 710 712 713 715 729 805 806 814 904 906 926 1001 1014 1017 1018 1106 1120 1121 1122 1127 1130 1247 1504 1507 1508 1523 1529 1804 1902 3001 3006 3007 3014 3015 3016 3017 3018 3023 3026 3028 3034 3035 3036 3038 3047 3048 3053 3054 3101 3112 3114 3116 3118 3120 3212 3220 3226 3228 3234 3236 3238 3240 3303 3305 3310 3314 3316 3401 3405 3407 3411 3412 3413 3415 3420 3443 3446 3802 3804 3805 3806 3807 3811 3813 3903 3907 3909 3911 4001 4003 4012 4202 4203 4204 4215 4223 4627 5028 5031 5035 5401 5501 = 3) \
+     (111 119 239 418 420 521 522 528 536 538 542 617 631 807 811 815 819 821 822 901 914 919 928 937 1002 1003 1004 1021 1027 1029 1032 1101 1114 1119 1146 1149 1216 1221 1234 1235 1238 1241 1242 1243 1245 1246 1253 1256 1259 1260 1263 1444 1502 1505 1506 1516 1517 1519 1520 1528 1531 1532 1543 1545 1577 1805 1806 1824 1833 1841 1850 1854 1870 1903 2004 2012 2017 3011 3013 3037 3041 3050 3110 3122 3242 3324 3334 3414 3416 3440 3441 3442 3447 3448 3451 3808 3812 3814 3816 3817 4005 4010 4014 4018 4020 4201 4205 4206 4207 4213 4214 4216 4219 4225 4612 4614 4621 4622 4623 4624 4626 4630 4631 5004 5005 5006 5007 5012 5016 5023 5024 5029 5037 5038 5039 5040 5048 5053 5059 5402 5403 5406 5503 5601 5603 = 4) \
+     (118 423 425 426 428 429 436 437 438 515 516 517 519 520 540 541 543 544 615 616 618 619 620 621 622 632 817 826 827 828 829 911 912 929 935 1034 1037 1046 1111 1112 1133 1135 1145 1160 1211 1219 1222 1223 1224 1227 1228 1231 1244 1251 1264 1401 1418 1419 1420 1422 1424 1426 1430 1431 1432 1433 1439 1441 1443 1445 1449 1515 1525 1534 1535 1539 1546 1547 1548 1551 1554 1557 1560 1563 1566 1571 1579 1580 1813 1820 1832 1840 1860 1865 1866 1868 1911 1922 1924 1925 1927 1928 1929 1931 1942 2003 2030 3012 3039 3040 3042 3043 3044 3045 3046 3051 3124 3318 3320 3322 3326 3328 3330 3332 3336 3417 3418 3419 3421 3422 3426 3427 3428 3435 3436 3437 3438 3439 3449 3450 3452 3453 3815 3818 3819 3820 3821 4016 4022 4024 4026 4028 4211 4212 4217 4218 4226 4227 4228 4602 4611 4613 4615 4616 4617 4618 4625 4628 4632 4640 4642 4643 4644 4647 4649 4650 4651 5011 5015 5017 5021 5022 5025 5027 5032 5034 5036 5045 5047 5050 5051 5054 5055 5057 5060 5061 5405 5411 5416 5418 5419 5421 5428 5444 5510 5520 5524 5526 5530 5544 5605 5607 = 5) \
+     (430 432 434 439 441 511 512 513 514 545 633 830 831 833 834 938 940 941 1026 1134 1144 1151 1232 1233 1252 1265 1266 1411 1412 1413 1416 1417 1421 1428 1429 1438 1511 1514 1524 1526 1573 1576 1578 1811 1812 1815 1816 1818 1822 1825 1826 1827 1828 1834 1835 1836 1837 1838 1839 1845 1848 1849 1851 1852 1853 1856 1857 1859 1867 1871 1874 1875 1913 1917 1919 1920 1923 1926 1933 1936 1938 1939 1940 1941 1943 2002 2011 2014 2015 2018 2019 2020 2021 2022 2023 2024 2025 2027 2028 3052 3338 3423 3424 3425 3429 3430 3431 3432 3433 3434 3454 3822 3823 3824 3825 4030 4032 4034 4036 4220 4221 4222 4224 4619 4620 4629 4633 4634 4635 4636 4637 4638 4639 4641 4645 4646 4648 5013 5014 5018 5019 5020 5026 5033 5041 5042 5043 5044 5046 5049 5052 5056 5058 5404 5412 5413 5414 5415 5417 5420 5422 5423 5424 5425 5426 5427 5429 5430 5432 5433 5434 5435 5436 5437 5438 5439 5440 5441 5442 5443 5512 5514 5516 5518 5522 5528 5532 5534 5536 5538 5540 5542 5546 5610 5612 5614 5616 5618 5620 5622 5624 5626 5628 5630 5632 5634 5636 = 6) \
+     (9999 = 9)
+
+define-labels sentralitetlabel \
+     1 '1 - Mest sentrale kommuner' \
+     2 '2' \
+     3 '3' \
+     4 '4' \
+     5 '5' \
+     6 '6 - Minst sentrale kommuner' \
+     9 'Uoppgitt'
+assign-labels sentralitet_opprinnelig sentralitetlabel
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 6c: Hvor sentrale var kommunene innflytterne kom fra?
+// ============================================================================
+// Alle innflyttere
+tabulate sentralitet_opprinnelig, missing freq cellpct
+
+// Etter innvandringskategori, og flyktninger vs. øvrige innvandrere
+tabulate innvandringskategori sentralitet_opprinnelig, missing rowpct
+tabulate innvandrergruppe sentralitet_opprinnelig if innvandringskategori == 1, missing rowpct
+tabulate sentralitet_opprinnelig if erflyktning == 1, missing freq cellpct
+
+// Hvor mange flyttet fra en annen Telemark-kommune, og hvor mange fra en kommune utenfor Telemark? Først for flyktningene, deretter alle grupper side om side (radprosent) til sammenligning.
+generate flyttet_fra_telemark = 'Utenfor Telemark'
+replace flyttet_fra_telemark = 'Annen Telemark-kommune' if fylkenummer_opprinnelig == 40
+tabulate flyttet_fra_telemark if erflyktning == 1, missing freq cellpct
+tabulate innvandringskategori flyttet_fra_telemark, missing freq
+tabulate innvandringskategori flyttet_fra_telemark, missing rowpct
+tabulate innvandrergruppe flyttet_fra_telemark if innvandringskategori == 1, missing rowpct
+
+// Samme oversikt UTEN flytting internt i Telemark (dvs. kun innflytting fra kommuner utenfor Telemark, jf. fylkenummer_opprinnelig etter dagens fylkesinndeling). Betinget med "if" i stedet for "keep if", slik at Telemark-flytterne beholdes i datasettet for resten av analysen.
+tabulate sentralitet_opprinnelig if fylkenummer_opprinnelig != 40, missing freq cellpct
+tabulate innvandringskategori sentralitet_opprinnelig if fylkenummer_opprinnelig != 40, missing rowpct
+tabulate innvandrergruppe sentralitet_opprinnelig if innvandringskategori == 1 & fylkenummer_opprinnelig != 40, missing rowpct
+tabulate sentralitet_opprinnelig if erflyktning == 1 & fylkenummer_opprinnelig != 40, missing freq cellpct
+
+
+// ============================================================================
+// FØRSTE BOSETTINGSKOMMUNE (INTRODUKSJONSPROGRAMMET)
+// ============================================================================
+// INTRO_FORST_BOSETTING_KOMMNR (krever fdb versjon 56): kommunenummeret for personens første bosettingskommune i Norge. Finnes KUN for personer som deltok i og/eller avsluttet introduksjonsprogrammet i løpet av rapporteringsåret, og kun for årgangene 2022-2025 (tverrsnitt per 31.12.).
+// Konsekvens: variabelen dekker bare flyktningene som var i introduksjonsprogrammet en gang i 2022-2025 - i praksis de som ble bosatt fra ca. 2019-2020 og senere. De som kom med den store bølgen i 2015-2017 har som regel avsluttet programmet før 2022 og mangler verdi. Dekningsgraden vises derfor først.
+// Opplysningen er fast (samme første bosettingskommune hvert år), så de fire årgangene slås sammen: første årgang med verdi brukes.
+import fdb/INTRO_FORST_BOSETTING_KOMMNR 2022-12-31 as intro_forst_2022
+import fdb/INTRO_FORST_BOSETTING_KOMMNR 2023-12-31 as intro_forst_2023
+import fdb/INTRO_FORST_BOSETTING_KOMMNR 2024-12-31 as intro_forst_2024
+import fdb/INTRO_FORST_BOSETTING_KOMMNR 2025-12-31 as intro_forst_2025
+destring intro_forst_2022
+destring intro_forst_2023
+destring intro_forst_2024
+destring intro_forst_2025
+
+generate forst_bosettingskommune = intro_forst_2022
+replace forst_bosettingskommune = intro_forst_2023 if sysmiss(forst_bosettingskommune) == 1
+replace forst_bosettingskommune = intro_forst_2024 if sysmiss(forst_bosettingskommune) == 1
+replace forst_bosettingskommune = intro_forst_2025 if sysmiss(forst_bosettingskommune) == 1
+recode forst_bosettingskommune (806 3807 4003 = 4003 'Skien')
+
+generate har_intro_info = sysmiss(forst_bosettingskommune) == 0
+
+// Hvor ble de først bosatt? Telemark-kommuner gjenkjennes under alle tre nummerregimer: 8xx (t.o.m. 2019), 3806-3825 unntatt 3811 (Vestfold og Telemark 2020-2023 - 3801-3805 og 3811 er Vestfold) og 40xx (fra 2024).
+generate forst_bosatt_hvor = 'Ukjent (ikke i introprogram 2022-2025)'
+replace forst_bosatt_hvor = 'Utenfor Telemark' if har_intro_info == 1
+replace forst_bosatt_hvor = 'Annen Telemark-kommune' if int(forst_bosettingskommune / 100) == 8 | int(forst_bosettingskommune / 100) == 40 | (forst_bosettingskommune >= 3806 & forst_bosettingskommune <= 3825 & forst_bosettingskommune != 3811)
+replace forst_bosatt_hvor = 'Skien' if forst_bosettingskommune == 4003
+
+// Flyttet de direkte fra første bosettingskommune til Skien (sekundærflytting rett fra bosettingskommunen), eller bodde de et annet sted i mellomtiden?
+// NB: Tilnærming - kommunenummeret for opprinnelseskommunen er det som gjaldt på flyttetidspunktet, mens bosettingskommunen trolig oppgis med nummeret som gjaldt i rapporteringsåret. For kommuner som fikk nytt nummer 1.1.2024 (tidl. Viken, Vestfold og Telemark, Troms og Finnmark, Ålesund/Haram) vil samme kommune da ikke matche, og andelen "direkte" blir noe undervurdert.
+// Laget med én "generate" (0/1 for alle) i stedet for "replace ... if": en replace med denne betingelsen ble stoppet av avsløringskontrollen ("Operasjonen påvirker for få enheter") - dvs. svært få flyttet direkte fra bosettingskommunen. Med generate skjer kontrollen først i tabulate, der små celler skjules/avrundes i stedet for at kjøringen stopper. Tolkes kun blant har_intro_info == 1.
+generate direkte_fra_bosetting = forst_bosettingskommune == kommune_opprinnelig_num
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 6d: Hvilken kommune ble flyktningene først bosatt i, og flyttet de direkte derfra til Skien?
+// ============================================================================
+// Dekningsgrad: hvor mange av flyktningene har opplysning om første bosettingskommune - totalt, etter innflyttingsår og etter botid.
+tabulate har_intro_info if erflyktning == 1, missing freq cellpct
+tabulate innflyttingsaar har_intro_info if erflyktning == 1, missing rowpct
+tabulate botidsgruppe har_intro_info if erflyktning == 1, missing rowpct
+
+// Blant flyktningene MED opplysning: hvor ble de først bosatt, og flyttet de direkte derfra til Skien?
+tabulate forst_bosatt_hvor if erflyktning == 1 & har_intro_info == 1, freq cellpct
+tabulate direkte_fra_bosetting if erflyktning == 1 & har_intro_info == 1, freq cellpct // 1 = flyttet direkte fra bosettingskommunen, 0 = bodde i en annen kommune i mellomtiden
+tabulate forst_bosatt_hvor direkte_fra_bosetting if erflyktning == 1 & har_intro_info == 1, rowpct
+
+// Enkeltkommuner - gir mange små celler som microdata.no skjuler/avrunder. Fjern kommentaren for å se de største bosettingskommunene.
+// tabulate forst_bosettingskommune if erflyktning == 1 & har_intro_info == 1
+
+
+// ============================================================================
+// OPPSETT: HELE SKIENS BEFOLKNING (SAMMENLIGNINGSGRUNNLAG FOR HOVEDSPØRSMÅL 7-9)
+// ============================================================================
+// Eget datasett med ALLE bosatt i Skien i dag (nyeste_aar), ikke bare innflytting_skien-utvalget. Hvert av hovedspørsmålene 7-9 under kjøres først for innflytterne og deretter for hele Skien, slik at tallene kan sammenlignes direkte.
+// Det aktive datasettet byttes med "use": alle import/generate/tabulate virker bare på datasettet som er aktivt. Etter oppsettet byttes det tilbake til innflytting_skien.
+create-dataset skien_befolkning
+
+import fdb/BEFOLKNING_KOMMNR_FORMELL $dato_t0 as kommune_naa_raw
+clone-variables kommune_naa_raw -> kommune_naa_num
+destring kommune_naa_num
+recode kommune_naa_num (806 3807 4003 = 4003 'Skien')
+
+import fdb/BEFOLKNING_STATUSKODE $dato_t0 as statuskode_naa
+keep if statuskode_naa != '3' & statuskode_naa != '5'
+keep if kommune_naa_num == 4003
+
+import fdb/BEFOLKNING_INVKAT as invkat
+generate innvandringskategori = 3
+replace innvandringskategori = 1 if invkat == 'B'
+replace innvandringskategori = 2 if invkat == 'C'
+assign-labels innvandringskategori innvandringskategorilabel
+
+import fdb/BEFOLKNING_INNGRUNN1 as innvandringsgrunn
+generate erflyktning = innvandringsgrunn == 'FLU'
+
+// Samme befolkningsgruppe som i innflytting_skien (se definisjon under FLYKTNINGER).
+generate befolkningsgruppe = 'Befolkningen for øvrig'
+replace befolkningsgruppe = 'Øvrige innvandrere' if innvandringskategori == 1 & erflyktning == 0
+replace befolkningsgruppe = 'Flyktninger' if erflyktning == 1
+
+use innflytting_skien
+
+
+// ============================================================================
+// TRANGBODDHET ETTER BEFOLKNINGSGRUPPE
+// ============================================================================
+// BOFORHOLD_TRANGBODD (tverrsnitt per 1.1., tekstvariabel): '1' = trangbodd (færre rom enn personer, eller én person på ett rom, OG under 25 kvm per person), '2' = ikke trangbodd, '3' = uoppgitt. SYSMISS for personer som ikke bor i privathusholdning knyttet til en bolig (f. eks. institusjon, uregistrert bolig).
+// Andelen trangbodde beregnes blant dem med kjent boforhold ('1' eller '2'), slik at uoppgitt/manglende ikke trekker andelen ned.
+import fdb/BOFORHOLD_TRANGBODD $dato_t0 as trangbodd_raw
+tabulate trangbodd_raw, missing
+
+generate trangboddhet = 'Uoppgitt/ikke i privathusholdning'
+replace trangboddhet = 'Trangbodd' if trangbodd_raw == '1'
+replace trangboddhet = 'Ikke trangbodd' if trangbodd_raw == '2'
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 7: Hvor mange bor trangt - blant flyktninger, innvandrere generelt og øvrig befolkning? Innflyttere og hele Skien.
+// ============================================================================
+// Krysstabell etter befolkningsgruppe (se definisjon under FLYKTNINGER) - hver person i nøyaktig én rad. Innvandrere generelt = summen av radene Flyktninger og Øvrige innvandrere.
+// 1) antall, 2) andel av alle i gruppen (inkl. uoppgitt/ikke i privathusholdning), 3) andel trangbodde blant dem med kjent boforhold ('1' eller '2') - den mest sammenlignbare andelen mellom gruppene.
+
+// Innflyttere til Skien siste 5 år
+tabulate befolkningsgruppe trangboddhet, missing freq
+tabulate befolkningsgruppe trangboddhet, missing rowpct
+tabulate befolkningsgruppe trangboddhet if trangbodd_raw == '1' | trangbodd_raw == '2', rowpct
+
+// Hele Skiens befolkning
+use skien_befolkning
+import fdb/BOFORHOLD_TRANGBODD $dato_t0 as trangbodd_raw
+generate trangboddhet = 'Uoppgitt/ikke i privathusholdning'
+replace trangboddhet = 'Trangbodd' if trangbodd_raw == '1'
+replace trangboddhet = 'Ikke trangbodd' if trangbodd_raw == '2'
+tabulate befolkningsgruppe trangboddhet, missing freq
+tabulate befolkningsgruppe trangboddhet, missing rowpct
+tabulate befolkningsgruppe trangboddhet if trangbodd_raw == '1' | trangbodd_raw == '2', rowpct
+use innflytting_skien
+
+
+// ============================================================================
+// ARBEIDSMARKEDSSTATUS ETTER BEFOLKNINGSGRUPPE
+// ============================================================================
+// REGSYS_ARB_ARBMARK_STATUS (tverrsnitt per 16.11., tekstvariabel), gjelder bosatte 15-74 år: '0' = utenfor arbeidsstyrken, '1' = lønnstaker, '2' = selvstendig næringsdrivende, '3' = helt arbeidsledig (annen definisjon enn i arbeidsledighetsstatistikken), '9' = ikke-relevante arbeidsforhold (holdes utenfor sysselsettingsstatistikken). ('4' finnes bare i måneds-/kvartalsdata.) SYSMISS for personer utenfor 15-74 år.
+// Lønnstakere og selvstendige slås sammen til "Sysselsatt". Målt $dato_arbmark (16. november året før "i dag") - nærmeste måling før populasjonstidspunktet 1.1.$nyeste_aar. For de som flyttet til Skien i løpet av siste år kan statusen være målt mens de ennå bodde i den forrige kommunen.
+import fdb/REGSYS_ARB_ARBMARK_STATUS $dato_arbmark as arbmark_raw
+tabulate arbmark_raw, missing
+
+generate arbeidsmarkedsstatus = 'Utenfor aldersgruppen 15-74 år/uoppgitt'
+replace arbeidsmarkedsstatus = 'Sysselsatt' if arbmark_raw == '1' | arbmark_raw == '2'
+replace arbeidsmarkedsstatus = 'Helt arbeidsledig' if arbmark_raw == '3'
+replace arbeidsmarkedsstatus = 'Utenfor arbeidsstyrken' if arbmark_raw == '0'
+replace arbeidsmarkedsstatus = 'Ikke relevant arbeidsforhold' if arbmark_raw == '9'
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 8: Hvordan er arbeidsmarkedsstatusen - flyktninger, innvandrere generelt og øvrig befolkning? Innflyttere og hele Skien.
+// ============================================================================
+// Krysstabell etter befolkningsgruppe - hver person i nøyaktig én rad. Innvandrere generelt = summen av radene Flyktninger og Øvrige innvandrere.
+// 1) antall, 2) andel av alle i gruppen (inkl. utenfor 15-74 år), 3) andel blant dem 15-74 år med registrert status - den mest sammenlignbare andelen mellom gruppene (f. eks. sysselsettingsandel).
+
+// Innflyttere til Skien siste 5 år
+tabulate befolkningsgruppe arbeidsmarkedsstatus, missing freq
+tabulate befolkningsgruppe arbeidsmarkedsstatus, missing rowpct
+tabulate befolkningsgruppe arbeidsmarkedsstatus if arbmark_raw == '0' | arbmark_raw == '1' | arbmark_raw == '2' | arbmark_raw == '3' | arbmark_raw == '9', rowpct
+
+// Innflyttede flyktninger: arbeidsmarkedsstatus etter botid i Norge - hvordan utvikler andelen "Utenfor arbeidsstyrken" seg med økende botid? Kun 15-74 år med registrert status. Radprosent = andel innen hver botidsgruppe.
+// NB: Tverrsnitt, ikke forløp - flyktningene med lang botid er andre personer (andre ankomstkohorter, landbakgrunn, alderssammensetning) enn de med kort botid. Botid er regnet til 1.1.$nyeste_aar, mens statusen er målt 16.11. året før. Gruppen 0-1 år er tom (se hovedspørsmål 4).
+tabulate botidsgruppe arbeidsmarkedsstatus if erflyktning == 1 & (arbmark_raw == '0' | arbmark_raw == '1' | arbmark_raw == '2' | arbmark_raw == '3' | arbmark_raw == '9'), freq
+tabulate botidsgruppe arbeidsmarkedsstatus if erflyktning == 1 & (arbmark_raw == '0' | arbmark_raw == '1' | arbmark_raw == '2' | arbmark_raw == '3' | arbmark_raw == '9'), rowpct
+// Samme for øvrige innvandrere, til sammenligning.
+tabulate botidsgruppe arbeidsmarkedsstatus if befolkningsgruppe == 'Øvrige innvandrere' & (arbmark_raw == '0' | arbmark_raw == '1' | arbmark_raw == '2' | arbmark_raw == '3' | arbmark_raw == '9'), rowpct
+
+// Hele Skiens befolkning
+use skien_befolkning
+import fdb/REGSYS_ARB_ARBMARK_STATUS $dato_arbmark as arbmark_raw
+generate arbeidsmarkedsstatus = 'Utenfor aldersgruppen 15-74 år/uoppgitt'
+replace arbeidsmarkedsstatus = 'Sysselsatt' if arbmark_raw == '1' | arbmark_raw == '2'
+replace arbeidsmarkedsstatus = 'Helt arbeidsledig' if arbmark_raw == '3'
+replace arbeidsmarkedsstatus = 'Utenfor arbeidsstyrken' if arbmark_raw == '0'
+replace arbeidsmarkedsstatus = 'Ikke relevant arbeidsforhold' if arbmark_raw == '9'
+tabulate befolkningsgruppe arbeidsmarkedsstatus, missing freq
+tabulate befolkningsgruppe arbeidsmarkedsstatus, missing rowpct
+tabulate befolkningsgruppe arbeidsmarkedsstatus if arbmark_raw == '0' | arbmark_raw == '1' | arbmark_raw == '2' | arbmark_raw == '3' | arbmark_raw == '9', rowpct
+use innflytting_skien
+
+
+// ============================================================================
+// SOSIALHJELP ETTER BEFOLKNINGSGRUPPE
+// ============================================================================
+// Bekreftet ved kjøring: SOSHJLPFDT_MOTTAK er en tekstvariabel med verdien '1' ("1 - Mottar stønad/ytelse") for de som mottar, og SYSMISS for de som ikke gjør det. Må derfor sammenlignes med strengen '1', ikke tallet 1 - en sammenligning mot et tall gir typefeil og returnerer alltid usann.
+import fdb/SOSHJLPFDT_MOTTAK $dato_t0 as sosialhjelp_mottak_raw
+tabulate sosialhjelp_mottak_raw, missing
+generate mottar_sosialhjelp = sosialhjelp_mottak_raw == '1'
+
+
+// ============================================================================
+// SVAR PÅ HOVEDSPØRSMÅL 9: Hvor stor andel mottar sosialhjelp - flyktninger, øvrige innvandrere og befolkningen for øvrig? Innflyttere og hele Skien.
+// ============================================================================
+// Innflyttere til Skien siste 5 år: andel mottakere innad i hver gruppe.
+tabulate befolkningsgruppe mottar_sosialhjelp, missing rowpct
+
+// Hele Skiens befolkning: samme andel innad i hver gruppe, og i tillegg sammensetningen av ALLE sosialhjelpsmottakere i Skien - selv om andelen er høyest blant flyktninger, er de fleste mottakerne verken innflyttere eller flyktninger.
+// Merk: bruker IKKE "keep if mottar_sosialhjelp == 1" - et permanent keep på en sensitiv variabel som sosialhjelp blir stoppet av avsløringskontrollen ("For få enheter i måldatasettet"), selv om det reelle antallet mottakere er stort nok. Løsningen er å betinge tabulate-kallene med "if mottar_sosialhjelp == 1" i stedet for å fysisk forkaste resten av populasjonen.
+use skien_befolkning
+import fdb/SOSHJLPFDT_MOTTAK $dato_t0 as sosialhjelp_mottak_raw
+generate mottar_sosialhjelp = sosialhjelp_mottak_raw == '1'
+
+tabulate befolkningsgruppe mottar_sosialhjelp, missing rowpct
+
+// Av alle som mottar sosialhjelp i Skien i dag, hvor mange er flyktninger - og hvor mange er det ikke?
+tabulate erflyktning if mottar_sosialhjelp == 1, missing freq cellpct
+tabulate befolkningsgruppe if mottar_sosialhjelp == 1, missing freq cellpct
+
+// Full INNVKAT-oppløsning (ikke bare de 3 samlekategoriene i innvandringskategori) - koder: A=Uten innvandringsbakgrunn, B=Innvandrer, C=Norskfødt med to utenlandsfødte foreldre, D=ikke i bruk, E=Utenlandsfødt med én norsk forelder, F=Norskfødt med én utenlandsfødt forelder, G=Født i utlandet av to norskfødte foreldre.
+tabulate invkat if mottar_sosialhjelp == 1, missing freq cellpct
+
+// "Norsk landbakgrunn" her definert bredere som alle INNVKAT-koder unntatt B (Innvandrer) - altså A/C/E/F/G. D er ikke i bruk.
+generate norsk_landbakgrunn = invkat == 'A' | invkat == 'C' | invkat == 'E' | invkat == 'F' | invkat == 'G'
+tabulate norsk_landbakgrunn if mottar_sosialhjelp == 1, missing freq cellpct
+use innflytting_skien

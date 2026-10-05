@@ -371,6 +371,12 @@ task_name = "Klima og energi - Strompriser"
 github_folder = "Data/04_Klima og ressursforvaltning/Kraft og energi/Kraftpriser/entso-e"
 temp_folder = os.environ.get("TEMP_FOLDER")
 
+# Format "time" as a plain date string (avoids datetime64 dtype being stringified
+# with a " 00:00:00" time component, which would never match the plain date
+# strings already stored in the CSV on GitHub and trigger a false "change" every run)
+if not daily_avg.empty and "time" in daily_avg.columns:
+    daily_avg["time"] = pd.to_datetime(daily_avg["time"]).dt.strftime("%Y-%m-%d")
+
 # Call handle_output_data function
 is_new_data = handle_output_data(daily_avg, file_name, github_folder, temp_folder, keepcsv=True)
 

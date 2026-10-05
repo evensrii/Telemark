@@ -197,11 +197,16 @@ try:
 
     # Create a copy for comparison, keeping numeric types
     df_compare = df_nedsatt.copy()
-    
+
     # Ensure consistent numeric types
     df_compare['Antall personer'] = pd.to_numeric(df_compare['Antall personer'], errors='coerce')
     df_compare['Andel av befolkningen'] = pd.to_numeric(df_compare['Andel av befolkningen'], errors='coerce')
-    
+
+    # Format "Dato" as a plain date string (avoids datetime64 dtype being stringified
+    # with a " 00:00:00" time component, which would never match the plain date
+    # strings already stored in the CSV on GitHub and trigger a false "change" every run)
+    df_compare['Dato'] = df_compare['Dato'].dt.strftime('%Y-%m-%d')
+
     # Call the function and get the "New Data" status
     is_new_data = handle_output_data(df_compare, file_name, github_folder, temp_folder, keepcsv=True, value_columns=['Antall personer', 'Andel av befolkningen'])  # Specify which columns to compare
 

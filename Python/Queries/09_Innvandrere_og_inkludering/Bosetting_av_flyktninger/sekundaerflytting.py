@@ -119,6 +119,11 @@ df_kommuner["Kommune"] = df_kommuner["Kommune"].fillna(
 
 # dtale.show(df_kommuner, open_browser=True)
 
+# Format "År" as a plain date string (avoids datetime64 dtype being stringified
+# with a " 00:00:00" time component, which would never match the plain date
+# strings already stored in the CSV on GitHub and trigger a false "change" every run)
+df_kommuner["År"] = df_kommuner["År"].dt.strftime("%Y-%m-%d")
+
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "sekundærflytting.csv"
