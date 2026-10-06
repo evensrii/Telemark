@@ -2,19 +2,7 @@ Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Anmodninger og faktisk bosetting CSV data loaded successfully.
 Saved file to C:\Analyse\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-[2026-10-05 08:17:19] Row count changed: 1663 -> 1665
-
-Added rows (showing up to 10):
-Antall: 26.0, Kategori: Faktisk bosetting, Kommune: Bamble, r: 2026-01-01
-Antall: 12.0, Kategori: Faktisk bosetting, Kommune: Fyresdal, r: 2026-01-01
-Antall: 16.0, Kategori: Faktisk bosetting, Kommune: Kragerø, r: 2026-01-01
-Antall: 0.0, Kategori: Faktisk bosetting, Kommune: Nome, r: 2026-01-01
-Antall: 33.0, Kategori: Faktisk bosetting, Kommune: Porsgrunn, r: 2026-01-01
-Antall: 0.0, Kategori: Faktisk bosetting, Kommune: Siljan, r: 2026-01-01
-Antall: 41.0, Kategori: Faktisk bosetting, Kommune: Skien, r: 2026-01-01
-Antall: 17.0, Kategori: Faktisk bosetting, Kommune: Tinn, r: 2026-01-01
-Antall: 14.0, Kategori: Faktisk bosetting, Kommune: Vinje, r: 2026-01-01
-File uploaded successfully: Data/09_Innvandrere og inkludering/Bosetting av flyktninger/anmodninger_og_faktisk_bosetting.csv
+[2026-10-06 08:16:10] No new data to upload. Skipping GitHub update.
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\anmodninger_og_faktisk_bosetting.csv
-New data detected and pushed to GitHub.
+No new data detected.
 New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Anmodninger_og_faktisk_bosetting.log
