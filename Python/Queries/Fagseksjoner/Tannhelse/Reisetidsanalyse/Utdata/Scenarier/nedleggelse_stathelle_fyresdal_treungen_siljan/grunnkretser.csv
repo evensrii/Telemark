@@ -1,0 +1,613 @@
+﻿OriginID;grunnkretsnummer;grunnkretsnavn;kommunenummer;kommunenavn;totalbefolkning;Klinikk_Idag;Klinikk_scenario;berort;tid_idag;tid_scenario;endring_min;Klinikk_naermeste_aapen;tid_naermeste_aapen;Klinikk_naermeste_idag;tid_naermeste_idag;gevinst_naermeste_aapen_min
+1;40010101;Bjørkedal;4001;Porsgrunn;300;Porsgrunn;Porsgrunn;False;8,73;8,73;0,0;Porsgrunn;8,73;Porsgrunn;8,73;0,0
+2;40010102;Oklungen nord;4001;Porsgrunn;72;Porsgrunn;Porsgrunn;False;18,83;18,83;0,0;Porsgrunn;18,83;Porsgrunn;18,83;0,0
+3;40010103;Oklungen-Marka;4001;Porsgrunn;155;Porsgrunn;Porsgrunn;False;20,38;20,38;0,0;Porsgrunn;20,38;Porsgrunn;20,38;0,0
+4;40010104;Lanner;4001;Porsgrunn;111;Porsgrunn;Porsgrunn;False;14,73;14,73;0,0;Porsgrunn;14,73;Porsgrunn;14,73;0,0
+5;40010105;Langangen;4001;Porsgrunn;526;Porsgrunn;Porsgrunn;False;15,28;15,28;0,0;Porsgrunn;15,28;Porsgrunn;15,28;0,0
+6;40010201;Valler-Moheim;4001;Porsgrunn;377;Porsgrunn;Porsgrunn;False;6,77;6,77;0,0;Porsgrunn;6,77;Porsgrunn;6,77;0,0
+7;40010202;Enger-Trekanten;4001;Porsgrunn;272;Porsgrunn;Porsgrunn;False;5,1;5,1;0,0;Porsgrunn;5,1;Porsgrunn;5,1;0,0
+8;40010203;Tveten nord;4001;Porsgrunn;554;Porsgrunn;Porsgrunn;False;7,6;7,6;0,0;Porsgrunn;7,6;Porsgrunn;7,6;0,0
+9;40010204;Eidanger;4001;Porsgrunn;448;Porsgrunn;Porsgrunn;False;6,43;6,43;0,0;Porsgrunn;6,43;Porsgrunn;6,43;0,0
+10;40010205;Tveten sør;4001;Porsgrunn;405;Porsgrunn;Porsgrunn;False;8,13;8,13;0,0;Porsgrunn;8,13;Porsgrunn;8,13;0,0
+11;40010206;Nystrand;4001;Porsgrunn;442;Porsgrunn;Porsgrunn;False;8,17;8,17;0,0;Porsgrunn;8,17;Porsgrunn;8,17;0,0
+12;40010207;Lillegården-Døvik;4001;Porsgrunn;293;Porsgrunn;Porsgrunn;False;8,78;8,78;0,0;Porsgrunn;8,78;Porsgrunn;8,78;0,0
+13;40010208;Bergsbygda;4001;Porsgrunn;345;Porsgrunn;Porsgrunn;False;13,3;13,3;0,0;Porsgrunn;13,3;Porsgrunn;13,3;0,0
+14;40010209;Bjønnes;4001;Porsgrunn;16;Porsgrunn;Porsgrunn;False;22,37;22,37;0,0;Porsgrunn;22,37;Porsgrunn;22,37;0,0
+15;40010210;Øyene;4001;Porsgrunn;309;Stathelle;Porsgrunn;True;30,57;44,77;14,200000000000003;Porsgrunn;44,77;Stathelle;30,57;0,0
+16;40010301;Ås-Stranda-Kjørholt;4001;Porsgrunn;226;Porsgrunn;Porsgrunn;False;23,38;23,38;0,0;Porsgrunn;23,38;Stathelle;10,93;0,0
+17;40010302;Versvik-Rød;4001;Porsgrunn;;Porsgrunn;Porsgrunn;False;14,43;14,43;0,0;Porsgrunn;14,43;Stathelle;12,52;0,0
+18;40010303;Skjelsvikdalen;4001;Porsgrunn;45;Porsgrunn;Porsgrunn;False;10,53;10,53;0,0;Porsgrunn;10,53;Porsgrunn;10,53;0,0
+19;40010304;Hvalsåsen;4001;Porsgrunn;302;Porsgrunn;Porsgrunn;False;11,15;11,15;0,0;Porsgrunn;11,15;Porsgrunn;11,15;0,0
+20;40010305;Skrikaråsen;4001;Porsgrunn;230;Porsgrunn;Porsgrunn;False;9,82;9,82;0,0;Porsgrunn;9,82;Porsgrunn;9,82;0,0
+21;40010306;Skjelsvik;4001;Porsgrunn;504;Porsgrunn;Porsgrunn;False;9,72;9,72;0,0;Porsgrunn;9,72;Porsgrunn;9,72;0,0
+22;40010307;Brattås vest;4001;Porsgrunn;387;Porsgrunn;Porsgrunn;False;11,3;11,3;0,0;Porsgrunn;11,3;Stathelle;11,25;0,0
+23;40010308;Brattås øst;4001;Porsgrunn;359;Porsgrunn;Porsgrunn;False;12,25;12,25;0,0;Porsgrunn;12,25;Stathelle;10,13;0,0
+24;40010309;Løvsjø;4001;Porsgrunn;436;Porsgrunn;Porsgrunn;False;11,28;11,28;0,0;Porsgrunn;11,28;Stathelle;9,15;0,0
+25;40010310;Brånan;4001;Porsgrunn;270;Porsgrunn;Porsgrunn;False;11,2;11,2;0,0;Porsgrunn;11,2;Stathelle;9,85;0,0
+26;40010311;Valen;4001;Porsgrunn;232;Porsgrunn;Porsgrunn;False;11,68;11,68;0,0;Porsgrunn;11,68;Stathelle;10,77;0,0
+27;40010312;Lundedalen;4001;Porsgrunn;21;Porsgrunn;Porsgrunn;False;12,1;12,1;0,0;Porsgrunn;12,1;Stathelle;9,0;0,0
+28;40010313;Grava;4001;Porsgrunn;506;Porsgrunn;Porsgrunn;False;13,18;13,18;0,0;Porsgrunn;13,18;Stathelle;8,73;0,0
+29;40010314;Lundeåsen;4001;Porsgrunn;635;Porsgrunn;Porsgrunn;False;12,0;12,0;0,0;Porsgrunn;12,0;Stathelle;10,2;0,0
+30;40010315;Lunde;4001;Porsgrunn;504;Porsgrunn;Porsgrunn;False;12,52;12,52;0,0;Porsgrunn;12,52;Stathelle;7,78;0,0
+31;40010316;Skoglia;4001;Porsgrunn;251;Porsgrunn;Porsgrunn;False;12,32;12,32;0,0;Porsgrunn;12,32;Stathelle;7,73;0,0
+32;40010317;Skavrakåsen nord;4001;Porsgrunn;428;Porsgrunn;Porsgrunn;False;13,37;13,37;0,0;Porsgrunn;13,37;Stathelle;8,92;0,0
+33;40010318;Skavrakåsen sør;4001;Porsgrunn;314;Porsgrunn;Porsgrunn;False;13,1;13,1;0,0;Porsgrunn;13,1;Stathelle;7,48;0,0
+34;40010319;Kjørholt-Bakke;4001;Porsgrunn;75;Porsgrunn;Porsgrunn;False;13,32;13,32;0,0;Porsgrunn;13,32;Stathelle;6,43;0,0
+35;40010320;Heistad;4001;Porsgrunn;778;Porsgrunn;Porsgrunn;False;13,98;13,98;0,0;Porsgrunn;13,98;Stathelle;8,15;0,0
+36;40010401;Dalen;4001;Porsgrunn;244;Stathelle;Porsgrunn;True;6,67;15,95;9,28;Porsgrunn;15,95;Stathelle;6,67;0,0
+37;40010402;Blekebakken;4001;Porsgrunn;119;Stathelle;Porsgrunn;True;5,53;17,87;12,34;Porsgrunn;17,87;Stathelle;5,53;0,0
+38;40010403;Åsen;4001;Porsgrunn;379;Stathelle;Porsgrunn;True;5,7;17,85;12,150000000000002;Porsgrunn;17,85;Stathelle;5,7;0,0
+39;40010404;Brevik sentrum;4001;Porsgrunn;435;Stathelle;Porsgrunn;True;4,72;18,87;14,150000000000002;Porsgrunn;18,87;Stathelle;4,72;0,0
+40;40010405;Øya;4001;Porsgrunn;309;Stathelle;Porsgrunn;True;6,12;20,35;14,23;Porsgrunn;20,35;Stathelle;6,12;0,0
+41;40010406;Sætre sør;4001;Porsgrunn;315;Stathelle;Porsgrunn;True;6,03;17,72;11,689999999999998;Porsgrunn;17,72;Stathelle;6,03;0,0
+42;40010407;Sætre nord;4001;Porsgrunn;305;Stathelle;Porsgrunn;True;4,57;16,28;11,71;Porsgrunn;16,28;Stathelle;4,57;0,0
+43;40010502;Klevstrand;4001;Porsgrunn;489;Porsgrunn;Porsgrunn;False;8,9;8,9;0,0;Porsgrunn;8,9;Porsgrunn;8,9;0,0
+44;40010503;Herøya sør;4001;Porsgrunn;514;Porsgrunn;Porsgrunn;False;9,58;9,58;0,0;Porsgrunn;9,58;Porsgrunn;9,58;0,0
+45;40010504;Bakke;4001;Porsgrunn;400;Porsgrunn;Porsgrunn;False;9,48;9,48;0,0;Porsgrunn;9,48;Porsgrunn;9,48;0,0
+46;40010505;Jordet;4001;Porsgrunn;230;Porsgrunn;Porsgrunn;False;9,23;9,23;0,0;Porsgrunn;9,23;Porsgrunn;9,23;0,0
+47;40010506;Herøyaåsen;4001;Porsgrunn;219;Porsgrunn;Porsgrunn;False;10,75;10,75;0,0;Porsgrunn;10,75;Porsgrunn;10,75;0,0
+48;40010507;Mauråsen;4001;Porsgrunn;267;Porsgrunn;Porsgrunn;False;10,33;10,33;0,0;Porsgrunn;10,33;Porsgrunn;10,33;0,0
+49;40010508;Skrapeklev;4001;Porsgrunn;354;Porsgrunn;Porsgrunn;False;10,28;10,28;0,0;Porsgrunn;10,28;Porsgrunn;10,28;0,0
+50;40010601;Raskenlund;4001;Porsgrunn;311;Porsgrunn;Porsgrunn;False;8,95;8,95;0,0;Porsgrunn;8,95;Porsgrunn;8,95;0,0
+51;40010602;Raskenlund sør;4001;Porsgrunn;200;Porsgrunn;Porsgrunn;False;9,72;9,72;0,0;Porsgrunn;9,72;Porsgrunn;9,72;0,0
+52;40010603;Stridsklev nord;4001;Porsgrunn;419;Porsgrunn;Porsgrunn;False;9,78;9,78;0,0;Porsgrunn;9,78;Porsgrunn;9,78;0,0
+53;40010604;Stridsklev øst;4001;Porsgrunn;156;Porsgrunn;Porsgrunn;False;9,73;9,73;0,0;Porsgrunn;9,73;Porsgrunn;9,73;0,0
+54;40010605;Korpelia nord;4001;Porsgrunn;256;Porsgrunn;Porsgrunn;False;10,57;10,57;0,0;Porsgrunn;10,57;Porsgrunn;10,57;0,0
+55;40010606;Stridsklev midtre;4001;Porsgrunn;276;Porsgrunn;Porsgrunn;False;10,48;10,48;0,0;Porsgrunn;10,48;Porsgrunn;10,48;0,0
+56;40010607;Korpelia sør;4001;Porsgrunn;275;Porsgrunn;Porsgrunn;False;11,28;11,28;0,0;Porsgrunn;11,28;Porsgrunn;11,28;0,0
+57;40010608;Stridsklev sentrum;4001;Porsgrunn;197;Porsgrunn;Porsgrunn;False;11,47;11,47;0,0;Porsgrunn;11,47;Porsgrunn;11,47;0,0
+58;40010609;Hovholt;4001;Porsgrunn;371;Porsgrunn;Porsgrunn;False;12,03;12,03;0,0;Porsgrunn;12,03;Porsgrunn;12,03;0,0
+59;40010610;Stridsklev sør;4001;Porsgrunn;254;Porsgrunn;Porsgrunn;False;11,68;11,68;0,0;Porsgrunn;11,68;Porsgrunn;11,68;0,0
+60;40010611;Hovet sør;4001;Porsgrunn;345;Porsgrunn;Porsgrunn;False;11,45;11,45;0,0;Porsgrunn;11,45;Porsgrunn;11,45;0,0
+61;40010612;Hovet midtre;4001;Porsgrunn;340;Porsgrunn;Porsgrunn;False;11,23;11,23;0,0;Porsgrunn;11,23;Porsgrunn;11,23;0,0
+62;40010613;Hovet nord;4001;Porsgrunn;522;Porsgrunn;Porsgrunn;False;11,58;11,58;0,0;Porsgrunn;11,58;Porsgrunn;11,58;0,0
+63;40010701;Rønningen midtre;4001;Porsgrunn;396;Porsgrunn;Porsgrunn;False;6,52;6,52;0,0;Porsgrunn;6,52;Porsgrunn;6,52;0,0
+64;40010702;Grønli;4001;Porsgrunn;420;Porsgrunn;Porsgrunn;False;6,77;6,77;0,0;Porsgrunn;6,77;Porsgrunn;6,77;0,0
+65;40010703;Skrukkerød;4001;Porsgrunn;610;Porsgrunn;Porsgrunn;False;6,37;6,37;0,0;Porsgrunn;6,37;Porsgrunn;6,37;0,0
+66;40010704;Rønningen sør;4001;Porsgrunn;174;Porsgrunn;Porsgrunn;False;8,02;8,02;0,0;Porsgrunn;8,02;Porsgrunn;8,02;0,0
+67;40010705;Flåtten nord;4001;Porsgrunn;471;Porsgrunn;Porsgrunn;False;7,08;7,08;0,0;Porsgrunn;7,08;Porsgrunn;7,08;0,0
+68;40010801;Roligheten-Frednes;4001;Porsgrunn;89;Porsgrunn;Porsgrunn;False;5,88;5,88;0,0;Porsgrunn;5,88;Porsgrunn;5,88;0,0
+69;40010802;Sundjordet nord;4001;Porsgrunn;460;Porsgrunn;Porsgrunn;False;6,38;6,38;0,0;Porsgrunn;6,38;Porsgrunn;6,38;0,0
+70;40010803;Sundjordet sør;4001;Porsgrunn;419;Porsgrunn;Porsgrunn;False;5,87;5,87;0,0;Porsgrunn;5,87;Porsgrunn;5,87;0,0
+71;40010804;Rønningen nord;4001;Porsgrunn;359;Porsgrunn;Porsgrunn;False;6,77;6,77;0,0;Porsgrunn;6,77;Porsgrunn;6,77;0,0
+72;40010805;Frednes;4001;Porsgrunn;231;Porsgrunn;Porsgrunn;False;6,13;6,13;0,0;Porsgrunn;6,13;Porsgrunn;6,13;0,0
+73;40010806;Jønholt;4001;Porsgrunn;291;Porsgrunn;Porsgrunn;False;7,18;7,18;0,0;Porsgrunn;7,18;Porsgrunn;7,18;0,0
+74;40010808;Kirkehaugen;4001;Porsgrunn;639;Porsgrunn;Porsgrunn;False;6,1;6,1;0,0;Porsgrunn;6,1;Porsgrunn;6,1;0,0
+75;40010809;St Hansåsen;4001;Porsgrunn;286;Porsgrunn;Porsgrunn;False;5,47;5,47;0,0;Porsgrunn;5,47;Porsgrunn;5,47;0,0
+76;40010810;Bjørntvedtjordet;4001;Porsgrunn;514;Porsgrunn;Porsgrunn;False;3,82;3,82;0,0;Porsgrunn;3,82;Porsgrunn;3,82;0,0
+77;40010811;Porsgrunn sentrum øst;4001;Porsgrunn;622;Porsgrunn;Porsgrunn;False;4,23;4,23;0,0;Porsgrunn;4,23;Porsgrunn;4,23;0,0
+78;40010812;Hagebyen;4001;Porsgrunn;161;Porsgrunn;Porsgrunn;False;3,35;3,35;0,0;Porsgrunn;3,35;Porsgrunn;3,35;0,0
+79;40010901;Bjørntvedt;4001;Porsgrunn;886;Porsgrunn;Porsgrunn;False;4,87;4,87;0,0;Porsgrunn;4,87;Porsgrunn;4,87;0,0
+80;40010902;Myrene nord;4001;Porsgrunn;163;Porsgrunn;Porsgrunn;False;3,4;3,4;0,0;Porsgrunn;3,4;Porsgrunn;3,4;0,0
+81;40010903;Myrene midtre;4001;Porsgrunn;331;Porsgrunn;Porsgrunn;False;4,2;4,2;0,0;Porsgrunn;4,2;Porsgrunn;4,2;0,0
+82;40010904;Myrene sør;4001;Porsgrunn;203;Porsgrunn;Porsgrunn;False;4,07;4,07;0,0;Porsgrunn;4,07;Porsgrunn;4,07;0,0
+83;40011001;Bråten;4001;Porsgrunn;535;Porsgrunn;Porsgrunn;False;6,2;6,2;0,0;Porsgrunn;6,2;Porsgrunn;6,2;0,0
+84;40011002;Osebakken nord;4001;Porsgrunn;542;Porsgrunn;Porsgrunn;False;4,28;4,28;0,0;Porsgrunn;4,28;Porsgrunn;4,28;0,0
+85;40011003;Borgåsen;4001;Porsgrunn;550;Porsgrunn;Porsgrunn;False;5,67;5,67;0,0;Porsgrunn;5,67;Porsgrunn;5,67;0,0
+86;40011004;Sandtaket;4001;Porsgrunn;241;Porsgrunn;Porsgrunn;False;4,53;4,53;0,0;Porsgrunn;4,53;Porsgrunn;4,53;0,0
+87;40011005;Liane;4001;Porsgrunn;1038;Porsgrunn;Porsgrunn;False;6,2;6,2;0,0;Porsgrunn;6,2;Porsgrunn;6,2;0,0
+88;40011006;Osebakken sør;4001;Porsgrunn;396;Porsgrunn;Porsgrunn;False;5,18;5,18;0,0;Porsgrunn;5,18;Porsgrunn;5,18;0,0
+89;40011007;Hovenga nord;4001;Porsgrunn;339;Porsgrunn;Porsgrunn;False;4,62;4,62;0,0;Porsgrunn;4,62;Porsgrunn;4,62;0,0
+90;40011008;Hovenga øst;4001;Porsgrunn;794;Porsgrunn;Porsgrunn;False;5,27;5,27;0,0;Porsgrunn;5,27;Porsgrunn;5,27;0,0
+91;40011009;Hovenga sør;4001;Porsgrunn;433;Porsgrunn;Porsgrunn;False;3,57;3,57;0,0;Porsgrunn;3,57;Porsgrunn;3,57;0,0
+92;40011010;Kjølnes;4001;Porsgrunn;191;Porsgrunn;Porsgrunn;False;3,97;3,97;0,0;Porsgrunn;3,97;Porsgrunn;3,97;0,0
+93;40011011;Bjerketvedt;4001;Porsgrunn;298;Porsgrunn;Porsgrunn;False;8,18;8,18;0,0;Porsgrunn;8,18;Porsgrunn;8,18;0,0
+94;40011101;Bjørndalen;4001;Porsgrunn;178;Porsgrunn;Porsgrunn;False;8,83;8,83;0,0;Porsgrunn;8,83;Porsgrunn;8,83;0,0
+95;40011102;Fredbo;4001;Porsgrunn;638;Porsgrunn;Porsgrunn;False;9,75;9,75;0,0;Porsgrunn;9,75;Porsgrunn;9,75;0,0
+96;40011103;Lahelle;4001;Porsgrunn;595;Porsgrunn;Porsgrunn;False;11,0;11,0;0,0;Porsgrunn;11,0;Porsgrunn;11,0;0,0
+97;40011104;Sentrum nord;4001;Porsgrunn;905;Porsgrunn;Porsgrunn;False;7,82;7,82;0,0;Porsgrunn;7,82;Porsgrunn;7,82;0,0
+98;40011105;Moldhaugen;4001;Porsgrunn;722;Porsgrunn;Porsgrunn;False;8,78;8,78;0,0;Porsgrunn;8,78;Porsgrunn;8,78;0,0
+99;40011106;Sentrum sør;4001;Porsgrunn;356;Porsgrunn;Porsgrunn;False;6,48;6,48;0,0;Porsgrunn;6,48;Porsgrunn;6,48;0,0
+100;40011107;Sentrum vest;4001;Porsgrunn;305;Porsgrunn;Porsgrunn;False;7,2;7,2;0,0;Porsgrunn;7,2;Porsgrunn;7,2;0,0
+101;40011108;Skipperåsen;4001;Porsgrunn;92;Porsgrunn;Porsgrunn;False;9,57;9,57;0,0;Porsgrunn;9,57;Porsgrunn;9,57;0,0
+102;40011109;Knardalstrand;4001;Porsgrunn;284;Porsgrunn;Porsgrunn;False;8,98;8,98;0,0;Porsgrunn;8,98;Porsgrunn;8,98;0,0
+103;40011110;Knardalstrand nedre;4001;Porsgrunn;188;Porsgrunn;Porsgrunn;False;10,27;10,27;0,0;Porsgrunn;10,27;Porsgrunn;10,27;0,0
+104;40030102;Hjellen;4003;Skien;492;Skien;Skien;False;7,17;7,17;0,0;Skien;7,17;Skien;7,17;0,0
+105;40030103;Lundetoppen;4003;Skien;243;Skien;Skien;False;6,22;6,22;0,0;Skien;6,22;Skien;6,22;0,0
+106;40030105;Sentrum;4003;Skien;255;Skien;Skien;False;7,63;7,63;0,0;Skien;7,63;Skien;7,63;0,0
+107;40030106;Lundedalen;4003;Skien;483;Skien;Skien;False;5,72;5,72;0,0;Skien;5,72;Skien;5,72;0,0
+108;40030107;Kverndalen;4003;Skien;373;Skien;Skien;False;8,3;8,3;0,0;Skien;8,3;Skien;8,3;0,0
+109;40030108;Huken;4003;Skien;243;Skien;Skien;False;7,75;7,75;0,0;Skien;7,75;Skien;7,75;0,0
+110;40030109;Duestien;4003;Skien;468;Skien;Skien;False;8,32;8,32;0,0;Skien;8,32;Skien;8,32;0,0
+111;40030111;Banejordet;4003;Skien;347;Skien;Skien;False;8,73;8,73;0,0;Skien;8,73;Skien;8,73;0,0
+112;40030112;Søndre Nylende;4003;Skien;399;Skien;Skien;False;9,3;9,3;0,0;Skien;9,3;Skien;9,3;0,0
+113;40030113;Østre Brekkeby;4003;Skien;309;Skien;Skien;False;8,75;8,75;0,0;Skien;8,75;Skien;8,75;0,0
+114;40030114;Nordre Nylende;4003;Skien;73;Skien;Skien;False;9,35;9,35;0,0;Skien;9,35;Skien;9,35;0,0
+115;40030115;Bruene;4003;Skien;0;Skien;Skien;False;5,5;5,5;0,0;Skien;5,5;Skien;5,5;0,0
+116;40030116;Jernbanebrygga;4003;Skien;0;Skien;Skien;False;7,37;7,37;0,0;Skien;7,37;Skien;7,37;0,0
+117;40030201;Falkumlia;4003;Skien;371;Skien;Skien;False;8,15;8,15;0,0;Skien;8,15;Skien;8,15;0,0
+118;40030202;Nordre Falkum 1;4003;Skien;484;Skien;Skien;False;7,73;7,73;0,0;Skien;7,73;Skien;7,73;0,0
+119;40030203;Nordre Falkum 2;4003;Skien;706;Skien;Skien;False;9,47;9,47;0,0;Skien;9,47;Skien;9,47;0,0
+120;40030204;Falkumjordet;4003;Skien;584;Skien;Skien;False;6,55;6,55;0,0;Skien;6,55;Skien;6,55;0,0
+121;40030205;Stevneplassen;4003;Skien;141;Skien;Skien;False;7,2;7,2;0,0;Skien;7,2;Skien;7,2;0,0
+122;40030206;Østre Falkum;4003;Skien;422;Skien;Skien;False;6,87;6,87;0,0;Skien;6,87;Skien;6,87;0,0
+123;40030207;Falkum;4003;Skien;323;Skien;Skien;False;5,1;5,1;0,0;Skien;5,1;Skien;5,1;0,0
+124;40030208;Vatner Ring;4003;Skien;625;Skien;Skien;False;5,22;5,22;0,0;Skien;5,22;Skien;5,22;0,0
+125;40030209;Fartangen;4003;Skien;210;Skien;Skien;False;7,75;7,75;0,0;Skien;7,75;Skien;7,75;0,0
+126;40030210;Bakkestranda;4003;Skien;457;Skien;Skien;False;6,88;6,88;0,0;Skien;6,88;Skien;6,88;0,0
+127;40030301;Bergsland;4003;Skien;294;Skien;Skien;False;8,67;8,67;0,0;Skien;8,67;Skien;8,67;0,0
+128;40030302;Gyngehaven;4003;Skien;532;Skien;Skien;False;9,03;9,03;0,0;Skien;9,03;Skien;9,03;0,0
+129;40030303;Brekke museum;4003;Skien;48;Skien;Skien;False;9,98;9,98;0,0;Skien;9,98;Skien;9,98;0,0
+130;40030304;Bratsbergkleiva;4003;Skien;421;Skien;Skien;False;7,0;7,0;0,0;Skien;7,0;Skien;7,0;0,0
+131;40030305;Brekkejordet;4003;Skien;511;Skien;Skien;False;11,58;11,58;0,0;Skien;11,58;Skien;11,58;0,0
+132;40030306;Follestad;4003;Skien;602;Skien;Skien;False;10,18;10,18;0,0;Skien;10,18;Skien;10,18;0,0
+133;40030307;Kleiva;4003;Skien;603;Skien;Skien;False;10,25;10,25;0,0;Skien;10,25;Skien;10,25;0,0
+134;40030308;Doktorstykket;4003;Skien;230;Skien;Skien;False;8,87;8,87;0,0;Skien;8,87;Skien;8,87;0,0
+135;40030309;Eikornrød;4003;Skien;212;Skien;Skien;False;7,88;7,88;0,0;Skien;7,88;Skien;7,88;0,0
+136;40030401;Herkules;4003;Skien;134;Skien;Skien;False;4,2;4,2;0,0;Skien;4,2;Skien;4,2;0,0
+137;40030402;Gimsøy;4003;Skien;524;Skien;Skien;False;3,37;3,37;0,0;Skien;3,37;Skien;3,37;0,0
+138;40030403;Bukkeholmen;4003;Skien;417;Skien;Skien;False;4,37;4,37;0,0;Skien;4,37;Skien;4,37;0,0
+139;40030404;Klosterøya;4003;Skien;573;Skien;Skien;False;4,22;4,22;0,0;Skien;4,22;Skien;4,22;0,0
+140;40030405;Klosterfossen;4003;Skien;222;Skien;Skien;False;4,3;4,3;0,0;Skien;4,3;Skien;4,3;0,0
+141;40030406;Kristiansro;4003;Skien;463;Skien;Skien;False;5,18;5,18;0,0;Skien;5,18;Skien;5,18;0,0
+142;40030407;Minde;4003;Skien;455;Skien;Skien;False;4,78;4,78;0,0;Skien;4,78;Skien;4,78;0,0
+143;40030408;Gråten;4003;Skien;472;Skien;Skien;False;6,18;6,18;0,0;Skien;6,18;Skien;6,18;0,0
+144;40030501;Steinsrudsvingen;4003;Skien;116;Skien;Skien;False;4,53;4,53;0,0;Skien;4,53;Skien;4,53;0,0
+145;40030502;Faråsen;4003;Skien;1125;Skien;Skien;False;4,03;4,03;0,0;Skien;4,03;Skien;4,03;0,0
+146;40030503;Faret;4003;Skien;7;Skien;Skien;False;5,33;5,33;0,0;Skien;5,33;Skien;5,33;0,0
+147;40030504;Klosterskogen;4003;Skien;359;Skien;Skien;False;4,68;4,68;0,0;Skien;4,68;Skien;4,68;0,0
+148;40030505;Gråtenmoen 1;4003;Skien;383;Skien;Skien;False;4,43;4,43;0,0;Skien;4,43;Skien;4,43;0,0
+149;40030507;Gråtenmoen terasse;4003;Skien;312;Skien;Skien;False;5,82;5,82;0,0;Skien;5,82;Skien;5,82;0,0
+150;40030508;Gråtenmoen 3;4003;Skien;534;Skien;Skien;False;4,05;4,05;0,0;Skien;4,05;Skien;4,05;0,0
+151;40030509;Gråtenmoen 4;4003;Skien;49;Skien;Skien;False;3,93;3,93;0,0;Skien;3,93;Skien;3,93;0,0
+152;40030510;Huskebru;4003;Skien;166;Skien;Skien;False;3,22;3,22;0,0;Skien;3,22;Skien;3,22;0,0
+153;40030511;Moflatekrysset;4003;Skien;235;Skien;Skien;False;2,83;2,83;0,0;Skien;2,83;Skien;2,83;0,0
+154;40030512;Moflata;4003;Skien;;Skien;Skien;False;1,73;1,73;0,0;Skien;1,73;Skien;1,73;0,0
+155;40030513;Vindalsåsen;4003;Skien;855;Skien;Skien;False;3,67;3,67;0,0;Skien;3,67;Skien;3,67;0,0
+156;40030514;Herkules idrettspark;4003;Skien;0;Skien;Skien;False;4,52;4,52;0,0;Skien;4,52;Skien;4,52;0,0
+157;40030515;Hemmestveits veg;4003;Skien;148;Skien;Skien;False;5,12;5,12;0,0;Skien;5,12;Skien;5,12;0,0
+158;40030516;Tamburlund;4003;Skien;127;Skien;Skien;False;4,82;4,82;0,0;Skien;4,82;Skien;4,82;0,0
+159;40030601;Kjørbekkdalen;4003;Skien;30;Skien;Skien;False;6,42;6,42;0,0;Skien;6,42;Skien;6,42;0,0
+160;40030602;Kjørbekkhøgda;4003;Skien;522;Skien;Skien;False;6,43;6,43;0,0;Skien;6,43;Skien;6,43;0,0
+161;40030603;Raset;4003;Skien;260;Skien;Skien;False;6,27;6,27;0,0;Skien;6,27;Skien;6,27;0,0
+162;40030604;Kjørbekk;4003;Skien;822;Skien;Skien;False;7,05;7,05;0,0;Skien;7,05;Skien;7,05;0,0
+163;40030605;Rødmyr;4003;Skien;14;Skien;Skien;False;6,83;6,83;0,0;Skien;6,83;Skien;6,83;0,0
+164;40030606;Skogplassene;4003;Skien;273;Skien;Skien;False;4,65;4,65;0,0;Skien;4,65;Skien;4,65;0,0
+165;40030607;Larønningen;4003;Skien;151;Skien;Skien;False;4,43;4,43;0,0;Skien;4,43;Skien;4,43;0,0
+166;40030701;Lyngbakken;4003;Skien;20;Skien;Skien;False;7,13;7,13;0,0;Skien;7,13;Skien;7,13;0,0
+167;40030702;Nenset sandtak;4003;Skien;36;Skien;Skien;False;7,75;7,75;0,0;Skien;7,75;Skien;7,75;0,0
+168;40030703;Nenset vest;4003;Skien;408;Skien;Skien;False;8,47;8,47;0,0;Skien;8,47;Skien;8,47;0,0
+169;40030704;Nenset øst;4003;Skien;197;Skien;Skien;False;8,35;8,35;0,0;Skien;8,35;Skien;8,35;0,0
+170;40030705;Sandaker;4003;Skien;640;Skien;Skien;False;10,3;10,3;0,0;Skien;10,3;Skien;10,3;0,0
+171;40030706;Bjørntvedt;4003;Skien;33;Skien;Skien;False;9,5;9,5;0,0;Skien;9,5;Skien;9,5;0,0
+172;40030801;Kongerød 1;4003;Skien;420;Skien;Skien;False;11,85;11,85;0,0;Porsgrunn;11,5;Porsgrunn;11,5;0,34999999999999964
+173;40030802;Bjørnstad;4003;Skien;451;Skien;Skien;False;9,9;9,9;0,0;Skien;9,9;Skien;9,9;0,0
+174;40030803;Tolnes 1;4003;Skien;309;Skien;Skien;False;9,05;9,05;0,0;Skien;9,05;Skien;9,05;0,0
+175;40030804;Tolnes 2;4003;Skien;481;Skien;Skien;False;10,33;10,33;0,0;Skien;10,33;Skien;10,33;0,0
+176;40030805;Tolnes 3;4003;Skien;289;Skien;Skien;False;10,3;10,3;0,0;Skien;10,3;Skien;10,3;0,0
+177;40030806;Rabben;4003;Skien;338;Skien;Skien;False;10,47;10,47;0,0;Porsgrunn;9,63;Porsgrunn;9,63;0,8399999999999999
+178;40030807;Nyberg;4003;Skien;503;Skien;Skien;False;11,12;11,12;0,0;Porsgrunn;9,37;Porsgrunn;9,37;1,75
+179;40030808;Frydenlund;4003;Skien;229;Skien;Skien;False;10,43;10,43;0,0;Porsgrunn;10,25;Porsgrunn;10,25;0,17999999999999972
+180;40030809;Kongerød 4;4003;Skien;30;Skien;Skien;False;11,27;11,27;0,0;Porsgrunn;9,68;Porsgrunn;9,68;1,5899999999999999
+181;40030811;Kongerød 3;4003;Skien;242;Skien;Skien;False;11,5;11,5;0,0;Porsgrunn;11,35;Porsgrunn;11,35;0,15000000000000036
+182;40030813;Klyveåsen;4003;Skien;365;Skien;Skien;False;9,03;9,03;0,0;Skien;9,03;Skien;9,03;0,0
+183;40030814;Klyve 3;4003;Skien;250;Skien;Skien;False;8,92;8,92;0,0;Skien;8,92;Skien;8,92;0,0
+184;40030816;Klyve 1;4003;Skien;343;Skien;Skien;False;8,05;8,05;0,0;Skien;8,05;Skien;8,05;0,0
+185;40030817;Hulka;4003;Skien;141;Skien;Skien;False;7,73;7,73;0,0;Skien;7,73;Skien;7,73;0,0
+186;40030818;Kverndammen;4003;Skien;182;Skien;Skien;False;9,17;9,17;0,0;Skien;9,17;Skien;9,17;0,0
+187;40030819;Rugtvedt;4003;Skien;11;Skien;Skien;False;8,9;8,9;0,0;Skien;8,9;Skien;8,9;0,0
+188;40030820;Nybergåsen;4003;Skien;424;Skien;Skien;False;11,03;11,03;0,0;Porsgrunn;8,82;Porsgrunn;8,82;2,209999999999999
+189;40030901;Balsøya;4003;Skien;8;Skien;Skien;False;13,47;13,47;0,0;Porsgrunn;12,02;Porsgrunn;12,02;1,450000000000001
+190;40030902;Flakvarp;4003;Skien;213;Skien;Skien;False;13,52;13,52;0,0;Porsgrunn;12,9;Porsgrunn;12,9;0,6199999999999992
+191;40030903;Findal;4003;Skien;324;Skien;Skien;False;9,58;9,58;0,0;Skien;9,58;Skien;9,58;0,0
+192;40030904;Bolvik;4003;Skien;61;Skien;Skien;False;13,12;13,12;0,0;Skien;13,12;Skien;13,12;0,0
+193;40030905;Gisholt;4003;Skien;157;Skien;Skien;False;18,78;18,78;0,0;Skien;18,78;Skien;18,78;0,0
+194;40030906;Frønes;4003;Skien;140;Skien;Skien;False;22,23;22,23;0,0;Skien;22,23;Skien;22,23;0,0
+195;40031001;Fjærekilen;4003;Skien;257;Skien;Skien;False;6,13;6,13;0,0;Skien;6,13;Skien;6,13;0,0
+196;40031002;Dolva;4003;Skien;267;Skien;Skien;False;11,4;11,4;0,0;Skien;11,4;Skien;11,4;0,0
+197;40031004;Stavdal;4003;Skien;120;Skien;Skien;False;18,3;18,3;0,0;Skien;18,3;Skien;18,3;0,0
+198;40031005;Bergan;4003;Skien;375;Skien;Skien;False;16,83;16,83;0,0;Skien;16,83;Skien;16,83;0,0
+199;40031006;Geiteryggen;4003;Skien;4;Skien;Skien;False;5,28;5,28;0,0;Skien;5,28;Skien;5,28;0,0
+200;40031101;Tangaråsen;4003;Skien;;Skien;Skien;False;8,4;8,4;0,0;Skien;8,4;Skien;8,4;0,0
+201;40031102;Åfoss;4003;Skien;910;Skien;Skien;False;8,58;8,58;0,0;Skien;8,58;Skien;8,58;0,0
+202;40031103;Elset;4003;Skien;55;Skien;Skien;False;9,83;9,83;0,0;Skien;9,83;Skien;9,83;0,0
+203;40031104;Ramberget;4003;Skien;386;Skien;Skien;False;9,98;9,98;0,0;Skien;9,98;Skien;9,98;0,0
+204;40031105;Åfoss-Åsen;4003;Skien;666;Skien;Skien;False;7,0;7,0;0,0;Skien;7,0;Skien;7,0;0,0
+205;40031201;Grøtsund;4003;Skien;252;Skien;Skien;False;6,88;6,88;0,0;Skien;6,88;Skien;6,88;0,0
+206;40031202;Skotfoss bruk;4003;Skien;164;Skien;Skien;False;10,32;10,32;0,0;Skien;10,32;Skien;10,32;0,0
+207;40031203;Nedre Skotfoss;4003;Skien;185;Skien;Skien;False;6,88;6,88;0,0;Skien;6,88;Skien;6,88;0,0
+208;40031204;Øvre Skotfoss;4003;Skien;213;Skien;Skien;False;9,27;9,27;0,0;Skien;9,27;Skien;9,27;0,0
+209;40031205;Kastet;4003;Skien;299;Skien;Skien;False;8,97;8,97;0,0;Skien;8,97;Skien;8,97;0,0
+210;40031206;Granheimåsen;4003;Skien;223;Skien;Skien;False;9,95;9,95;0,0;Skien;9,95;Skien;9,95;0,0
+211;40031207;Omdal;4003;Skien;309;Skien;Skien;False;12,13;12,13;0,0;Skien;12,13;Skien;12,13;0,0
+212;40031208;Dalsbygda;4003;Skien;65;Skien;Skien;False;10,85;10,85;0,0;Skien;10,85;Skien;10,85;0,0
+213;40031301;Einaren;4003;Skien;402;Skien;Skien;False;7,07;7,07;0,0;Skien;7,07;Skien;7,07;0,0
+214;40031302;Nyhus;4003;Skien;63;Skien;Skien;False;8,18;8,18;0,0;Skien;8,18;Skien;8,18;0,0
+215;40031303;Heikleiv;4003;Skien;383;Skien;Skien;False;7,12;7,12;0,0;Skien;7,12;Skien;7,12;0,0
+216;40031304;Meierkollen;4003;Skien;392;Skien;Skien;False;7,55;7,55;0,0;Skien;7,55;Skien;7,55;0,0
+217;40031401;Kjempa;4003;Skien;20;Skien;Skien;False;7,17;7,17;0,0;Skien;7,17;Skien;7,17;0,0
+218;40031402;Vadrettet;4003;Skien;319;Skien;Skien;False;5,35;5,35;0,0;Skien;5,35;Skien;5,35;0,0
+219;40031403;Strømdal;4003;Skien;611;Skien;Skien;False;4,98;4,98;0,0;Skien;4,98;Skien;4,98;0,0
+220;40031404;Strømdalåsen;4003;Skien;462;Skien;Skien;False;6,6;6,6;0,0;Skien;6,6;Skien;6,6;0,0
+221;40031405;Strømdaljordet;4003;Skien;116;Skien;Skien;False;8,55;8,55;0,0;Skien;8,55;Skien;8,55;0,0
+222;40031406;Skrubbehavna;4003;Skien;402;Skien;Skien;False;7,82;7,82;0,0;Skien;7,82;Skien;7,82;0,0
+223;40031407;Gulset;4003;Skien;13;Skien;Skien;False;6,72;6,72;0,0;Skien;6,72;Skien;6,72;0,0
+224;40031408;Søndre Hyniveg;4003;Skien;666;Skien;Skien;False;6,53;6,53;0,0;Skien;6,53;Skien;6,53;0,0
+225;40031409;Stigeråsen;4003;Skien;249;Skien;Skien;False;8,85;8,85;0,0;Skien;8,85;Skien;8,85;0,0
+226;40031411;Plassane;4003;Skien;451;Skien;Skien;False;8,47;8,47;0,0;Skien;8,47;Skien;8,47;0,0
+227;40031412;Nygårdåsen;4003;Skien;379;Skien;Skien;False;7,13;7,13;0,0;Skien;7,13;Skien;7,13;0,0
+228;40031413;Lundeåsen;4003;Skien;182;Skien;Skien;False;8,32;8,32;0,0;Skien;8,32;Skien;8,32;0,0
+229;40031414;Uglevegen;4003;Skien;315;Skien;Skien;False;8,35;8,35;0,0;Skien;8,35;Skien;8,35;0,0
+230;40031415;Fugleleiken;4003;Skien;367;Skien;Skien;False;9,4;9,4;0,0;Skien;9,4;Skien;9,4;0,0
+231;40031416;Røymyr;4003;Skien;484;Skien;Skien;False;9,32;9,32;0,0;Skien;9,32;Skien;9,32;0,0
+232;40031417;Øvre Maihaugen;4003;Skien;269;Skien;Skien;False;9,28;9,28;0,0;Skien;9,28;Skien;9,28;0,0
+233;40031419;Nordre Hyniveg;4003;Skien;35;Skien;Skien;False;8,38;8,38;0,0;Skien;8,38;Skien;8,38;0,0
+234;40031420;Salmakerdammen;4003;Skien;0;Skien;Skien;False;9,05;9,05;0,0;Skien;9,05;Skien;9,05;0,0
+235;40031421;Ravnåsen;4003;Skien;182;Skien;Skien;False;7,92;7,92;0,0;Skien;7,92;Skien;7,92;0,0
+236;40031422;Gulsetlia;4003;Skien;114;Skien;Skien;False;8,62;8,62;0,0;Skien;8,62;Skien;8,62;0,0
+237;40031423;Strømdalkåsa;4003;Skien;368;Skien;Skien;False;6,42;6,42;0,0;Skien;6,42;Skien;6,42;0,0
+238;40031501;Århusvegen;4003;Skien;171;Skien;Skien;False;8,55;8,55;0,0;Skien;8,55;Skien;8,55;0,0
+239;40031502;Mæla;4003;Skien;383;Skien;Skien;False;9,72;9,72;0,0;Skien;9,72;Skien;9,72;0,0
+240;40031503;Søndre Venstøp;4003;Skien;212;Skien;Skien;False;12,77;12,77;0,0;Skien;12,77;Skien;12,77;0,0
+241;40031504;Nordre Venstøp;4003;Skien;700;Skien;Skien;False;12,75;12,75;0,0;Skien;12,75;Skien;12,75;0,0
+242;40031505;Fossum;4003;Skien;208;Skien;Skien;False;11,28;11,28;0,0;Skien;11,28;Skien;11,28;0,0
+243;40031506;Ulvsvatn;4003;Skien;40;Skien;Skien;False;10,0;10,0;0,0;Skien;10,0;Skien;10,0;0,0
+244;40031602;Nisterud;4003;Skien;9;Skien;Skien;False;17,33;17,33;0,0;Skien;17,33;Skien;17,33;0,0
+245;40031603;Ås;4003;Skien;266;Skien;Skien;False;15,78;15,78;0,0;Skien;15,78;Skien;15,78;0,0
+246;40031604;Valebø;4003;Skien;122;Skien;Skien;False;30,42;30,42;0,0;Skien;30,42;Skien;30,42;0,0
+247;40031605;Mo;4003;Skien;42;Skien;Skien;False;24,95;24,95;0,0;Skien;24,95;Skien;24,95;0,0
+248;40031606;Luksefjell;4003;Skien;43;Skien;Skien;False;46,5;46,5;0,0;Skien;46,5;Skien;46,5;0,0
+249;40031701;Risinglia;4003;Skien;1429;Skien;Skien;False;12,63;12,63;0,0;Skien;12,63;Skien;12,63;0,0
+250;40031702;Limi;4003;Skien;634;Skien;Skien;False;13,18;13,18;0,0;Skien;13,18;Skien;13,18;0,0
+251;40031703;Grini;4003;Skien;350;Skien;Skien;False;12,08;12,08;0,0;Skien;12,08;Skien;12,08;0,0
+252;40031704;Jønnevall;4003;Skien;305;Skien;Skien;False;18,0;18,0;0,0;Skien;18,0;Skien;18,0;0,0
+253;40031705;Skrehelle;4003;Skien;293;Skien;Skien;False;15,32;15,32;0,0;Skien;15,32;Skien;15,32;0,0
+254;40031707;Eriksrød;4003;Skien;58;Skien;Skien;False;21,57;21,57;0,0;Skien;21,57;Skien;21,57;0,0
+255;40031801;Lagmannshøgda;4003;Skien;526;Skien;Skien;False;10,07;10,07;0,0;Skien;10,07;Skien;10,07;0,0
+256;40031802;Nordre Frogner;4003;Skien;87;Skien;Skien;False;12,23;12,23;0,0;Skien;12,23;Skien;12,23;0,0
+257;40031803;Frogner;4003;Skien;315;Skien;Skien;False;11,57;11,57;0,0;Skien;11,57;Skien;11,57;0,0
+258;40031804;Bratsbergkrysset;4003;Skien;392;Skien;Skien;False;11,4;11,4;0,0;Skien;11,4;Skien;11,4;0,0
+259;40031805;Kalkovnen;4003;Skien;183;Skien;Skien;False;10,4;10,4;0,0;Skien;10,4;Skien;10,4;0,0
+260;40031806;Bratsberg;4003;Skien;184;Skien;Skien;False;11,52;11,52;0,0;Skien;11,52;Skien;11,52;0,0
+261;40031807;Nordre Bølehøgda;4003;Skien;352;Skien;Skien;False;10,3;10,3;0,0;Skien;10,3;Skien;10,3;0,0
+262;40031808;Bøle;4003;Skien;384;Skien;Skien;False;8,15;8,15;0,0;Skien;8,15;Skien;8,15;0,0
+263;40031809;Søndre Bølehøgda;4003;Skien;1309;Skien;Skien;False;10,02;10,02;0,0;Skien;10,02;Skien;10,02;0,0
+264;40031810;Ballestad;4003;Skien;295;Skien;Skien;False;11,23;11,23;0,0;Porsgrunn;9,05;Porsgrunn;9,05;2,1799999999999997
+265;40031811;Rustan;4003;Skien;660;Skien;Skien;False;15,33;15,33;0,0;Skien;15,33;Skien;15,33;0,0
+266;40031812;Kikut;4003;Skien;470;Skien;Skien;False;15,15;15,15;0,0;Skien;15,15;Siljan;11,68;0,0
+267;40031813;Frognerlia;4003;Skien;582;Skien;Skien;False;12,63;12,63;0,0;Skien;12,63;Skien;12,63;0,0
+268;40031814;Frogneralleen;4003;Skien;281;Skien;Skien;False;10,85;10,85;0,0;Skien;10,85;Skien;10,85;0,0
+269;40031901;Borgestadholmen;4003;Skien;516;Skien;Skien;False;9,27;9,27;0,0;Porsgrunn;5,92;Porsgrunn;5,92;3,3499999999999996
+270;40031902;Menstad;4003;Skien;367;Skien;Skien;False;9,2;9,2;0,0;Porsgrunn;7,63;Porsgrunn;7,63;1,5699999999999994
+271;40031903;Borgestad;4003;Skien;1222;Skien;Skien;False;10,67;10,67;0,0;Porsgrunn;8,55;Porsgrunn;8,55;2,119999999999999
+272;40031904;Åkre;4003;Skien;432;Skien;Skien;False;10,8;10,8;0,0;Porsgrunn;7,12;Porsgrunn;7,12;3,6800000000000006
+273;40031905;Borgeåsen;4003;Skien;641;Skien;Skien;False;12,52;12,52;0,0;Porsgrunn;8,9;Porsgrunn;8,9;3,619999999999999
+274;40031906;Ris;4003;Skien;428;Skien;Skien;False;12,38;12,38;0,0;Porsgrunn;8,67;Porsgrunn;8,67;3,710000000000001
+275;40050101;Busnes-Rudsgrend;4005;Notodden;29;Notodden;Notodden;False;36,95;36,95;0,0;Rjukan;29,92;Rjukan;29,92;7,030000000000001
+276;40050102;Tinnoset;4005;Notodden;99;Notodden;Notodden;False;29,13;29,13;0,0;Notodden;29,13;Notodden;29,13;0,0
+277;40050103;Nisi;4005;Notodden;149;Notodden;Notodden;False;29,2;29,2;0,0;Notodden;29,2;Notodden;29,2;0,0
+278;40050104;Bøen-Brekke;4005;Notodden;205;Notodden;Notodden;False;26,13;26,13;0,0;Notodden;26,13;Notodden;26,13;0,0
+279;40050105;Håve;4005;Notodden;105;Notodden;Notodden;False;22,47;22,47;0,0;Notodden;22,47;Notodden;22,47;0,0
+280;40050106;Årlifoss;4005;Notodden;109;Notodden;Notodden;False;16,1;16,1;0,0;Notodden;16,1;Notodden;16,1;0,0
+281;40050107;Folsland;4005;Notodden;55;Notodden;Notodden;False;21,45;21,45;0,0;Notodden;21,45;Notodden;21,45;0,0
+282;40050108;Bolkesjø;4005;Notodden;115;Notodden;Notodden;False;23,2;23,2;0,0;Notodden;23,2;Notodden;23,2;0,0
+283;40050201;Sauar;4005;Notodden;162;Notodden;Notodden;False;15,9;15,9;0,0;Notodden;15,9;Notodden;15,9;0,0
+284;40050202;Åse;4005;Notodden;143;Notodden;Notodden;False;17,2;17,2;0,0;Notodden;17,2;Notodden;17,2;0,0
+285;40050203;Tveiten;4005;Notodden;97;Notodden;Notodden;False;12,58;12,58;0,0;Notodden;12,58;Notodden;12,58;0,0
+286;40050204;Seljord;4005;Notodden;276;Notodden;Notodden;False;11,33;11,33;0,0;Notodden;11,33;Notodden;11,33;0,0
+287;40050205;Håberg;4005;Notodden;198;Notodden;Notodden;False;11,82;11,82;0,0;Notodden;11,82;Notodden;11,82;0,0
+288;40050206;Stivi;4005;Notodden;246;Notodden;Notodden;False;10,97;10,97;0,0;Notodden;10,97;Notodden;10,97;0,0
+289;40050207;Holla;4005;Notodden;215;Notodden;Notodden;False;9,33;9,33;0,0;Notodden;9,33;Notodden;9,33;0,0
+290;40050208;Rygi;4005;Notodden;281;Notodden;Notodden;False;7,48;7,48;0,0;Notodden;7,48;Notodden;7,48;0,0
+291;40050209;Skilrud;4005;Notodden;528;Notodden;Notodden;False;6,0;6,0;0,0;Notodden;6,0;Notodden;6,0;0,0
+292;40050210;Sem;4005;Notodden;351;Notodden;Notodden;False;6,65;6,65;0,0;Notodden;6,65;Notodden;6,65;0,0
+293;40050211;Hustveit;4005;Notodden;157;Notodden;Notodden;False;8,12;8,12;0,0;Notodden;8,12;Notodden;8,12;0,0
+294;40050212;Yli;4005;Notodden;366;Notodden;Notodden;False;8,3;8,3;0,0;Notodden;8,3;Notodden;8,3;0,0
+295;40050213;Strand;4005;Notodden;193;Notodden;Notodden;False;13,78;13,78;0,0;Notodden;13,78;Notodden;13,78;0,0
+296;40050301;Tinnes 1;4005;Notodden;516;Notodden;Notodden;False;3,52;3,52;0,0;Notodden;3,52;Notodden;3,52;0,0
+297;40050302;Tinnes 2;4005;Notodden;351;Notodden;Notodden;False;1,95;1,95;0,0;Notodden;1,95;Notodden;1,95;0,0
+298;40050303;Meaksmoen;4005;Notodden;193;Notodden;Notodden;False;1,98;1,98;0,0;Notodden;1,98;Notodden;1,98;0,0
+299;40050304;Anundskås;4005;Notodden;306;Notodden;Notodden;False;4,28;4,28;0,0;Notodden;4,28;Notodden;4,28;0,0
+300;40050305;Sagafoss;4005;Notodden;339;Notodden;Notodden;False;3,5;3,5;0,0;Notodden;3,5;Notodden;3,5;0,0
+301;40050401;Lisleherad;4005;Notodden;216;Notodden;Notodden;False;10,15;10,15;0,0;Notodden;10,15;Notodden;10,15;0,0
+302;40050402;Svelgfoss;4005;Notodden;108;Notodden;Notodden;False;6,87;6,87;0,0;Notodden;6,87;Notodden;6,87;0,0
+303;40050403;Nordre Skogen;4005;Notodden;256;Notodden;Notodden;False;6,12;6,12;0,0;Notodden;6,12;Notodden;6,12;0,0
+304;40050404;Søndre Skogen;4005;Notodden;242;Notodden;Notodden;False;5,15;5,15;0,0;Notodden;5,15;Notodden;5,15;0,0
+305;40050405;Kasinmoen-Lien;4005;Notodden;275;Notodden;Notodden;False;4,65;4,65;0,0;Notodden;4,65;Notodden;4,65;0,0
+306;40050406;Skoleområdet;4005;Notodden;314;Notodden;Notodden;False;4,03;4,03;0,0;Notodden;4,03;Notodden;4,03;0,0
+307;40050407;Lienveien;4005;Notodden;308;Notodden;Notodden;False;3,97;3,97;0,0;Notodden;3,97;Notodden;3,97;0,0
+308;40050408;Sætre;4005;Notodden;275;Notodden;Notodden;False;3,6;3,6;0,0;Notodden;3,6;Notodden;3,6;0,0
+309;40050409;Høibødalen;4005;Notodden;256;Notodden;Notodden;False;3,68;3,68;0,0;Notodden;3,68;Notodden;3,68;0,0
+310;40050410;Høibøkåsa;4005;Notodden;210;Notodden;Notodden;False;4,43;4,43;0,0;Notodden;4,43;Notodden;4,43;0,0
+311;40050411;Høibøjordet;4005;Notodden;579;Notodden;Notodden;False;5,38;5,38;0,0;Notodden;5,38;Notodden;5,38;0,0
+312;40050501;Sentrum sør;4005;Notodden;449;Notodden;Notodden;False;1,1;1,1;0,0;Notodden;1,1;Notodden;1,1;0,0
+313;40050502;Sentrum nord;4005;Notodden;613;Notodden;Notodden;False;3,08;3,08;0,0;Notodden;3,08;Notodden;3,08;0,0
+314;40050503;Hvåla;4005;Notodden;300;Notodden;Notodden;False;3,95;3,95;0,0;Notodden;3,95;Notodden;3,95;0,0
+315;40050504;Tinnebyen;4005;Notodden;308;Notodden;Notodden;False;3,62;3,62;0,0;Notodden;3,62;Notodden;3,62;0,0
+316;40050505;Tinne;4005;Notodden;539;Notodden;Notodden;False;4,33;4,33;0,0;Notodden;4,33;Notodden;4,33;0,0
+317;40050506;Tveiten sør;4005;Notodden;276;Notodden;Notodden;False;4,57;4,57;0,0;Notodden;4,57;Notodden;4,57;0,0
+318;40050507;Tveiten nord;4005;Notodden;420;Notodden;Notodden;False;4,5;4,5;0,0;Notodden;4,5;Notodden;4,5;0,0
+319;40050508;Ramberg;4005;Notodden;146;Notodden;Notodden;False;5,98;5,98;0,0;Notodden;5,98;Notodden;5,98;0,0
+320;40050601;Høgås nedre;4005;Notodden;372;Notodden;Notodden;False;6,65;6,65;0,0;Notodden;6,65;Notodden;6,65;0,0
+321;40050602;Høgås midtre;4005;Notodden;362;Notodden;Notodden;False;6,33;6,33;0,0;Notodden;6,33;Notodden;6,33;0,0
+322;40050603;Høgås øvre;4005;Notodden;222;Notodden;Notodden;False;8,12;8,12;0,0;Notodden;8,12;Notodden;8,12;0,0
+323;40050604;Nybuåsen;4005;Notodden;55;Notodden;Notodden;False;37,02;37,02;0,0;Notodden;37,02;Notodden;37,02;0,0
+324;40050605;Andgard;4005;Notodden;335;Notodden;Notodden;False;8,83;8,83;0,0;Notodden;8,83;Notodden;8,83;0,0
+325;40050606;Hjuksebø;4005;Notodden;100;Notodden;Notodden;False;10,77;10,77;0,0;Notodden;10,77;Notodden;10,77;0,0
+326;40100101;Grorud;4010;Siljan;17;Siljan;Skien;True;19,13;38,82;19,69;Skien;38,82;Siljan;19,13;0,0
+327;40100102;Opdalen;4010;Siljan;237;Siljan;Skien;True;10,12;29,78;19,660000000000004;Skien;29,78;Siljan;10,12;0,0
+328;40100103;Skilbred-Holte;4010;Siljan;329;Siljan;Skien;True;4,58;21,58;17,0;Skien;21,58;Siljan;4,58;0,0
+329;40100104;Bakkane-Solvika;4010;Siljan;690;Siljan;Skien;True;5,28;20,55;15,27;Skien;20,55;Siljan;5,28;0,0
+330;40100105;Kløverød;4010;Siljan;329;Siljan;Skien;True;5,48;26,3;20,82;Skien;26,3;Siljan;5,48;0,0
+331;40100106;Øverbø;4010;Siljan;178;Siljan;Skien;True;4,27;26,48;22,21;Skien;26,48;Siljan;4,27;0,0
+332;40100107;Gurholt;4010;Siljan;59;Siljan;Skien;True;3,52;26,62;23,1;Skien;26,62;Siljan;3,52;0,0
+333;40100108;Serkland;4010;Siljan;332;Siljan;Skien;True;3,75;24,27;20,52;Skien;24,27;Siljan;3,75;0,0
+334;40100109;Austad-Moholt;4010;Siljan;218;Siljan;Skien;True;12,58;32,93;20,35;Skien;32,93;Siljan;12,58;0,0
+335;40120101;Herre;4012;Bamble;1297;Stathelle;Porsgrunn;True;16,05;22,4;6,349999999999998;Skien;19,17;Stathelle;16,05;3,229999999999997
+336;40120201;Asdal;4012;Bamble;326;Stathelle;Porsgrunn;True;9,98;22,8;12,82;Porsgrunn;22,8;Stathelle;9,98;0,0
+337;40120202;Torsdal-Nenset;4012;Bamble;123;Stathelle;Porsgrunn;True;15,83;29,73;13,9;Porsgrunn;29,73;Stathelle;15,83;0,0
+338;40120203;Findal;4012;Bamble;576;Stathelle;Porsgrunn;True;6,62;20,4;13,779999999999998;Porsgrunn;20,4;Stathelle;6,62;0,0
+339;40120204;Omborsnes;4012;Bamble;958;Stathelle;Porsgrunn;True;5,13;19,3;14,170000000000002;Porsgrunn;19,3;Stathelle;5,13;0,0
+340;40120205;Stein;4012;Bamble;285;Stathelle;Porsgrunn;True;8,35;20,25;11,9;Porsgrunn;20,25;Stathelle;8,35;0,0
+341;40120301;Stathelle;4012;Bamble;511;Stathelle;Porsgrunn;True;2,67;19,78;17,11;Porsgrunn;19,78;Stathelle;2,67;0,0
+342;40120302;Krabberødstrand;4012;Bamble;475;Stathelle;Porsgrunn;True;2,75;19,52;16,77;Porsgrunn;19,52;Stathelle;2,75;0,0
+343;40120303;Krabberød;4012;Bamble;892;Stathelle;Porsgrunn;True;2,5;19,1;16,6;Porsgrunn;19,1;Stathelle;2,5;0,0
+344;40120304;Eikstrand;4012;Bamble;700;Stathelle;Porsgrunn;True;3,45;19,98;16,53;Porsgrunn;19,98;Stathelle;3,45;0,0
+345;40120305;Eik;4012;Bamble;1106;Stathelle;Porsgrunn;True;5,72;22,33;16,61;Porsgrunn;22,33;Stathelle;5,72;0,0
+346;40120306;Grasmyr;4012;Bamble;1546;Stathelle;Porsgrunn;True;3,62;20,23;16,61;Porsgrunn;20,23;Stathelle;3,62;0,0
+347;40120401;Vaterland;4012;Bamble;500;Stathelle;Porsgrunn;True;10,0;26,58;16,58;Porsgrunn;26,58;Stathelle;10,0;0,0
+348;40120402;Sota;4012;Bamble;317;Stathelle;Porsgrunn;True;9,4;25,98;16,58;Porsgrunn;25,98;Stathelle;9,4;0,0
+349;40120403;Slaattenes;4012;Bamble;568;Stathelle;Porsgrunn;True;6,98;23,6;16,62;Porsgrunn;23,6;Stathelle;6,98;0,0
+350;40120404;Skarpenord;4012;Bamble;607;Stathelle;Porsgrunn;True;8,5;25,1;16,6;Porsgrunn;25,1;Stathelle;8,5;0,0
+351;40120405;Fagerheim;4012;Bamble;790;Stathelle;Porsgrunn;True;6,83;23,45;16,619999999999997;Porsgrunn;23,45;Stathelle;6,83;0,0
+352;40120406;Nustad;4012;Bamble;1192;Stathelle;Porsgrunn;True;6,05;22,67;16,62;Porsgrunn;22,67;Stathelle;6,05;0,0
+353;40120501;Rørholt;4012;Bamble;76;Stathelle;Porsgrunn;True;24,88;36,42;11,540000000000003;Kragerø;31,23;Stathelle;24,88;5,190000000000001
+354;40120502;Dørdal;4012;Bamble;65;Stathelle;Porsgrunn;True;15,58;27,05;11,47;Kragerø;21,88;Stathelle;15,58;5,170000000000002
+355;40120503;Bleikelia;4012;Bamble;108;Stathelle;Porsgrunn;True;23,37;33,38;10,010000000000002;Kragerø;25,02;Stathelle;23,37;8,360000000000003
+356;40120504;Rønholt;4012;Bamble;589;Stathelle;Porsgrunn;True;14,33;26,18;11,85;Porsgrunn;26,18;Stathelle;14,33;0,0
+357;40120505;Valle;4012;Bamble;203;Stathelle;Porsgrunn;True;23,73;35,6;11,870000000000001;Porsgrunn;35,6;Stathelle;23,73;0,0
+358;40120506;Kjørstad;4012;Bamble;237;Stathelle;Porsgrunn;True;20,05;31,93;11,879999999999999;Porsgrunn;31,93;Stathelle;20,05;0,0
+359;40120507;Brevikstrand;4012;Bamble;248;Stathelle;Porsgrunn;True;15,05;26,9;11,849999999999998;Porsgrunn;26,9;Stathelle;15,05;0,0
+360;40140101;Kjølebrønd-Lindheim;4014;Kragerø;157;Kragerø;Kragerø;False;23,3;23,3;0,0;Kragerø;23,3;Kragerø;23,3;0,0
+361;40140102;Mo;4014;Kragerø;330;Kragerø;Kragerø;False;14,87;14,87;0,0;Kragerø;14,87;Kragerø;14,87;0,0
+362;40140103;Levang;4014;Kragerø;138;Kragerø;Kragerø;False;41,57;41,57;0,0;Kragerø;41,57;Kragerø;41,57;0,0
+363;40140104;Støle;4014;Kragerø;109;Kragerø;Kragerø;False;38,3;38,3;0,0;Kragerø;38,3;Kragerø;38,3;0,0
+364;40140105;Myra;4014;Kragerø;214;Kragerø;Kragerø;False;34,47;34,47;0,0;Kragerø;34,47;Kragerø;34,47;0,0
+365;40140201;Kil;4014;Kragerø;887;Kragerø;Kragerø;False;11,72;11,72;0,0;Kragerø;11,72;Kragerø;11,72;0,0
+366;40140202;Sannidal;4014;Kragerø;187;Kragerø;Kragerø;False;11,92;11,92;0,0;Kragerø;11,92;Kragerø;11,92;0,0
+367;40140203;Vadfoss;4014;Kragerø;778;Kragerø;Kragerø;False;11,43;11,43;0,0;Kragerø;11,43;Kragerø;11,43;0,0
+368;40140204;Aarø;4014;Kragerø;428;Kragerø;Kragerø;False;9,88;9,88;0,0;Kragerø;9,88;Kragerø;9,88;0,0
+369;40140205;Holtane;4014;Kragerø;152;Kragerø;Kragerø;False;12,82;12,82;0,0;Kragerø;12,82;Kragerø;12,82;0,0
+370;40140206;Farsjø;4014;Kragerø;175;Kragerø;Kragerø;False;20,48;20,48;0,0;Kragerø;20,48;Kragerø;20,48;0,0
+371;40140301;Helle;4014;Kragerø;559;Kragerø;Kragerø;False;10,47;10,47;0,0;Kragerø;10,47;Kragerø;10,47;0,0
+372;40140302;Skarbo;4014;Kragerø;334;Kragerø;Kragerø;False;13,12;13,12;0,0;Kragerø;13,12;Kragerø;13,12;0,0
+373;40140303;Fossing;4014;Kragerø;53;Kragerø;Kragerø;False;19,43;19,43;0,0;Kragerø;19,43;Kragerø;19,43;0,0
+374;40140304;Langøy-Gumøy;4014;Kragerø;52;Kragerø;Kragerø;False;47,48;47,48;0,0;Kragerø;47,48;Kragerø;47,48;0,0
+375;40140305;Jomfruland;4014;Kragerø;56;Kragerø;Kragerø;False;79,1;79,1;0,0;Kragerø;79,1;Kragerø;79,1;0,0
+376;40140306;Bråtøy-Skåtøy-Bærøy;4014;Kragerø;191;Kragerø;Kragerø;False;36,3;36,3;0,0;Kragerø;36,3;Kragerø;36,3;0,0
+377;40140401;Tåtøy-Furuholmen;4014;Kragerø;127;Kragerø;Kragerø;False;10,65;10,65;0,0;Kragerø;10,65;Kragerø;10,65;0,0
+378;40140402;Rørvik;4014;Kragerø;867;Kragerø;Kragerø;False;3,73;3,73;0,0;Kragerø;3,73;Kragerø;3,73;0,0
+379;40140403;Nordre Kalstad;4014;Kragerø;824;Kragerø;Kragerø;False;4,5;4,5;0,0;Kragerø;4,5;Kragerø;4,5;0,0
+380;40140404;Kalstad-Frydensborg;4014;Kragerø;409;Kragerø;Kragerø;False;4,18;4,18;0,0;Kragerø;4,18;Kragerø;4,18;0,0
+381;40140405;Kalstadkilen;4014;Kragerø;383;Kragerø;Kragerø;False;5,85;5,85;0,0;Kragerø;5,85;Kragerø;5,85;0,0
+382;40140406;Valberg;4014;Kragerø;175;Kragerø;Kragerø;False;8,35;8,35;0,0;Kragerø;8,35;Kragerø;8,35;0,0
+383;40140501;Øya;4014;Kragerø;218;Kragerø;Kragerø;False;4,9;4,9;0,0;Kragerø;4,9;Kragerø;4,9;0,0
+384;40140502;Hovedbyen;4014;Kragerø;486;Kragerø;Kragerø;False;1,47;1,47;0,0;Kragerø;1,47;Kragerø;1,47;0,0
+385;40140503;Havna-Smedsbukta;4014;Kragerø;557;Kragerø;Kragerø;False;3,02;3,02;0,0;Kragerø;3,02;Kragerø;3,02;0,0
+386;40140504;Løkka-Ths.heia;4014;Kragerø;515;Kragerø;Kragerø;False;1,85;1,85;0,0;Kragerø;1,85;Kragerø;1,85;0,0
+387;40140505;Bjørnebyen;4014;Kragerø;517;Kragerø;Kragerø;False;3,15;3,15;0,0;Kragerø;3,15;Kragerø;3,15;0,0
+388;40140506;Bakken-Tangen;4014;Kragerø;561;Kragerø;Kragerø;False;3,73;3,73;0,0;Kragerø;3,73;Kragerø;3,73;0,0
+389;40160101;Bustrak;4016;Drangedal;229;Drangedal;Drangedal;False;12,38;12,38;0,0;Drangedal;12,38;Drangedal;12,38;0,0
+390;40160102;Lia;4016;Drangedal;29;Drangedal;Drangedal;False;21,6;21,6;0,0;Drangedal;21,6;Treungen;19,27;0,0
+391;40160103;Bø;4016;Drangedal;202;Drangedal;Drangedal;False;20,62;20,62;0,0;Drangedal;20,62;Drangedal;20,62;0,0
+392;40160104;Lone;4016;Drangedal;99;Drangedal;Drangedal;False;31,73;31,73;0,0;Drangedal;31,73;Drangedal;31,73;0,0
+393;40160105;Tørdal;4016;Drangedal;54;Drangedal;Drangedal;False;31,52;31,52;0,0;Drangedal;31,52;Drangedal;31,52;0,0
+394;40160106;Homleid;4016;Drangedal;60;Drangedal;Drangedal;False;31,68;31,68;0,0;Drangedal;31,68;Drangedal;31,68;0,0
+395;40160201;Singusdal;4016;Drangedal;28;Drangedal;Drangedal;False;22,05;22,05;0,0;Drangedal;22,05;Drangedal;22,05;0,0
+396;40160202;Åkre-Sætre;4016;Drangedal;198;Drangedal;Drangedal;False;14,65;14,65;0,0;Drangedal;14,65;Drangedal;14,65;0,0
+397;40160203;Nakksjø;4016;Drangedal;3;Drangedal;Drangedal;False;17,25;17,25;0,0;Drangedal;17,25;Drangedal;17,25;0,0
+398;40160204;Tveit;4016;Drangedal;105;Drangedal;Drangedal;False;8,52;8,52;0,0;Drangedal;8,52;Drangedal;8,52;0,0
+399;40160205;Oseid;4016;Drangedal;4;Drangedal;Drangedal;False;22,37;22,37;0,0;Drangedal;22,37;Drangedal;22,37;0,0
+400;40160206;Solberg;4016;Drangedal;75;Drangedal;Drangedal;False;3,77;3,77;0,0;Drangedal;3,77;Drangedal;3,77;0,0
+401;40160207;Preststranda;4016;Drangedal;1366;Drangedal;Drangedal;False;1,28;1,28;0,0;Drangedal;1,28;Drangedal;1,28;0,0
+402;40160208;Tørnes;4016;Drangedal;111;Drangedal;Drangedal;False;7,57;7,57;0,0;Drangedal;7,57;Drangedal;7,57;0,0
+403;40160209;Voje;4016;Drangedal;121;Drangedal;Drangedal;False;5,95;5,95;0,0;Drangedal;5,95;Drangedal;5,95;0,0
+404;40160210;Straume;4016;Drangedal;39;Drangedal;Drangedal;False;11,32;11,32;0,0;Drangedal;11,32;Drangedal;11,32;0,0
+405;40160211;Henneseid;4016;Drangedal;134;Drangedal;Drangedal;False;14,63;14,63;0,0;Drangedal;14,63;Drangedal;14,63;0,0
+406;40160212;Sannes;4016;Drangedal;30;Drangedal;Drangedal;False;29,3;29,3;0,0;Drangedal;29,3;Drangedal;29,3;0,0
+407;40160301;Vefall;4016;Drangedal;44;Drangedal;Drangedal;False;14,02;14,02;0,0;Drangedal;14,02;Drangedal;14,02;0,0
+408;40160302;Helldøla;4016;Drangedal;132;Drangedal;Drangedal;False;23,08;23,08;0,0;Drangedal;23,08;Drangedal;23,08;0,0
+409;40160303;Neslandsvatn;4016;Drangedal;565;Drangedal;Drangedal;False;23,2;23,2;0,0;Drangedal;23,2;Drangedal;23,2;0,0
+410;40160304;Brodsjø;4016;Drangedal;435;Drangedal;Drangedal;False;28,7;28,7;0,0;Kragerø;24,9;Kragerø;24,9;3,8000000000000007
+411;40180101;Ulsnes-Røimål;4018;Nome;38;Midt-Telemark;Midt-Telemark;False;28,4;28,4;0,0;Midt-Telemark;28,4;Midt-Telemark;28,4;0,0
+412;40180102;Flåm;4018;Nome;129;Midt-Telemark;Midt-Telemark;False;26,88;26,88;0,0;Midt-Telemark;26,88;Midt-Telemark;26,88;0,0
+413;40180103;Kleppe;4018;Nome;222;Midt-Telemark;Midt-Telemark;False;9,1;9,1;0,0;Midt-Telemark;9,1;Midt-Telemark;9,1;0,0
+414;40180104;Svenseid;4018;Nome;214;Midt-Telemark;Midt-Telemark;False;13,6;13,6;0,0;Midt-Telemark;13,6;Midt-Telemark;13,6;0,0
+415;40180105;Funnemark;4018;Nome;124;Midt-Telemark;Midt-Telemark;False;21,77;21,77;0,0;Midt-Telemark;21,77;Midt-Telemark;21,77;0,0
+416;40180106;Lunde kyrkje;4018;Nome;128;Midt-Telemark;Midt-Telemark;False;17,43;17,43;0,0;Midt-Telemark;17,43;Midt-Telemark;17,43;0,0
+417;40180107;Stokken;4018;Nome;232;Midt-Telemark;Midt-Telemark;False;19,43;19,43;0,0;Midt-Telemark;19,43;Midt-Telemark;19,43;0,0
+418;40180108;Kjeldal;4018;Nome;129;Midt-Telemark;Midt-Telemark;False;21,83;21,83;0,0;Midt-Telemark;21,83;Midt-Telemark;21,83;0,0
+419;40180109;Hanto;4018;Nome;87;Midt-Telemark;Midt-Telemark;False;21,2;21,2;0,0;Midt-Telemark;21,2;Midt-Telemark;21,2;0,0
+420;40180110;Bjerva;4018;Nome;1446;Midt-Telemark;Midt-Telemark;False;18,9;18,9;0,0;Midt-Telemark;18,9;Midt-Telemark;18,9;0,0
+421;40180111;Landsmarka;4018;Nome;49;Midt-Telemark;Midt-Telemark;False;28,2;28,2;0,0;Midt-Telemark;28,2;Midt-Telemark;28,2;0,0
+422;40180201;Sandnes;4018;Nome;351;Skien;Skien;False;28,4;28,4;0,0;Midt-Telemark;21,92;Midt-Telemark;21,92;6,479999999999997
+423;40180202;Dagsrud;4018;Nome;253;Skien;Skien;False;30,65;30,65;0,0;Midt-Telemark;23,82;Midt-Telemark;23,82;6,829999999999998
+424;40180203;Heisholt;4018;Nome;256;Skien;Skien;False;30,27;30,27;0,0;Midt-Telemark;24,5;Midt-Telemark;24,5;5,77
+425;40180204;Holla gård;4018;Nome;774;Skien;Skien;False;29,05;29,05;0,0;Midt-Telemark;24,67;Midt-Telemark;24,67;4,379999999999999
+426;40180205;Ulefoss;4018;Nome;952;Skien;Skien;False;27,95;27,95;0,0;Midt-Telemark;23,57;Midt-Telemark;23,57;4,379999999999999
+427;40180301;Fen;4018;Nome;752;Skien;Skien;False;25,25;25,25;0,0;Skien;25,25;Skien;25,25;0,0
+428;40180302;Kolstad;4018;Nome;162;Skien;Skien;False;22,4;22,4;0,0;Skien;22,4;Skien;22,4;0,0
+429;40180303;Hjelset;4018;Nome;251;Skien;Skien;False;19,15;19,15;0,0;Skien;19,15;Skien;19,15;0,0
+430;40200101;Øvre Bø;4020;Midt-Telemark;157;Midt-Telemark;Midt-Telemark;False;9,98;9,98;0,0;Midt-Telemark;9,98;Midt-Telemark;9,98;0,0
+431;40200102;Forberg 1;4020;Midt-Telemark;367;Midt-Telemark;Midt-Telemark;False;5,13;5,13;0,0;Midt-Telemark;5,13;Midt-Telemark;5,13;0,0
+432;40200103;Verpe;4020;Midt-Telemark;157;Midt-Telemark;Midt-Telemark;False;12,02;12,02;0,0;Midt-Telemark;12,02;Midt-Telemark;12,02;0,0
+433;40200104;Vreim;4020;Midt-Telemark;200;Midt-Telemark;Midt-Telemark;False;8,35;8,35;0,0;Midt-Telemark;8,35;Midt-Telemark;8,35;0,0
+434;40200105;Oterholt;4020;Midt-Telemark;428;Midt-Telemark;Midt-Telemark;False;6,92;6,92;0,0;Midt-Telemark;6,92;Midt-Telemark;6,92;0,0
+435;40200106;Folkestad 1;4020;Midt-Telemark;330;Midt-Telemark;Midt-Telemark;False;15,22;15,22;0,0;Midt-Telemark;15,22;Midt-Telemark;15,22;0,0
+436;40200107;Folkestad 2;4020;Midt-Telemark;296;Midt-Telemark;Midt-Telemark;False;7,48;7,48;0,0;Midt-Telemark;7,48;Midt-Telemark;7,48;0,0
+437;40200108;Vatnar;4020;Midt-Telemark;131;Midt-Telemark;Midt-Telemark;False;14,47;14,47;0,0;Midt-Telemark;14,47;Midt-Telemark;14,47;0,0
+438;40200109;Valen;4020;Midt-Telemark;261;Midt-Telemark;Midt-Telemark;False;5,65;5,65;0,0;Midt-Telemark;5,65;Midt-Telemark;5,65;0,0
+439;40200201;Eikjabygda 1;4020;Midt-Telemark;174;Midt-Telemark;Midt-Telemark;False;7,75;7,75;0,0;Midt-Telemark;7,75;Midt-Telemark;7,75;0,0
+440;40200202;Bø;4020;Midt-Telemark;1209;Midt-Telemark;Midt-Telemark;False;0,82;0,82;0,0;Midt-Telemark;0,82;Midt-Telemark;0,82;0,0
+441;40200203;Langkåshaugen 2;4020;Midt-Telemark;635;Midt-Telemark;Midt-Telemark;False;3,87;3,87;0,0;Midt-Telemark;3,87;Midt-Telemark;3,87;0,0
+442;40200204;Sandvin-Røysum-Lia;4020;Midt-Telemark;412;Midt-Telemark;Midt-Telemark;False;4,77;4,77;0,0;Midt-Telemark;4,77;Midt-Telemark;4,77;0,0
+443;40200205;Breisås 1;4020;Midt-Telemark;556;Midt-Telemark;Midt-Telemark;False;4,03;4,03;0,0;Midt-Telemark;4,03;Midt-Telemark;4,03;0,0
+444;40200206;Breisås 2;4020;Midt-Telemark;310;Midt-Telemark;Midt-Telemark;False;5,3;5,3;0,0;Midt-Telemark;5,3;Midt-Telemark;5,3;0,0
+445;40200207;Breisås-Borgja;4020;Midt-Telemark;823;Midt-Telemark;Midt-Telemark;False;5,37;5,37;0,0;Midt-Telemark;5,37;Midt-Telemark;5,37;0,0
+446;40200208;Flatin;4020;Midt-Telemark;121;Midt-Telemark;Midt-Telemark;False;5,78;5,78;0,0;Midt-Telemark;5,78;Midt-Telemark;5,78;0,0
+447;40200209;Langkåshaugen 1;4020;Midt-Telemark;76;Midt-Telemark;Midt-Telemark;False;3,93;3,93;0,0;Midt-Telemark;3,93;Midt-Telemark;3,93;0,0
+448;40200210;Eikjabygda 2;4020;Midt-Telemark;515;Midt-Telemark;Midt-Telemark;False;6,8;6,8;0,0;Midt-Telemark;6,8;Midt-Telemark;6,8;0,0
+449;40200211;Forberg 2;4020;Midt-Telemark;172;Midt-Telemark;Midt-Telemark;False;6,08;6,08;0,0;Midt-Telemark;6,08;Midt-Telemark;6,08;0,0
+450;40200301;Klevar;4020;Midt-Telemark;137;Midt-Telemark;Midt-Telemark;False;25,27;25,27;0,0;Notodden;18,18;Notodden;18,18;7,09
+451;40200304;Sunds;4020;Midt-Telemark;188;Midt-Telemark;Midt-Telemark;False;25,47;25,47;0,0;Notodden;16,35;Notodden;16,35;9,119999999999997
+452;40200305;Nordagutu;4020;Midt-Telemark;355;Midt-Telemark;Midt-Telemark;False;20,85;20,85;0,0;Notodden;19,45;Notodden;19,45;1,4000000000000021
+453;40200306;Moen;4020;Midt-Telemark;112;Midt-Telemark;Midt-Telemark;False;19,97;19,97;0,0;Midt-Telemark;19,97;Midt-Telemark;19,97;0,0
+454;40200307;Haukvik;4020;Midt-Telemark;256;Midt-Telemark;Midt-Telemark;False;18,0;18,0;0,0;Midt-Telemark;18,0;Midt-Telemark;18,0;0,0
+455;40200308;Jonsås;4020;Midt-Telemark;338;Midt-Telemark;Midt-Telemark;False;15,98;15,98;0,0;Midt-Telemark;15,98;Midt-Telemark;15,98;0,0
+456;40200309;Sauar;4020;Midt-Telemark;173;Midt-Telemark;Midt-Telemark;False;18,73;18,73;0,0;Midt-Telemark;18,73;Midt-Telemark;18,73;0,0
+457;40200401;Sætersbø;4020;Midt-Telemark;379;Midt-Telemark;Midt-Telemark;False;8,15;8,15;0,0;Midt-Telemark;8,15;Midt-Telemark;8,15;0,0
+458;40200402;Gvarv vest;4020;Midt-Telemark;503;Midt-Telemark;Midt-Telemark;False;11,02;11,02;0,0;Midt-Telemark;11,02;Midt-Telemark;11,02;0,0
+459;40200403;Stranna;4020;Midt-Telemark;259;Midt-Telemark;Midt-Telemark;False;12,8;12,8;0,0;Midt-Telemark;12,8;Midt-Telemark;12,8;0,0
+460;40200404;Gvarv øst;4020;Midt-Telemark;337;Midt-Telemark;Midt-Telemark;False;10,58;10,58;0,0;Midt-Telemark;10,58;Midt-Telemark;10,58;0,0
+461;40200405;Gunnheim;4020;Midt-Telemark;338;Midt-Telemark;Midt-Telemark;False;11,83;11,83;0,0;Midt-Telemark;11,83;Midt-Telemark;11,83;0,0
+462;40200406;Flåthaug;4020;Midt-Telemark;35;Midt-Telemark;Midt-Telemark;False;12,95;12,95;0,0;Midt-Telemark;12,95;Midt-Telemark;12,95;0,0
+463;40200407;Nes;4020;Midt-Telemark;391;Midt-Telemark;Midt-Telemark;False;11,15;11,15;0,0;Midt-Telemark;11,15;Midt-Telemark;11,15;0,0
+464;40220101;Seljord sentrum-syd for riksveg;4022;Seljord;520;Seljord;Seljord;False;1,87;1,87;0,0;Seljord;1,87;Seljord;1,87;0,0
+465;40220102;Seljord sentrum-nord for riksveg;4022;Seljord;979;Seljord;Seljord;False;2,68;2,68;0,0;Seljord;2,68;Seljord;2,68;0,0
+466;40220103;Bjørgesida-Manheim;4022;Seljord;126;Seljord;Seljord;False;4,85;4,85;0,0;Seljord;4,85;Seljord;4,85;0,0
+467;40220104;Vefald-Brekke;4022;Seljord;100;Seljord;Seljord;False;16,45;16,45;0,0;Midt-Telemark;14,43;Midt-Telemark;14,43;2,0199999999999996
+468;40220105;Garvik;4022;Seljord;68;Seljord;Seljord;False;14,38;14,38;0,0;Seljord;14,38;Seljord;14,38;0,0
+469;40220106;Dale-Napastå-Jamgrav;4022;Seljord;41;Seljord;Seljord;False;19,78;19,78;0,0;Seljord;19,78;Seljord;19,78;0,0
+470;40220107;Nordbygda;4022;Seljord;136;Seljord;Seljord;False;6,87;6,87;0,0;Seljord;6,87;Seljord;6,87;0,0
+471;40220108;Krokan;4022;Seljord;160;Seljord;Seljord;False;5,92;5,92;0,0;Seljord;5,92;Seljord;5,92;0,0
+472;40220201;Flatdal;4022;Seljord;485;Seljord;Seljord;False;11,87;11,87;0,0;Seljord;11,87;Seljord;11,87;0,0
+473;40220202;Svartdal;4022;Seljord;93;Seljord;Seljord;False;21,18;21,18;0,0;Seljord;21,18;Seljord;21,18;0,0
+474;40220203;Mandal;4022;Seljord;29;Seljord;Seljord;False;21,78;21,78;0,0;Seljord;21,78;Seljord;21,78;0,0
+475;40220301;Langlim;4022;Seljord;52;Seljord;Seljord;False;38,72;38,72;0,0;Seljord;38,72;Seljord;38,72;0,0
+476;40220302;Dyrlandsdalen;4022;Seljord;21;Seljord;Seljord;False;22,4;22,4;0,0;Seljord;22,4;Seljord;22,4;0,0
+477;40220303;Kyrkjemoen;4022;Seljord;88;Seljord;Seljord;False;28,25;28,25;0,0;Seljord;28,25;Seljord;28,25;0,0
+478;40220304;Skori;4022;Seljord;82;Seljord;Seljord;False;32,32;32,32;0,0;Seljord;32,32;Seljord;32,32;0,0
+479;40240101;Hjartdal;4024;Hjartdal;282;Notodden;Notodden;False;37,88;37,88;0,0;Seljord;18,37;Seljord;18,37;19,51
+480;40240102;Gvammen;4024;Hjartdal;233;Notodden;Notodden;False;35,27;35,27;0,0;Seljord;15,77;Seljord;15,77;19,500000000000004
+481;40240103;Lonar;4024;Hjartdal;140;Notodden;Notodden;False;28,13;28,13;0,0;Seljord;23,88;Seljord;23,88;4,25
+482;40240104;Midtbygda Sauland;4024;Hjartdal;432;Notodden;Notodden;False;22,72;22,72;0,0;Notodden;22,72;Notodden;22,72;0,0
+483;40240105;Landsverk;4024;Hjartdal;230;Notodden;Notodden;False;17,88;17,88;0,0;Notodden;17,88;Notodden;17,88;0,0
+484;40240106;Hovde-Sønderland;4024;Hjartdal;164;Notodden;Notodden;False;36,82;36,82;0,0;Notodden;36,82;Notodden;36,82;0,0
+485;40240107;Tuddal-Bondal;4024;Hjartdal;165;Notodden;Notodden;False;45,8;45,8;0,0;Rjukan;45,15;Rjukan;45,15;0,6499999999999986
+486;40260101;Øverbakke-Urdalen;4026;Tinn;81;Rjukan;Rjukan;False;66,57;66,57;0,0;Notodden;51,33;Notodden;51,33;15,239999999999995
+487;40260102;Fosso;4026;Tinn;57;Rjukan;Rjukan;False;63,65;63,65;0,0;Notodden;40,33;Notodden;40,33;23,32
+488;40260103;Bergli;4026;Tinn;26;Rjukan;Rjukan;False;66,83;66,83;0,0;Notodden;54,1;Notodden;54,1;12,729999999999997
+489;40260104;Oppbygdi;4026;Tinn;33;Rjukan;Rjukan;False;56,15;56,15;0,0;Notodden;47,97;Notodden;47,97;8,18
+490;40260105;Heia;4026;Tinn;24;Rjukan;Rjukan;False;45,77;45,77;0,0;Rjukan;45,77;Rjukan;45,77;0,0
+491;40260106;Austbygde;4026;Tinn;577;Rjukan;Rjukan;False;33,67;33,67;0,0;Rjukan;33,67;Rjukan;33,67;0,0
+492;40260107;Haukås;4026;Tinn;198;Rjukan;Rjukan;False;41,13;41,13;0,0;Rjukan;41,13;Rjukan;41,13;0,0
+493;40260108;Lurås;4026;Tinn;95;Rjukan;Rjukan;False;43,68;43,68;0,0;Rjukan;43,68;Rjukan;43,68;0,0
+494;40260109;Tessungdalen;4026;Tinn;119;Rjukan;Rjukan;False;49,8;49,8;0,0;Rjukan;49,8;Rjukan;49,8;0,0
+495;40260110;Sandsetdalen;4026;Tinn;3;Rjukan;Rjukan;False;70,05;70,05;0,0;Rjukan;70,05;Rjukan;70,05;0,0
+496;40260201;Marum;4026;Tinn;220;Rjukan;Rjukan;False;27,28;27,28;0,0;Rjukan;27,28;Rjukan;27,28;0,0
+497;40260202;Gauset;4026;Tinn;69;Rjukan;Rjukan;False;33,48;33,48;0,0;Rjukan;33,48;Rjukan;33,48;0,0
+498;40260203;Gjøystdal;4026;Tinn;102;Rjukan;Rjukan;False;31,03;31,03;0,0;Rjukan;31,03;Rjukan;31,03;0,0
+499;40260204;Ullern;4026;Tinn;184;Rjukan;Rjukan;False;26,6;26,6;0,0;Rjukan;26,6;Rjukan;26,6;0,0
+500;40260205;Miland øst;4026;Tinn;332;Rjukan;Rjukan;False;14,57;14,57;0,0;Rjukan;14,57;Rjukan;14,57;0,0
+501;40260206;Miland vest;4026;Tinn;106;Rjukan;Rjukan;False;13,22;13,22;0,0;Rjukan;13,22;Rjukan;13,22;0,0
+502;40260207;Rollag;4026;Tinn;143;Rjukan;Rjukan;False;16,95;16,95;0,0;Rjukan;16,95;Rjukan;16,95;0,0
+503;40260301;Haddeland;4026;Tinn;66;Rjukan;Rjukan;False;10,02;10,02;0,0;Rjukan;10,02;Rjukan;10,02;0,0
+504;40260302;Dale;4026;Tinn;220;Rjukan;Rjukan;False;9,28;9,28;0,0;Rjukan;9,28;Rjukan;9,28;0,0
+505;40260303;Tverrgrot;4026;Tinn;205;Rjukan;Rjukan;False;7,55;7,55;0,0;Rjukan;7,55;Rjukan;7,55;0,0
+506;40260304;Bjørkhaug;4026;Tinn;325;Rjukan;Rjukan;False;5,98;5,98;0,0;Rjukan;5,98;Rjukan;5,98;0,0
+507;40260305;Tveito;4026;Tinn;483;Rjukan;Rjukan;False;5,1;5,1;0,0;Rjukan;5,1;Rjukan;5,1;0,0
+508;40260306;Ingolfsland;4026;Tinn;371;Rjukan;Rjukan;False;4,37;4,37;0,0;Rjukan;4,37;Rjukan;4,37;0,0
+509;40260307;Rjukan kirke;4026;Tinn;350;Rjukan;Rjukan;False;2,58;2,58;0,0;Rjukan;2,58;Rjukan;2,58;0,0
+510;40260308;Bøen-nordre;4026;Tinn;279;Rjukan;Rjukan;False;2,42;2,42;0,0;Rjukan;2,42;Rjukan;2,42;0,0
+511;40260309;Bøen-søndre;4026;Tinn;152;Rjukan;Rjukan;False;3,05;3,05;0,0;Rjukan;3,05;Rjukan;3,05;0,0
+512;40260310;Sølvolden-Krosso;4026;Tinn;345;Rjukan;Rjukan;False;3,97;3,97;0,0;Rjukan;3,97;Rjukan;3,97;0,0
+513;40260311;Svadde;4026;Tinn;107;Rjukan;Rjukan;False;7,27;7,27;0,0;Rjukan;7,27;Rjukan;7,27;0,0
+514;40260312;Mæland-Såheim;4026;Tinn;125;Rjukan;Rjukan;False;2,32;2,32;0,0;Rjukan;2,32;Rjukan;2,32;0,0
+515;40260313;Veset;4026;Tinn;14;Rjukan;Rjukan;False;6,57;6,57;0,0;Rjukan;6,57;Rjukan;6,57;0,0
+516;40260314;Våer;4026;Tinn;21;Rjukan;Rjukan;False;8,0;8,0;0,0;Rjukan;8,0;Rjukan;8,0;0,0
+517;40260316;Svineroi;4026;Tinn;51;Rjukan;Rjukan;False;24,0;24,0;0,0;Rjukan;24,0;Rjukan;24,0;0,0
+518;40260318;Frøystul;4026;Tinn;3;Rjukan;Rjukan;False;27,68;27,68;0,0;Rjukan;27,68;Rjukan;27,68;0,0
+519;40260319;Hjerdalen;4026;Tinn;15;Rjukan;Rjukan;False;14,83;14,83;0,0;Rjukan;14,83;Rjukan;14,83;0,0
+520;40280101;Lislekaas;4028;Kviteseid;181;Seljord;Seljord;False;35,37;35,37;0,0;Seljord;35,37;Seljord;35,37;0,0
+521;40280102;Straumsnes;4028;Kviteseid;233;Seljord;Seljord;False;33,83;33,83;0,0;Seljord;33,83;Seljord;33,83;0,0
+522;40280103;Søndre Vråvatn;4028;Kviteseid;69;Seljord;Seljord;False;57,7;57,7;0,0;Vinje;52,98;Fyresdal;27,95;4,720000000000006
+523;40280104;Sinnes;4028;Kviteseid;32;Seljord;Seljord;False;42,92;42,92;0,0;Seljord;42,92;Fyresdal;34,72;0,0
+524;40280105;Tveitgrend;4028;Kviteseid;76;Seljord;Seljord;False;24,43;24,43;0,0;Seljord;24,43;Seljord;24,43;0,0
+525;40280106;Lundevall;4028;Kviteseid;93;Seljord;Seljord;False;20,42;20,42;0,0;Seljord;20,42;Seljord;20,42;0,0
+526;40280107;Dalane;4028;Kviteseid;61;Seljord;Seljord;False;28,33;28,33;0,0;Seljord;28,33;Seljord;28,33;0,0
+527;40280108;Ytre Morgedal;4028;Kviteseid;154;Seljord;Seljord;False;15,73;15,73;0,0;Seljord;15,73;Seljord;15,73;0,0
+528;40280109;Nordre Morgedal;4028;Kviteseid;86;Seljord;Seljord;False;21,43;21,43;0,0;Seljord;21,43;Seljord;21,43;0,0
+529;40280110;Ordal;4028;Kviteseid;82;Seljord;Seljord;False;15,65;15,65;0,0;Seljord;15,65;Seljord;15,65;0,0
+530;40280111;Brunkeberg;4028;Kviteseid;145;Seljord;Seljord;False;12,08;12,08;0,0;Seljord;12,08;Seljord;12,08;0,0
+531;40280112;Kviteseid sentrum;4028;Kviteseid;755;Seljord;Seljord;False;18,48;18,48;0,0;Seljord;18,48;Seljord;18,48;0,0
+532;40280113;Haukom;4028;Kviteseid;253;Seljord;Seljord;False;17,73;17,73;0,0;Seljord;17,73;Seljord;17,73;0,0
+533;40280114;Åsgrend;4028;Kviteseid;80;Seljord;Seljord;False;8,23;8,23;0,0;Seljord;8,23;Seljord;8,23;0,0
+534;40280115;Setfløt;4028;Kviteseid;98;Seljord;Seljord;False;22,18;22,18;0,0;Seljord;22,18;Seljord;22,18;0,0
+535;40280116;Fjågesund;4028;Kviteseid;54;Seljord;Seljord;False;37,82;37,82;0,0;Seljord;37,82;Seljord;37,82;0,0
+536;40280117;Kilen;4028;Kviteseid;18;Seljord;Seljord;False;47,82;47,82;0,0;Seljord;47,82;Seljord;47,82;0,0
+537;40300101;Nordre Nissedal;4030;Nissedal;107;Treungen;Drangedal;True;21,82;54,83;33,01;Seljord;48,37;Treungen;21,82;6,460000000000001
+538;40300102;Nissedal;4030;Nissedal;170;Treungen;Drangedal;True;16,52;54,33;37,81;Seljord;51,77;Treungen;16,52;2,559999999999995
+539;40300103;Fjone;4030;Nissedal;163;Treungen;Drangedal;True;24,95;61,83;36,879999999999995;Drangedal;61,83;Treungen;24,95;0,0
+540;40300104;Tveit;4030;Nissedal;693;Treungen;Drangedal;True;2,38;40,33;37,949999999999996;Drangedal;40,33;Treungen;2,38;0,0
+541;40300105;Homme-Heimdal;4030;Nissedal;86;Treungen;Drangedal;True;5,92;33,75;27,83;Drangedal;33,75;Treungen;5,92;0,0
+542;40300106;Tjønnefoss;4030;Nissedal;23;Treungen;Drangedal;True;8,15;42,05;33,9;Drangedal;42,05;Treungen;8,15;0,0
+543;40300107;Haugsjåsund-Espestøl;4030;Nissedal;110;Treungen;Drangedal;True;10,33;44,25;33,92;Drangedal;44,25;Treungen;10,33;0,0
+544;40300108;Felle;4030;Nissedal;132;Treungen;Drangedal;True;32,63;66,45;33,82;Kragerø;56,33;Treungen;32,63;10,120000000000005
+545;40320101;Vik-Fardal;4032;Fyresdal;78;Fyresdal;Vinje;True;14,0;78,9;64,9;Vinje;78,9;Fyresdal;14,0;0,0
+546;40320102;Breivik-Birtedalen;4032;Fyresdal;54;Fyresdal;Vinje;True;22,68;87,6;64,91999999999999;Vinje;87,6;Fyresdal;22,68;0,0
+547;40320103;Valebjørg-Kilegrend;4032;Fyresdal;61;Fyresdal;Vinje;True;28,22;97,03;68,81;Drangedal;61,97;Treungen;28,2;35,06
+548;40320104;Momrak;4032;Fyresdal;25;Fyresdal;Vinje;True;9,1;77,18;68,08000000000001;Vinje;77,18;Fyresdal;9,1;0,0
+549;40320105;Sørbygda;4032;Fyresdal;173;Fyresdal;Vinje;True;4,67;72,65;67,98;Vinje;72,65;Fyresdal;4,67;0,0
+550;40320106;Sentrum;4032;Fyresdal;443;Fyresdal;Vinje;True;3,07;70,02;66,95;Vinje;70,02;Fyresdal;3,07;0,0
+551;40320107;Hegglandsgrend;4032;Fyresdal;104;Fyresdal;Vinje;True;8,47;65,47;57,0;Vinje;65,47;Fyresdal;8,47;0,0
+552;40320108;Åsland-Kleivgrend;4032;Fyresdal;79;Fyresdal;Vinje;True;13,77;69,5;55,730000000000004;Vinje;69,5;Fyresdal;13,77;0,0
+553;40320109;Veum-Fjellgardane;4032;Fyresdal;149;Fyresdal;Vinje;True;14,52;60,58;46,06;Vinje;60,58;Fyresdal;14,52;0,0
+554;40320110;Hauggrend;4032;Fyresdal;90;Fyresdal;Vinje;True;19,75;54,3;34,55;Vinje;54,3;Fyresdal;19,75;0,0
+555;40340101;Byrte;4034;Tokke;92;Vinje;Vinje;False;24,03;24,03;0,0;Vinje;24,03;Vinje;24,03;0,0
+556;40340102;Mo;4034;Tokke;113;Vinje;Vinje;False;28,95;28,95;0,0;Vinje;28,95;Vinje;28,95;0,0
+557;40340103;Midjås;4034;Tokke;62;Vinje;Vinje;False;20,35;20,35;0,0;Vinje;20,35;Vinje;20,35;0,0
+558;40340104;Vistad;4034;Tokke;302;Vinje;Vinje;False;27,72;27,72;0,0;Vinje;27,72;Vinje;27,72;0,0
+559;40340105;Dalen;4034;Tokke;557;Vinje;Vinje;False;25,23;25,23;0,0;Vinje;25,23;Vinje;25,23;0,0
+560;40340106;Eidsborg-Gøytil-Omdal;4034;Tokke;107;Vinje;Vinje;False;18,75;18,75;0,0;Vinje;18,75;Vinje;18,75;0,0
+561;40340107;Ofte-Hovden;4034;Tokke;244;Vinje;Vinje;False;15,43;15,43;0,0;Vinje;15,43;Vinje;15,43;0,0
+562;40340108;Kvål-Fjellet;4034;Tokke;61;Vinje;Vinje;False;20,68;20,68;0,0;Vinje;20,68;Vinje;20,68;0,0
+563;40340109;Smørklepp-Tveiten;4034;Tokke;48;Vinje;Vinje;False;20,63;20,63;0,0;Vinje;20,63;Vinje;20,63;0,0
+564;40340110;Håtveit;4034;Tokke;110;Vinje;Vinje;False;26,65;26,65;0,0;Vinje;26,65;Vinje;26,65;0,0
+565;40340111;Eik;4034;Tokke;114;Vinje;Vinje;False;32,83;32,83;0,0;Vinje;32,83;Vinje;32,83;0,0
+566;40340112;Eikland;4034;Tokke;78;Vinje;Vinje;False;52,53;52,53;0,0;Vinje;52,53;Fyresdal;28,08;0,0
+567;40340113;Nordbygdi;4034;Tokke;75;Vinje;Vinje;False;30,58;30,58;0,0;Vinje;30,58;Vinje;30,58;0,0
+568;40340114;Kyrkjebø;4034;Tokke;115;Vinje;Vinje;False;32,62;32,62;0,0;Vinje;32,62;Vinje;32,62;0,0
+569;40340115;Åmdalsverk;4034;Tokke;159;Vinje;Vinje;False;39,57;39,57;0,0;Vinje;39,57;Fyresdal;31,12;0,0
+570;40360101;Nesland nedre;4036;Vinje;61;Vinje;Vinje;False;12,05;12,05;0,0;Vinje;12,05;Vinje;12,05;0,0
+571;40360102;Mannås-Åbø;4036;Vinje;573;Vinje;Vinje;False;1,87;1,87;0,0;Vinje;1,87;Vinje;1,87;0,0
+572;40360103;Hylland;4036;Vinje;313;Vinje;Vinje;False;3,97;3,97;0,0;Vinje;3,97;Vinje;3,97;0,0
+573;40360104;Kostveit;4036;Vinje;107;Vinje;Vinje;False;18,0;18,0;0,0;Vinje;18,0;Vinje;18,0;0,0
+574;40360105;Særensgrend;4036;Vinje;87;Vinje;Vinje;False;5,83;5,83;0,0;Vinje;5,83;Vinje;5,83;0,0
+575;40360106;Bøgrend;4036;Vinje;192;Vinje;Vinje;False;10,85;10,85;0,0;Vinje;10,85;Vinje;10,85;0,0
+576;40360107;Smørklepp;4036;Vinje;101;Vinje;Vinje;False;19,78;19,78;0,0;Vinje;19,78;Vinje;19,78;0,0
+577;40360108;Grungedal;4036;Vinje;136;Vinje;Vinje;False;23,93;23,93;0,0;Vinje;23,93;Vinje;23,93;0,0
+578;40360109;Edland;4036;Vinje;204;Vinje;Vinje;False;32,88;32,88;0,0;Vinje;32,88;Vinje;32,88;0,0
+579;40360110;Haukelid;4036;Vinje;271;Vinje;Vinje;False;34,97;34,97;0,0;Vinje;34,97;Vinje;34,97;0,0
+580;40360112;Vågslid;4036;Vinje;54;Vinje;Vinje;False;47,67;47,67;0,0;Vinje;47,67;Vinje;47,67;0,0
+581;40360201;Øyfjell;4036;Vinje;214;Vinje;Vinje;False;18,5;18,5;0,0;Vinje;18,5;Vinje;18,5;0,0
+582;40360202;Rorge;4036;Vinje;129;Vinje;Vinje;False;26,35;26,35;0,0;Vinje;26,35;Vinje;26,35;0,0
+583;40360203;Austbø;4036;Vinje;239;Vinje;Vinje;False;24,72;24,72;0,0;Vinje;24,72;Vinje;24,72;0,0
+584;40360204;Møsstrond;4036;Vinje;124;Vinje;Vinje;False;49,2;49,2;0,0;Rjukan;40,87;Rjukan;40,87;8,330000000000005
+585;40360205;Nesland øvre;4036;Vinje;108;Vinje;Vinje;False;20,03;20,03;0,0;Vinje;20,03;Vinje;20,03;0,0
+586;40360206;Hadland;4036;Vinje;691;Vinje;Vinje;False;21,28;21,28;0,0;Vinje;21,28;Vinje;21,28;0,0
+587;40360207;Raulandsgrend;4036;Vinje;161;Vinje;Vinje;False;26,57;26,57;0,0;Vinje;26,57;Vinje;26,57;0,0
+588;40360208;Arabygdi;4036;Vinje;90;Vinje;Vinje;False;44,47;44,47;0,0;Vinje;44,47;Vinje;44,47;0,0
+589;40010501;Herøya nord;4001;Porsgrunn;0;Porsgrunn;Porsgrunn;False;11,68;11,68;0,0;Porsgrunn;11,68;Porsgrunn;11,68;0,0
+590;40010807;Jønholtdalen;4001;Porsgrunn;271;Porsgrunn;Porsgrunn;False;8,1;8,1;0,0;Porsgrunn;8,1;Porsgrunn;8,1;0,0
+591;40030104;Mølla;4003;Skien;206;Skien;Skien;False;5,52;5,52;0,0;Skien;5,52;Skien;5,52;0,0
+592;40030110;Vestre Brekkeby;4003;Skien;224;Skien;Skien;False;8,5;8,5;0,0;Skien;8,5;Skien;8,5;0,0
+593;40030506;Gråtenmoen 2;4003;Skien;71;Skien;Skien;False;3,32;3,32;0,0;Skien;3,32;Skien;3,32;0,0
+594;40030810;Kongerød 2;4003;Skien;187;Skien;Skien;False;11,6;11,6;0,0;Porsgrunn;11,45;Porsgrunn;11,45;0,15000000000000036
+595;40030812;Klyve 4;4003;Skien;21;Skien;Skien;False;10,05;10,05;0,0;Porsgrunn;9,88;Porsgrunn;9,88;0,16999999999999993
+596;40030815;Klyve 2;4003;Skien;157;Skien;Skien;False;7,8;7,8;0,0;Skien;7,8;Skien;7,8;0,0
+597;40031003;Børten;4003;Skien;0;Skien;Skien;False;26,27;26,27;0,0;Skien;26,27;Skien;26,27;0,0
+598;40031410;Skotten;4003;Skien;314;Skien;Skien;False;8,77;8,77;0,0;Skien;8,77;Skien;8,77;0,0
+599;40031418;Nedre Maihaugen;4003;Skien;290;Skien;Skien;False;9,07;9,07;0,0;Skien;9,07;Skien;9,07;0,0
+600;40031601;Geitebu;4003;Skien;0;Skien;Skien;False;31,12;31,12;0,0;Skien;31,12;Skien;31,12;0,0
+601;40240108;Kovedalen;4024;Hjartdal;0;Notodden;Notodden;False;81,32;81,32;0,0;Rjukan;80,85;Rjukan;80,85;0,46999999999999886
+602;40240109;Bjordøla;4024;Hjartdal;0;Notodden;Notodden;False;59,42;59,42;0,0;Seljord;40,08;Seljord;40,08;19,340000000000003
+603;40260208;Kalhovd;4026;Tinn;0;Rjukan;Rjukan;False;82,23;82,23;0,0;Rjukan;82,23;Rjukan;82,23;0,0
+604;40260315;Gvepseborg;4026;Tinn;24;Rjukan;Rjukan;False;119,5;119,5;0,0;Rjukan;119,5;Rjukan;119,5;0,0
+605;40260317;Gausdalen;4026;Tinn;0;Rjukan;Rjukan;False;31,67;31,67;0,0;Rjukan;31,67;Rjukan;31,67;0,0
+606;40340116;Skafsåheia;4034;Tokke;0;Vinje;Vinje;False;50,42;50,42;0,0;Vinje;50,42;Vinje;50,42;0,0
+607;40340117;Frolandsheiane - Byrteheiane;4034;Tokke;0;Vinje;Vinje;False;62,43;62,43;0,0;Vinje;62,43;Vinje;62,43;0,0
+608;40360111;Vestheiane;4036;Vinje;0;Vinje;Vinje;False;;;;;;;;
+609;40360113;Songa vest;4036;Vinje;0;Vinje;Vinje;False;;;;;;;;
+610;40360209;Songa aust;4036;Vinje;0;Vinje;Vinje;False;;;;;;;;
+611;40360210;Møsvatn vest;4036;Vinje;0;Vinje;Vinje;False;;;;;;;;
+612;40360211;Møsvatn aust;4036;Vinje;0;Vinje;Vinje;False;;;;;;;;

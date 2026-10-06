@@ -7,12 +7,11 @@ Travel mode: DRIVE | Traffic model: BEST_GUESS
 Output: distanceMeters, duration, staticDuration
 
 Inndata:
-- Inndata/Befolkning/origins_gk_befolkning.csv        (OriginID = OBJECTID_KOPI)
-- Inndata/Lokaliteter/destinations_tannklinikker.csv  (DestinationID = OBJECTID_KOPI)
-- Inndata/Lokaliteter/origins_destinations_test.csv   (kun i testmodus)
+- Inndata/origins_grunnkretser_m_befolkning.csv        (OriginID = OBJECTID_KOPI)
+- Inndata/destinations_tannklinikker.csv  (DestinationID = OBJECTID_KOPI)
 
 Utdata: Utdata/Matriser/reisetid[_test]_<tidsstempel>.csv, samme struktur som
-Utdata/output_example.csv (Total_*-kolonnene erstattet av Google-feltene, uten Shape_Length).
+Utdata/output_example_fra_eirik.csv (Total_*-kolonnene erstattet av Google-feltene, uten Shape_Length).
 
 Krever GOOGLE_ROUTES_API_KEY i token.env (Python-mappen).
 Dok: https://developers.google.com/maps/documentation/routes/compute_route_matrix
@@ -22,6 +21,7 @@ destinasjon (N origins x 1 destinasjon), slik at kun parene i OD-tabellen faktur
 """
 
 import os
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -37,14 +37,15 @@ if not API_KEY:
     raise RuntimeError("GOOGLE_ROUTES_API_KEY mangler i token.env")
 
 BASE_DIR = Path(os.environ["PYTHONPATH"]) / "Queries" / "Fagseksjoner" / "Tannhelse" / "Reisetidsanalyse"
-ORIGINS_FILE = BASE_DIR / "Inndata" / "Befolkning" / "origins_gk_befolkning.csv"
-DESTINATIONS_FILE = BASE_DIR / "Inndata" / "Lokaliteter" / "destinations_tannklinikker.csv"
-TEST_FILE = BASE_DIR / "Inndata" / "Lokaliteter" / "origins_destinations_test.csv"
+ORIGINS_FILE = BASE_DIR / "Inndata" / "origins_grunnkretser_m_befolkning.csv"
+DESTINATIONS_FILE = BASE_DIR / "Inndata" / "destinations_tannklinikker.csv"
 OUTPUT_DIR = BASE_DIR / "Utdata" / "Matriser"
 
-# True: kun parene i TEST_FILE (hvert testpunkt kobles til nærmeste grunnkrets/klinikk).
-# False: full matrise, alle grunnkretser x alle klinikker (612 x 13 = 7 956 elementer).
-TEST_MODE = True
+# Test: kjør kun de N første origins i origins-filen mot alle destinasjoner (N x 13 elementer).
+# None = full matrise, alle grunnkretser x alle klinikker (612 x 13 = 7 956 elementer).
+# Ved test merkes utdata med "_test", siden det ikke er en full matrise.
+MAX_ORIGINS = None
+IS_TEST = MAX_ORIGINS is not None
 
 URL = "https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix"
 FIELD_MASK = "originIndex,destinationIndex,status,condition,distanceMeters,duration,staticDuration"
@@ -55,6 +56,17 @@ DEPARTURE_TIME = "2026-12-08T09:00:00+01:00"
 
 # Maks elementer per forespørsel med TRAFFIC_AWARE_OPTIMAL er 100
 MAX_ELEMENTS = 100
+
+# Kvote: 3 000 elementer per minutt (ingen dagsgrense). Holder oss godt under for å ha margin.
+ELEMENTS_PER_MINUTE = 2500
+# Ved 429 (kvote) eller 5xx: vent og prøv igjen, med økende ventetid (sekunder)
+RETRY_WAITS_S = [30, 60, 120, 240]
+
+# Mellomlagring: hver vellykket forespørsel lagres straks til en cache-fil per avreisetidspunkt.
+# Ved ny kjøring hoppes allerede hentede par over, slik at et avbrudd ikke koster nye spørringer.
+# Slett cache-filen for å tvinge ny henting av alle par.
+CACHE_DIR = OUTPUT_DIR / "cache"
+CACHE_FILE = CACHE_DIR / f"routes_{(DEPARTURE_TIME or 'naa').replace(':', '').replace('+', 'p')}.csv"
 
 # Scenario: klinikker som legges ned, og hvilken klinikk deres opptaksområde flyttes til.
 # Klinikknavn = kortnavn som i kolonnen "Klinikk" i origins-filen (dvs. "<navn> Tannklinikk" uten suffiks).
@@ -115,24 +127,27 @@ def compute_route_matrix(origins, destinations):
         "X-Goog-Api-Key": API_KEY,
         "X-Goog-FieldMask": FIELD_MASK,
     }
-    response = requests.post(URL, json=body, headers=headers, timeout=60)
-    if not response.ok:
-        raise RuntimeError(f"Routes API feilet ({response.status_code}): {response.text}")
-    return response.json()
+    for attempt, wait_s in enumerate([*RETRY_WAITS_S, None], start=1):
+        try:
+            response = requests.post(URL, json=body, headers=headers, timeout=60)
+        except requests.RequestException as e:  # nettverksfeil, tidsavbrudd o.l.
+            response, error = None, str(e)
+        else:
+            if response.ok:
+                return response.json()
+            error = f"{response.status_code}: {response.text}"
+            if response.status_code != 429 and response.status_code < 500:
+                break  # feil i forespørselen (f.eks. 400), nytt forsøk hjelper ikke
+        if wait_s is None:
+            break
+        print(f"  Forsøk {attempt} feilet ({error.splitlines()[0]}). Venter {wait_s} s ...")
+        time.sleep(wait_s)
+    raise RuntimeError(f"Routes API feilet ({error})")
 
 
 def parse_seconds(value):
     # Varighet returneres som streng, f.eks. "1234s"
     return int(value.rstrip("s")) if isinstance(value, str) else None
-
-
-def nearest_id(lat, lon, df):
-    # Nærmeste punkt i df (haversine), returnerer (ID, avstand i km)
-    lat1, lon1, lat2, lon2 = map(np.radians, [lat, lon, df["Latitude"], df["Longitude"]])
-    a = np.sin((lat2 - lat1) / 2) ** 2 + np.cos(lat1) * np.cos(lat2) * np.sin((lon2 - lon1) / 2) ** 2
-    dist_km = 2 * 6371 * np.arcsin(np.sqrt(a))
-    i = dist_km.idxmin()
-    return df.loc[i, "ID"], round(dist_km[i], 2)
 
 
 # %% Les origins og destinasjoner
@@ -147,47 +162,39 @@ for col in ["totalbefolkning", "antallmenn", "antallkvinner"]:
 
 print(f"{len(origins)} origins, {len(destinations)} destinasjoner")
 
-# %% Bygg OD-tabell (OriginID, DestinationID)
-if TEST_MODE:
-    test = pd.read_csv(TEST_FILE, encoding="utf-8")
-    mapping = []
-    for _, r in test.iterrows():
-        o_id, o_km = nearest_id(r["origin_lat"], r["origin_lon"], origins)
-        d_id, d_km = nearest_id(r["dest_lat"], r["dest_lon"], destinations)
-        mapping.append(
-            {
-                "origin_name": r["origin_name"],
-                "OriginID": o_id,
-                "grunnkrets": origins.set_index("ID").loc[o_id, "grunnkretsnavn"],
-                "origin_avvik_km": o_km,
-                "dest_navn": r["dest_navn"],
-                "DestinationID": d_id,
-                "dest_avvik_km": d_km,
-            }
-        )
-    mapping = pd.DataFrame(mapping)
-    print("Testpunkter koblet til nærmeste grunnkrets/klinikk (avvik = avstand til sentroiden):")
-    print(mapping.to_string(index=False))
-    od = mapping[["OriginID", "DestinationID"]].drop_duplicates()
-else:
-    od = origins[["ID"]].merge(destinations[["ID"]], how="cross", suffixes=("_o", "_d"))
-    od.columns = ["OriginID", "DestinationID"]
+# %% Bygg OD-tabell (OriginID, DestinationID): origins x alle destinasjoner
+od_origins = origins[["ID"]] if MAX_ORIGINS is None else origins[["ID"]].head(MAX_ORIGINS)
+od = od_origins.merge(destinations[["ID"]], how="cross", suffixes=("_o", "_d"))
+od.columns = ["OriginID", "DestinationID"]
 
-print(f"{len(od)} elementer vil bli fakturert")
+# Par som allerede er hentet (cache fra tidligere, avbrutt kjøring) hoppes over
+CACHE_DIR.mkdir(parents=True, exist_ok=True)
+cached = (
+    pd.read_csv(CACHE_FILE)
+    if CACHE_FILE.exists()
+    else pd.DataFrame({"OriginID": pd.Series(dtype=int), "DestinationID": pd.Series(dtype=int)})
+)
+todo = od.merge(cached[["OriginID", "DestinationID"]], how="left", indicator=True)
+todo = todo[todo["_merge"] == "left_only"].drop(columns="_merge")
+
+print(f"{len(od)} elementer totalt, {len(od) - len(todo)} allerede i cache ({CACHE_FILE.name})")
+print(f"{len(todo)} elementer vil bli fakturert, ca. {len(todo) / ELEMENTS_PER_MINUTE:.1f} min")
 
 # %% Hent ruter (gruppert per destinasjon, N origins x 1 destinasjon per forespørsel)
+# Hver forespørsel lagres straks i cache-filen. Feiler skriptet, kjør denne cellen på nytt for å fortsette.
 o_coords = origins.set_index("ID")[["Latitude", "Longitude"]]
 d_coords = destinations.set_index("ID")[["Latitude", "Longitude"]]
 
-results = []
-for dest_id, group in od.groupby("DestinationID"):
+done = 0
+for dest_id, group in todo.groupby("DestinationID"):
     dest = tuple(d_coords.loc[dest_id])
     for start in range(0, len(group), MAX_ELEMENTS):
         origin_ids = group["OriginID"].iloc[start : start + MAX_ELEMENTS].tolist()
+        t0 = time.monotonic()
         elements = compute_route_matrix([tuple(o_coords.loc[i]) for i in origin_ids], [dest])
 
-        for el in elements:
-            results.append(
+        batch = pd.DataFrame(
+            [
                 {
                     "OriginID": origin_ids[el.get("originIndex", 0)],
                     "DestinationID": dest_id,
@@ -197,9 +204,23 @@ for dest_id, group in od.groupby("DestinationID"):
                     "duration_s": parse_seconds(el.get("duration")),
                     "staticDuration_s": parse_seconds(el.get("staticDuration")),
                 }
-            )
+                for el in elements
+                # Elementer med feilstatus (f.eks. midlertidig feil) lagres ikke, og hentes på nytt neste gang
+                if not el.get("status", {}).get("code")
+            ]
+        )
+        if not batch.empty:
+            batch.to_csv(CACHE_FILE, mode="a", header=not CACHE_FILE.exists(), index=False)
+        done += len(origin_ids)
+        print(f"  Destinasjon {dest_id}: {done}/{len(todo)} elementer hentet")
 
-routes = pd.DataFrame(results)
+        # Strup tempoet slik at vi holder oss under ELEMENTS_PER_MINUTE
+        time.sleep(max(0, len(origin_ids) * 60 / ELEMENTS_PER_MINUTE - (time.monotonic() - t0)))
+
+routes = pd.read_csv(CACHE_FILE).merge(od, on=["OriginID", "DestinationID"])
+missing_pairs = len(od) - len(routes)
+if missing_pairs:
+    print(f"Advarsel: {missing_pairs} par mangler fortsatt (feilstatus fra API). Kjør cellen over på nytt.")
 
 not_found = routes[routes["condition"] != "ROUTE_EXISTS"]
 if not not_found.empty:
@@ -237,9 +258,9 @@ df["departure_time"] = DEPARTURE_TIME or datetime.now().astimezone().isoformat(t
 df = df.sort_values(["OriginID", "DestinationID"])[OUTPUT_COLUMNS].reset_index(drop=True)
 df.head(20)
 
-# %% Lagre (samme format som output_example.csv: semikolon, desimalkomma)
+# %% Lagre (samme format som output_example_fra_eirik.csv: semikolon, desimalkomma)
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-prefix = "reisetid_test" if TEST_MODE else "reisetid"
+prefix = "reisetid_test" if IS_TEST else "reisetid"
 output_file = OUTPUT_DIR / f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}.csv"
 df.to_csv(output_file, index=False, sep=";", decimal=",", encoding="utf-8-sig")
 print(f"Lagret {len(df)} rader til {output_file}")
@@ -321,9 +342,13 @@ gk["gevinst_naermeste_aapen_min"] = gk["tid_scenario"] - gk["tid_naermeste_aapen
 
 missing = gk["tid_idag"].isna() | gk["tid_scenario"].isna()
 if missing.any():
-    print(f"NB: {missing.sum()} av {len(gk)} grunnkretser mangler reisetid i dag eller i scenarioet (forventet i testmodus)")
+    print(
+        f"NB: {missing.sum()} av {len(gk)} grunnkretser mangler reisetid i dag eller i scenarioet "
+        f"(ingen rute, eller ikke med i matrisen ved MAX_ORIGINS). "
+        f"Innbyggere i disse: {int(gk.loc[missing, WEIGHT_COL].fillna(0).sum())}"
+    )
 
-scenario_out = SCENARIO_DIR / (SCENARIO_NAME + ("_test" if TEST_MODE else ""))
+scenario_out = SCENARIO_DIR / (SCENARIO_NAME + ("_test" if IS_TEST else ""))
 scenario_out.mkdir(parents=True, exist_ok=True)
 save_scenario_table(gk.sort_values("OriginID"), "grunnkretser")
 gk[gk["berort"]].head()

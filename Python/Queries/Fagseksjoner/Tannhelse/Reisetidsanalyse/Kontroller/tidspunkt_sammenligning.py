@@ -3,10 +3,10 @@ Sammenligner kjøretid og avstand for én strekning (grunnkrets -> grunnkrets) p
 avreisetidspunkter via Google Routes API (Compute Route Matrix, 1 x 1 per tidspunkt).
 
 SKU: Compute Route Matrix Pro (TRAFFIC_AWARE_OPTIMAL) | DRIVE | BEST_GUESS
-Punktene kan angis som grunnkretsnummer (bruker sentroiden fra origins_gk_befolkning.csv)
+Punktene kan angis som grunnkretsnummer (bruker sentroiden fra origins_grunnkretser_m_befolkning.csv)
 eller som koordinater (lat, lon).
 
-Utdata: Utdata/Tidspunkter/<origin>_<destinasjon>_<tidsstempel>.csv
+Utdata: Kontroller/Tidspunkter/<origin>_<destinasjon>_<tidsstempel>.csv
 Krever GOOGLE_ROUTES_API_KEY i token.env (Python-mappen).
 """
 
@@ -25,8 +25,8 @@ if not API_KEY:
     raise RuntimeError("GOOGLE_ROUTES_API_KEY mangler i token.env")
 
 BASE_DIR = Path(os.environ["PYTHONPATH"]) / "Queries" / "Fagseksjoner" / "Tannhelse" / "Reisetidsanalyse"
-GRUNNKRETS_FILE = BASE_DIR / "Inndata" / "Befolkning" / "origins_gk_befolkning.csv"
-OUTPUT_DIR = BASE_DIR / "Utdata" / "Tidspunkter"
+GRUNNKRETS_FILE = BASE_DIR / "Inndata" / "origins_grunnkretser_m_befolkning.csv"
+OUTPUT_DIR = BASE_DIR / "Kontroller" / "Tidspunkter"
 
 # Grunnkretsnummer (int) eller koordinater (lat, lon).
 # Tidligere kjøring: ORIGIN = 40010502 (Klevstrand), DESTINATION = 40120306 (Grasmyr)
