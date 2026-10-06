@@ -39,8 +39,10 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsframskrivinger/befolkningsframskrivinger_graf.py"), "Befolkning - Sammenlikning historisk og framskrivinger"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/flytting_til_og_fra_telemark.py"), "Flytting - Til og fra Telemark"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/flytting_til_og_fra_kommunene.py"), "Flytting - Til og fra kommunene"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Flytting/inn_og_utvandring.py"), "Flytting - Inn og utvandring"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/folketall.py"), "Befolkning - Folketall"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/befolkningsvekst.py"), "Befolkning - Befolkningsvekst"),
+    (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Befolkningsutvikling/befolkningsendringer.py"), "Befolkning - Befolkningsendringer"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Alderssammensetning/forsørgerevne.py"), "Befolkning - Forsørgerevne"),
     (os.path.join(PYTHON_PATH, "Queries/01_Befolkning/Husholdninger/aleneboende.py"), "Befolkning - Aleneboende"),
 

@@ -42,6 +42,16 @@ Scripts are developed interactively: they're run cell-by-cell in a Jupyter/VS Co
 - **React map app**: `cd "Egne applikasjoner/Pilot web-app kart" && npm start` (dev) / `npm run build` / `npm run deploy` (publishes to GitHub Pages under `kart-bedrifter`).
 - No linter, formatter, or test runner is configured for the Python code.
 
+### Running Python from Claude Code (Windows)
+
+In Claude Code's Bash/PowerShell tools, `python` usually resolves to the Windows Store stub ("Python ble ikke funnet") and `conda` is not on PATH (`conda init` only configures interactive terminals). Don't try `python` or `conda run`. Instead, call the `analyse` env's interpreter by full path from PowerShell, typically:
+
+```
+& "$env:LOCALAPPDATA\anaconda3\envs\analyse\python.exe" <script.py>
+```
+
+(If that path doesn't exist, look under `$env:USERPROFILE\anaconda3`, `miniconda3` or `miniforge3`.) Running a query script end-to-end calls `handle_output_data`, which **pushes to GitHub**, so for test runs execute only the fetch/transform part (e.g. a copy truncated before the upload step, placed in the scratchpad).
+
 ## Standard query-script pattern
 
 Every dataset script in `Python/Queries/` follows the same shape:
