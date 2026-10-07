@@ -1,0 +1,44 @@
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Inn- og utvandring JSON-stat data loaded successfully.
+Raw data: 17204 rows
+      region    statistikkvariabel kvartal  value
+0  Porsgrunn  Befolkning 1. januar  1997K4  31959
+1  Porsgrunn  Befolkning 1. januar  1998K2  32371
+2  Porsgrunn  Befolkning 1. januar  1998K3  32371
+3  Porsgrunn  Befolkning 1. januar  1998K4  32371
+4  Porsgrunn  Befolkning 1. januar  1999K2  32563
+5  Porsgrunn  Befolkning 1. januar  1999K3  32563
+6  Porsgrunn  Befolkning 1. januar  1999K4  32563
+7  Porsgrunn  Befolkning 1. januar  2000K2  32892
+8  Porsgrunn  Befolkning 1. januar  2000K3  32892
+9  Porsgrunn  Befolkning 1. januar  2000K4  32892
+    Ved utgangen av året  ...          År
+0                   1997  ...  1997-01-01
+1                   1998  ...  1998-01-01
+2                   1999  ...  1999-01-01
+3                   2000  ...  2000-01-01
+4                   2001  ...  2001-01-01
+5                   2002  ...  2002-01-01
+6                   2003  ...  2003-01-01
+7                   2004  ...  2004-01-01
+8                   2005  ...  2005-01-01
+9                   2006  ...  2006-01-01
+10                  2007  ...  2007-01-01
+11                  2008  ...  2008-01-01
+12                  2009  ...  2009-01-01
+13                  2010  ...  2010-01-01
+14                  2011  ...  2011-01-01
+15                  2012  ...  2012-01-01
+16                  2013  ...  2013-01-01
+17                  2014  ...  2014-01-01
+18                  2015  ...  2015-01-01
+19                  2016  ...  2016-01-01
+
+[20 rows x 13 columns]
+Years: 1997-2025
+Saved file to C:\Analyse\Telemark\Python\Temp\inn_og_utvandring.csv
+[2026-10-07 08:06:27] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\inn_og_utvandring.csv
+No new data detected.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Flytting_-_Inn_og_utvandring.log
