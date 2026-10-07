@@ -2,7 +2,30 @@ Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
 Lavinntekt JSON-stat data loaded successfully.
 Saved file to C:\Analyse\Telemark\Python\Temp\andel_innvandrere_i_lavinntekt_fhi.csv
-[2026-10-06 08:15:30] No new data to upload. Skipping GitHub update.
+[2026-10-07 08:16:28] Changes detected in the dataset.
+
+[2026-10-07 08:16:28] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/09_Innvandrere og inkludering/Arbeid og inntekt/andel_innvandrere_i_lavinntekt_fhi.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: 
+  Lavinntektsgrense: EU 60 -> EU 60 (nasjonal median)
+
+Row: 
+  Lavinntektsgrense: EU 60 -> EU 60 (nasjonal median)
+
+Row: 
+  Lavinntektsgrense: EU 60 -> EU 60 (nasjonal median)
+
+Row: 
+  Lavinntektsgrense: EU 60 -> EU 60 (nasjonal median)
+
+Row: 
+  Lavinntektsgrense: EU 60 -> EU 60 (nasjonal median)
+
+Total changes found in examined rows: 200
+(Showing first 5 changes only)
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\andel_innvandrere_i_lavinntekt_fhi.csv
-No new data detected.
+New data detected and pushed to GitHub.
 New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Innvandrere_-_Lavinntekt.log
