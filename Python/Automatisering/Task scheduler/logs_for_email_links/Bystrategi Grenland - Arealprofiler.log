@@ -1,10 +1,10 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Error occurred while downloading the file: ('Connection broken: IncompleteRead(428974 bytes read, 1840518 more expected)', IncompleteRead(428974 bytes read, 1840518 more expected))
-
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/Bystrategi_Grenland/Areal_og_byutvikling/arealprofiler.py", line 70, in <module>
-    df = df.drop(columns=["kommunenr"])
-         ^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'drop'
+Data successfully loaded. Shape: (73043, 6)
+Columns: ['statistikkvariabel', 'kommunenr', 'kommune', 'år', 'verdi', 'klasse']
+Saved file to C:\Analyse\Telemark\Python\Temp\arealprofiler.csv
+[2026-10-07 08:22:55] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\arealprofiler.csv
+No new data detected in arealprofiler.csv.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Bystrategi_Grenland_-_Arealprofiler.log
+All tasks completed successfully.
