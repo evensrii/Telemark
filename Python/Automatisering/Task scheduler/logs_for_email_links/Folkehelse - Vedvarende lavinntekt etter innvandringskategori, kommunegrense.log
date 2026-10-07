@@ -13,7 +13,7 @@ Fetching data from FHI API...
 FHI Query JSON-stat data loaded successfully.
   ✓ Fetched 152 rows and 7 columns
   Columns: Geografi, År, Alder, Innvandringsbakgrunn, Lavinntektsgrense, Måltall, value
-  Latest period: 2021-2023
+  Latest period: 2022-2024
 
 After processing: 19 rows (alle aldre), 19 rows (0-17 år)
 
@@ -21,15 +21,23 @@ Comparing with GitHub...
 
   Processing: vedvarende_lavinntekt_alle_aldre.csv
 Saved file to C:\Analyse\Telemark\Python\Temp\vedvarende_lavinntekt_alle_aldre.csv
-[2026-10-06 08:17:45] No new data to upload. Skipping GitHub update.
+[2026-10-07 08:19:01] Header structure changed in vedvarende_lavinntekt_alle_aldre.csv:
+Removed headers: andel (2021-2023)
+Added headers: andel (2022-2024)
+File uploaded successfully: Data/08_Folkehelse og levekår/Oppvekst og levekår/Levekår/Inntekt og gjeld/vedvarende_lavinntekt_alle_aldre.csv
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\vedvarende_lavinntekt_alle_aldre.csv
-    ✓ No changes detected
+    ✓ New data detected and uploaded to GitHub
+New data detected
 
   Processing: vedvarende_lavinntekt_0-17.csv
 Saved file to C:\Analyse\Telemark\Python\Temp\vedvarende_lavinntekt_0-17.csv
-[2026-10-06 08:17:45] No new data to upload. Skipping GitHub update.
+[2026-10-07 08:19:02] Header structure changed in vedvarende_lavinntekt_0-17.csv:
+Removed headers: andel (2021-2023)
+Added headers: andel (2022-2024)
+File uploaded successfully: Data/08_Folkehelse og levekår/Oppvekst og levekår/Levekår/Inntekt og gjeld/vedvarende_lavinntekt_0-17.csv
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\vedvarende_lavinntekt_0-17.csv
-    ✓ No changes detected
+    ✓ New data detected and uploaded to GitHub
+New data detected
   ✓ Saved to: C:\Analyse\Telemark\Python\Temp\vedvarende_lavinntekt_alle_aldre.csv
   ✓ Saved to: C:\Analyse\Telemark\Python\Temp\vedvarende_lavinntekt_0-17.csv
 
