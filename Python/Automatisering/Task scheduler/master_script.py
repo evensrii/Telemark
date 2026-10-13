@@ -54,6 +54,7 @@ SCRIPTS = [
 
     ## Arbeid og næringsliv
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning.py"), "Arbeid og naeringsliv - Arbeidsmarkedstilknytning per kommune"),
+    (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/arbeidsmarkedstilknytning_pbi.py"), "Arbeid og naeringsliv - Arbeidsmarkedstilknytning pbi"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_alder.py"), "Arbeid og naeringsliv - Sysselsatte etter aldersgruppe"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Arbeidsliv/Sysselsetting/sysselsetting_i_kommunene.py"), "Arbeid og naeringsliv - Sysselsatte i kommunene"),
     (os.path.join(PYTHON_PATH, "Queries/03_Arbeid_og_naeringsliv/Næringsliv/Naringsstruktur_og_arbeidsplasser/offentlig_vs_privat_sysselsetting.py"), "Arbeid og naeringsliv - Offentlig vs. privat naeringsliv"),
@@ -147,6 +148,9 @@ SCRIPTS = [
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/fullførte_boliger_etter_boligtype.py"), "Bolig - Fullforte boliger etter boligtype"),
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/husholdninger_etter_boligtype.py"), "Bolig - Husholdninger etter boligtype"),
     (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Dagens boligmasse/igangsettelser_etter_boligtype.py"), "Bolig - Igangsettelser etter boligtype"),
+    (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Fritidsboliger/antall_fritidsboliger.py"), "Fritidsboliger - Antall fritidsboliger"),
+    (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Fritidsboliger/arealreserve_fritidsboliger_etter_avstand.py"), "Fritidsboliger - Arealreserve fritidsboliger etter avstand"),
+    (os.path.join(PYTHON_PATH, "Queries/10_Areal_og_stedsutvikling/Bolig_og_fritidsboliger/Fritidsboliger/arealreserve_fritidsboliger_etter_arealformal.py"), "Fritidsboliger - Arealreserve fritidsboliger etter arealformal"),
 
     #### ------------ Rapporter og prosjekter ------------ ####
 
