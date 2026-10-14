@@ -1,0 +1,65 @@
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Søk etter tabell (arealreserve fritidsboliger etter arealformål) JSON data loaded successfully.
+Using table 14650: Arealreserver til fritidsbebyggelse i gjeldende arealplaner, etter arealformål og arealklasse (dekar) (K) 2025 (updated 2026-03-03T07:00:00Z)
+Arealreserve fritidsboliger etter arealformål JSON-stat data loaded successfully.
+Raw data: 102 rows
+      region                                        arealformål  ...    år  value
+0  Porsgrunn  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025    NaN
+1  Porsgrunn  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025    2.0
+2  Porsgrunn  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025  108.0
+3  Porsgrunn  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025    5.0
+4  Porsgrunn  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025    NaN
+5  Porsgrunn  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025    3.0
+6      Skien  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025    NaN
+7      Skien  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025    0.0
+8      Skien  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025  652.0
+9      Skien  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025    NaN
+
+[10 rows x 6 columns]
+   Kommunenummer        Kommune    År  ...  Åpen fastmark  Åpen myr  Annet areal
+0           4012         Bamble  2025  ...           38.0       0.0         75.0
+1           4016      Drangedal  2025  ...         1163.0     345.0        136.0
+2           4032       Fyresdal  2025  ...           42.0     136.0         25.0
+3           4024       Hjartdal  2025  ...          310.0    1268.0         81.0
+4           4014        Kragerø  2025  ...          505.0      18.0        140.0
+5           4028      Kviteseid  2025  ...          372.0       8.0         22.0
+6           4020  Midt-Telemark  2025  ...          160.0      40.0         32.0
+7           4030       Nissedal  2025  ...          880.0     221.0        174.0
+8           4018           Nome  2025  ...            0.0      27.0          4.0
+9           4005       Notodden  2025  ...          264.0     292.0         28.0
+10          4001      Porsgrunn  2025  ...            5.0       NaN          3.0
+11          4022        Seljord  2025  ...          358.0     357.0         73.0
+12          4010         Siljan  2025  ...            1.0       NaN          3.0
+13          4003          Skien  2025  ...            NaN       NaN         16.0
+14          4026           Tinn  2025  ...          646.0     536.0        114.0
+15          4034          Tokke  2025  ...         2389.0    2149.0        360.0
+16          4036          Vinje  2025  ...         1876.0     550.0        153.0
+
+[17 rows x 9 columns]
+Keeping 0 rows for earlier years: []
+   Kommunenummer        Kommune    År  ...  Åpen fastmark  Åpen myr  Annet areal
+0           4001      Porsgrunn  2025  ...            5.0       NaN          3.0
+1           4003          Skien  2025  ...            NaN       NaN         16.0
+2           4005       Notodden  2025  ...          264.0     292.0         28.0
+3           4010         Siljan  2025  ...            1.0       NaN          3.0
+4           4012         Bamble  2025  ...           38.0       0.0         75.0
+5           4014        Kragerø  2025  ...          505.0      18.0        140.0
+6           4016      Drangedal  2025  ...         1163.0     345.0        136.0
+7           4018           Nome  2025  ...            0.0      27.0          4.0
+8           4020  Midt-Telemark  2025  ...          160.0      40.0         32.0
+9           4022        Seljord  2025  ...          358.0     357.0         73.0
+10          4024       Hjartdal  2025  ...          310.0    1268.0         81.0
+11          4026           Tinn  2025  ...          646.0     536.0        114.0
+12          4028      Kviteseid  2025  ...          372.0       8.0         22.0
+13          4030       Nissedal  2025  ...          880.0     221.0        174.0
+14          4032       Fyresdal  2025  ...           42.0     136.0         25.0
+15          4034          Tokke  2025  ...         2389.0    2149.0        360.0
+16          4036          Vinje  2025  ...         1876.0     550.0        153.0
+
+[17 rows x 9 columns]
+Saved file to C:\Analyse\Telemark\Python\Temp\arealreserve_fritidsboliger_etter_arealformal.csv
+[2026-10-14 08:21:40] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\arealreserve_fritidsboliger_etter_arealformal.csv
+No new data detected.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Fritidsboliger_-_Arealreserve_fritidsboliger_etter_arealformal.log
