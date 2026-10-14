@@ -1,0 +1,46 @@
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Arbeidsmarkedstilknytning (Kommuner) JSON-stat data loaded successfully.
+Arbeidsmarkedstilknytning (Telemark) JSON-stat data loaded successfully.
+Arbeidsmarkedstilknytning (Hele landet) JSON-stat data loaded successfully.
+Raw data: 8208 rows
+      region prioritert arbeidsstyrkestatus  ...    år value
+0  Porsgrunn                          I alt  ...  2008  6179
+1  Porsgrunn                          I alt  ...  2009  6307
+2  Porsgrunn                          I alt  ...  2010  6494
+3  Porsgrunn                          I alt  ...  2011  6608
+4  Porsgrunn                          I alt  ...  2012  6662
+5  Porsgrunn                          I alt  ...  2013  6741
+6  Porsgrunn                          I alt  ...  2014  6756
+7  Porsgrunn                          I alt  ...  2015  6820
+8  Porsgrunn                          I alt  ...  2016  6884
+9  Porsgrunn                          I alt  ...  2017  6804
+
+[10 rows x 7 columns]
+       Region Arbeidsstyrkestatus     Alder          År  Antall  Andel
+0   Porsgrunn               I alt  15-29 år  2008-01-01    6179    1.0
+1   Porsgrunn               I alt  15-29 år  2009-01-01    6307    1.0
+2   Porsgrunn               I alt  15-29 år  2010-01-01    6494    1.0
+3   Porsgrunn               I alt  15-29 år  2011-01-01    6608    1.0
+4   Porsgrunn               I alt  15-29 år  2012-01-01    6662    1.0
+5   Porsgrunn               I alt  15-29 år  2013-01-01    6741    1.0
+6   Porsgrunn               I alt  15-29 år  2014-01-01    6756    1.0
+7   Porsgrunn               I alt  15-29 år  2015-01-01    6820    1.0
+8   Porsgrunn               I alt  15-29 år  2016-01-01    6884    1.0
+9   Porsgrunn               I alt  15-29 år  2017-01-01    6804    1.0
+10  Porsgrunn               I alt  15-29 år  2018-01-01    6824    1.0
+11  Porsgrunn               I alt  15-29 år  2019-01-01    6732    1.0
+12  Porsgrunn               I alt  15-29 år  2020-01-01    6631    1.0
+13  Porsgrunn               I alt  15-29 år  2021-01-01    6502    1.0
+14  Porsgrunn               I alt  15-29 år  2022-01-01    6472    1.0
+15  Porsgrunn               I alt  15-29 år  2023-01-01    6520    1.0
+16  Porsgrunn               I alt  15-29 år  2024-01-01    6430    1.0
+17  Porsgrunn               I alt  15-29 år  2025-01-01    6490    1.0
+18  Porsgrunn               I alt  30-61 år  2008-01-01   15170    1.0
+19  Porsgrunn               I alt  30-61 år  2009-01-01   15146    1.0
+Regions: 19, years: 2008-01-01 - 2025-01-01, rows: 8208
+Saved file to C:\Analyse\Telemark\Python\Temp\arbeidsmarkedstilknytning_pbi.csv
+[2026-10-14 08:08:11] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\arbeidsmarkedstilknytning_pbi.csv
+No new data detected.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Arbeid_og_naeringsliv_-_Arbeidsmarkedstilknytning_pbi.log
