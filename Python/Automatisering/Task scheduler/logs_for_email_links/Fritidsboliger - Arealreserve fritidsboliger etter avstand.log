@@ -1,0 +1,65 @@
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Søk etter tabell (arealreserve fritidsboliger) JSON data loaded successfully.
+Using table 14764: Arealreserver til fritidsbebyggelse, etter avstand til tettbygd fritidsbyggområde (dekar) (K) 2025 (updated 2026-08-27T06:00:00Z)
+Arealreserve fritidsboliger JSON-stat data loaded successfully.
+Raw data: 85 rows
+      region                                        arealformål  ...    år  value
+0  Porsgrunn  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025    1.0
+1  Porsgrunn  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025  112.0
+2  Porsgrunn  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025    4.0
+3  Porsgrunn  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025    NaN
+4  Porsgrunn  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025    0.0
+5      Skien  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025   13.0
+6      Skien  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025  348.0
+7      Skien  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025  159.0
+8      Skien  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025  134.0
+9      Skien  Fritidsbebyggelse (Arealformålsgruppe pbl 1985...  ...  2025   13.0
+
+[10 rows x 6 columns]
+   Kommunenummer  ... Mer enn 5 km fra tettbygd fritidsbyggområde
+0           4012  ...                                         0.0
+1           4016  ...                                       795.0
+2           4032  ...                                       243.0
+3           4024  ...                                         NaN
+4           4014  ...                                         0.0
+5           4028  ...                                       118.0
+6           4020  ...                                         0.0
+7           4030  ...                                         0.0
+8           4018  ...                                        36.0
+9           4005  ...                                        11.0
+10          4001  ...                                         0.0
+11          4022  ...                                         NaN
+12          4010  ...                                         NaN
+13          4003  ...                                        13.0
+14          4026  ...                                        84.0
+15          4034  ...                                       120.0
+16          4036  ...                                         3.0
+
+[17 rows x 8 columns]
+Keeping 0 rows for earlier years: []
+   Kommunenummer  ... Mer enn 5 km fra tettbygd fritidsbyggområde
+0           4001  ...                                         0.0
+1           4003  ...                                        13.0
+2           4005  ...                                        11.0
+3           4010  ...                                         NaN
+4           4012  ...                                         0.0
+5           4014  ...                                         0.0
+6           4016  ...                                       795.0
+7           4018  ...                                        36.0
+8           4020  ...                                         0.0
+9           4022  ...                                         NaN
+10          4024  ...                                         NaN
+11          4026  ...                                        84.0
+12          4028  ...                                       118.0
+13          4030  ...                                         0.0
+14          4032  ...                                       243.0
+15          4034  ...                                       120.0
+16          4036  ...                                         3.0
+
+[17 rows x 8 columns]
+Saved file to C:\Analyse\Telemark\Python\Temp\arealreserve_fritidsboliger_etter_avstand.csv
+[2026-10-14 08:21:36] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\arealreserve_fritidsboliger_etter_avstand.csv
+No new data detected.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Fritidsboliger_-_Arealreserve_fritidsboliger_etter_avstand.log
