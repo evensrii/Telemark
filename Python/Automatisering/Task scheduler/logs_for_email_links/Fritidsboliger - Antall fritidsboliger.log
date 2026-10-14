@@ -1,0 +1,57 @@
+Loaded .env file from: C:\Analyse\Telemark\Python\token.env
+GITHUB_TOKEN loaded successfully.
+Antall fritidsboliger JSON-stat data loaded successfully.
+Raw data: 3074 rows
+                  region       statistikkvariabel    år  value
+0  Porsgrunn (2020-2023)  Antall fritidsbygninger  1998    0.0
+1  Porsgrunn (2020-2023)  Antall fritidsbygninger  1999    0.0
+2  Porsgrunn (2020-2023)  Antall fritidsbygninger  2000    0.0
+3  Porsgrunn (2020-2023)  Antall fritidsbygninger  2001    0.0
+4  Porsgrunn (2020-2023)  Antall fritidsbygninger  2002    0.0
+5  Porsgrunn (2020-2023)  Antall fritidsbygninger  2003    0.0
+6  Porsgrunn (2020-2023)  Antall fritidsbygninger  2004    0.0
+7  Porsgrunn (2020-2023)  Antall fritidsbygninger  2005    0.0
+8  Porsgrunn (2020-2023)  Antall fritidsbygninger  2006    0.0
+9  Porsgrunn (2020-2023)  Antall fritidsbygninger  2007    0.0
+   Kommunenummer    Kommune  ...  Antall fritidsbygninger  Fritidsbygninger per km²
+0           4001  Porsgrunn  ...                     1303                       NaN
+1           4001  Porsgrunn  ...                     1314                       NaN
+2           4001  Porsgrunn  ...                     1326                       NaN
+3           4001  Porsgrunn  ...                     1303                       NaN
+4           4001  Porsgrunn  ...                     1310                       NaN
+5           4001  Porsgrunn  ...                     1309                       NaN
+6           4001  Porsgrunn  ...                     1311                       NaN
+7           4001  Porsgrunn  ...                     1312                       NaN
+8           4001  Porsgrunn  ...                     1306                       NaN
+9           4001  Porsgrunn  ...                     1291                       NaN
+10          4001  Porsgrunn  ...                     1291                       NaN
+11          4001  Porsgrunn  ...                     1292                       NaN
+12          4001  Porsgrunn  ...                     1290                       NaN
+13          4001  Porsgrunn  ...                     1294                       NaN
+14          4001  Porsgrunn  ...                     1291                       NaN
+15          4001  Porsgrunn  ...                     1289                       NaN
+16          4001  Porsgrunn  ...                     1281                       NaN
+17          4001  Porsgrunn  ...                     1287                       NaN
+18          4001  Porsgrunn  ...                     1297                       NaN
+19          4001  Porsgrunn  ...                     1302                       NaN
+
+[20 rows x 5 columns]
+    Kommunenummer  ... Fritidsbygninger per km²
+251          4020  ...                      NaN
+252          4020  ...                      NaN
+253          4020  ...                      NaN
+254          4020  ...                      NaN
+255          4020  ...                      NaN
+256          4020  ...                      NaN
+257          4020  ...                      NaN
+258          4020  ...                     3.00
+259          4020  ...                     3.01
+260          4020  ...                     3.01
+
+[10 rows x 5 columns]
+Years: 1998-2026, rows: 493
+Saved file to C:\Analyse\Telemark\Python\Temp\antall_fritidsboliger.csv
+[2026-10-14 08:21:31] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\antall_fritidsboliger.csv
+No new data detected.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Fritidsboliger_-_Antall_fritidsboliger.log
