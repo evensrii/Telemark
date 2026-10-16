@@ -122,13 +122,42 @@ df = df.rename(columns={'value': 'Andel'})
 # Convert År to datetime (YYYY-01-01)
 df['År'] = pd.to_datetime(df['År'].astype(str) + '-01-01').dt.strftime('%Y-%m-%d')
 
-# Create SortKommune column
-unique_kommuner = df['Geografi'].unique().tolist()
+# Split geography into levels: Land, Fylke, Kommune, Levekårssone.
+# Levekårssoner come from FHI labelled as "<Kommune> LKS <nn>", e.g. "Porsgrunn LKS 01".
+er_lks = df['Geografi'].str.contains(' LKS ', regex=False)
+lks_deler = df['Geografi'].str.split(' LKS ', n=1, regex=False)
+
+df['Geonivå'] = 'Kommune'
+df.loc[df['Geografi'] == 'Hele landet', 'Geonivå'] = 'Land'
+df.loc[df['Geografi'] == 'Telemark', 'Geonivå'] = 'Fylke'
+df.loc[er_lks, 'Geonivå'] = 'Levekårssone'
+
+df['Kommune'] = None
+df.loc[df['Geonivå'] == 'Kommune', 'Kommune'] = df['Geografi']
+df.loc[er_lks, 'Kommune'] = lks_deler[er_lks].str[0]
+
+df['Levekårssone'] = None
+df.loc[er_lks, 'Levekårssone'] = 'LKS ' + lks_deler[er_lks].str[1]
+
+# Drop levekårssoner in kommuner that only have one - it equals the kommune itself
+antall_lks = df[er_lks].groupby('Kommune')['Levekårssone'].nunique()
+kommuner_med_en_lks = antall_lks[antall_lks == 1].index
+df = df[~((df['Geonivå'] == 'Levekårssone') & df['Kommune'].isin(kommuner_med_en_lks))]
+
+# Create SortKommune column (Telemark, Hele landet, then kommuner alphabetically;
+# levekårssoner inherit their kommune's sort value)
 sort_map = {"Telemark": 1, "Hele landet": 2}
-regular = sorted([k for k in unique_kommuner if k not in sort_map])
+regular = sorted(df.loc[df['Geonivå'] == 'Kommune', 'Kommune'].unique().tolist())
 for i, k in enumerate(regular, start=3):
     sort_map[k] = i
-df['SortKommune'] = df['Geografi'].map(sort_map)
+df['SortKommune'] = df['Kommune'].fillna(df['Geografi']).map(sort_map).astype('Int64')
+
+# Create SortLKS column (zone number within kommune, empty for other levels)
+df['SortLKS'] = pd.to_numeric(df['Levekårssone'].str.removeprefix('LKS '), errors='coerce').astype('Int64')
+
+df = df.sort_values(['SortKommune', 'SortLKS', 'År'], na_position='first').reset_index(drop=True)
+df = df[['Geografi', 'Geonivå', 'Kommune', 'Levekårssone', 'År', 'Andel', 'SortKommune', 'SortLKS']
+        + [c for c in df.columns if c not in ('Geografi', 'Geonivå', 'Kommune', 'Levekårssone', 'År', 'Andel', 'SortKommune', 'SortLKS')]]
 
 ####################################################################
 ### EDITABLE SECTION END                                         ###
