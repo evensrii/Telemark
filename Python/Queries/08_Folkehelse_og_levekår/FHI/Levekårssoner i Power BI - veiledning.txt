@@ -1,0 +1,298 @@
+LEVEKÅRSSONER I POWER BI - STEG FOR STEG
+========================================
+Example: "Gjeld over tre ganger inntekt, husholdninger" (FHI table 358)
+Goal:    Line chart with Hele landet, Telemark and the selected kommune, plus a
+         second slicer where one or more levekårssoner (LKS) in that kommune can
+         be added as extra lines. Hele landet/Telemark are hidden while LKS are
+         selected.
+
+Overview of the model
+---------------------
+  DimKommune (17 rows)  --1:*-->  DimLKS (81 rows)        [one direction]
+       |                              |
+   Kommune slicer               Levekårssone slicer
+   (single select)              (multi select)
+
+  Gjeld (fact table)  - NO relationships to DimKommune or DimLKS.
+                        The measure [Vis Andel] reads the slicer selections.
+
+
+------------------------------------------------------------------------
+STEP 1 - QUERY (already done)
+------------------------------------------------------------------------
+File: Python/Queries/08_Folkehelse_og_levekår/FHI/queries/Oppvekst og levekår/
+      Levekår/Inntekt og gjeld/Gjeld over tre ganger inntekt, husholdninger.txt
+
+The GEO dimension contains:
+  - "0"  (Hele landet) and "40" (Telemark)
+  - every kommune code (4001, 4003, ...) followed by its LKS codes
+    (4001000001, 4001000002, ...). FHI labels these "<Kommune> LKS <nn>",
+    e.g. "Porsgrunn LKS 01".
+Note: 4005000003 (Notodden LKS 03) is not in the list.
+
+To do the same for another FHI indicator later: copy the GEO "values" list from
+this query file into that indicator's query file.
+
+
+------------------------------------------------------------------------
+STEP 2 - SCRIPT (already done)
+------------------------------------------------------------------------
+File: Python/Queries/08_Folkehelse_og_levekår/FHI/scripts/Oppvekst og levekår/
+      Levekår/Inntekt og gjeld/gjeld_over_tre_ganger_inntekt_husholdninger.py
+
+The editable section adds these columns:
+  Geonivå       "Land" | "Fylke" | "Kommune" | "Levekårssone"
+  Kommune       parent kommune (filled for Kommune and LKS rows, empty for
+                Land/Fylke)
+  Levekårssone  "LKS 01", "LKS 02", ... (empty for other levels)
+  SortKommune   Telemark = 1, Hele landet = 2, kommuner alphabetically from 3;
+                LKS rows inherit their kommune's number
+  SortLKS       zone number within the kommune (empty for other levels)
+
+Rules:
+  - LKS rows are DROPPED for kommuner that have only one LKS (it equals the
+    kommune). These are Fyresdal, Hjartdal, Kviteseid, Nissedal, Seljord,
+    Siljan and Tokke. They only appear at kommune level.
+  - Suppressed/missing values are KEPT as rows with an empty Andel.
+
+Output on GitHub (column order):
+  Geografi, Geonivå, Kommune, Levekårssone, År, Andel, SortKommune, SortLKS,
+  Kjønn, Alder, Måltall
+  https://raw.githubusercontent.com/evensrii/Telemark/main/Data/08_Folkehelse%20og%20levek%C3%A5r/Oppvekst%20og%20levek%C3%A5r/Levek%C3%A5r/Inntekt%20og%20gjeld/gjeld_over_tre_ganger_inntekt_husholdninger.csv
+
+
+------------------------------------------------------------------------
+STEP 3 - UPDATE THE "Gjeld" TABLE IN POWER QUERY
+------------------------------------------------------------------------
+The CSV now has more columns than before. Power BI's CSV connector often
+hard-codes the column count, so the new columns may NOT appear on refresh.
+
+3.1  Transform data -> select the "Gjeld" query -> open the "Source" step
+     (or Advanced Editor).
+3.2  If the step looks like
+         Csv.Document(..., [Delimiter=",", Columns=7, Encoding=65001, ...])
+     change Columns=7 to Columns=11, or remove the "Columns=..." part.
+     Make sure Encoding=65001 (UTF-8), so æøå come through correctly.
+3.3  Check that "Promoted Headers" is present and that the "Changed Type" step
+     includes the new columns. Set the types:
+         Geografi, Geonivå, Kommune, Levekårssone   Text
+         År                                          Date
+         Andel                                       Decimal number
+         SortKommune, SortLKS                        Whole number
+3.4  (Recommended) Add a sort column for the legend, so each kommune comes
+     first and its LKS follow in order:
+     Add Column -> Custom Column, name "SortGeografi":
+         [SortKommune] * 100 + (if [SortLKS] = null then 0 else [SortLKS])
+     Type: Whole number.
+3.5  Close & Apply.
+
+
+------------------------------------------------------------------------
+STEP 4 - IMPORT THE DIMENSION TABLES (from GitHub)
+------------------------------------------------------------------------
+Home -> Get data -> Web, one import per file:
+
+4.1  DimKommune
+     https://raw.githubusercontent.com/evensrii/Telemark/main/Data/08_Folkehelse%20og%20levek%C3%A5r/DimKommune.csv
+     Columns / types:
+         Kommune            Text
+         SortKommune        Whole number
+         HarLevekårssoner   True/False
+
+4.2  DimLKS
+     https://raw.githubusercontent.com/evensrii/Telemark/main/Data/08_Folkehelse%20og%20levek%C3%A5r/DimLKS.csv
+     Columns / types:
+         Kommune        Text
+         Levekårssone   Text
+         Geografi       Text   (e.g. "Bamble LKS 01"; unique, matches Gjeld[Geografi])
+         SortKommune    Whole number
+         SortLKS        Whole number
+
+     In both: check Encoding = 65001 (UTF-8) and that headers are promoted.
+     Name the queries exactly "DimKommune" and "DimLKS" (the measures use
+     these names).
+
+4.3  Close & Apply.
+
+
+------------------------------------------------------------------------
+STEP 5 - RELATIONSHIPS (Model view)
+------------------------------------------------------------------------
+5.1  Create:  DimKommune[Kommune]  1 --> *  DimLKS[Kommune]
+     Cross-filter direction: Single (DimKommune filters DimLKS).
+     This makes the LKS slicer show only zones in the selected kommune.
+5.2  Check that "Gjeld" has NO relationships to DimKommune or DimLKS.
+     (Delete any that Power BI auto-detected on "Kommune"/"Geografi".)
+     If the slicers filtered Gjeld directly, the Hele landet and Telemark rows
+     (which have an empty Kommune) would disappear.
+
+
+------------------------------------------------------------------------
+STEP 6 - COLUMN SORTING (Data or Model view: select column -> Column tools -> Sort by column)
+------------------------------------------------------------------------
+     Table        Column        Sort by column
+     -----------  ------------  ----------------------------------------
+     DimKommune   Kommune       SortKommune
+     DimLKS       Geografi      SortLKS
+     DimLKS       Levekårssone  SortLKS        (only if you use it anywhere)
+     Gjeld        Geografi      SortGeografi   (from step 3.4; otherwise SortKommune)
+
+Without this, "LKS 10" is sorted before "LKS 02".
+Optional: hide the Sort* columns from report view (right-click -> Hide).
+
+
+------------------------------------------------------------------------
+STEP 7 - MEASURE
+------------------------------------------------------------------------
+Create a new measure (e.g. in the Gjeld table):
+
+Vis Andel =
+VAR valgtKommune = SELECTEDVALUE ( DimKommune[Kommune] )
+VAR niva = SELECTEDVALUE ( Gjeld[Geonivå] )
+VAR valgteLKS = VALUES ( DimLKS[Geografi] )
+VAR harLKS =
+    ISFILTERED ( DimLKS[Geografi] )
+        && NOT ISEMPTY ( valgteLKS )
+RETURN
+    SWITCH (
+        TRUE (),
+        niva IN { "Land", "Fylke" } && NOT harLKS, AVERAGE ( Gjeld[Andel] ),
+        niva = "Kommune"
+            && SELECTEDVALUE ( Gjeld[Kommune] ) = valgtKommune,
+            AVERAGE ( Gjeld[Andel] ),
+        niva = "Levekårssone"
+            && harLKS
+            && SELECTEDVALUE ( Gjeld[Geografi] ) IN valgteLKS,
+            AVERAGE ( Gjeld[Andel] ),
+        BLANK ()
+    )
+
+Format: select the measure -> Measure tools -> Format = Percentage, and set
+        decimal places to 1 (Andel is a fraction: 0.167 is shown as 16.7 %).
+        Tooltips and data labels follow this setting; set data label
+        decimals separately (Format -> Data labels -> Value decimal places)
+        if they show something else.
+
+Behaviour:
+     LKS slicer                         Lines shown
+     ---------------------------------  -------------------------------------
+     Nothing selected                   Hele landet, Telemark, kommune
+     One or more selected               Kommune + the selected LKS
+     Selection left over from another   Hele landet, Telemark, kommune
+     kommune                            (the relationship empties valgteLKS)
+
+Variants:
+  - Also hide the kommune line while LKS are selected: add  && NOT harLKS
+    to the "Kommune" branch.
+  - Always show Hele landet/Telemark: remove  && NOT harLKS  from the first
+    branch.
+  - Let the reader choose: create a disconnected table "Visning" with column
+    "Valg" = {"Vis fylke og landet", "Skjul"}, add it as a slicer, and replace
+    NOT harLKS in the first branch with
+        SELECTEDVALUE ( Visning[Valg], "Vis fylke og landet" ) = "Vis fylke og landet"
+
+Optional slicer-title measure (see step 8.3):
+
+LKS-tittel =
+IF (
+    SELECTEDVALUE ( DimKommune[HarLevekårssoner] ),
+    "Levekårssone",
+    "Ingen levekårssoner"
+)
+
+
+------------------------------------------------------------------------
+STEP 8 - SLICERS
+------------------------------------------------------------------------
+8.1  Kommune slicer
+     Field:     DimKommune[Kommune]      (NOT Gjeld[Kommune] / Gjeld[Geografi])
+     Settings:  Format -> Slicer settings -> Selection -> Single select = On
+     Style:     Dropdown (as today).
+     If you replace an existing kommune slicer: delete the old one, or change
+     its field to DimKommune[Kommune].
+
+8.2  Levekårssone slicer (new)
+     Field:     DimLKS[Geografi]         (shows "Bamble LKS 01" ...)
+                Do NOT use DimLKS[Levekårssone] ("LKS 01" exists in every
+                kommune, so a selection would carry over to the next kommune),
+                and do NOT use any Gjeld column.
+     Settings:  Single select = Off (multi select with Ctrl);
+                "Show 'Select all' option" optional.
+     Style:     Dropdown is recommended (Skien has 27 zones).
+     Title:     "Levekårssone", or the [LKS-tittel] measure via
+                Format -> Title -> fx (Field value -> LKS-tittel).
+
+8.3  Kommuner without LKS (Fyresdal, Hjartdal, Kviteseid, Nissedal, Seljord,
+     Siljan, Tokke): the LKS slicer will be empty. Either use the LKS-tittel
+     title, or a text box with the visual-level filter
+     DimKommune[HarLevekårssoner] = False saying
+     "Ingen levekårssoner for denne kommunen".
+
+8.4  (Optional) "Fjern valg" button: Insert -> Buttons -> Clear all slicers,
+     or rely on the slicer's eraser icon.
+
+
+------------------------------------------------------------------------
+STEP 9 - LINE CHART
+------------------------------------------------------------------------
+     X-axis:   Gjeld[År]           (Continuous type, or Date hierarchy -> Year only)
+     Y-axis:   [Vis Andel]         (replace the previous Andel field/measure)
+     Legend:   Gjeld[Geografi]
+Remove any visual-level filter that selects specific Geografi values; the
+measure now decides which lines are shown.
+
+Formatting tips:
+  - Colors are set per Geografi value (Format -> Lines). Give Hele landet and
+    Telemark fixed grey colors (dashed/solid as today) and the kommune the teal
+    color. The LKS get the theme's default colors.
+  - Data labels: consider turning them on only for the kommune series, so
+    there aren't too many labels when several LKS are selected.
+
+Visual title - update the existing title measure:
+  The old title measure most likely reads the kommune from a Gjeld column
+  (e.g. Gjeld[Geografi]). Now the Kommune slicer filters DimKommune, not Gjeld,
+  so the old measure would no longer pick up the selection. The title must read
+  DimKommune[Kommune] instead.
+
+  9.1  Replace the measure with:
+
+       Tittel Gjeld =
+       VAR ValgtKommune = SELECTEDVALUE ( DimKommune[Kommune], "valgt kommune" )
+       RETURN
+           "Andel av befolkningen som bor i husholdninger som har høy gjeldsgrad i landet, fylket, "
+               & ValgtKommune & ", og levekårssonene i kommunen (hvis valgt)"
+
+       ("valgt kommune" is the fallback text shown when no kommune is selected.)
+
+  9.2  If the chart doesn't already use it: select the line chart ->
+       Format -> General -> Title -> Text -> fx -> Format style: Field value
+       -> field: [Tittel Gjeld] -> OK.
+  9.3  Check that the title follows the Kommune slicer (e.g. Bamble -> Skien).
+
+
+------------------------------------------------------------------------
+STEP 10 - TEST
+------------------------------------------------------------------------
+[ ] Bamble, no LKS selected -> 3 lines (Hele landet, Telemark, Bamble)
+[ ] Bamble, select LKS 01 + LKS 03 -> Bamble + 2 LKS lines, no Telemark/landet
+[ ] Switch to Drangedal without clearing -> Hele landet, Telemark, Drangedal
+    (no leftover Bamble zones, no Drangedal LKS 01)
+[ ] Fyresdal -> LKS slicer is empty / shows "Ingen levekårssoner"
+[ ] Skien -> LKS slicer lists LKS 01-27 in numeric order
+[ ] Chart title names the selected kommune and changes with the slicer
+[ ] æøå shown correctly (Kragerø, Levekårssone, Geonivå)
+[ ] Values match the FHI source for one or two spot checks
+[ ] Publish -> check that scheduled refresh in the Power BI Service works for
+    the two new Web sources (anonymous access, same as the Gjeld source)
+
+
+------------------------------------------------------------------------
+REUSING THIS FOR OTHER FHI INDICATORS
+------------------------------------------------------------------------
+1. Copy the GEO list into the indicator's query .txt file (step 1).
+2. Copy the Geonivå/Kommune/Levekårssone/Sort block into the indicator's script
+   (step 2). Check that the table actually has LKS data.
+3. DimKommune and DimLKS can be reused as long as the indicator has the same
+   zones. Kommuner with a single LKS are dropped the same way.
+   Since the dimension tables are disconnected, one pair can serve several
+   fact tables. Make one "Vis Andel"-style measure per fact table.
