@@ -11,16 +11,31 @@ Loading query from file...
 
 Fetching data from FHI API...
 FHI Query JSON-stat data loaded successfully.
-  ✓ Fetched 1368 rows and 7 columns
+  ✓ Fetched 1596 rows and 7 columns
   Columns: Geografi, År, Kjønn, Alder, Sykdomsgruppe, Måltall, value
 
-After processing: 1368 rows and 11 columns
+After processing: 1596 rows and 11 columns
 
 Comparing with GitHub...
 Saved file to C:\Analyse\Telemark\Python\Temp\hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
-[2026-10-20 08:18:40] No new data to upload. Skipping GitHub update.
+[2026-10-21 08:18:54] Row count changed: 1368 -> 1596
+
+Added rows (showing up to 10):
+Alder: 0-74 år, Antall: 102.4, Kjnn: Kjønn samlet, Kommune: Hele landet, Mltall: per 1000, standardisert, SortAlder: 1, SortKjonn: 1, SortKommune: 2, Sykdomsgruppe: Hjerte- og karsykdomsdiagnoser, totalt, r: 2019-01-01, r (intervall): 2017-2019
+Alder: 0-44 år, Antall: 23.1, Kjnn: Kjønn samlet, Kommune: Hele landet, Mltall: per 1000, standardisert, SortAlder: 2, SortKjonn: 1, SortKommune: 2, Sykdomsgruppe: Hjerte- og karsykdomsdiagnoser, totalt, r: 2019-01-01, r (intervall): 2017-2019
+Alder: 45-74 år, Antall: 224.2, Kjnn: Kjønn samlet, Kommune: Hele landet, Mltall: per 1000, standardisert, SortAlder: 3, SortKjonn: 1, SortKommune: 2, Sykdomsgruppe: Hjerte- og karsykdomsdiagnoser, totalt, r: 2019-01-01, r (intervall): 2017-2019
+Alder: 75-79 år, Antall: 477.9, Kjnn: Kjønn samlet, Kommune: Hele landet, Mltall: per 1000, standardisert, SortAlder: 4, SortKjonn: 1, SortKommune: 2, Sykdomsgruppe: Hjerte- og karsykdomsdiagnoser, totalt, r: 2019-01-01, r (intervall): 2017-2019
+Alder: 0-74 år, Antall: 111.1, Kjnn: Menn, Kommune: Hele landet, Mltall: per 1000, standardisert, SortAlder: 1, SortKjonn: 2, SortKommune: 2, Sykdomsgruppe: Hjerte- og karsykdomsdiagnoser, totalt, r: 2019-01-01, r (intervall): 2017-2019
+Alder: 0-44 år, Antall: 21.9, Kjnn: Menn, Kommune: Hele landet, Mltall: per 1000, standardisert, SortAlder: 2, SortKjonn: 2, SortKommune: 2, Sykdomsgruppe: Hjerte- og karsykdomsdiagnoser, totalt, r: 2019-01-01, r (intervall): 2017-2019
+Alder: 45-74 år, Antall: 250.0, Kjnn: Menn, Kommune: Hele landet, Mltall: per 1000, standardisert, SortAlder: 3, SortKjonn: 2, SortKommune: 2, Sykdomsgruppe: Hjerte- og karsykdomsdiagnoser, totalt, r: 2019-01-01, r (intervall): 2017-2019
+Alder: 75-79 år, Antall: 510.0, Kjnn: Menn, Kommune: Hele landet, Mltall: per 1000, standardisert, SortAlder: 4, SortKjonn: 2, SortKommune: 2, Sykdomsgruppe: Hjerte- og karsykdomsdiagnoser, totalt, r: 2019-01-01, r (intervall): 2017-2019
+Alder: 0-74 år, Antall: 93.4, Kjnn: Kvinner, Kommune: Hele landet, Mltall: per 1000, standardisert, SortAlder: 1, SortKjonn: 3, SortKommune: 2, Sykdomsgruppe: Hjerte- og karsykdomsdiagnoser, totalt, r: 2019-01-01, r (intervall): 2017-2019
+Alder: 0-44 år, Antall: 24.2, Kjnn: Kvinner, Kommune: Hele landet, Mltall: per 1000, standardisert, SortAlder: 2, SortKjonn: 3, SortKommune: 2, Sykdomsgruppe: Hjerte- og karsykdomsdiagnoser, totalt, r: 2019-01-01, r (intervall): 2017-2019
+... and 1509 more rows
+File uploaded successfully: Data/08_Folkehelse og levekår/Helsetilstand/Hjerte- og karsykdommer/hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
-  ✓ No changes detected
+  ✓ New data detected and uploaded to GitHub
+New data detected
 
   ✓ Saved to: C:\Analyse\Telemark\Python\Temp\hjerte_og_karsykdom_primaerhelsetjenesten_treaarige_tall.csv
 
