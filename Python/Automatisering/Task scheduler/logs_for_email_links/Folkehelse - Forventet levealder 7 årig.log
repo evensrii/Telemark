@@ -18,9 +18,33 @@ After processing: 855 rows and 10 columns
 
 Comparing with GitHub...
 Saved file to C:\Analyse\Telemark\Python\Temp\forventet_levealder_7_aarig.csv
-[2026-10-23 08:17:58] No new data to upload. Skipping GitHub update.
+[2026-10-26 08:18:03] Changes detected in the dataset.
+
+[2026-10-26 08:18:03] Dataset is large. Showing detailed changes from the last 200 rows only.
+File uploaded successfully: Data/08_Folkehelse og levekår/Helsetilstand/Forventet levealder/forventet_levealder_7_aarig.csv
+
+Showing up to 5 examples of changes from the last 200 rows:
+
+Row: Kommune: Kviteseid | r: 2019-01-01
+  Antall: 80.2 -> 78.3
+
+Row: Kommune: Kviteseid | r: 2019-01-01
+  Mltall: leveår -> forventet levealder
+
+Row: Kommune: Kviteseid | r: 2019-01-01
+  Utdanningsniv: alle utdanningsnivåer -> totalt
+
+Row: Kommune: Kviteseid | r: 2019-01-01
+  r (intervall): 2012-2018 -> 2013-2019
+
+Row: Kommune: Kviteseid | r: 2019-01-01
+  Antall: 83.2 -> 83.4
+
+Total changes found in examined rows: 729
+(Showing first 5 changes only)
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\forventet_levealder_7_aarig.csv
-  ✓ No changes detected
+  ✓ New data detected and uploaded to GitHub
+New data detected
 
   ✓ Saved to: C:\Analyse\Telemark\Python\Temp\forventet_levealder_7_aarig.csv
 
