@@ -11,16 +11,21 @@ Loading query from file...
 
 Fetching data from FHI API...
 FHI Query JSON-stat data loaded successfully.
-  ✓ Fetched 87 rows and 7 columns
+  ✓ Fetched 90 rows and 7 columns
   Columns: Geografi, År, Kjønn, Alder, Utdanningsnivå, Måltall, value
 
-After processing: 29 rows and 4 columns
+After processing: 30 rows and 4 columns
 
 Comparing with GitHub...
 Saved file to C:\Analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanningsnivaa.csv
-[2026-10-23 08:18:02] No new data to upload. Skipping GitHub update.
+[2026-10-26 08:18:08] Row count changed: 29 -> 30
+
+Added rows (showing up to 10):
+Grunnskole: 79.4, Universitet/Hyskole: 86.8, Videregende: 83.4, r: 2019 - 2025
+File uploaded successfully: Data/08_Folkehelse og levekår/Helsetilstand/Forventet levealder/forventet_levealder_etter_utdanningsnivaa.csv
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanningsnivaa.csv
-  ✓ No changes detected
+  ✓ New data detected and uploaded to GitHub
+New data detected
 
   ✓ Saved to: C:\Analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanningsnivaa.csv
 
