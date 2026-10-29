@@ -1,10 +1,12 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2026-10-28 08:13:44] Loaded .env file from: C:\Analyse\Telemark\Python\token.env
-[2026-10-28 08:13:44] GITHUB_TOKEN loaded successfully.
-[2026-10-28 08:13:55] Latest date in GitHub files: 2026-10-24
-[2026-10-28 08:13:55] Querying data for 2026-10-25
-[2026-10-28 08:13:56] API Response status code: 200
-[2026-10-28 08:13:56] Querying data for 2026-10-26
-[2026-10-28 08:13:57] API Response status code: 200
-[2026-10-28 08:13:57] Error in main: Mixed timezones detected. Pass utc=True in to_datetime or tz='UTC' in DatetimeIndex to convert to a common timezone.
+[2026-10-29 08:13:29] Loaded .env file from: C:\Analyse\Telemark\Python\token.env
+[2026-10-29 08:13:29] GITHUB_TOKEN loaded successfully.
+[2026-10-29 08:13:41] Latest date in GitHub files: 2026-10-24
+[2026-10-29 08:13:41] Querying data for 2026-10-25
+[2026-10-29 08:13:42] API Response status code: 200
+[2026-10-29 08:13:42] Querying data for 2026-10-26
+[2026-10-29 08:13:43] API Response status code: 200
+[2026-10-29 08:13:43] Querying data for 2026-10-27
+[2026-10-29 08:13:43] API Response status code: 200
+[2026-10-29 08:13:44] Error in main: Mixed timezones detected. Pass utc=True in to_datetime or tz='UTC' in DatetimeIndex to convert to a common timezone.
