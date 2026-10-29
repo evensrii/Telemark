@@ -184,7 +184,8 @@ def process_data(df):
     )
 
     # Ensure proper conversion of 'Tid' to datetime format and drop invalid dates
-    df["Tid"] = pd.to_datetime(df["Tid"], errors="coerce")
+    # utc=True needed since offsets switch between +01:00 and +02:00 at DST changes
+    df["Tid"] = pd.to_datetime(df["Tid"], utc=True, errors="coerce")
     df = df.dropna(subset=["Tid"])
 
     ## NB: Fjerner tidssoneinfo (i.e. +01:00:00) i dette scriptet. Sørger for å rette opp dette i PowerQuery, slik at 31.12.2020 23:00:00 blir 01.01.2021 00:00:00 osv.
