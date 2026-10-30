@@ -1,12 +1,32 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-[2026-10-29 08:13:29] Loaded .env file from: C:\Analyse\Telemark\Python\token.env
-[2026-10-29 08:13:29] GITHUB_TOKEN loaded successfully.
-[2026-10-29 08:13:41] Latest date in GitHub files: 2026-10-24
-[2026-10-29 08:13:41] Querying data for 2026-10-25
-[2026-10-29 08:13:42] API Response status code: 200
-[2026-10-29 08:13:42] Querying data for 2026-10-26
-[2026-10-29 08:13:43] API Response status code: 200
-[2026-10-29 08:13:43] Querying data for 2026-10-27
-[2026-10-29 08:13:43] API Response status code: 200
-[2026-10-29 08:13:44] Error in main: Mixed timezones detected. Pass utc=True in to_datetime or tz='UTC' in DatetimeIndex to convert to a common timezone.
+[2026-10-30 08:14:01] Loaded .env file from: C:\Analyse\Telemark\Python\token.env
+[2026-10-30 08:14:01] GITHUB_TOKEN loaded successfully.
+[2026-10-30 08:14:13] Latest date in GitHub files: 2026-10-24
+[2026-10-30 08:14:13] Querying data for 2026-10-25
+[2026-10-30 08:14:14] API Response status code: 200
+[2026-10-30 08:14:14] Querying data for 2026-10-26
+[2026-10-30 08:14:15] API Response status code: 200
+[2026-10-30 08:14:15] Querying data for 2026-10-27
+[2026-10-30 08:14:16] API Response status code: 200
+[2026-10-30 08:14:16] Querying data for 2026-10-28
+[2026-10-30 08:14:16] API Response status code: 200
+Saved file to C:\Analyse\Telemark\Python\Temp\2026.csv
+[2026-10-30 08:14:23] Row count changed: 363426 -> 368373
+
+Added rows (showing up to 10):
+Antall mlere: 290.0, Forbruk (kWh): 1506.316, Gruppe: Næring (unntatt industri), Knr: 4022, Kommunenavn: Seljord, Tid: 2026-10-24 22:00:00+00:00
+Antall mlere: 91.0, Forbruk (kWh): 237.693, Gruppe: Industri, Knr: 4022, Kommunenavn: Seljord, Tid: 2026-10-24 22:00:00+00:00
+Antall mlere: 2165.0, Forbruk (kWh): 2876.968, Gruppe: Husholdninger, Knr: 4022, Kommunenavn: Seljord, Tid: 2026-10-24 22:00:00+00:00
+Antall mlere: 1688.0, Forbruk (kWh): 12506.916, Gruppe: Næring (unntatt industri), Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-10-24 22:00:00+00:00
+Antall mlere: 7212.0, Forbruk (kWh): 11448.222, Gruppe: Husholdninger, Knr: 4005, Kommunenavn: Notodden, Tid: 2026-10-24 22:00:00+00:00
+Antall mlere: 19584.0, Forbruk (kWh): 28223.963, Gruppe: Husholdninger, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-10-24 22:00:00+00:00
+Antall mlere: 870.0, Forbruk (kWh): 4743.528, Gruppe: Næring (unntatt industri), Knr: 4005, Kommunenavn: Notodden, Tid: 2026-10-24 22:00:00+00:00
+Antall mlere: 203.0, Forbruk (kWh): 2050.961, Gruppe: Industri, Knr: 4005, Kommunenavn: Notodden, Tid: 2026-10-24 22:00:00+00:00
+Antall mlere: 1274.0, Forbruk (kWh): 1922.4, Gruppe: Husholdninger, Knr: 4010, Kommunenavn: Siljan, Tid: 2026-10-24 22:00:00+00:00
+Antall mlere: 525.0, Forbruk (kWh): 168691.48, Gruppe: Industri, Knr: 4001, Kommunenavn: Porsgrunn, Tid: 2026-10-24 22:00:00+00:00
+... and 4937 more rows
+File uploaded successfully: Data/04_Klima og ressursforvaltning/Kraft og energi/Elhub/2026.csv
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\2026.csv
+[2026-10-30 08:15:28] New data detected in 2026.csv and pushed to GitHub.
+[2026-10-30 08:15:28] New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Klima_og_energi_-_Stromforbruk_(Elhub).log
