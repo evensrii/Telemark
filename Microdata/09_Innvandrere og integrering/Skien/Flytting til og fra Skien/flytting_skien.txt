@@ -1,0 +1,686 @@
+textblock
+# Flytting til og fra Skien
+
+Analyse av innenlands flytting til og fra Skien kommune, for hele befolkningen,
+innvandrere, sekundærbosatte flyktninger og familieinnvandrede til disse.
+
+**Grupper:**
+1. **Innflyttere**: bodde i en annen norsk kommune og flyttet til Skien i perioden
+2. **Utflyttere**: bodde i Skien og flyttet til en annen norsk kommune i perioden
+3. **Innvandrere** (innvandringskategori B) blant inn- og utflytterne
+4. **Sekundærbosatte**: innvandrere blant innflytterne med innvandringsgrunn Flukt og botid i
+   Norge på 10 år eller mindre ved innflytting. Siden innflytterne per definisjon bodde i en
+   annen norsk kommune før Skien, har de alle vært bosatt i minst én annen kommune tidligere.
+5. **Familieinnvandrede til de sekundærbosatte**: innvandringsgrunn Familie, kom til Skien
+   (innenlands eller direkte fra utlandet) samme år som eller etter en person i gruppe 4,
+   og tilhører samme familie (familienummer) som denne
+
+**Metode:** Bostedskommune hentes per 1.1. hvert år. En *flytting* i kalenderår t betyr
+at bostedskommunen 1.1.t er en annen enn 1.1.(t+1). Bare innenlands flytting er med:
+personer som innvandret direkte fra utlandet til Skien regnes ikke som innflyttere.
+Alle kommunenumre er omkodet til 2024-inndelingen (for eksempel Skien 0806/3807 -> 4003,
+Bø/Sauherad 0821/0822/3817 -> Midt-Telemark 4020).
+
+Personvern: microdata.no legger støy på og skjuler små celler. Bruk grove inndelinger.
+endblock
+
+
+// ============================================================================
+// 0. PARAMETRE: endre her
+// ============================================================================
+
+// Databank-versjon (sjekk siste versjon i variabeloversikten på microdata.no)
+require no.ssb.fdb:58 as db
+
+// Analyseperiode: bostedskommune hentes 1.1. for hvert år fra startaar til sluttaar.
+// Flyttinger skjer i kalenderårene startaar ... (sluttaar - 1).
+let startaar = 2020
+let sluttaar = 2025
+
+// Kommunenummer for Skien (2024-inndeling)
+let skien = 4003
+
+// Kommuner med færre inn-/utflyttere enn dette slås sammen til "Øvrige kommuner" i
+// kommunetabellene. Ellers stoppes tabellene av avsløringskontrollen (for mange små celler).
+let min_kommune = 20
+
+// Maksimal botid i Norge (år) for at en flyktning skal regnes som sekundærbosatt (gruppe 4)
+let maks_botid = 10
+
+// Datoer for kjennetegn som ikke finnes per 1.1. (velg siste tilgjengelige før/rundt sluttaar)
+//   NUDB_BU (utdanning): siste dato 2024-08-01
+//   REGSYS_ARB_* (yrke, arbeidsmarkedsstatus): november hvert år
+//   ARBSTATUS_PERS_UTENFOR: november hvert år (siste 2024-11-16)
+let dato_utd = date_fmt(2024, 8, 1)
+let dato_arb = date_fmt(2024, 11, 16)
+
+// Avledede bindinger (skal ikke endres)
+let aar1 = $startaar + 1
+let dato_start = date_fmt($startaar)
+let dato_slutt = date_fmt($sluttaar)
+
+
+// ============================================================================
+// 1. GRUNNLAG: bostedskommune per 1.1. hvert år
+// ============================================================================
+// Første import definerer populasjonen. De neste importeres med outer_join, slik at
+// alle som var bosatt i Norge minst ett av årene kommer med (også de som innvandret,
+// utvandret, ble født eller døde i perioden).
+
+create-dataset pers
+
+let v = bosted_ ++ $startaar
+import db/BEFOLKNING_KOMMNR_FORMELL $dato_start as $v
+
+for aar in $aar1 : $sluttaar
+    let d = date_fmt($aar)
+    let v = bosted_ ++ $aar
+    import db/BEFOLKNING_KOMMNR_FORMELL $d as $v, outer_join
+end
+
+// Gjør kommunekodene numeriske (kreves for recode med etiketter). '0806' blir 806.
+for aar in $startaar : $sluttaar
+    let v = bosted_ ++ $aar
+    destring $v
+end
+
+
+// ============================================================================
+// 2. HARMONISERING: omkod alle kommunenumre til 2024-inndelingen
+// ============================================================================
+// Kilde: SSB KLASS, klassifikasjon 131 (kommuneendringer 2020-2024, inkl. 2019-koder
+// slik at scriptet også tåler startaar = 2019).
+
+// 2a. Delingen av Ålesund (1507) i Ålesund (1508) og Haram (1580) fra 2024.
+//     Vi vet ikke hvem i "gamle" Ålesund som bodde i det som nå er Haram. Som i SSBs
+//     eget eksempel antar vi at personer med kode 1507 som bor i Haram året etter,
+//     bodde i Haram også før (dvs. at endringen er administrativ, ikke en flytting).
+//     Kjøres baklengs i tid slik at hvert år kan bruke det allerede korrigerte året etter.
+let n_aar = $sluttaar - $startaar
+for i in 1 : $n_aar
+    let aar = $sluttaar - $i
+    let neste = $aar + 1
+    let v = bosted_ ++ $aar
+    let vn = bosted_ ++ $neste
+    recode $v (1507 = 1580) if $vn == 1580
+end
+
+// 2b. Generell omkoding gammel -> ny kode (kun koder som er endret; uendrede beholdes).
+//     Generert fra KLASS. Ingen gamle koder er gjenbrukt som nye koder for en annen kommune.
+for aar in $startaar : $sluttaar
+    let v = bosted_ ++ $aar
+    recode $v \
+        (1141 1142 = 1103) (1102 1129 = 1108) \
+        (1502 1543 1545 = 1506) (1504 1507 1523 1529 1546 = 1508) (1444 1519 = 1577) (1524 1526 = 1578) (1548 1551 = 1579) (1534 = 1580) \
+        (1805 1850 1854 = 1806) (1849 = 1875) \
+        (101 3001 = 3101) (104 136 3002 = 3103) (105 3003 = 3105) (106 3004 = 3107) (111 3011 = 3110) (135 3017 = 3112) (137 3018 = 3114) (127 3015 = 3116) (122 123 124 125 138 3014 = 3118) (128 3016 = 3120) (119 3013 = 3122) (118 3012 = 3124) \
+        (219 3024 = 3201) (220 627 628 3025 = 3203) (226 227 231 3030 = 3205) (213 217 3020 = 3207) (235 3033 = 3209) (216 3023 = 3212) (215 3022 = 3214) (211 3019 = 3216) (214 3021 = 3218) (229 3028 = 3220) (230 3029 = 3222) (228 3027 = 3224) (121 221 3026 = 3226) (236 3034 = 3228) (234 3032 = 3230) (233 3031 = 3232) (533 3054 = 3234) (532 3053 = 3236) (238 3036 = 3238) (237 3035 = 3240) (239 3037 = 3242) \
+        (602 625 711 3005 = 3301) (604 3006 = 3303) (605 3007 = 3305) (612 3038 = 3310) (626 3049 = 3312) (624 3048 = 3314) (623 3047 = 3316) (622 3046 = 3318) (615 3039 = 3320) (616 3040 = 3322) (617 3041 = 3324) (618 3042 = 3326) (619 3043 = 3328) (620 3044 = 3330) (621 3045 = 3332) (631 3050 = 3334) (632 3051 = 3336) (633 3052 = 3338) \
+        (402 = 3401) (403 = 3403) (501 = 3405) (502 = 3407) (412 = 3411) (415 = 3412) (417 = 3413) (418 = 3414) (419 = 3415) (420 = 3416) (423 = 3417) (425 = 3418) (426 = 3419) (427 = 3420) (428 = 3421) (429 = 3422) (430 = 3423) (432 = 3424) (434 = 3425) (436 = 3426) (437 = 3427) (438 = 3428) (439 = 3429) (441 = 3430) (511 = 3431) (512 = 3432) (513 = 3433) (514 = 3434) (515 = 3435) (516 = 3436) (517 = 3437) (519 = 3438) (520 = 3439) (521 = 3440) (522 = 3441) (528 = 3442) (529 = 3443) (534 = 3446) (536 = 3447) (538 = 3448) (540 = 3449) (541 = 3450) (542 = 3451) (543 = 3452) (544 = 3453) (545 = 3454) \
+        (701 3801 = 3901) (713 715 3802 = 3903) (704 716 3803 = 3905) (710 3804 = 3907) (712 3805 = 3909) (729 3811 = 3911) \
+        (805 3806 = 4001) (806 3807 = 4003) (807 3808 = 4005) (811 3812 = 4010) (814 3813 = 4012) (815 3814 = 4014) (817 3815 = 4016) (819 3816 = 4018) (821 822 3817 = 4020) (828 3820 = 4022) (827 3819 = 4024) (826 3818 = 4026) (829 3821 = 4028) (830 3822 = 4030) (831 3823 = 4032) (833 3824 = 4034) (834 3825 = 4036) \
+        (901 = 4201) (904 = 4202) (906 = 4203) (1001 1017 1018 = 4204) (1002 1021 1029 = 4205) (1003 = 4206) (1004 = 4207) (911 = 4211) (912 = 4212) (914 = 4213) (919 = 4214) (926 = 4215) (928 = 4216) (929 = 4217) (935 = 4218) (937 = 4219) (938 = 4220) (940 = 4221) (941 = 4222) (1014 = 4223) (1026 = 4224) (1027 1032 = 4225) (1034 = 4226) (1037 = 4227) (1046 = 4228) \
+        (1201 = 4601) (1401 1439 = 4602) (1211 = 4611) (1216 = 4612) (1219 = 4613) (1221 = 4614) (1222 = 4615) (1223 = 4616) (1224 = 4617) (1227 1228 1231 = 4618) (1232 = 4619) (1233 = 4620) (1234 1235 = 4621) (1238 = 4622) (1242 = 4623) (1241 1243 = 4624) (1244 = 4625) (1245 1246 1259 = 4626) (1247 = 4627) (1251 = 4628) (1252 = 4629) (1253 = 4630) (1256 1260 1263 = 4631) (1264 = 4632) (1265 = 4633) (1266 = 4634) (1411 = 4635) (1412 = 4636) (1413 = 4637) (1416 = 4638) (1417 = 4639) (1418 1419 1420 = 4640) (1421 = 4641) (1422 = 4642) (1424 = 4643) (1426 = 4644) (1428 = 4645) (1429 = 4646) (1430 1431 1432 1433 = 4647) (1438 = 4648) (1441 1443 = 4649) (1445 = 4650) (1449 = 4651) \
+        (5030 = 5001) (5004 5039 = 5006) (5005 5040 5048 = 5007) (1571 5011 = 5055) (5013 = 5056) (5015 5017 = 5057) (5018 5019 = 5058) (5012 5016 5023 5024 = 5059) (5050 5051 = 5060) \
+        (1902 5401 = 5501) (1903 5402 = 5503) (1911 5411 = 5510) (1852 1913 5412 = 5512) (1917 5413 = 5514) (1919 5414 = 5516) (1920 5415 = 5518) (1922 5416 = 5520) (1923 5417 = 5522) (1924 5418 = 5524) (1925 5419 = 5526) (1926 5420 = 5528) (1927 1928 1929 1931 5421 = 5530) (1933 5422 = 5532) (1936 5423 = 5534) (1938 5424 = 5536) (1939 5425 = 5538) (1940 5426 = 5540) (1941 5427 = 5542) (1942 5428 = 5544) (1943 5429 = 5546) \
+        (2012 5403 = 5601) (2004 2017 5406 = 5603) (2030 5444 = 5605) (2003 5405 = 5607) (2021 5437 = 5610) (2011 5430 = 5612) (2014 5432 = 5614) (2015 5433 = 5616) (2018 5434 = 5618) (2019 5435 = 5620) (2020 5436 = 5622) (2022 5438 = 5624) (2023 5439 = 5626) (2025 5441 = 5628) (2024 5440 = 5630) (2028 5443 = 5632) (2002 5404 = 5634) (2027 5442 = 5636)
+end
+
+// Etiketter (navn) for kommuner og fylker, 2024-inndeling.
+// Fylke = de to første sifrene i kommunenummeret.
+define-labels kommunelbl \
+    301 'Oslo' \
+    1101 'Eigersund' 1103 'Stavanger' 1106 'Haugesund' 1108 'Sandnes' 1111 'Sokndal' 1112 'Lund' 1114 'Bjerkreim' 1119 'Hå' 1120 'Klepp' 1121 'Time' 1122 'Gjesdal' 1124 'Sola' 1127 'Randaberg' 1130 'Strand' 1133 'Hjelmeland' 1134 'Suldal' 1135 'Sauda' 1144 'Kvitsøy' 1145 'Bokn' 1146 'Tysvær' 1149 'Karmøy' 1151 'Utsira' 1160 'Vindafjord' \
+    1505 'Kristiansund' 1506 'Molde' 1508 'Ålesund' 1511 'Vanylven' 1514 'Sande' 1515 'Herøy (Møre og Romsdal)' 1516 'Ulstein' 1517 'Hareid' 1520 'Ørsta' 1525 'Stranda' 1528 'Sykkylven' 1531 'Sula' 1532 'Giske' 1535 'Vestnes' 1539 'Rauma' 1547 'Aukra' 1554 'Averøy' 1557 'Gjemnes' 1560 'Tingvoll' 1563 'Sunndal' 1566 'Surnadal' 1573 'Smøla' 1576 'Aure' 1577 'Volda' 1578 'Fjord' 1579 'Hustadvika' 1580 'Haram' \
+    1804 'Bodø' 1806 'Narvik' 1811 'Bindal' 1812 'Sømna' 1813 'Brønnøy' 1815 'Vega' 1816 'Vevelstad' 1818 'Herøy (Nordland)' 1820 'Alstahaug' 1822 'Leirfjord' 1824 'Vefsn' 1825 'Grane' 1826 'Aarborte' 1827 'Dønna' 1828 'Nesna' 1832 'Hemnes' 1833 'Rana' 1834 'Lurøy' 1835 'Træna' 1836 'Rødøy' 1837 'Meløy' 1838 'Gildeskål' 1839 'Beiarn' 1840 'Saltdal' 1841 'Fauske' 1845 'Sørfold' 1848 'Steigen' 1851 'Lødingen' 1853 'Evenes' 1856 'Røst' 1857 'Værøy' 1859 'Flakstad' 1860 'Vestvågøy' 1865 'Vågan' 1866 'Hadsel' 1867 'Bø' 1868 'Øksnes' 1870 'Sortland' 1871 'Andøy' 1874 'Moskenes' 1875 'Hábmer' \
+    3101 'Halden' 3103 'Moss' 3105 'Sarpsborg' 3107 'Fredrikstad' 3110 'Hvaler' 3112 'Råde' 3114 'Våler (Østfold)' 3116 'Skiptvet' 3118 'Indre Østfold' 3120 'Rakkestad' 3122 'Marker' 3124 'Aremark' \
+    3201 'Bærum' 3203 'Asker' 3205 'Lillestrøm' 3207 'Nordre Follo' 3209 'Ullensaker' 3212 'Nesodden' 3214 'Frogn' 3216 'Vestby' 3218 'Ås' 3220 'Enebakk' 3222 'Lørenskog' 3224 'Rælingen' 3226 'Aurskog-Høland' 3228 'Nes' 3230 'Gjerdrum' 3232 'Nittedal' 3234 'Lunner' 3236 'Jevnaker' 3238 'Nannestad' 3240 'Eidsvoll' 3242 'Hurdal' \
+    3301 'Drammen' 3303 'Kongsberg' 3305 'Ringerike' 3310 'Hole' 3312 'Lier' 3314 'Øvre Eiker' 3316 'Modum' 3318 'Krødsherad' 3320 'Flå' 3322 'Nesbyen' 3324 'Gol' 3326 'Hemsedal' 3328 'Ål' 3330 'Hol' 3332 'Sigdal' 3334 'Flesberg' 3336 'Rollag' 3338 'Nore og Uvdal' \
+    3401 'Kongsvinger' 3403 'Hamar' 3405 'Lillehammer' 3407 'Gjøvik' 3411 'Ringsaker' 3412 'Løten' 3413 'Stange' 3414 'Nord-Odal' 3415 'Sør-Odal' 3416 'Eidskog' 3417 'Grue' 3418 'Åsnes' 3419 'Våler (Innlandet)' 3420 'Elverum' 3421 'Trysil' 3422 'Åmot' 3423 'Stor-Elvdal' 3424 'Rendalen' 3425 'Engerdal' 3426 'Tolga' 3427 'Tynset' 3428 'Alvdal' 3429 'Folldal' 3430 'Os' 3431 'Dovre' 3432 'Lesja' 3433 'Skjåk' 3434 'Lom' 3435 'Vågå' 3436 'Nord-Fron' 3437 'Sel' 3438 'Sør-Fron' 3439 'Ringebu' 3440 'Øyer' 3441 'Gausdal' 3442 'Østre Toten' 3443 'Vestre Toten' 3446 'Gran' 3447 'Søndre Land' 3448 'Nordre Land' 3449 'Sør-Aurdal' 3450 'Etnedal' 3451 'Nord-Aurdal' 3452 'Vestre Slidre' 3453 'Øystre Slidre' 3454 'Vang' \
+    3901 'Horten' 3903 'Holmestrand' 3905 'Tønsberg' 3907 'Sandefjord' 3909 'Larvik' 3911 'Færder' \
+    4001 'Porsgrunn' 4003 'Skien' 4005 'Notodden' 4010 'Siljan' 4012 'Bamble' 4014 'Kragerø' 4016 'Drangedal' 4018 'Nome' 4020 'Midt-Telemark' 4022 'Seljord' 4024 'Hjartdal' 4026 'Tinn' 4028 'Kviteseid' 4030 'Nissedal' 4032 'Fyresdal' 4034 'Tokke' 4036 'Vinje' \
+    4201 'Risør' 4202 'Grimstad' 4203 'Arendal' 4204 'Kristiansand' 4205 'Lindesnes' 4206 'Farsund' 4207 'Flekkefjord' 4211 'Gjerstad' 4212 'Vegårshei' 4213 'Tvedestrand' 4214 'Froland' 4215 'Lillesand' 4216 'Birkenes' 4217 'Åmli' 4218 'Iveland' 4219 'Evje og Hornnes' 4220 'Bygland' 4221 'Valle' 4222 'Bykle' 4223 'Vennesla' 4224 'Åseral' 4225 'Lyngdal' 4226 'Hægebostad' 4227 'Kvinesdal' 4228 'Sirdal' \
+    4601 'Bergen' 4602 'Kinn' 4611 'Etne' 4612 'Sveio' 4613 'Bømlo' 4614 'Stord' 4615 'Fitjar' 4616 'Tysnes' 4617 'Kvinnherad' 4618 'Ullensvang' 4619 'Eidfjord' 4620 'Ulvik' 4621 'Voss' 4622 'Kvam' 4623 'Samnanger' 4624 'Bjørnafjorden' 4625 'Austevoll' 4626 'Øygarden' 4627 'Askøy' 4628 'Vaksdal' 4629 'Modalen' 4630 'Osterøy' 4631 'Alver' 4632 'Austrheim' 4633 'Fedje' 4634 'Masfjorden' 4635 'Gulen' 4636 'Solund' 4637 'Hyllestad' 4638 'Høyanger' 4639 'Vik' 4640 'Sogndal' 4641 'Aurland' 4642 'Lærdal' 4643 'Årdal' 4644 'Luster' 4645 'Askvoll' 4646 'Fjaler' 4647 'Sunnfjord' 4648 'Bremanger' 4649 'Stad' 4650 'Gloppen' 4651 'Stryn' \
+    5001 'Trondheim' 5006 'Steinkjer' 5007 'Namsos' 5014 'Frøya' 5020 'Osen' 5021 'Oppdal' 5022 'Rennebu' 5025 'Røros' 5026 'Holtålen' 5027 'Midtre Gauldal' 5028 'Melhus' 5029 'Skaun' 5031 'Malvik' 5032 'Selbu' 5033 'Tydal' 5034 'Meråker' 5035 'Stjørdal' 5036 'Frosta' 5037 'Levanger' 5038 'Verdal' 5041 'Snåase' 5042 'Lierne' 5043 'Raarvihke' 5044 'Namsskogan' 5045 'Grong' 5046 'Høylandet' 5047 'Overhalla' 5049 'Flatanger' 5052 'Leka' 5053 'Inderøy' 5054 'Indre Fosen' 5055 'Heim' 5056 'Hitra' 5057 'Ørland' 5058 'Åfjord' 5059 'Orkland' 5060 'Nærøysund' 5061 'Rindal' \
+    5501 'Tromsø' 5503 'Harstad' 5510 'Kvæfjord' 5512 'Dielddanuorri' 5514 'Ibestad' 5516 'Gratangen' 5518 'Loabák' 5520 'Bardu' 5522 'Salangen' 5524 'Målselv' 5526 'Sørreisa' 5528 'Dyrøy' 5530 'Senja' 5532 'Balsfjord' 5534 'Karlsøy' 5536 'Lyngen' 5538 'Storfjord' 5540 'Gáivuotna' 5542 'Skjervøy' 5544 'Nordreisa' 5546 'Kvænangen' \
+    5601 'Alta' 5603 'Hammerfest' 5605 'Sør-Varanger' 5607 'Vadsø' 5610 'Kárášjohka' 5612 'Guovdageaidnu' 5614 'Loppa' 5616 'Hasvik' 5618 'Måsøy' 5620 'Nordkapp' 5622 'Porsanger' 5624 'Lebesby' 5626 'Gamvik' 5628 'Deatnu' 5630 'Berlevåg' 5632 'Båtsfjord' 5634 'Vardø' 5636 'Unjárga' \
+    9998 'Øvrige kommuner' 9999 'Uoppgitt'
+define-labels fylkelbl 3 'Oslo' 11 'Rogaland' 15 'Møre og Romsdal' 18 'Nordland' 21 'Svalbard' 31 'Østfold' 32 'Akershus' 33 'Buskerud' 34 'Innlandet' 39 'Vestfold' 40 'Telemark' 42 'Agder' 46 'Vestland' 50 'Trøndelag' 55 'Troms' 56 'Finnmark' 99 'Uoppgitt'
+
+
+// ----------------------------------------------------------------------------
+// Avgrens til personer som har bodd i Skien minst én gang i perioden
+// (både inn- og utflyttere må ha bodd i Skien på et av tidspunktene).
+// ----------------------------------------------------------------------------
+generate i_skien_noen_gang = 0
+for aar in $startaar : $sluttaar
+    let v = bosted_ ++ $aar
+    replace i_skien_noen_gang = 1 if $v == $skien
+end
+keep if i_skien_noen_gang == 1
+
+textblock
+## Kontroll: bosatte i Skien per 1.1. hvert år
+Sammenlign gjerne med SSBs folkemengde i Skien (tabell 07459). Tallene skal ligge nær.
+endblock
+for aar in $startaar : $sluttaar
+    let v = bosted_ ++ $aar
+    tabulate $v if $v == $skien
+end
+
+
+// ============================================================================
+// 3. FLYTTINGER: identifiser inn- og utflyttinger per år
+// ============================================================================
+// For hvert intervall 1.1.(aar-1) -> 1.1.aar:
+//   inn_aar = 1: bodde i en annen norsk kommune 1.1.(aar-1) og i Skien 1.1.aar
+//   ut_aar  = 1: bodde i Skien 1.1.(aar-1) og i en annen norsk kommune 1.1.aar
+// Krav om gyldig kommune på begge tidspunkt sørger for at bare innenlands flytting
+// telles (innvandring fra utlandet, utvandring, fødsel og død faller utenfor).
+//
+// Per person lagres FØRSTE inn- og utflytting i perioden:
+//   inn_flytteaar / ut_flytteaar : kalenderåret flyttingen skjedde (0 = ingen flytting)
+//   fra_kommune / til_kommune    : kommunen personen flyttet fra / til (0 = ingen flytting)
+
+generate inn_flytteaar = 0
+generate ut_flytteaar = 0
+generate fra_kommune = 0
+generate til_kommune = 0
+generate antall_inn = 0
+generate antall_ut = 0
+
+for aar in $aar1 : $sluttaar
+    let forrige = $aar - 1
+    let vf = bosted_ ++ $forrige
+    let v = bosted_ ++ $aar
+    let inn = inn_ ++ $aar
+    let ut = ut_ ++ $aar
+
+    generate $inn = !sysmiss($vf) & !sysmiss($v) & $vf != $skien & $v == $skien
+    generate $ut = !sysmiss($vf) & !sysmiss($v) & $vf == $skien & $v != $skien
+
+    // Første innflytting / utflytting i perioden
+    // (rekkefølgen er viktig: kommune settes før flytteår, siden flytteår brukes i betingelsen)
+    replace fra_kommune = $vf if $inn == 1 & inn_flytteaar == 0
+    replace inn_flytteaar = $forrige if $inn == 1 & inn_flytteaar == 0
+    replace til_kommune = $v if $ut == 1 & ut_flytteaar == 0
+    replace ut_flytteaar = $forrige if $ut == 1 & ut_flytteaar == 0
+
+    // Antall flyttinger per person (noen flytter inn og ut flere ganger)
+    replace antall_inn = antall_inn + $inn
+    replace antall_ut = antall_ut + $ut
+end
+
+// To grupper som analyseres hver for seg. En person som både har flyttet inn og ut
+// i perioden, er med i begge gruppene.
+generate innflytter = inn_flytteaar > 0
+generate utflytter = ut_flytteaar > 0
+
+// Kommune- og fylkesnavn på fra-/tilkommune
+generate fra_fylke = int(fra_kommune / 100)
+generate til_fylke = int(til_kommune / 100)
+assign-labels fra_kommune kommunelbl
+assign-labels til_kommune kommunelbl
+assign-labels fra_fylke fylkelbl
+assign-labels til_fylke fylkelbl
+
+// Kommuner med få flyttere slås sammen til 9998 'Øvrige kommuner'.
+// aggregate gir hver person antall inn-/utflyttere fra/til sin kommune.
+generate en_inn = innflytter
+generate en_ut = utflytter
+aggregate (sum) en_inn -> n_fra_kommune, by(fra_kommune)
+aggregate (sum) en_ut -> n_til_kommune, by(til_kommune)
+generate fra_kommune_gr = fra_kommune
+replace fra_kommune_gr = 9998 if n_fra_kommune < $min_kommune
+generate til_kommune_gr = til_kommune
+replace til_kommune_gr = 9998 if n_til_kommune < $min_kommune
+assign-labels fra_kommune_gr kommunelbl
+assign-labels til_kommune_gr kommunelbl
+
+textblock
+## 3.1 Hvor mange har flyttet til og fra Skien?
+Tallene gjelder **personer**: hver person telles én gang, ved første inn-/utflytting i perioden.
+Tallene er derfor lavere enn SSBs flyttestatistikk (tabell 13864), som teller flyttinger.
+Personer som både har flyttet inn og ut, er med i begge gruppene.
+endblock
+tabulate innflytter
+tabulate utflytter
+
+textblock
+**Personer etter år for første inn-/utflytting i perioden:**
+endblock
+tabulate inn_flytteaar if innflytter == 1
+tabulate ut_flytteaar if utflytter == 1
+
+textblock
+**Antall innflyttinger/utflyttinger per person i perioden:**
+endblock
+tabulate antall_inn if innflytter == 1
+tabulate antall_ut if utflytter == 1
+
+
+textblock
+## 3.2 Hvor flyttet de fra og til?
+endblock
+
+// NB: rowsort() kan bare sortere stigende, så den største raden står nederst.
+
+textblock
+**Innflyttere etter fylke de flyttet fra** (størst nederst):
+endblock
+tabulate fra_fylke if innflytter == 1, rowsort()
+
+textblock
+**Utflyttere etter fylke de flyttet til** (størst nederst):
+endblock
+tabulate til_fylke if utflytter == 1, rowsort()
+
+textblock
+**Innflyttere etter kommune de flyttet fra** (størst nederst; kommuner med under min_kommune er slått sammen):
+endblock
+tabulate fra_kommune_gr if innflytter == 1, rowsort()
+
+textblock
+**Utflyttere etter kommune de flyttet til** (størst nederst; kommuner med under min_kommune er slått sammen):
+endblock
+tabulate til_kommune_gr if utflytter == 1, rowsort()
+
+textblock
+**Flytting til og fra kommunene i Telemark:**
+endblock
+tabulate fra_kommune_gr if innflytter == 1 & fra_fylke == 40, rowsort()
+tabulate til_kommune_gr if utflytter == 1 & til_fylke == 40, rowsort()
+
+barchart (count) fra_fylke if innflytter == 1
+barchart (count) til_fylke if utflytter == 1
+
+
+// ============================================================================
+// 4. KJENNETEGN: kjønn, alder, fødeland, utdanning, yrke, arbeid
+// ============================================================================
+
+import db/BEFOLKNING_KJOENN as kjønn
+import db/BEFOLKNING_FOEDSELS_AAR_MND as faarmnd
+import db/BEFOLKNING_FODELAND as fødeland
+import db/BEFOLKNING_STATUSKODE $dato_slutt as status_slutt
+import db/NUDB_BU $dato_utd as nus
+import db/REGSYS_ARB_YRKE_STYRK08 $dato_arb as styrk
+import db/REGSYS_ARB_ARBMARK_STATUS $dato_arb as arbmark
+import db/ARBSTATUS_PERS_UTENFOR $dato_arb as utenfor
+
+// ---- Alder ved flytting ----------------------------------------------------
+// Alder i flytteåret (år - fødselsår), separat for innflytting og utflytting.
+generate fodselsaar = int(faarmnd / 100)
+generate alder_inn = inn_flytteaar - fodselsaar if innflytter == 1
+generate alder_ut = ut_flytteaar - fodselsaar if utflytter == 1
+
+// Aldersgrupper: juster intervallene her (gjelder begge variablene)
+clone-variables alder_inn -> aldersgruppe_inn
+clone-variables alder_ut -> aldersgruppe_ut
+recode aldersgruppe_inn aldersgruppe_ut \
+    (0/5 = 1 '0-5 år') \
+    (6/15 = 2 '6-15 år') \
+    (16/19 = 3 '16-19 år') \
+    (20/24 = 4 '20-24 år') \
+    (25/29 = 5 '25-29 år') \
+    (30/39 = 6 '30-39 år') \
+    (40/49 = 7 '40-49 år') \
+    (50/66 = 8 '50-66 år') \
+    (67/120 = 9 '67 år og eldre')
+
+// ---- Fødeland gruppert til verdensregion (SSBs inndeling) ------------------
+// Små grupper er slått sammen for å unngå avsløringskontroll:
+//   6 = Sør- og Mellom-Amerika + Oseania, 9 = Statsløse + Uoppgitt
+clone-variables fødeland -> verdensregion
+destring verdensregion
+recode verdensregion \
+    (111 120 138 139 140 148 155 156 159/164 = 2) \
+    (101/141 144/158 = 1) \
+    (203/393 = 3) \
+    (143 404/578 = 4) \
+    (612 684 = 5) \
+    (601/775 = 6) \
+    (802/840 = 6) \
+    (980 = 9) \
+    (990 = 9)
+define-labels vregionlbl \
+    0 'Norge' \
+    1 'EU/EØS' \
+    2 'Europeiske land utenom EU/EØS' \
+    3 'Afrika' \
+    4 'Asia med Tyrkia' \
+    5 'Nord-Amerika' \
+    6 'Sør- og Mellom-Amerika og Oseania' \
+    9 'Statsløse og uoppgitt'
+assign-labels verdensregion vregionlbl
+
+// ---- Utdanningsnivå (første siffer i NUS-koden) ----------------------------
+generate utdanningsnivå = substr(nus, 1, 1)
+destring utdanningsnivå
+recode utdanningsnivå \
+    (0 1 2 = 1 'Grunnskole eller lavere') \
+    (3 4 = 2 'Videregående skole') \
+    (5 = 3 'Fagskole / påbygging vgs') \
+    (6 = 4 'Universitet/høgskole, kort (inntil 4 år)') \
+    (7 8 = 5 'Universitet/høgskole, lang (over 4 år)') \
+    (9 = 9 'Uoppgitt')
+replace utdanningsnivå = 9 if sysmiss(utdanningsnivå)
+
+// ---- Yrke (STYRK08 hovedgruppe, kun lønnstakere) ---------------------------
+generate yrke = substr(styrk, 1, 1)
+destring yrke, force
+define-labels yrkelbl \
+    0 'Militære yrker og uoppgitt' \
+    1 'Ledere' \
+    2 'Akademiske yrker' \
+    3 'Høyskoleyrker' \
+    4 'Kontoryrker' \
+    5 'Salgs- og serviceyrker' \
+    6 'Bønder, fiskere mv.' \
+    7 'Håndverkere' \
+    8 'Prosess- og maskinoperatører, transportarbeidere mv.' \
+    9 'Renholdere, hjelpearbeidere mv.'
+assign-labels yrke yrkelbl
+
+
+textblock
+## 4.1 Hva kjennetegner inn- og utflytterne?
+Hver tabell vises først for innflyttere, deretter for utflyttere.
+endblock
+
+textblock
+**Kjønn**
+endblock
+tabulate kjønn if innflytter == 1, cellpct freq
+tabulate kjønn if utflytter == 1, cellpct freq
+
+textblock
+**Alder ved flytting**
+endblock
+tabulate aldersgruppe_inn if innflytter == 1, cellpct freq
+tabulate aldersgruppe_ut if utflytter == 1, cellpct freq
+summarize alder_inn if innflytter == 1
+summarize alder_ut if utflytter == 1
+
+textblock
+**Fødeland (verdensregion og de 20 vanligste landene)**
+endblock
+tabulate verdensregion if innflytter == 1, cellpct freq
+tabulate verdensregion if utflytter == 1, cellpct freq
+tabulate fødeland if innflytter == 1, rowsort() bottom(20)
+tabulate fødeland if utflytter == 1, rowsort() bottom(20)
+
+textblock
+**Utdanningsnivå (16 år og eldre ved flytting, målt per dato_utd)**
+endblock
+tabulate utdanningsnivå if innflytter == 1 & alder_inn >= 16, cellpct freq
+tabulate utdanningsnivå if utflytter == 1 & alder_ut >= 16, cellpct freq
+
+textblock
+**Arbeidsmarkedsstatus og yrke (målt per dato_arb, populasjon 15-74 år)**
+endblock
+tabulate arbmark if innflytter == 1, cellpct freq missing
+tabulate arbmark if utflytter == 1, cellpct freq missing
+tabulate utenfor if innflytter == 1, cellpct freq
+tabulate utenfor if utflytter == 1, cellpct freq
+tabulate yrke if innflytter == 1, cellpct freq
+tabulate yrke if utflytter == 1, cellpct freq
+
+textblock
+**Status ved periodens slutt** (1 = bosatt, 3 = utvandret, 5 = død), kontroll:
+endblock
+tabulate status_slutt if innflytter == 1, missing
+tabulate status_slutt if utflytter == 1, missing
+
+
+// ============================================================================
+// 5. INNVANDRERE: innvandringskategori og innvandringsgrunn
+// ============================================================================
+
+import db/BEFOLKNING_INVKAT as invkat
+import db/BEFOLKNING_INNGRUNN1 as inngrunn
+import db/BEFOLKNING_FORSTDATO as forstdato
+
+generate innvandrer = invkat == 'B'
+
+textblock
+## 5.1 Hvor mange innvandrere har flyttet til og fra Skien?
+endblock
+tabulate invkat if innflytter == 1, cellpct freq
+tabulate invkat if utflytter == 1, cellpct freq
+
+textblock
+## 5.2 Innvandringsgrunn blant innvandrere som har flyttet til og fra Skien
+Innvandringsgrunn finnes kun for ikke-nordiske innvandrere som kom fra 1990 (mangler ellers).
+endblock
+tabulate inngrunn if innvandrer == 1 & innflytter == 1, cellpct freq missing
+tabulate inngrunn if innvandrer == 1 & utflytter == 1, cellpct freq missing
+tabulate verdensregion inngrunn if innvandrer == 1 & innflytter == 1
+tabulate verdensregion inngrunn if innvandrer == 1 & utflytter == 1
+
+
+// ============================================================================
+// 6. SEKUNDÆRBOSATTE FLYKTNINGER (gruppe 4)
+// ============================================================================
+// Sekundærbosatt = innflytter (bodde i en annen norsk kommune 1.1. før flyttingen, jf. del 3)
+// med innvandringsgrunn Flukt og botid i Norge på maks_botid år eller mindre ved innflytting.
+//
+// Botid = tid fra første oppholdsdato i Norge til 1.1. året etter innflytting
+// (dvs. første tidspunkt personen er registrert bosatt i Skien).
+// forstdato er et heltall på formen ÅÅÅÅMMDD. date() godtar ikke variabler som argument,
+// så botiden regnes tilnærmet (avvik maks et par dager).
+
+generate forst_aar = int(forstdato / 10000)
+generate forst_mnd = int(forstdato / 100) - forst_aar * 100
+generate forst_dag = forstdato - int(forstdato / 100) * 100
+generate botid_inn = inn_flytteaar + 1 - forst_aar - (forst_mnd - 1) / 12 - (forst_dag - 1) / 365.25 if innflytter == 1
+
+generate sekundærbosatt = innflytter == 1 & innvandrer == 1 & inngrunn == 'FLU' & !sysmiss(botid_inn) & botid_inn <= $maks_botid
+
+// Botid i hele år, gruppert
+generate botid_hele_aar = int(botid_inn)
+clone-variables botid_hele_aar -> botidsgruppe
+recode botidsgruppe \
+    (0/2 = 1 'Under 3 år') \
+    (3/5 = 2 '3-5 år') \
+    (6/10 = 3 '6-10 år') \
+    (11/150 = 4 'Over 10 år')
+
+// Husholdningstype per sluttdato (siste tilgjengelige: 1.1.2025)
+import db/BEFOLKNING_REGSTAT_HUSHTYP $dato_slutt as hushtype
+generate hushtype_hoved = substr(hushtype, 1, 3)
+
+// Kommuner med få sekundærbosatte slås sammen til 9998 'Øvrige kommuner' (formel, ikke replace)
+generate en_sek = sekundærbosatt
+aggregate (sum) en_sek -> n_fra_kommune_sek, by(fra_kommune)
+generate fra_kommune_sek = fra_kommune * (n_fra_kommune_sek >= $min_kommune) + 9998 * (n_fra_kommune_sek < $min_kommune)
+assign-labels fra_kommune_sek kommunelbl
+
+textblock
+## 6.1 Hvor mange sekundærbosatte har flyttet til Skien?
+Andel sekundærbosatte blant innvandrerne som har flyttet til Skien, og alle innflyttende
+innvandrere etter botid ved innflytting (for å se hvor mange maks_botid holder utenfor).
+endblock
+tabulate sekundærbosatt if innflytter == 1 & innvandrer == 1, cellpct freq
+tabulate botidsgruppe inngrunn if innflytter == 1 & innvandrer == 1
+
+textblock
+## 6.2 Hva kjennetegner de sekundærbosatte?
+endblock
+
+textblock
+**Når flyttet de til Skien, og botid i Norge ved innflytting**
+endblock
+tabulate inn_flytteaar if sekundærbosatt == 1
+tabulate botidsgruppe if sekundærbosatt == 1
+summarize botid_inn if sekundærbosatt == 1
+
+textblock
+**Kjønn og alder ved flytting**
+endblock
+tabulate kjønn if sekundærbosatt == 1, cellpct freq
+tabulate aldersgruppe_inn if sekundærbosatt == 1, cellpct freq
+tabulate aldersgruppe_inn kjønn if sekundærbosatt == 1
+
+textblock
+**Fødeland**
+endblock
+tabulate verdensregion if sekundærbosatt == 1, cellpct freq
+tabulate fødeland if sekundærbosatt == 1, rowsort() bottom(15)
+
+textblock
+**Hvor flyttet de fra?** (størst nederst; kommuner med under min_kommune er slått sammen)
+endblock
+tabulate fra_fylke if sekundærbosatt == 1, rowsort()
+tabulate fra_kommune_sek if sekundærbosatt == 1, rowsort()
+
+textblock
+**Utdanningsnivå (16 år og eldre)**
+Utdanning tatt i utlandet mangler ofte for nyankomne, så andelen uoppgitt kan være høy.
+endblock
+tabulate utdanningsnivå if sekundærbosatt == 1 & alder_inn >= 16, cellpct freq
+
+textblock
+**Arbeidsmarkedsstatus og yrke (per dato_arb)**
+endblock
+tabulate arbmark if sekundærbosatt == 1, cellpct freq missing
+tabulate utenfor if sekundærbosatt == 1, cellpct freq
+tabulate yrke if sekundærbosatt == 1, cellpct freq
+
+textblock
+**Husholdningstype (per sluttdato)**
+endblock
+tabulate hushtype_hoved if sekundærbosatt == 1
+
+
+// ============================================================================
+// 7. FAMILIEINNVANDREDE TIL DE SEKUNDÆRBOSATTE (gruppe 5)
+// ============================================================================
+// Kobling via familienummer (BEFOLKNING_REGSTAT_FAMNR: personer med samme nummer tilhører
+// samme registerbaserte familie, dvs. par og deres ugifte barn som bor sammen). Familie er
+// snevrere enn husholdning og passer bedre for familiegjenforening (ektefelle/barn/foreldre
+// til mindreårige). For en bredere kobling kan BEFOLKNING_HUSHNR brukes i stedet.
+//
+// For hvert år:
+//   1) Tell sekundærbosatte per familie som hadde flyttet til Skien senest i fjor og bor i
+//      Skien 1.1. i år (aggregate på hele datasettet, ingen keep).
+//   2) En familieinnvandret (inngrunn = FAM) regnes til gruppe 5 hvis personen kom til Skien
+//      i fjor, enten ved innenlands flytting ($inn) eller direkte fra utlandet ($ny: ikke
+//      bosatt i Norge 1.1. i fjor, første opphold i fjor), og tilhører en slik familie.
+// Dermed er kravet "kom samtidig med eller etter den sekundærbosatte" oppfylt.
+// Merk: INNGRUNN1 = FAM omfatter både familiegjenforening og familieetablering, og koblingen
+// sier at personene bor sammen, ikke at familieinnvandringen gjaldt akkurat denne personen.
+
+// Største familie som regnes som en ekte familie (se kommentar om familienummer i løkken)
+let maks_famstr = 20
+
+generate en_pers = 1
+generate familieinnvandret = 0
+generate fam_flytteaar = 0
+generate fam_fra_utlandet = 0
+
+for aar in $aar1 : $sluttaar
+    let forrige = $aar - 1
+    let d = date_fmt($aar)
+    let vf = bosted_ ++ $forrige
+    let v = bosted_ ++ $aar
+    let inn = inn_ ++ $aar
+    let f = famnr_ ++ $aar
+    let es = en_sek_ ++ $aar
+    let nf = n_sek_ ++ $aar
+    let ny = ny_ ++ $aar
+    let fa = fam_ ++ $aar
+    let fs = famstr_ ++ $aar
+
+    import db/BEFOLKNING_REGSTAT_FAMNR $d as $f
+
+    // 1) Sekundærbosatte i Skien per 1.1.aar, talt per familie
+    generate $es = sekundærbosatt == 1 & inn_flytteaar <= $forrige & !sysmiss($v) & $v == $skien
+    aggregate (sum) $es -> $nf, by($f)
+
+    // Familienummeret er en pseudonymvariabel og kan bare brukes som nøkkel (by/on), ikke i
+    // uttrykk som sysmiss(). Personer uten familienummer havner i én stor felles gruppe, som
+    // holdes utenfor med kravet om at familien har maks_famstr personer eller færre.
+    aggregate (sum) en_pers -> $fs, by($f)
+
+    // 2) Familieinnvandrede som kom til Skien i fjor og tilhører en slik familie
+    generate $ny = sysmiss($vf) & !sysmiss($v) & $v == $skien & !sysmiss(forst_aar) & forst_aar == $forrige
+    generate $fa = innvandrer == 1 & inngrunn == 'FAM' & ($inn == 1 | $ny == 1) & $fs <= $maks_famstr & $nf >= 1
+
+    // Første år personen oppfyller kravene (formler, ikke replace ... if)
+    replace fam_flytteaar = fam_flytteaar + $forrige * $fa * (familieinnvandret == 0)
+    replace fam_fra_utlandet = fam_fra_utlandet + $ny * $fa * (familieinnvandret == 0)
+    replace familieinnvandret = familieinnvandret + $fa * (familieinnvandret == 0)
+end
+
+// Alder ved ankomst til Skien (alder_inn finnes bare for innenlands innflyttere)
+generate alder_fam = fam_flytteaar - fodselsaar if familieinnvandret == 1
+// Aldersgrupper med formel, ikke recode: gruppen er liten, og recode stoppes av
+// avsløringskontrollen når en målverdi (f.eks. 0-5 år) rammer for få personer.
+generate aldersgruppe_fam = 1 + (alder_fam >= 6) + (alder_fam >= 16) + (alder_fam >= 20) + (alder_fam >= 25) + (alder_fam >= 30) + (alder_fam >= 40) + (alder_fam >= 50) + (alder_fam >= 67) if familieinnvandret == 1
+define-labels alderfamlbl \
+    1 '0-5 år' 2 '6-15 år' 3 '16-19 år' 4 '20-24 år' 5 '25-29 år' \
+    6 '30-39 år' 7 '40-49 år' 8 '50-66 år' 9 '67 år og eldre'
+assign-labels aldersgruppe_fam alderfamlbl
+define-labels utllbl 0 'Innenlands flytting' 1 'Direkte fra utlandet'
+assign-labels fam_fra_utlandet utllbl
+
+textblock
+## 7.1 Familieinnvandrede som har kommet til Skien med eller etter en sekundærbosatt
+endblock
+tabulate familieinnvandret if innvandrer == 1 & inngrunn == 'FAM' & i_skien_noen_gang == 1
+tabulate fam_flytteaar if familieinnvandret == 1
+tabulate fam_fra_utlandet if familieinnvandret == 1, cellpct freq
+
+textblock
+**Kjennetegn ved de familieinnvandrede**
+endblock
+tabulate kjønn if familieinnvandret == 1, cellpct freq
+tabulate aldersgruppe_fam if familieinnvandret == 1, cellpct freq
+tabulate verdensregion if familieinnvandret == 1, cellpct freq
+tabulate fødeland if familieinnvandret == 1, rowsort() bottom(10)
+tabulate hushtype_hoved if familieinnvandret == 1
+tabulate utdanningsnivå if familieinnvandret == 1 & alder_fam >= 16, cellpct freq
+tabulate arbmark if familieinnvandret == 1, cellpct freq missing
+tabulate utenfor if familieinnvandret == 1, cellpct freq
+tabulate yrke if familieinnvandret == 1, cellpct freq
+
+textblock
+**Hvor kom de innenlands flyttende familieinnvandrede fra?**
+endblock
+tabulate fra_fylke if familieinnvandret == 1 & fam_fra_utlandet == 0, rowsort()
+
+
+// ============================================================================
+// 8. OPPSUMMERING
+// ============================================================================
+// Gruppe settes med én formel (ikke replace ... if), for å unngå avsløringskontrollen.
+// sekundærbosatt forutsetter innvandrer.
+generate gruppe = (familieinnvandret == 1) * 4 + (familieinnvandret == 0) * innflytter * (1 + innvandrer + sekundærbosatt)
+define-labels gruppelbl \
+    0 'Ikke innflytter' \
+    1 'Innflyttere, ikke innvandrere' \
+    2 'Innflyttere, andre innvandrere' \
+    3 'Innflyttere, sekundærbosatte flyktninger' \
+    4 'Familieinnvandrede til sekundærbosatte'
+assign-labels gruppe gruppelbl
+
+textblock
+## 8.1 Samletabeller for innflytterne
+Alder og fylke gjelder innenlands innflytting, og mangler derfor for familieinnvandrede
+som kom direkte fra utlandet.
+endblock
+tabulate gruppe if gruppe > 0
+tabulate kjønn gruppe if gruppe > 0, colpct
+tabulate aldersgruppe_inn gruppe if innflytter == 1, colpct
+tabulate verdensregion gruppe if gruppe > 0, colpct
+tabulate utdanningsnivå gruppe if innflytter == 1 & alder_inn >= 16, colpct
+tabulate arbmark gruppe if gruppe > 0, colpct
+tabulate fra_fylke gruppe if innflytter == 1, colpct
+
+textblock
+## 8.2 Innflyttere og utflyttere (personer), totalt og for innvandrere
+Netto innenlands flytting = antall innflyttere - antall utflyttere.
+endblock
+tabulate innvandrer if innflytter == 1
+tabulate innvandrer if utflytter == 1

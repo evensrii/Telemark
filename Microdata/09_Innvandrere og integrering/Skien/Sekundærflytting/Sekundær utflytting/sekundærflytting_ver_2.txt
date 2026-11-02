@@ -1,0 +1,360 @@
+textblock
+# Sekundærflytting av flyktninger til Skien
+
+Kartlegger flyktninger som har flyttet til Skien fra en annen norsk kommune, og om Skien
+er deres **andre bosettingskommune** (sekundærbosetting).
+
+**Populasjon:** innvandrere (INVKAT = B) med innvandringsgrunn Flukt (FLU) og første
+oppholdsdato i Norge 1.1.1992 eller senere (slik at hele bostedshistorikken er dekket).
+
+**Kilde for bosted:** BOSATTEFDT_BOSTED (bostedskommune i forløp med eksakte datoer, 1992-2024).
+
+**Mottaksregel:** Mange registreres først i kommunen der asylmottaket ligger, og bosettes
+av IMDi i en annen kommune kort tid etter. Er første bostedsperiode kortere enn
+mottak_mnd måneder og personen har en neste periode, regnes første periode som mottak
+og neste kommune som **bosettingskommunen**. Følsomhet vises for 3, 6 og 12 måneder.
+
+**Kategorier for første flytting til Skien i perioden:**
+1. *Første bosetting:* Skien er bosettingskommunen (kom fra mottakskommune). Ikke sekundærflytting.
+2. *Skien som kommune nr. 2:* én bosettingskommune før Skien. Hovedtallet.
+3. *Skien som kommune nr. 3 eller senere*
+4. *Tilbakeflytter:* har vært bosatt i Skien tidligere (etter bosetting).
+
+Personvern: microdata.no legger støy på og skjuler små celler. Bruk grove inndelinger.
+endblock
+
+
+// ============================================================================
+// 0. PARAMETRE: endre her
+// ============================================================================
+
+require no.ssb.fdb:58 as db
+
+// Forløpsdata (BOSATTEFDT_BOSTED dekker 1991-12-31 til 2024-12-31)
+let forlop_fra = date_fmt(1992, 1, 1)
+let forlop_til = date_fmt(2024, 12, 31)
+
+// Flyttinger til Skien som telles (kalenderår, maks 2024)
+let flytt_fra = 2015
+let flytt_til = 2024
+
+// Mottaksregel: første periode kortere enn dette (måneder) regnes som mottak.
+// Må være 3, 6 eller 12 (de tre verdiene som beregnes i følsomhetsanalysen).
+let mottak_mnd = 6
+
+// Skien (2024-kode, etter omkoding)
+let skien = 4003
+
+// Fraflyttingskommuner med færre personer enn dette slås sammen til "Øvrige kommuner"
+let min_kommune = 10
+
+
+// ============================================================================
+// 1. PERSONER: flyktninger med første opphold fra 1992
+// ============================================================================
+create-dataset flykt
+import db/BEFOLKNING_INVKAT as invkat
+import db/BEFOLKNING_INNGRUNN1 as inngrunn
+import db/BEFOLKNING_FORSTDATO as forstdato
+keep if invkat == 'B' & inngrunn == 'FLU' & forstdato >= 19920101
+
+// FORSTDATO (ÅÅÅÅMMDD) -> dager siden 1970-01-01 (samme skala som START@/STOP@ i forløpet).
+// date() godtar ikke variabler som argument, så datoen regnes om tilnærmet (avvik maks et par dager).
+generate forst_aar = int(forstdato / 10000)
+generate forst_mnd = int(forstdato / 100) - forst_aar * 100
+generate forst_dag = forstdato - int(forstdato / 100) * 100
+keep if forst_aar <= 2025
+generate forst_dato = int((forst_aar - 1970) * 365.25 + (forst_mnd - 1) * 30.4375 + forst_dag - 1)
+
+
+// ============================================================================
+// 2. FORLØP: bostedsperioder, kunstige perioder fjernes, periodene nummereres
+// ============================================================================
+// I et forløpsdatasett virker ikke merge, summarize eller tabulate. Alt regnes ut med
+// generate/aggregate, gjøres om til én rad per person med collapse, og kobles til flykt.
+
+create-dataset forlop
+import-event db/BOSATTEFDT_BOSTED $forlop_fra to $forlop_til as bosted
+
+// ---- Omkod kommunenumre til 2024-inndelingen ---------------------------------
+// Gjøres her, på hele landets forløp (21 mill. perioder), fordi avsløringskontrollen stopper
+// omkodinger som rammer for få enheter (f.eks. i et datasett med bare flyktninger).
+// Generert fra KLASS (kommuneendringer 1992-2024). Delte kommuner: Stokke (0720) -> Sandefjord,
+// Tysfjord (1850) -> Narvik, Snillfjord (5012) -> Orkland, gamle Haram (1534) -> Haram,
+// Ålesund 2020-2023 (1507) -> Ålesund (også den delen som ble Haram i 2024).
+// Noen koder inneholder bokstaver (uoppgitt/ukjent kommune). force gjør dem til manglende verdi.
+// Periodene beholdes (de teller som perioder), men kommunen er ukjent.
+destring bosted, force
+recode bosted \
+        (1141 1142 = 1103) (1102 1129 = 1108) (1154 1159 1214 = 1160) \
+        (1503 1556 = 1505) (1502 1543 1545 = 1506) (1504 1507 1523 1529 1546 = 1508) (1569 1572 = 1576) (1444 1519 = 1577) (1524 1526 = 1578) (1548 1551 = 1579) (1534 = 1580) \
+        (1842 = 1804) (1805 1850 1854 = 1806) (1849 = 1875) \
+        (101 3001 = 3101) (104 136 3002 = 3103) (105 3003 = 3105) (103 106 113 131 133 134 3004 = 3107) (111 3011 = 3110) (135 3017 = 3112) (137 3018 = 3114) (127 3015 = 3116) (122 123 124 125 138 3014 = 3118) (128 3016 = 3120) (119 3013 = 3122) (118 3012 = 3124) \
+        (219 3024 = 3201) (220 627 628 3025 = 3203) (226 227 231 3030 = 3205) (213 217 3020 = 3207) (235 3033 = 3209) (216 3023 = 3212) (215 3022 = 3214) (211 3019 = 3216) (214 3021 = 3218) (229 3028 = 3220) (230 3029 = 3222) (228 3027 = 3224) (121 221 3026 = 3226) (236 3034 = 3228) (234 3032 = 3230) (233 3031 = 3232) (533 3054 = 3234) (532 3053 = 3236) (238 3036 = 3238) (237 3035 = 3240) (239 3037 = 3242) \
+        (602 625 711 3005 = 3301) (604 3006 = 3303) (605 3007 = 3305) (612 3038 = 3310) (626 3049 = 3312) (624 3048 = 3314) (623 3047 = 3316) (622 3046 = 3318) (615 3039 = 3320) (616 3040 = 3322) (617 3041 = 3324) (618 3042 = 3326) (619 3043 = 3328) (620 3044 = 3330) (621 3045 = 3332) (631 3050 = 3334) (632 3051 = 3336) (633 3052 = 3338) \
+        (402 = 3401) (403 = 3403) (501 = 3405) (502 = 3407) (412 = 3411) (415 = 3412) (417 = 3413) (418 = 3414) (419 = 3415) (420 = 3416) (423 = 3417) (425 = 3418) (426 = 3419) (427 = 3420) (428 = 3421) (429 = 3422) (430 = 3423) (432 = 3424) (434 = 3425) (436 = 3426) (437 = 3427) (438 = 3428) (439 = 3429) (441 = 3430) (511 = 3431) (512 = 3432) (513 = 3433) (514 = 3434) (515 = 3435) (516 = 3436) (517 = 3437) (519 = 3438) (520 = 3439) (521 = 3440) (522 = 3441) (528 = 3442) (529 = 3443) (534 = 3446) (536 = 3447) (538 = 3448) (540 = 3449) (541 = 3450) (542 = 3451) (543 = 3452) (544 = 3453) (545 = 3454) \
+        (701 3801 = 3901) (702 713 714 715 3802 = 3903) (704 716 718 3803 = 3905) (706 710 719 720 3804 = 3907) (709 712 728 3805 = 3909) (722 723 729 3811 = 3911) \
+        (805 3806 = 4001) (806 3807 = 4003) (807 3808 = 4005) (811 3812 = 4010) (814 3813 = 4012) (815 3814 = 4014) (817 3815 = 4016) (819 3816 = 4018) (821 822 3817 = 4020) (828 3820 = 4022) (827 3819 = 4024) (826 3818 = 4026) (829 3821 = 4028) (830 3822 = 4030) (831 3823 = 4032) (833 3824 = 4034) (834 3825 = 4036) \
+        (901 = 4201) (904 = 4202) (906 = 4203) (1001 1017 1018 = 4204) (1002 1021 1029 = 4205) (1003 = 4206) (1004 = 4207) (911 = 4211) (912 = 4212) (914 = 4213) (919 = 4214) (926 = 4215) (928 = 4216) (929 = 4217) (935 = 4218) (937 = 4219) (938 = 4220) (940 = 4221) (941 = 4222) (1014 = 4223) (1026 = 4224) (1027 1032 = 4225) (1034 = 4226) (1037 = 4227) (1046 = 4228) \
+        (1201 = 4601) (1401 1439 = 4602) (1211 = 4611) (1216 = 4612) (1219 = 4613) (1221 = 4614) (1222 = 4615) (1223 = 4616) (1224 = 4617) (1227 1228 1231 = 4618) (1232 = 4619) (1233 = 4620) (1234 1235 = 4621) (1238 = 4622) (1242 = 4623) (1241 1243 = 4624) (1244 = 4625) (1245 1246 1259 = 4626) (1247 = 4627) (1251 = 4628) (1252 = 4629) (1253 = 4630) (1256 1260 1263 = 4631) (1264 = 4632) (1265 = 4633) (1266 = 4634) (1411 = 4635) (1412 = 4636) (1413 = 4637) (1416 = 4638) (1417 = 4639) (1418 1419 1420 = 4640) (1421 = 4641) (1422 = 4642) (1424 = 4643) (1426 = 4644) (1428 = 4645) (1429 = 4646) (1430 1431 1432 1433 = 4647) (1438 = 4648) (1441 1443 = 4649) (1445 = 4650) (1449 = 4651) \
+        (1601 1662 5030 = 5001) (1702 1724 5004 5039 = 5006) (1703 1725 1748 5005 5040 5048 = 5007) (1620 = 5014) (1633 = 5020) (1634 = 5021) (1635 = 5022) (1640 = 5025) (1644 = 5026) (1648 = 5027) (1653 = 5028) (1657 = 5029) (1663 = 5031) (1664 = 5032) (1665 = 5033) (1711 = 5034) (1714 = 5035) (1717 = 5036) (1719 = 5037) (1721 = 5038) (1736 = 5041) (1738 = 5042) (1739 = 5043) (1740 = 5044) (1742 = 5045) (1743 = 5046) (1744 = 5047) (1749 = 5049) (1755 = 5052) (1723 1729 1756 = 5053) (1624 1718 = 5054) (1571 1612 5011 = 5055) (1617 5013 = 5056) (1621 1627 5015 5017 = 5057) (1630 1632 5018 5019 = 5058) (1613 1622 1636 1638 5012 5016 5023 5024 = 5059) (1750 1751 5050 5051 = 5060) (1567 = 5061) \
+        (1902 5401 = 5501) (1901 1903 1915 5402 = 5503) (1911 5411 = 5510) (1852 1913 5412 = 5512) (1917 5413 = 5514) (1919 5414 = 5516) (1920 5415 = 5518) (1922 5416 = 5520) (1923 5417 = 5522) (1924 5418 = 5524) (1925 5419 = 5526) (1926 5420 = 5528) (1927 1928 1929 1931 5421 = 5530) (1933 5422 = 5532) (1936 5423 = 5534) (1938 5424 = 5536) (1939 5425 = 5538) (1940 5426 = 5540) (1941 5427 = 5542) (1942 5428 = 5544) (1943 5429 = 5546) \
+        (2012 5403 = 5601) (2004 2017 5406 = 5603) (2030 5444 = 5605) (2003 5405 = 5607) (2021 5437 = 5610) (2011 5430 = 5612) (2014 5432 = 5614) (2015 5433 = 5616) (2018 5434 = 5618) (2019 5435 = 5620) (2020 5436 = 5622) (2022 5438 = 5624) (2023 5439 = 5626) (2025 5441 = 5628) (2024 5440 = 5630) (2028 5443 = 5632) (2002 5404 = 5634) (2027 5442 = 5636)
+
+// Behold bare personer som har bodd i Skien minst én gang (alle kodene Skien har hatt)
+generate i_skien = bosted == $skien
+aggregate (max) i_skien -> noen_gang_skien, by(PERSONID_1)
+keep if noen_gang_skien == 1
+
+// ---- 2a. Kunstige perioder ved kodeendring ----------------------------------
+// Når kommunenummeret endres (kommunereform), starter en ny periode 1.1. selv om personen
+// ikke har flyttet (testen viste dette for ~alle bosatte i Skien 1.1.2020 og 1.1.2024).
+// Regel: En periode som starter 1.1. i et år med kodeendringer, og der personen hadde en
+// periode som sluttet dagen før (eller samme dag), regnes som fortsettelse og fjernes.
+// Årene er alle år med kodeendringer i KLASS (klassifikasjon 131) siden 1992.
+generate kunstig = 0
+for r in 1994 2002 2005 2006 2008 2012 2013 2017 2018 2019 2020 2024
+    let e = slutt_for_ ++ $r
+    let h = har_slutt_for_ ++ $r
+    generate $e = STOP@bosted >= date($r, 1, 1) - 1 & STOP@bosted <= date($r, 1, 1)
+    aggregate (max) $e -> $h, by(PERSONID_1)
+    replace kunstig = 1 if START@bosted == date($r, 1, 1) & $h == 1
+end
+aggregate (sum) kunstig -> n_kunstige, by(PERSONID_1)
+keep if kunstig == 0
+
+// ---- 2b. Nummerer de gjenværende (ekte) periodene etter startdato -----------
+// Microdata har ingen sorteringskommando. Periode nr. k finnes som den tidligste
+// startdatoen blant periodene som ennå ikke har fått nummer.
+// Maks 8 perioder per person (må stemme med collapse under). Personer med flere flagges.
+generate nr = 0
+for k in 1 : 8
+    let sk = start_ ++ $k
+    let c = kandidat_ ++ $k
+    generate $c = START@bosted if nr == 0
+    aggregate (min) $c -> $sk, by(PERSONID_1)
+    replace nr = $k if nr == 0 & START@bosted == $sk
+end
+generate over_maks = nr == 0
+
+// Kommunenummer per periode (2024-inndeling, numerisk)
+for k in 1 : 8
+    let kk = kom_ ++ $k
+    generate $kk = bosted if nr == $k
+end
+
+// ---- 2c. Første flytting til Skien i perioden, og tidligere Skien-opphold ----
+// Beregnes her (og ikke i persondatasettet) fordi avsløringskontrollen stopper replace-
+// operasjoner som rammer få personer (f.eks. de få med Skien som periode nr. 6).
+// skien_idx: nummeret på perioden da personen første gang flyttet til Skien i perioden
+// flytt_fra-flytt_til (periode nr. 2 eller senere; periode 1 er første registrering, ikke flytting).
+generate skien_kand = nr if i_skien == 1 & nr >= 2 & year(START@bosted) >= $flytt_fra & year(START@bosted) <= $flytt_til
+aggregate (min) skien_kand -> skien_idx, by(PERSONID_1)
+generate flyttedato_p = START@bosted if nr == skien_idx
+generate fra_kommune_p = bosted if nr == skien_idx - 1
+// Tidligere Skien-perioder før flyttingen: fra og med periode 1 (tidl1) eller periode 2 (tidl2)
+generate tidl1_p = i_skien == 1 & nr >= 1 & nr < skien_idx
+generate tidl2_p = i_skien == 1 & nr >= 2 & nr < skien_idx
+
+// ---- 2d. Én rad per person og kobling til flyktningene ----------------------
+collapse (max) start_1 (max) start_2 (max) start_3 (max) start_4 (max) start_5 (max) start_6 (max) start_7 (max) start_8 (max) kom_1 (max) kom_2 (max) kom_3 (max) kom_4 (max) kom_5 (max) kom_6 (max) kom_7 (max) kom_8 (max) over_maks (max) nr -> n_perioder (max) n_kunstige (max) skien_idx (max) flyttedato_p -> flyttedato (max) fra_kommune_p -> fra_kommune (max) tidl1_p -> tidl_skien_fra1 (max) tidl2_p -> tidl_skien_fra2, by(PERSONID_1)
+merge start_1 start_2 start_3 start_4 start_5 start_6 start_7 start_8 kom_1 kom_2 kom_3 kom_4 kom_5 kom_6 kom_7 kom_8 over_maks n_perioder n_kunstige skien_idx flyttedato fra_kommune tidl_skien_fra1 tidl_skien_fra2 into flykt
+
+
+// ============================================================================
+// 3. PERSONDATA: flyktninger som har bodd i Skien
+// ============================================================================
+use flykt
+keep if !sysmiss(start_1)
+
+
+define-labels kommunelbl \
+    301 'Oslo' \
+    1101 'Eigersund' 1103 'Stavanger' 1106 'Haugesund' 1108 'Sandnes' 1111 'Sokndal' 1112 'Lund' 1114 'Bjerkreim' 1119 'Hå' 1120 'Klepp' 1121 'Time' 1122 'Gjesdal' 1124 'Sola' 1127 'Randaberg' 1130 'Strand' 1133 'Hjelmeland' 1134 'Suldal' 1135 'Sauda' 1144 'Kvitsøy' 1145 'Bokn' 1146 'Tysvær' 1149 'Karmøy' 1151 'Utsira' 1160 'Vindafjord' \
+    1505 'Kristiansund' 1506 'Molde' 1508 'Ålesund' 1511 'Vanylven' 1514 'Sande' 1515 'Herøy (Møre og Romsdal)' 1516 'Ulstein' 1517 'Hareid' 1520 'Ørsta' 1525 'Stranda' 1528 'Sykkylven' 1531 'Sula' 1532 'Giske' 1535 'Vestnes' 1539 'Rauma' 1547 'Aukra' 1554 'Averøy' 1557 'Gjemnes' 1560 'Tingvoll' 1563 'Sunndal' 1566 'Surnadal' 1573 'Smøla' 1576 'Aure' 1577 'Volda' 1578 'Fjord' 1579 'Hustadvika' 1580 'Haram' \
+    1804 'Bodø' 1806 'Narvik' 1811 'Bindal' 1812 'Sømna' 1813 'Brønnøy' 1815 'Vega' 1816 'Vevelstad' 1818 'Herøy (Nordland)' 1820 'Alstahaug' 1822 'Leirfjord' 1824 'Vefsn' 1825 'Grane' 1826 'Aarborte' 1827 'Dønna' 1828 'Nesna' 1832 'Hemnes' 1833 'Rana' 1834 'Lurøy' 1835 'Træna' 1836 'Rødøy' 1837 'Meløy' 1838 'Gildeskål' 1839 'Beiarn' 1840 'Saltdal' 1841 'Fauske' 1845 'Sørfold' 1848 'Steigen' 1851 'Lødingen' 1853 'Evenes' 1856 'Røst' 1857 'Værøy' 1859 'Flakstad' 1860 'Vestvågøy' 1865 'Vågan' 1866 'Hadsel' 1867 'Bø' 1868 'Øksnes' 1870 'Sortland' 1871 'Andøy' 1874 'Moskenes' 1875 'Hábmer' \
+    3101 'Halden' 3103 'Moss' 3105 'Sarpsborg' 3107 'Fredrikstad' 3110 'Hvaler' 3112 'Råde' 3114 'Våler (Østfold)' 3116 'Skiptvet' 3118 'Indre Østfold' 3120 'Rakkestad' 3122 'Marker' 3124 'Aremark' \
+    3201 'Bærum' 3203 'Asker' 3205 'Lillestrøm' 3207 'Nordre Follo' 3209 'Ullensaker' 3212 'Nesodden' 3214 'Frogn' 3216 'Vestby' 3218 'Ås' 3220 'Enebakk' 3222 'Lørenskog' 3224 'Rælingen' 3226 'Aurskog-Høland' 3228 'Nes' 3230 'Gjerdrum' 3232 'Nittedal' 3234 'Lunner' 3236 'Jevnaker' 3238 'Nannestad' 3240 'Eidsvoll' 3242 'Hurdal' \
+    3301 'Drammen' 3303 'Kongsberg' 3305 'Ringerike' 3310 'Hole' 3312 'Lier' 3314 'Øvre Eiker' 3316 'Modum' 3318 'Krødsherad' 3320 'Flå' 3322 'Nesbyen' 3324 'Gol' 3326 'Hemsedal' 3328 'Ål' 3330 'Hol' 3332 'Sigdal' 3334 'Flesberg' 3336 'Rollag' 3338 'Nore og Uvdal' \
+    3401 'Kongsvinger' 3403 'Hamar' 3405 'Lillehammer' 3407 'Gjøvik' 3411 'Ringsaker' 3412 'Løten' 3413 'Stange' 3414 'Nord-Odal' 3415 'Sør-Odal' 3416 'Eidskog' 3417 'Grue' 3418 'Åsnes' 3419 'Våler (Innlandet)' 3420 'Elverum' 3421 'Trysil' 3422 'Åmot' 3423 'Stor-Elvdal' 3424 'Rendalen' 3425 'Engerdal' 3426 'Tolga' 3427 'Tynset' 3428 'Alvdal' 3429 'Folldal' 3430 'Os' 3431 'Dovre' 3432 'Lesja' 3433 'Skjåk' 3434 'Lom' 3435 'Vågå' 3436 'Nord-Fron' 3437 'Sel' 3438 'Sør-Fron' 3439 'Ringebu' 3440 'Øyer' 3441 'Gausdal' 3442 'Østre Toten' 3443 'Vestre Toten' 3446 'Gran' 3447 'Søndre Land' 3448 'Nordre Land' 3449 'Sør-Aurdal' 3450 'Etnedal' 3451 'Nord-Aurdal' 3452 'Vestre Slidre' 3453 'Øystre Slidre' 3454 'Vang' \
+    3901 'Horten' 3903 'Holmestrand' 3905 'Tønsberg' 3907 'Sandefjord' 3909 'Larvik' 3911 'Færder' \
+    4001 'Porsgrunn' 4003 'Skien' 4005 'Notodden' 4010 'Siljan' 4012 'Bamble' 4014 'Kragerø' 4016 'Drangedal' 4018 'Nome' 4020 'Midt-Telemark' 4022 'Seljord' 4024 'Hjartdal' 4026 'Tinn' 4028 'Kviteseid' 4030 'Nissedal' 4032 'Fyresdal' 4034 'Tokke' 4036 'Vinje' \
+    4201 'Risør' 4202 'Grimstad' 4203 'Arendal' 4204 'Kristiansand' 4205 'Lindesnes' 4206 'Farsund' 4207 'Flekkefjord' 4211 'Gjerstad' 4212 'Vegårshei' 4213 'Tvedestrand' 4214 'Froland' 4215 'Lillesand' 4216 'Birkenes' 4217 'Åmli' 4218 'Iveland' 4219 'Evje og Hornnes' 4220 'Bygland' 4221 'Valle' 4222 'Bykle' 4223 'Vennesla' 4224 'Åseral' 4225 'Lyngdal' 4226 'Hægebostad' 4227 'Kvinesdal' 4228 'Sirdal' \
+    4601 'Bergen' 4602 'Kinn' 4611 'Etne' 4612 'Sveio' 4613 'Bømlo' 4614 'Stord' 4615 'Fitjar' 4616 'Tysnes' 4617 'Kvinnherad' 4618 'Ullensvang' 4619 'Eidfjord' 4620 'Ulvik' 4621 'Voss' 4622 'Kvam' 4623 'Samnanger' 4624 'Bjørnafjorden' 4625 'Austevoll' 4626 'Øygarden' 4627 'Askøy' 4628 'Vaksdal' 4629 'Modalen' 4630 'Osterøy' 4631 'Alver' 4632 'Austrheim' 4633 'Fedje' 4634 'Masfjorden' 4635 'Gulen' 4636 'Solund' 4637 'Hyllestad' 4638 'Høyanger' 4639 'Vik' 4640 'Sogndal' 4641 'Aurland' 4642 'Lærdal' 4643 'Årdal' 4644 'Luster' 4645 'Askvoll' 4646 'Fjaler' 4647 'Sunnfjord' 4648 'Bremanger' 4649 'Stad' 4650 'Gloppen' 4651 'Stryn' \
+    5001 'Trondheim' 5006 'Steinkjer' 5007 'Namsos' 5014 'Frøya' 5020 'Osen' 5021 'Oppdal' 5022 'Rennebu' 5025 'Røros' 5026 'Holtålen' 5027 'Midtre Gauldal' 5028 'Melhus' 5029 'Skaun' 5031 'Malvik' 5032 'Selbu' 5033 'Tydal' 5034 'Meråker' 5035 'Stjørdal' 5036 'Frosta' 5037 'Levanger' 5038 'Verdal' 5041 'Snåase' 5042 'Lierne' 5043 'Raarvihke' 5044 'Namsskogan' 5045 'Grong' 5046 'Høylandet' 5047 'Overhalla' 5049 'Flatanger' 5052 'Leka' 5053 'Inderøy' 5054 'Indre Fosen' 5055 'Heim' 5056 'Hitra' 5057 'Ørland' 5058 'Åfjord' 5059 'Orkland' 5060 'Nærøysund' 5061 'Rindal' \
+    5501 'Tromsø' 5503 'Harstad' 5510 'Kvæfjord' 5512 'Dielddanuorri' 5514 'Ibestad' 5516 'Gratangen' 5518 'Loabák' 5520 'Bardu' 5522 'Salangen' 5524 'Målselv' 5526 'Sørreisa' 5528 'Dyrøy' 5530 'Senja' 5532 'Balsfjord' 5534 'Karlsøy' 5536 'Lyngen' 5538 'Storfjord' 5540 'Gáivuotna' 5542 'Skjervøy' 5544 'Nordreisa' 5546 'Kvænangen' \
+    5601 'Alta' 5603 'Hammerfest' 5605 'Sør-Varanger' 5607 'Vadsø' 5610 'Kárášjohka' 5612 'Guovdageaidnu' 5614 'Loppa' 5616 'Hasvik' 5618 'Måsøy' 5620 'Nordkapp' 5622 'Porsanger' 5624 'Lebesby' 5626 'Gamvik' 5628 'Deatnu' 5630 'Berlevåg' 5632 'Båtsfjord' 5634 'Vardø' 5636 'Unjárga' \
+    9998 'Øvrige kommuner' 9999 'Uoppgitt'
+define-labels fylkelbl 3 'Oslo' 11 'Rogaland' 15 'Møre og Romsdal' 18 'Nordland' 21 'Svalbard' 31 'Østfold' 32 'Akershus' 33 'Buskerud' 34 'Innlandet' 39 'Vestfold' 40 'Telemark' 42 'Agder' 46 'Vestland' 50 'Trøndelag' 55 'Troms' 56 'Finnmark' 99 'Uoppgitt'
+
+for k in 1 : 8
+    let v = kom_ ++ $k
+    assign-labels $v kommunelbl
+end
+
+textblock
+## 3.1 Kontroll: perioder per person
+Antall ekte bostedsperioder (etter at kunstige perioder ved kodeendring er fjernet),
+antall kunstige perioder som ble fjernet, og antall personer med flere enn 8 perioder
+(over_maks = 1; deres perioder etter nr. 8 er ikke med).
+endblock
+tabulate n_perioder
+tabulate n_kunstige
+tabulate over_maks
+
+// ---- 3b. Varighet av første periode og mottaksregelen -----------------------
+generate varighet1_mnd = (start_2 - start_1) / 30.44
+generate varighet1_gr = 9
+replace varighet1_gr = 1 if varighet1_mnd < 3
+replace varighet1_gr = 2 if varighet1_mnd >= 3 & varighet1_mnd < 6
+replace varighet1_gr = 3 if varighet1_mnd >= 6 & varighet1_mnd < 12
+replace varighet1_gr = 4 if varighet1_mnd >= 12 & varighet1_mnd < 24
+replace varighet1_gr = 5 if varighet1_mnd >= 24 & !sysmiss(varighet1_mnd)
+define-labels varighetlbl \
+    1 'Under 3 mnd' 2 '3-5 mnd' 3 '6-11 mnd' 4 '12-23 mnd' 5 '24 mnd eller mer' 9 'Bare én periode (aldri flyttet)'
+assign-labels varighet1_gr varighetlbl
+
+generate kom1_skien = kom_1 == $skien
+
+textblock
+## 3.2 Varighet av første bostedsperiode (etter fjerning av kunstige perioder)
+En tydelig klynge av korte første perioder tyder på registrering i mottakskommune før bosetting.
+Andre tabell: første periode i Skien (1) eller i en annen kommune (0).
+endblock
+tabulate varighet1_gr
+tabulate varighet1_gr kom1_skien
+
+
+// ============================================================================
+// 4. FLYTTING TIL SKIEN OG KATEGORISERING
+// ============================================================================
+
+// ---- 4a. Skien-flytting (beregnet i forløpet, del 2c) ------------------------
+// skien_idx = 0: ikke flyttet til Skien i perioden.
+// tidl_skien_fra1/2: har bodd i Skien før flyttingen, fra og med periode 1 / periode 2.
+replace skien_idx = 0 if sysmiss(skien_idx)
+
+// ---- 4c. Bosettingskommune og kategori for hver mottaksgrense (3, 6, 12 mnd) -
+// Beregnes med én generate per variabel (ikke replace), for å unngå at avsløringskontrollen
+// stopper operasjoner som rammer få personer.
+//   bos_idx: 2 hvis periode 1 var kortere enn x måneder (mottak), ellers 1
+//   tidl:    tidligere bosatt i Skien etter bosetting (fra bosettingsperioden)
+//   kategori: 1 = Skien er bosettingskommunen, 2 = Skien rett etter bosettingskommunen,
+//             3 = Skien senere, 4 = som 3 men har bodd i Skien før (tilbakeflytter)
+define-labels katlbl \
+    0 'Ikke flyttet til Skien i perioden' \
+    1 'Første bosetting (fra mottakskommune)' \
+    2 'Skien som kommune nr. 2' \
+    3 'Skien som kommune nr. 3 eller senere' \
+    4 'Tilbakeflytter til Skien'
+
+for x in 3 6 12
+    let b = bos_idx_ ++ $x
+    let t = tidl_ ++ $x
+    let kt = kategori_ ++ $x
+    generate $b = 1 + (!sysmiss(start_2) & varighet1_mnd < $x)
+    generate $t = ($b == 1) * tidl_skien_fra1 + ($b == 2) * tidl_skien_fra2
+    generate $kt = (skien_idx > 0) * ((skien_idx == $b) * 1 + (skien_idx == $b + 1) * 2 + (skien_idx >= $b + 2) * (3 + $t))
+    assign-labels $kt katlbl
+end
+
+// Hovedregel (mottak_mnd)
+let hoved_b = bos_idx_ ++ $mottak_mnd
+let hoved_k = kategori_ ++ $mottak_mnd
+generate bos_idx = $hoved_b
+generate kategori = $hoved_k
+assign-labels kategori katlbl
+
+// ---- 4d. Flyttedato, fraflyttingskommune, bosettingskommune og botid ---------
+// flyttedato og fra_kommune er beregnet i forløpet (del 2c)
+generate flytteaar = year(flyttedato) if skien_idx > 0
+generate fra_fylke = int(fra_kommune / 100)
+assign-labels fra_kommune kommunelbl
+assign-labels fra_fylke fylkelbl
+
+generate bos_kommune = kom_1
+replace bos_kommune = kom_2 if bos_idx == 2
+generate bos_dato = start_1
+replace bos_dato = start_2 if bos_idx == 2
+generate bos_aar = year(bos_dato)
+generate bos_fylke = int(bos_kommune / 100)
+assign-labels bos_kommune kommunelbl
+assign-labels bos_fylke fylkelbl
+
+// Botid i Norge (fra FORSTDATO) og i bosettingskommunen/etter bosetting, ved flytting til Skien
+generate botid_norge = (flyttedato - forst_dato) / 365.25 if skien_idx > 0
+generate botid_bos = (flyttedato - bos_dato) / 365.25 if skien_idx > 0 & kategori >= 2
+// Grupper med formel (ikke recode/replace, som kan stoppes av avsløringskontrollen)
+generate botid_norge_gr = 1 + (botid_norge >= 2) + (botid_norge >= 5) + (botid_norge >= 10) if !sysmiss(botid_norge)
+generate botid_bos_gr = 1 + (botid_bos >= 2) + (botid_bos >= 5) + (botid_bos >= 10) if !sysmiss(botid_bos)
+define-labels botidlbl 1 'Under 2 år' 2 '2 til under 5 år' 3 '5 til under 10 år' 4 '10 år eller mer'
+assign-labels botid_norge_gr botidlbl
+assign-labels botid_bos_gr botidlbl
+
+// Innenfor tilskuddsperioden (5 år) og regjeringens forslag (10 år), regnet fra bosetting
+generate innen_5_aar = botid_bos < 5 if !sysmiss(botid_bos)
+generate innen_10_aar = botid_bos < 10 if !sysmiss(botid_bos)
+
+// Fraflyttingskommuner med få personer slås sammen (avsløringskontroll)
+generate en_flytter = skien_idx > 0
+aggregate (sum) en_flytter -> n_fra_kommune, by(fra_kommune)
+generate fra_kommune_gr = fra_kommune
+replace fra_kommune_gr = 9998 if n_fra_kommune < $min_kommune
+assign-labels fra_kommune_gr kommunelbl
+
+
+// ============================================================================
+// 5. RESULTATER
+// ============================================================================
+
+textblock
+## 5.1 Hvor mange flyktninger har flyttet til Skien, og er Skien kommune nr. 2?
+Første flytting til Skien i perioden flytt_fra-flytt_til, med hovedregelen for mottak (mottak_mnd).
+endblock
+tabulate kategori if skien_idx > 0, cellpct freq
+tabulate flytteaar kategori if skien_idx > 0
+
+textblock
+## 5.2 Skien som kommune nr. 2: hvor kom de fra?
+endblock
+tabulate fra_fylke if kategori == 2, rowsort()
+tabulate fra_kommune_gr if kategori == 2, rowsort()
+tabulate fra_kommune_gr if kategori == 2 & fra_fylke == 40, rowsort()
+
+textblock
+## 5.3 Skien som kommune nr. 2: botid
+Botid i Norge regnes fra første oppholdsdato. Botid etter bosetting regnes fra start i
+bosettingskommunen. Andel som flyttet innen 5 år (tilskuddsperioden) og innen 10 år.
+endblock
+tabulate botid_norge_gr if kategori == 2, cellpct freq
+tabulate botid_bos_gr if kategori == 2, cellpct freq
+summarize botid_norge botid_bos if kategori == 2
+tabulate innen_5_aar if kategori == 2, cellpct freq
+tabulate innen_10_aar if kategori == 2, cellpct freq
+tabulate flytteaar botid_bos_gr if kategori == 2
+
+textblock
+## 5.4 Botid i Norge etter kategori (alle som flyttet til Skien)
+endblock
+tabulate botid_norge_gr kategori if skien_idx > 0, colpct
+tabulate fra_fylke kategori if skien_idx > 0, colpct
+
+
+// ============================================================================
+// 6. FØLSOMHET OG VALIDERING
+// ============================================================================
+
+textblock
+## 6.1 Følsomhet: kategorier med mottaksgrense 3, 6 og 12 måneder
+endblock
+tabulate kategori_3 if skien_idx > 0
+tabulate kategori_6 if skien_idx > 0
+tabulate kategori_12 if skien_idx > 0
+
+textblock
+## 6.2 Validering: første bosetting i Skien per år
+Flyktninger med Skien som bosettingskommune, etter år for bosetting (bos_idx 1 = første
+periode, 2 = etter mottaksperiode). Sammenlign med IMDis tall for bosatte flyktninger i Skien.
+NB: IMDis tall inkluderer også familiegjenforente; her er bare innvandringsgrunn Flukt med.
+endblock
+tabulate bos_aar bos_idx if bos_kommune == $skien & bos_aar >= 2010

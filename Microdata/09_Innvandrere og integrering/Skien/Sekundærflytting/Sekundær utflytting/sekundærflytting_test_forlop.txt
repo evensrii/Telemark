@@ -1,0 +1,200 @@
+textblock
+# Test: forløpsdata for bostedskommune (BOSATTEFDT_BOSTED)
+
+Formål: forstå hvordan forløpsvariabelen ser ut før hovedscriptet for sekundærflytting
+til Skien skrives. Scriptet svarer på:
+
+1. Hvilke variabler får datasettet (navn på start-/sluttdato)?
+2. Hvor mange bostedsperioder har hver flyktning?
+3. Er kommunekodene historiske (0806 -> 3807 -> 4003 for Skien)? Starter det nye
+   perioder 1.1.2020 / 1.1.2024 bare fordi koden endres?
+4. Hvor lang er første bostedsperiode (mottaksproblematikken)?
+5. Hvor lang tid er det fra første oppholdsdato (FORSTDATO) til første periode starter?
+6. Har pågående perioder sluttdato, eller mangler den?
+7. Stemmer omregningen av FORSTDATO til dager med START@/STOP@ i forløpet?
+
+Populasjon: innvandrere (INVKAT = B) med innvandringsgrunn Flukt (FLU) og første
+oppholdsdato 1.1.1992 eller senere, som har bodd i Skien på et tidspunkt.
+endblock
+
+require no.ssb.fdb:58 as db
+
+// Periode for forløpsdata (variabelen dekker 1991-12-31 til 2024-12-31)
+let forlop_fra = date_fmt(1992, 1, 1)
+let forlop_til = date_fmt(2024, 12, 31)
+
+
+// ============================================================================
+// 1. PERSONER: flyktninger med første opphold fra 1992
+// ============================================================================
+create-dataset flykt
+import db/BEFOLKNING_INVKAT as invkat
+import db/BEFOLKNING_INNGRUNN1 as inngrunn
+import db/BEFOLKNING_FORSTDATO as forstdato
+keep if invkat == 'B' & inngrunn == 'FLU' & forstdato >= 19920101
+
+// FORSTDATO (ÅÅÅÅMMDD) -> dager siden 1970-01-01 (samme skala som START@/STOP@ i forløpet).
+// date() godtar ikke variabler som argument, så datoen regnes om tilnærmet
+// (gjennomsnittlig år/måned-lengde). Avvik på maks et par dager.
+generate forst_aar = int(forstdato / 10000)
+generate forst_mnd = int(forstdato / 100) - forst_aar * 100
+generate forst_dag = forstdato - int(forstdato / 100) * 100
+keep if forst_aar <= 2025
+generate forst_dato = int((forst_aar - 1970) * 365.25 + (forst_mnd - 1) * 30.4375 + forst_dag - 1)
+generate flyktning = 1
+
+textblock
+## 1. Flyktninger etter år for første opphold (kontroll)
+endblock
+tabulate forst_aar
+summarize forst_dato
+
+
+// ============================================================================
+// 2. FORLØP: alle bostedsperioder 1992-2024
+// ============================================================================
+// NB: I et forløpsdatasett virker verken merge, summarize eller tabulate.
+//   a) Regn ut det vi trenger som flagg per periode og per person (generate/aggregate).
+//   b) Gjør det om til én rad per person (collapse). Da virker tabeller igjen.
+//   c) Koble personresultatene over til flyktningdatasettet (merge ... into flykt).
+// Tabellene i del 3 gjelder alle som har bodd i Skien, ikke bare flyktninger.
+// Det holder for å forstå hvordan dataene ser ut.
+
+create-dataset forlop
+import-event db/BOSATTEFDT_BOSTED $forlop_fra to $forlop_til as bosted
+
+// Behold bare personer som har bodd i Skien minst én gang (alle kodene Skien har hatt)
+generate i_skien = inlist(bosted, '0806', '3807', '4003')
+aggregate (max) i_skien -> noen_gang_skien, by(PERSONID_1)
+keep if noen_gang_skien == 1
+
+// ---- Flagg per periode -----------------------------------------------------
+generate en = 1
+generate mangler_stop = sysmiss(STOP@bosted)
+generate start_aar = year(START@bosted)
+generate start_1jan = month(START@bosted) == 1 & day(START@bosted) == 1
+
+// Historiske koder: har personen en Skien-periode med hver kode, og når starter den?
+generate k0806 = bosted == '0806'
+generate k3807 = bosted == '3807'
+generate k4003 = bosted == '4003'
+generate k0806_fra2020 = bosted == '0806' & start_aar >= 2020
+generate k3807_fra2024 = bosted == '3807' & start_aar >= 2024
+
+// Skien-perioder som starter akkurat 1.1.2020 / 1.1.2024 (mulig kunstig periode ved kodeendring)
+generate skien_start_2020 = i_skien == 1 & start_1jan == 1 & start_aar == 2020
+generate skien_start_2024 = i_skien == 1 & start_1jan == 1 & start_aar == 2024
+
+// ---- Første periode per person -------------------------------------------
+aggregate (min) START@bosted -> forste_start_p, by(PERSONID_1)
+generate forste_periode = START@bosted == forste_start_p
+generate forste_stop = STOP@bosted if forste_periode == 1
+generate forste_i_skien = i_skien if forste_periode == 1
+generate forste_pagaende = mangler_stop if forste_periode == 1
+
+// ---- Én rad per person -----------------------------------------------------
+collapse (sum) en -> n_perioder (sum) i_skien -> n_perioder_skien (sum) mangler_stop -> n_mangler_stop (max) k0806 -> har_0806 (max) k3807 -> har_3807 (max) k4003 -> har_4003 (max) k0806_fra2020 -> har_0806_fra2020 (max) k3807_fra2024 -> har_3807_fra2024 (max) skien_start_2020 (max) skien_start_2024 (min) START@bosted -> forste_start (max) forste_stop (max) forste_i_skien (max) forste_pagaende, by(PERSONID_1)
+generate i_forlop_skien = 1
+
+
+// ============================================================================
+// 3. DATASTRUKTUR (alle som har bodd i Skien, én rad per person)
+// ============================================================================
+textblock
+## 3.1 Datoer
+forste_start er dager siden 1970-01-01 (1992 = ca. 8000, 2024 = ca. 19700).
+Antall perioder uten sluttdato per person (forventet 0 eller 1: den pågående).
+endblock
+summarize forste_start forste_stop
+tabulate n_mangler_stop
+
+textblock
+## 3.2 Historiske koder for Skien
+Har personer 0806-perioder som starter i 2020 eller senere, eller 3807-perioder som starter
+i 2024 eller senere, er kodene IKKE rent historiske. Finnes alle tre kodene, er de historiske.
+endblock
+tabulate har_0806
+tabulate har_3807
+tabulate har_4003
+tabulate har_0806_fra2020
+tabulate har_3807_fra2024
+
+textblock
+## 3.3 Kunstige perioder ved kodeendring
+Andel personer med en Skien-periode som starter akkurat 1.1.2020 / 1.1.2024. Er dette mange
+(sammenlignet med antall bosatte i Skien da), lager kodeendringen en ny periode.
+endblock
+tabulate skien_start_2020
+tabulate skien_start_2024
+
+textblock
+## 3.4 Antall perioder per person (alle som har bodd i Skien)
+endblock
+tabulate n_perioder
+
+// Koble til flyktningdatasettet (enhet = person)
+merge n_perioder n_perioder_skien forste_start forste_stop forste_i_skien forste_pagaende i_forlop_skien into flykt
+
+
+// ============================================================================
+// 5. FLYKTNINGER SOM HAR BODD I SKIEN
+// ============================================================================
+use flykt
+keep if i_forlop_skien == 1
+
+textblock
+## 5.1 Antall bostedsperioder per flyktning (alle kommuner, og i Skien)
+Mange med flere Skien-perioder kan bety at nye perioder starter ved adresseendring
+i samme kommune eller ved kodeendringer (kommunereform), ikke bare ved tilbakeflytting.
+endblock
+tabulate n_perioder
+tabulate n_perioder_skien
+
+// Varighet av første periode i måneder (gjennomsnittlig månedslengde 30.44 dager)
+generate varighet_mnd = (forste_stop - forste_start) / 30.44
+generate varighet_gr = 0
+replace varighet_gr = 1 if varighet_mnd < 3
+replace varighet_gr = 2 if varighet_mnd >= 3 & varighet_mnd < 6
+replace varighet_gr = 3 if varighet_mnd >= 6 & varighet_mnd < 12
+replace varighet_gr = 4 if varighet_mnd >= 12 & varighet_mnd < 24
+replace varighet_gr = 5 if varighet_mnd >= 24
+replace varighet_gr = 9 if forste_pagaende == 1
+define-labels varighetlbl \
+    1 'Under 3 mnd' 2 '3-5 mnd' 3 '6-11 mnd' 4 '12-23 mnd' 5 '24 mnd eller mer' 9 'Pågående (ingen sluttdato)'
+assign-labels varighet_gr varighetlbl
+
+textblock
+## 5.2 Varighet av første bostedsperiode
+En klynge med korte første perioder (under 6-12 mnd) tyder på registrering i mottakskommune
+før bosetting. Det er dette mottaksregelen skal fange.
+endblock
+tabulate varighet_gr
+summarize varighet_mnd
+
+textblock
+## 5.3 Varighet av første periode når den var i Skien (1) vs. annen kommune (0)
+endblock
+tabulate varighet_gr forste_i_skien
+
+
+// ============================================================================
+// 6. TID FRA FØRSTE OPPHOLDSDATO TIL FØRSTE BOSTEDSPERIODE
+// ============================================================================
+// NB: forlop_fra = 1992 betyr at første periode for tidlige ankomster kan være kuttet.
+generate dager_forst_til_bosted = forste_start - forst_dato
+generate forst_gr = 0
+replace forst_gr = 1 if dager_forst_til_bosted < 0
+replace forst_gr = 2 if dager_forst_til_bosted >= 0 & dager_forst_til_bosted <= 31
+replace forst_gr = 3 if dager_forst_til_bosted > 31 & dager_forst_til_bosted <= 183
+replace forst_gr = 4 if dager_forst_til_bosted > 183 & dager_forst_til_bosted <= 365
+replace forst_gr = 5 if dager_forst_til_bosted > 365
+define-labels forstlbl \
+    1 'Første periode starter før FORSTDATO' 2 '0-1 mnd etter' 3 '1-6 mnd etter' 4 '6-12 mnd etter' 5 'Over 1 år etter'
+assign-labels forst_gr forstlbl
+
+textblock
+## 6. Tid fra første oppholdsdato (FORSTDATO) til første bostedsperiode starter
+Starter de fleste perioder like etter FORSTDATO, er forløpet komplett fra ankomst.
+endblock
+tabulate forst_gr
+tabulate forst_gr forst_aar
