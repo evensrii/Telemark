@@ -489,6 +489,8 @@ recode botidsgruppe \
 // Husholdningstype per sluttdato (siste tilgjengelige: 1.1.2025)
 import db/BEFOLKNING_REGSTAT_HUSHTYP $dato_slutt as hushtype
 generate hushtype_hoved = substr(hushtype, 1, 3)
+define-labels hushlbl '1.1' 'Aleneboende' '1.2' 'Par uten hjemmeboende barn' '1.3' 'Par med små barn (yngste 0-5 år)' '1.4' 'Par med store barn (yngste 6-17 år)' '1.5' 'Mor/far med små barn (yngste 0-5 år)' '1.6' 'Mor/far med store barn (yngste 6-17 år)' '1.7' 'Enfamiliehusholdning med voksne barn (yngste 18+ år)' '2.1' 'Flerfamiliehusholdning uten barn 0-17 år' '2.2' 'Flerfamiliehusholdning med små barn (yngste 0-5 år)' '2.3' 'Flerfamiliehusholdning med store barn (yngste 6-17 år)'
+assign-labels hushtype_hoved hushlbl
 
 // Kommuner med få sekundærbosatte slås sammen til 9998 'Øvrige kommuner' (formel, ikke replace)
 generate en_sek = sekundærbosatt
@@ -578,6 +580,10 @@ generate en_pers = 1
 generate familieinnvandret = 0
 generate fam_flytteaar = 0
 generate fam_fra_utlandet = 0
+generate fam_alle = 0
+generate fam_alle_kat = 0
+generate fam_alle_aar = 0
+generate fam_alle_utl = 0
 
 for aar in $aar1 : $sluttaar
     let forrige = $aar - 1
@@ -611,6 +617,32 @@ for aar in $aar1 : $sluttaar
     replace fam_flytteaar = fam_flytteaar + $forrige * $fa * (familieinnvandret == 0)
     replace fam_fra_utlandet = fam_fra_utlandet + $ny * $fa * (familieinnvandret == 0)
     replace familieinnvandret = familieinnvandret + $fa * (familieinnvandret == 0)
+
+    // 3) Alle familieinnvandrede som kom til Skien i fjor, etter hvem i familien de kom til
+    //    (se 7.2). Ankere er personer i samme familie som bor i Skien 1.1. i år. Familie-
+    //    innvandrede regnes bare som anker hvis de bodde i Skien allerede 1.1. i fjor, slik at
+    //    personen selv og andre som kom samtidig ikke teller.
+    let kom = komfam_ ++ $aar
+    let af = ank_flu_ ++ $aar
+    let ai = ank_inv_ ++ $aar
+    let an = ank_ikkeinv_ ++ $aar
+    let naf = n_ank_flu_ ++ $aar
+    let nai = n_ank_inv_ ++ $aar
+    let nan = n_ank_ikkeinv_ ++ $aar
+    let kat = ankerkat_ ++ $aar
+    generate $kom = innvandrer == 1 & inngrunn == 'FAM' & ($inn == 1 | $ny == 1)
+    generate $af = !sysmiss($v) & $v == $skien & innvandrer == 1 & inngrunn == 'FLU'
+    generate $ai = !sysmiss($v) & $v == $skien & innvandrer == 1 & inngrunn != 'FLU' & (inngrunn != 'FAM' | (!sysmiss($vf) & $vf == $skien))
+    generate $an = !sysmiss($v) & $v == $skien & innvandrer == 0
+    aggregate (sum) $af -> $naf, by($f)
+    aggregate (sum) $ai -> $nai, by($f)
+    aggregate (sum) $an -> $nan, by($f)
+    // Prioritet: sekundærbosatt (gruppe 5) > annen flyktning > annen innvandrer > ikke innvandrer
+    generate $kat = $kom * ($fa + (1 - $fa) * (2 * ($naf >= 1 & $fs <= $maks_famstr) + (1 - ($naf >= 1 & $fs <= $maks_famstr)) * (3 * ($nai >= 1 & $fs <= $maks_famstr) + (1 - ($nai >= 1 & $fs <= $maks_famstr)) * (4 * ($nan >= 1 & $fs <= $maks_famstr) + 5 * (1 - ($nan >= 1 & $fs <= $maks_famstr))))))
+    replace fam_alle_kat = fam_alle_kat + $kat * (fam_alle == 0)
+    replace fam_alle_aar = fam_alle_aar + $forrige * $kom * (fam_alle == 0)
+    replace fam_alle_utl = fam_alle_utl + $ny * $kom * (fam_alle == 0)
+    replace fam_alle = fam_alle + $kom * (fam_alle == 0)
 end
 
 // Alder ved ankomst til Skien (alder_inn finnes bare for innenlands innflyttere)
@@ -650,6 +682,28 @@ textblock
 endblock
 tabulate fra_fylke if familieinnvandret == 1 & fam_fra_utlandet == 0, rowsort()
 
+define-labels ankerlbl \
+    1 'Sekundærbosatt flyktning' \
+    2 'Annen flyktning' \
+    3 'Annen innvandrer' \
+    4 'Ikke innvandrer (norskfødt m.fl.)' \
+    5 'Ingen i familien identifisert'
+assign-labels fam_alle_kat ankerlbl
+assign-labels fam_alle_utl utllbl
+
+textblock
+## 7.2 Alle familieinnvandrede til Skien, etter hvem i familien de kom til
+Alle med innvandringsgrunn Familie som kom til Skien i perioden (innenlands eller direkte
+fra utlandet), etter hvem i samme familie (familienummer) som bodde i Skien da de kom.
+Har familien flere typer personer, gjelder rekkefølgen i tabellen (sekundærbosatt først).
+"Ingen i familien identifisert" betyr at ingen andre i familien bodde i Skien, for eksempel
+fordi personen bor på en annen adresse enn den de kom til, eller er registrert alene.
+Merk: koblingen sier at personene bor sammen, ikke hvem søknaden om familieinnvandring gjaldt.
+endblock
+tabulate fam_alle_kat if fam_alle == 1, cellpct freq
+tabulate fam_alle_kat fam_alle_aar if fam_alle == 1
+tabulate fam_alle_kat fam_alle_utl if fam_alle == 1, colpct
+
 
 // ============================================================================
 // 8. OPPSUMMERING
@@ -676,6 +730,7 @@ tabulate aldersgruppe_inn gruppe if innflytter == 1, colpct
 tabulate verdensregion gruppe if gruppe > 0, colpct
 tabulate utdanningsnivå gruppe if innflytter == 1 & alder_inn >= 16, colpct
 tabulate arbmark gruppe if gruppe > 0, colpct
+tabulate utenfor gruppe if gruppe > 0, colpct
 tabulate fra_fylke gruppe if innflytter == 1, colpct
 
 textblock
@@ -684,3 +739,56 @@ Netto innenlands flytting = antall innflyttere - antall utflyttere.
 endblock
 tabulate innvandrer if innflytter == 1
 tabulate innvandrer if utflytter == 1
+
+
+// ============================================================================
+// 9. SEKUNDÆRBOSATTE OG INTRODUKSJONSPROGRAMMET
+// ============================================================================
+// Introdata (NIR) finnes per 31.12.2022-2025 og omfatter bare personer som deltok i
+// og/eller avsluttet programmet i rapporteringsåret. Personene slås sammen over alle år:
+// i_intro = med i introdata minst ett av årene, forst_bos_kat = første bosettingskommune
+// fra første år personen finnes. Skien har hatt kommunenummer 0806, 3807 og 4003.
+// Ukjente koder (-1, -2, 0000 og 'Ukjent kommune i ...' = xx00) regnes som ukjent.
+generate i_intro = 0
+generate forst_bos_kat = 0
+for aar in 2022 : 2025
+    let d = date_fmt($aar, 12, 31)
+    let k = intro_kat_ ++ $aar
+    let fb = forst_bos_ ++ $aar
+    let fk = forst_bos_kat_ ++ $aar
+    import db/INTRO_KATEGORI_KODE $d as $k
+    import db/INTRO_FORST_BOSETTING_KOMMNR $d as $fb
+    let har = har_intro_ ++ $aar
+    generate $har = !sysmiss($k) | !sysmiss($fb)
+    // Manglende verdier fylles inn, slik at uttrykkene under ikke blir sysmiss
+    replace $fb = 'mangler' if sysmiss($fb)
+    generate $fk = ($fb != 'mangler') * (1 + ($fb != '4003' & $fb != '3807' & $fb != '0806') + ($fb == '-1' | $fb == '-2' | substr($fb, 3, 2) == '00'))
+    replace forst_bos_kat = forst_bos_kat + $fk * (forst_bos_kat == 0)
+    replace i_intro = i_intro + $har * (i_intro == 0)
+end
+define-labels forstboslbl 0 'Ikke i introdata' 1 'Skien' 2 'Annen kommune' 3 'Ukjent kommune'
+assign-labels forst_bos_kat forstboslbl
+define-labels introlbl 0 'Ikke i introdata' 1 'I introdata'
+assign-labels i_intro introlbl
+
+// Avgrenset gruppe: sekundærbosatte med botid under 5 år, 18-55 år ved innflytting,
+// og innflytting i 2022-2024 (introdata starter i 2022)
+generate sek_intro = sekundærbosatt == 1 & botid_inn < 5 & alder_inn >= 18 & alder_inn <= 55 & inn_flytteaar >= 2022
+
+textblock
+## 9.1 Finnes de sekundærbosatte i introdataene?
+Sekundærbosatte med botid under 5 år, 18-55 år ved innflytting og innflytting i 2022-2024.
+endblock
+tabulate sek_intro if sekundærbosatt == 1, cellpct freq
+tabulate i_intro if sek_intro == 1, cellpct freq
+
+textblock
+## 9.2 Er de sekundærbosatte egentlig primærbosatte i Skien?
+Første bosettingskommune (INTRO_FORST_BOSETTING_KOMMNR). Skien betyr at Skien var
+bosettingskommune etter avtale med IMDi, og at innflyttingen trolig var en bosetting fra
+mottak i en annen kommune, ikke en sekundærflytting. Personer som ikke finnes i introdataene
+(særlig de som flyttet før 2022) har ukjent første bosettingskommune.
+endblock
+tabulate forst_bos_kat if sekundærbosatt == 1, cellpct freq
+tabulate forst_bos_kat inn_flytteaar if sekundærbosatt == 1
+tabulate forst_bos_kat if sek_intro == 1, cellpct freq
