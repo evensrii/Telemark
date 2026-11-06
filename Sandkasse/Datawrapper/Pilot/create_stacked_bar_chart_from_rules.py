@@ -13,15 +13,15 @@ from datawrapper_generelt import (
 ## Pilot: create (or update) a live stacked bar chart (horizontal bars) in Datawrapper, formatted according to
 ## Formatering/formatering_generelt.txt and Formatering/formatering_stacked_barchart.txt
 
-CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/09_Innvandrere%20og%20inkludering/Utdanningsniv%C3%A5%20Telemark/h%C3%B8yeste_utdanning_innv.csv"
-CHART_TITLE = "Test av formatering stacked barchart"
+CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Pilot/Dummy%20data/h%C3%B8yeste_utdanning_innv_test_2.csv"
+CHART_TITLE = "Test av formatering stacked barchart 2"
 
 # Set to an existing chart id to update it, or None to create a new chart
-CHART_ID = "3VvpI"
+CHART_ID = "l3OLw"
 
 # Query script that fetches the data (relative to PYTHONPATH), used to find the data source.
 # None if the data has no query script (e.g. dummy data): the source is left empty.
-QUERY_SCRIPT = "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py"
+QUERY_SCRIPT = None
 
 ## Part 1: "Stack percentages" if every row sums to 100 within this tolerance, otherwise "Show totals"
 STACK_PERCENT_MIN, STACK_PERCENT_MAX = 98, 102
@@ -76,7 +76,7 @@ metadata["visualize"] = {
     "negativeColor": {"enabled": False},
     "stack-percentages": stack_percentages,  # "Stack percentages" (not "normalize" as in stacked columns)
     "totals-labels": not stack_percentages,  # "Show totals" (not "totalsLabels" as in stacked columns)
-    "totals-labels-position": "before",
+    "totals-labels-position": "after",  # totals to the right of the bar
     "show-color-key": True,  # legend above the chart
     "show-group-labels": True,
     "label-alignment": "right",
