@@ -14,6 +14,28 @@ Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"met
 ////////////////////////////////////////////////////////////
 
 // Colors
+Ordinary series get colors in this order (the "80 %" shades from the county's color profile).
+The first three are the colors from OO3us; the rest are additional colors, ordered so that
+neighbouring series get clearly different hues.
+
+ 1  Vann      #337580   (OO3us)
+ 2  Nype      #C54564   (OO3us)
+ 3  Korn      #B7AD61   (OO3us)
+ 4  Blåveis   #676B9A
+ 5  Siv       #C99251
+ 6  Gress     #4CAA81
+ 7  Himmel    #33AFCE
+ 8  Plomme    #7B5881
+ 9  Strand    #A18965
+10  Fjord     #439BA3
+11  Bark      #AD8776
+12  Gran      #599168
+13  Hav       #498989
+14  Berg      #8E8D81
+15  Stein     #959595
+
+Hav and Fjord are close to Vann, and Berg and Stein are close to the grey reference lines (Stein #7B7B7A),
+so they are placed last.
 
 
 // Lines and symbols
@@ -26,6 +48,12 @@ Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"met
 
 
 // Text (title, intro, source, notes)
+Data source ("Kilde"): deduced from the query script that fetches the data.
+- SSB: name "SSB", link "https://www.ssb.no/statbank/table/XXXXX" with the SSB table used in the script
+  (e.g. https://www.ssb.no/statbank/table/08113). If the script uses several tables, use the first.
+  If the table number is only known when the script runs, leave the link empty.
+- Other sources: the name of the source (Miljødirektoratet, IMDi, FHI, NAV etc.), link empty.
+- If the script reads its URL from a query file (.txt, as the FHI scripts do), use the URL in that file.
 
 
 // Size and footer
@@ -43,12 +71,23 @@ Value labels (first and last point) are still shown.
 If 3 or more other series (country and county series not counted), put the country and county series in the legend
 instead of giving them series labels. The other series keep their series labels.
 
-Y-axis min: Below lowest value (padding of 10 % of the data range), rounded down to a multiple of 5, never below 0
-            Example: values 44.5-72.0, range 27.5, 44.5 - 2.75 = 41.75, rounded down = 40
-Y-axis max: Above highest value (padding of 10 % of the data range), rounded up to a multiple of 5, never above 100
-            Example: 72.0 + 2.75 = 74.75, rounded up = 75
+Y-axis min: Below lowest value (padding of 10 % of the data range), rounded down to a multiple of the step,
+            never below 0 (unless the data has negative values)
+Y-axis max: Above highest value (padding of 10 % of the data range), rounded up to a multiple of the step,
+            never above 100 for shares ("Andel" in the title)
+Step:       A round number (1, 2 or 5 times 10, 100, 0.1 etc.) close to a fifth of the data range,
+            so the rounding follows the size of the numbers
+Min span:   If the data range is less than 20 % of the largest value, widen it around its middle to that size
+            before applying the rules above, so small changes don't look dramatic
+Example:    values 44.5-72.0, range 27.5, step 5: 44.5 - 2.75 = 41.75 -> 40, 72.0 + 2.75 = 74.75 -> 75
+            values 1200-4000 -> 500-4500, values 0.2-0.8 -> 0.1-0.9, values -3.1 to 4.2 -> -4 to 6
+            values 63.7-65.9 (narrow) -> 56-74
+The range is calculated from the data each time the chart script runs, not when Datawrapper refreshes the data.
 
-Always round values to nearest integer.
+Always round values to nearest integer in the y-axis and value labels. Exception: if all values are below 10,
+use one decimal.
+Tooltips always show one decimal (e.g. value label 66, tooltip 66,2; values below 10: 6,2 in both).
+Never show two decimals.
 
 
 ////////////////////////////////////////////////////////////
@@ -145,7 +184,9 @@ y-grid               "on"       (horizontal grid lines)
 x-grid-format        "YYYY"     (show the x-axis as years)
 y-grid-format        "0%"       (y-axis labels with % sign; "0" = whole numbers without %)
                                 (value labels follow this format too, so "0"/"0%" also rounds them to
-                                 whole numbers; seen in PNG exports. Tooltips not checked)
+                                 whole numbers; seen in PNG exports)
+tooltip-number-format "0.0"     (tooltips, set separately from the y-axis; "0.0%" for shares.
+                                 Found in chart ybCga)
 y-grid-labels        "auto"
 y-grid-label-align   "left"
 y-grid-subdivide     true

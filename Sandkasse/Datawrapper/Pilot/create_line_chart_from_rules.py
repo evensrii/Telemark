@@ -1,4 +1,5 @@
 import os
+import re
 import math
 import pandas as pd
 import requests
@@ -16,13 +17,52 @@ CHART_TITLE = "Andel av en variabel"
 # Set to an existing chart id to update it, or None to create a new chart
 CHART_ID = "loP3F"
 
+# Query script that fetches the data (relative to PYTHONPATH), used to find the data source
+QUERY_SCRIPT = "Queries/09_Innvandrere_og_inkludering/Arbeid_og_inntekt/andel_sysselsatte_etter_bakgrunn.py"
+
 ## Text (Part 2: describe)
-SOURCE_NAME = "SSB"
-SOURCE_URL = "https://www.ssb.no/statbank/"
 ARIA_DESCRIPTION = "Graf utarbeidet av Telemark fylkeskommune"
 
-## Colors (Part 2: color-category in OO3us), assigned to the ordinary series in column order
-SERIES_COLORS = ["#337580", "#c54564", "#b7ad61"]
+## Data sources recognised in query scripts: URL domain -> name shown as "Kilde"
+## (SSB also gets a link to the table, see find_data_source)
+SOURCE_DOMAINS = {
+    "ssb.no": "SSB",
+    "nav.no": "NAV",
+    "app-simapi-prod.azurewebsites.net": "IMDi",
+    "imdi.no": "IMDi",
+    "miljodirektoratet.no": "Miljødirektoratet",
+    "norskeutslipp.no": "Miljødirektoratet",
+    "nve.no": "NVE",
+    "elhub.no": "Elhub",
+    "fhi.no": "FHI",
+    "udir.no": "Udir",
+    "barnehagefakta.no": "Udir",
+    "brreg.no": "Brønnøysundregistrene",
+    "vegvesen.no": "Statens vegvesen",
+    "norges-bank.no": "Norges Bank",
+    "entsoe.eu": "ENTSO-E",
+    "vann-nett.no": "Vann-nett",
+}
+
+## Colors (Part 1), assigned to the ordinary series in column order: the 80 % shades from the county's
+## color profile, OO3us colors first, then additional colors ordered for contrast
+SERIES_COLORS = [
+    "#337580",  # Vann
+    "#c54564",  # Nype
+    "#b7ad61",  # Korn
+    "#676b9a",  # Blåveis
+    "#c99251",  # Siv
+    "#4caa81",  # Gress
+    "#33afce",  # Himmel
+    "#7b5881",  # Plomme
+    "#a18965",  # Strand
+    "#439ba3",  # Fjord
+    "#ad8776",  # Bark
+    "#599168",  # Gran
+    "#498989",  # Hav
+    "#8e8d81",  # Berg
+    "#959595",  # Stein
+]
 
 ## Reference lines (Part 2: "Reference lines"): grey, dashed, no symbols
 REFERENCE_COLOR = "#7b7b7a"
@@ -66,6 +106,55 @@ session = requests.Session()
 session.headers.update({"Authorization": f"Bearer {token}"})
 
 
+## Find the data source from the first recognised data URL in the query script.
+## SSB: link to the first table in the script (https://www.ssb.no/statbank/table/XXXXX), or no link if the
+## table number is only known when the script runs (e.g. "tables/{table_id}"). Other sources: name only.
+## If the script has no known URL itself, query files it names (e.g. "Mobbing 7. trinn treårig.txt", used by
+## the FHI scripts) are searched for, up to 3 folders up from the script, and their URLs are used instead.
+def source_from_text(text):
+    for url in re.findall(r"https?://[^\s\"']+", text):
+        domain = re.match(r"https?://([^/]+)", url).group(1)
+        name = next((n for d, n in SOURCE_DOMAINS.items() if domain == d or domain.endswith("." + d)), None)
+        if name is None:
+            continue
+        if name != "SSB":
+            return name, ""
+        table = re.search(r"/tables?/(\d{5})", url)
+        if table:
+            return name, f"https://www.ssb.no/statbank/table/{table.group(1)}"
+        if "/table" in url:  # SSB table endpoint, but the number is set at runtime
+            print(f"Warning: SSB table number in {url} is set at runtime, source link left empty")
+            return name, ""
+    return None
+
+
+def find_data_source(script_path):
+    with open(script_path, encoding="utf-8") as f:
+        code = f.read()
+    source = source_from_text(code)
+    if source is None:
+        search_root = os.path.dirname(os.path.abspath(script_path))
+        for _ in range(3):
+            search_root = os.path.dirname(search_root)
+        for query_name in re.findall(r"[\"']([^\"']+\.txt)[\"']", code):
+            query_name = os.path.basename(query_name)
+            for root, _, files in os.walk(search_root):
+                if query_name in files:
+                    with open(os.path.join(root, query_name), encoding="utf-8") as f:
+                        source = source_from_text(f.read())
+                    break
+            if source is not None:
+                break
+    if source is None:
+        print("Warning: no known data source found in the query script")
+        return "", ""
+    return source
+
+
+source_name, source_url = find_data_source(os.path.join(os.environ["PYTHONPATH"], QUERY_SCRIPT))
+print(f"Source: {source_name or '(none)'} {source_url}")
+
+
 ## Find the team id for TEAM_NAME
 response = session.get(f"{API_BASE}/teams")
 response.raise_for_status()
@@ -87,20 +176,52 @@ if len(ordinary_series) > len(SERIES_COLORS):
     print(f"Warning: more than {len(SERIES_COLORS)} ordinary series, colors are reused")
 
 
-## Part 1: y-axis range
-## - min: below the lowest value (padding of 10 % of the data range), rounded down to a multiple of 5, never below 0
-## - max: above the highest value (padding of 10 % of the data range), rounded up to a multiple of 5, never above 100
+## Part 1: shares ("Andel" in the title) get percentage format, and the y-axis and value labels show
+## whole numbers, except one decimal if all values are small (below 10) (value labels follow the y-axis format).
+## Tooltips always show one decimal. Never two decimals.
+is_share = "andel" in CHART_TITLE.lower()
+percent = "%" if is_share else ""
 y_values = df[series].stack()
-y_range = y_values.max() - y_values.min()
-y_min = max(0, math.floor((y_values.min() - y_range * 0.1) / 5) * 5)
-y_max = min(100, math.ceil((y_values.max() + y_range * 0.1) / 5) * 5)
+y_grid_format = ("0.0" if y_values.abs().max() < 10 else "0") + percent
+tooltip_format = "0.0" + percent
+print(f"y-axis/value label format: {y_grid_format}, tooltip format: {tooltip_format}")
+
+
+## Rounding step for the y-axis: a "nice" number (1, 2 or 5 x 10^n) close to a fifth of the data range,
+## so the step scales with the data (e.g. 5 for values 44-72, 500 for values 1200-4000, 0.1 for values 0.2-0.8)
+def nice_step(data_range):
+    raw = data_range / 5
+    magnitude = 10 ** math.floor(math.log10(raw))
+    return min((m * magnitude for m in (1, 2, 5, 10)), key=lambda c: abs(math.log10(c / raw)))
+
+
+## Part 1: y-axis range
+## - min: below the lowest value (padding of 10 % of the data range), rounded down to a multiple of the step,
+##        never below 0 unless the data has negative values
+## - max: above the highest value (padding of 10 % of the data range), rounded up to a multiple of the step,
+##        never above 100 for shares
+## - minimum span: if the data range is less than 20 % of the largest value, it is widened around its middle
+##   to that size first, so small changes don't look dramatic
+def y_axis_range(values, is_share):
+    low, high = values.min(), values.max()
+    min_span = 0.2 * max(abs(low), abs(high)) or 1  # 1 if all values are 0
+    if high - low < min_span:
+        middle = (low + high) / 2
+        low, high = middle - min_span / 2, middle + min_span / 2
+    data_range = high - low
+    step = nice_step(data_range)
+    y_min = math.floor((low - data_range * 0.1) / step) * step
+    y_max = math.ceil((high + data_range * 0.1) / step) * step
+    if values.min() >= 0:
+        y_min = max(0, y_min)
+    if is_share:
+        y_max = min(100, y_max)
+    # round away floating point noise (e.g. 0.30000000000000004)
+    return round(y_min, 10), round(y_max, 10)
+
+
+y_min, y_max = y_axis_range(y_values, is_share)
 print(f"Data range: {y_values.min()} - {y_values.max()}, y-axis: {y_min} - {y_max}")
-
-
-## Part 1: percentage format on the y-axis if the title contains "Andel", and always whole numbers
-## (value labels follow the y-axis format)
-y_grid_format = "0%" if "andel" in CHART_TITLE.lower() else "0"
-print(f"y-axis format: {y_grid_format}")
 
 
 ## Colors: ordinary series in column order, reference lines grey
@@ -156,8 +277,8 @@ metadata = {
         "use-datawrapper-cdn": True,
     },
     "describe": {
-        "source-name": SOURCE_NAME,
-        "source-url": SOURCE_URL,
+        "source-name": source_name,
+        "source-url": source_url,
         "aria-description": ARIA_DESCRIPTION,
     },
     "visualize": {
@@ -170,6 +291,7 @@ metadata = {
         "y-grid": "on",
         "x-grid-format": "YYYY",
         "y-grid-format": y_grid_format,
+        "tooltip-number-format": tooltip_format,
         "y-grid-labels": "auto",
         "y-grid-label-align": "left",
         "y-grid-subdivide": True,
