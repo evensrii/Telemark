@@ -18,7 +18,7 @@ CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/S
 CHART_TITLE = "Andel sysselsatt"
 
 # Set to an existing chart id to update it, or None to create a new chart
-CHART_ID = None
+CHART_ID = "yhpBW"
 
 # Query script that fetches the data (relative to PYTHONPATH), used to find the data source.
 # None if the data has no query script (e.g. dummy data): the source is left empty.
@@ -91,7 +91,8 @@ metadata["visualize"] = {
     "y-grid-labels": "auto",
     "y-grid-label-align": "left",
     "scale-y": "linear",
-    "custom-range": ["", ""],  # automatic: value axis starts at 0
+    "custom-range": ["", ""],  # Datawrapper default: starts at 0, max and gridlines automatic
+    "custom-ticks": "",
     "rotate-labels": "auto",
     "bar-padding": 60,
     "sort-values": False,

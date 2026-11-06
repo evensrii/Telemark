@@ -31,8 +31,8 @@ Value labels are shown above every column (rounding: see formatering_generelt.tx
 
 
 // Axes and grid lines
-The value axis always starts at 0 (Datawrapper's default for columns; no custom range).
-The y-axis min/max rules for line charts do not apply, since cutting off columns misrepresents the values.
+Use Datawrapper's default settings for the value axis: it starts at 0, and the max and gridlines are automatic.
+The y-axis min/max rules for line charts do not apply.
 
 
 // Size
@@ -106,9 +106,10 @@ x-grid-format          "auto"
 xGridAlignment         "baseline"
 rotate-labels          "auto"     (rotates column labels if they don't fit)
 scale-y                "linear"
-custom-range           ["", ""]   (automatic: starts at 0)
-custom-range-y         ["", ""]
-custom-ticks           ""
+custom-range           ["", ""]   (min, max of the value axis; "" = automatic. Kept automatic, see Part 1.
+                                   Setting a max here works for column charts, checked in chart yhpBW)
+custom-range-y         ["", ""]   (left empty)
+custom-ticks           ""         (gridlines, comma-separated, e.g. "0,20,40,60,80,100"; kept automatic)
 tooltip format         not set in vqUNn; key for column charts not checked yet
 
 
