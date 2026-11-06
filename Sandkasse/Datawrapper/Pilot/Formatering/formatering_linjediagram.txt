@@ -40,9 +40,11 @@ so the three ordinary lines get symbols.
 
 If more than 6 series in total (country and county series included), use a legend instead of series labels.
 Value labels (first and last point) are still shown.
+If 3 or more other series (country and county series not counted), put the country and county series in the legend
+instead of giving them series labels. The other series keep their series labels.
 
-Y-axis min: Below lowest value (padding of 25 % of the data range), rounded down to a multiple of 5, never below 0
-            Example: values 44.5-72.0, range 27.5, 44.5 - 6.875 = 37.625, rounded down = 35
+Y-axis min: Below lowest value (padding of 10 % of the data range), rounded down to a multiple of 5, never below 0
+            Example: values 44.5-72.0, range 27.5, 44.5 - 2.75 = 41.75, rounded down = 40
 Y-axis max: Above highest value (padding of 10 % of the data range), rounded up to a multiple of 5, never above 100
             Example: 72.0 + 2.75 = 74.75, rounded up = 75
 
@@ -115,6 +117,10 @@ lines.<series>.symbols.size          4.5
 lines.<series>.symbols.shape         not set = circle
 lines.<series>.symbols.style         not set = filled ("fill"); "hollow" gives an outline only
 lines.<series>.valueLabels.enabled   true      (value shown at the first and last point, seen in OO3us)
+lines.<series>.colorKey              true = series shown in the legend above the chart (with its dash pattern)
+lines.<series>.directLabel           false = no series label at the end of the line
+                                     (legend is set per series; found in chart gO4ry, where only Hele landet and
+                                      Telemark were put in the legend. The top-level "legend" key has no effect)
 
 Series names in "lines" and "color-category" must match the CSV header exactly.
 

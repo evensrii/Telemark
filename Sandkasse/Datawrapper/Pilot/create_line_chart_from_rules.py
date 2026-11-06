@@ -38,6 +38,11 @@ REFERENCE_LINES = {
 SYMBOL_SIZE = 4.5
 MAX_SERIES_FOR_SYMBOLS = 4
 
+## Part 1: legend instead of series labels if more than 6 series in total (reference lines included)
+MAX_SERIES_FOR_SERIES_LABELS = 6
+## Part 1: reference lines go in the legend if there are 3 or more ordinary series
+MIN_ORDINARY_SERIES_FOR_REFERENCE_LEGEND = 3
+
 
 ## Load the Datawrapper token from token.env (same location as GITHUB_TOKEN)
 def get_datawrapper_token():
@@ -83,11 +88,11 @@ if len(ordinary_series) > len(SERIES_COLORS):
 
 
 ## Part 1: y-axis range
-## - min: below the lowest value (padding of 25 % of the data range), rounded down to a multiple of 5, never below 0
+## - min: below the lowest value (padding of 10 % of the data range), rounded down to a multiple of 5, never below 0
 ## - max: above the highest value (padding of 10 % of the data range), rounded up to a multiple of 5, never above 100
 y_values = df[series].stack()
 y_range = y_values.max() - y_values.min()
-y_min = max(0, math.floor((y_values.min() - y_range * 0.25) / 5) * 5)
+y_min = max(0, math.floor((y_values.min() - y_range * 0.1) / 5) * 5)
 y_max = min(100, math.ceil((y_values.max() + y_range * 0.1) / 5) * 5)
 print(f"Data range: {y_values.min()} - {y_values.max()}, y-axis: {y_min} - {y_max}")
 
@@ -105,9 +110,12 @@ color_map.update({name: REFERENCE_COLOR for name in reference_series})
 
 ## Lines: dash for reference lines, symbols only on ordinary series (and only if fewer than 5 of them)
 use_symbols = len(ordinary_series) <= MAX_SERIES_FOR_SYMBOLS
+use_legend = len(series) > MAX_SERIES_FOR_SERIES_LABELS
+use_reference_legend = len(ordinary_series) >= MIN_ORDINARY_SERIES_FOR_REFERENCE_LEGEND
 lines = {}
 for name in series:
     is_reference = name in REFERENCE_LINES
+    in_legend = use_legend or (is_reference and use_reference_legend)
     lines[name] = {
         "symbols": {
             "enabled": use_symbols and not is_reference,
@@ -115,10 +123,15 @@ for name in series:
             "size": SYMBOL_SIZE,
         },
         "valueLabels": {"enabled": True},
+        "colorKey": in_legend,  # shown in the legend
+        "directLabel": not in_legend,  # series label at the line end
     }
     if is_reference:
         lines[name]["dash"] = REFERENCE_LINES[name]
-print(f"{len(ordinary_series)} ordinary series, symbols: {use_symbols}")
+print(
+    f"{len(ordinary_series)} ordinary series, symbols: {use_symbols}, "
+    f"legend for all: {use_legend}, legend for reference lines: {use_reference_legend and bool(reference_series)}"
+)
 
 
 ## 1) Create an empty line chart in the team (unless updating an existing one)
