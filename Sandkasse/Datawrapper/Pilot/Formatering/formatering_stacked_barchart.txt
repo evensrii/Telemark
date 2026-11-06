@@ -1,0 +1,161 @@
+//// Formatting reference: stacked bar charts, horizontal bars (Datawrapper type "d3-bars-stacked")
+
+Source: chart P57QD ("Manuel stacked bar chart"), fetched 2026-11-06 via GET https://api.datawrapper.de/v3/charts/P57QD
+Data at the time: Data/09_Innvandrere og inkludering/Utdanningsnivå Telemark/høyeste_utdanning_innv.csv
+(query script: Python/Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py, source IMDi)
+(first column "Bakgrunn" with two rows, Befolkningen unntatt innvandrere and Innvandrere;
+ one value column per education level: Grunnskole, Videregående skole, Universitet og høgskole, Ingen utdanning,
+ Uoppgitt; each row sums to about 100)
+
+The general rules in formatering_generelt.txt (data source, "Andel" = %, rounding, footer, language, live data)
+apply first. This file only has rules specific to stacked bar charts; where they disagree, the general rules win.
+
+Part 1 is your own rules, written in plain language.
+Part 2 is the technical reference: the API keys and values that make P57QD look the way it does.
+Where they disagree, Part 1 wins. Values marked "Set per data set" depend on the CSV (column names);
+everything else applies to all stacked bar charts.
+Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"metadata": {...}}.
+
+
+////////////////////////////////////////////////////////////
+//// PART 1: CUSTOM RULES
+////////////////////////////////////////////////////////////
+
+// Data layout
+Same CSV layout as stacked column charts: one row per bar (e.g. Befolkningen unntatt innvandrere, Innvandrere)
+and one value column per stacked segment (e.g. education levels).
+Unlike stacked column charts, stacked bars read the CSV as it is: no transposing.
+
+
+// Colors
+Same as stacked column charts. Each value column (segment) gets a color in column order:
+1. #337580 (Vann)
+2. #B7AD61 (Korn)
+3. #C54564 (Nype)
+4. #C99251 (Siv)
+5. #676B9A (Blåveis)
+6. onwards: the remaining colors of the general palette (formatering_generelt.txt), in the palette's order
+   (Gress #4CAA81, Himmel #33AFCE, Plomme #7B5881, Strand #A18965, ...)
+(P57QD itself uses Datawrapper's default blue shades; the colors above apply instead.)
+
+
+// Stack percentages
+Same as stacked column charts: if every row sums to 100 % (or close to it: between 98 and 102),
+enable "Stack percentages", so each bar fills 0-100 %.
+Otherwise, enable "Show totals", so the sum of each bar is shown.
+
+
+// Legend and labels
+A legend above the chart shows the segments.
+Bar labels (e.g. Befolkningen unntatt innvandrere) to the left of the bars, right-aligned.
+Value labels are shown inside every segment (rounding: see formatering_generelt.txt).
+
+
+// Axes and grid lines
+No value axis or gridlines; the value labels carry the numbers.
+
+
+// Size
+
+
+// Other
+
+
+
+////////////////////////////////////////////////////////////
+//// PART 2: TECHNICAL REFERENCE (from P57QD)
+////////////////////////////////////////////////////////////
+
+//// Chart level (top level, not under "metadata")
+
+type        "d3-bars-stacked"
+(language and theme: see formatering_generelt.txt)
+
+
+//// metadata.data
+
+transpose   false   (the CSV rows are the bars, the value columns are the segments)
+(the other data keys: see formatering_generelt.txt)
+
+
+//// metadata.visualize: colors
+
+color-category      {"map": {}, "categoryOrder": [], "categoryLabels": {}}   (empty in P57QD)
+color-by-column     false in P57QD
+                    To apply the colors in Part 1: set color-category.map to {"<segment name>": "<hex>", ...}
+                    with color-by-column true, as for grouped bar charts (d3-bars-grouped).
+                    Checked in test chart 3VvpI.
+                    Set per data set: the value column names from the CSV header.
+base-color          0
+label-colors        false
+value-label-colors  true
+negativeColor       {"enabled": false, "value": "#F76454"}
+
+
+//// metadata.visualize: stacking
+
+stack-percentages     false      ("Stack percentages" for this chart type; note: not "normalize" as in
+                                  stacked column charts. Checked in 3VvpI: true gives bars filling 0-100 %
+                                  and value labels with %, even with value-label-format "0")
+stack-show-absolute   false
+totals-labels         false      ("Show totals"; note: not "totalsLabels" as in stacked column charts.
+                                  Not checked yet with data that doesn't sum to 100)
+totals-labels-position "before"
+
+
+//// metadata.visualize: legend and labels
+
+show-color-key           true       (legend above the chart)
+stack-color-legend       false
+show-group-labels        true       (bar labels)
+label-alignment          "right"    (bar labels right-aligned, next to the bars)
+compact-group-labels     false
+swap-labels              false
+block-labels             false
+replace-flags            {"enabled": false, "style": "4x3"}
+show-value-labels        true
+value-label-visibility   "always"
+value-label-mode         "left"
+value-label-alignment    "left"     (value labels at the start of each segment, inside it)
+value-label-format       "0"        (whole numbers; "0%" for shares, "0.0" if all values are below 10)
+date-label-format        "YYYY"
+
+
+//// metadata.visualize: axes and grid lines
+
+force-grid               false      (no value axis or gridlines)
+tick-position            "top"      (only used when force-grid is true)
+custom-range             ["", ""]
+custom-grid-lines        ""
+x-grid / y-grid          "off" / "on"   (stored, but not drawn without force-grid)
+
+
+//// metadata.visualize: layout and order
+
+thick                    true       (thick bars)
+background               true       (probably a grey background behind each bar; not visible in P57QD because
+                                     the bars fill the full width. Not checked)
+rules                    false
+mirror-bars              false
+independent-scales       false
+space-between-cols       10
+sort-bars                false      (keep the row order from the CSV)
+reverse-order            false
+group-by-column          false
+plotHeightMode           "fixed"
+plotHeightFixed          300        (bar charts size themselves to the number of bars; these have no visible
+                                     effect. PNG exports of unpublished charts need height=auto to avoid empty space)
+
+
+//// metadata.visualize: other
+
+show-tooltips            true       (tooltip format not set; not checked for bar charts)
+dark-mode-invert         true
+
+
+//// Differences from the general rules in P57QD (the general rules apply)
+
+source-name / source-url    empty in P57QD (the query script fetches from IMDi, so the source is "IMDi")
+aria-description            empty in P57QD
+blocks.embed                false in P57QD
+blocks.download-image       false in P57QD

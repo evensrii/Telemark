@@ -13,15 +13,15 @@ from datawrapper_generelt import (
 ## Pilot: create (or update) a live stacked column chart in Datawrapper, formatted according to
 ## Formatering/formatering_generelt.txt and Formatering/formatering_stacked_stolpediagram.txt
 
-CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Data/09_Innvandrere%20og%20inkludering/Utdanningsniv%C3%A5%20Telemark/h%C3%B8yeste_utdanning_innv.csv"
-CHART_TITLE = "Test av formatering stacked stolpediagram"
+CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Pilot/Dummy%20data/h%C3%B8yeste_utdanning_innv_test.csv"
+CHART_TITLE = "Test av formatering stacked stolpediagram 2"
 
 # Set to an existing chart id to update it, or None to create a new chart
-CHART_ID = "tHLoE"
+CHART_ID = "xGi7u"
 
 # Query script that fetches the data (relative to PYTHONPATH), used to find the data source.
 # None if the data has no query script (e.g. dummy data): the source is left empty.
-QUERY_SCRIPT = "Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py"
+QUERY_SCRIPT = None
 
 ## Part 1: "Stack percentages" if every row sums to 100 within this tolerance
 STACK_PERCENT_MIN, STACK_PERCENT_MAX = 98, 102
@@ -75,7 +75,7 @@ metadata["visualize"] = {
     "value-label-colors": True,
     "negativeColor": {"enabled": False},
     "normalize": stack_percentages,  # "Stack percentages"
-    "totalsLabels": False,
+    "totalsLabels": not stack_percentages,  # "Show totals" above each column when not stacked to 100 %
     "connect-bars": False,
     "category": "direct",  # segment names as labels to the right, no separate legend
     "categoryLabels": {"enabled": True, "position": "direct"},
