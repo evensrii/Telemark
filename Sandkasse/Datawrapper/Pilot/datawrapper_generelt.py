@@ -37,6 +37,10 @@ PALETTE = [
 GROUPED_MAIN_COLORS = ["#337580", "#b7ad61"]
 GROUPED_PALETTE = GROUPED_MAIN_COLORS + [c for c in PALETTE if c not in GROUPED_MAIN_COLORS]
 
+## Stacked column charts only: five main colors first, then the rest of the palette in its order
+STACKED_MAIN_COLORS = ["#337580", "#b7ad61", "#c54564", "#c99251", "#676b9a"]
+STACKED_PALETTE = STACKED_MAIN_COLORS + [c for c in PALETTE if c not in STACKED_MAIN_COLORS]
+
 ## Series/rows that represent the country or the county (styled differently per chart type)
 COUNTRY_NAMES = ["Hele landet", "Norge", "Landet"]
 COUNTY_NAMES = ["Telemark", "Fylket"]

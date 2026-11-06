@@ -1,0 +1,169 @@
+//// Formatting reference: stacked column charts (Datawrapper type "stacked-column-chart")
+
+Source: chart KFC4r ("Manuell stacked column chart"), fetched 2026-11-06 via GET https://api.datawrapper.de/v3/charts/KFC4r
+Data at the time: Data/09_Innvandrere og inkludering/Utdanningsnivå Telemark/høyeste_utdanning_innv.csv
+(query script: Python/Queries/09_Innvandrere_og_inkludering/Utdanning/innv_hoyeste_utdanning.py)
+(first column "Bakgrunn" with two rows, Befolkningen unntatt innvandrere and Innvandrere;
+ one value column per education level: Grunnskole, Videregående skole, Universitet og høgskole, Ingen utdanning,
+ Uoppgitt; each row sums to about 100)
+
+The general rules in formatering_generelt.txt (data source, "Andel" = %, rounding, footer, language, live data)
+apply first. This file only has rules specific to stacked column charts; where they disagree, the general rules
+win, except where this file says otherwise.
+
+Part 1 is your own rules, written in plain language.
+Part 2 is the technical reference: the API keys and values that make KFC4r look the way it does.
+Where they disagree, Part 1 wins. Values marked "Set per data set" depend on the CSV (column names);
+everything else applies to all stacked column charts.
+Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"metadata": {...}}.
+
+
+////////////////////////////////////////////////////////////
+//// PART 1: CUSTOM RULES
+////////////////////////////////////////////////////////////
+
+// Data layout
+The CSV has the columns on the x-axis as rows (e.g. Befolkningen unntatt innvandrere, Innvandrere) and one value
+column per stacked segment (e.g. education levels). The data must be transposed: set "transpose" to true in
+Datawrapper. The CSV itself is not changed, so the chart stays live.
+
+
+// Colors
+Each value column (segment) gets a color in column order:
+1. #337580 (Vann)
+2. #B7AD61 (Korn)
+3. #C54564 (Nype)
+4. #C99251 (Siv)
+5. #676B9A (Blåveis)
+6. onwards: the remaining colors of the general palette (formatering_generelt.txt), in the palette's order
+   (Gress #4CAA81, Himmel #33AFCE, Plomme #7B5881, Strand #A18965, ...)
+
+
+// Stack percentages
+If every row sums to 100 % (or close to it: between 98 and 102), enable "Stack percentages",
+so each column fills 0-100 %.
+
+
+// Labels
+Segment names are shown as labels directly to the right of the last column (no separate legend),
+in the segment's color.
+Value labels are shown in every segment (rounding: see formatering_generelt.txt).
+
+
+// Axes and grid lines
+Y-axis labels use format "0" (whole numbers, no decimals). This overrides the general number format rules for the
+axis. The axis starts at 0; max and gridlines are automatic.
+
+
+// Size
+
+
+// Other
+
+
+
+////////////////////////////////////////////////////////////
+//// PART 2: TECHNICAL REFERENCE (from KFC4r)
+////////////////////////////////////////////////////////////
+
+//// Chart level (top level, not under "metadata")
+
+type        "stacked-column-chart"
+(language and theme: see formatering_generelt.txt)
+
+
+//// metadata.data
+
+transpose       true    (the CSV rows become the columns on the x-axis, the value columns become the segments)
+column-format   {}
+(the other data keys: see formatering_generelt.txt)
+
+
+//// metadata.visualize: colors
+
+color-by-column     true
+color-category      {"map": {"<segment name>": "<hex>", ...}, "categoryOrder": [], "categoryLabels": {},
+                     "excludeFromKey": []}
+                    Set per data set: the value column names from the CSV header.
+                    KFC4r:
+                      "Grunnskole"               #337580
+                      "Videregående skole"       #b7ad61
+                      "Universitet og høgskole"  #c54564
+                      "Ingen utdanning"          #c99251
+                      "Uoppgitt"                 #676b9a
+base-color          0           (overridden by color-category)
+label-colors        true        (segment labels in the segment's color)
+value-label-colors  true
+negativeColor       {"enabled": false, "value": "#F76454"}
+
+
+//// metadata.visualize: stacking
+
+normalize           true             ("Stack percentages": every column scaled to 100 %, the axis goes to 100% and
+                                      the value labels get % automatically, even with valueLabels.format "0".
+                                      Checked in KFC4r, set there in the editor)
+totalsLabels        false            (no total above each column)
+connect-bars        false            (no connecting lines between segments of neighbouring columns)
+
+
+//// metadata.visualize: labels and legend
+
+category                 "direct"    (segment names as labels to the right of the chart, with connector lines)
+categoryLabels           {"enabled": true, "position": "direct"}
+show-color-key           false       (no separate legend; the direct labels replace it)
+stack-color-legend       false
+reverse-color-legend     false
+label-space              30
+label-margin             0
+connector-lines          true
+valueLabels.enabled      true
+valueLabels.show         "always"
+valueLabels.placement    "outside"   (in KFC4r the labels are drawn inside the segments)
+valueLabels.preventOverlap  true
+valueLabels.format       not set in KFC4r (labels show whole numbers by default, e.g. 0.4 -> "0").
+                         Set per the general rounding rules: "0", "0%" for shares, "0.0" below 10.
+                         Checked in test chart tHLoE: with "0" and stack percentages, labels show 19%, 45% etc.
+
+
+//// metadata.visualize: axes and grid lines
+
+y-grid                 "on"
+grid-lines             "show"
+x-grid                 "off"
+grid-lines-x           {"enabled": false, "type": "ticks"}
+y-grid-format          "0"        (whole numbers, see Part 1)
+y-grid-labels          "auto"
+y-grid-label-align     "left"
+y-grid-subdivide       true
+yAxisLabels            {"enabled": true, "alignment": "left", "placement": "outside"}
+x-grid-format          "auto"
+xGridAlignment         "baseline"
+rotate-labels          "auto"
+scale-y                "linear"
+custom-range           ["", ""]   (automatic: starts at 0)
+custom-ticks           ""
+
+
+//// metadata.visualize: layout and order
+
+bar-padding            60
+sort-values            false
+sort-by                "first"
+reverse-order          false
+plotHeightMode         "ratio"
+plotHeightRatio        0.7        (taller than column charts, 0.5)
+plotHeightFixed        300
+
+
+//// metadata.visualize: other
+
+show-tooltips          true       (tooltip format not set in KFC4r; key not checked for stacked columns)
+dark-mode-invert       true
+
+
+//// Differences from the general rules in KFC4r (the general rules apply)
+
+source-name / source-url    empty in KFC4r (the query script fetches from IMDi, so the source is "IMDi", no link)
+aria-description            empty in KFC4r
+blocks.embed                false in KFC4r
+blocks.download-image       false in KFC4r
