@@ -10,11 +10,11 @@ from dotenv import load_dotenv
 API_BASE = "https://api.datawrapper.de/v3"
 TEAM_NAME = "Team analyse"
 
-CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Pilot/Dummy%20data/linjediagram.csv"
-CHART_TITLE = "Test av formatering for linjediagram"
+CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Pilot/Dummy%20data/linjediagram_uten_landet_fylket.csv"
+CHART_TITLE = "Andel av en variabel"
 
 # Set to an existing chart id to update it, or None to create a new chart
-CHART_ID = None
+CHART_ID = "loP3F"
 
 ## Text (Part 2: describe)
 SOURCE_NAME = "SSB"
@@ -34,7 +34,7 @@ REFERENCE_LINES = {
     "Fylket": "style3",
 }
 
-## Symbols (Part 2), and Part 1: no symbols if 5 series or more
+## Symbols (Part 2), and Part 1: no symbols if 5 series or more (reference lines not counted)
 SYMBOL_SIZE = 4.5
 MAX_SERIES_FOR_SYMBOLS = 4
 
@@ -83,17 +83,18 @@ if len(ordinary_series) > len(SERIES_COLORS):
 
 
 ## Part 1: y-axis range
-## - min: below the lowest value (padding of half the data range), rounded down to a multiple of 10, never below 0
-## - max: above the highest value (padding of 10 % of the data range), rounded up to a multiple of 10, never above 100
+## - min: below the lowest value (padding of 25 % of the data range), rounded down to a multiple of 5, never below 0
+## - max: above the highest value (padding of 10 % of the data range), rounded up to a multiple of 5, never above 100
 y_values = df[series].stack()
 y_range = y_values.max() - y_values.min()
-y_min = max(0, math.floor((y_values.min() - y_range * 0.5) / 10) * 10)
-y_max = min(100, math.ceil((y_values.max() + y_range * 0.1) / 10) * 10)
+y_min = max(0, math.floor((y_values.min() - y_range * 0.25) / 5) * 5)
+y_max = min(100, math.ceil((y_values.max() + y_range * 0.1) / 5) * 5)
 print(f"Data range: {y_values.min()} - {y_values.max()}, y-axis: {y_min} - {y_max}")
 
 
-## Part 1: percentage format on the y-axis if the title contains "Andel"
-y_grid_format = "0%" if "andel" in CHART_TITLE.lower() else "auto"
+## Part 1: percentage format on the y-axis if the title contains "Andel", and always whole numbers
+## (value labels follow the y-axis format)
+y_grid_format = "0%" if "andel" in CHART_TITLE.lower() else "0"
 print(f"y-axis format: {y_grid_format}")
 
 
@@ -102,8 +103,8 @@ color_map = {name: SERIES_COLORS[i % len(SERIES_COLORS)] for i, name in enumerat
 color_map.update({name: REFERENCE_COLOR for name in reference_series})
 
 
-## Lines: dash for reference lines, symbols only on ordinary series (and only if fewer than 5 series)
-use_symbols = len(series) <= MAX_SERIES_FOR_SYMBOLS
+## Lines: dash for reference lines, symbols only on ordinary series (and only if fewer than 5 of them)
+use_symbols = len(ordinary_series) <= MAX_SERIES_FOR_SYMBOLS
 lines = {}
 for name in series:
     is_reference = name in REFERENCE_LINES
@@ -117,7 +118,7 @@ for name in series:
     }
     if is_reference:
         lines[name]["dash"] = REFERENCE_LINES[name]
-print(f"{len(series)} series, symbols: {use_symbols}")
+print(f"{len(ordinary_series)} ordinary series, symbols: {use_symbols}")
 
 
 ## 1) Create an empty line chart in the team (unless updating an existing one)
