@@ -1,0 +1,120 @@
+//// Formatting reference: general rules for all Datawrapper visuals
+
+These rules apply to every chart type. Each chart type has its own file with rules specific to that type
+(e.g. formatering_linjediagram.txt). Where they disagree, the chart type's file wins.
+
+Part 1 is your own rules, written in plain language.
+Part 2 is the technical reference: the API keys and values that implement them.
+Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"metadata": {...}}.
+
+
+////////////////////////////////////////////////////////////
+//// PART 1: CUSTOM RULES
+////////////////////////////////////////////////////////////
+
+// Colors
+Series get colors in this order (the "80 %" shades from the county's color profile).
+The first three are the colors from chart OO3us; the rest are additional colors, ordered so that
+neighbouring series get clearly different hues.
+
+ 1  Vann      #337580   (OO3us)
+ 2  Nype      #C54564   (OO3us)
+ 3  Korn      #B7AD61   (OO3us)
+ 4  Blåveis   #676B9A
+ 5  Siv       #C99251
+ 6  Gress     #4CAA81
+ 7  Himmel    #33AFCE
+ 8  Plomme    #7B5881
+ 9  Strand    #A18965
+10  Fjord     #439BA3
+11  Bark      #AD8776
+12  Gran      #599168
+13  Hav       #498989
+14  Berg      #8E8D81
+15  Stein     #959595
+
+Hav and Fjord are close to Vann, and Berg and Stein are close to grey (Stein #7B7B7A), so they are placed last.
+
+Exception: column charts use fixed colors instead (see formatering_stolpediagram.txt).
+
+
+// Text (title, intro, source, notes)
+Data source ("Kilde"): deduced from the query script that fetches the data.
+- SSB: name "SSB", link "https://www.ssb.no/statbank/table/XXXXX" with the SSB table used in the script
+  (e.g. https://www.ssb.no/statbank/table/08113). If the script uses several tables, use the first.
+  If the table number is only known when the script runs, leave the link empty.
+- Other sources: the name of the source (Miljødirektoratet, IMDi, FHI, NAV etc.), link empty.
+- If the script reads its URL from a query file (.txt, as the FHI scripts do), use the URL in that file.
+
+
+// Number format
+If the title (from the Excel file, if supplied) contains "Andel", use percentage formatting (i.e. "70%").
+
+Always round values to nearest integer on the value axis and in value labels. Exception: if all values are
+below 10, use one decimal.
+Tooltips always show one decimal (e.g. value label 66, tooltip 66,2; values below 10: 6,2 in both).
+Never show two decimals.
+
+
+// Footer
+"Last ned data": enabled (links to Datawrapper's own copy of the data)
+"Embed": enabled
+"Last ned bilde": enabled
+Other download options (PDF, SVG) and the logo: off
+
+
+// Other
+
+
+
+////////////////////////////////////////////////////////////
+//// PART 2: TECHNICAL REFERENCE
+////////////////////////////////////////////////////////////
+
+//// Chart level (top level, not under "metadata")
+
+language    "nb-NO"          (Norwegian number format: decimal comma, space as thousands separator)
+theme       "datawrapper"
+
+
+//// metadata.data (data source)
+
+upload-method          "external-data"   (live: Datawrapper fetches the CSV from the URL itself)
+external-data          <raw GitHub URL to the CSV>
+use-datawrapper-cdn    true              ("Last ned data" points to Datawrapper's own copy)
+transpose              false
+horizontal-header      true
+vertical-header        true
+
+After setting the data source: POST /v3/charts/{id}/data/refresh to fetch the data immediately.
+Datawrapper only refreshes the data automatically after the chart has been published once.
+
+
+//// metadata.describe (text around the chart)
+
+source-name         "SSB"                                   (see "Data source" in Part 1)
+source-url          "https://www.ssb.no/statbank/table/XXXXX"
+aria-description    "Graf utarbeidet av Telemark fylkeskommune"   (alt text for screen readers)
+intro               ""    (subtitle, not used)
+byline              ""    (not used)
+number-format etc.  defaults, not used
+
+The title is set at chart level ("title"), not in metadata.
+
+
+//// metadata.publish (footer and embedding)
+
+blocks.get-the-data     true    ("Last ned data")
+blocks.embed            true    ("Embed")
+blocks.download-image   true    ("Last ned bilde")
+blocks.download-pdf     false
+blocks.download-svg     false
+blocks.logo.enabled     false
+autoDarkMode            true
+embed-width             600     (set by Datawrapper when publishing)
+embed-height            396     (set by Datawrapper when publishing)
+
+
+//// metadata.annotate
+
+notes   ""   (footnote below the chart, not used)

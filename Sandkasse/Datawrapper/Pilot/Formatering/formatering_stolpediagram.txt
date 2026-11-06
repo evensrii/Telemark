@@ -1,0 +1,141 @@
+//// Formatting reference: column charts (Datawrapper type "column-chart")
+
+Source: chart vqUNn ("Graftittel"), fetched 2026-11-06 via GET https://api.datawrapper.de/v3/charts/vqUNn
+Data at the time: Sandkasse/Datawrapper/Pilot/Dummy data/column_diagram.csv
+(one value column "Telemark (2025)", five age groups as rows)
+
+The general rules in formatering_generelt.txt (data source, "Andel" = %, rounding, footer, language, live data)
+apply too, except the palette: column charts use the colors below. This file only has rules specific to
+column charts; where they disagree, this file wins.
+
+Part 1 is your own rules, written in plain language.
+Part 2 is the technical reference: the API keys and values that make vqUNn look the way it does.
+Where they disagree, Part 1 wins. Values marked "Set per data set" depend on the CSV (column and row names);
+everything else applies to all column charts.
+Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"metadata": {...}}.
+
+
+////////////////////////////////////////////////////////////
+//// PART 1: CUSTOM RULES
+////////////////////////////////////////////////////////////
+
+// Colors
+All columns:         #337580 (Vann)
+Country column:      #B7AD61 (Korn)   rows named "Hele landet", "Norge" or "Landet"
+County column:       #C54564 (Nype)   rows named "Telemark" or "Fylket"
+The general palette in formatering_generelt.txt is not used for column charts.
+
+
+// Value labels
+Value labels are shown above every column (rounding: see formatering_generelt.txt).
+
+
+// Axes and grid lines
+The value axis always starts at 0 (Datawrapper's default for columns; no custom range).
+The y-axis min/max rules for line charts do not apply, since cutting off columns misrepresents the values.
+
+
+// Size
+
+
+// Other
+
+
+
+////////////////////////////////////////////////////////////
+//// PART 2: TECHNICAL REFERENCE (from vqUNn)
+////////////////////////////////////////////////////////////
+
+//// Chart level (top level, not under "metadata")
+
+type        "column-chart"   (one value column; several value columns would need "grouped-column-chart"
+                              or "stacked-column-chart", not covered here)
+(language and theme: see formatering_generelt.txt)
+
+
+//// metadata.axes
+
+column      <name of the value column>   (which column in the CSV holds the values; the first column holds the labels)
+            Set per data set: use the header of the CSV's second column. vqUNn: "Telemark (2025)".
+
+
+//// metadata.visualize: colors
+
+base-color          "#337580"   (color of all columns)
+color-by-column     true        (allows individual columns to get their own color)
+color-category      {
+                      "map":            {"<row label>": "<hex>", ...},   (color per column, by row label)
+                      "categoryLabels": {"<row label>": "<legend text>"},
+                      "excludeFromKey": ["<row label>", ...],            (left out of the legend)
+                      "categoryOrder":  []
+                    }
+                    Set per data set: the rows matching the country/county names in Part 1.
+                    vqUNn example (dummy data, age groups standing in for country/county):
+                      "25-39 år"  #b7ad61   label "Landet"
+                      "55-66 år"  #c54564   label "Telemark"
+                      both excluded from the legend
+show-color-key      true        (legend on, but both colored columns are excluded, so nothing shows)
+label-colors        false
+value-label-colors  true
+negativeColor       {"enabled": false, "value": "#F76454"}   (separate color for negative values, off)
+
+Row labels in "map" must match the first column of the CSV exactly.
+
+
+//// metadata.visualize: value labels
+
+valueLabels.enabled          true
+valueLabels.show             "always"    (not only on hover)
+valueLabels.placement        "outside"   (above the column)
+valueLabels.format           "0"         (whole numbers; set separately from the axis, unlike line charts)
+valueLabels.preventOverlap   true
+
+
+//// metadata.visualize: axes and grid lines
+
+y-grid                 "on"       (horizontal grid lines)
+grid-lines             "show"
+x-grid                 "off"
+grid-lines-x           {"enabled": false, "type": "ticks"}
+y-grid-format          "auto"     (value axis labels)
+y-grid-labels          "auto"
+y-grid-label-align     "left"
+y-grid-subdivide       true
+yAxisLabels            {"enabled": true, "alignment": "left", "placement": "outside"}
+x-grid-format          "auto"
+xGridAlignment         "baseline"
+rotate-labels          "auto"     (rotates column labels if they don't fit)
+scale-y                "linear"
+custom-range           ["", ""]   (automatic: starts at 0)
+custom-range-y         ["", ""]
+custom-ticks           ""
+tooltip format         not set in vqUNn; key for column charts not checked yet
+
+
+//// metadata.visualize: layout and order
+
+bar-padding            60         (space between columns, in % of column width)
+sort-values            false      (keep the row order from the CSV)
+sort-by                "first"
+reverse-order          false
+plotHeightMode         "ratio"
+plotHeightRatio        0.5        (plot height = 0.5 x width; line charts use 0.6)
+plotHeightFixed        300        (only used when plotHeightMode = "fixed")
+
+
+//// metadata.visualize: other
+
+show-tooltips          true
+compare                {"enabled": false, "differenceLabel": true}
+stack-color-legend     false
+absolute-scale         false
+disable-tabs           true
+dark-mode-invert       true
+
+
+//// Differences from the general rules in vqUNn (the general rules apply)
+
+source-name / source-url    empty in vqUNn
+aria-description            empty in vqUNn
+blocks.embed                false in vqUNn
+blocks.download-image       false in vqUNn
