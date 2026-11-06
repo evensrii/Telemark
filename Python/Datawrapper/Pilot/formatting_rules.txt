@@ -1,0 +1,26 @@
+API documentation: https://www.datawrapper.de/developer/reference/get-charts
+
+//// All visuals:
+
+Footer: Last ned data: Enabled (use Datawrapper copy)
+Footer: Embed: Enabled
+
+//// Line graphs:
+
+// Colors
+If there are 3 series or less, use the default blue base color (#00818c). Also, use circle symbols on the line of size 5,5
+If there are 4 or more series, use a diverging palette.
+
+// Line width
+Use 3 px
+
+// Grid lines
+If there are 7 x-axis points or less, use vertical grid lines
+
+// Series labels: Enabled
+// Axis labels: Include " %" as affix
+
+// Y-axis
+Y-axis min: Below lowest value (padding of half the data range), rounded down to a multiple of 10, never below 0
+Y-axis max: Above highest value (padding of 10 % of the data range), rounded up to a multiple of 10, never above 100
+
