@@ -1,16 +1,17 @@
 //// Formatting reference: grouped bar charts, horizontal bars (Datawrapper type "d3-bars-grouped")
 
-Source: no reference chart. The settings below were found by testing on chart RtNRv
-("Test av formatering gruppert liggende stolpediagram") with PNG exports, 2026-11-06.
-Data: Sandkasse/Datawrapper/Pilot/Dummy data/grouped_column_diagram.csv
+Source: chart RtNRv ("Test av formatering gruppert liggende stolpediagram"), fetched 2026-11-06 via
+GET https://api.datawrapper.de/v3/charts/RtNRv, after it was adjusted in the Datawrapper editor.
+Data at the time: Sandkasse/Datawrapper/Pilot/Dummy data/grouped_column_diagram.csv
 (first column "Aldersgruppe" with five age groups as rows, value columns "Telemark (2025)" and "Hele landet (2025)")
 
 The general rules in formatering_generelt.txt (data source, "Andel" = %, rounding, footer, language, live data)
 apply first. This file only has rules specific to grouped bar charts; where they disagree, the general rules win.
 
 Part 1 is your own rules, written in plain language.
-Part 2 is the technical reference: the API keys and values that implement them.
-Values marked "Set per data set" depend on the CSV (column names); everything else applies to all grouped bar charts.
+Part 2 is the technical reference: the API keys and values that make RtNRv look the way it does.
+Where they disagree, Part 1 wins. Values marked "Set per data set" depend on the CSV (column names);
+everything else applies to all grouped bar charts.
 Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"metadata": {...}}.
 
 
@@ -36,12 +37,13 @@ Country and county series get no fixed colors; they are colored like any other s
 A legend above the chart shows the series (value column names).
 
 
-// Value labels
-Value labels are shown on every bar (rounding: see formatering_generelt.txt).
+// Labels
+Group labels (e.g. age groups) to the left of the bars, right-aligned.
+Value labels are shown inside the end of every bar (rounding: see formatering_generelt.txt).
 
 
 // Axes and grid lines
-Datawrapper's defaults (bars start at 0; no value axis is shown, the value labels carry the numbers).
+A value axis at the bottom with vertical gridlines. The axis starts at 0; max and gridlines are automatic.
 
 
 // Size
@@ -52,7 +54,7 @@ Datawrapper's defaults (bars start at 0; no value axis is shown, the value label
 
 
 ////////////////////////////////////////////////////////////
-//// PART 2: TECHNICAL REFERENCE (tested on RtNRv)
+//// PART 2: TECHNICAL REFERENCE (from RtNRv)
 ////////////////////////////////////////////////////////////
 
 //// Chart level (top level, not under "metadata")
@@ -67,16 +69,64 @@ transpose   false   (with true, the series become the groups and the age groups 
 (the other data keys: see formatering_generelt.txt)
 
 
-//// metadata.visualize
+//// metadata.visualize: colors
 
-custom-colors        {"<series name>": "<hex>", ...}   (color per value column)
-                     Set per data set: the value column names from the CSV header (including any year suffix).
-                     This chart type ignores "color-category" (used by column and line charts).
-show-color-key       true      (legend above the chart)
-value-label-format   "0"       (whole numbers; "0%" for shares, "0.0" if all values are below 10)
-tooltips             not checked; bar charts may not have hover tooltips
+color-by-column     true
+color-category      {"map": {"<series name>": "<hex>", ...}, "categoryOrder": [], "categoryLabels": {},
+                     "excludeFromKey": []}
+                    Set per data set: the value column names from the CSV header (including any year suffix).
+                    RtNRv:
+                      "Telemark (2025)"     #337580
+                      "Hele landet (2025)"  #b7ad61
+                    (An earlier test with "custom-colors" also worked, but the editor stores colors here;
+                     color-category without color-by-column had no effect.)
+base-color          0           (overridden by color-category)
+negativeColor       {"enabled": false, "value": "#F76454"}
 
 
-//// Not set (Datawrapper defaults)
+//// metadata.visualize: legend and labels
 
-Bar thickness, spacing, sorting, label placement (inside the bar, white or dark text depending on the color)
+show-color-key           true       (legend above the chart)
+stack-color-legend       false      (legend entries side by side)
+show-group-labels        true       (group labels, e.g. age groups)
+label-alignment          "right"    (group labels right-aligned, next to the bars)
+show-value-labels        true
+value-label-visibility   "always"
+value-label-alignment    "right"    (value label at the end of the bar, inside it)
+value-label-format       "0"        (whole numbers; "0%" for shares, "0.0" if all values are below 10)
+                                    (the value axis follows this format too: with "0%" both the value labels
+                                     and the axis show %, checked in RtNRv)
+block-labels             false
+replace-flags            {"enabled": false, "style": "4x3"}   (country flags instead of labels, off)
+date-label-format        "YYYY"
+
+
+//// metadata.visualize: axes and grid lines
+
+force-grid               true       (value axis with vertical gridlines)
+tick-position            "bottom"   (value axis below the bars)
+custom-range             ["", ""]   (automatic: starts at 0)
+custom-grid-lines        ""         (automatic gridlines)
+axis label format        no separate key: the axis follows value-label-format
+
+
+//// metadata.visualize: layout and order
+
+thick                    false      (normal bar thickness)
+rules                    false      (no separator lines between groups)
+background               false      (no grey background bars)
+sort-bars                false      (keep the row order from the CSV)
+sort-by                  "Telemark (2025)"   (only used when sort-bars is true)
+reverse-order            false
+group-by-column          false
+
+
+//// metadata.visualize: other
+
+dark-mode-invert         true
+tooltips                 not set; bar charts may not have hover tooltips
+
+
+//// Differences from the general rules in RtNRv (the general rules apply)
+
+source-name / source-url    empty in RtNRv (dummy data without a query script)

@@ -61,9 +61,27 @@ chart_id = create_or_get_chart(session, CHART_ID, CHART_TITLE, "d3-bars-grouped"
 metadata = general_metadata(CSV_URL, source_name, source_url)
 metadata["data"]["transpose"] = False
 metadata["visualize"] = {
-    "custom-colors": color_map,  # this chart type ignores color-category
+    "color-by-column": True,
+    "color-category": {"map": color_map},
     "show-color-key": True,  # legend above the chart
+    "show-group-labels": True,
+    "label-alignment": "right",  # group labels right-aligned next to the bars
+    "show-value-labels": True,
+    "value-label-visibility": "always",
+    "value-label-alignment": "right",  # value labels at the end of the bar
     "value-label-format": value_format,
+    "force-grid": True,  # value axis with vertical gridlines
+    "tick-position": "bottom",
+    "custom-range": ["", ""],  # Datawrapper default: starts at 0
+    "custom-grid-lines": "",
+    "thick": False,
+    "rules": False,
+    "background": False,
+    "block-labels": False,
+    "sort-bars": False,
+    "reverse-order": False,
+    "group-by-column": False,
+    "negativeColor": {"enabled": False},
 }
 
 apply_and_refresh(session, chart_id, CHART_TITLE, "d3-bars-grouped", metadata)
