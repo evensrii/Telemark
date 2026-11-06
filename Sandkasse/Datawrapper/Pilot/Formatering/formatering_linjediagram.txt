@@ -1,0 +1,177 @@
+//// Formatting reference: line charts (Datawrapper type "d3-lines")
+
+Source: chart OO3us ("Andel sysselsatte innvandrere"), fetched 2026-11-06 via GET https://api.datawrapper.de/v3/charts/OO3us
+Data at the time: Sandkasse/Datawrapper/Pilot/Dummy data/linjediagram.csv (5 series, 2015-2025)
+
+Part 1 is your own rules, written in plain language.
+Part 2 is the technical reference: the API keys and values that make OO3us look the way it does.
+Where they disagree, Part 1 wins.
+Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"metadata": {...}}.
+
+
+////////////////////////////////////////////////////////////
+//// PART 1: CUSTOM RULES
+////////////////////////////////////////////////////////////
+
+// Colors
+
+
+// Lines and symbols
+
+
+// Value labels and series labels
+
+
+// Axes and grid lines
+
+
+// Text (title, intro, source, notes)
+
+
+// Size and footer
+
+
+// Other
+If the title from the Excel file (if supplied) contains "Andel", use percentage formatting (i.e. "70%) on the y axis.
+If the data contains series (columns) named "Telemark"
+If 5 series or more, dont use line symbols.
+
+Y-axis min: Below lowest value (padding of half the data range), rounded down to a multiple of 10, never below 0
+Y-axis max: Above highest value (padding of 10 % of the data range), rounded up to a multiple of 10, never above 100
+
+
+////////////////////////////////////////////////////////////
+//// PART 2: TECHNICAL REFERENCE (from OO3us)
+////////////////////////////////////////////////////////////
+
+//// Chart level (top level, not under "metadata")
+
+type        "d3-lines"
+language    "nb-NO"          (Norwegian number format: decimal comma, space as thousands separator)
+theme       "datawrapper"
+
+
+//// metadata.data (data source)
+
+upload-method          "external-data"   (live: Datawrapper fetches the CSV from the URL itself)
+external-data          <raw GitHub URL to the CSV>
+use-datawrapper-cdn    true              ("Last ned data" points to Datawrapper's own copy)
+transpose              false
+horizontal-header      true
+vertical-header        true
+
+After setting the data source: POST /v3/charts/{id}/data/refresh to fetch the data immediately.
+
+
+//// metadata.describe (text around the chart)
+
+source-name         "SSB"
+source-url          "https://www.ssb.no/statbank/"
+aria-description    "Graf utarbeidet av Telemark fylkeskommune"   (alt text for screen readers)
+intro               ""    (subtitle, not used)
+byline              ""    (not used)
+number-format etc.  defaults, not used
+
+The title is set at chart level ("title"), not in metadata.
+
+
+//// metadata.visualize: colors
+
+base-color         1       (index in the theme palette; a hex code also works, e.g. "#00818c")
+color-category     {"map": {"<series name>": "<hex>", ...}}   (color per series; overrides base-color)
+                   OO3us:
+                     Befolkningen     #337580
+                     Gruppe 1-land    #c54564
+                     Gruppe 2-land    #b7ad61
+                     Hele landet      #7b7b7a   (grey: reference line)
+                     Telemark         #7b7b7a   (grey: reference line)
+                   (the map also contains two old, long series names; they are leftovers and have no effect)
+variate-colors     false   (true = Datawrapper makes its own shades when several lines share a color)
+label-colors       true    (series labels get the line's color)
+value-label-colors true    (value labels get the line's color)
+
+
+//// metadata.visualize: lines (one entry per series name, must match the CSV header)
+
+lines.<series>.width                 not set in OO3us = default 2 px
+                                     ("style0" = 2 px, "style1" = 3 px, "style2" = 4 px, "style3" = 1 px,
+                                      measured from test exports, not documented)
+lines.<series>.dash                  not set = solid line, "style1" = dotted, "style3" = long dashes
+                                     (seen in a PNG export of OO3us; "style2" not checked)
+                                     Which series get which style: see "Reference lines" below.
+lines.<series>.symbols.enabled       true on Befolkningen, Gruppe 1-land, Gruppe 2-land
+                                     (not set on Hele landet and Telemark = no symbols)
+lines.<series>.symbols.on            "every"   (symbol on every point; other options: first/last)
+lines.<series>.symbols.size          4.5
+lines.<series>.symbols.shape         not set = circle
+lines.<series>.symbols.style         not set = filled ("fill"); "hollow" gives an outline only
+lines.<series>.valueLabels.enabled   true      (value shown at the first and last point, seen in OO3us)
+
+Series names in "lines" and "color-category" must match the CSV header exactly.
+
+
+//// Reference lines (national and county level)
+
+Series that represent the whole country or the county are reference lines: grey, dashed, no symbols.
+The two levels must have different dash patterns so they can be told apart.
+
+Level      Possible series names                 Color      lines.<series>.dash   Symbols
+Country    "Hele landet", "Norge", "Landet"      #7b7b7a    "style1" (dotted)        off
+County     "Telemark", "Fylket"                  #7b7b7a    "style3" (long dashes)   off
+
+Match the series name exactly as listed (it must equal the CSV header).
+Value labels stay on, as for the other series.
+
+
+//// metadata.visualize: axes and grid lines
+
+x-grid               "off"      (vertical grid lines; "on" = on)
+y-grid               "on"       (horizontal grid lines)
+x-grid-format        "YYYY"     (show the x-axis as years)
+y-grid-format        "0%"       (y-axis labels with % sign)
+y-grid-labels        "auto"
+y-grid-label-align   "left"
+y-grid-subdivide     true
+scale-y              "linear"   ("log" = logarithmic)
+custom-range-y       ["40", ""] (y min 40, max automatic; "" = automatic)
+custom-range-x       ["", ""]   (automatic)
+custom-ticks-x/-y    ""         (automatic)
+
+
+//// metadata.visualize: other
+
+interpolation        "linear"   (straight lines; "monotone-x" = smoothed, "step-after" = steps)
+show-tooltips        true
+connector-lines      true       (lines from series labels to the line end when labels must be moved apart)
+label-margin         0
+highlighted-series   []         (series to emphasise; the others are toned down)
+text-annotations     []         (text placed in the chart)
+range-annotations    []         (shaded areas/bands)
+custom-area-fills    []         (fill between lines)
+dark-mode-invert     true
+labeling             not set in OO3us = default (series labels at the right end of the lines)
+
+
+//// metadata.visualize: height
+
+plotHeightMode       "ratio"    ("fixed" = fixed height in px)
+plotHeightRatio      0.6        (plot height = 0.6 x width)
+plotHeightFixed      400        (only used when plotHeightMode = "fixed")
+
+
+//// metadata.publish (footer and embedding)
+
+blocks.get-the-data     true    ("Last ned data")
+blocks.embed            true    ("Embed")
+blocks.download-image   true    ("Last ned bilde")
+blocks.download-pdf     false
+blocks.download-svg     false
+blocks.logo.enabled     false
+autoDarkMode            true
+embed-width             600     (set by Datawrapper when publishing)
+embed-height            396     (set by Datawrapper when publishing)
+
+
+//// metadata.annotate
+
+notes   ""   (footnote below the chart, not used)
