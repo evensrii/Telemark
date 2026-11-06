@@ -32,6 +32,11 @@ PALETTE = [
     "#959595",  # Stein
 ]
 
+## Grouped column and grouped bar charts only: #337580 (Vann) and #b7ad61 (Korn) first,
+## then the rest of the palette in its order
+GROUPED_MAIN_COLORS = ["#337580", "#b7ad61"]
+GROUPED_PALETTE = GROUPED_MAIN_COLORS + [c for c in PALETTE if c not in GROUPED_MAIN_COLORS]
+
 ## Series/rows that represent the country or the county (styled differently per chart type)
 COUNTRY_NAMES = ["Hele landet", "Norge", "Landet"]
 COUNTY_NAMES = ["Telemark", "Fylket"]

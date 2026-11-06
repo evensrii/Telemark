@@ -1,0 +1,82 @@
+//// Formatting reference: grouped bar charts, horizontal bars (Datawrapper type "d3-bars-grouped")
+
+Source: no reference chart. The settings below were found by testing on chart RtNRv
+("Test av formatering gruppert liggende stolpediagram") with PNG exports, 2026-11-06.
+Data: Sandkasse/Datawrapper/Pilot/Dummy data/grouped_column_diagram.csv
+(first column "Aldersgruppe" with five age groups as rows, value columns "Telemark (2025)" and "Hele landet (2025)")
+
+The general rules in formatering_generelt.txt (data source, "Andel" = %, rounding, footer, language, live data)
+apply first. This file only has rules specific to grouped bar charts; where they disagree, the general rules win.
+
+Part 1 is your own rules, written in plain language.
+Part 2 is the technical reference: the API keys and values that implement them.
+Values marked "Set per data set" depend on the CSV (column names); everything else applies to all grouped bar charts.
+Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"metadata": {...}}.
+
+
+////////////////////////////////////////////////////////////
+//// PART 1: CUSTOM RULES
+////////////////////////////////////////////////////////////
+
+// Data layout
+Same CSV layout as grouped column charts: the groups (e.g. age groups) as rows and one value column per series.
+Unlike grouped column charts, grouped bars read the CSV as it is: no transposing.
+
+
+// Colors
+Same as grouped column charts. Each value column (series) gets a color in column order:
+1. #337580 (Vann)
+2. #B7AD61 (Korn)
+3. onwards: the remaining colors of the general palette (formatering_generelt.txt), in the palette's order
+   (Nype #C54564, Blåveis #676B9A, Siv #C99251, ...)
+Country and county series get no fixed colors; they are colored like any other series.
+
+
+// Legend
+A legend above the chart shows the series (value column names).
+
+
+// Value labels
+Value labels are shown on every bar (rounding: see formatering_generelt.txt).
+
+
+// Axes and grid lines
+Datawrapper's defaults (bars start at 0; no value axis is shown, the value labels carry the numbers).
+
+
+// Size
+
+
+// Other
+
+
+
+////////////////////////////////////////////////////////////
+//// PART 2: TECHNICAL REFERENCE (tested on RtNRv)
+////////////////////////////////////////////////////////////
+
+//// Chart level (top level, not under "metadata")
+
+type        "d3-bars-grouped"
+(language and theme: see formatering_generelt.txt)
+
+
+//// metadata.data
+
+transpose   false   (with true, the series become the groups and the age groups the bars: wrong way round)
+(the other data keys: see formatering_generelt.txt)
+
+
+//// metadata.visualize
+
+custom-colors        {"<series name>": "<hex>", ...}   (color per value column)
+                     Set per data set: the value column names from the CSV header (including any year suffix).
+                     This chart type ignores "color-category" (used by column and line charts).
+show-color-key       true      (legend above the chart)
+value-label-format   "0"       (whole numbers; "0%" for shares, "0.0" if all values are below 10)
+tooltips             not checked; bar charts may not have hover tooltips
+
+
+//// Not set (Datawrapper defaults)
+
+Bar thickness, spacing, sorting, label placement (inside the bar, white or dark text depending on the color)

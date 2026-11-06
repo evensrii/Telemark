@@ -1,0 +1,162 @@
+//// Formatting reference: grouped column charts (Datawrapper type "grouped-column-chart")
+
+Source: chart FGNlU ("Manuelt gruppert stolpediagram"), fetched 2026-11-06 via GET https://api.datawrapper.de/v3/charts/FGNlU
+Data at the time: Sandkasse/Datawrapper/Pilot/Dummy data/grouped_column_diagram.csv
+(first column "Aldersgruppe" with five age groups as rows, value columns "Telemark (2025)" and "Hele landet (2025)")
+
+The general rules in formatering_generelt.txt (data source, "Andel" = %, rounding, footer, language, live data)
+apply first. This file only has rules specific to grouped column charts; where they disagree, the general rules win.
+
+Part 1 is your own rules, written in plain language.
+Part 2 is the technical reference: the API keys and values that make FGNlU look the way it does.
+Where they disagree, Part 1 wins. Values marked "Set per data set" depend on the CSV (column and row names);
+everything else applies to all grouped column charts.
+Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"metadata": {...}}.
+
+
+////////////////////////////////////////////////////////////
+//// PART 1: CUSTOM RULES
+////////////////////////////////////////////////////////////
+
+// Data layout
+The CSV has the groups (e.g. age groups) as rows and one value column per series (e.g. Telemark, Hele landet).
+Datawrapper must transpose it to draw a grouped column chart: set "transpose" to true in Datawrapper.
+The CSV itself is not changed, so the chart stays live.
+
+
+// Colors
+Each value column (series) gets a color in column order:
+1. #337580 (Vann)
+2. #B7AD61 (Korn)
+3. onwards: the remaining colors of the general palette (formatering_generelt.txt), in the palette's order
+   (Nype #C54564, Blåveis #676B9A, Siv #C99251, ...)
+Country and county series get no fixed colors; they are colored like any other series.
+Example: "Telemark (2025)", "Hele landet (2025)" -> #337580, #B7AD61.
+The same order is used for grouped bar charts (formatering_gruppert_liggende_stolpediagram.txt).
+
+
+// Legend
+A legend above the chart shows the series (value column names).
+
+
+// Value labels
+Value labels are shown above every column (rounding: see formatering_generelt.txt).
+
+
+// Axes and grid lines
+Use Datawrapper's default settings for the value axis: it starts at 0, and the max and gridlines are automatic.
+
+
+// Size
+
+
+// Other
+
+
+
+////////////////////////////////////////////////////////////
+//// PART 2: TECHNICAL REFERENCE (from FGNlU)
+////////////////////////////////////////////////////////////
+
+//// Chart level (top level, not under "metadata")
+
+type        "grouped-column-chart"
+(language and theme: see formatering_generelt.txt)
+
+
+//// metadata.data
+
+transpose   true    (Datawrapper swaps rows and columns when reading the CSV; the CSV on GitHub is unchanged)
+(the other data keys: see formatering_generelt.txt)
+
+
+//// metadata.axes
+
+column      "Telemark (2025)"   (left over from the column chart setup; not needed for grouped column charts,
+                                 which draw all value columns)
+
+
+//// metadata.visualize: colors
+
+base-color          0           (theme palette index; overridden by color-category for every series)
+color-by-column     true
+color-category      {
+                      "map":            {"<series name>": "<hex>", ...},   (color per value column)
+                      "categoryLabels": {},
+                      "excludeFromKey": [],
+                      "categoryOrder":  []
+                    }
+                    Set per data set: the value column names from the CSV header (including any year suffix).
+                    FGNlU:
+                      "Telemark (2025)"     #337580
+                      "Hele landet (2025)"  #b7ad61
+label-colors        false
+value-label-colors  true
+negativeColor       {"enabled": false, "value": "#F76454"}
+
+Series names in "map" must match the CSV header exactly, e.g. "Telemark (2025)", not "Telemark".
+
+
+//// metadata.visualize: legend
+
+color-key           true        (legend above the chart, one entry per series; this is the key that shows it)
+show-color-key      false       (the key used by simple column charts; has no effect here)
+stack-color-legend  false       (legend entries side by side)
+
+
+//// metadata.visualize: value labels
+
+valueLabels.enabled          true
+valueLabels.show             "always"    (not only on hover)
+valueLabels.placement        "outside"   (above the column)
+valueLabels.format           "0"         (whole numbers; set separately from the axis)
+valueLabels.preventOverlap   true
+
+
+//// metadata.visualize: axes and grid lines
+
+y-grid                 "on"
+grid-lines             "show"
+x-grid                 "off"
+grid-lines-x           {"enabled": false, "type": "ticks"}
+y-grid-format          "auto"
+y-grid-labels          "auto"
+y-grid-label-align     "left"
+y-grid-subdivide       true
+yAxisLabels            {"enabled": true, "alignment": "left", "placement": "outside"}
+x-grid-format          "auto"
+xGridAlignment         "baseline"
+rotate-labels          "auto"
+scale-y                "linear"
+custom-range           ["", ""]   (automatic: starts at 0)
+custom-ticks           ""
+tooltip format         not set in FGNlU; key for grouped column charts not checked yet
+
+
+//// metadata.visualize: layout and order
+
+bar-padding            60         (spacing; which of the two controls space within vs. between groups
+series-padding         60          is not checked)
+sort-values            false
+sort-by                "first"
+reverse-order          false
+plotHeightMode         "ratio"
+plotHeightRatio        0.5
+plotHeightFixed        300
+
+
+//// metadata.visualize: other
+
+show-tooltips          true
+compare                {"enabled": false, "differenceLabel": true}
+absolute-scale         false
+disable-tabs           true
+dark-mode-invert       true
+
+
+//// Differences from the general rules in FGNlU (the general rules apply)
+
+source-name / source-url    empty in FGNlU
+aria-description            empty in FGNlU
+blocks.embed                false in FGNlU
+blocks.download-image       false in FGNlU
