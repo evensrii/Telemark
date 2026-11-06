@@ -17,7 +17,7 @@ CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/S
 CHART_TITLE = "Andel bosatte i Telemark"
 
 # Set to an existing chart id to update it, or None to create a new chart
-CHART_ID = None
+CHART_ID = "OpSLV"
 
 # Query script that fetches the data (relative to PYTHONPATH), used to find the data source.
 # None if the data has no query script (e.g. dummy data): the source is left empty.
