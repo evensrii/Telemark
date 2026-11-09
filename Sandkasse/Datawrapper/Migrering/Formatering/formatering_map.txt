@@ -71,6 +71,9 @@ Alt text: "Graf utarbeidet av Telemark fylkeskommune".
 // Number format
 If the name of the value column in the CSV or the title (from the Excel file, if supplied) contains "Andel",
 use percentage formatting: "XX %" in tooltips and "XX%" in the legend.
+Legend: Datawrapper's default format, up to two decimals (e.g. "< 1,53", "1,53–1,67", "≥ 1,67").
+Steps: Datawrapper's default "Linear (equi-distant)".
+Decimals are always shown with a comma ("1,6"), also in tooltips.
 The values in the map labels come from the "Label+Value" column as they are written in the CSV.
 
 
@@ -196,7 +199,9 @@ legends.color.enabled       true
 legends.color.position      "inside-right-top"
 legends.color.orientation   "vertical"
 legends.color.labels        "ranges"      (each step shows its interval, e.g. "36%–44%")
-legends.color.labelFormat   "0%"          (Set per data set: "0%" if the value column or title contains "Andel", "0" otherwise. Shows the value
+legends.color.labelFormat   "0%"          (in 3SHpp. Rule: "0,0.[00]" (Datawrapper's default, up to two decimals),
+                                           "0,0.[00]%" if the value column or title contains "Andel".
+                                           Not "auto": that is not a valid format and shows "2." etc. Shows the value
                                            as written with % appended: 60 is shown as "60%")
 legends.color.titleEnabled  false
 legends.color.title         "<value column>"
@@ -210,8 +215,13 @@ legends.pattern / combined  defaults (patterns are off)
 
 tooltip.enabled   true
 tooltip.title     "%REGION_NAME%"
-tooltip.body      "%REGION_VALUE% %"    (Set per data set: "%REGION_VALUE% %" if the value column or title
-                                         contains "Andel", "%REGION_VALUE%" otherwise)
+tooltip.body      "%REGION_VALUE% %"    (in 3SHpp. %REGION_VALUE% shows the raw value with a decimal point ("1.6").
+                                         Rule: '{{ FORMAT(<column variable>, "0.[0]") }}', followed by " %" if the
+                                         value column or title contains "Andel". Up to one decimal.
+                                         <column variable> is the value column name in lowercase, spaces replaced
+                                         by "_", special characters (also æ, ø, å) removed, e.g.
+                                         "Forsørgerevne (2026)" -> forsrgerevne_2026,
+                                         "Andel flyktninger 2025" -> andel_flyktninger_2025)
 tooltip.sticky    true
 
 

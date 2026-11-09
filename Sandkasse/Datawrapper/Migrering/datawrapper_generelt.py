@@ -1,5 +1,7 @@
 import os
 import re
+from datetime import datetime
+
 import requests
 from dotenv import load_dotenv
 
@@ -85,7 +87,35 @@ def get_session():
 
     session = requests.Session()
     session.headers.update({"Authorization": f"Bearer {token}"})
+    session.hooks["response"].append(_log_api_call)
     return session
+
+
+## Log every Datawrapper API call (one line per call) to Python/Log/datawrapper_api_calls.log
+## (LOG_FOLDER if set, otherwise PYTHONPATH/Log; git-ignored). Count calls with count_api_calls().
+def _api_log_path():
+    log_folder = os.environ.get("LOG_FOLDER") or os.path.join(os.environ["PYTHONPATH"], "Log")
+    return os.path.join(log_folder, "datawrapper_api_calls.log")
+
+
+def _log_api_call(response, *args, **kwargs):
+    if not response.request.url.startswith(API_BASE):
+        return
+    path = _api_log_path()
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    timestamp = datetime.now().isoformat(timespec="seconds")
+    url = response.request.url[len(API_BASE):]
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(f"{timestamp}\t{response.request.method}\t{url}\t{response.status_code}\n")
+
+
+## Number of logged API calls, in total or since a date/time (ISO format, e.g. "2026-11-09")
+def count_api_calls(since=None):
+    path = _api_log_path()
+    if not os.path.exists(path):
+        return 0
+    with open(path, encoding="utf-8") as f:
+        return sum(1 for line in f if line.strip() and (since is None or line[:19] >= since))
 
 
 ## Find the team id for TEAM_NAME

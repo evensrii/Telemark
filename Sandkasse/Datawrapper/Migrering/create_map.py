@@ -1,3 +1,5 @@
+import re
+
 import pandas as pd
 import requests
 
@@ -59,9 +61,24 @@ print(f"Regions: {len(df)} rows from '{key_column}', colors from '{value_column}
 
 
 ## Number formats: % for shares ("Andel" in the value column name or in the title)
+## Legend: Datawrapper's default format (up to two decimals, e.g. "1,53–1,67")
+## Tooltip: the value with up to one decimal and a decimal comma, via FORMAT (%REGION_VALUE% shows "1.6").
+## The tooltip refers to the value column by its variable name: lowercase, spaces to "_", special characters
+## removed (Datawrapper's columnNameToVariable), e.g. "Forsørgerevne (2026)" -> "forsrgerevne_2026"
 share = is_share(value_column) or is_share(CHART_TITLE)
-legend_format = "0%" if share else "0"
-tooltip_body = "%REGION_VALUE% %" if share else "%REGION_VALUE%"
+
+
+def column_name_to_variable(name):
+    name = re.sub(r"\s+", "_", str(name).lower())
+    name = re.sub(r"[^\w-]+", "", name, flags=re.ASCII)
+    name = re.sub(r"__+", "_", name.replace("-", "_")).strip("_")
+    name = re.sub(r"^(\d)", r"_\1", name)
+    return re.sub(r"^(and|or|in|true|false)$", r"\1_", name)
+
+
+value_variable = column_name_to_variable(value_column)
+legend_format = "0,0.[00]" + ("%" if share else "")
+tooltip_body = f'{{{{ FORMAT({value_variable}, "0.[0]") }}}}' + (" %" if share else "")
 print(f"Legend format: {legend_format}, tooltip: {tooltip_body}")
 
 
