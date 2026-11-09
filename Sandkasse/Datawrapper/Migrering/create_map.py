@@ -44,6 +44,11 @@ BASEMAP_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/ma
 # ("Region", "Kommune", "Område" ...).
 LABEL_COLUMN = "Label+Value"
 
+# Column with the year/period of the data in the dw_ files (e.g. "2026" or "2022-2026"), shown in the tooltip
+# as "Data fra 2026". Set to text in the chart, otherwise Datawrapper reads "2026" as a date
+# ("Thu Jan 01 2026 00:00:00 GMT+0100 ...").
+YEAR_COLUMN = "Data_fra_aar"
+
 
 session = get_session()
 
@@ -56,12 +61,13 @@ print(f"Source: {source_name or '(none)'} {source_url}")
 df = pd.read_csv(CSV_URL)
 df.columns = [c.strip() for c in df.columns]
 key_column = df.columns[0]
-value_column = next(c for c in df.columns[1:] if c not in ("Label", LABEL_COLUMN, "Data_fra_aar"))
+value_column = next(c for c in df.columns[1:] if c not in ("Label", LABEL_COLUMN, YEAR_COLUMN))
+has_year = YEAR_COLUMN in df.columns
 print(f"Regions: {len(df)} rows from '{key_column}', colors from '{value_column}', labels from '{LABEL_COLUMN}'")
 
 
 ## Number formats: % for shares ("Andel" in the value column name or in the title)
-## Legend: Datawrapper's default format (up to two decimals, e.g. "1,53–1,67")
+## Legend: shares as whole numbers ("41%–44%"), other values with up to one decimal ("1,5–1,7"), never two
 ## Tooltip: the value with a decimal comma, via FORMAT (%REGION_VALUE% shows "1.6"): shares always with one
 ## decimal ("41,5 %"), other values with up to one decimal.
 ## The tooltip refers to the value column by its variable name: lowercase, spaces to "_", special characters
@@ -78,10 +84,18 @@ def column_name_to_variable(name):
 
 
 value_variable = column_name_to_variable(value_column)
-legend_format = "0,0.[00]" + ("%" if share else "")
+legend_format = "0%" if share else "0,0.[0]"
 tooltip_body = (
     f'{{{{ FORMAT({value_variable}, "0.0") }}}} %' if share else f'{{{{ FORMAT({value_variable}, "0.[0]") }}}}'
 )
+## Tooltip title: the municipality, with the year in parentheses if the CSV has Data_fra_aar ("Vinje (2026)")
+if has_year:
+    tooltip_title = (
+        f"{{{{ {column_name_to_variable(key_column)} }}}} ({{{{ {column_name_to_variable(YEAR_COLUMN)} }}}})"
+    )
+else:
+    tooltip_title = "%REGION_NAME%"
+print(f"Tooltip title: {tooltip_title}")
 print(f"Legend format: {legend_format}, tooltip: {tooltip_body}")
 
 
@@ -111,6 +125,8 @@ print("Uploaded basemap")
 ## 3) Link the CSV as external data (live) and apply the formatting
 metadata = general_metadata(CSV_URL, source_name, source_url)
 metadata["data"]["transpose"] = False
+if has_year:
+    metadata["data"]["column-format"] = {YEAR_COLUMN: {"type": "text"}}
 metadata["axes"] = {
     "keys": key_column,
     "values": value_column,
@@ -181,7 +197,7 @@ metadata["visualize"] = {
     "tooltip": {
         "enabled": True,
         "sticky": True,
-        "title": "%REGION_NAME%",
+        "title": tooltip_title,
         "body": tooltip_body,
     },
     "patterns": {"enabled": False},

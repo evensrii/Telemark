@@ -84,7 +84,8 @@ If the name of the value column in the CSV or the title (from the Excel file, if
 use percentage formatting: "XX,X %" in tooltips (always one decimal, e.g. "41,5 %") and "XX%" in the legend.
 Values that are not shares: no unit; tooltips with up to one decimal.
 Map labels: shares rounded to the nearest whole number (from "Label+Value", see Data layout).
-Legend: Datawrapper's default format, up to two decimals (e.g. "< 1,53", "1,53–1,67", "≥ 1,67").
+Legend: shares as whole numbers ("< 35%", "41%–44%"); other values with up to one decimal ("1,5–1,7").
+Never two decimals.
 Steps: Datawrapper's default "Linear (equi-distant)".
 Decimals are always shown with a comma ("1,6"), also in tooltips.
 The values in the map labels come from the "Label+Value" column as they are written in the CSV.
@@ -212,8 +213,8 @@ legends.color.enabled       true
 legends.color.position      "inside-right-top"
 legends.color.orientation   "vertical"
 legends.color.labels        "ranges"      (each step shows its interval, e.g. "36%–44%")
-legends.color.labelFormat   "0%"          (in 3SHpp. Rule: "0,0.[00]" (Datawrapper's default, up to two decimals),
-                                           "0,0.[00]%" if the value column or title contains "Andel".
+legends.color.labelFormat   "0%"          (in 3SHpp. Rule: "0%" if the value column or title contains "Andel"
+                                           (whole numbers), otherwise "0,0.[0]" (up to one decimal, never two).
                                            Not "auto": that is not a valid format and shows "2." etc. Shows the value
                                            as written with % appended: 60 is shown as "60%")
 legends.color.titleEnabled  false
@@ -232,6 +233,14 @@ tooltip.body      "%REGION_VALUE% %"    (in 3SHpp. %REGION_VALUE% shows the raw 
                                          Rule for shares ("Andel" in the value column or title):
                                          '{{ FORMAT(<column variable>, "0.0") }} %' (always one decimal).
                                          Other values: '{{ FORMAT(<column variable>, "0.[0]") }}' (up to one decimal).
+                                         If the CSV has "Data_fra_aar": tooltip.title
+                                         '{{ <region column variable> }} ({{ data_fra_aar }})', e.g. "Vinje (2026)"
+                                         (otherwise "%REGION_NAME%"); the body is only the value.
+                                         Also metadata.data.column-format {"Data_fra_aar": {"type": "text"}}
+                                         (otherwise "2026" is read as a date and shown as
+                                         "Thu Jan 01 2026 00:00:00 GMT+0100 ...").
+                                         Data placeholders only work in tooltips, not in the intro or
+                                         notes (tested 2026-11-09: shown as literal text).
                                          <column variable> is the value column name in lowercase, spaces replaced
                                          by "_", special characters (also æ, ø, å) removed, e.g.
                                          "Forsørgerevne (2026)" -> forsrgerevne_2026,
