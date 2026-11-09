@@ -19,18 +19,21 @@ Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"met
 
 // Data layout
 One row per municipality. Columns:
-- "Region": the municipality name, matched against the names in the map (basemap)
+- first column (any name: "Region", "Kommune", "Område" ...): the municipality name, matched against the
+  names in the map (basemap)
 - one value column (e.g. "Andel flyktninger 2025"), used for the colors
-- "Label+Value": the text shown on the map, e.g. "Bamble<br>50%" (name and value on two lines)
+- "Label+Value": the text shown on the map, e.g. "Bamble<br>50%" (name and value on two lines).
+  Always this column name; the text is made ready (rounding, %) by the query script.
 Rows that are not municipalities (e.g. "Norge", "Telemark") may be in the CSV; the map ignores them.
 
 
 // Map
-Municipalities in Telemark (custom basemap "Kommuner_Telemark-S_topo.json").
+Municipalities in Telemark (custom basemap, from the repo file Kart/Kartfiler/Datawrapper_kommuner_Telemark.json).
 
 
 // Colors
 Color type: steps (the value range is split into equally wide intervals).
+The number of steps is given per map (in the Excel file for batch creation): 5 or 3.
 Standard: 5 steps, colors from light to dark:
 
  1  #f6efd5
@@ -66,13 +69,13 @@ Alt text: "Graf utarbeidet av Telemark fylkeskommune".
 
 
 // Number format
-If the title (from the Excel file, if supplied) contains "Andel", use percentage formatting (i.e. "70%")
-in the legend and tooltips.
+If the name of the value column in the CSV or the title (from the Excel file, if supplied) contains "Andel",
+use percentage formatting: "XX %" in tooltips and "XX%" in the legend.
 The values in the map labels come from the "Label+Value" column as they are written in the CSV.
 
 
 // Tooltips
-Title: the municipality name. Body: the value (with % for shares).
+Title: the municipality name. Body: the value ("XX %" for shares, see above).
 
 
 // Footer
@@ -100,7 +103,9 @@ The basemap is a custom upload, stored with each chart as the asset "<chart id>.
 Setting the basemap keys alone is not enough: the map is empty and the PNG export fails (tested 2026-11-09).
 A new map needs the file uploaded:
   PUT /v3/charts/{id}/assets/{id}.map.json   (body: the TopoJSON, Content-Type application/json)
-A copy is kept in Migrering/Kart/Kommuner_Telemark-S_topo.json (downloaded from 3SHpp: GET /v3/charts/3SHpp/assets/3SHpp.map.json).
+The file: https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Kart/Kartfiler/Datawrapper_kommuner_Telemark.json
+(TopoJSON, object "Kommuner-S", 17 municipalities with the property "name"; identical to 3SHpp's asset,
+checked 2026-11-09).
 (Copying 3SHpp with POST /v3/charts/3SHpp/copy also works, but brings 3SHpp's leftover settings along.)
 
 
@@ -121,7 +126,8 @@ Datawrapper only refreshes the data automatically after the chart has been publi
 
 //// metadata.axes (which columns are used)
 
-keys        "Region"                     (matched against the region names in the basemap)
+keys        "Region"                     (Set per data set: the first column, whatever its name; its values are
+                                          matched against the region names in the basemap)
 values      "<value column>"             (Set per data set, e.g. "Andel flyktninger 2025")
 labels      "Label+Value"                (map labels)
 
@@ -190,7 +196,7 @@ legends.color.enabled       true
 legends.color.position      "inside-right-top"
 legends.color.orientation   "vertical"
 legends.color.labels        "ranges"      (each step shows its interval, e.g. "36%–44%")
-legends.color.labelFormat   "0%"          (Set per data set: "0%" for shares, "0" otherwise. Shows the value
+legends.color.labelFormat   "0%"          (Set per data set: "0%" if the value column or title contains "Andel", "0" otherwise. Shows the value
                                            as written with % appended: 60 is shown as "60%")
 legends.color.titleEnabled  false
 legends.color.title         "<value column>"
@@ -204,7 +210,8 @@ legends.pattern / combined  defaults (patterns are off)
 
 tooltip.enabled   true
 tooltip.title     "%REGION_NAME%"
-tooltip.body      "%REGION_VALUE% %"    (Set per data set: with " %" for shares, "%REGION_VALUE%" otherwise)
+tooltip.body      "%REGION_VALUE% %"    (Set per data set: "%REGION_VALUE% %" if the value column or title
+                                         contains "Andel", "%REGION_VALUE%" otherwise)
 tooltip.sticky    true
 
 

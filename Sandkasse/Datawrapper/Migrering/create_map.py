@@ -1,6 +1,5 @@
-from pathlib import Path
-
 import pandas as pd
+import requests
 
 from datawrapper_generelt import (
     API_BASE,
@@ -25,7 +24,7 @@ CHART_ID = "pFsxq"
 # None if the data has no query script (e.g. dummy data): the source is left empty.
 QUERY_SCRIPT = None
 
-# Number of color steps: 5 (standard) or 3
+# Number of color steps: 5 (standard) or 3, given per map (e.g. in the Excel file for batch creation)
 NUM_STEPS = 5
 
 ## Colors (formatering_map.txt Part 1), light to dark
@@ -34,11 +33,13 @@ STEP_COLORS = {
     3: ["#f0e1bd", "#e0c58e", "#c7a869"],
 }
 
-## Basemap: the municipalities in Telemark, uploaded to each map as the asset "<chart id>.map.json"
-BASEMAP_FILE = Path(__file__).parent / "Kart" / "Kommuner_Telemark-S_topo.json"
+## Basemap: the municipalities in Telemark (TopoJSON in the repo), uploaded to each map as the asset
+## "<chart id>.map.json"
+BASEMAP_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Kart/Kartfiler/Datawrapper_kommuner_Telemark.json"
 
-# Columns in the CSV: region names (matched against the basemap) and the map labels
-KEY_COLUMN = "Region"
+# Column in the CSV with the map labels (always "Label+Value").
+# The region names (matched against the basemap) are the first column, whatever it's called
+# ("Region", "Kommune", "Område" ...).
 LABEL_COLUMN = "Label+Value"
 
 
@@ -48,15 +49,17 @@ source_name, source_url = find_data_source(QUERY_SCRIPT)
 print(f"Source: {source_name or '(none)'} {source_url}")
 
 
-## Read the CSV: the value column is the first column that is not the region, "Label" or "Label+Value"
+## Read the CSV: the first column is the region names, the value column is the first column after it
+## that is not "Label" or "Label+Value"
 df = pd.read_csv(CSV_URL)
 df.columns = [c.strip() for c in df.columns]
-value_column = next(c for c in df.columns if c not in (KEY_COLUMN, "Label", LABEL_COLUMN))
-print(f"Regions: {len(df)} rows, colors from '{value_column}', labels from '{LABEL_COLUMN}'")
+key_column = df.columns[0]
+value_column = next(c for c in df.columns[1:] if c not in ("Label", LABEL_COLUMN))
+print(f"Regions: {len(df)} rows from '{key_column}', colors from '{value_column}', labels from '{LABEL_COLUMN}'")
 
 
-## Number formats: % for shares ("Andel" in the title)
-share = is_share(CHART_TITLE)
+## Number formats: % for shares ("Andel" in the value column name or in the title)
+share = is_share(value_column) or is_share(CHART_TITLE)
 legend_format = "0%" if share else "0"
 tooltip_body = "%REGION_VALUE% %" if share else "%REGION_VALUE%"
 print(f"Legend format: {legend_format}, tooltip: {tooltip_body}")
@@ -74,9 +77,11 @@ chart_id = create_or_get_chart(session, CHART_ID, CHART_TITLE, "d3-maps-chorople
 
 
 ## 2) Upload the basemap to the chart (the map is empty without it)
+basemap = requests.get(BASEMAP_URL)
+basemap.raise_for_status()
 response = session.put(
     f"{API_BASE}/charts/{chart_id}/assets/{chart_id}.map.json",
-    data=BASEMAP_FILE.read_bytes(),
+    data=basemap.content,
     headers={"Content-Type": "application/json"},
 )
 response.raise_for_status()
@@ -87,7 +92,7 @@ print("Uploaded basemap")
 metadata = general_metadata(CSV_URL, source_name, source_url)
 metadata["data"]["transpose"] = False
 metadata["axes"] = {
-    "keys": KEY_COLUMN,
+    "keys": key_column,
     "values": value_column,
     "labels": LABEL_COLUMN,
 }
