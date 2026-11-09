@@ -79,6 +79,14 @@ if not rows:
     print("Ingen data hentet. Avslutter.")
     raise RuntimeError("No data fetched from barnehagefakta.no API.")
 
+# Abort on partial failure, so the Telemark aggregate is never computed from incomplete data
+if error_messages:
+    print(f"Henting feilet for {len(error_messages)} av {len(telemark_kommuner)} kommuner. Avslutter uten opplasting.")
+    raise RuntimeError(
+        f"Partial data from barnehagefakta.no API ({len(rows)}/{len(telemark_kommuner)} kommuner):\n"
+        + "\n".join(error_messages)
+    )
+
 df = pd.DataFrame(rows)
 
 print(f"\nHentet data for {len(df)} kommuner.")
