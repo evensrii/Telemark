@@ -156,6 +156,10 @@ df_final = pd.concat(
     ignore_index=True,
 )
 
+# Map label for Datawrapper: name and value on two lines, e.g. "Bamble<br>37%"
+# (values are whole percentages, see calculate_percentage)
+df_final["Label+Value"] = df_final["Label"] + "<br>" + df_final[andel_col].astype(str) + "%"
+
 print(df_final)
 
 # ============================================================

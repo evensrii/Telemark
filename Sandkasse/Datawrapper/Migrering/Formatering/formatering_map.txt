@@ -189,7 +189,7 @@ labels.max                34
 labels.places             [...]           (place names Skien, Notodden etc. from the basemap; not shown when
                                            type is "column")
 min-label-zoom            1
-avoid-label-overlap       false
+avoid-label-overlap       false in 3SHpp; not set by the rules (Datawrapper's default is used)
 map-label-format          "0,0.[00]"      (not used: the labels come ready-formatted from "Label+Value")
 
 
