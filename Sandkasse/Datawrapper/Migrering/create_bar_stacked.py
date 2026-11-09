@@ -10,10 +10,10 @@ from datawrapper_generelt import (
     apply_and_refresh,
 )
 
-## Pilot: create (or update) a live stacked bar chart (horizontal bars) in Datawrapper, formatted according to
+## Migrering: create (or update) a live stacked bar chart (horizontal bars) in Datawrapper, formatted according to
 ## Formatering/formatering_generelt.txt and Formatering/formatering_bar_stacked.txt
 
-CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Pilot/Dummy%20data/h%C3%B8yeste_utdanning_innv_test_2.csv"
+CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Migrering/Dummy%20data/h%C3%B8yeste_utdanning_innv_test_2.csv"
 CHART_TITLE = "Test av formatering stacked barchart 2"
 
 # Set to an existing chart id to update it, or None to create a new chart

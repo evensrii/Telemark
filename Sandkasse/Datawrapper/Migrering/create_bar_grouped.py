@@ -10,10 +10,10 @@ from datawrapper_generelt import (
     apply_and_refresh,
 )
 
-## Pilot: create (or update) a live grouped bar chart (horizontal bars) in Datawrapper, formatted according to
+## Migrering: create (or update) a live grouped bar chart (horizontal bars) in Datawrapper, formatted according to
 ## Formatering/formatering_generelt.txt and Formatering/formatering_bar_grouped.txt
 
-CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Pilot/Dummy%20data/grouped_column_diagram.csv"
+CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Migrering/Dummy%20data/grouped_column_diagram.csv"
 CHART_TITLE = "Andel bosatte i Telemark"
 
 # Set to an existing chart id to update it, or None to create a new chart

@@ -1,0 +1,125 @@
+//// Formatting reference: bar charts, horizontal bars (Datawrapper type "d3-bars")
+
+Source: chart pEXuc ("Tittel bar chart"), fetched 2026-11-09 via GET https://api.datawrapper.de/v3/charts/pEXuc
+Data at the time: Sandkasse/Datawrapper/Migrering/Dummy data/bar_chart.csv
+(first column "Årsak" with eleven reasons as rows, one value column "Andel", sorted from highest to lowest)
+
+The general rules in formatering_generelt.txt (data source, "Andel" = %, rounding, footer, language, live data)
+apply first. This file only has rules specific to bar charts; where they disagree, the general rules win,
+except where this file says otherwise.
+
+Part 1 is your own rules, written in plain language.
+Part 2 is the technical reference: the API keys and values that make pEXuc look the way it does.
+Where they disagree, Part 1 wins.
+Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"metadata": {...}}.
+
+
+////////////////////////////////////////////////////////////
+//// PART 1: CUSTOM RULES
+////////////////////////////////////////////////////////////
+
+// Data layout
+One row per bar (first column: the bar labels) and one value column. The CSV is read as it is: no transposing.
+
+
+// Colors
+All bars: #337580 (Vann).
+
+
+// Labels
+Bar labels to the left of the bars, right-aligned.
+Value labels inside the end of every bar.
+Value labels follow the general rounding rules: whole numbers, one decimal if all values are below 10,
+and % for shares ("Andel" in the title), e.g. 54%.
+
+
+// Axes and grid lines
+No value axis or gridlines; the value labels carry the numbers.
+
+
+// Order
+Keep the row order from the CSV (no sorting in Datawrapper).
+
+
+// Size
+
+
+// Other
+
+
+
+////////////////////////////////////////////////////////////
+//// PART 2: TECHNICAL REFERENCE (from pEXuc)
+////////////////////////////////////////////////////////////
+
+//// Chart level (top level, not under "metadata")
+
+type        "d3-bars"
+(language and theme: see formatering_generelt.txt)
+
+
+//// metadata.data
+
+transpose   false   (the CSV rows are the bars)
+(the other data keys: see formatering_generelt.txt)
+
+
+//// metadata.visualize: colors
+
+base-color          "#337580"   (color of all bars)
+color-by-column     false
+color-category      {"map": {}, ...}   (empty: no individual bar colors)
+label-colors        false
+value-label-colors  true
+negativeColor       {"enabled": false, "value": "#F76454"}
+
+
+//// metadata.visualize: labels
+
+show-group-labels        true       (bar labels)
+show-category-labels     true
+label-alignment          "right"    (bar labels right-aligned, next to the bars)
+swap-labels              false
+block-labels             false
+replace-flags            {"enabled": false, "style": "4x3"}
+show-value-labels        true
+value-label-alignment    "right"    (value label at the end of the bar, inside it)
+value-label-format       "0%"       (whole numbers with %; "0" without %, "0.0" / "0.0%" if all values are
+                                     below 10. The value axis would follow this format too, as for grouped bars,
+                                     but no axis is shown. pEXuc shows % although its title lacks "Andel";
+                                     the general rule, based on the title, applies)
+show-color-key           true       (no visible legend with a single value column)
+
+
+//// metadata.visualize: axes and grid lines
+
+force-grid               false      (no value axis or gridlines)
+tick-position            "top"      (only used when force-grid is true)
+custom-range             ["", ""]
+custom-grid-lines        ""
+
+
+//// metadata.visualize: layout and order
+
+thick                    true       (thick bars)
+background               false
+rules                    false
+sort-bars                false      (keep the row order from the CSV)
+reverse-order            false
+group-by-column          false
+plotHeightMode           "fixed"
+plotHeightFixed          300        (bar charts size themselves to the number of bars; no visible effect)
+
+
+//// metadata.visualize: other
+
+show-tooltips            true       (tooltip format not set; not checked for bar charts)
+dark-mode-invert         true
+
+
+//// Differences from the general rules in pEXuc (the general rules apply)
+
+source-name / source-url    empty in pEXuc (dummy data without a query script)
+aria-description            empty in pEXuc
+blocks.embed                false in pEXuc
+blocks.download-image       false in pEXuc

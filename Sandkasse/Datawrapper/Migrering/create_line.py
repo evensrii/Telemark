@@ -14,10 +14,10 @@ from datawrapper_generelt import (
     apply_and_refresh,
 )
 
-## Pilot: create (or update) a live line chart in Datawrapper, formatted according to
+## Migrering: create (or update) a live line chart in Datawrapper, formatted according to
 ## Formatering/formatering_generelt.txt and Formatering/formatering_line.txt
 
-CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Pilot/Dummy%20data/linjediagram_uten_landet_fylket.csv"
+CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Migrering/Dummy%20data/linjediagram_uten_landet_fylket.csv"
 CHART_TITLE = "Andel av en variabel"
 
 # Set to an existing chart id to update it, or None to create a new chart

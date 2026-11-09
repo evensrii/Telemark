@@ -3,9 +3,9 @@ import re
 import requests
 from dotenv import load_dotenv
 
-## Shared code for the Datawrapper pilot scripts: everything in Formatering/formatering_generelt.txt
+## Shared code for the Datawrapper migration scripts: everything in Formatering/formatering_generelt.txt
 ## (palette, data source, number formats, footer, language, live data) plus the API connection.
-## Used by the create_<chart type>.py scripts (create_line.py, create_column.py, create_column_grouped.py,
+## Used by the create_<chart type>.py scripts (create_line.py, create_column.py, create_column_grouped.py, create_bar.py,
 ## create_column_stacked.py, create_bar_grouped.py, create_bar_stacked.py).
 
 API_BASE = "https://api.datawrapper.de/v3"

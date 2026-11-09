@@ -2,7 +2,7 @@ import os
 import requests
 from dotenv import load_dotenv
 
-## Pilot: list charts in Datawrapper via the API (https://developer.datawrapper.de/reference/getcharts)
+## Migrering: list charts in Datawrapper via the API (https://developer.datawrapper.de/reference/getcharts)
 
 API_BASE = "https://api.datawrapper.de/v3"
 TEAM_NAME = "Team analyse"
