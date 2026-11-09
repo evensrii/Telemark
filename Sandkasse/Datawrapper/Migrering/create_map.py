@@ -52,17 +52,18 @@ print(f"Source: {source_name or '(none)'} {source_url}")
 
 
 ## Read the CSV: the first column is the region names, the value column is the first column after it
-## that is not "Label" or "Label+Value"
+## that is not "Label", "Label+Value" or "Data_fra_aar" (the dw_ files made by Helper_scripts/datawrapper_functions.py)
 df = pd.read_csv(CSV_URL)
 df.columns = [c.strip() for c in df.columns]
 key_column = df.columns[0]
-value_column = next(c for c in df.columns[1:] if c not in ("Label", LABEL_COLUMN))
+value_column = next(c for c in df.columns[1:] if c not in ("Label", LABEL_COLUMN, "Data_fra_aar"))
 print(f"Regions: {len(df)} rows from '{key_column}', colors from '{value_column}', labels from '{LABEL_COLUMN}'")
 
 
 ## Number formats: % for shares ("Andel" in the value column name or in the title)
 ## Legend: Datawrapper's default format (up to two decimals, e.g. "1,53–1,67")
-## Tooltip: the value with up to one decimal and a decimal comma, via FORMAT (%REGION_VALUE% shows "1.6").
+## Tooltip: the value with a decimal comma, via FORMAT (%REGION_VALUE% shows "1.6"): shares always with one
+## decimal ("41,5 %"), other values with up to one decimal.
 ## The tooltip refers to the value column by its variable name: lowercase, spaces to "_", special characters
 ## removed (Datawrapper's columnNameToVariable), e.g. "Forsørgerevne (2026)" -> "forsrgerevne_2026"
 share = is_share(value_column) or is_share(CHART_TITLE)
@@ -78,7 +79,9 @@ def column_name_to_variable(name):
 
 value_variable = column_name_to_variable(value_column)
 legend_format = "0,0.[00]" + ("%" if share else "")
-tooltip_body = f'{{{{ FORMAT({value_variable}, "0.[0]") }}}}' + (" %" if share else "")
+tooltip_body = (
+    f'{{{{ FORMAT({value_variable}, "0.0") }}}} %' if share else f'{{{{ FORMAT({value_variable}, "0.[0]") }}}}'
+)
 print(f"Legend format: {legend_format}, tooltip: {tooltip_body}")
 
 

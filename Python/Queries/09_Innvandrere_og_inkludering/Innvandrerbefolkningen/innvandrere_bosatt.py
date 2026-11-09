@@ -4,6 +4,7 @@ import pandas as pd
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -100,8 +101,10 @@ def process_andel(df):
 
     year = df["år"].astype(str).iloc[0]
     df["andel"] = df["value"].round(0).astype(int)
+    # "andel_presis" (unrounded) is only used for the Datawrapper file (one decimal in tooltips)
+    df["andel_presis"] = df["value"]
 
-    return df[["region", "andel"]], year
+    return df[["region", "andel", "andel_presis"]], year
 
 
 df_andel_kommuner, year_kommuner = process_andel(df_kommuner_raw)
@@ -141,6 +144,16 @@ df_final = pd.concat(
 
 print(df_final)
 
+# Datawrapper version (same rows, unrounded values; see Helper_scripts/datawrapper_functions.py)
+df_dw = pd.concat(
+    [
+        df_andel_kommuner[["Region", "andel_presis", "Label"]],
+        df_andel_fylke[["Region", "andel_presis", "Label"]],
+        df_andel_landet[["Region", "andel_presis", "Label"]],
+    ],
+    ignore_index=True,
+)
+
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "andel_innvandrere_bosatt.csv"
@@ -150,6 +163,17 @@ temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df_final, file_name, github_folder, temp_folder, keepcsv=True)
+
+# Datawrapper version: dw_andel_innvandrere_bosatt.csv (not part of the "new data" status)
+handle_dw_map_output(
+    df_dw,
+    value_column="andel_presis",
+    value_name="Andel bosatt",
+    year=year_kommuner,
+    file_name=file_name,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
+)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory

@@ -7,6 +7,7 @@ from datetime import datetime
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -174,6 +175,10 @@ df_output["Label"] = df_output["Kommune"]
 print("\n--- Output DataFrame ---")
 print(df_output.to_string(index=False))
 
+# Datawrapper version (same rows, values not rounded to whole numbers; see Helper_scripts/datawrapper_functions.py)
+df_dw = df[["Kommune", "Andel oppfyller pedagognormen"]].copy()
+df_dw["Label"] = df_dw["Kommune"]
+
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name = "pedagognorm_barnehager.csv"
@@ -189,6 +194,17 @@ is_new_data = handle_output_data(
     temp_folder,
     keepcsv=True,
     value_columns=[andel_col],
+)
+
+# Datawrapper version: dw_pedagognorm_barnehager.csv (not part of the "new data" status)
+handle_dw_map_output(
+    df_dw,
+    value_column="Andel oppfyller pedagognormen",
+    value_name="Andel",
+    year=str(current_year),
+    file_name=file_name,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
 )
 
 # Write the "New Data" status to a unique log file

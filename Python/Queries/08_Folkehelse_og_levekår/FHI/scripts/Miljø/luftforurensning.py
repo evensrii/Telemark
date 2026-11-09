@@ -35,6 +35,7 @@ sys.path.append(pythonpath)
 
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -223,6 +224,8 @@ year = pd.to_datetime(df['År']).dt.year.max()
 
 # Reshape for Everviz: Kommune, Konsentrasjon PM2_5 (ÅR), Label
 df = df[['Kommune', 'Konsentrasjon_PM2_5']].copy()
+# "pm25_presis" (one decimal, as from the API) is only used for the Datawrapper file
+df['pm25_presis'] = pd.to_numeric(df['Konsentrasjon_PM2_5'], errors='coerce')
 df['Konsentrasjon_PM2_5'] = pd.to_numeric(df['Konsentrasjon_PM2_5'], errors='coerce').round(0).astype(int)
 df = df.rename(columns={'Konsentrasjon_PM2_5': f'Konsentrasjon PM2_5 ({year})'})
 df['Label'] = df['Kommune']
@@ -232,6 +235,10 @@ kommuner_df = df[df['Kommune'].isin(telemark_kommuner)].sort_values('Kommune')
 aggregates_df = df[df['Kommune'].isin(["Telemark", "Hele landet"])]
 aggregates_df = aggregates_df.set_index('Kommune').loc[["Telemark", "Hele landet"]].reset_index()
 df = pd.concat([kommuner_df, aggregates_df], ignore_index=True)
+
+# Datawrapper version (same rows, values with one decimal; see Helper_scripts/datawrapper_functions.py)
+df_dw = df[['Kommune', 'pm25_presis', 'Label']].copy()
+df = df[['Kommune', f'Konsentrasjon PM2_5 ({year})', 'Label']]
 
 ####################################################################
 ### EDITABLE SECTION END                                         ###
@@ -248,6 +255,17 @@ has_changes = handle_output_data(
     github_folder=github_folder,
     temp_folder=temp_folder,
     keepcsv=True
+)
+
+# Datawrapper version: dw_<output_filename> (not part of the "new data" status)
+handle_dw_map_output(
+    df_dw,
+    value_column="pm25_presis",
+    value_name="Konsentrasjon PM2_5",
+    year=str(year),
+    file_name=output_filename,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
 )
 
 if has_changes:

@@ -35,6 +35,7 @@ sys.path.append(pythonpath)
 
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -131,11 +132,13 @@ if 'År' in df.columns:
 # Process value column: round to integer
 if 'value' in df.columns:
     df['value'] = df['value'].replace(':', '')
+    # "andel_presis" (unrounded) is only used for the Datawrapper file (one decimal in tooltips)
+    df['andel_presis'] = pd.to_numeric(df['value'], errors='coerce')
     df['value'] = pd.to_numeric(df['value'], errors='coerce').round(0).astype('Int64')
     df = df.rename(columns={'value': f'Andel ({year})'})
 
-# Drop unnecessary columns (keep only Kommune and Andel)
-keep_cols = ['Kommune', f'Andel ({year})']
+# Drop unnecessary columns (keep only Kommune and Andel, plus andel_presis for Datawrapper)
+keep_cols = ['Kommune', f'Andel ({year})', 'andel_presis']
 df = df[[c for c in keep_cols if c in df.columns]]
 
 # Sort: Kommuner alphabetically, then Telemark, then Landet
@@ -153,6 +156,9 @@ df = df.drop(columns=["SortOrder"])
 
 # Add Label column
 df["Label"] = df["Kommune"]
+
+# Datawrapper version (same rows, unrounded values; see Helper_scripts/datawrapper_functions.py)
+df_dw = df[["Kommune", "andel_presis", "Label"]].copy()
 
 # Final column order
 df = df[["Kommune", f"Andel ({year})", "Label"]]
@@ -175,6 +181,17 @@ has_changes = handle_output_data(
     temp_folder=temp_folder,
     keepcsv=True,
     value_columns=[f"Andel ({year})"],
+)
+
+# Datawrapper version: dw_<output_filename> (not part of the "new data" status)
+handle_dw_map_output(
+    df_dw,
+    value_column="andel_presis",
+    value_name="Andel",
+    year=year,
+    file_name=output_filename,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
 )
 
 if has_changes:

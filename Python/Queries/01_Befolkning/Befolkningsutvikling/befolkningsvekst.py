@@ -5,6 +5,7 @@ from pyjstat import pyjstat
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -117,7 +118,9 @@ def calculate_change(df):
         print(missing)
         df_change = df_change.dropna(subset=["earliest", "latest"])
 
-    df_change["Andel"] = ((df_change["latest"] - df_change["earliest"]) / df_change["earliest"] * 100).round(0).astype(int)
+    # "andel_presis" (unrounded) is only used for the Datawrapper file (one decimal in tooltips)
+    df_change["andel_presis"] = (df_change["latest"] - df_change["earliest"]) / df_change["earliest"] * 100
+    df_change["Andel"] = df_change["andel_presis"].round(0).astype(int)
 
     return df_change, earliest_year, latest_year
 
@@ -161,6 +164,16 @@ df_final = pd.concat(
 
 print(df_final)
 
+# Datawrapper version (same rows, unrounded values; see Helper_scripts/datawrapper_functions.py)
+df_dw = pd.concat(
+    [
+        df_change_kommuner[["Region", "andel_presis", "Label"]],
+        df_change_fylke[["Region", "andel_presis", "Label"]],
+        df_change_landet[["Region", "andel_presis", "Label"]],
+    ],
+    ignore_index=True,
+)
+
 # ============================================================
 # Step 4: Save to CSV, compare and upload to GitHub
 # ============================================================
@@ -172,6 +185,17 @@ temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df_final, file_name, github_folder, temp_folder, keepcsv=True)
+
+# Datawrapper version: dw_befolkningsvekst.csv (not part of the "new data" status)
+handle_dw_map_output(
+    df_dw,
+    value_column="andel_presis",
+    value_name="Andel",
+    year=f"{earliest_year}-{latest_year}",
+    file_name=file_name,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
+)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())

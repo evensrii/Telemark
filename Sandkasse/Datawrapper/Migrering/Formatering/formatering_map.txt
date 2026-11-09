@@ -26,6 +26,17 @@ One row per municipality. Columns:
   Always this column name; the text is made ready (rounding, %) by the query script.
 Rows that are not municipalities (e.g. "Norge", "Telemark") may be in the CSV; the map ignores them.
 
+Data files for maps: the "dw_" version of the query script's CSV (e.g. dw_aleneboende.csv next to
+aleneboende.csv), made by Helper_scripts/datawrapper_functions.py. The original CSVs are used by Everviz and
+are not changed. The dw_ files have:
+- the value column under a fixed name without the year (e.g. "Andel aleneboende"), with one decimal, so the
+  maps keep working when the year changes (the map settings refer to the column by name)
+- "Label+Value": shares rounded to a whole number with "%" ("Skien<br>41%"). Other values with no unit:
+  one decimal (decimal comma) if the largest value in the data set is 10 or lower ("Bamble<br>1,7"),
+  otherwise a whole number ("Bamble<br>353"). The tooltip shows the value column with one decimal.
+- "Data_fra_aar": the year or period of the data (e.g. "2026" or "2022-2026") in every row, for custom text
+  (in tooltips: {{ data_fra_aar }})
+
 
 // Map
 Municipalities in Telemark (custom basemap, from the repo file Kart/Kartfiler/Datawrapper_kommuner_Telemark.json).
@@ -70,7 +81,9 @@ Alt text: "Graf utarbeidet av Telemark fylkeskommune".
 
 // Number format
 If the name of the value column in the CSV or the title (from the Excel file, if supplied) contains "Andel",
-use percentage formatting: "XX %" in tooltips and "XX%" in the legend.
+use percentage formatting: "XX,X %" in tooltips (always one decimal, e.g. "41,5 %") and "XX%" in the legend.
+Values that are not shares: no unit; tooltips with up to one decimal.
+Map labels: shares rounded to the nearest whole number (from "Label+Value", see Data layout).
 Legend: Datawrapper's default format, up to two decimals (e.g. "< 1,53", "1,53–1,67", "≥ 1,67").
 Steps: Datawrapper's default "Linear (equi-distant)".
 Decimals are always shown with a comma ("1,6"), also in tooltips.
@@ -216,8 +229,9 @@ legends.pattern / combined  defaults (patterns are off)
 tooltip.enabled   true
 tooltip.title     "%REGION_NAME%"
 tooltip.body      "%REGION_VALUE% %"    (in 3SHpp. %REGION_VALUE% shows the raw value with a decimal point ("1.6").
-                                         Rule: '{{ FORMAT(<column variable>, "0.[0]") }}', followed by " %" if the
-                                         value column or title contains "Andel". Up to one decimal.
+                                         Rule for shares ("Andel" in the value column or title):
+                                         '{{ FORMAT(<column variable>, "0.0") }} %' (always one decimal).
+                                         Other values: '{{ FORMAT(<column variable>, "0.[0]") }}' (up to one decimal).
                                          <column variable> is the value column name in lowercase, spaces replaced
                                          by "_", special characters (also æ, ø, å) removed, e.g.
                                          "Forsørgerevne (2026)" -> forsrgerevne_2026,

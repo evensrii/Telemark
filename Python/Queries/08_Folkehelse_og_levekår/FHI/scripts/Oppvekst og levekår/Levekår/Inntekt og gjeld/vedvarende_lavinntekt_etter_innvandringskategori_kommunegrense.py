@@ -35,6 +35,7 @@ sys.path.append(pythonpath)
 
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -138,6 +139,8 @@ df_base = df_base[df_base['År'] == latest_period].copy()
 def reshape_for_everviz(df_input, alder_filter):
     """Filter by alder and reshape to Everviz format."""
     df_out = df_input[df_input['Alder'] == alder_filter][['Geografi', 'value']].copy()
+    # "andel_presis" (unrounded) is only used for the Datawrapper files (one decimal in tooltips)
+    df_out['andel_presis'] = pd.to_numeric(df_out['value'], errors='coerce')
     df_out['value'] = pd.to_numeric(df_out['value'], errors='coerce').round(0).astype('Int64')
     df_out = df_out.rename(columns={
         'Geografi': 'Kommune',
@@ -150,9 +153,11 @@ def reshape_for_everviz(df_input, alder_filter):
     aggregates_part = aggregates_part.set_index('Kommune').loc[["Telemark", "Hele landet"]].reset_index()
     return pd.concat([kommuner_part, aggregates_part], ignore_index=True)
 
-# Create two output DataFrames
-df_alle_aldre = reshape_for_everviz(df_base, 'alle aldre')
-df_0_17 = reshape_for_everviz(df_base, '0-17 år')
+# Create two output DataFrames (the *_dw versions keep the unrounded "andel_presis" for Datawrapper)
+df_alle_aldre_dw = reshape_for_everviz(df_base, 'alle aldre')
+df_0_17_dw = reshape_for_everviz(df_base, '0-17 år')
+df_alle_aldre = df_alle_aldre_dw.drop(columns=['andel_presis'])
+df_0_17 = df_0_17_dw.drop(columns=['andel_presis'])
 
 ####################################################################
 ### EDITABLE SECTION END                                         ###
@@ -167,6 +172,12 @@ output_files = [
     ("vedvarende_lavinntekt_0-17.csv", df_0_17),
 ]
 
+# Datawrapper versions (same rows, unrounded values), per output file
+dw_frames = {
+    "vedvarende_lavinntekt_alle_aldre.csv": df_alle_aldre_dw,
+    "vedvarende_lavinntekt_0-17.csv": df_0_17_dw,
+}
+
 # Compare with GitHub and upload if changed
 print("\nComparing with GitHub...")
 for file_name, df_out in output_files:
@@ -177,6 +188,17 @@ for file_name, df_out in output_files:
         github_folder=github_folder,
         temp_folder=temp_folder,
         keepcsv=True
+    )
+    # Datawrapper version: dw_<file_name> (not part of the "new data" status;
+    # see Helper_scripts/datawrapper_functions.py)
+    handle_dw_map_output(
+        dw_frames[file_name],
+        value_column="andel_presis",
+        value_name="Andel",
+        year=str(latest_period),
+        file_name=file_name,
+        github_folder=github_folder,
+        temp_folder=temp_folder,
     )
     if has_changes:
         print(f"    ✓ New data detected and uploaded to GitHub")

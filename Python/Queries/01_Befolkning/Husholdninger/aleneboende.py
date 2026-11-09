@@ -5,6 +5,7 @@ from pyjstat import pyjstat
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -114,11 +115,11 @@ def calculate_percentage(df):
     df_pivot["aleneboende"] = df_pivot[aleneboende_cols[0]]
     df_pivot["alle_husholdninger"] = df_pivot[all_type_cols].sum(axis=1)
 
-    df_pivot["andel"] = (
-        df_pivot["aleneboende"] / df_pivot["alle_husholdninger"] * 100
-    ).round(0).astype(int)
+    df_pivot["andel_presis"] = df_pivot["aleneboende"] / df_pivot["alle_husholdninger"] * 100
+    df_pivot["andel"] = df_pivot["andel_presis"].round(0).astype(int)
 
-    return df_pivot[["region", "andel"]], year
+    # "andel_presis" (unrounded) is only used for the Datawrapper file (one decimal in tooltips)
+    return df_pivot[["region", "andel", "andel_presis"]], year
 
 
 df_andel_landet, year_landet = calculate_percentage(df_landet_raw)
@@ -156,11 +157,17 @@ df_final = pd.concat(
     ignore_index=True,
 )
 
-# Map label for Datawrapper: name and value on two lines, e.g. "Bamble<br>37%"
-# (values are whole percentages, see calculate_percentage)
-df_final["Label+Value"] = df_final["Label"] + "<br>" + df_final[andel_col].astype(str) + "%"
-
 print(df_final)
+
+# Datawrapper version (same rows, unrounded values; see Helper_scripts/datawrapper_functions.py)
+df_dw = pd.concat(
+    [
+        df_andel_kommuner[["Region", "andel_presis", "Label"]],
+        df_andel_fylke[["Region", "andel_presis", "Label"]],
+        df_andel_landet[["Region", "andel_presis", "Label"]],
+    ],
+    ignore_index=True,
+)
 
 # ============================================================
 # Step 4: Save to CSV, compare and upload to GitHub
@@ -173,6 +180,17 @@ temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df_final, file_name, github_folder, temp_folder, keepcsv=True)
+
+# Datawrapper version: dw_aleneboende.csv (not part of the "new data" status)
+handle_dw_map_output(
+    df_dw,
+    value_column="andel_presis",
+    value_name="Andel aleneboende",
+    year=year_landet,
+    file_name=file_name,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
+)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())

@@ -35,6 +35,7 @@ sys.path.append(pythonpath)
 
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -242,6 +243,18 @@ has_changes = handle_output_data(
     github_folder=github_folder,
     temp_folder=temp_folder,
     keepcsv=True
+)
+
+# Datawrapper version: dw_<output_filename> (not part of the "new data" status;
+# see Helper_scripts/datawrapper_functions.py)
+handle_dw_map_output(
+    df,
+    value_column=f'Antall ({year_label})',
+    value_name="Antall",
+    year=str(year_label),
+    file_name=output_filename,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
 )
 
 if has_changes:

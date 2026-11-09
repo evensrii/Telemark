@@ -5,6 +5,7 @@ from pyjstat import pyjstat
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -178,6 +179,18 @@ temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df_final, file_name, github_folder, temp_folder, keepcsv=True)
+
+# Datawrapper version: dw_forsørgerevne.csv (not part of the "new data" status)
+# (the ratio already has one decimal, so the Everviz values are used as they are)
+handle_dw_map_output(
+    df_final,
+    value_column=ratio_col,
+    value_name="Forsørgerevne",
+    year=year_kommuner,
+    file_name=file_name,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
+)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())

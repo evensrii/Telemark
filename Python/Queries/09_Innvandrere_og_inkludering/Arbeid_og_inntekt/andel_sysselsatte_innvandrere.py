@@ -14,6 +14,7 @@ from Helper_scripts.github_functions import upload_github_file
 from Helper_scripts.github_functions import download_github_file
 from Helper_scripts.github_functions import compare_to_github
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -192,6 +193,18 @@ temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df_filtered, file_name, github_folder, temp_folder, keepcsv=True)
+
+# Datawrapper version: dw_andel_sysselsatte_innvandrere.csv (not part of the "new data" status)
+# (the values are not rounded by this script, so the same data set is used)
+handle_dw_map_output(
+    df_filtered,
+    value_column=f"Andel {most_recent_year_year}",
+    value_name="Andel",
+    year=str(most_recent_year_year),
+    file_name=file_name,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
+)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())  # Default to current working directory

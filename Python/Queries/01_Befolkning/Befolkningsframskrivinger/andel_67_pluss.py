@@ -6,6 +6,7 @@ from pyjstat import pyjstat
 
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -208,6 +209,8 @@ def calc_andel_67(df_year):
     df_67 = df_67.rename(columns={value_col: "67+"})
     df_merged = df_total.merge(df_67, on="Region_clean", how="left")
     df_merged["Andel"] = (df_merged["67+"] / df_merged["Total"] * 100).round(1)
+    # "andel_presis" (unrounded) is only used for the Datawrapper file (one decimal in tooltips)
+    df_merged["andel_presis"] = df_merged["67+"] / df_merged["Total"] * 100
     return df_merged
 
 df_andel_2050 = calc_andel_67(df_2050)
@@ -237,6 +240,14 @@ df_result["Andel"] = df_result["Andel"].astype(int)
 
 print("\n=== Final result (CSV) ===")
 print(df_result.to_string(index=False))
+
+# Datawrapper version (same rows, unrounded 2050 values; see Helper_scripts/datawrapper_functions.py)
+df_dw = df_result[["Kommune", "Label"]].merge(
+    df_andel_2050[["Region_clean", "andel_presis"]],
+    left_on="Kommune",
+    right_on="Region_clean",
+    how="left",
+)[["Kommune", "andel_presis", "Label"]]
 
 # --- Print: Telemark 2040 vs 2050 ---
 
@@ -289,6 +300,18 @@ temp_folder = os.environ.get("TEMP_FOLDER")
 
 # Call the function and get the "New Data" status
 is_new_data = handle_output_data(df_result, file_name, github_folder, temp_folder, keepcsv=True)
+
+# Datawrapper version: dw_andel_67_pluss.csv (not part of the "new data" status)
+# The values are the projection for 2050 (see df_2050 above)
+handle_dw_map_output(
+    df_dw,
+    value_column="andel_presis",
+    value_name="Andel",
+    year="2050",
+    file_name=file_name,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
+)
 
 # Write the "New Data" status to a unique log file
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())

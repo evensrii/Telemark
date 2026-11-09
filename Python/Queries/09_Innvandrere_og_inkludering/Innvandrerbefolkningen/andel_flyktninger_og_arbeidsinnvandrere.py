@@ -14,6 +14,7 @@ from Helper_scripts.github_functions import upload_github_file
 from Helper_scripts.github_functions import download_github_file
 from Helper_scripts.github_functions import compare_to_github
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -151,6 +152,8 @@ def calculate_pivot(df, region_col):
         2:
     ]  # Skip region_col, and 'Alle'
     for column in percentage_columns:
+        # "<column>_presis" (unrounded) is only used for the Datawrapper files (one decimal in tooltips)
+        df_pivot[f"{column}_presis"] = (df_pivot[column] / df_pivot["Alle"]) * 100
         df_pivot[column] = ((df_pivot[column] / df_pivot["Alle"]) * 100).astype(
             int
         )  # Convert to percentage and format as integer
@@ -229,6 +232,12 @@ df_pivot_flyktninger.columns = [
     "Label",
 ]
 
+# Datawrapper versions (same rows, unrounded values; see Helper_scripts/datawrapper_functions.py)
+df_dw_arbeidsinnvandrere = df_pivot[["Region", "Arbeidsinnvandrere_presis"]].copy()
+df_dw_arbeidsinnvandrere["Label"] = df_dw_arbeidsinnvandrere["Region"]
+df_dw_flyktninger = df_pivot[["Region", "Flyktninger og deres familieinnvandrede_presis"]].copy()
+df_dw_flyktninger["Label"] = df_dw_flyktninger["Region"]
+
 ##################### Lagre til csv, sammenlikne og eventuell opplasting til Github #####################
 
 file_name1 = "andel_arbeidsinnvandrere.csv"
@@ -240,6 +249,26 @@ temp_folder = os.environ.get("TEMP_FOLDER")
 # Process both files and track their status
 is_new_data1 = handle_output_data(df_pivot_arbeidsinnvandrere, file_name1, github_folder, temp_folder, keepcsv=True)
 is_new_data2 = handle_output_data(df_pivot_flyktninger, file_name2, github_folder, temp_folder, keepcsv=True)
+
+# Datawrapper versions: dw_andel_arbeidsinnvandrere.csv and dw_andel_flyktninger.csv (not part of the "new data" status)
+handle_dw_map_output(
+    df_dw_arbeidsinnvandrere,
+    value_column="Arbeidsinnvandrere_presis",
+    value_name="Andel arbeidsinnvandrere",
+    year=str(most_recent_year.year),
+    file_name=file_name1,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
+)
+handle_dw_map_output(
+    df_dw_flyktninger,
+    value_column="Flyktninger og deres familieinnvandrede_presis",
+    value_name="Andel flyktninger",
+    year=str(most_recent_year.year),
+    file_name=file_name2,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
+)
 
 # Write a single status file that indicates if either file has new data
 log_dir = os.environ.get("LOG_FOLDER", os.getcwd())

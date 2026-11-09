@@ -37,6 +37,7 @@ sys.path.append(pythonpath)
 
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -214,6 +215,8 @@ if df_bor_trangt.empty:
     print(f"\n  Warning: No 0-17 data found for latest year {latest_year}")
 
 df_bor_trangt = df_bor_trangt[[geo_col, value_col]].copy()
+# "andel_presis" (unrounded) is only used for the Datawrapper file (one decimal in tooltips)
+df_bor_trangt['andel_presis'] = pd.to_numeric(df_bor_trangt[value_col], errors='coerce')
 # API returns percentage (e.g. 15.01), round to nearest integer
 df_bor_trangt[value_col] = pd.to_numeric(df_bor_trangt[value_col], errors='coerce').round(0).fillna(0).astype('int64')
 df_bor_trangt = df_bor_trangt.rename(columns={
@@ -228,6 +231,10 @@ aggregates_df = df_bor_trangt[df_bor_trangt['Kommune'].isin(["Telemark", "Hele l
 if not aggregates_df.empty:
     aggregates_df = aggregates_df.set_index('Kommune').loc[["Telemark", "Hele landet"]].reset_index()
 df_bor_trangt = pd.concat([kommuner_df, aggregates_df], ignore_index=True)
+
+# Datawrapper version (same rows, unrounded values; see Helper_scripts/datawrapper_functions.py)
+df_bor_trangt_dw = df_bor_trangt[['Kommune', 'andel_presis', 'Label']].copy()
+df_bor_trangt = df_bor_trangt.drop(columns=['andel_presis'])
 
 # ---------------------------------------------------------
 # Output 2: trangboddhet.csv — alle aldre, all years, long format
@@ -276,6 +283,18 @@ has_changes_bor_trangt = handle_output_data(
     github_folder=github_folder,
     temp_folder=temp_folder,
     keepcsv=True
+)
+
+# Datawrapper version: dw_bor_trangt.csv (not part of the "new data" status).
+# trangboddhet.csv (long format, all years) is not a map file and gets no dw_ version.
+handle_dw_map_output(
+    df_bor_trangt_dw,
+    value_column="andel_presis",
+    value_name="Andel",
+    year=str(latest_year),
+    file_name=output_filename,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
 )
 
 if has_changes_bor_trangt:

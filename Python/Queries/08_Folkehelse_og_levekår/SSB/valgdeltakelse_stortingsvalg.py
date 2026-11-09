@@ -5,6 +5,7 @@ from pyjstat import pyjstat
 # Import the utility functions from the Helper_scripts folder
 from Helper_scripts.utility_functions import fetch_data
 from Helper_scripts.github_functions import handle_output_data
+from Helper_scripts.datawrapper_functions import handle_dw_map_output
 
 # Capture the name of the current script
 script_name = os.path.basename(__file__)
@@ -111,6 +112,9 @@ df.loc[df["Kommune"].isin(["Telemark valgdistrikt", "Telemark"]), "Kommune"] = "
 # Rename country entry to "Landet"
 df.loc[df["Kommune"].str.contains("Hele landet|Landet|landet", case=False, na=False), "Kommune"] = "Landet"
 
+# Unrounded copy, only used for the Datawrapper file (one decimal in tooltips)
+df["andel_presis"] = df["Andel"].astype(float)
+
 # Andel as integer (rounded)
 df["Andel"] = df["Andel"].astype(float).round(0).astype(int)
 
@@ -137,6 +141,9 @@ df["Label"] = df["Kommune"]
 # Rename Andel column to include year dynamically
 df = df.rename(columns={"Andel": f"Andel ({year})"})
 
+# Datawrapper version (same rows, unrounded values; see Helper_scripts/datawrapper_functions.py)
+df_dw = df[["Kommune", "andel_presis", "Label"]].copy()
+
 # Final column order
 df = df[["Kommune", f"Andel ({year})", "Label"]]
 
@@ -159,6 +166,17 @@ is_new_data = handle_output_data(
     temp_folder,
     keepcsv=True,
     value_columns=[f"Andel ({year})"],
+)
+
+# Datawrapper version: dw_valgdeltakelse_stortingsvalg.csv (not part of the "new data" status)
+handle_dw_map_output(
+    df_dw,
+    value_column="andel_presis",
+    value_name="Andel",
+    year=year,
+    file_name=file_name,
+    github_folder=github_folder,
+    temp_folder=temp_folder,
 )
 
 # Write the "New Data" status to a unique log file
