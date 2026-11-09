@@ -11,7 +11,7 @@ from datawrapper_generelt import (
 )
 
 ## Pilot: create (or update) a live grouped bar chart (horizontal bars) in Datawrapper, formatted according to
-## Formatering/formatering_generelt.txt and Formatering/formatering_gruppert_barchart.txt
+## Formatering/formatering_generelt.txt and Formatering/formatering_bar_grouped.txt
 
 CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Pilot/Dummy%20data/grouped_column_diagram.csv"
 CHART_TITLE = "Andel bosatte i Telemark"

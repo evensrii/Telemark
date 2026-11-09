@@ -1,7 +1,7 @@
 //// Formatting reference: general rules for all Datawrapper visuals
 
 These rules apply to every chart type. Each chart type has its own file with rules specific to that type
-(e.g. formatering_linjediagram.txt). Where they disagree, the chart type's file wins.
+(e.g. formatering_line.txt). Where they disagree, the chart type's file wins.
 
 Part 1 is your own rules, written in plain language.
 Part 2 is the technical reference: the API keys and values that implement them.
@@ -36,11 +36,11 @@ neighbouring series get clearly different hues.
 Hav and Fjord are close to Vann, and Berg and Stein are close to grey (Stein #7B7B7A), so they are placed last.
 
 Exceptions:
-- Column charts use fixed colors instead (see formatering_stolpediagram.txt).
+- Column charts use fixed colors instead (see formatering_column.txt).
 - Grouped column and grouped bar charts use #337580 and #B7AD61 first, then the rest of the palette
-  (see formatering_gruppert_stolpediagram.txt and formatering_gruppert_barchart.txt).
+  (see formatering_column_grouped.txt and formatering_bar_grouped.txt).
 - Stacked column and stacked bar charts use #337580, #B7AD61, #C54564, #C99251 and #676B9A first, then the rest
-  of the palette (see formatering_stacked_stolpediagram.txt and formatering_stacked_barchart.txt).
+  of the palette (see formatering_column_stacked.txt and formatering_bar_stacked.txt).
 
 
 // Text (title, intro, source, notes)

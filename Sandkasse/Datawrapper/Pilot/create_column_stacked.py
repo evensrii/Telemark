@@ -11,7 +11,7 @@ from datawrapper_generelt import (
 )
 
 ## Pilot: create (or update) a live stacked column chart in Datawrapper, formatted according to
-## Formatering/formatering_generelt.txt and Formatering/formatering_stacked_stolpediagram.txt
+## Formatering/formatering_generelt.txt and Formatering/formatering_column_stacked.txt
 
 CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Pilot/Dummy%20data/h%C3%B8yeste_utdanning_innv_test.csv"
 CHART_TITLE = "Test av formatering stacked stolpediagram 2"

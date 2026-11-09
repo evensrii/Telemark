@@ -15,7 +15,7 @@ from datawrapper_generelt import (
 )
 
 ## Pilot: create (or update) a live line chart in Datawrapper, formatted according to
-## Formatering/formatering_generelt.txt and Formatering/formatering_linjediagram.txt
+## Formatering/formatering_generelt.txt and Formatering/formatering_line.txt
 
 CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Pilot/Dummy%20data/linjediagram_uten_landet_fylket.csv"
 CHART_TITLE = "Andel av en variabel"

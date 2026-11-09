@@ -12,7 +12,7 @@ from datawrapper_generelt import (
 )
 
 ## Pilot: create (or update) a live column chart in Datawrapper, formatted according to
-## Formatering/formatering_generelt.txt and Formatering/formatering_stolpediagram.txt
+## Formatering/formatering_generelt.txt and Formatering/formatering_column.txt
 
 CSV_URL = "https://raw.githubusercontent.com/evensrii/Telemark/refs/heads/main/Sandkasse/Datawrapper/Pilot/Dummy%20data/column_diagram.csv"
 CHART_TITLE = "Andel sysselsatt"
@@ -24,7 +24,7 @@ CHART_ID = "yhpBW"
 # None if the data has no query script (e.g. dummy data): the source is left empty.
 QUERY_SCRIPT = None
 
-## Colors (formatering_stolpediagram.txt Part 1): fixed, not the general palette
+## Colors (formatering_column.txt Part 1): fixed, not the general palette
 MAIN_COLOR = "#337580"  # Vann, all columns
 COUNTRY_COLOR = "#b7ad61"  # Korn
 COUNTY_COLOR = "#c54564"  # Nype
