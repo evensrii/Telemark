@@ -18,8 +18,19 @@ After processing: 19 rows and 3 columns
 
 Comparing with GitHub...
 Saved file to C:\Analyse\Telemark\Python\Temp\influensavaksinerte_over_65_aar.csv
-[2026-11-09 08:18:35] No new data to upload. Skipping GitHub update.
+[2026-11-10 08:19:14] No new data to upload. Skipping GitHub update.
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\influensavaksinerte_over_65_aar.csv
+     Kommune  Andel      Label       Label+Value Data_fra_aar
+0     Bamble   73.3     Bamble     Bamble<br>73%         2024
+1  Drangedal   64.0  Drangedal  Drangedal<br>64%         2024
+2   Fyresdal   62.1   Fyresdal   Fyresdal<br>62%         2024
+3   Hjartdal   51.2   Hjartdal   Hjartdal<br>51%         2024
+4    Kragerø   69.7    Kragerø    Kragerø<br>70%         2024
+Saved file to C:\Analyse\Telemark\Python\Temp\dw_influensavaksinerte_over_65_aar.csv
+File not found on GitHub: Data/08_Folkehelse og levekår/Helsetilstand/Vaksinasjon/dw_influensavaksinerte_over_65_aar.csv
+[2026-11-10 08:19:14] Uploading new file: dw_influensavaksinerte_over_65_aar.csv
+File uploaded successfully: Data/08_Folkehelse og levekår/Helsetilstand/Vaksinasjon/dw_influensavaksinerte_over_65_aar.csv
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\dw_influensavaksinerte_over_65_aar.csv
   ✓ No changes detected
 
   ✓ Saved to: C:\Analyse\Telemark\Python\Temp\influensavaksinerte_over_65_aar.csv
