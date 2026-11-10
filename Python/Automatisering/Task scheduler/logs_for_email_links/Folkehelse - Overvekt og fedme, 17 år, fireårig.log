@@ -10,21 +10,19 @@ Loading query from file...
   URL: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/388/data
 
 Fetching data from FHI API...
-FHI Query JSON-stat data loaded successfully.
-  ✓ Fetched 570 rows and 7 columns
-  Columns: Geografi, År, Kjønn, Alder, KMI-kategori, Måltall, value
+Request error in FHI Query: 400 Client Error: Bad Request for url: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/388/data
 
-After processing: 570 rows and 10 columns
-
-Comparing with GitHub...
-Saved file to C:\Analyse\Telemark\Python\Temp\overvekt_og_fedme_17_aar_fireaarig.csv
-[2026-11-09 08:18:28] No new data to upload. Skipping GitHub update.
-Keeping CSV file: C:\Analyse\Telemark\Python\Temp\overvekt_og_fedme_17_aar_fireaarig.csv
-  ✓ No changes detected
-
-  ✓ Saved to: C:\Analyse\Telemark\Python\Temp\overvekt_og_fedme_17_aar_fireaarig.csv
-
-======================================================================
-Processing complete
-======================================================================
-
+Errors:
+Traceback (most recent call last):
+  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/FHI/scripts/Helsetilstand/Sykdomsgrupper/overvekt_og_fedme_17_aar_fireaarig.py", line 94, in <module>
+    df = fetch_data(
+        url=url,
+    ...<3 lines>...
+        response_type="json"
+    )
+  File "C:\Analyse\Telemark\Python\Helper_scripts\utility_functions.py", line 48, in fetch_data
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\_eve1509\AppData\Local\anaconda3\envs\analyse\Lib\site-packages\requests\models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://statistikk-data.fhi.no/api/open/v1/nokkel/Table/388/data
