@@ -1,0 +1,21 @@
+﻿Script;When two output files;Title;Description;Steps
+forsørgerevne.py;;Forsørgerevne;Antall personer i yrkesaktiv alder (16 - 66 år) per person under 15 år og over 67 år;3
+andel_67_pluss.py;;Forventet andel personer 67 år eller eldre i 2050;;3
+befolkningsvekst.py;;Prosentvis endring i folketall;;4
+aleneboende.py;;Andel husholdninger med aleneboende;;3
+andel_unge_utenfor_kommuner.py;;Andel unge (15-29 år) som står utenfor arbeid og utdanning;;3
+sysselsetting_i_kommunene.py;;Sysselsettingsandel (15-74 år) i kommunene;;4
+muskel_og_skjelettplager_…_ettaarige_tall.py;;Antall personer per 1000 innbygger med henvendelse til primærhelsetjenesten hvert år grunnet muskel- og skjelettplager og -diagnoser;Alder 0 – 74 år;3
+influensavaksinerte_over_65_aar.py;;Andel personer 65 år og eldre som er vaksinert mot influensa;;3
+luftforurensning.py;;Gjennomsnittlig befolkningsvektet konsentrasjon (ug/m3) av finfraksjonen av svevestøv (PM2,5);Fem års gjennomsnitt;3
+valgdeltakelse_kommunevalg.py;;Valgdeltakelse ved siste kommunestyrevalg;;3
+valgdeltakelse_stortingsvalg.py;;Valgdeltakelse ved siste stortingsvalg;;3
+"	inntektsulikhet.py";;Inntektsulikhet målt som forholdet P90/P10;Målene tilsvarer de 10 % med høyest inntekt og de 10 % med lavest inntekt;3
+vedvarende_lavinntekt_…_kommunegrense.py;dw_vedvarende_lavinntekt_0-17.csv;Andel barn og unge 0 – 17 år i husholdninger med vedvarende lavinntekt;Etter kommunale grenser for lavinntekt;3
+vedvarende_lavinntekt_…_kommunegrense.py;dw_vedvarende_lavinntekt_alle_aldre.csv;Andel som bor i husholdninger med vedvarende lavinntekt. Alle aldre. ;Tilsvarer inntekt under 60 % av kommunal medianinntekt over en treårsperiode.;2
+bor_trangt.py;;Andel barn og unge i alderen 0 – 17 år som bor trangt;;3
+"	pedagognorm.py";;Andel barnehager som oppfyller pedagognormen;;3
+andel_sysselsatte_innvandrere.py;;Andel sysselsatte innvandrere per kommune i Telemark;15 - 74 år;4
+andel_flyktninger_og_arbeidsinnvandrere.py;dw_andel_arbeidsinnvandrere.csv;Andel arbeidsinnvandrere av totalt antall innvandrere i kommunen;;4
+andel_flyktninger_og_arbeidsinnvandrere.py;dw_andel_flyktninger.csv;Andel flyktninger (eller deres familieinnvandrede) av totalt antall innvandrere i kommunen;;5
+innvandrere_bosatt.py;;Andel innvandrere bosatt i kommunene i Telemark;;4

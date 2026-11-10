@@ -99,8 +99,22 @@ print(f"Tooltip title: {tooltip_title}")
 print(f"Legend format: {legend_format}, tooltip: {tooltip_body}")
 
 
+## Colors for other numbers of steps (e.g. 4): evenly spread from the lightest to the darkest of the 5 colors,
+## interpolated along the 5-color scale (the colors in between are calculated)
+def spread_colors(num_steps, scale=STEP_COLORS[5]):
+    rgb = [tuple(int(c[i:i + 2], 16) for i in (1, 3, 5)) for c in scale]
+    result = []
+    for k in range(num_steps):
+        t = k / (num_steps - 1) * (len(rgb) - 1)  # position on the scale, 0 ... 4
+        i = min(int(t), len(rgb) - 2)
+        f = t - i
+        result.append("#" + "".join(f"{round(a + (b - a) * f):02x}" for a, b in zip(rgb[i], rgb[i + 1])))
+    return result
+
+
 ## Color steps: equal distance between the colors (positions 0 ... 1)
-colors = STEP_COLORS[NUM_STEPS]
+colors = STEP_COLORS.get(NUM_STEPS) or spread_colors(NUM_STEPS)
+print(f"Colors ({NUM_STEPS} steps): {colors}")
 color_stops = [
     {"color": color, "position": round(i / (NUM_STEPS - 1), 4)} for i, color in enumerate(colors)
 ]
