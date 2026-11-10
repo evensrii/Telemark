@@ -82,7 +82,18 @@ Midt-Telemark     23 Midt-Telemark
   Tokke: 2242 -> 2231 (-11)
   Fyresdal: 1274 -> 1272 (-2)
 Saved file to C:\Analyse\Telemark\Python\Temp\andel_67_pluss.csv
-[2026-11-09 08:06:09] No new data to upload. Skipping GitHub update.
+[2026-11-10 08:06:03] No new data to upload. Skipping GitHub update.
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\andel_67_pluss.csv
+     Kommune  Andel      Label       Label+Value Data_fra_aar
+0     Bamble   27.1     Bamble     Bamble<br>27%         2050
+1  Drangedal   30.0  Drangedal  Drangedal<br>30%         2050
+2   Fyresdal   29.2   Fyresdal   Fyresdal<br>29%         2050
+3   Hjartdal   27.7   Hjartdal   Hjartdal<br>28%         2050
+4    Kragerø   31.8    Kragerø    Kragerø<br>32%         2050
+Saved file to C:\Analyse\Telemark\Python\Temp\dw_andel_67_pluss.csv
+File not found on GitHub: Data/01_Befolkning/Befolkningsframskrivinger/dw_andel_67_pluss.csv
+[2026-11-10 08:06:03] Uploading new file: dw_andel_67_pluss.csv
+File uploaded successfully: Data/01_Befolkning/Befolkningsframskrivinger/dw_andel_67_pluss.csv
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\dw_andel_67_pluss.csv
 No new data detected.
 New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Befolkning_-_Andel_67_pluss.log
