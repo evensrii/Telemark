@@ -120,7 +120,7 @@ for name in series:
     lines[name] = {
         "symbols": {
             "enabled": use_symbols and not is_reference,
-            "on": "every",
+            "on": "both",  # only on the first and last value
             "size": SYMBOL_SIZE,
         },
         "valueLabels": {"enabled": True},

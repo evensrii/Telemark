@@ -42,6 +42,7 @@ Exceptions:
   (see formatering_column_grouped.txt and formatering_bar_grouped.txt).
 - Stacked column and stacked bar charts use #337580, #B7AD61, #C54564, #C99251 and #676B9A first, then the rest
   of the palette (see formatering_column_stacked.txt and formatering_bar_stacked.txt).
+- Donut charts use the same colors as stacked charts (see formatering_donut.txt).
 
 
 // Text (title, intro, source, notes)
@@ -49,10 +50,12 @@ Data source ("Kilde"): deduced from the query script that fetches the data.
 - SSB: name "SSB", link "https://www.ssb.no/statbank/table/XXXXX" with the SSB table used in the script
   (e.g. https://www.ssb.no/statbank/table/08113). If the script uses several tables, use the first.
   If the table number is only known when the script runs, use the SSB link in sources.csv.
-- No direct link to a specific table in the script (e.g. FHI, IMDi, Utdanningsdirektoratet): use the source
+- No direct link to a specific table in the script (e.g. FHI scripts, IMDi, Utdanningsdirektoratet): use the source
   name and link listed in sources.csv (Migrering/sources.csv, one "name,url" per line). Sources not in that
   file: name only, link empty.
 - If the script reads its URL from a query file (.txt, as the FHI scripts do), use the URL in that file.
+- FHI data is always credited to Helsedirektoratet: "Kilde: Helsedirektoratet" with the link in sources.csv
+  (https://statistikk.fhi.no/nokkel/iIALHYpjwwxCYECV9iAnaqTcijzMZWmC1kI0U8cuNvg), even though the data comes from FHI.
 
 
 // Number format
@@ -62,6 +65,10 @@ Always round values to nearest integer on the value axis and in value labels. Ex
 below 10, use one decimal.
 Tooltips always show one decimal (e.g. value label 66, tooltip 66,2; values below 10: 6,2 in both).
 Never show two decimals.
+Exception: if all values are whole numbers (e.g. counts such as number of animals; "512" or "512.0"), show whole
+numbers everywhere, tooltips included (tooltip 512, not 512,0).
+Large numbers always have a thousands separator (a space in Norwegian), e.g. "4 198 139", not "4198139".
+(Formats: "0,0" for whole numbers, "0,0.0" for tooltips; "0.0" when all values are below 10.)
 
 
 // Footer

@@ -25,6 +25,7 @@ Country and county series (reference lines) are grey (Stein #7B7B7A), see "Refer
 If 5 series or more, dont use line symbols. Country and county series (reference lines, see Part 2) are not counted,
 and never get symbols. Example: Befolkningen, Gruppe 1-land, Gruppe 2-land, Hele landet, Telemark = 3 series counted,
 so the three ordinary lines get symbols.
+Symbols are only shown on the first and last value of each line, not on every point.
 
 
 // Value labels and series labels
@@ -54,7 +55,36 @@ The range is calculated from the data each time the chart script runs, not when 
 
 
 // Other
-If the data contains series (columns) named "Telemark"
+
+
+// Optional: area fill (off by default; only when asked for, e.g. "Coloring below each line")
+Fill the area between each line and the zero line with the line's own color, semi-transparent (opacity 0.3).
+With area fill: no dots (symbols) or value labels on the lines, and the series names in a legend (not at the
+line ends). A series with only scattered single values (no two values in a row, e.g. "Mdir enkeltår") is
+shown as dots only, in the color of the series it belongs to (shared word in the name), without fill or
+legend entry. Reference: chart cWPn1; look as the Everviz chart for norskeutslipp.
+Key: metadata.visualize.custom-area-fills, one entry per series:
+  {"id": <unique id>, "from": "<series name>", "to": "--zero-baseline--", "color": "<line color>",
+   "opacity": 0.3, "colorNegative": "#F76454", "interpolation": "linear", "useMixedColors": false}
+
+
+// Optional: highlighted period (off by default; only when asked for, e.g. "Highlight between 2020 and 2023,
+// named 'Vestfold og Telemark'")
+A grey shaded band over the period on the x axis, with a short text in its top left corner.
+Reference: chart HMOHj.
+Keys (metadata.visualize):
+  range-annotations  [{"id": <id>, "type": "x", "display": "range", "color": "#888", "opacity": 10,
+                       "strokeType": "solid", "strokeWidth": 1, "pattern": {"gap": 3, "type": "solid", "width": 3},
+                       "position": {"x0": "2020/01/01 00:00", "x1": "2023/01/01 00:00", "y0": "0", "y1": "0",
+                                    "yAxis": "y"},
+                       "showMobile": true, "showDesktop": true}]
+                     (x0/x1: the start and end year as dates; y0/y1 are not used for type "x")
+  text-annotations   [{"id": <id>, "text": "Vestfold og Telemark", "align": "tl", "size": 14, "bold": false,
+                       "italic": false, "underline": false, "bg": false, "dx": 0, "dy": 0,
+                       "position": {"x": "2020/01/01 14:00", "y": "<top of the y axis>"},
+                       "connectorLine": {"enabled": false}, "showMobile": true, "showDesktop": true,
+                       "mobileFallback": true}]
+                     (text at the start of the band, at the top of the y axis, left-aligned under that point)
 
 
 
@@ -94,7 +124,8 @@ lines.<series>.dash                  not set = solid line, "style1" = dotted, "s
                                      Which series get which style: see "Reference lines" below.
 lines.<series>.symbols.enabled       true on Befolkningen, Gruppe 1-land, Gruppe 2-land
                                      (not set on Hele landet and Telemark = no symbols)
-lines.<series>.symbols.on            "every"   (symbol on every point; other options: first/last)
+lines.<series>.symbols.on            "every" in OO3us (symbol on every point). Part 1 rule: "both" = first and
+                                     last point only (other options: "first", "last")
 lines.<series>.symbols.size          4.5
 lines.<series>.symbols.shape         not set = circle
 lines.<series>.symbols.style         not set = filled ("fill"); "hollow" gives an outline only

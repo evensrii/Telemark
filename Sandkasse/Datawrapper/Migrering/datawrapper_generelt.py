@@ -59,7 +59,7 @@ SOURCE_DOMAINS = {
     "norskeutslipp.no": "Miljødirektoratet",
     "nve.no": "NVE",
     "elhub.no": "Elhub",
-    "fhi.no": "FHI",
+    "fhi.no": "Helsedirektoratet",  # FHI data is credited to Helsedirektoratet (link: sources.csv)
     "udir.no": "Utdanningsdirektoratet",
     "barnehagefakta.no": "Utdanningsdirektoratet",
     "helsedirektoratet.no": "Helsedirektoratet",
@@ -203,15 +203,20 @@ def SOURCES_CSV_LINKS():
 
 
 ## Number formats: shares ("Andel" in the title) get %, the value axis and value labels show whole numbers
-## (one decimal if all values are below 10), tooltips always one decimal. Never two decimals.
+## (one decimal if all values are below 10), tooltips one decimal. Never two decimals.
+## Exception: if all values are whole numbers (e.g. counts, "512" or "512.0"), everything shows whole numbers.
 def is_share(title):
     return "andel" in title.lower()
 
 
 def number_formats(values, title):
     percent = "%" if is_share(title) else ""
-    value_format = ("0.0" if values.abs().max() < 10 else "0") + percent
-    tooltip_format = "0.0" + percent
+    values = values.dropna().astype(float)
+    if (values % 1 == 0).all():
+        return "0,0" + percent, "0,0" + percent
+    # "0,0": whole numbers with thousands separator (nb-NO: space, e.g. "4 198 139")
+    value_format = ("0.0" if values.abs().max() < 10 else "0,0") + percent
+    tooltip_format = "0,0.0" + percent
     return value_format, tooltip_format
 
 

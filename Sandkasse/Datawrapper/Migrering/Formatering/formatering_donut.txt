@@ -1,0 +1,78 @@
+//// Formatting reference: donut charts (Datawrapper type "d3-donuts")
+
+Source: chart Kjdt4 ("Tipping in Europe and America"), fetched 2026-11-10 via GET https://api.datawrapper.de/v3/charts/Kjdt4
+(Datawrapper example data: several donuts, one per "Job", slices per answer)
+
+The general rules in formatering_generelt.txt (data source, "Andel" = %, rounding, footer, language, live data)
+apply first. This file only has rules specific to donut charts; where they disagree, the general rules win,
+except where this file says otherwise.
+
+Part 1 is your own rules, written in plain language.
+Part 2 is the technical reference: the API keys and values from Kjdt4.
+Where they disagree, Part 1 wins.
+Keys are set with PATCH https://api.datawrapper.de/v3/charts/{id} and body {"metadata": {...}}.
+
+
+////////////////////////////////////////////////////////////
+//// PART 1: CUSTOM RULES
+////////////////////////////////////////////////////////////
+
+// Data layout
+One row per slice (first column: slice labels) and one value column, e.g. klimagassutslipp_donut.csv
+("Sektor", "Utslipp (2024)"). One donut.
+
+
+// Colors
+As stacked charts: #337580, #B7AD61, #C54564, #C99251 and #676B9A first, then the rest of the palette
+(formatering_generelt.txt), in the row order of the CSV.
+
+
+// Labels
+Slice labels and values inside the slices; legend (color key) at the top.
+Values are shown as the share of the total (percent), whole numbers, e.g. "75%", since the raw values
+(e.g. tonnes CO2-equivalents) are hard to read in a donut. The tooltip shows the value itself.
+
+
+// Order
+Slices in the CSV's row order (the scripts sort them from largest to smallest).
+
+
+// Other
+
+
+
+////////////////////////////////////////////////////////////
+//// PART 2: TECHNICAL REFERENCE (from Kjdt4)
+////////////////////////////////////////////////////////////
+
+//// Chart level
+
+type        "d3-donuts"
+
+
+//// metadata.axes / data
+
+axes.labels           <first column>   (slice labels)
+axes.group            not set          (Kjdt4 uses "Job" to draw one donut per group; one donut here)
+data.transpose        false
+
+
+//// metadata.visualize
+
+donut_hole_size       50
+pie_size              {"inside_labels": 75, "outside_labels": 50}
+inside_labels         {"enabled": true}
+outside_labels        {"enabled": false, "edge": false, "color": false}
+label_text_slices     true          (slice label in the slice)
+label_values_slices   true          (value in the slice)
+show_percent          true          (rule: share of the total; false in Kjdt4, which already has percentages)
+value-label-format    "0%"          (Kjdt4; with show_percent the share is formatted as a whole percent)
+donut_center_label    {"type": "total", "enabled": false}
+color_key             {"enabled": true, "position": "top", "stack": false, "label_values": false}
+slice_order           "descending"  (Kjdt4; rule: keep the CSV order, which is already descending)
+group                 {"num_slices": 5}   (max slices before the rest is grouped as "other"; set to the
+                                           number of rows so that no slices are merged)
+connector-lines       true
+color-category        {"map": {<slice label>: <color>, ...}}   (Set per data set, see Colors in Part 1)
+show-tooltips         true
+dark-mode-invert      true

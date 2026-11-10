@@ -57,6 +57,8 @@ Municipalities with missing data: grey. This is Datawrapper's default (light gre
 checked 2026-11-10 with dw_bor_trangt.csv, where Tokke and Vinje are empty), so nothing has to be set.
 The dw_ files keep missing values empty (not 0), so they are shown as missing.
 
+With 2 steps: the second lightest and the second darkest of the 5 colors: #f0e1bd, #d4b67c
+
 Other numbers of steps (e.g. 4): colors evenly spread from the lightest (#f6efd5) to the darkest (#c7a869)
 of the 5 colors, interpolated along the 5-color scale; the colors in between are calculated.
 4 steps: #f6efd5, #ebd8ad, #d8bb82, #c7a869
@@ -83,10 +85,12 @@ Data source ("Kilde"): deduced from the query script that fetches the data.
 - SSB: name "SSB", link "https://www.ssb.no/statbank/table/XXXXX" with the SSB table used in the script
   (e.g. https://www.ssb.no/statbank/table/08113). If the script uses several tables, use the first.
   If the table number is only known when the script runs, use the SSB link in sources.csv.
-- No direct link to a specific table in the script (e.g. FHI, IMDi, Utdanningsdirektoratet): use the source
+- No direct link to a specific table in the script (e.g. FHI scripts, IMDi, Utdanningsdirektoratet): use the source
   name and link listed in sources.csv (Migrering/sources.csv, one "name,url" per line). Sources not in that
   file: name only, link empty.
 - If the script reads its URL from a query file (.txt, as the FHI scripts do), use the URL in that file.
+- FHI data is always credited to Helsedirektoratet: "Kilde: Helsedirektoratet" with the link in sources.csv
+  (https://statistikk.fhi.no/nokkel/iIALHYpjwwxCYECV9iAnaqTcijzMZWmC1kI0U8cuNvg), even though the data comes from FHI.
 Alt text: "Graf utarbeidet av Telemark fylkeskommune".
 
 
@@ -95,7 +99,8 @@ If the name of the value column in the CSV or the title (from the Excel file, if
 use percentage formatting: "XX,X %" in tooltips (always one decimal, e.g. "41,5 %") and "XX%" in the legend.
 Values that are not shares: no unit; tooltips with up to one decimal.
 Map labels: shares rounded to the nearest whole number (from "Label+Value", see Data layout).
-Legend: shares as whole numbers ("< 35%", "41%–44%"); other values with up to one decimal ("1,5–1,7").
+Legend: same rule as the map labels. Shares as whole numbers ("< 35%", "41%–44%"); other values with up to
+one decimal if the largest value is 10 or lower ("1,5–1,7"), otherwise whole numbers ("286–319").
 Never two decimals.
 Steps: Datawrapper's default "Linear (equi-distant)".
 Decimals are always shown with a comma ("1,6"), also in tooltips.
@@ -226,7 +231,8 @@ legends.color.position      "inside-right-top"
 legends.color.orientation   "vertical"
 legends.color.labels        "ranges"      (each step shows its interval, e.g. "36%–44%")
 legends.color.labelFormat   "0%"          (in 3SHpp. Rule: "0%" if the value column or title contains "Andel"
-                                           (whole numbers), otherwise "0,0.[0]" (up to one decimal, never two).
+                                           (whole numbers); otherwise "0,0.[0]" (up to one decimal) if the largest
+                                           value is 10 or lower, else "0,0" (whole numbers). Never two decimals.
                                            Not "auto": that is not a valid format and shows "2." etc. Shows the value
                                            as written with % appended: 60 is shown as "60%")
 legends.color.titleEnabled  false

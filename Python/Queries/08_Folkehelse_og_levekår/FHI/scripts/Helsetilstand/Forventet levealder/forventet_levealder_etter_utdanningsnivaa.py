@@ -218,11 +218,10 @@ col_rename = {
 }
 df_pivot = df_pivot.rename(columns=col_rename)
 
-# Format interval: "YYYY-YYYY" → "YYYY - YYYY" (add spaces around dash)
-df_pivot['År (intervall)'] = df_pivot['År (intervall)'].str.replace('-', ' - ', regex=False)
+# Use the last year of the interval as År: "2019-2025" → "2025" (plain year, not a date)
+df_pivot['År'] = df_pivot['År (intervall)'].str.split(r'[-/]').str[-1].str.strip()
 
-# Rename to År and select final columns
-df_pivot = df_pivot.rename(columns={'År (intervall)': 'År'})
+# Select final columns
 df = df_pivot[['År', 'Grunnskole', 'Videregående', 'Universitet/Høyskole']].reset_index(drop=True)
 
 ####################################################################
