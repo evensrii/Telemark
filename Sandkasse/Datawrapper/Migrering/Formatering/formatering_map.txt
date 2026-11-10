@@ -53,6 +53,14 @@ Standard: 5 steps, colors from light to dark:
  4  #d4b67c
  5  #c7a869
 
+Municipalities with missing data: grey. This is Datawrapper's default (light grey, label shows the name only;
+checked 2026-11-10 with dw_bor_trangt.csv, where Tokke and Vinje are empty), so nothing has to be set.
+The dw_ files keep missing values empty (not 0), so they are shown as missing.
+
+Other numbers of steps (e.g. 4): colors evenly spread from the lightest (#f6efd5) to the darkest (#c7a869)
+of the 5 colors, interpolated along the 5-color scale; the colors in between are calculated.
+4 steps: #f6efd5, #ebd8ad, #d8bb82, #c7a869
+
 With 3 steps:
 
  1  #f0e1bd
@@ -74,8 +82,10 @@ No legend title.
 Data source ("Kilde"): deduced from the query script that fetches the data.
 - SSB: name "SSB", link "https://www.ssb.no/statbank/table/XXXXX" with the SSB table used in the script
   (e.g. https://www.ssb.no/statbank/table/08113). If the script uses several tables, use the first.
-  If the table number is only known when the script runs, leave the link empty.
-- Other sources: the name of the source (Miljødirektoratet, IMDi, FHI, NAV etc.), link empty.
+  If the table number is only known when the script runs, use the SSB link in sources.csv.
+- No direct link to a specific table in the script (e.g. FHI, IMDi, Utdanningsdirektoratet): use the source
+  name and link listed in sources.csv (Migrering/sources.csv, one "name,url" per line). Sources not in that
+  file: name only, link empty.
 - If the script reads its URL from a query file (.txt, as the FHI scripts do), use the URL in that file.
 Alt text: "Graf utarbeidet av Telemark fylkeskommune".
 
