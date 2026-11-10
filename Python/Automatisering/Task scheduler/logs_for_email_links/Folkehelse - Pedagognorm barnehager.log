@@ -21,6 +21,6 @@ Ingen data hentet. Avslutter.
 
 Errors:
 Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/Udir/pedagognorm.py", line 80, in <module>
+  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/Udir/pedagognorm.py", line 81, in <module>
     raise RuntimeError("No data fetched from barnehagefakta.no API.")
 RuntimeError: No data fetched from barnehagefakta.no API.
