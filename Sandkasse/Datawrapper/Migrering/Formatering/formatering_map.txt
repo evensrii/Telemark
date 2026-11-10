@@ -62,6 +62,7 @@ With 3 steps:
 
 // Labels
 Map labels: the column "Label+Value" (municipality name and value on two lines).
+Always show all labels, also where they overlap ("Prevent label overlapping" off).
 
 
 // Legend
@@ -203,7 +204,8 @@ labels.max                34
 labels.places             [...]           (place names Skien, Notodden etc. from the basemap; not shown when
                                            type is "column")
 min-label-zoom            1
-avoid-label-overlap       false in 3SHpp; not set by the rules (Datawrapper's default is used)
+avoid-label-overlap       false           (editor: "Prevent label overlapping" off; always show all labels.
+                                           Datawrapper's default hides overlapping labels, e.g. Porsgrunn, Siljan)
 map-label-format          "0,0.[00]"      (not used: the labels come ready-formatted from "Label+Value")
 
 

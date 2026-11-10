@@ -176,6 +176,7 @@ metadata["visualize"] = {
     # Labels from the "Label+Value" column
     "labels": {"enabled": True, "type": "column", "max": 34},
     "min-label-zoom": 1,
+    "avoid-label-overlap": False,  # always show all labels (editor: "Prevent label overlapping" off)
     # Legend: top right inside the map, vertical, ranges, no title
     "legends": {
         "color": {
