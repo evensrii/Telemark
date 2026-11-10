@@ -60,8 +60,10 @@ SOURCE_DOMAINS = {
     "nve.no": "NVE",
     "elhub.no": "Elhub",
     "fhi.no": "FHI",
-    "udir.no": "Udir",
-    "barnehagefakta.no": "Udir",
+    "udir.no": "Utdanningsdirektoratet",
+    "barnehagefakta.no": "Utdanningsdirektoratet",
+    "helsedirektoratet.no": "Helsedirektoratet",
+    "nibio.no": "NIBIO",
     "brreg.no": "Brønnøysundregistrene",
     "vegvesen.no": "Statens vegvesen",
     "norges-bank.no": "Norges Bank",
@@ -146,7 +148,7 @@ def source_from_text(text):
         if table:
             return name, f"https://www.ssb.no/statbank/table/{table.group(1)}"
         if "/table" in url:  # SSB table endpoint, but the number is set at runtime
-            print(f"Warning: SSB table number in {url} is set at runtime, source link left empty")
+            print(f"Note: SSB table number in {url} is set at runtime, using the general SSB link from sources.csv")
             return name, ""
     return None
 
@@ -161,9 +163,10 @@ def find_data_source(query_script):
         code = f.read()
     source = source_from_text(code)
     if source is None:
-        search_root = os.path.dirname(os.path.abspath(script_path))
-        for _ in range(3):
-            search_root = os.path.dirname(search_root)
+        # Search the script's whole topic folder (Queries/<topic>), e.g. FHI/scripts/... -> FHI/queries/...
+        queries_root = os.path.join(os.environ["PYTHONPATH"], "Queries")
+        relative = os.path.relpath(os.path.abspath(script_path), queries_root)
+        search_root = os.path.join(queries_root, relative.split(os.sep)[0])
         for query_name in re.findall(r"[\"']([^\"']+\.txt)[\"']", code):
             query_name = os.path.basename(query_name)
             for root, _, files in os.walk(search_root):
@@ -176,7 +179,27 @@ def find_data_source(query_script):
     if source is None:
         print("Warning: no known data source found in the query script")
         return "", ""
-    return source
+    name, url = source
+    if not url:
+        url = SOURCES_CSV_LINKS().get(name, "")
+        if not url:
+            print(f"Warning: no link for source '{name}' in sources.csv, source link left empty")
+    return name, url
+
+
+## Source names and general links for sources without a direct table link in the query script (e.g. FHI, whose
+## scripts use API URLs): sources.csv next to this file, one "name,url" per line (no header)
+SOURCES_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources.csv")
+
+
+def SOURCES_CSV_LINKS():
+    links = {}
+    with open(SOURCES_CSV, encoding="utf-8-sig") as f:
+        for line in f:
+            if "," in line:
+                name, url = line.strip().split(",", 1)
+                links[name.strip()] = url.strip()
+    return links
 
 
 ## Number formats: shares ("Andel" in the title) get %, the value axis and value labels show whole numbers
