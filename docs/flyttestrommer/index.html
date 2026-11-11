@@ -328,6 +328,11 @@
             color: #005260;
             font-weight: 600;
         }
+
+        /* Fade the OpenStreetMap basemap so flow lines stand out */
+        .leaflet-tile-pane {
+            filter: grayscale(0.8) opacity(0.6);
+        }
     </style>
 </head>
 <body>
@@ -551,8 +556,8 @@
     });
     map.setView([64.5, 13.0], 5);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         maxZoom: 19,
     }).addTo(map);
 
