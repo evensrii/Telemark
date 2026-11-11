@@ -1,26 +1,144 @@
 Loaded .env file from: C:\Analyse\Telemark\Python\token.env
 GITHUB_TOKEN loaded successfully.
-Feil ved henting av data for Porsgrunn (4001): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4001
-Feil ved henting av data for Skien (4003): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4003
-Feil ved henting av data for Notodden (4005): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4005
-Feil ved henting av data for Siljan (4010): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4010
-Feil ved henting av data for Bamble (4012): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4012
-Feil ved henting av data for Kragerø (4014): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4014
-Feil ved henting av data for Drangedal (4016): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4016
-Feil ved henting av data for Nome (4018): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4018
-Feil ved henting av data for Midt-Telemark (4020): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4020
-Feil ved henting av data for Seljord (4022): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4022
-Feil ved henting av data for Hjartdal (4024): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4024
-Feil ved henting av data for Tinn (4026): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4026
-Feil ved henting av data for Kviteseid (4028): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4028
-Feil ved henting av data for Nissedal (4030): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4030
-Feil ved henting av data for Fyresdal (4032): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4032
-Feil ved henting av data for Tokke (4034): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4034
-Feil ved henting av data for Vinje (4036): 500 Server Error: Failed to look up barnehage for url: https://www.barnehagefakta.no/api/Kommune/4036
-Ingen data hentet. Avslutter.
+  Porsgrunn (4001): 96.2 %
+  Skien (4003): 93.0 %
+  Notodden (4005): 83.3 %
+  Siljan (4010): 100.0 %
+  Bamble (4012): 72.7 %
+  Kragerø (4014): 100.0 %
+  Drangedal (4016): 66.7 %
+  Nome (4018): 83.3 %
+  Midt-Telemark (4020): 62.5 %
+  Seljord (4022): 100.0 %
+  Hjartdal (4024): 100.0 %
+  Tinn (4026): 66.7 %
+  Kviteseid (4028): 0.0 %
+  Nissedal (4030): 75.0 %
+  Fyresdal (4032): 0.0 %
+  Tokke (4034): 25.0 %
+  Vinje (4036): 50.0 %
 
-Errors:
-Traceback (most recent call last):
-  File "C:\Analyse\Telemark\Python\Queries/08_Folkehelse_og_levekår/Udir/pedagognorm.py", line 81, in <module>
-    raise RuntimeError("No data fetched from barnehagefakta.no API.")
-RuntimeError: No data fetched from barnehagefakta.no API.
+Hentet data for 17 kommuner.
+   Kommunenummer        Kommune  ...  Andel oppfyller med dispensasjon  Antall barn
+0           4001      Porsgrunn  ...                               0.0         1648
+1           4003          Skien  ...                               0.0         2552
+2           4005       Notodden  ...                              16.7          552
+3           4010         Siljan  ...                               0.0          119
+4           4012         Bamble  ...                              18.2          597
+5           4014        Kragerø  ...                               0.0          386
+6           4016      Drangedal  ...                               0.0          184
+7           4018           Nome  ...                               0.0          282
+8           4020  Midt-Telemark  ...                              37.5          484
+9           4022        Seljord  ...                               0.0          113
+10          4024       Hjartdal  ...                               0.0           83
+11          4026           Tinn  ...                              16.7          154
+12          4028      Kviteseid  ...                             100.0          105
+13          4030       Nissedal  ...                              25.0           68
+14          4032       Fyresdal  ...                             100.0           42
+15          4034          Tokke  ...                              50.0          104
+16          4036          Vinje  ...                              25.0          172
+
+[17 rows x 6 columns]
+
+--- Nasjonale tall ---
+Andel som oppfyller pedagognormen: 65.3 %
+Andel som ikke oppfyller: 8.4 %
+Andel som oppfyller med dispensasjon: 26.3 %
+
+--- Telemark aggregert ---
+Andel som oppfyller pedagognormen: 84.8 %
+Antall barn totalt: 7645
+
+--- Oppsummering ---
+Telemark: 84.8 %
+Landet: 65.3 %
+
+Kommuner under 50 %:
+  Kviteseid: 0.0 %
+  Fyresdal: 0.0 %
+  Tokke: 25.0 %
+
+Kommuner med 100 %:
+  Siljan
+  Kragerø
+  Seljord
+  Hjartdal
+
+--- Ferdig DataFrame ---
+Kommunenummer       Kommune  Andel oppfyller pedagognormen  Andel oppfyller ikke pedagognormen  Andel oppfyller med dispensasjon  Antall barn
+         4001     Porsgrunn                           96.2                                 3.8                               0.0         1648
+         4003         Skien                           93.0                                 7.0                               0.0         2552
+         4005      Notodden                           83.3                                 0.0                              16.7          552
+         4010        Siljan                          100.0                                 0.0                               0.0          119
+         4012        Bamble                           72.7                                 9.1                              18.2          597
+         4014       Kragerø                          100.0                                 0.0                               0.0          386
+         4016     Drangedal                           66.7                                33.3                               0.0          184
+         4018          Nome                           83.3                                16.7                               0.0          282
+         4020 Midt-Telemark                           62.5                                 0.0                              37.5          484
+         4022       Seljord                          100.0                                 0.0                               0.0          113
+         4024      Hjartdal                          100.0                                 0.0                               0.0           83
+         4026          Tinn                           66.7                                16.7                              16.7          154
+         4028     Kviteseid                            0.0                                 0.0                             100.0          105
+         4030      Nissedal                           75.0                                 0.0                              25.0           68
+         4032      Fyresdal                            0.0                                 0.0                             100.0           42
+         4034         Tokke                           25.0                                25.0                              50.0          104
+         4036         Vinje                           50.0                                25.0                              25.0          172
+           40      Telemark                           84.8                                 6.5                               8.7         7645
+           00        Landet                           65.3                                 8.4                              26.3       264210
+
+--- Output DataFrame ---
+      Kommune  Andel (2026)         Label
+    Porsgrunn            96     Porsgrunn
+        Skien            93         Skien
+     Notodden            83      Notodden
+       Siljan           100        Siljan
+       Bamble            73        Bamble
+      Kragerø           100       Kragerø
+    Drangedal            67     Drangedal
+         Nome            83          Nome
+Midt-Telemark            62 Midt-Telemark
+      Seljord           100       Seljord
+     Hjartdal           100      Hjartdal
+         Tinn            67          Tinn
+    Kviteseid             0     Kviteseid
+     Nissedal            75      Nissedal
+     Fyresdal             0      Fyresdal
+        Tokke            25         Tokke
+        Vinje            50         Vinje
+     Telemark            85      Telemark
+       Landet            65        Landet
+Saved file to C:\Analyse\Telemark\Python\Temp\pedagognorm_barnehager.csv
+[2026-11-11 08:20:01] No new data to upload. Skipping GitHub update.
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\pedagognorm_barnehager.csv
+     Kommune  Andel      Label       Label+Value Data_fra_aar
+0  Porsgrunn   96.2  Porsgrunn  Porsgrunn<br>96%         2026
+1      Skien   93.0      Skien      Skien<br>93%         2026
+2   Notodden   83.3   Notodden   Notodden<br>83%         2026
+3     Siljan  100.0     Siljan    Siljan<br>100%         2026
+4     Bamble   72.7     Bamble     Bamble<br>73%         2026
+Saved file to C:\Analyse\Telemark\Python\Temp\dw_pedagognorm_barnehager.csv
+[2026-11-11 08:20:02] Changes detected in the dataset.
+File uploaded successfully: Data/08_Folkehelse og levekår/Oppvekst og levekår/dw_pedagognorm_barnehager.csv
+
+Showing up to 5 examples of changes:
+
+Row: Kommune: Porsgrunn | Label: Porsgrunn
+  Andel: 96 -> 96.2
+
+Row: Kommune: Skien | Label: Skien
+  Andel: 93 -> 93.0
+
+Row: Kommune: Notodden | Label: Notodden
+  Andel: 83 -> 83.3
+
+Row: Kommune: Siljan | Label: Siljan
+  Andel: 100 -> 100.0
+
+Row: Kommune: Bamble | Label: Bamble
+  Andel: 73 -> 72.7
+
+Total changes found in examined rows: 20
+(Showing first 5 changes only)
+Keeping CSV file: C:\Analyse\Telemark\Python\Temp\dw_pedagognorm_barnehager.csv
+No new data detected.
+New data status log written to C:\Analyse\Telemark\Python\Log\new_data_status_Folkehelse_-_Pedagognorm_barnehager.log
