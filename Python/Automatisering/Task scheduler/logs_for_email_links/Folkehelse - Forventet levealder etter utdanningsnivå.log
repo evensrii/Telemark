@@ -18,9 +18,31 @@ After processing: 30 rows and 4 columns
 
 Comparing with GitHub...
 Saved file to C:\Analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanningsnivaa.csv
-[2026-11-10 08:18:33] No new data to upload. Skipping GitHub update.
+[2026-11-11 08:18:03] Changes detected in the dataset.
+File uploaded successfully: Data/08_Folkehelse og levekår/Helsetilstand/Forventet levealder/forventet_levealder_etter_utdanningsnivaa.csv
+
+Showing up to 5 examples of changes:
+
+Row: 
+  r: 1996 -> 1990 - 1996
+
+Row: 
+  r: 1997 -> 1991 - 1997
+
+Row: 
+  r: 1998 -> 1992 - 1998
+
+Row: 
+  r: 1999 -> 1993 - 1999
+
+Row: 
+  r: 2000 -> 1994 - 2000
+
+Total changes found in examined rows: 30
+(Showing first 5 changes only)
 Keeping CSV file: C:\Analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanningsnivaa.csv
-  ✓ No changes detected
+  ✓ New data detected and uploaded to GitHub
+New data detected
 
   ✓ Saved to: C:\Analyse\Telemark\Python\Temp\forventet_levealder_etter_utdanningsnivaa.csv
 
