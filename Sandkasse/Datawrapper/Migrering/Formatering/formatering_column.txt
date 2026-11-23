@@ -30,6 +30,17 @@ The general palette in formatering_generelt.txt is not used for column charts.
 Value labels are shown above every column (rounding: see formatering_generelt.txt).
 
 
+// X-axis labels
+Labels named "Telemark", "Landet", "Hele landet" or "Norge" are shown in bold. In the editor this is done in
+"Check & Describe" by changing the cell to <b>Telemark</b>. Via the API it is stored as metadata.data.changes,
+one entry per label:
+  {"id": <id>, "row": <CSV row, header = 0>, "column": 0, "value": "<b>Telemark</b>", "previous": "Telemark",
+   "time": <ms timestamp>, "ignored": false}
+The color map (color-category) also gets the bold label as key, with the same color as the plain label.
+The CSV itself is not changed, so the chart stays live (note: the change follows the row number, so if rows in
+the CSV are reordered later, the bold label must be checked).
+
+
 // Axes and grid lines
 Use Datawrapper's default settings for the value axis: it starts at 0, and the max and gridlines are automatic.
 The y-axis min/max rules for line charts do not apply.

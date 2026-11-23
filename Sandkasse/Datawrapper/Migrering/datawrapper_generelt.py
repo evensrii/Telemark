@@ -1,5 +1,6 @@
 import os
 import re
+import uuid
 from datetime import datetime
 
 import requests
@@ -47,6 +48,20 @@ STACKED_PALETTE = STACKED_MAIN_COLORS + [c for c in PALETTE if c not in STACKED_
 ## Series/rows that represent the country or the county (styled differently per chart type)
 COUNTRY_NAMES = ["Hele landet", "Norge", "Landet"]
 COUNTY_NAMES = ["Telemark", "Fylket"]
+
+## Column and stacked column charts: x-axis labels shown in bold (formatering_column.txt,
+## formatering_column_stacked.txt)
+BOLD_LABEL_NAMES = ["Telemark", "Landet", "Hele landet", "Norge"]
+
+
+def bold_label_changes(labels):
+    """Bold x-axis labels as Datawrapper stores the edit made in "Check & Describe" (metadata.data.changes).
+    labels: the first column of the CSV, in CSV order. row/column refer to the CSV as uploaded (row 0 is the
+    header), also when the chart transposes the data."""
+    now = int(datetime.now().timestamp() * 1000)
+    return [{"id": uuid.uuid4().hex[:10], "row": i + 1, "column": 0, "value": f"<b>{label}</b>",
+             "previous": label, "time": now, "ignored": False}
+            for i, label in enumerate(labels) if label in BOLD_LABEL_NAMES]
 
 ## Data sources recognised in query scripts: URL domain -> name shown as "Kilde"
 ## (SSB also gets a link to the table, see find_data_source)

@@ -8,7 +8,7 @@ import uuid
 def extras_from_comment(comment, ns):
     """Optional extras from the line chart rules, asked for in the comment."""
     visualize = {}
-    m = re.search(r"[Hh]ighlight between (\d{4}) and (\d{4}), named \"([^\"]+)\"", comment)
+    m = re.search(r"[Hh]ighlight between (\d{4}) and (\d{4}), (?:named|annotated) \"([^\"]+)\"", comment)
     if m:
         start, end, label = m.groups()
         y_top = ns.get("y_max", "")

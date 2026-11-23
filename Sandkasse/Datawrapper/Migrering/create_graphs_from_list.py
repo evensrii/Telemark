@@ -124,7 +124,8 @@ for _, row in ready.iterrows():
         ns = run_type_script(TYPE_SCRIPTS[ctype], {
             "CSV_URL": csv_url(row["CSV"]), "CHART_TITLE": title, "CHART_ID": chart_id, "QUERY_SCRIPT": query_script})
         chart_id = ns["chart_id"]
-        patch = {"metadata": {"describe": {"intro": row["Description"].strip()}}}
+        intro = " ".join(t for t in [row["Description"].strip(), ns.get("description_note", "")] if t)
+        patch = {"metadata": {"describe": {"intro": intro}}}
         extras = extras_from_comment(row["Comment"], ns)
         if extras:
             patch["metadata"]["visualize"] = extras

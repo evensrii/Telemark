@@ -94,7 +94,7 @@ def y_axis_range(values, is_share):
     y_max = math.ceil((high + data_range * 0.1) / step) * step
     if values.min() >= 0:
         y_min = max(0, y_min)
-    if is_share:
+    if is_share and values.max() <= 100:  # not for indices (e.g. 2012 = 100) that go above 100
         y_max = min(100, y_max)
     # round away floating point noise (e.g. 0.30000000000000004)
     return round(y_min, 10), round(y_max, 10)

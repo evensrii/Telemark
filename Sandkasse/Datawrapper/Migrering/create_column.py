@@ -3,6 +3,7 @@ import pandas as pd
 from datawrapper_generelt import (
     COUNTRY_NAMES,
     COUNTY_NAMES,
+    bold_label_changes,
     get_session,
     find_data_source,
     number_formats,
@@ -57,6 +58,11 @@ color_map = {label: COUNTRY_COLOR for label in labels if label in COUNTRY_NAMES}
 color_map.update({label: COUNTY_COLOR for label in labels if label in COUNTY_NAMES})
 print(f"Country/county columns: {color_map or '(none)'}")
 
+## Bold x-axis labels for Telemark and the country; the colors are also keyed by the bold label
+label_changes = bold_label_changes(labels)
+color_map.update({c["value"]: color_map[c["previous"]] for c in label_changes if c["previous"] in color_map})
+print(f"Bold labels: {[c['previous'] for c in label_changes] or '(none)'}")
+
 
 ## 1) Create an empty column chart in the team (unless updating an existing one)
 chart_id = create_or_get_chart(session, CHART_ID, CHART_TITLE, "column-chart")
@@ -64,6 +70,7 @@ chart_id = create_or_get_chart(session, CHART_ID, CHART_TITLE, "column-chart")
 
 ## 2) Link the CSV as external data (live) and apply the formatting
 metadata = general_metadata(CSV_URL, source_name, source_url)
+metadata["data"]["changes"] = label_changes
 metadata["axes"] = {"column": value_column}
 metadata["visualize"] = {
     "base-color": MAIN_COLOR,

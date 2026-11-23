@@ -123,7 +123,8 @@ for _, row in ready.iterrows():
         ns = run_type_script(TYPE_SCRIPTS[ctype], {
             "CSV_URL": url, "CHART_TITLE": title, "CHART_ID": chart_id, "QUERY_SCRIPT": None})
         chart_id = ns["chart_id"]
-        patch = {"metadata": {"describe": {"intro": row["Description"].strip()}}}
+        intro = " ".join(t for t in [row["Description"].strip(), ns.get("description_note", "")] if t)
+        patch = {"metadata": {"describe": {"intro": intro}}}
         if not len(existing):
             patch["folderId"] = folders[folder]  # only when created; later moves in Datawrapper are kept
         session.patch(f"{API_BASE}/charts/{chart_id}", json=patch).raise_for_status()

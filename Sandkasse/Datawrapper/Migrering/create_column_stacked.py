@@ -2,6 +2,7 @@ import pandas as pd
 
 from datawrapper_generelt import (
     STACKED_PALETTE,
+    bold_label_changes,
     get_session,
     find_data_source,
     number_formats,
@@ -25,6 +26,10 @@ QUERY_SCRIPT = None
 
 ## Part 1: "Stack percentages" if every row sums to 100 within this tolerance
 STACK_PERCENT_MIN, STACK_PERCENT_MAX = 98, 102
+
+## Part 1: with more than this many columns, value labels are shown on hover only, with a note in the description
+MAX_COLUMNS_FOR_VALUE_LABELS = 6
+HOVER_NOTE = "Hold musepekeren over for å se andelen."
 
 
 session = get_session()
@@ -68,6 +73,16 @@ chart_id = create_or_get_chart(session, CHART_ID, CHART_TITLE, "stacked-column-c
 ## 2) Link the CSV as external data (live), transpose it, and apply the formatting
 metadata = general_metadata(CSV_URL, source_name, source_url)
 metadata["data"]["transpose"] = True
+## More than 6 columns: value labels on hover, and a note for the description. The scripts that create graphs from
+## the overview add description_note after the "Description" text (they set the description afterwards).
+hover_labels = len(df) > MAX_COLUMNS_FOR_VALUE_LABELS
+description_note = HOVER_NOTE if hover_labels else ""
+if description_note:
+    metadata["describe"]["intro"] = description_note
+print(f"{len(df)} columns, value labels: {'on hover' if hover_labels else 'always'}")
+## Bold x-axis labels for Telemark and the country (rows of the CSV, columns after transposing)
+metadata["data"]["changes"] = bold_label_changes(df[category_column].astype(str).str.strip())
+print(f"Bold labels: {[c['previous'] for c in metadata['data']['changes']] or '(none)'}")
 metadata["visualize"] = {
     "color-by-column": True,
     "color-category": {"map": color_map},
@@ -84,7 +99,7 @@ metadata["visualize"] = {
     "connector-lines": True,
     "valueLabels": {
         "enabled": True,
-        "show": "always",
+        "show": "hover" if hover_labels else "always",
         "placement": "outside",
         "format": value_format,
         "preventOverlap": True,
@@ -94,7 +109,8 @@ metadata["visualize"] = {
     "x-grid": "off",
     "y-grid-format": "0",
     "tooltip-number-format": tooltip_format,  # key taken from line charts, not checked for stacked columns
-    "y-grid-labels": "auto",
+    "y-grid-labels": "off",  # no y-axis labels (Part 1); grid lines are kept
+    "yAxisLabels": {"enabled": False, "alignment": "left", "placement": "outside"},
     "y-grid-label-align": "left",
     "scale-y": "linear",
     "custom-range": ["", ""],  # Datawrapper default: starts at 0

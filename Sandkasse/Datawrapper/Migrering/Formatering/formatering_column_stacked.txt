@@ -49,11 +49,23 @@ Otherwise, enable "Show totals", so the sum of each column is shown above it.
 Segment names are shown as labels directly to the right of the last column (no separate legend),
 in the segment's color.
 Value labels are shown in every segment (rounding: see formatering_generelt.txt).
+With more than 6 columns (x-axis categories, i.e. rows in the CSV), value labels are shown "On hover" only
+(valueLabels.show "hover"), and "Hold musepekeren over for å se andelen." is added to the description
+(metadata.describe.intro), after any description text.
+X-axis labels named "Telemark", "Landet", "Hele landet" or "Norge" are shown in bold. In the editor this is done in
+"Check & Describe" by changing the cell to <b>Telemark</b>. Via the API it is stored as metadata.data.changes,
+one entry per label, with row/column referring to the CSV as uploaded (header = row 0, labels in column 0), also
+though the chart is transposed (reference: chart cdQv1):
+  {"id": <id>, "row": 1, "column": 0, "value": "<b>Telemark</b>", "previous": "Telemark",
+   "time": <ms timestamp>, "ignored": false}
+The CSV itself is not changed, so the chart stays live (note: the change follows the row number, so if rows in
+the CSV are reordered later, the bold label must be checked).
 
 
 // Axes and grid lines
-Y-axis labels use format "0" (whole numbers, no decimals). This overrides the general number format rules for the
-axis. The axis starts at 0; max and gridlines are automatic.
+No y-axis labels (the value labels in the segments show the numbers): "y-grid-labels" "off" and
+"yAxisLabels" {"enabled": false}. The grid lines are kept. The axis starts at 0; max and gridlines are automatic.
+(The format "0" in y-grid-format is kept, but is not visible without labels.)
 
 
 // Size
@@ -134,10 +146,10 @@ grid-lines             "show"
 x-grid                 "off"
 grid-lines-x           {"enabled": false, "type": "ticks"}
 y-grid-format          "0"        (whole numbers, see Part 1)
-y-grid-labels          "auto"
+y-grid-labels          "auto"     (Part 1: "off")
 y-grid-label-align     "left"
 y-grid-subdivide       true
-yAxisLabels            {"enabled": true, "alignment": "left", "placement": "outside"}
+yAxisLabels            {"enabled": true, "alignment": "left", "placement": "outside"}   (Part 1: enabled false)
 x-grid-format          "auto"
 xGridAlignment         "baseline"
 rotate-labels          "auto"
