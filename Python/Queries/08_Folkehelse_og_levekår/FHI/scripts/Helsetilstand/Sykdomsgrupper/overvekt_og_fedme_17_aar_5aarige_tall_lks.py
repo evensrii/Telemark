@@ -1,9 +1,9 @@
 """
-FHI Query Script: Overvekt og fedme, 17 år, fireårig.txt
-========================================================
+FHI Query Script: Overvekt og fedme, 17 år, 5årige tall (LKS).txt
+=================================================================
 
 Auto-generated script for processing FHI query data.
-Query file: Helsetilstand/Sykdomsgrupper/Overvekt og fedme, 17 år, fireårig.txt
+Query file: Helsetilstand/Sykdomsgrupper/Overvekt og fedme, 17 år, 5årige tall (LKS).txt
 
 This script:
 1. Loads query from .txt file
@@ -12,7 +12,7 @@ This script:
 4. Compares with GitHub and uploads if changed
 5. Saves to CSV output
 
-Generated: 2026-07-01 14:29:22
+Generated: 2026-11-24 12:22:50
 """
 
 import json
@@ -46,11 +46,11 @@ query_file = os.path.join(
     "08_Folkehelse_og_levekår", 
     "FHI", 
     "queries",
-    "Helsetilstand", "Sykdomsgrupper", "Overvekt og fedme, 17 år, fireårig.txt"
+    "Helsetilstand", "Sykdomsgrupper", "Overvekt og fedme, 17 år, 5årige tall (LKS).txt"
 )
 
 # Output configuration
-output_filename = "overvekt_og_fedme_17_aar_fireaarig.csv"
+output_filename = "overvekt_og_fedme_17_aar_5aarige_tall_lks.csv"
 github_folder = "Data/08_Folkehelse og levekår/Helsetilstand/Sykdomsgrupper"
 
 # Get temp folder
@@ -78,7 +78,7 @@ def load_query_file(file_path):
 
 # %%
 print(f"\n{'=' * 70}")
-print(f"FHI Query: Overvekt og fedme, 17 år, fireårig.txt")
+print(f"FHI Query: Overvekt og fedme, 17 år, 5årige tall (LKS).txt")
 print(f"{'=' * 70}\n")
 
 # Load query from file
@@ -117,10 +117,23 @@ print(f"  Columns: {', '.join(df.columns.tolist())}")
 
 # --- Standard FHI transformations (auto-generated) ---
 
+# Handle Skoleår column (e.g. "2022/23-2024/25"): keep as-is, create "År" and "Skoleår_slutt"
+if 'Skoleår' in df.columns:
+    df['År'] = pd.to_datetime(df['Skoleår'].str.split('-').str[-1].str[:4] + '-01-01').dt.strftime('%Y-%m-%d')
+    df['Skoleår_slutt'] = df['Skoleår'].str.split('-').str[-1]
+    # Place År and Skoleår_slutt directly after Skoleår
+    cols = df.columns.tolist()
+    idx = cols.index('Skoleår')
+    cols.remove('År')
+    cols.remove('Skoleår_slutt')
+    cols.insert(idx + 1, 'År')
+    cols.insert(idx + 2, 'Skoleår_slutt')
+    df = df[cols]
+
 # Convert År to datetime (YYYY-01-01) if column contains single years
 # If År contains intervals (e.g. "2013-2016"), rename to "År (intervall)" and create "År" from last year
 if 'År' in df.columns:
-    if df['År'].astype(str).str.match(r'^\d{4}-\d{4}$').all():
+    if df['År'].astype(str).str.match(r'^\d{4}[-/]\d{4}$').all():
         df = df.rename(columns={'År': 'År (intervall)'})
         df['År'] = pd.to_datetime(df['År (intervall)'].str.split(r'[-/]').str[1] + '-01-01').dt.strftime('%Y-%m-%d')
         # Place År directly after År (intervall)
@@ -160,7 +173,7 @@ for col in df.columns:
 
 # Create SortKjonn column if Kjønn exists and has more than one unique value
 if 'Kjønn' in df.columns and df['Kjønn'].nunique() > 1:
-    kjonn_sort = {"Kjønn samlet": 1, "Menn": 2, "Gutter": 2, "Kvinner": 3, "Jenter": 3}
+    kjonn_sort = {"Kjønn samlet": 1, "Begge kjønn": 1, "Menn": 2, "Mann": 2, "Gutter": 2, "Kvinner": 3, "Kvinne": 3, "Jenter": 3}
     df['SortKjonn'] = df['Kjønn'].map(kjonn_sort)
 
 # Create SortAlder column if Alder exists and has more than one unique value
